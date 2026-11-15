@@ -1,0 +1,1 @@
+../../vendor/claude-code-game-studios/.claude/agents/godot-csharp-specialist.md

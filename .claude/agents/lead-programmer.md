@@ -1,0 +1,1 @@
+../../vendor/claude-code-game-studios/.claude/agents/lead-programmer.md
