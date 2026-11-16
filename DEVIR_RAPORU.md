@@ -9,7 +9,7 @@ Bu rapor, oyun üzerindeki çalışmayı başka bir Claude oturumunda (başka bi
 | | |
 |---|---|
 | Oyun | **Demir Diyarı** (Faz 1), tarayıcıda çalışan 3B mobil RPG; yatay oynanır |
-| Son yayın | https://claude.ai/artifact/5fWMFYJvLGPjqmkaKSaPW5 · **Sürüm 7** · paylaşım: bağlantıya sahip herkes |
+| Son yayın | https://claude.ai/artifact/DJihHiDK3J8QzXTCQge7p3 (yeni link; dosya `game/demir-diyari.html`) · eski link: https://claude.ai/artifact/5fWMFYJvLGPjqmkaKSaPW5 (Sürüm 7) |
 | Kaynak kod | `demir-diyari-kaynak.zip` (bu raporla birlikte gönderildi) ve aynı dosyalar yayındaki linkte |
 | GitHub | `fatihkurnzz/K-z-l-safak`, dal `claude/add-skill-repos-rne7at`. **Hiçbir commit gönderilemedi** (GitHub erişimi 403). Güncel kodun asıl kopyası zip'tir |
 | İlk kaynak | Oyun başlangıçta başka bir hesaba ait bir linkten alındı (claude.ai/artifact/MYzseijJ8VLrLwQbMupv9t, "Demir Diyarı Faz 1"). O link hiç değiştirilmedi |
