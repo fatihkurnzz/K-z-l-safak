@@ -6,7 +6,7 @@
 > - **GPT (sanat ve tasarım):** Grafikleri, arayüz parçalarını, simgeleri, arka planları, portreleri, efektleri ve **oyunun gerçek ekranlarının yeniden tasarlanmış maketlerini** üretir. → Bölüm 0–10 ve 11.
 > - **Claude (uygulama):** GPT'nin teslimini denetler, oyunun kaynak koduna uygular, yerleşimi CSS ile kurar ve oyunun hatasız çalıştığını kanıtlar. → Bölüm 0–10 ve 12.
 >
-> Belgenin ekleri: `ekranlar/` (oyunun bugünkü hâlinin ekran görüntüleri), `dom/` (aynı ekranların gerçek HTML yapısı), Ek B (hikâyenin tam metni).
+> Belgenin ekleri (aynı zip içinde): `ekranlar/` (oyunun bugünkü hâlinin ekran görüntüleri), `dom/` (aynı ekranların gerçek HTML yapısı), `oyun-kaynak/` (oyunun **tam kaynak kodu**, çalışır hâlde), Ek A (ekran listesi ve görüntüsü alınamayan ekranların tarifi), Ek B (hikâyenin tam metni).
 >
 > **Çelişki olursa öncelik sırası:** Bölüm 1 (yapıyı koruma kuralları) > Bölüm 4–5 (ölçü ve yerleşim) > Bölüm 3 (görsel kimlik) > hikâye metni (Ek B: söz, yer ve karakterlerde esas).
 
@@ -82,7 +82,8 @@ Her maket, `ekranlar/` klasöründeki **o ekranın gerçek görüntüsünden** b
 - `dom/` klasöründe aynı adla her ekranın **gerçek HTML'i** vardır (komut dosyaları ve uzun görsel verileri kısaltılmış). Ekranda hangi öğenin hangi `id`/`class` ile yazıldığını buradan görürsünüz.
 - **GPT:** Her maketi bu görüntüden başlat; görüntüdeki her öğeyi yeni tasarımda göster (Bölüm 1.3).
 - **Claude:** CSS'i bu HTML'deki gerçek seçicilere yaz; tahmin etme, `dom/` ve kaynak koddan doğrula.
-- Tam liste: **Ek A**.
+- `oyun-kaynak/` klasörü oyunun kendisidir. Çalıştırmak için klasörde `python3 -m http.server 8765` ve tarayıcıda `http://localhost:8765/?gfx=low`. GPT ekranların içeriğini ve metinlerini buradan da okuyabilir (`js/ui-*.js` dosyaları her ekranın HTML şablonunu üretir). Claude değişiklikleri bu kodun üzerinde yapar.
+- Tam liste ve görüntüsü alınamayan ekranların tarifi: **Ek A**.
 
 ### 3.3 Oyunun bugünkü görsel altyapısı (Claude için bilgi, GPT için bağlam)
 - Kök: `oyun-son/`. Giriş `index.html` (309 KB, içinde 19 `<style>` bloğu) + `css/` altında 31 katman (`v8.css` … `v16-korant.css`, en sonda `v13-hub.css` yüklenir). Toplam 90 `!important` var. Yazı tipleri `css/fonts.css` (Cinzel, Inter; yerel woff2).
