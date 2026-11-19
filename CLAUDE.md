@@ -4,6 +4,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 
 ## ASIL SÜRÜM = `oyun-son/` (19.11.2026'dan beri)
 - Kaynak: kullanıcının verdiği https://claude.ai/artifact/KUfQG1bV27JFGDTjpBwEdk (kuruluş dışı; okunur, yayımlanamaz). 293 dosyanın tamamı `oyun-son/`a alındı.
+- KENDİ YAYINIMIZ: https://claude.ai/artifact/GwNoLLWnf5Wjc1PUJep2yi (19.11.2026; 2 adımda yayımlandı: 250 + 42 dosya, `_tasarim/` hariç; sayfa başlığı "Korant Online").
 - Yerel kip: `index.html` içinde `window.DD_LOCAL = true`; kayıt localStorage'da, sunucu yok.
 - Modeller `.glb.js` (base64 gömülü), `vendor/three/LICENSE.txt`. GLTFLoader'da `image/avif` gömülü görsel YOK (yalnızca 2 "avif" dizgesi). `js/skinned.js` Xbot'u hâlâ cdn.jsdelivr.net'ten çekiyor. `video/` boş (bolum-01..10.mp4 bekleniyor).
 - Yapı: 31 stil dosyası (css/v8 … v16), 90 `!important`; `index.html` 309 KB, 19 `<style>` bloğu. Ölçek değişkenleri `js/orient.js`: `--lw --lh` (mantıksal ekran), `--sat --sab --sal --sar` (güvenli alan), `--dock`, `--kb`. Dik telefonda gövde 90° döndürülür.
