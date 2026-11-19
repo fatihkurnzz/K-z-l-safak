@@ -15,7 +15,7 @@
 |---|---|---|
 | 1 | Sanat yönergesi (1 sayfa): renk, malzeme, ışık, şekil dili | PNG/JPEG pano + kısa metin |
 | 2 | Arayüz kiti (UI kit): çerçeveler, düğmeler, sekmeler, çubuklar, rozetler, simge seti | Saydam PNG (+ 9-dilim ölçüleri) |
-| 3 | Ekran tasarımları (Bölüm 7'deki her ekran) | 1920×1080 PNG maket |
+| 3 | Ekran tasarımları (Bölüm 7deki her ekran) | 2340×1080 ve 1440×1080 PNG maket |
 | 4 | Tema CSS'i (renk/yazı değişkenleri ve bileşen stilleri) | Tek `.css` dosyası, düz CSS |
 | 5 | Arka planlar ve sahne görselleri (açılış, bölgeler, şehirler) | JPEG/WebP |
 | 6 | Karakter ve yaratık konsept çizimleri / portreleri | PNG/WebP |
@@ -135,7 +135,7 @@ Ateş `#FF6A1F` · Buz `#7FD6FF` · Yıldırım `#FFE35A` · Şifa `#8CF0A0` · 
 - **Başlık (display):** Cinzel 700/900, oyunda zaten gömülü. Taş yazıt hissi verir. Logo, ekran başlıkları, boss adları, sonuç ekranı.
 - **Gövde:** Inter 400/600/800, oyunda zaten gömülü. Bütün okunacak metin, sayılar, düğmeler.
 - Başka bir yazı tipi önerirsen: **OFL lisanslı** olmalı, **Türkçe harfleri tam desteklemeli** (ğ Ğ ş Ş ı İ ö Ö ü Ü ç Ç) ve `woff2` olarak teslim edilmeli. Cinzel yalnızca büyük harf ağırlıklıdır: "İ" ve "ı" ayrımı başlıklarda bozulmamalı. Bunu örnekle göster.
-- Ölçek (1080p yatay referans): H1 48 · H2 34 · H3 26 · Gövde 22 · Küçük 18 · En küçük 15 px. Telefonda dokunma hedefi en az 44×44 pt.
+- **Yazı boyutları ve bütün ölçüler için `YERLESIM_SPEC.md` geçerlidir** (Bölüm 7: tipografi, Bölüm 6: bileşenler). Kısaca, 1080 dp yükseklik referansında: gövde 38, küçük 34, başlıklar 42–72 dp, dokunma hedefi en az 120 dp. Yatay telefon yalnızca ~390 px yüksekliğinde olduğu için bu değerler büyük görünse de telefonda okunur boyuta karşılık gelir.
 - Sayılar (hasar, para) tabular figürlü ve kalın; hasar sayısı Cinzel değil Inter 800 + koyu kontur.
 
 ---
@@ -170,7 +170,7 @@ Her bileşen **iki temada** (Kragmir / Elentha) ve şu durumlarda istenir: norma
 
 ## 7. Ekranlar: Tek tek istenenler
 
-Her ekran için 1920×1080 maket. Önemli ekranlarda telefon (2340×1080) uyarlaması da olsun. Her maketin yanına 3–5 satırlık "neden böyle" notu ekle.
+Her ekran için **2340 × 1080 dp** (telefon) maket + **1440 × 1080 dp** (tablet) uyarlaması. Bölge, konum ve ölçüler `YERLESIM_SPEC.md` Bölüm 8'e uymalı. Her maketin yanına 3–5 satırlık "neden böyle" notu ekle.
 
 ### 7.1 Açılış ve giriş
 - **Açılış (splash):** Kararmış ova, ortada çatlak taş, yavaşça yağan kül; logo yukarıdan kül dağılarak belirir.
