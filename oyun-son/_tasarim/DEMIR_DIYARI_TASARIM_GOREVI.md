@@ -36,6 +36,19 @@ Bu oyun yüzlerce ekran parçası, 300'e yakın dosya ve çalışan bir kayıt s
 ### 1.3 "Genel taslak" yasağı
 Her maket, `ekranlar/` klasöründeki **o ekranın gerçek görüntüsünden** başlar. O ekrandaki her öğe yeni maketde bulunur ve yerini gösteren bir eşleşme notu verilir: "eski: sol üst profil kartı → yeni: A bölgesi portre bloğu". Oyunda olmayan şeyler maketlere eklenmez (örnek: oyunda "Yetenek" ayrı bir menü değildir, **Karakter** penceresinin bir sekmesidir; maket buna uyar).
 
+### 1.4 Kapsam: oyunun HER yeri (iyi olan korunur)
+Bu iş yalnızca birkaç ekranın değil, **oyunun tamamının** tasarımıdır: grafik + arayüz + yerleşim + kullanım (UX). Kapsamdaki her yer `ekranlar/` ve Ek A'da listelidir:
+- **Bütün ekranlar ve pencereler:** açılış, yükleme, sunucu, karakter oluşturma ve seçimi, fragman, öğretici, ana merkez (başkent, Yemin Pazarı, klan merkezi), her bina penceresi, Kapı/bölge/aşama seçimi, VS, savaş, sonuç, Karakter penceresinin her sekmesi, Çanta, eşya ayrıntısı, Görevler, Klan, Hisar, Meydan/Arena, Zindan, Baskın, Nöbet, Balıkçılık, Çarşı, Karaborsa, Kervan, Premium, Yakut, Sandık, Kader Çarkı, Örs, Maden, İksir ve Parşömen, Taş Yemini, Kral Otağı, Posta, Sohbet, Arkadaşlar, Parti, Profil, Ansiklopedi, Rehber, Başarım, Unvan, Takvim, Bildirim, Duyuru, Ayarlar, Destek/Rapor, Menü, Kaplamalar, Mini dizi.
+- **Küçük parçalar:** toast bildirimleri, onay kutuları, ödül açılışları, seviye atlama, yükleme göstergeleri, boş liste durumları, kilitli öğe görünümü, hata iletileri, isim plakaları, bina etiketleri, hasar sayıları.
+- **3B dünyanın görünüşü:** gökyüzü, ışık, sis ve renk ayarı (her bölge ve şehir için), bina ve zemin dokuları, savaş arka planları, karakter/yaratık görünümleri, efektler. 3B modellerin geometrisi değişmeyecekse yalnızca doku, renk ve ışık önerisi yeterlidir.
+
+**Karar kuralı:** Her ekran ve her parça için üç karardan biri verilir ve `ESLESME.md`'ye bir satır gerekçeyle yazılır:
+- **YENİDEN TASARLA:** Görsel kimliğe ya da ölçü kurallarına uymuyor, kalitesi düşük ya da kullanımı zor.
+- **İYİLEŞTİR:** Düzeni iyi; yalnızca malzeme, renk, simge, yazı boyu ya da aralık güncellenecek.
+- **KORU:** Zaten bu belgenin kalitesinde ve kurallarına uygun; dokunulmaz. (Örnek aday: Çanta penceresinin düzeni ve nadirlik çerçeveleri, karakter oluşturmadaki 3B önizleme. Koruma kararı da gerekçelendirilir.)
+
+Hiçbir yer "kapsam dışı" bırakılmaz. Bir yere dokunulmayacaksa bu bir **karar** olarak yazılır, unutulmaz.
+
 ---
 
 ## 2. İlk teslimden çıkan dersler (bunlar tekrarlanırsa teslim reddedilir)
@@ -500,7 +513,7 @@ teslim/
   logo/
 ```
 11. **MANIFEST.md:** her dosya için yol, ne olduğu, hangi ekranda/öğede kullanılacağı, piksel boyutu, dosya boyutu, 9-dilim kenarı, sprite kare sayısı ve fps, lisans.
-12. **ESLESME.md:** her ekran için "eski öğe → yeni yer ve görsel" tablosu (Bölüm 1.3).
+12. **ESLESME.md:** her ekran ve parça için: karar (YENİDEN TASARLA / İYİLEŞTİR / KORU) + gerekçe + "eski öğe → yeni yer ve görsel" tablosu (Bölüm 1.3, 1.4). Ek A'daki her satır burada bir kez geçer.
 13. **Lisans:** her şey özgün ya da açık lisanslı; var olan hiçbir oyunun karakterini, logosunu, arayüzünü, haritasını ya da sanatını kopyalama, benzerini de yapma.
 
 ---
@@ -537,6 +550,7 @@ Her aşama ayrı paket olarak teslim edilir; her paket kendi `MANIFEST.md`'sini 
 
 ## 11. GPT: teslim kontrol listesi (göndermeden önce hepsini işaretle)
 
+- [ ] Ek A'daki her ekran ve parça için karar verildi (YENİDEN TASARLA / İYİLEŞTİR / KORU), gerekçesi yazıldı; kapsam dışı kalan yer yok.
 - [ ] Her maket `ekranlar/` içindeki gerçek ekrandan başladı; o ekrandaki her düğme, sekme, yazı ve sayı yeni maketde var; `ESLESME.md` dolu.
 - [ ] Hiçbir maket başka bir ekranın kopyası değil; uydurma yer tutucu ("BİRİM", "Lorem") yok.
 - [ ] Bütün simgeler gerçek çizim; hiçbirinde □ yok; aynı iki dosya yok (dosya özetleriyle denetlendi).
@@ -577,6 +591,9 @@ Her aşama ayrı paket olarak teslim edilir; her paket kendi `MANIFEST.md`'sini 
 3. Eski 31 katmandan ve `index.html` içindeki `<style>` bloklarından **yalnızca o ekranı ilgilendiren** ve artık gereksiz kalan kuralları kaldır; `!important` sayısını azalt. Bir kuralı silmeden önce başka ekranı etkilemediğini ara ve doğrula.
 4. Simgeler: PNG simgeyi mevcut SVG simge fonksiyonlarının (`js/icons.js` `svg()`, `item-icons.js`, `skill-icons.js`) çıktısını değiştirerek bağla; PNG'si olmayan simgede eski SVG yedek olarak kalır (oyun asla simgesiz kalmaz).
 5. Davranışa dokunma; `data-a` düğmelerinin hepsi aynı işi yapmaya devam eder.
+6. `ESLESME.md`'deki kararlara uy: **KORU** denen yere dokunma, yalnızca yeni temayla renk uyumu gerekiyorsa değişkenleri bağla; **İYİLEŞTİR** denen yerde düzeni koru, görünüşü değiştir; **YENİDEN TASARLA** denen yeri maketteki gibi kur.
+7. 3B dünya: gökyüzü, ışık, sis ve renk ayarlarını sahne kurulum kodunda (`js/engine3d.js`, `js/scenery.js`, `js/town.js`, `js/daylight.js` ve bölge ayarları) GPT'nin bölge önerilerine göre güncelle; dokuları `models/` biçimine uygun ekle. Performans `?gfx=low` kipinde düşmemeli.
+8. Kapsamdaki her yer (Bölüm 1.4) bitince bir tur daha gez: eski temada kalmış "yarım" ekran kalmasın.
 
 ### 12.5 Hatasızlık kanıtı (her ekran ve her paket sonunda)
 Yerel sunucu (`python3 -m http.server 8765 -d oyun-son`) + Playwright, `?gfx=low`, testler sırayla:
@@ -593,6 +610,7 @@ Yerel sunucu (`python3 -m http.server 8765 -d oyun-son`) + Playwright, `?gfx=low
 ## 13. Kabul ölçütleri (iş ancak bunların hepsi doğruysa bitmiştir)
 
 - [ ] Oyunun her ekranı, her düğmesi ve her işlevi yerinde ve çalışıyor; yeni tasarımda kaybolan özellik yok.
+- [ ] Oyunun her yeri (Bölüm 1.4) ya yeni tasarıma geçti ya da gerekçeli olarak korundu; eski ve yeni görünüş yan yana kalmış "yarım" ekran yok.
 - [ ] İki tema yan yana aynı oyunun iki yüzü gibi; yerleşim aynı.
 - [ ] Savaş HUD'u yatay telefonda başparmakla rahat oynanıyor.
 - [ ] Her ekranda en önemli eylem bir saniyede bulunuyor; birincil düğme hep G'de, Geri hep A'da.
