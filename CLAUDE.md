@@ -1,25 +1,35 @@
 # Demir Diyarı · Oturum hafızası
 
-Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı Faz 1**, tarayıcıda çalışan 3B mobil RPG (vanilla ES modülleri + three.js r160, gömülü).
-Ayrıntılı devir raporu: `DEVIR_RAPORU.md` (durum, eksikler, teknik tuzaklar). Öneriler: `Demir_Diyari_Oneriler.pdf`.
+Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**, tarayıcıda çalışan, YALNIZCA YATAY çizilen 3B mobil RPG (vanilla ES modülleri + three.js r160 gömülü, sıra tabanlı belirlenimci savaş). Hikâye: **Vahran: Tarihin Külleri**.
 
-## Kullanıcının en son geçerli sayduğu sürüm
-- **Asıl sürüm = devir zip'i + yalnızca AVIF düzeltmesi.** Dosya: `demir-diyari-kaynak.zip` (repo kökünde, .gitignore'da; içinde `game/`, `DEVIR_RAPORU.md`, PDF).
-- Bu sürümün yayını: https://claude.ai/artifact/MTABphHNGvf3krJ6ouTQxQ (özel; paylaşımı kullanıcı Paylaş menüsünden açar).
-- Düzeltme: `game/vendor/three/examples/jsm/loaders/GLTFLoader.js` içine gömülü `data:image/avif` test görseli ve AVIF eklenti kaydı kaldırıldı (AVIF herkese açık paylaşım incelemesinde izinli biçim değil; three.js gömülünce gelmişti). Kullanıcı başka paylaşım değişikliği İSTEMEDİ, rapora da eklenmesini istemedi.
+## ASIL SÜRÜM = `oyun-son/` (19.11.2026'dan beri)
+- Kaynak: kullanıcının verdiği https://claude.ai/artifact/KUfQG1bV27JFGDTjpBwEdk (kuruluş dışı; okunur, yayımlanamaz). 293 dosyanın tamamı `oyun-son/`a alındı.
+- Yerel kip: `index.html` içinde `window.DD_LOCAL = true`; kayıt localStorage'da, sunucu yok.
+- Modeller `.glb.js` (base64 gömülü), `vendor/three/LICENSE.txt`. GLTFLoader'da `image/avif` gömülü görsel YOK (yalnızca 2 "avif" dizgesi). `js/skinned.js` Xbot'u hâlâ cdn.jsdelivr.net'ten çekiyor. `video/` boş (bolum-01..10.mp4 bekleniyor).
+- Yapı: 31 stil dosyası (css/v8 … v16), 90 `!important`; `index.html` 309 KB, 19 `<style>` bloğu. Ölçek değişkenleri `js/orient.js`: `--lw --lh` (mantıksal ekran), `--sat --sab --sal --sar` (güvenli alan), `--dock`, `--kb`. Dik telefonda gövde 90° döndürülür.
+- İçerik: 2 halk (Kragmir/ork, Elentha/insan; `p.faction`), 4 sınıf: Savaşçı (Hücum/Siper/Öfke), Suikastçı (Hançer/Yay/İz), Şifacı (Şifa/Rün Mührü/Kara Rün), Büyücü (Ateş/Buz/Yıldırım) — `shared/content.js`. Bölgeler (`shared/zones.js`): Vahran Ovası 1–20, Kül Geçidi 20–40, Kızıl Bahar Meydanı 40–60, Sisli Çukur 60–65; her bölge 25 aşama, 5'te bir kapı. Bosslar: Dev Solucan, Tepegöz, Kristal Muhafızı, Lav Yürek, Kül Ağası Karadun, Mareşal Marven, Adsız (Tarikat Lideri). Ana görev 64 adım / 16 bölüm (`shared/anagorev.js`).
 
-## Kullanıcının bildirdiği EN SON hâl (19.11.2026)
-- Kullanıcı "oyunun son hali" diyerek https://claude.ai/artifact/KUfQG1bV27JFGDTjpBwEdk verdi (kuruluş dışı/herkese açık; okunur, yayımlanamaz). 293 dosyanın tamamı `oyun-son/` klasörüne alındı (commit d9adc37). `DD_LOCAL = true`, modeller `.glb.js`, `vendor/three/LICENSE.txt`, videolar yok (`video/README.txt`). Diğer oturumun yayını: YUZmyf2qyxFxY1Jr7jczu7.
+## Kullanıcının büyük planı: A–Z görsel yeniden tasarım
+Kullanıcı grafik, arayüz, menüler, savaş sunumu dahil her şeyi BAŞKA bir yapay zekâya (başka bir Claude) yaptıracak; gelen işi bana gönderecek, **ben oyuna ekleyeceğim**. Hedef: "100 kişilik stüdyo" kalitesinde premium mobil oyun görünümü. Belgeler `oyun-son/_tasarim/` içinde (yayında bu klasörü dahil etme):
+- `VAHRAN_destan.txt`: kullanıcının verdiği tam hikâye (8 bölüm; Volgar/Demirdiş, Edran, Lira, Thrak, Yashka, Marven, Adsız, Küllerin Tarikatı, çatlak dikilitaş/Taş Yemini, Yerkıran çekici).
+- `KONSEPT_BRIEF.md`: görsel kimlik "KÜL VE DEMİR". İki tema (Kragmir: kara demir + kor; Elentha: ak mermer + lacivert + altın telkari) `html[data-faction]` ile; kül = Tarikat/tehlike dili; çatlak taş = ayraç motifi, rün = ilerleme. Renk hex'leri, nadirlik/element renkleri, Cinzel + Inter, ekran listesi, karakter tarifleri, VFX, teknik teslim kuralları (yalnızca PNG/JPEG/WebP; AVIF ve SVG yasak; GLB ≤12k üçgen, sıkıştırmasız; düz CSS, dış bağlantı yok; MANIFEST.md).
+- `YERLESIM_SPEC.md`: yapı/ölçü belgesi (bu ikisi çelişirse esas). Birim dp; yükseklik hep 1080 dp, genişlik 1440 (tablet)–2400 (telefon); s = ekran_yüksekliği/1080 (≤1), kod `--s` yayınlayacak (henüz EKLENMEDİ). Maket 2340×1080 + 1440×1080. En küçük dokunma 120 dp, en küçük cümle 34 dp, gövde 38. 8 dp ızgara, boşluklar 8/16/24/32/48/64/96. Çentik payı 130 dp, alt 58 dp, kenar 32. 8 bölge: Geri sol üst, kaynaklar sağ üst (Altın→Premium→Enerji), tek birincil düğme sağ altta, dock SOLA çapalı (744 dp) + sohbet üstünde, sağ ray en fazla 5 düğme. Savaş: temel saldırı 200 dp sağ altta, 4 yetenek 136 dp çeyrek yayda (r=260); sağ alt 600×520 ve sol alt 720×440 birim girmez. Panel ekranları ortak şablon (üst bar 136, sol sekme 280, eylem şeridi 152). Teslim: `tokens.css` + ekran başına tek dosya HTML maket + ekran görüntüleri + BILESENLER.md.
+- Önerdiğim süreç: önce pilot (sanat panosu + Ana Merkez + Savaş HUD + Karakter oluşturma), onay sonra kalanı; entegrasyonda eski 31 CSS katmanını ekran ekran kaldır.
+- Gelen iş geldiğinde: biçim denetimi (AVIF/SVG/.glb/BMP/TGA/TIFF), GLB → `.glb.js`, `--s` değişkenini orient.js'e ekle, `data-faction`'ı `p.faction`'a bağla.
 
-## Diğer bağlantılar
-- `game/` klasörü (git'te) zip'ten FARKLI: ek paylaşım denemeleri içerir (CSS SVG → `img/ui/*.png`, model tamponları `b64` alanında + `js/skinned.js` içinde `loadG`, WebP → JPEG/PNG, FBX yükleyicisi silindi, LICENSE → LICENSE.txt). Yayınları: https://claude.ai/artifact/DJihHiDK3J8QzXTCQge7p3 (`game/demir-diyari.html`) ve eski https://claude.ai/artifact/5fWMFYJvLGPjqmkaKSaPW5 (`game/index.html`).
-- Test sayfaları (gereksiz): Test1 SjYSG89hgNE1gB1jGdCYTi, Test2 VV4xa5k4izqQYLhpJLXyoQ, Test3 8AEm3MwjfX9iiAfpEYDrqu; indirme sayfası DYehTt339tgy7u4XpRT6SA. Kullanıcı isterse silinir.
-- Kullanıcının ilk kaynağı (başka hesaba ait, dokunulmaz): https://claude.ai/artifact/MYzseijJ8VLrLwQbMupv9t
+## Öneri belgeleri
+- `Demir_Diyari_Oneriler.pdf` (1. sürüm, eski oturum): sunucu, three.js gömme, duman testi, 60+ hedef, pazar fiyat aralığı, Kader Çarkı garantisi, mağaza/yasal.
+- `Demir_Diyari_Oneriler_2.pdf` (4 sayfa; üretici betik `oyun-son/_tasarim/oneriler_pdf.py`, çıktı yolu argümanla verilir): kayıt dışa/içe aktarma, Xbot gömme, biçim denetim betiği, CSS katman temizliği, pilot ekranlar, destanın 8 bölümünü oynanabilir yapma (bölüm–oynanış tablosu), iki halk iki bakış, mini dizi = hareketli çizgi roman (video yerine), Kin Ölçeği + Tarikat istilası, ortak "Taş Yemini" baskını, Kül Kulesi (65+), Gri Cübbe klan olayı, süpürme/hız, element zayıflığı görünürlüğü, Kül Sezonu, yol haritası A–F. Kullanıcıya sorulan 4 soru (cevap bekleniyor): Play Store mu tarayıcı mı; sunucu ne zaman; gerçek para/kozmetik mi; 2. sezon yazılacak mı.
 
-## Paylaşım hatası teşhisi
-Hata: "Bu sürüm herkese açık paylaşım için incelenemedi… JPEG, PNG, GIF veya WebP…". İkiye bölme testinde görseller/modeller geçti, **yalnızca kod** (Test 2) takıldı → GLTFLoader'daki gömülü AVIF bulundu. Kullanıcının zip+AVIF sürümünde paylaşımı deneyip denemediği henüz bilinmiyor; yine olmazsa sıradaki şüpheliler: FBXLoader'daki bmp/tga/tiff dizgeleri, GLTFLoader'daki WebP test görseli.
+## Eski sürümler ve bağlantılar (artık ikincil)
+- `demir-diyari-kaynak.zip` (kökte, .gitignore'da) + AVIF düzeltmesi = önceki "asıl sürüm"; yayını https://claude.ai/artifact/MTABphHNGvf3krJ6ouTQxQ. Düzeltme: `game/.../GLTFLoader.js` içinden gömülü `data:image/avif` ve AVIF eklentisi kaldırıldı.
+- `game/` (git'te) zip'ten farklı paylaşım denemeleri içerir; yayınları DJihHiDK3J8QzXTCQge7p3 ve 5fWMFYJvLGPjqmkaKSaPW5.
+- Diğer oturumun ("Oyun son hali zilp") yayını: YUZmyf2qyxFxY1Jr7jczu7 (lance.glb → `js/lance-glb.js`).
+- Test sayfaları (gereksiz, kullanıcı isterse silinir): SjYSG89hgNE1gB1jGdCYTi, VV4xa5k4izqQYLhpJLXyoQ, 8AEm3MwjfX9iiAfpEYDrqu, DYehTt339tgy7u4XpRT6SA. İlk kaynak (başka hesap, dokunulmaz): MYzseijJ8VLrLwQbMupv9t.
+- Paylaşım hatası ("…JPEG, PNG, GIF veya WebP…"): yalnızca kod takılmıştı → gömülü AVIF. Yine olursa şüpheliler: FBXLoader'daki bmp/tga/tiff dizgeleri, GLTFLoader'daki WebP test görseli.
 
 ## Çalışma notları
-- Git dalı `claude/add-skill-repos-rne7at`; push her zaman 403 (Claude'un depoya erişimi yok). Commit'ler yereldedir; kullanıcıya söyle.
-- Yayın: sayfa dosyasında iskelet yok (yayın ekler); çok dosyalı yayında `root` + `files` haritası, silinecek dosyaya `null`, uzantısız dosyaya `contentType`. `.glb` sunulmaz.
-- Yerel test: `python3 -m http.server 8765 -d game`, Playwright, `?gfx=low`; testleri sırayla çalıştır. Heredoc python güvenlik denetimine takılabilir: betiği dosyaya yazıp çalıştır.
+- Git dalı `claude/add-skill-repos-rne7at`; push her zaman 403 (Claude GitHub uygulaması kurulu değil). Commit'ler yereldedir; kullanıcıya söyle.
+- Yayın: sayfa dosyasında iskelet yok; çok dosyalı yayında `root` + `files`, en çok 255 dosya, silinecek dosyaya `null`, uzantısız dosyaya `contentType`. `.glb` sunulmaz.
+- Yerel test: `python3 -m http.server 8765 -d oyun-son`, Playwright, `?gfx=low`; testleri sırayla çalıştır. Heredoc python güvenlik denetimine takılabilir: betiği dosyaya yazıp çalıştır.
+- PDF: reportlab + DejaVu yazı tipleri (Türkçe karakterler için).
