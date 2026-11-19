@@ -408,6 +408,28 @@ Her bileşen **iki temada** (Kragmir / Elentha) ve şu durumlarda: normal · bas
 10. **Simge seti (en az 60):** aynı çizgi kalınlığı ve ışık yönü. Menü: karakter, çanta, klan, görevler, posta, ansiklopedi, kervan/mağaza, savaş, harita/kapı, arena/meydan, sıralama/rütbe, başarım, takvim, bildirim, duyuru, ayarlar, sohbet, arkadaş, parti, sandık, balık, hisar, zindan, baskın, nöbet, çarşı, karaborsa, örs, maden, iksir, kader çarkı, taş yemini, rehber, premium. Kaynaklar: akçe, yakut, enerji, örs tozu, külçe. Nitelikler: güç, dayanıklılık, çeviklik, zekâ, mana. Elementler: ateş, buz, yıldırım. Durum etkileri: sersemletme, yanma, donma, zehir, kalkan, öfke, lanet. Eşya türleri: kılıç, balta, hançer, yay, asa, gürz, kalkan, miğfer, göğüs, eldiven, çizme, yüzük, kolye, iksir.
 11. **Sohbet balonu, isim plakaları** (oyuncu, NPC, boss, bina etiketi), **hasar sayısı** stilleri (normal, kritik, şifa, ıska, bağışık).
 
+### 6.1 Uygulama sırasında gerekecek yardımcı tasarımlar (GPT bunları da çizer)
+Bir ekranı koda dökerken maketde görünmeyen ama oyunda mutlaka karşılaşılan parçalar vardır. Bunlar eksik kalırsa uygulayıcı uydurmak zorunda kalır ve görünüş bozulur. Bu yüzden **hepsi iki temada** teslim edilir:
+
+| Grup | İstenenler |
+|---|---|
+| Durumlar | Her düğme, sekme, yuva ve kart için: normal, basılı, üzerine gelinmiş (masaüstü), seçili, pasif/kilitli, yükleniyor, bildirim noktalı |
+| Form öğeleri | Yazı kutusu (boş, odaklı, hatalı), arama kutusu, onay kutusu, açma/kapama anahtarı, kaydırıcı (ses, grafik), açılır liste, sayı artır/azalt, radyo seçimi |
+| Kaydırma ve liste | Kaydırma çubuğu, liste ayırıcı, "daha fazla yükle", boş liste görseli (çanta boş, posta boş, arkadaş yok, klan yok, görev yok) |
+| Bilgi parçaları | Araç ipucu (tooltip), bilgi "i" simgesi, kilit kaplaması + açılma seviyesi etiketi, "Yeni" ve "Sınırlı" şeritleri, geri sayım rozeti, yüzde/ilerleme halkası |
+| Savaş parçaları | Bekleme süresi karartması, mana yetersiz çatlak kaplaması, hedef halkası (dost/düşman), seçili birim parıltısı, sıra şeridi madalyonu (sırada/aktif/ölü), durum etkisi simgeleri (en az 12), boss can çubuğu evre işaretleri, "KRİTİK", "ISKA", "BAĞIŞIK", "ŞİFA" yazı stilleri, tur numarası rozeti |
+| Ödül ve ilerleme | Seviye atlama afişi, zafer/yenilgi başlıkları, 3 yıldız (boş/dolu/kazanılıyor), ödül kartı arkası ve önü (6 nadirlik), ışın patlaması, sandık görselleri (her nadirlik için kapalı/açık), Kader Çarkı çarkı ve ibresi, örs güçlendirme başarılı/başarısız efekti, rütbe ve lig rozetleri (her lig), başarım madalyaları, unvan çerçeveleri |
+| Harita | Parşömen harita, bölge düğümü (kilitli/açık/tamamlanmış/şu an), boss kapısı, yol çizgisi, bölge küçük resimleri, aşama basamakları |
+| Sosyal | Sohbet balonları (dünya, klan, parti, özel, sistem), kanal renkleri, çevrimiçi/çevrimdışı noktası, klan arması şekilleri, sancak kalıpları, profil çerçeveleri, avatar çerçeveleri |
+| Pencere parçaları | Pencere başlık şeridi, kapat düğmesi, geri düğmesi, modal arka karartması, alttan sayfa tutamağı, toast kutusu (bilgi, başarı, uyarı, hata) |
+| Yükleme | Yükleme döndürücüsü (kül/rün), sayfa geçişi kül perdesi, iskelet (yer tutucu) kart görünümü |
+| Dünya içi | Bina ad plakaları (normal, kilitli, portal), NPC ünlem/soru işareti, oyuncu isim plakası, ekipman parıltısı (+7 ve üstü), yere düşen ganimet parıltısı |
+
+Liste bitmiş değildir: Bölüm 1.4'teki herhangi bir yer için gereken her parça bu kapsama girer. GPT, maketlerini çizerken kullandığı her parçayı ayrı dosya olarak da teslim eder; **maketde görünüp dosyası olmayan parça bırakılmaz.**
+
+### 6.2 Eksik tasarım istek döngüsü
+Uygulama sırasında Claude bir parçaya ihtiyaç duyar ve teslimde bulamazsa **uydurmaz**. Bunun yerine `ISTEK.md` dosyasına yazar: hangi ekran, hangi öğe (seçicisi), ne gerekiyor, hangi ölçüde, hangi durumlarda, ekran görüntüsüyle. Kullanıcı bu dosyayı GPT'ye gönderir; GPT yalnızca istenenleri, aynı kurallarla ve aynı dosya adı düzeniyle teslim eder; Claude ekler. Bu döngü eksik kalmayana kadar sürer. Bu arada o parça için eski görünüş geçici olarak kalır ve listede "bekliyor" diye işaretlenir.
+
 Mikro-etkileşimler: basınca %96 + 80 ms; panel açılışı ölçek + saydamlık; ödülde ışın patlaması; rün belirmesinde içten dışa ışık dolması.
 
 ---
@@ -553,6 +575,7 @@ Her aşama ayrı paket olarak teslim edilir; her paket kendi `MANIFEST.md`'sini 
 - [ ] Ek A'daki her ekran ve parça için karar verildi (YENİDEN TASARLA / İYİLEŞTİR / KORU), gerekçesi yazıldı; kapsam dışı kalan yer yok.
 - [ ] Her maket `ekranlar/` içindeki gerçek ekrandan başladı; o ekrandaki her düğme, sekme, yazı ve sayı yeni maketde var; `ESLESME.md` dolu.
 - [ ] Hiçbir maket başka bir ekranın kopyası değil; uydurma yer tutucu ("BİRİM", "Lorem") yok.
+- [ ] Bölüm 6.1'deki yardımcı tasarımlar iki temada teslim edildi; maketde görünüp ayrı dosyası olmayan parça yok.
 - [ ] Bütün simgeler gerçek çizim; hiçbirinde □ yok; aynı iki dosya yok (dosya özetleriyle denetlendi).
 - [ ] İki tema yan yana konduğunda aynı oyunun iki yüzü; yerleşim aynı, malzeme farklı.
 - [ ] Tema seçicileri `ocak` / `sancak`.
@@ -572,6 +595,7 @@ Her aşama ayrı paket olarak teslim edilir; her paket kendi `MANIFEST.md`'sini 
 2. Biçim denetimi: yalnızca PNG/JPEG/WebP; dosyaların içinde `data:image/avif` ya da SVG yok; boyut bütçesi; adlarda Türkçe karakter yok.
 3. Maketi gerçek ekranla karşılaştır: `ESLESME.md`'de her öğe var mı? Eksik öğe varsa uygulamadan önce kullanıcıya bildir.
 4. Uymayan dosya oyuna eklenmez; listesi kullanıcıya verilir (GPT'ye geri gönderilmek üzere).
+5. Uygularken eksik çıkan her tasarımı uydurma; Bölüm 6.2'ye göre `ISTEK.md`'ye yaz ve kullanıcıya ver.
 
 ### 12.2 Dosya yerleşimi
 - Görseller `oyun-son/img/kd/` altına (`ui/ocak`, `ui/sancak`, `ui/ortak`, `simge`, `esya`, `yetenek`, `bg`, `portre`, `vfx`, `logo`).
