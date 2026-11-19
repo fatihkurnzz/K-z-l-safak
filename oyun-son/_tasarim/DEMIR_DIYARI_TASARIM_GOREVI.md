@@ -91,7 +91,7 @@ Hiçbir yer "kapsam dışı" bırakılmaz. Bir yere dokunulmayacaksa bu bir **ka
 - **Sistemler:** Klan, Hisar (kuşatma), Meydan/Arena (PvP), Baskın, Zindan, Nöbet, Balıkçılık, Çarşı, Karaborsa, Kervan (mağaza), Premium, Kader Çarkı, Sandık, Örs (güçlendirme), Maden, İksir ve Parşömen, Taş Yemini, Kral Otağı, Ana görev (64 adım / 16 bölüm) ve günlük/haftalık/aylık görevler, Rütbe, Başarım, Unvan, Parti, Sohbet, Posta, Arkadaş, Ansiklopedi, Rehber, Öğretici, Duyuru, Bildirim, Takvim, Kaplamalar, Mini dizi ve Fragman.
 
 ### 3.2 Ekran görüntüleri ve HTML yapısı
-- `ekranlar/` klasöründe oyunun **bugünkü** her ekranının görüntüsü vardır (2340 × 1080, yaygın telefonun yatay görüntüsü). Dosya adı ekranı söyler: `003-insan-ana-merkez.png`, `013-insan-karakter-sekme-skill.png` gibi. `insan` = Elentha teması, `ork` = Kragmir teması.
+- `ekranlar/` klasöründe oyunun **bugünkü** ekranlarının görüntüsü vardır (2340 × 1080, yaygın telefonun yatay görüntüsü; JPEG). Dosya adı ekranı söyler: `003-insan-ana-merkez.jpg`, `013-insan-karakter-sekme-skill.jpg` gibi. `insan` = Elentha teması. Görüntüsü alınamayan ekranlar (Kragmir teması dahil) Ek A.2'de yazıyla tarif edilmiştir.
 - `dom/` klasöründe aynı adla her ekranın **gerçek HTML'i** vardır (komut dosyaları ve uzun görsel verileri kısaltılmış). Ekranda hangi öğenin hangi `id`/`class` ile yazıldığını buradan görürsünüz.
 - **GPT:** Her maketi bu görüntüden başlat; görüntüdeki her öğeyi yeni tasarımda göster (Bölüm 1.3).
 - **Claude:** CSS'i bu HTML'deki gerçek seçicilere yaz; tahmin etme, `dom/` ve kaynak koddan doğrula.
@@ -297,7 +297,7 @@ Her ekran için GPT şunları teslim eder: **2340 × 1080 ve 1440 × 1080 maket 
 #### 5.4.2 Karakter oluşturma (en önemli ilk izlenim)
 - **Görünüş:** Halk seçimi iki yarı: solda Kragmir (sıcak ocak ışığı), sağda Elentha (soğuk sabah ışığı), ortada çatlak taş; seçilen yarı genişler. Sınıflar için 4 büyük kart; seçili sınıfın karakteri 3B sahnede döner. Görünüm seçenekleri (cinsiyet, yüz, saç, saç/göz/ten rengi, sakal), isim kutusu ve zar. Halk seçiminin altında tek cümlelik slogan.
 - **Yerleşim:** Seçilen halk yarısı %70'e genişler; halk adı 72, slogan 38. Sınıf kartları 400 × 640, aralık 32 (tablette 2×2); seçili kart 1.06 büyür. Görünüm paneli sağda 760 dp, seçenekler 136'lık kareler. İsim kutusu 960 × 120, yazı en az 16 CSS px. Sağ alt **OLUŞTUR** (G), sol alt Geri.
-- **Not:** Bugünkü ekran tek sayfadır (`a2`/karakter oluşturma görüntüsü). Adımlara bölmek yerine aynı sayfa korunabilir; bu durumda bölgeler yukarıdaki ölçülerle tek ekranda düzenlenir. Hangisini seçtiğini maket notunda yaz.
+- **Not:** Bugünkü ekran tek sayfadır (`090-insan-karakter-olusturma`). Adımlara bölmek yerine aynı sayfa korunabilir; bu durumda bölgeler yukarıdaki ölçülerle tek ekranda düzenlenir. Hangisini seçtiğini maket notunda yaz.
 
 #### 5.4.3 Ana merkez (şehir)
 - **Görünüş:** Oyuncunun başkenti: Kragmir dağ salonu (örsler, körük, lav kanalları) ya da Elentha beyaz kule meydanı (çeşme, sancaklar). Ayrıca **Yemin Pazarı** (iki halkın tarafsız çarşı kasabası) ve **Klan merkezi** aynı ekranı kullanır. 3B şehir canlı: duman, sancak, NPC'ler. Binaların üstünde ad plakaları (Kapı, Çarşı, Kral Otağı, Örs, Maden, İksir ve Parşömen, Kader Çarkı, Taş Yemini, Kral NPC'si) vardır; bunlar dokunulabilir ve **korunur**.
@@ -326,7 +326,7 @@ Her ekran için GPT şunları teslim eder: **2340 × 1080 ve 1440 × 1080 maket 
 #### 5.4.4 Kapı / bölge ve aşama seçimi (dünya haritası)
 - **Görünüş:** Elle çizilmiş eski parşömen harita: batıda Kragmir dağları, doğuda Elentha, ortada Vahran Ovası ve çatlak taş. Bölgeler yol üzerinde düğüm düğüm; **açılmamış bölgeler küllü ve gri, açıldıkça renk geri gelir** (ana ilerleme metaforu). Bölge içinde 25 aşama taş basamak / rün düğümü; her 5. aşama büyük kapı (boss portresi).
 - **Yerleşim:** Harita tam ekran, kaydırılabilir; üst bar korunur. Düğüm 120 çap, boss kapısı 168; altında ad (34) ve 3 yıldız (56). Seçilince sağdan 640 dp bilgi paneli: bölge görseli 640 × 360, ödüller (104'lük yuvalar), önerilen güç, **BAŞLA** (G).
-- Oyundaki Kapı penceresinin sekmeleri (bölgeler, etkinlikler, PvP, çarşı, klan vb.) korunur. (`savas-` ve `bina-gate` görüntüleri)
+- Oyundaki Kapı penceresinin sekmeleri (bölgeler, etkinlikler, PvP, çarşı, klan vb.) korunur. (`028`, `046–049` görüntüleri; aşama listesi Ek A.2'de tarif edildi)
 
 #### 5.4.5 Savaş öncesi (VS)
 - **Görünüş:** Ekran 12° eğik çatlak çizgiyle ikiye bölünür. Solda oyuncu takımı portreleri (240 × 320), sağda düşmanlar; ortada çatlak biçimli "VS" (200 dp). Güç karşılaştırması (800 × 96), önerilen güç, element zayıflık simgeleri.
@@ -345,11 +345,11 @@ Her ekran için GPT şunları teslim eder: **2340 × 1080 ve 1440 × 1080 maket 
 - **Görünüş:** 3B sahne merkezde, oyuncu solda, düşman sağda, kamera hafif yandan-yukarıdan. Sıra şeridi üstte (Elentha'da mine madalyonlar, Kragmir'de demir pullar). Birim üstünde ince can/mana ve durum simgeleri. Bekleme süresi saat yönünde karartma + kalan tur (44 dp); mana yetmiyorsa mavi çatlak kaplama + bedel kırmızı.
 - **Geri bildirim:** vuruşta kısa sarsıntı + 40–60 ms kare dondurma; kritikte büyük eğik sayı + parlama; element vuruşunda element renginde kıvılcım; boss can çubuğu geniş, çok katmanlı, evreli. **Tarikat düşmanları girince** doygunluk düşer, ince kül yağar, vuruşları gri-kor renkte.
 - **Yerleşim:** Temel saldırı 200 dp, sağdan 162, alttan 90. Dört yetenek 136 dp, temel saldırının çevresinde çeyrek yayda (yarıçap 260, açılar 180°, 210°, 240°, 270°). Sıra şeridi portresi 96, sıradaki 120 ve parlak, en fazla 10. Aktif birim bloğu sol altta (portre 160 + can 360 × 32 + mana 360 × 20 + en fazla 6 durum simgesi 48). İksir yuvaları 3 × 120. **Ayrılmış köşeler:** sağ alt 600 × 520, sol alt 720 × 440; hiçbir birimin silueti bu kutulara girmez. Birimlerin ayakları alttan ~300 dp. Hedef halkası 200 çap; dokunma alanı birimin tüm siluetidir (en az 200 × 320). Hasar sayısı 600 ms'de 120 dp yükselip söner; aynı anda en fazla 6. Üst sol duraklat, hız (1x/2x/3x), otomatik 120 × 120.
-- **Oyundaki öğeler korunur:** oyuncu bilgi bloğu (`#ystat`), çıkış (`#bctl`), hız ve OTO (`#bctl2`), yetenek düğmeleri, sıra bilgisi. Yerleri yukarıdaki düzene taşınır. (`savas-3`, `savas-4` görüntüleri)
+- **Oyundaki öğeler korunur:** oyuncu bilgi bloğu (`#ystat`), çıkış (`#bctl`), hız ve OTO (`#bctl2`), yetenek düğmeleri, sıra bilgisi. Yerleri yukarıdaki düzene taşınır. (görüntüsü yok; Ek A.2'de tarif edildi)
 
 #### 5.4.7 Savaş sonucu
 - **Zafer:** altın ışınlar, yıldız derecelendirmesi, ganimet kartları birer birer döner. **Yenilgi:** kül dağılması, üç "Güçlen" önerisi (yetenek, eşya, seviye; 360 × 200).
-- **Yerleşim:** Ortada 1200 × 840 kart; "ZAFER"/"YENİLGİ" 120 dp; 3 yıldız (120, ortadaki 144); ödül kartları 200 × 260, en fazla 5 yan yana. Altta solda "Tekrar" (ikincil), sağda **"Devam"** (birincil). (`savas-5`)
+- **Yerleşim:** Ortada 1200 × 840 kart; "ZAFER"/"YENİLGİ" 120 dp; 3 yıldız (120, ortadaki 144); ödül kartları 200 × 260, en fazla 5 yan yana. Altta solda "Tekrar" (ikincil), sağda **"Devam"** (birincil). (görüntüsü yok; Ek A.2'de tarif edildi)
 
 #### 5.4.8 Karakter penceresi (Karakter, Yetenek, Nitelik, Ustalık sekmeleri) ve Çanta
 - **Görünüş:** Solda 3B karakter (döndürülebilir), çevresinde kuşanma yuvaları (silah, kalkan, miğfer, göğüs, eldiven, çizme, takılar). Sağda çanta ızgarası + filtreler. Altta nitelikler ve dağıtılabilir puan. Eşya ayrıntı kartı: büyük simge, nadirlik çerçevesi, değerler, karşılaştırma (yeşil ↑ / kırmızı ↓), Kuşan / Güçlendir / Sat.
@@ -376,7 +376,7 @@ Her ekran için GPT şunları teslim eder: **2340 × 1080 ve 1440 × 1080 maket 
 - **Çarşı:** tezgâhlı pazar, satıcı portresi, eşya ızgarası. **Karaborsa:** aynı düzen, karanlık, mum ışıklı, kül kenarlı.
 - **Kervan / mağaza:** ürün kartları 400 × 520 (öne çıkan 840 × 520), aralık 24, yatay kaydırma; abartısız, asil vitrin.
 - **Sandık açma:** tam ekran modal; sandık 480 × 480 ortada sarsılır, kapak patlar, ışık sütunu nadirlik rengine bürünür; en nadirde kül ve kor girdabı; ödül kartları 200 × 260; altta "Hepsini aç" + "Tamam".
-- **Örs, Maden, İksir ve Parşömen, Kader Çarkı, Taş Yemini, Kral Otağı:** panel şablonu; her birinin içeriği `bina-...` görüntülerindeki gibi korunur, kendi malzemesiyle giydirilir (örs: kıvılcım ve demir; çark: dönen çark sahnesi).
+- **Örs, Maden, İksir ve Parşömen, Kader Çarkı, Taş Yemini, Kral Otağı:** panel şablonu; her birinin içeriği `bina-...` görüntülerindeki ve Ek A.2'deki tariflerdeki gibi korunur, kendi malzemesiyle giydirilir (örs: kıvılcım ve demir; çark: dönen çark sahnesi).
 
 #### 5.4.14 Balıkçılık
 - Huzurlu mola: Vahran'da dere kenarı. 3B sahne tam ekran; sağ alt **Çek** 200 çap (yetenek kümesiyle aynı yer); sağ kenarda dikey gerginlik çubuğu 48 × 640; yakalanan balık orta pencere; balık defteri.
@@ -388,7 +388,7 @@ Her ekran için GPT şunları teslim eder: **2340 × 1080 ve 1440 × 1080 maket 
 - **Menü (çekmece):** bütün ikincil ekranlara giden düğmeler; ızgara düzeni, 136'lık simge düğmeleri.
 
 #### 5.4.16 Kaplamalar, Mini dizi, Fragman
-- Kaplamalar: 3B önizleme + kaplama ızgarası. Mini dizi: 10 bölüm kartı, oynat, izlendi işareti (video yerine hareketli çizgi roman sahneleri kullanılacak). Fragman: açılıştaki sinematik metin sahnesi (`a5`): siyah şeritli sinema çerçevesi, ince altyazı, destan cümleleri.
+- Kaplamalar: 3B önizleme + kaplama ızgarası. Mini dizi: 10 bölüm kartı, oynat, izlendi işareti (video yerine hareketli çizgi roman sahneleri kullanılacak). Fragman: açılıştaki sinematik metin sahnesi (`091`): siyah şeritli sinema çerçevesi, ince altyazı, destan cümleleri.
 
 ---
 
@@ -648,7 +648,93 @@ Yerel sunucu (`python3 -m http.server 8765 -d oyun-son`) + Playwright, `?gfx=low
 
 ## Ek A · Ekran görüntüleri listesi (`ekranlar/` ve `dom/`)
 
-EKRAN_LISTESI_BURAYA
+### A.1 Görüntüsü olan ekranlar (`ekranlar/` · aynı adlı HTML `dom/` içinde)
+Hepsi Elentha (insan) temasıyla, 2340 × 1080 alınmıştır. 090–092 numaralılar 1170 × 540'tır ve HTML'leri yoktur.
+
+| Dosya | Ekran |
+|---|---|
+| 001-insan-acilis-yukleme | Açılış / yükleme, sunucu seçimi ve "Oyuna gir" |
+| 002-insan-karakter-secimi | Karakter seçme (hesaptaki karakterler, boş yuvalar) |
+| 003-insan-ana-merkez | Ana merkez: Elentha başkenti (3B şehir, bina plakaları, bütün HUD) |
+| 004-insan-profil | Profil kartı |
+| 005-insan-premium | Premium üyelik (Bronz, Gümüş, Platin) |
+| 006-insan-menu | Menü (çekmece) |
+| 007 / 008 -insan-magaza-kervan | Kervan (mağaza): yakutla günlük erzak / gerçek para sekmesi |
+| 009 / 010 / 011 -insan-yakut-al | Yakut Al: paketler / Yakut Kartı / geçmiş |
+| 012 -insan-karakter | Karakter penceresi: ekipman (kâğıt bebek) |
+| 013 / 014 / 015 | Karakter: Yetenek / Nitelik / Ustalık sekmeleri |
+| 016-insan-canta | Çanta (eşya bilgi kartı + ızgara + filtreler) |
+| 017-insan-klan | Klan Karargâhı (klansız oyuncu: arama, davetler, kurma) |
+| 018–021 -insan-gorevler | Görevler: ana / günlük / haftalık / aylık |
+| 022–024 -insan-posta | Posta: sistem / yaz / raporlar |
+| 025–027 -insan-ansiklopedi | Ansiklopedi: Rehber / Yaratıklar / Eşyalar |
+| 028-insan-savas-secimi | Savaş düğmesinin açtığı seçim |
+| 029 / 030 -insan-duyuru | Duyurular |
+| 031 / 032 -insan-bildirim | Bildirimler ve bildirim ayarları |
+| 034–036 -insan-takvim | Takvim: günlük / 7 gün / 28 gün |
+| 037 / 038 -insan-basarim | Başarımlar / Unvanlar |
+| 039-insan-cevrimici-odul | Çevrimiçi ödül sandıkları |
+| 040-insan-dunya-saat | Diyarın Hâli (saat, hava, etkin bonuslar) |
+| 041-insan-sunucu | Sunucu bilgisi |
+| 042–045 -insan-sohbet | Sohbet: genel / arkadaş / klan / parti kanalları |
+| 046–048 -insan-ana-gorev-takip | Kapı: Bölgeler / Zindanlar / Etkinlikler sekmeleri |
+| 049-insan-bina-gate | Kapı binası |
+| 050-insan-bina-carsi | Çarşı / Yemin Pazarı geçişi |
+| 051–054 -insan-bina-monument | Taş Yemini: Şampiyon / Klan / Başbuğ / Irk sekmeleri |
+| 090-insan-karakter-olusturma | Karakter oluşturma (ırk, sınıf, görünüş, ad, 3B önizleme) |
+| 091-fragman-acilis-sinematigi | Açılış fragmanı (2B sinematik, altyazılı) |
+| 092-insan-ogretici-orman-lira-konusmasi | Öğretici: Kemikli Koru ormanı + Prenses Lira'nın konuşma penceresi |
+
+### A.2 Görüntüsü alınamayan ekranlar: yazılı tarif
+Bunların görüntüsü yoktur. Gerçek hâllerini görmek için `oyun-kaynak/` oyununu çalıştırın; içerikleri parantezdeki dosyada yazılıdır. Tasarımları Bölüm 5'teki kurallarla, aşağıdaki **içerik eksiksiz korunarak** yapılır.
+
+**Genel: Kragmir (ork) teması.** Bütün ekranlar Elentha'dakiyle aynı yapıdadır, yalnızca `html[data-faction="ocak"]` olur. Bugünkü hâlinde halk rengi kızıl (`#c2321e`), Elentha'nınki mavidir (`#3d6fb6`). Ana merkez Kragmir başkentidir: aynı binalar, ork kralı Volgar NPC'si, kızıl sancaklar. Her maketin Kragmir hâli de istenir.
+
+**Ana merkezin diğer iki hâli** (`js/ui-hub.js`, `js/town.js`). *Yemin Pazarı:* iki halkın tarafsız kasabası; Tüccar Halvor (silah satar), Pazar (oyuncu ilanları), Karaborsa, balık göleti, Şaman Yashka (Kristal Nöbeti), öğreticide Küçük Bran (kardeşi Nessa'yı Dev Solucan yutmuştur). *Klan merkezi:* klanın ortak üssü. İkisinde de HUD aynıdır, binalar ve plakalar değişir; "başkente dön" kapısı vardır.
+
+**Bina pencereleri**
+- **Örs** (`js/ui-town.js`, `js/ui-esya.js`): eşyaya artı basma. Solda eşya seçimi (çanta ızgarası), bilgi kartında olasılık tablosu (başarı / aynı kalır / düşer / kırılır gibi beş sonuç), Uğur Muskası ve Tav Közü seçimi, bileği taşı (Kaba, İnce, Usta), "Bas" düğmesi ve sonuç efekti. Ayrıca **Su verme** (kalıcı güçlendirme) ve **bileği taşı üretimi** sayfaları.
+- **Parçala ya da Sat** (`ui-town.js`): kuşanılmamış eşyalar ızgarası, "Standartları seç / Nadirleri de seç / Temizle", seçili sayısı, "Parçala (+toz)" ve "Sat (+akçe)".
+- **Maden** (`ui-town.js`, `js/ui-sahne.js`): üstte kazmayla kayaya vuran madenci sahnesi ve büyüyen cevher yığını (canlandırmalı); maden seviyesi, saatlik cevher, depo, "Topla", "Madeni büyüt"; altta madenci takası satırları (cevher → akçe / bileği taşı).
+- **İksir ve Parşömen** (`ui-town.js`): iki sekme. İksirler (can, mana) ve parşömenler (enerji, meydan hakkı); satır satır ürün, fiyat, adet, al.
+- **Kader Çarkı** (`ui-town.js`): üç büyük mücevher kartı (Kor, Ayaz, Şimşek parçası; elindeki parça / gereken); dokununca mücevher ortaya gelip kırılır, içinden ödül çıkar; "Mücevherlere dön"; ücretsiz çevirme düğmesi.
+- **Kral NPC'si** (`ui-hub.js`): kralın portresi ve adı, birkaç satır konuşma, "Emrindeyim".
+- **Kral Otağı** (`js/ui-dunya.js`): Başbuğ ve seçim, Irk Hazinesi, ulufe defteri, ferman, Diyar Haritası (bölge hâkimiyeti) sekmeleri.
+- **Klan Karargâhı (klanlı)** (`js/ui-klan.js`, `js/ui-hisar.js`): Genel, Üyeler (rütbeler), Görevler, Dükkân, Sancak (arma: şekil, renk, simge), Oba Avı (klan bossu Tepegöz), Hisar (haftalık kuşatma, sur ve burç çizimi, vergi, ittifak) sekmeleri.
+- **Şan Divanı** (`ui-town.js`): Şan ile kalıcı bonus seviyeleri.
+- **Pazar** (`ui-town.js`): oyuncu ilanları. Alt sekmeler: Al / Sat / İlanlarım; tür, nadirlik, sınıf filtreleri, sıralama, arama.
+- **Tüccar** (`ui-town.js`, `js/ui-ogretici.js`): tezgâh çizimi, silahlar ve zırhlar sekmeleri, al/sat.
+- **Karaborsa** (`js/ui-karaborsa.js`): koyu tezgâh, 3×3 raf; her rafta indirim rozeti, eski/yeni yakut fiyatı, alınınca "Alındı" mührü; başlıkta 8 saatlik yenilenme geri sayımı.
+- **Balıkçılık** (`js/ui-balik.js`): göl sahnesi (gök, karşı kıyı, su, iskele, olta ipi, şamandıra). Akış: Olta at → şamandıra batar → "Çek!" → gidip gelen işaretçi yeşil bölgedeyken "Tut!" → yakaladın / kaçtı. Balık kartı (türüne göre renk, nadirliğe göre kontur), balık defteri, balık satma.
+- **Kristal Nöbeti** (`js/ui-nobet.js`): Sönmüş Mabet'te mavi Kül Kristali çizimi, kayıt, dalga sayacı, parti lobisi, ödüller.
+
+**Menüden açılanlar**
+- **Ayarlar** (`js/ui-ayarlar.js`): Grafik (kalite kademeleri), Ses (ana ses ve kanallar, kaydırıcılar), Erişilebilirlik (görme, duyma, dokunma), Dil (TR/EN), Bildirimler, Hesap (kimlik, fragmanı yeniden izle, kayıt).
+- **Sıralama** (`js/ui-social.js`): Oyuncular (meydan puanı), Klanlar (klan gücü), Irk Üstünlüğü (haftalık sefer).
+- **Rehber**: Ansiklopedi'nin ilk sekmesidir (025'te var).
+- **Arkadaşlar** (`js/ui-odeme.js`): Arkadaşlar (son görülme), İstekler (gelen/giden), Engellenenler.
+- **Promosyon kodu**: kod yazma kutusu + "Kullan".
+- **Sorun / Teknik Destek** (`js/ui-destek.js`): bilet listesi, yeni bilet (kategori simgeleri), konuşma görünümü, boş durum çizimi.
+- **Mini Dizi** (`js/ui-minidizi.js`): 10 bölüm kartı, oynat, izlendi işareti, ödül; video oynatıcı katmanı.
+- **Karakter değiştir**: karakter seçme ekranına döner (002).
+
+**Savaş akışı** (`js/ui-battle.js`, `js/combat.js`)
+- **Kapı → bölge → aşama:** bölgeler sekmesinde bölge kartları, zorluk kademesi seçimi, 25 aşamalık liste (yıldızlar, kilitler, her 5'te boss), süpürme.
+- **VS ekranı:** başlık (aşama adı), solda oyuncunun tek kahramanı, sağda düşman dalgaları (birden çok dalga olabilir), açıklama ve kurallar, enerji bedeli, süpürme, Otomatik anahtarı, Başla. (Sürüm 12'den beri parti ve dizilim yok; oyuncu tek kahramanla savaşır.)
+- **Savaş HUD'u:** 3B sahnede kahraman solda, düşmanlar sağda. `#ystat` (sol üst): portre, seviye, isim, can ve mana çubuğu, iksir yuvaları (`.ypots`). Yetenek düğmeleri (`.skill`, `.skill.lock`, `.skill.empty`), mana bedeli (`.mpc`), bekleme sayısı. `#btimer` tur/süre, `#bctl` sağ üstte Çıkış, `#bctl2` sağ altta hız ve OTO (`#bauto`). Birim üstü çubuklar ve hasar sayıları `#overlay` katmanında. Efektler `js/fx.js` ve `js/fx-table.js`.
+- **Sonuç:** zafer/yenilgi, yıldızlar, ganimet listesi, XP ve akçe; düğmeler duruma göre: Tekrar, Sonraki aşama, Kapı'ya dön, Meydan'a dön, Klana dön. Yenilgide güçlenme önerileri.
+
+**Diğer modlar**
+- **Meydan** (`js/ui-meydan.js`, `js/ui-pvp.js`): sol menü Savaş (rakip seç, ücretsiz yenileme sayacı, günlük ırk yarışı), Savunma, Meydan Marketi (Şan ile), Şan Dükkânı. **Meydan Sezonu:** Sezon, Ödüller (lig ve sıra), Geçmiş. Kan Davası (seni yenenler).
+- **Zindanlar** (`js/ui-zindan.js`): her zindanın küçük sahne çizimi ve ilerleme yolu. Dipsiz Kuyu (dalga yolu), Yeraltı Ocağı (inen kat şaftı, beşte bir boss), Gök Yarığı (haftanın günleri ve günlük haklar), Mühürlü Oda (mühür taşları).
+- **Dünya Baskını** (`js/ui-baskin.js`): kül ve kor bossu çizimi (boynuzlu miğfer, kor çatlaklı zırh, topuz), iki halkın katkısı, geri sayım, ortak can, katıl.
+
+**Küçük parçalar** (her ekranda görülebilir)
+- **Toast** (`ui-core.js toast`), **onay kutusu** (`confirmBox`), **modal** (`showModal`), **ödül kutusu** (`lootBox`, `lootToast`), **seviye atlama**, **kayan bildirim kartı** ve **duyuru şeridi** (`js/ui-duyuru.js`), **kilitli sayfa** (`lockPage`: "seviye X'te açılır").
+- **Öğretici kartı** (`#tut`, `js/ui-kalicilik.js`): adım balonu, "Başlayalım", "Öğreticiyi atla" + onay, hediye notu; vurgulanan düğmede nabız (`.tut-pulse`).
+- **Hikâye diyalogları** (`js/ui-ogretici.js`): Tüccar Halvor, Küçük Bran, Dev Solucan'ın karnından çıkan Nessa illüstrasyonu, Prenses Lira (092).
+- **Giriş / kayıt penceresi** (`js/ui-giris.js`): yalnız sunucuya bağlı sürümde. Kullanıcı adı, şifre, giriş/kayıt sekmeleri.
+- **Ekran klavyesi** (`js/ui-klavye.js`, `css/v12-klavye.css`): telefon dik tutulup oyun döndürülünce açılan oyunun kendi yatay klavyesi.
 
 ---
 
