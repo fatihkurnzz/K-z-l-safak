@@ -1,0 +1,23 @@
+/* v11-minidizi — Mini Dizi penceresi, oynatıcı katmanı, yeni bölüm rozeti */
+.mdz .box, .box.mdz { max-width:min(96vw,760px); }
+.mdz-g { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:8px; }
+.mdz-c { position:relative; display:flex; flex-direction:column; align-items:center; gap:3px; padding:8px 4px; min-height:92px; border-radius:10px; border:1px solid #fff3; background:#0006; color:inherit; font:inherit; cursor:pointer; }
+.mdz-no { font-style:normal; font-weight:800; font-size:20px; line-height:1; }
+.mdz-ad { font-size:12px; }
+.mdz-rw { display:flex; flex-wrap:wrap; gap:2px; justify-content:center; font-size:10px; } .mdz-rw .chip { font-size:10px; padding:1px 5px; }
+.mdz-st { font-style:normal; font-size:11px; opacity:.85; }
+.mdz-c.done { opacity:.75; border-color:#6fbf73aa; } .mdz-c.done .mdz-st { color:#8fe08f; }
+.mdz-c.lock { opacity:.5; cursor:default; } .mdz-lk svg { width:11px; height:11px; vertical-align:-1px; fill:currentColor; }
+.mdz-c.new { border-color:#f2c84b; animation:mdzGlow 1.6s ease-in-out infinite; } .mdz-c.new .mdz-st { color:#f2c84b; font-weight:800; }
+@keyframes mdzGlow { 0%,100% { box-shadow:0 0 0 0 #f2c84b00; } 50% { box-shadow:0 0 12px 2px #f2c84baa; } }
+.badge.md-dot { min-width:12px; width:12px; height:12px; padding:0; top:-2px; right:2px; border-radius:50%; border:2px solid #1c110a; box-sizing:content-box; background:#f2c84b; animation:mdzDot 1.4s ease-in-out infinite; }
+.ibtn { position:relative; } .ibtn .badge.md-dot { top:8px; right:10px; }
+@keyframes mdzDot { 0%,100% { box-shadow:0 0 0 0 #f2c84bcc; transform:scale(1); } 50% { box-shadow:0 0 10px 4px #f2c84b88; transform:scale(1.25); } }
+.mdz-layer { position:fixed; inset:0; z-index:11; background:#000; display:flex; flex-direction:column; }
+.mdz-top, .mdz-bot { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:6px 14px; background:#111; }
+.mdz-stage { flex:1; min-height:0; position:relative; display:grid; place-items:center; }
+.mdz-v { width:100%; height:100%; object-fit:contain; background:#000; } .mdz-v[hidden] { display:none; }
+.mdz-ph { display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center; color:#ddd; } .mdz-ph[hidden] { display:none; }
+.mdz-ph svg { width:56px; height:56px; fill:#f2c84b; opacity:.8; } .mdz-ph small { opacity:.7; }
+.mdz-hint { font-size:12px; opacity:.85; }
+@media (max-width:560px) { .mdz-g { grid-template-columns:repeat(5,1fr); gap:5px; } .mdz-ad { font-size:11px; } }

@@ -1,0 +1,21 @@
+/* v10-rehber: Ansiklopedi > Rehber sekmesi (solda bölüm listesi, sağda sayfa) */
+.rh { display:grid; grid-template-columns:minmax(120px,158px) 1fr; gap:10px; align-items:start; }
+.rh-nav { position:sticky; top:0; display:flex; flex-direction:column; gap:3px; max-height:calc(var(--vh, 100vh) - 110px); overflow-y:auto; padding-right:2px; }
+.rh-nav button { display:flex; align-items:center; gap:6px; text-align:left; width:100%; padding:5px 7px; border-radius:8px; border:1px solid #7a5f3c66; background:#fff4; color:var(--ink); font:inherit; font-size:12.5px; line-height:1.15; cursor:pointer; }
+.rh-nav button i { flex:none; width:18px; height:18px; display:grid; place-items:center; }
+.rh-nav button svg { width:16px; height:16px; fill:currentColor; }
+.rh-nav button.on { background:linear-gradient(#f0c35a,#c8962e); border-color:#7a4f14; font-weight:700; box-shadow:inset 0 1px 0 #fff6; }
+.rh-page { min-width:0; font-size:13.5px; line-height:1.45; }
+.rh-h { display:flex; align-items:center; gap:8px; margin:0 0 4px; font-size:18px; }
+.rh-h svg { width:22px; height:22px; fill:#7a4f14; }
+.rh-intro { font-size:14px; margin:2px 0 8px; }
+.rh-sub { margin:12px 0 4px; font-family:var(--display); font-size:14px; color:#5a3310; border-bottom:1px solid #7a5f3c55; padding-bottom:2px; }
+.rh-li { margin:4px 0; padding-left:12px; position:relative; }
+.rh-li::before { content:''; position:absolute; left:0; top:.6em; width:5px; height:5px; transform:rotate(45deg); background:#a8862e; }
+.rh-tw { overflow-x:auto; margin:6px 0; }
+.rh-t { color:var(--ink); border-collapse:collapse; width:100%; font-size:12px; background:#fff4; }
+.rh-t th, .rh-t td { border:1px solid #7a5f3c55; padding:3px 6px; text-align:left; vertical-align:top; }
+.rh-t th { background:#7a5f3c33; font-weight:700; white-space:nowrap; }
+.rh-tip { margin-top:12px; }
+.rh-go { margin-top:10px; justify-content:flex-start; }
+@media (max-width:640px) { .rh { grid-template-columns:112px 1fr; gap:6px; } .rh-nav button { font-size:11.5px; padding:4px 5px; } .rh-nav button i { width:15px; } }

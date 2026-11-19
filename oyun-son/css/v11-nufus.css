@@ -1,0 +1,12 @@
+/* v11-nufus — nüfus dengesi: Bereket rozeti (oyuncu kartı, kayıt ekranı), dolu ırk kartı, sunucu panelindeki satırlar */
+.pcard .pinfo .nf-badge { position:absolute; left:calc(100% + 6px); top:50%; transform:translateY(-50%); width:max-content; padding:3px 7px; border-radius:9px; font-size:10px; font-weight:800; line-height:1.15; white-space:nowrap; color:#1d2a10; background:linear-gradient(#e2f5b4,#9fcf5a); border:1.5px solid #5d7f2a; box-shadow:0 2px 5px #0008; pointer-events:none; }
+.short .pcard .pinfo .nf-badge { font-size:9px; padding:2px 5px; }
+.faction .nf-bless, .faction .nf-full { display:flex; align-items:center; justify-content:center; gap:4px; margin-top:4px; padding:3px 6px; border-radius:8px; font-size:11px; font-weight:800; line-height:1.15; }
+.faction .nf-bless { color:#1d2a10; background:#cfe9a0; border:1px solid #6d8f36; }
+.faction .nf-full { color:#fff3e6; background:#5a3a2a; border:1px solid #2a1a12; }
+.faction .nf-full svg { width:12px; height:12px; flex:none; fill:currentColor; }
+.faction button.nf-lock { filter:grayscale(.7); opacity:.85; cursor:not-allowed; border-style:dashed; }
+.faction button.nf-lock .nf-full { filter:none; }
+.short .faction .nf-bless, .short .faction .nf-full { font-size:10px; padding:2px 5px; margin-top:2px; }
+.srv-card .nf-on { color:#7fbf3a; } .srv-card .nf-off { color:#d2553b; }
+.srv-nf { margin:6px 0 0; font-size:12px; }

@@ -1,0 +1,8 @@
+/* v10-yon: telefon dik tutulunca oyun yatay çizilir (orient.js html.rot). Engel katmanı yok.
+   Gövde (#game ve gövdeye eklenen bütün katmanlar: fragman, Mini Dizi, reklam, denetçi, oyun klavyesi) 90° döndürülür;
+   mantıksal boyut --lw × --lh. Güvenli alan değişkenleri mantıksal kenarlara eşlenir (dik telefonun üstü = oyunun solu). */
+html.rot { --sat:env(safe-area-inset-right,0px); --sar:env(safe-area-inset-bottom,0px); --sab:env(safe-area-inset-left,0px); --sal:env(safe-area-inset-top,0px); }
+html.rot body { position:fixed; left:0; top:0; width:var(--lw); height:var(--lh); transform-origin:0 0; transform:rotate(90deg) translateY(-100%); overflow:hidden; }
+html.rot body, html.rot body * { touch-action:none; } /* döndürülmüş kipte kaydırmayı orient.js yapar */
+/* Telefon yüksekliğinde (.short) sol sütun yan yana dizilir: uzun etiket ("Ortaçarşı", "Akhisar") komşu düğmenin etiketine binmesin */
+.short .lrail .lbtn { width:auto; min-width:46px; } .short .lrail { column-gap:4px; }

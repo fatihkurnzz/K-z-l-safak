@@ -1,0 +1,11 @@
+/* Isınma paketi (perf): sürekli dönen animasyonlar yalnızca transform/opacity ile yapılır. box-shadow ve filter
+   animasyonu her karede yeniden boyama ister (telefonda 3B sahne dururken bile GPU/CPU çalışır); parıltı sabit bir
+   katmana çizilir, yalnızca saydamlığı oynar. Görünüm eskisine yakındır. */
+.mqtrk.rdy, .mq-n.ready { animation:none; }
+.mqtrk.rdy::after, .mq-n.ready::after { content:''; position:absolute; inset:-2px; border-radius:inherit; box-shadow:0 0 0 3px #ffd56a, 0 0 22px #ffb52e; opacity:0; pointer-events:none; will-change:opacity; animation:pfGlow 1.4s ease-in-out infinite; }
+@keyframes pfGlow { 50% { opacity:1; } }
+.badge.md-dot { box-shadow:0 0 7px 2px #f2c84b77; animation:pfDot 1.4s ease-in-out infinite; }
+@keyframes pfDot { 50% { transform:scale(1.25); opacity:.85; } }
+.lbtn.onl.ready i { filter:drop-shadow(0 0 5px #ffd45a); animation:pfOnl 1.2s ease-in-out infinite; }
+.onl-c.ok .onl-ch svg { animation:pfOnl 1.2s ease-in-out infinite; }
+@keyframes pfOnl { 50% { transform:scale(1.08); } }

@@ -1,0 +1,29 @@
+/* v10-sunucu: Ares sunucu paneli */
+.srv .srv-head h2{background:none;color:#2b2112;box-shadow:none;margin:0}
+.srv-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.srv-emb{width:56px;height:56px;flex:none}
+.srv-head h2{margin:0}
+.srv-head small{display:block;color:#6b5a3a}
+.srv-stat{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.srv-stat span{padding:3px 9px;border-radius:999px;background:rgba(60,40,10,.1);color:#3b2d14;font-size:.85em;white-space:nowrap}
+.srv-stat .on::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#58c26a;margin-right:6px}
+.srv-stat .off::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#d6a23a;margin-right:6px}
+.srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.srv-card{border:1px solid rgba(60,40,10,.22);border-left:4px solid var(--fc,#888);border-radius:8px;padding:8px 10px;background:rgba(255,255,255,.35);color:#2b2112}
+.srv-card h4{margin:0 0 4px;color:var(--fc,inherit)}
+.srv-row{display:flex;justify-content:space-between;gap:8px;padding:2px 0;font-size:.92em}
+.srv-row span{color:#6b5a3a}
+.srv-row b{text-align:right}
+.srv-sec h3{margin:12px 0 4px}
+.srv-rules{margin:4px 0 0;padding-left:18px}
+.srv-rules li{margin:2px 0;font-size:.92em;color:#2b2112}
+.srv-sec .srv-row{color:#2b2112}
+.srv-tag{display:inline-block;margin-left:6px;padding:0 6px;border-radius:4px;font-size:.72em;letter-spacing:.04em;vertical-align:middle;color:#d9c9a0;background:rgba(217,201,160,.12);border:1px solid rgba(217,201,160,.25);cursor:pointer}
+.srv-login{margin:0 0 6px;text-align:center}
+@media (max-width:640px),(max-height:420px){.srv-grid{grid-template-columns:1fr}.srv-emb{width:44px;height:44px}}
+.srv-login .srv-emb{width:20px;height:20px;vertical-align:middle;margin-right:4px}
+.pf-tags .srv-tag{margin-left:0}
+.srv-login .srv-tag{color:#5a4318;background:rgba(90,67,24,.1);border-color:rgba(90,67,24,.35)}
+.srv-rules{text-align:left}.srv-rules li{text-align:left}
+/* Menü uzun: dar yatay ekranda (844x390) pencere içinde kaydırılır */
+#modal .box.menu .in{max-height:calc(100vh - 104px);max-height:calc(100dvh - 104px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}

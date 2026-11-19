@@ -1,0 +1,170 @@
+/* Sürüm 12 (13'te yenilendi) · karakter oluşturma ekranı (ui-olustur.js #olz). Yalnızca yatay; döndürülmüş kipte (html.rot)
+   gövdeyle döner. Düzen: üst şerit · sol (ırk + sınıf tanıtımı) · orta (3B önizleme, sürükleme alanı) · sağ (görünüş)
+   · alt (ad + zar · sınıf kutuları · Oluştur). Arka plan karakter-sahne.js'in ırk sahnesidir.
+   Çerçeve dili (seçme ekranıyla ortak, v13-karakter.css): koyu cam zemin, altın-bronz kıl çizgisi, köşelerde altın köşebent.
+   Sürekli CSS animasyonu yok (ısınma); yalnızca tek seferlik geçişler. */
+.olz, .ks { --k-gold:#e8c77e; --k-gold2:#a8803e; --k-ink:#f3e8cf; --k-mut:#b6a684; --k-line:rgba(232,199,126,.22);
+  --k-glass:linear-gradient(180deg, rgba(26,20,15,.84), rgba(10,8,6,.88));
+  --k-edge:linear-gradient(180deg, #d9b56a, #6b4f26 38%, #2e2214 62%, #a8803e);
+  --k-corner:#f0d48a; }
+.olz { --pw:clamp(200px, 25vw, 300px);
+  position:fixed; inset:0; z-index:9; display:grid; grid-template-columns:var(--pw) minmax(0, 1fr) var(--pw); grid-template-rows:auto minmax(0, 1fr) auto;
+  grid-template-areas:"top top top" "l c r" "b b b"; gap:8px;
+  padding:max(8px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  pointer-events:none; color:var(--k-ink); font-family:system-ui, sans-serif; }
+.olz > * { pointer-events:auto; }
+.olz > .olz-shade { position:absolute; inset:0; z-index:-1; pointer-events:none; transition:opacity .5s;
+  background:radial-gradient(ellipse 46% 80% at 50% 52%, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%), linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,0) 26%), linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,0) 16%); }
+.olz[data-race=ocak] > .olz-shade { background:radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255,90,20,.18), rgba(255,90,20,0) 70%), radial-gradient(ellipse 46% 80% at 50% 52%, rgba(0,0,0,0) 55%, rgba(20,4,0,.5) 100%), linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,0) 26%), linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,0) 16%); }
+/* açılış: paneller yerine kayar (tek sefer) */
+.olz .olz-l, .olz .olz-r, .olz .olz-b, .olz .olz-top { transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .45s; }
+.olz:not(.in) .olz-l { transform:translateX(-24px); opacity:0; } .olz:not(.in) .olz-r { transform:translateX(24px); opacity:0; }
+.olz:not(.in) .olz-b { transform:translateY(16px); opacity:0; } .olz:not(.in) .olz-top { transform:translateY(-10px); opacity:0; }
+
+/* ---- çerçeve: koyu cam + altın kıl çizgisi + köşebent ---- */
+.olz-top, .olz-pan, .olz-b, .ks-frame { position:relative; border:1px solid transparent; border-radius:3px;
+  background:var(--k-glass) padding-box, var(--k-edge) border-box;
+  box-shadow:0 10px 28px rgba(0,0,0,.55), inset 0 0 0 1px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,230,170,.1); }
+.olz-top::before, .olz-pan::before, .olz-b::before, .ks-frame::before { content:''; position:absolute; inset:3px; border:1px solid var(--k-line); border-radius:2px; pointer-events:none; }
+.olz-top::after, .olz-pan::after, .olz-b::after, .ks-frame::after { content:''; position:absolute; inset:-3px; pointer-events:none;
+  background:
+    linear-gradient(var(--k-corner), var(--k-corner)) 0 0 / 14px 2px no-repeat, linear-gradient(var(--k-corner), var(--k-corner)) 0 0 / 2px 14px no-repeat,
+    linear-gradient(var(--k-corner), var(--k-corner)) 100% 0 / 14px 2px no-repeat, linear-gradient(var(--k-corner), var(--k-corner)) 100% 0 / 2px 14px no-repeat,
+    linear-gradient(var(--k-corner), var(--k-corner)) 0 100% / 14px 2px no-repeat, linear-gradient(var(--k-corner), var(--k-corner)) 0 100% / 2px 14px no-repeat,
+    linear-gradient(var(--k-corner), var(--k-corner)) 100% 100% / 14px 2px no-repeat, linear-gradient(var(--k-corner), var(--k-corner)) 100% 100% / 2px 14px no-repeat;
+  filter:drop-shadow(0 0 3px rgba(240,200,110,.35)); }
+
+/* ---- üst şerit ---- */
+.olz-top { grid-area:top; display:flex; align-items:center; gap:10px; padding:4px 12px; min-height:36px; }
+.olz-top > b { font:900 18px var(--display); letter-spacing:.14em; text-transform:uppercase; background:linear-gradient(180deg, #fff1c8, #e8c77e 55%, #a8803e); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 2px 2px #000); }
+.olz-srv { display:inline-flex; align-items:center; gap:4px; font-size:12px; }
+.olz-slots { font-size:12px; color:var(--k-mut); display:flex; flex-direction:column; align-items:flex-end; line-height:1.15; } .olz-slots small { font-size:10px; opacity:.85; }
+.olz-sp { flex:1; }
+.olz-lang { display:flex; gap:3px; } .olz-lang button { font:800 11px system-ui, sans-serif; padding:3px 7px; border-radius:3px; cursor:pointer; color:#d9ccb0; background:#15110d; border:1px solid #4b3f2b; } .olz-lang button.on { color:#ffe9b0; border-color:var(--k-gold); box-shadow:0 0 6px rgba(232,199,126,.35); }
+.olz .btn { font:800 13px var(--display); letter-spacing:.06em; color:#f3e3bb; text-shadow:0 1px 1px #000; border-radius:3px; border:1px solid #8a6c34; background:linear-gradient(180deg, #4a3b26, #231a10); box-shadow:inset 0 1px 0 rgba(255,230,170,.18), 0 2px 6px rgba(0,0,0,.5); }
+.olz .btn:hover { border-color:var(--k-gold); color:#fff3d0; }
+.olz-back { padding:4px 16px; }
+.olz-l { grid-area:l; } .olz-r { grid-area:r; }
+.olz-pan { min-height:0; display:flex; }
+.olz-scroll { flex:1; min-width:0; overflow:auto; padding:10px 12px 12px; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#6d5a36 transparent; }
+.olz-h { margin:2px 0 7px; font:900 12.5px var(--display); letter-spacing:.18em; text-transform:uppercase; color:var(--k-gold); display:flex; align-items:center; gap:8px; text-shadow:0 1px 2px #000; }
+.olz-h::before { content:''; width:6px; height:6px; transform:rotate(45deg); background:var(--k-gold); box-shadow:0 0 6px rgba(232,199,126,.6); flex:none; }
+.olz-h::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(232,199,126,.55), transparent); }
+.olz-ic { display:inline-grid; place-items:center; width:30px; height:30px; flex:none; }
+.olz-ic svg { width:100%; height:100%; }
+
+/* ---- seçim kutuları: koyu metal, seçili olan altın çerçeve + iç ışık ---- */
+.olz-race, .olz-cls, .olz-seg button, .olz-step button, .olz-tools button, .olz-dice {
+  font:inherit; color:var(--k-ink); cursor:pointer; border:1px solid #4b3d28; border-radius:3px;
+  background:linear-gradient(180deg, #2f271e, #15110d); box-shadow:inset 0 1px 0 rgba(255,235,180,.1), 0 2px 5px rgba(0,0,0,.5);
+  transition:border-color .2s, box-shadow .2s, background .2s, transform .15s; }
+.olz-race:hover, .olz-cls:hover, .olz-dice:hover { border-color:#9a7a42; }
+.olz-race:active, .olz-cls:active, .olz-dice:active { transform:translateY(1px); }
+.olz-races { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.olz-race { position:relative; display:flex; flex-direction:column; align-items:center; gap:1px; padding:7px 4px 6px; color:#d9ccb0; overflow:hidden; }
+.olz-race::after { content:''; position:absolute; left:0; right:0; bottom:0; height:3px; background:var(--fc); opacity:.75; }
+.olz-race .olz-ic { width:34px; height:34px; color:var(--fc); filter:drop-shadow(0 1px 1px #000); }
+.olz-race b { font:900 15px var(--display); letter-spacing:.06em; color:var(--k-ink); } .olz-race small { font-size:10.5px; color:var(--k-mut); }
+.olz-race.on, .olz-cls.on { border-color:var(--k-gold); background:radial-gradient(ellipse 80% 90% at 50% 100%, rgba(232,180,90,.32), rgba(232,180,90,0) 70%), linear-gradient(180deg, #4a3a22, #1e170e);
+  box-shadow:inset 0 0 14px rgba(232,199,126,.22), 0 0 0 1px rgba(232,199,126,.45), 0 0 14px rgba(232,180,90,.28), 0 3px 8px rgba(0,0,0,.6); }
+.olz-race.on b { color:#fff1c8; }
+.olz-race.lock { opacity:.5; }
+.olz-nf, .olz-bl { font-size:10px; display:inline-flex; align-items:center; gap:2px; } .olz-nf { color:#ff9a8a; } .olz-bl { color:#9fe08a; }
+.olz-nf svg { width:11px; height:11px; }
+.olz-desc { font-size:11.5px; line-height:1.4; color:#d6c7a6; margin:7px 0 9px; } .olz-desc i { color:var(--k-gold); }
+.olz .mut { color:var(--k-mut); }
+.olz-cinfo { padding:8px 9px; border-radius:3px; background:rgba(0,0,0,.34); border:1px solid rgba(232,199,126,.16); font-size:11.5px; line-height:1.38; }
+.olz-cinfo p { margin:0 0 4px; }
+.olz-cname { display:flex; align-items:center; gap:7px; } .olz-cname .olz-ic { width:26px; height:26px; color:#ffe08a; filter:drop-shadow(0 0 4px rgba(255,200,90,.5)); }
+.olz-cname b { font:900 15px var(--display); letter-spacing:.04em; color:#ffe3a6; } .olz-cname small { color:var(--k-mut); font-size:11px; }
+.olz-stats { display:grid; gap:3px; margin-top:6px; }
+.olz-stats span { display:grid; grid-template-columns:56px 1fr; align-items:center; gap:6px; }
+.olz-stats em { font-style:normal; font-size:10.5px; color:var(--k-mut); }
+.olz-stats i { height:5px; border-radius:1px; background:#0009; position:relative; overflow:hidden; box-shadow:inset 0 0 0 1px #0006; }
+.olz-stats i::after { content:''; position:absolute; inset:0; width:calc(var(--v) * 100%); background:linear-gradient(90deg, #7a5a22, #e8c77e); box-shadow:0 0 6px rgba(232,199,126,.5); transition:width .35s; }
+
+/* ---- orta: önizleme (saydam; 3B sahne arkadan görünür) ---- */
+.olz-c { grid-area:c; position:relative; min-height:0; cursor:grab; touch-action:none; }
+.olz-c:active { cursor:grabbing; }
+.olz-tools { position:absolute; right:2px; top:2px; display:flex; flex-direction:column; gap:5px; }
+.olz-tools button { width:32px; height:32px; padding:0; font-size:17px; line-height:1; display:grid; place-items:center; color:var(--k-gold); opacity:.9; }
+.olz-hint { position:absolute; left:50%; bottom:2px; transform:translateX(-50%); margin:0; font-size:10.5px; color:#efe3c6; white-space:nowrap; text-shadow:0 1px 2px #000, 0 0 6px #000; opacity:.8; pointer-events:none; }
+.olz-ph { position:absolute; left:2px; top:2px; margin:0; padding:2px 8px; border-radius:2px; font-size:10px; font-weight:700; letter-spacing:.04em; color:#ffd9a0; background:rgba(30,16,6,.7); border:1px solid rgba(255,190,100,.3); pointer-events:none; }
+
+/* ---- sağ: görünüş ---- */
+.olz-row { display:grid; grid-template-columns:66px minmax(0, 1fr); align-items:center; gap:4px 6px; padding:4px 0; border-bottom:1px solid rgba(232,199,126,.08); }
+.olz-lab { font-size:11.5px; font-weight:700; color:#d9c9a0; }
+.olz-note { grid-column:2; font-size:10.5px; color:var(--k-mut); line-height:1.2; }
+.olz-seg { display:flex; gap:4px; } .olz-seg button { flex:1; padding:4px 2px; font-size:12px; font-weight:700; }
+.olz-seg button.on { border-color:var(--k-gold); background:linear-gradient(180deg, #5e4824, #2a1f10); color:#ffe9b0; box-shadow:inset 0 0 8px rgba(232,199,126,.3), 0 0 8px rgba(232,180,90,.2); }
+.olz-step { display:grid; grid-template-columns:28px minmax(0, 1fr) auto 28px; align-items:center; gap:4px; }
+.olz-step button { height:28px; padding:0; font-size:18px; font-weight:900; color:var(--k-gold); }
+.olz-step button:disabled { opacity:.35; cursor:default; }
+.olz-step b { font-size:12.5px; text-align:center; color:#ffe9b8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.olz-step small { font-size:10px; color:var(--k-mut); }
+.olz-sw { display:flex; flex-wrap:wrap; align-items:center; gap:4px; }
+.olz-sw button { width:22px; height:22px; padding:0; border-radius:50%; cursor:pointer; background:var(--c); border:2px solid #1a1510; box-shadow:0 0 0 1px #6d5a36, inset 0 -3px 5px rgba(0,0,0,.35), inset 0 2px 3px rgba(255,255,255,.25); transition:transform .15s, box-shadow .15s; }
+.olz-sw button.on { box-shadow:0 0 0 2px var(--k-gold), 0 0 8px rgba(232,199,126,.7), inset 0 -3px 5px rgba(0,0,0,.35); transform:scale(1.12); }
+.olz-sw small { flex-basis:100%; font-size:10.5px; color:var(--k-mut); }
+.olz-off { font-size:11px; color:var(--k-mut); font-style:italic; }
+.olz-acts { display:flex; gap:6px; margin-top:9px; } .olz-acts .btn { flex:1; padding:5px 4px; font-size:12px; }
+.olz-honest { margin:9px 0 0; padding:6px 7px; border-radius:2px; font-size:10.5px; line-height:1.3; color:#ffd9a0; background:rgba(50,26,8,.45); border:1px dashed rgba(255,190,100,.3); }
+
+/* ---- alt: ad + zar · sınıf kutuları · Oluştur ---- */
+.olz-b { grid-area:b; display:flex; align-items:center; gap:12px; padding:7px 10px 7px 12px; }
+.olz-nmw { display:grid; grid-template-columns:auto auto; grid-template-rows:auto auto; column-gap:6px; align-items:center; min-width:0; flex:none; }
+.olz-nm { display:flex; align-items:center; gap:8px; grid-column:1; grid-row:1; }
+.olz-nm span { font:900 12px var(--display); letter-spacing:.12em; text-transform:uppercase; color:var(--k-gold); white-space:nowrap; }
+.olz-nm input { width:clamp(132px, 17vw, 210px); font:700 16px system-ui, sans-serif; letter-spacing:.02em; padding:6px 10px; border-radius:2px; color:#fff3d6; background:linear-gradient(180deg, #0a0806, #17120d); border:1px solid #6b5430; border-bottom-color:var(--k-gold); box-shadow:inset 0 2px 6px rgba(0,0,0,.8); transition:border-color .2s, box-shadow .2s; }
+.olz-nm input::placeholder { color:#7d6e55; font-weight:600; }
+.olz-nm input:focus { outline:none; border-color:var(--k-gold); box-shadow:inset 0 2px 6px rgba(0,0,0,.8), 0 0 0 2px rgba(232,199,126,.25), 0 0 12px rgba(232,180,90,.25); }
+.olz-nm input.olz-flash { animation:olzFlash .6s ease-out 1; }
+@keyframes olzFlash { 0% { box-shadow:inset 0 2px 6px rgba(0,0,0,.8), 0 0 0 2px rgba(255,220,140,.8), 0 0 18px rgba(255,200,110,.7); } 100% { box-shadow:inset 0 2px 6px rgba(0,0,0,.8); } }
+.olz-dice { grid-column:2; grid-row:1; width:36px; height:34px; padding:5px; display:grid; place-items:center; color:var(--k-gold); }
+.olz-dice svg { width:100%; height:100%; filter:drop-shadow(0 1px 1px #000); }
+.olz-dice.roll svg { animation:olzRoll .55s cubic-bezier(.3,.7,.3,1) 1; }
+@keyframes olzRoll { 0% { transform:rotate(0) scale(1); } 45% { transform:rotate(250deg) scale(.82); } 100% { transform:rotate(360deg) scale(1); } }
+.olz-msg { grid-column:1 / span 2; grid-row:2; font-size:10.5px; line-height:1.2; margin-top:2px; color:var(--k-mut); min-width:0; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.olz-msg.bad { color:#ff8f7a; } .olz-msg.ok { color:#a6e08f; }
+.olz-classes { flex:1; min-width:0; display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:6px; }
+.olz-cls { display:flex; align-items:center; justify-content:center; gap:6px; padding:5px 6px; min-width:0; height:42px; }
+.olz-cls .olz-ic { width:26px; height:26px; color:#d9c69c; transition:color .2s, filter .2s; }
+.olz-cls.on .olz-ic { color:#ffe08a; filter:drop-shadow(0 0 5px rgba(255,200,90,.7)); }
+.olz-cls b { font:800 13px var(--display); letter-spacing:.03em; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.olz-cls.on b { color:#fff1c8; }
+/* Oluştur: dövme altın düğme, pahlı köşeler */
+.olz-go, .ks-enter { position:relative; flex:none; cursor:pointer; border:0; padding:0 22px; min-width:128px; height:44px;
+  font:900 17px var(--display); letter-spacing:.14em; text-transform:uppercase; color:#2a1806; text-shadow:0 1px 0 rgba(255,240,200,.6);
+  clip-path:polygon(12px 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0 50%);
+  background:linear-gradient(180deg, #fff0bf 0, #f0cf7c 18%, #c99a46 52%, #9b7029 53%, #c8994a 100%);
+  filter:drop-shadow(0 0 8px rgba(240,190,90,.35)) drop-shadow(0 3px 4px rgba(0,0,0,.6)); transition:filter .2s, transform .12s; }
+.olz-go::before, .ks-enter::before { content:''; position:absolute; inset:2px; clip-path:inherit; border:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0) 45%); mix-blend-mode:soft-light; }
+.olz-go:hover, .ks-enter:hover { filter:drop-shadow(0 0 14px rgba(255,205,110,.6)) drop-shadow(0 3px 4px rgba(0,0,0,.6)) brightness(1.06); }
+.olz-go:active, .ks-enter:active { transform:translateY(1px) scale(.99); }
+.olz-go.dim { filter:saturate(.35) brightness(.7) drop-shadow(0 3px 4px rgba(0,0,0,.6)); }
+.olz-go:disabled, .ks-enter:disabled { filter:grayscale(.6) brightness(.6); cursor:default; }
+/* oyun klavyesi açıkken (döndürülmüş kip) ad şeridi klavyenin üstüne çıkar */
+html.vkb .olz-b { transform:translateY(calc(-1 * var(--vkb))); z-index:2; }
+/* dar ekran: etiket gizli, sınıf adları küçük */
+@media (max-width:1000px) { .olz-nm span { display:none; } }
+@media (max-width:900px) { .olz-cls .olz-ic { width:22px; height:22px; } .olz-cls b { font-size:11.5px; } .olz-cls { gap:4px; padding:4px; } .olz-go { min-width:108px; padding:0 16px; font-size:15px; } }
+@media (max-width:700px) { .olz-slots, .olz-srv { display:none; } .olz-cls .olz-ic { display:none; } }
+/* telefon yüksekliği */
+@media (max-height:420px) {
+  .olz { gap:5px; padding-top:max(5px, env(safe-area-inset-top)); padding-bottom:max(5px, env(safe-area-inset-bottom)); }
+  .olz-top { min-height:28px; padding:2px 10px; } .olz-top > b { font-size:14px; } .olz-back { padding:2px 12px; }
+  .olz-scroll { padding:7px 9px 9px; }
+  .olz-race { padding:4px 3px; } .olz-race .olz-ic { width:24px; height:24px; } .olz-race b { font-size:13px; }
+  .olz-step small { display:none; } .olz-step { grid-template-columns:26px minmax(0, 1fr) 26px; }
+  .olz-desc { font-size:10.5px; margin:5px 0 6px; } .olz-cinfo { font-size:10.5px; padding:5px 7px; }
+  .olz-row { grid-template-columns:56px minmax(0, 1fr); padding:3px 0; } .olz-lab { font-size:10.5px; }
+  .olz-step button { height:24px; font-size:16px; }
+  .olz-sw button { width:19px; height:19px; } .olz-seg button { padding:3px 2px; font-size:11px; }
+  .olz-b { padding:4px 8px 4px 10px; gap:8px; } .olz-nm input { padding:4px 8px; width:clamp(118px, 17vw, 190px); }
+  .olz-dice { width:32px; height:30px; padding:4px; }
+  .olz-cls { height:36px; }
+  .olz-go { height:38px; min-width:100px; }
+  .olz-tools button { width:28px; height:28px; font-size:15px; }
+  .olz-msg { font-size:10px; }
+}

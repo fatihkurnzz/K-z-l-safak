@@ -1,0 +1,44 @@
+/* v10-esya: yan stat ve set bölümleri, ızgara rozetleri, karşılaştırma */
+.ivinfo .subs { display:none; }                       /* kartta ayrıntılı "Yan Statlar" bölümü var */
+.sbx, .stx { margin:7px 0 2px; padding:6px 9px 7px; border-radius:9px; background:#1b130b; border:1px solid #5c4526; color:#e8d9b8; font-size:12px; text-align:left; }
+.sbx h4, .stx h4, .setH { margin:0 0 4px; font-size:12px; font-weight:800; letter-spacing:.03em; text-transform:none; color:#ffd77a; }
+.sbx h4 small, .stx h4 small, .setH small { font-weight:700; color:#bba988; margin-left:4px; }
+.sbx.none { opacity:.8; } .sbx.none p { margin:0; }
+.sbr { display:flex; align-items:baseline; gap:7px; padding:2px 0; border-top:1px solid #ffffff12; }
+.sbr:first-of-type { border-top:0; }
+.sbr b { flex:0 0 7.5em; font-weight:700; color:#e8d9b8; }
+.sbr span { font-weight:800; color:#fff; }
+.sbr .ar { font-style:normal; color:#ffcf4a; font-size:10px; letter-spacing:-1px; }
+.sbr small { color:#ffcf4a; font-size:10.5px; }
+.sbr small.mut { color:#8d7f66; }
+.sbr.upd b, .sbr.upd span { color:#ffe7a0; }
+.sbh { margin:5px 0 0; display:flex; justify-content:space-between; align-items:center; gap:8px; color:#bba988; font-size:11px; }
+.sbm { display:inline-flex; gap:4px; }
+.sbm span { padding:0 6px; border-radius:6px; border:1px solid #5c4526; color:#8d7f66; font-weight:700; }
+.sbm .dn { color:#bfffa8; border-color:#4a8a3c; } .sbm .nx { color:#ffe7a0; border-color:#c99a2e; }
+.sts { display:flex; flex-wrap:wrap; gap:3px; margin:2px 0 5px; }
+.sts span { padding:0 6px; font-size:10.5px; border-radius:6px; border:1px solid #4a3a22; color:#6f634f; }
+.sts span.on { color:#bfffa8; border-color:#4a8a3c; background:#21401d; } .sts span.me { box-shadow:0 0 0 1px #ffd45a; }
+.str { display:flex; align-items:center; gap:7px; margin-top:3px; color:#6f634f; }
+.str i { font-style:normal; display:grid; place-items:center; width:18px; height:18px; border-radius:50%; border:1px solid #5c4526; font-size:10px; font-weight:800; flex:none; }
+.str span { flex:1; }
+.str em { font-style:normal; font-size:10px; font-weight:800; }
+.str.on { color:#bfffa8; text-shadow:0 0 6px #4fe03a55; } .str.on i { background:#2f6b25; border-color:#7ed36a; color:#fff; }
+.str.soon { color:#e6c277; } .str.soon i { border-color:#c99a2e; color:#ffe7a0; }
+.sbx .mut, .stx .mut { color:#a89a80; }
+h4.setH { margin:10px 0 2px; font-size:13px; font-style:normal; color:#5a3208 !important; text-shadow:none; } h4.setH small { font-style:normal; color:#7a5a2c !important; }
+h4.setH small.on { color:#2f7a3a !important; }
+.sbx h4, .stx h4 { color:#ffd77a !important; text-shadow:none; }
+.setp .mut, .setp.sbtot .mut { color:#bba988; }
+.setp.act { border-color:#7ed36a; box-shadow:0 0 8px #4fe03a33; }
+.setr em { font-style:normal; font-size:10px; font-weight:800; margin-left:auto; }
+.sbtot .subs { margin-top:5px; }
+/* ızgara rozetleri */
+.ivc .ivs { position:absolute; left:2px; bottom:2px; display:flex; gap:2px; pointer-events:none; }
+.ivc .ivs b { width:5px; height:5px; border-radius:50%; background:#ffcf4a; box-shadow:0 0 0 1px #000, 0 0 4px #ffb52e; }
+.ivc .ivst { position:absolute; left:2px; top:2px; width:13px; height:13px; border-radius:50%; background:#3a63c8; color:#fff; font:900 8px/13px Inter,system-ui,sans-serif; font-style:normal; text-align:center; box-shadow:0 0 0 1px #000; pointer-events:none; }
+/* karşılaştırma */
+.cmpl { margin-top:4px; font-size:11px; display:flex; flex-wrap:wrap; gap:2px 8px; align-items:baseline; }
+.cmpl .up { color:#2f7a3a; font-weight:800; } .cmpl .dn { color:#b3261e; font-weight:800; }
+.cmpl small { flex-basis:100%; }
+.row .stx { margin-top:4px; padding:4px 7px; font-size:11px; } .row .stx .str:nth-of-type(n+1) { margin-top:2px; }

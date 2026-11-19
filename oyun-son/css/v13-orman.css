@@ -1,0 +1,33 @@
+/* Açılış ormanı (sürüm 13, js/orman.js): yer levhası, ilk görev izleyicisi, sağ üst kısa kart, etiketler ve çıkış geçişi */
+.orn-yer { left:max(10px,var(--sal)); top:calc(var(--sat) + 8px); display:grid; gap:0; padding:6px 18px 7px 14px; pointer-events:none;
+  background:linear-gradient(90deg,#0b1410e6,#0b141099 70%,#0b141000); border-left:3px solid #9fd07a; border-radius:2px; }
+.orn-yer small { font:800 10px/1.2 Inter,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:#b9d8a8; opacity:.85; }
+.orn-yer b { font-family:var(--display); font-size:22px; line-height:1.1; color:#f4ecd2; text-shadow:0 2px 6px #000, 0 0 14px #2a4a2066; letter-spacing:.02em; }
+.orn-gorev { left:max(10px,var(--sal)); top:calc(var(--sat) + 70px); width:210px; display:grid; gap:2px; padding:8px 12px 9px; border-radius:10px; pointer-events:none;
+  background:linear-gradient(#18221ae8,#0e1610e8); border:1px solid #6f8f5a88; box-shadow:0 4px 14px #0008, inset 0 1px 0 #ffffff14; color:#e8eedc; }
+.orn-gorev small { display:flex; align-items:center; gap:5px; font:900 10px/1.2 Inter,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:#e7c75a; }
+.orn-gorev small svg { width:13px; height:13px; fill:#e7c75a; }
+.orn-gorev b { font-family:var(--display); font-size:15px; line-height:1.2; }
+.orn-gorev span { font:700 11.5px/1.3 Inter,sans-serif; color:#c8d6bc; }
+.orn-gorev i { display:block; height:5px; margin-top:3px; border-radius:3px; background:#0008; overflow:hidden; box-shadow:inset 0 1px 2px #000; }
+.orn-gorev i em { display:block; height:100%; background:linear-gradient(90deg,#7fbf4a,#d8f08a); border-radius:3px; transition:width .6s ease; }
+.orn-gorev.ok { border-color:#d8f08acc; box-shadow:0 0 0 1px #d8f08a55, 0 4px 18px #7fbf4a55; }
+.orn-gorev.ok span { color:#d8f08a; }
+.orn-sag { right:max(10px,var(--sar)); top:calc(var(--sat) + 8px); display:flex; align-items:flex-start; gap:10px; }
+.orn-ben { display:flex; align-items:center; gap:7px; padding:3px 12px 3px 3px; border-radius:24px; background:#0b1410cc; border:1px solid #6f8f5a77; color:#fff; }
+.orn-ben .pt.ava, .orn-ben .ava { width:34px; height:34px; border-radius:50%; }
+.orn-ben > span { display:grid; line-height:1.15; } .orn-ben b { font:800 13px Inter,sans-serif; } .orn-ben small { font:700 10.5px Inter,sans-serif; color:#c8d6bc; }
+.blabel.orn-foe { border-color:#a8402a; background:linear-gradient(#3a1410ee,#1a0806ee); }
+.blabel.orn-foe small { color:#ffb49a; }
+.blabel.orn-npc { border-color:#6f8f5a; background:linear-gradient(#1e2c1aee,#0e160cee); }
+.blabel.orn-npc small { color:#c8e0b0; }
+html[data-faction] #blabels .blabel.orn-foe:not(.lock) { border-color:#a8402a; background:linear-gradient(#3a1410ee,#1a0806ee); }
+html[data-faction] #blabels .blabel.orn-npc:not(.lock) { border-color:#6f8f5a; background:linear-gradient(#1e2c1aee,#0e160cee); }
+.orn-fade { position:fixed; inset:0; z-index:40; display:grid; place-content:center; justify-items:center; gap:4px; background:#050806; pointer-events:none; animation:ornFade 2.2s ease forwards; }
+.orn-fade b { font-family:var(--display); font-size:30px; color:#f4ecd2; letter-spacing:.06em; text-shadow:0 0 18px #e7c75a55; }
+.orn-fade small { font:700 12px Inter,sans-serif; color:#b9c8b0; letter-spacing:.12em; text-transform:uppercase; }
+@keyframes ornFade { 0% { opacity:1; } 55% { opacity:1; } 100% { opacity:0; } }
+@media (max-height:420px) {
+  .orn-yer b { font-size:18px; } .orn-gorev { top:calc(var(--sat) + 58px); width:190px; padding:6px 10px 7px; } .orn-gorev b { font-size:13.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .orn-fade { animation-duration:.6s; } }
