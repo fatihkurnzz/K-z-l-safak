@@ -4,10 +4,10 @@
 // Puan yalnız uzmanlık ağacına ve ortak ağaca verilir (paths.js specTrees); öbür uzmanlığın ağacı kilitli görünür.
 // Solda dört sınıf: kendi sınıfın düzenlenir, öbürleri yalnız önizlenir. Sağda seçili yeteneğin bilgisi.
 import { S } from './api.js';
-import { ACT, esc, redraw } from './ui-core.js';
+import { ACT, esc, redraw, doAct, toast } from './ui-core.js';
 import { ri, svg } from './icons.js';
 import { skillIcon } from './skill-icons.js';
-import { CLASSES, TREE_MAX, SKILL_POINTS_FROM_LEVEL } from '../shared/content.js';
+import { CLASSES, TREES, TREE_MAX, SKILL_POINTS_FROM_LEVEL } from '../shared/content.js';
 import { SKILLS, describe, treeSkills, classSkills, BASIC, mpBase } from '../shared/skills.js';
 import { skillPointsFree, unlockedSkills, LOADOUT_ACTIVES, treeOf } from '../shared/hero.js';
 import { mpCost } from '../shared/mana.js';
@@ -61,10 +61,14 @@ export function ytView(hid) {
   const slot = id => { const s = SKILLS[id]; return `<span class="yt-ls ${s ? '' : 'nil'}" title="${s ? esc(s.name) : 'Boş'}">${s ? ico(s) : ''}</span>`; };
   const bar = own ? `<div class="yt-bar"><span class="yt-pts">${ri('star')}Yetenek Puanı: <b class="${ctx.free ? 'on' : ''}">${ctx.free}</b></span>
       <span class="yt-load"><small>Savaş düzeni</small>${slot(BASIC[cls])}${Array.from({ length: LOADOUT_ACTIVES }, (_, i) => slot(h.act[i])).join('')}</span>
-      <button class="yt-bb" data-a="skv" data-id="path">${ri('star')}Uzmanlık yolu</button><button class="yt-bb" data-a="skillReset">${ri('list')}Sıfırla</button></div>`
+      <button class="yt-bb ${h.mact ? '' : 'on'}" data-a="ytAuto" data-hid="${hid}" title="${h.mact ? 'Düzeni önerilene göre kur; yeni yetenekler açıldıkça kendiliğinden yenilenir' : 'Düzen kendiliğinden yenileniyor; bir yeteneği elle eklersen ya da çıkarırsan durur'}">${ri('buff')}${h.mact ? 'Önerilen düzen' : 'Otomatik düzen'}</button><button class="yt-bb" data-a="skv" data-id="path">${ri('star')}Uzmanlık yolu</button><button class="yt-bb" data-a="skillReset">${ri('list')}Sıfırla</button></div>`
     : `<div class="yt-bar"><span class="mut">Önizleme · kendi sınıfına dönmek için soldan ${esc(CLASSES[myCls].name)}'yı seç.</span></div>`;
-  const note = own && S.lvl < SKILL_POINTS_FROM_LEVEL ? `<div class="yt-note">${ri('lock')} Ağaçlara puan ${SKILL_POINTS_FROM_LEVEL}. seviyede başlar.</div>` : '';
+  // Oyun testi (20 Kas): ortak ağaca (iz/buz/öfke/şifa) önce puan veren uzmanlık, uzmanlık ağacının vuran yetenekleri gelene dek zayıf kalır
+  const [ct, st] = own && ctx.trees.length > 1 ? ctx.trees : [], weakSpec = st && (h.tree[st] || 0) < Math.min(TREE_MAX, (h.tree[ct] || 0)) && (h.tree[st] || 0) < 40;
+  const note = own && S.lvl < SKILL_POINTS_FROM_LEVEL ? `<div class="yt-note">${ri('lock')} Ağaçlara puan ${SKILL_POINTS_FROM_LEVEL}. seviyede başlar.</div>`
+    : weakSpec ? `<div class="yt-note">${ri('star')} Öneri: puanları önce ${esc(TREES[st]?.name || st)} ağacına ver; uzmanlığının vuran yetenekleri orada açılır.</div>` : '';
   return `<div class="yt">${left}<div class="yt-mid">${note}<div class="yt-trees">${treeOf(cls).map(t => treeCol(t, ctx)).join('')}</div>${bar}</div>${detail(ctx)}</div>`;
 }
+ACT.ytAuto = async d => { const r = await doAct('loadout.auto', { hero: d.hid }); if (r) toast('Savaş düzeni önerilene göre kuruldu.'); };
 ACT.ytSel = d => { YV.sel = d.id; redraw(); };
 ACT.ytCls = d => { YV.cls = d.id; YV.sel = null; redraw(); };

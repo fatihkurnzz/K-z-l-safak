@@ -8,7 +8,7 @@
 import { S } from './api.js';
 import { ACT, esc, fmt, pct, toast, confirmBox, doAct, redraw, showModal, closeModal, ico, slotIco, heroView, avatarImg } from './ui-core.js';
 import { ri } from './icons.js';
-import { invGrid, itemCard, sortItems } from './ui-envanter.js';
+import { invGrid, itemCard, sortItems, cmpWith } from './ui-envanter.js';
 import { CLASSES, STATS, STAT_KEYS, BAG_LIMIT, FACTIONS } from '../shared/content.js';
 import { SLOTS, itemBase, itemName, sellPrice, dustYield, GRADES, gradeOf } from '../shared/items.js';
 import { heroStats, power, statPointsFree, equippedIds, ownerOf, itemOf, heroItemLevel, statTotals, partyUnits, treeOf } from '../shared/hero.js';
@@ -51,7 +51,7 @@ export function kxView(hid, tabsHtml = '') {
   const tabs = KV.slot ? `<div class="kx-ftabs"><button class="on">${SLOTS[KV.slot]}</button><button data-a="kxSlot" data-s="${KV.slot}">✕ Süzgeci kaldır</button></div>`
     : `<div class="kx-ftabs">${FILT.map(([k, n]) => `<button data-a="kxF" data-id="${k}" class="${KV.f === k ? 'on' : ''}">${n}</button>`).join('')}</div>`;
   const bag = `<div class="kx-bag">${tabs}<div class="kx-grid">${invGrid(list, { act: 'kxPick', sel: KV.sel, fill: KV.slot || KV.f !== 'all' ? 0 : Math.max(list.length, 25), empty: KV.slot ? 'Çantanda bu yuvaya uyan eşya yok.' : 'Bu türde eşya yok.' })}</div>
-    <div class="kx-foot"><span class="${S.items.length >= BAG_LIMIT ? 'warn' : ''}">${ri('bag')}${S.items.length} / ${BAG_LIMIT}</span><span>${ri('akce')}${fmt(S.akce)}</span></div></div>`;
+    <div class="kx-foot"><span class="${S.items.length >= BAG_LIMIT ? 'warn' : ''}">${ri('bag')}${S.items.length} / ${BAG_LIMIT}</span><button class="kx-bulk" data-a="breakWin" title="Örs: toplu sat ya da parçala">${ri('shatter')}Toplu</button><span>${ri('akce')}${fmt(S.akce)}</span></div></div>`;
   return `<div class="kx">${hero}${stats}${bag}</div>`;
 }
 
@@ -66,7 +66,7 @@ function cardFor(it) {
     !eq && !it.nt ? `<button class="btn sm" data-a="kxSell" data-id="${it.id}" data-op="sell">Sat · ${fmt(sellPrice(it))}</button>` : '',
     !eq ? `<button class="btn sm" data-a="kxSell" data-id="${it.id}" data-op="dust">Parçala · ${fmt(dustYield(it))} toz</button>` : '',
   ].join('');
-  return itemCard(it, acts);
+  return itemCard(it, acts, cmpWith(it, KV.slot));
 }
 const sync = () => { if (KV.sel != null && !S.items.some(x => x.id === KV.sel)) KV.sel = null; };
 ACT.kxRot = d => { KV.rot = (KV.rot + (+d.d) + 8) % 8; redraw(); };

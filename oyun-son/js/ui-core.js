@@ -22,7 +22,7 @@ export const hud = $('#hud'), win = $('#win'), modal = $('#modal'), chatbar = $(
 export const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const fmt = n => Math.round(n).toLocaleString('tr-TR');
 export const pct = v => '%' + (v * 100 >= 10 || v === 0 ? Math.round(v * 100) : +(v * 100).toFixed(2));
-export const stars = n => `<span><span class="stars">${'★'.repeat(n)}</span><span class="stars off">${'★'.repeat(Math.max(0, 3 - n))}</span></span>`;
+export const stars = n => (n >= 1 && n <= 3 ? `<span class="kstars k${n}" title="${n}/3 yıldız" aria-label="${n}/3 yıldız"></span>` : `<span><span class="stars off">★★★</span></span>`); // Aşama 2 kit yıldız rozeti
 // Deneyim (TP) yalnızca yüzde olarak gösterilir: kazanç, seviyenin gerektirdiği TP'nin yüzdesidir
 export const pctTxt = v => `%${v >= 10 ? Math.floor(v) : v >= 1 ? v.toFixed(1) : v.toFixed(2)}`;
 export const xpGain = (xp, lvl) => `+${pctTxt(100 * xp / Math.max(1, xpNeed(lvl ?? S.lvl)))} TP`;
@@ -204,6 +204,7 @@ export function energyNow() {
 export function openWin(cfg) { hooks.sfx?.('win'); W = cfg; win.hidden = false; drawWin(); reload(); }
 export async function reload() { const w = W; if (!w?.load) return; w.data = await w.load(w.tab); if (W === w) redraw(); }
 const tabsHtml = () => `${W.tabs.map(t => `<button data-a="tab" data-id="${t.id}" class="${t.id === W.tab ? 'on' : ''}" ${t.off ? 'disabled style="opacity:.5"' : ''}>${t.pre || tabPre(t)}<span>${t.label}${t.small ? `<small>${t.small}</small>` : ''}</span>${t.dot ? '<i class="tdot" aria-label="Bekleyen puan"></i>' : ''}</button>`).join('')}`;
+const SCR = { 'Çanta': 'canta', 'Karakter': 'karakter', 'Görevler': 'gorev', 'Görev Defteri': 'gorev', 'Takvim': 'gorev', 'Klan Karargâhı': 'klan' };
 function drawWin() {
   // Aynı pencere açıksa kabuğu yıkma: yalnız sekme çubuğunu yerinde güncelle (titreme olmasın)
   const key = W.title + '|' + (W.back || '') + '|' + (W.tabs ? 1 : 0) + (W.top ? 't' : '');
@@ -213,6 +214,7 @@ function drawWin() {
     return redraw();
   }
   win._key = key;
+  win.dataset.scr = SCR[W.title] || 'genel'; // Aşama 5: ekran kimliği (css/v24-asama5.css büyük pencere ve tema)
   win.className = 'win full' + (W.top ? ' ttop' : ''); // top: sekme şeridi solda değil üstte (19 Kas)
   win.innerHTML = `<div class="scrim" data-a="closeWin"></div><div class="frame"><header>${W.back ? `<button class="x bk" data-a="${W.back}">‹</button>` : ''}<h2>${W.title}</h2><div class="wres"></div><button class="x" data-a="closeWin">✕</button></header>
     <div class="wbody">${W.tabs ? `<nav class="tabs">${tabsHtml()}</nav>` : ''}<section class="page" id="page"></section></div></div>`;

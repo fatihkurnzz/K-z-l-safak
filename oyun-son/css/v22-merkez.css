@@ -1,82 +1,51 @@
-/* v22 · Boyalı ana merkez (20 Kas, A–Z yeniden tasarım pilotu) — js/merkez2d.js
-   Başkentte 3B kasabanın yerine 2340×1080 izometrik şehir resmi; ışık, kor ve sis efektleri CSS'tir.
-   Kök sınıf html.m2d yalnız boyalı merkez açıkken durur. */
-
-#merkez2d { position:fixed; inset:0; overflow:hidden; background:#0e0b10; touch-action:none; cursor:grab; -webkit-user-select:none; user-select:none; }
-#merkez2d.pan { cursor:grabbing; }
-#merkez2d[hidden], #game:has(#battleUI:not([hidden])) #merkez2d { display:none; }
-html.m2d #stage canvas { visibility:hidden; }
-#merkez2d .m2-in { position:absolute; left:0; top:0; will-change:transform; }
-#merkez2d .m2-img { position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none; }
-html[data-faction="sancak"] #merkez2d { background:#0f1a3a; }
-
-/* Işık nefesi: ocak, çark, dikilitaş gibi ışık kaynaklarında yavaş yanıp sönen parıltı */
-#merkez2d .m2-glow { position:absolute; transform:translate(-50%,-50%); border-radius:50%; pointer-events:none; mix-blend-mode:screen;
-  background:radial-gradient(closest-side, rgba(255,140,40,.55), rgba(255,90,20,.18) 55%, transparent); animation:m2-breathe 4.6s ease-in-out infinite; }
-html[data-faction="sancak"] #merkez2d .m2-glow { background:radial-gradient(closest-side, rgba(150,200,255,.5), rgba(217,176,74,.16) 55%, transparent); }
-@keyframes m2-breathe { 0%,100% { opacity:.35; transform:translate(-50%,-50%) scale(.92); } 50% { opacity:.85; transform:translate(-50%,-50%) scale(1.06); } }
-
-/* Kor kıvılcımları: ışık noktalarından yükselip söner (Elentha'da altın-mavi zerre) */
-#merkez2d .m2-ember { position:absolute; width:.28%; aspect-ratio:1; border-radius:50%; pointer-events:none; background:#ffb347; box-shadow:0 0 6px 2px #ff7a1a;
-  opacity:0; animation:m2-rise 3.6s linear infinite; }
-html[data-faction="sancak"] #merkez2d .m2-ember { background:#f7e7b0; box-shadow:0 0 6px 2px #7fb4ff; }
-@keyframes m2-rise { 0% { opacity:0; transform:translate(0,0) scale(1); } 12% { opacity:1; } 70% { opacity:.7; } 100% { opacity:0; transform:translate(2.2vh,-16vh) scale(.4); } }
-#merkez2d .m2-ember:nth-child(even) { animation-name:m2-rise2; }
-@keyframes m2-rise2 { 0% { opacity:0; transform:translate(0,0) scale(1); } 12% { opacity:1; } 70% { opacity:.7; } 100% { opacity:0; transform:translate(-2.6vh,-14vh) scale(.4); } }
-
-/* Alt kenarda sürüklenen sis ve kül; kenar karartması (arayüz okunurluğu için) */
-#merkez2d .m2-fog { position:absolute; left:-10%; right:-10%; bottom:0; height:34%; pointer-events:none; opacity:.55;
-  background:radial-gradient(40% 60% at 20% 100%, rgba(141,135,144,.55), transparent 70%), radial-gradient(45% 55% at 75% 100%, rgba(191,185,190,.4), transparent 70%);
-  animation:m2-fog 22s ease-in-out infinite alternate; }
-html[data-faction="sancak"] #merkez2d .m2-fog { background:radial-gradient(40% 60% at 20% 100%, rgba(235,240,250,.6), transparent 70%), radial-gradient(45% 55% at 75% 100%, rgba(220,230,245,.45), transparent 70%); }
-@keyframes m2-fog { from { transform:translateX(-4%); } to { transform:translateX(4%); } }
-#merkez2d .m2-vig { position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(180deg, rgba(14,11,16,.55), transparent 16%, transparent 80%, rgba(14,11,16,.6)), radial-gradient(130% 100% at 50% 50%, transparent 62%, rgba(14,11,16,.55)); }
-html[data-faction="sancak"] #merkez2d .m2-vig { background:linear-gradient(180deg, rgba(15,26,58,.5), transparent 16%, transparent 80%, rgba(15,26,58,.55)), radial-gradient(130% 100% at 50% 50%, transparent 62%, rgba(15,26,58,.45)); }
-
-/* Dokunulan binada kısa ışık halkası */
-#merkez2d .m2-hit { position:absolute; transform:translate(-50%,-50%); border-radius:50%; pointer-events:none; mix-blend-mode:screen;
-  background:radial-gradient(closest-side, rgba(255,214,140,.55), rgba(255,122,26,.2) 60%, transparent); animation:m2-hit .65s ease-out forwards; }
-html[data-faction="sancak"] #merkez2d .m2-hit { background:radial-gradient(closest-side, rgba(220,235,255,.6), rgba(217,176,74,.22) 60%, transparent); }
-@keyframes m2-hit { from { opacity:1; transform:translate(-50%,-50%) scale(.7); } to { opacity:0; transform:translate(-50%,-50%) scale(1.15); } }
-
-html.gfx-low #merkez2d :is(.m2-glow,.m2-ember,.m2-fog) { animation:none; }
-html.gfx-low #merkez2d .m2-ember { display:none; }
-@media (prefers-reduced-motion:reduce) { #merkez2d :is(.m2-glow,.m2-ember,.m2-fog,.m2-hit) { animation:none; } #merkez2d .m2-ember { display:none; } }
-
-/* Bina etiketleri: ayrıntılı resmin üstünde okunsun diye taş levha (halkın renginde ince kenar) */
-html.m2d #game #hud #blabels .blabel { padding:3px 10px 4px !important; border-radius:4px !important; background:linear-gradient(180deg, rgba(26,21,25,.88), rgba(14,11,16,.88)) !important;
-  border:1px solid rgba(255,122,26,.55) !important; box-shadow:0 2px 8px #000a, inset 0 1px 0 rgba(255,179,71,.25) !important; }
-html.m2d[data-faction="sancak"] #game #hud #blabels .blabel { background:linear-gradient(180deg, rgba(15,26,58,.88), rgba(10,16,36,.9)) !important; border-color:rgba(217,176,74,.7) !important; box-shadow:0 2px 8px #0009, inset 0 1px 0 rgba(247,245,239,.2) !important; }
-html.m2d #game #hud #blabels .blabel > b { font-size:calc(12.5px * var(--h17-s, 1)) !important; color:#ffe9c0 !important; }
-html.m2d[data-faction="sancak"] #game #hud #blabels .blabel > b { color:#f7f5ef !important; }
-html.m2d #game #hud #blabels .blabel .rl { color:#ffb347 !important; }
-html.m2d[data-faction="sancak"] #game #hud #blabels .blabel .rl { color:#9cc4ff !important; }
-html.m2d #game #hud #blabels .blabel.lock { filter:grayscale(.7) brightness(.85); }
-html.m2d #game #hud #blabels .blabel:active { transform-origin:50% 100%; filter:brightness(1.25); }
-
-/* Alt şerit: 4.4 paketinin halka özgü simgeleri (img/merkez/simge). Çanta'nın yeni simgesi yok: eskisi kalır */
-html[data-faction="ocak"] #game #hud [data-a="party"]  { --kdi:url("../img/merkez/simge/karakterler-ocak.webp"); }
-html[data-faction="ocak"] #game #hud [data-a="quests"] { --kdi:url("../img/merkez/simge/gorevler-ocak.webp"); }
-html[data-faction="ocak"] #game #hud [data-a="clan"]   { --kdi:url("../img/merkez/simge/klan-ocak.webp"); }
-html[data-faction="ocak"] #game #hud [data-a="shop"]   { --kdi:url("../img/merkez/simge/dukkan-ocak.webp"); }
-html[data-faction="ocak"] #game #hud [data-a="savas"]  { --kdi:url("../img/merkez/simge/savas-ocak.webp"); }
-html[data-faction="ocak"] #game #hud [data-a="achs"]   { --kdi:url("../img/merkez/simge/basarim-ocak.webp"); }
-html[data-faction="ocak"] #game #hud [data-a="codex"]  { --kdi:url("../img/merkez/simge/ansiklopedi-ocak.webp"); }
-html[data-faction="sancak"] #game #hud [data-a="party"]  { --kdi:url("../img/merkez/simge/karakterler-sancak.webp"); }
-html[data-faction="sancak"] #game #hud [data-a="quests"] { --kdi:url("../img/merkez/simge/gorevler-sancak.webp"); }
-html[data-faction="sancak"] #game #hud [data-a="clan"]   { --kdi:url("../img/merkez/simge/klan-sancak.webp"); }
-html[data-faction="sancak"] #game #hud [data-a="shop"]   { --kdi:url("../img/merkez/simge/dukkan-sancak.webp"); }
-html[data-faction="sancak"] #game #hud [data-a="savas"]  { --kdi:url("../img/merkez/simge/savas-sancak.webp"); }
-html[data-faction="sancak"] #game #hud [data-a="achs"]   { --kdi:url("../img/merkez/simge/basarim-sancak.webp"); }
-html[data-faction="sancak"] #game #hud [data-a="codex"]  { --kdi:url("../img/merkez/simge/ansiklopedi-sancak.webp"); }
-/* Yeni simgeler kendi madalyon çerçevesiyle gelir: düğme kutusu sadeleşir, simge büyür */
-html.m2d #game #hud .dock .dbtn { background:radial-gradient(closest-side, rgba(14,11,16,.65), transparent) !important; border-color:transparent !important; box-shadow:none !important; }
-html.m2d #game #hud .dock .dbtn > i { width:calc(40px * var(--h17-s, 1)) !important; height:calc(40px * var(--h17-s, 1)) !important; filter:drop-shadow(0 2px 3px #000c); }
-html.m2d #game #hud .dock .dbtn.savas-d > i { background:var(--kdi) center / contain no-repeat !important; border:0 !important; }
-html.m2d #game #hud .dock .dbtn > span:not(.badge) { text-shadow:0 1px 2px #000, 0 0 3px #000; color:#f2e6cc !important; }
-
-/* Telefon (kısa ekran, html.short): etiketler küçük, görev rolü satırı ([Demirci] gibi) gizli; resim kalabalık görünmesin */
-html.m2d.short #game #hud #blabels .blabel { padding:2px 7px 3px !important; }
-html.m2d.short #game #hud #blabels .blabel .rl { display:none; }
-html.m2d.short #game #hud #blabels .blabel > b { font-size:10.5px !important; }
+/* ==================== v22 · Aşama 3 ana merkez (20 Kas) ====================
+   2B başkent katmanı (js/hub2d.js): şehir resmi + görünmez bina dokunma alanları; HUD üstte kalır. Büyük SAVAŞ düğmesi sağ altta
+   (dock'taki küçük Savaş kare gizlenir). Menü simgeleri Aşama 3 revize seti (halka göre). Kaynak docs/kd/asama3. */
+#hub2d { position:fixed; inset:0; z-index:0; display:none; overflow:hidden; background:#0b0907 center / cover no-repeat; }
+#hub2d::before { content:''; position:absolute; inset:0; background:inherit; filter:blur(18px) brightness(.55); transform:scale(1.1); }
+html[data-hub2d] #hub2d { display:block; }
+html[data-hub2d] #stage { visibility:hidden; }
+#hub2d .h2-img { position:absolute; display:block; max-width:none; user-select:none; -webkit-user-drag:none; pointer-events:none; }
+#hub2d .h2-hit { position:absolute; padding:0; border:0; background:transparent; cursor:pointer; -webkit-tap-highlight-color:transparent; border-radius:18px; }
+#hub2d .h2-hit:active { background:radial-gradient(closest-side, rgba(255,214,140,.22), transparent); }
+html[data-faction="sancak"] #hub2d .h2-hit:active { background:radial-gradient(closest-side, rgba(200,225,255,.24), transparent); }
+/* 2B başkentte karakter yok: oyuncu ad levhası gizli (profil sol üstteki birim çerçevesinden) */
+html[data-hub2d] #game #hud .blabel.me { display:none !important; }
+/* büyük SAVAŞ: dock'un sağında; dock sola kayar */
+html[data-hub2d] #game #hud .dock .dbtn.savas-d { display:none !important; }
+html[data-hub2d] #game #hud .dock { right:calc(var(--h17-sr) + 160px * var(--h17-s) + 8px) !important; }
+#game #hud .savas2d { position:absolute; right:var(--h17-sr); bottom:calc(var(--h17-sab) + 12px); width:calc(156px * var(--h17-s)); height:calc(52px * var(--h17-s)); padding:0; border:0; pointer-events:auto;
+  background:var(--sv2-n) center / 100% 100% no-repeat; filter:drop-shadow(0 4px 8px rgba(0,0,0,.6)); }
+#game #hud .savas2d:active { background-image:var(--sv2-p); transform:translateY(1px); }
+#game #hud .savas2d span { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+html[data-faction="ocak"] { --sv2-n:url("../img/kd/merkez/dugme-savas-normal-ocak.png"); --sv2-p:url("../img/kd/merkez/dugme-savas-basili-ocak.png"); }
+html[data-faction="sancak"] { --sv2-n:url("../img/kd/merkez/dugme-savas-normal-sancak.png"); --sv2-p:url("../img/kd/merkez/dugme-savas-basili-sancak.png"); }
+/* menü simgeleri (Aşama 3 revize, halka göre madalyon) */
+html[data-faction="ocak"] #game #hud [data-a="party"] { --kdi:url("../img/kd/simge3/simge-karakter-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="bag"] { --kdi:url("../img/kd/simge3/simge-canta-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="quests"] { --kdi:url("../img/kd/simge3/simge-gorevler-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="clan"] { --kdi:url("../img/kd/simge3/simge-klan-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="shop"] { --kdi:url("../img/kd/simge3/simge-kervan-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="savas"] { --kdi:url("../img/kd/simge3/simge-savas-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="mail"] { --kdi:url("../img/kd/simge3/simge-posta-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="codex"] { --kdi:url("../img/kd/simge3/simge-ansiklopedi-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="drawer"] { --kdi:url("../img/kd/simge3/simge-menu-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="notifs"] { --kdi:url("../img/kd/simge3/simge-bildirim-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="calendar"] { --kdi:url("../img/kd/simge3/simge-takvim-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="achs"] { --kdi:url("../img/kd/simge3/simge-basarim-ocak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="news"] { --kdi:url("../img/kd/simge3/simge-duyuru-ocak.png"); }
+html[data-faction="ocak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:url("../img/kd/simge3/simge-diyar-haritasi-ocak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="party"] { --kdi:url("../img/kd/simge3/simge-karakter-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="bag"] { --kdi:url("../img/kd/simge3/simge-canta-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="quests"] { --kdi:url("../img/kd/simge3/simge-gorevler-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="clan"] { --kdi:url("../img/kd/simge3/simge-klan-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="shop"] { --kdi:url("../img/kd/simge3/simge-kervan-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="savas"] { --kdi:url("../img/kd/simge3/simge-savas-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="mail"] { --kdi:url("../img/kd/simge3/simge-posta-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="codex"] { --kdi:url("../img/kd/simge3/simge-ansiklopedi-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="drawer"] { --kdi:url("../img/kd/simge3/simge-menu-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="notifs"] { --kdi:url("../img/kd/simge3/simge-bildirim-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="calendar"] { --kdi:url("../img/kd/simge3/simge-takvim-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="achs"] { --kdi:url("../img/kd/simge3/simge-basarim-sancak.png"); }
+html[data-faction="sancak"] #game #hud [data-a="news"] { --kdi:url("../img/kd/simge3/simge-duyuru-sancak.png"); }
+html[data-faction="sancak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:url("../img/kd/simge3/simge-diyar-haritasi-sancak.png"); }

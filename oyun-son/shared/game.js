@@ -108,6 +108,13 @@ const HANDLERS = {
     if (ppas !== undefined && ppas !== null && (typeof ppas !== 'string' || !open.includes(ppas) || SKILLS[ppas].type !== 'passive' || !SKILLS[ppas].path)) fail('bad-loadout');
     h.act = [...act]; h.pas = pas;
     if (ppas !== undefined) h.ppas = ppas;
+    h.mact = true; // elle düzen: yeni yetenekler artık yalnız boş yuvaya girer (hero.js fixLoadout)
+  },
+  // Önerilen düzen: elle bayrağı kalkar, düzen önerilene göre kurulur ve yeni açılışlarda kendiliğinden yenilenir
+  'loadout.auto'(p, a) {
+    const cls = hid(p, a), h = hero(p, cls); busy(p);
+    h.mact = false; fixLoadout(p, cls);
+    return { act: h.act };
   },
   // Uzmanlık yolu (paths.js): kahraman başına seçilir. İlk seçim ve ilk değişiklik bedelsizdir; sonrakiler akçe öder
   // (pathFee; istemcinin gönderdiği bedel alanı okunmaz). Yol değişince öbür yolun yetenekleri düzenden düşer.

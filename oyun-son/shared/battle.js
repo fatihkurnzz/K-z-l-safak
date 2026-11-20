@@ -210,17 +210,20 @@ export class Battle {
   }
   // Oto mod için iksir kararı (yalnızca iksiri olan birim; sürüm 3): can %40 altında ve tehlike sürüyorsa Can iksiri; mana
   // açık yeteneğin bedelini karşılamıyor ya da %20 altındaysa ve savaş daha sürecekse Mana iksiri.
+  // v9 (20 Kas, kullanıcı): Mana iksiri yalnız mana %15 altındayken; noAutoPot (istemcinin 'Oto İksir' kapalı tercihi) iksir içirmez.
+  // Oyuncunun hamleleri sunucuda kayıttan doğrulandığı için bu tercih tekrar oynatmayı etkilemez.
   potChoice(u) {
-    if (!u || u.potHp === undefined || this.v < 3) return null;
+    if (!u || u.potHp === undefined || this.v < 3 || this.noAutoPot) return null;
     const foes = this.foes(u);
     if (!foes.length) return null;
+    if (this.v >= 9 && foes.some(f => f.cls && !f.mon)) return null; // yalnız PvE: karşıda kahraman varsa oto iksir yok (iksir zaten yalnız PvE modlarında verilir)
     const fhp = foes.reduce((a, f) => a + f.hp, 0), more = this.wave + 1 < this.waves.length;
     const threat = more || foes.length > 1 || foes.some(f => f.boss || f.captain) || fhp > u.maxHp * 0.25;
     if (this.canDrink(u, 'hp') && u.hp / u.maxHp < 0.4 && threat) return ['@hp', 0];
     if (this.canDrink(u, 'mp') && u.mpc) {
       const want = u.skills.filter(s => s.cd === 0 && u.mpc[s.id] > 0).map(s => u.mpc[s.id]);
       const short = want.length && Math.min(...want) > u.mp;
-      if ((short || u.mp / u.maxMp < 0.2) && (more || fhp > u.maxHp * 0.5)) return ['@mp', 0];
+      if ((this.v >= 9 ? u.mp / u.maxMp < 0.15 : short || u.mp / u.maxMp < 0.2) && (more || fhp > u.maxHp * 0.5)) return ['@mp', 0];
     }
     return null;
   }

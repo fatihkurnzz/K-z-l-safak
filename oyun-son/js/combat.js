@@ -25,6 +25,7 @@ const overlay = $('#overlay'), battleUI = $('#battleUI');
 // 20 Kas: OTO ve hız tercihi cihazda hatırlanır (her savaşta yeniden açmak gerekmesin); hız yine yalnız OTO açıkken ve PvE'de işler
 const PREF = { get: k => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch { } } };
 export const otoPref = () => PREF.get('dd_oto') === '1';
+const potPref = () => PREF.get('dd_autopot') !== '0'; // Oto İksir: varsayılan açık; kapalıyken OTO iksir içmez (tasarruf)
 const ui = { auto: false, speed: [2, 3].includes(+PREF.get('dd_speed')) ? +PREF.get('dd_speed') : (A11Y.speed || 1), choose: null, selected: null, active: null, onExit: null, legal: [] };
 let onTap = null;
 // Bu savaşta oyuncunun yaptıkları (öğretici okur: ui-kalicilik.js 'bar' adımı) · auto: OTO açık mı
@@ -132,6 +133,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   camRig.pos.set(-4, 2.2, -9.5); camRig.look.set(0, 1.2, -2.6);
   moveCam(CAM.pos, CAM.look, 1.6);
   const battle = new Battle(setup);
+  battle.noAutoPot = !potPref(); ui.battle = battle; ui.hasPot = battle.units.some(x => x.side === 'A' && x.potHp !== undefined && (x.potHp > 0 || x.potMp > 0)) && !battle.units.some(x => x.side !== 'A' && x.cls && !x.mon); // Oto İksir yalnız PvE
   const actions = [];
   const actors = new Map(); // birim kimliği → sahne aktörü
   const byId = id => actors.get(id);
@@ -229,8 +231,9 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       for (const u of live) tm.set(u.id, tm.get(u.id) + Math.max(1, u.spd || 100));
     }
     const k = out.map(u => u.id).join();
-    if (el.dataset.k === k) return; el.dataset.k = k;
-    for (const u of out) if (!PORT.has(u.id)) PORT.set(u.id, portraitOf(u));
+    if (el.dataset.k === k) return;
+    for (const u of out) if (!PORT.get(u.id)) PORT.set(u.id, portraitOf(u)); // boş portre (henüz çizilmemiş) saklanmaz: sonraki çağrıda yeniden denenir
+    el.dataset.k = out.every(u => PORT.get(u.id)) ? k : '';
     el.innerHTML = out.map((u, i) => `<span class="bo ${u.side}${i === 0 && cur ? ' now' : ''}${u.boss ? ' boss' : ''}" title="${escH(u.name)}">${PORT.get(u.id)}<i>${u.lvl}</i></span>`).join('');
   }
   setTitle();
@@ -261,6 +264,22 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   const mk = id => { let e = $('#' + id); if (!e) { e = document.createElement('div'); e.id = id; battleUI.appendChild(e); } return e; };
   const rail = mk('bparty'), tgtEl = mk('btgt');
   let railK = '', tgtId = null, tgtK = '', hudF = 0;
+  // 20 Kas (Aşama 4, kullanıcı: boss aşaması '%' çubuğu): boss varken üst ortada büyük can çubuğu (yüzde). Çubuktaki çizgiler
+  // bossun gerçek evre eşikleri (zones.js phases[].at; motor battle.js evreyi o canda açar ve 'phase' olayıyla şerit gösterilir).
+  const bossEl = mk('bboss'); bossEl.hidden = true; bossEl.innerHTML = '';
+  let bossK = '';
+  const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
+  function syncBoss(foes) {
+    const bo = foes.find(a => a.unit.boss);
+    battleUI.classList.toggle('bossf', !!bo);
+    if (!bo) { if (!bossEl.hidden) { bossEl.hidden = true; bossK = ''; } return; }
+    const u = bo.unit, p = Math.max(0, Math.min(100, 100 * Math.max(0, bo.shown) / u.maxHp)), ph = u.phase || 0, n = u.phases?.length || 0;
+    const k = `${u.id}:${Math.ceil(p)}:${ph}`;
+    if (k === bossK) return; bossK = k;
+    bossEl.hidden = false; bossEl.dataset.ph = Math.min(2, ph);
+    bossEl.innerHTML = `<div class="bb-top"><b>${escH(u.name)}</b>${n ? `<span class="bb-ph">Evre ${ROMAN[ph] || ph + 1} / ${ROMAN[n] || n + 1}</span>` : '<span class="bb-ph">Boss</span>'}</div><div class="bb-bar"><s style="width:${p}%"></s><i style="width:${p}%"></i>${(u.phases || []).map(x => `<u style="left:${(x.at * 100).toFixed(2)}%"></u>`).join('')}<em>%${Math.ceil(p)}</em></div>`;
+  }
+
   function syncSide() {
     ashScene([...actors.values()].some(a => a.unit.side === 'B' && a.unit.cult && a.shown > 0));
     const mine = [...actors.values()].filter(a => a.unit.side === 'A');
@@ -270,6 +289,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       rail.innerHTML = mine.map(a => { const u = a.unit, p = Math.max(0, Math.min(100, 100 * Math.max(0, a.shown) / u.maxHp)); if (!PORT.has(u.id)) PORT.set(u.id, portraitOf(u)); return `<span class="bp ${p <= 0 ? 'dead' : ''} ${ui.active === u.id ? 'now' : ''} ${u === hero ? 'me' : ''}" title="${escH(u.name)}">${PORT.get(u.id)}<em>${u.lvl}</em><i style="width:${p}%"></i></span>`; }).join('');
     }
     const foes = [...actors.values()].filter(a => (a.unit.side === 'B' || a.unit.side === 'N') && !a.gone && a.unit.alive);
+    syncBoss(foes);
     const act = foes.find(a => a.unit.id === ui.active);
     const t = foes.find(a => a.unit.boss) || act || foes.find(a => a.unit.id === tgtId) || foes[0];
     tgtId = t ? t.unit.id : null;
@@ -626,9 +646,10 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
 const baseSpeed = () => (A11Y.speed < 1 ? A11Y.speed : 1);
 function renderButtons() {
   if ((!ui.auto || ui.fast === false) && ui.speed > 1) { ui.speed = baseSpeed(); clock.scale = ui.speed; }
-  $('#bauto').hidden = !OTO.ok(); $('#bauto').classList.toggle('on', ui.auto); $('#bspeed').textContent = `${ui.speed}x`; $('#bspeed').classList.toggle('off', !ui.auto || ui.fast === false);
+  $('#bauto').hidden = !OTO.ok(); { const b = $('#bapot'); if (b) { b.hidden = !OTO.ok() || !ui.hasPot; b.classList.toggle('on', potPref()); b.title = potPref() ? 'Oto İksir açık: OTO can %40, mana %15 altına inince iksir içer' : 'Oto İksir kapalı: OTO iksir harcamaz'; } } $('#bauto').classList.toggle('on', ui.auto); $('#bspeed').textContent = `${ui.speed}x`; $('#bspeed').classList.toggle('off', !ui.auto || ui.fast === false);
 }
 $('#bauto').onclick = () => { if (potLock()) return lockMsg(); if (!OTO.ok()) return; document.querySelector('.oto-tip')?.remove(); ui.auto = !ui.auto; BT.auto = ui.auto; PREF.set('dd_oto', ui.auto ? '1' : '0'); if (ui.auto && [2, 3].includes(+PREF.get('dd_speed')) && ui.fast !== false) { ui.speed = +PREF.get('dd_speed'); clock.scale = ui.speed; } renderButtons(); if (ui.auto) ui.autoPick?.(); };
+$('#bapot').onclick = () => { const on = !potPref(); PREF.set('dd_autopot', on ? '1' : '0'); if (ui.battle) ui.battle.noAutoPot = !on; const w = $('#bwho'); if (w) w.innerHTML = `<b>Oto İksir ${on ? 'açık' : 'kapalı'}</b> · <span>${on ? 'Can %40, mana %15 altına inince OTO iksir içer.' : 'OTO iksir harcamaz; istersen kendin içebilirsin.'}</span>`; renderButtons(); };
 $('#bspeed').onclick = () => { if (ui.fast === false) { const w = $('#bwho'); if (w) w.innerHTML = '<b>Hızlandırma</b> · <span>2x ve 3x yalnız PvE ve tek oyunculu savaşta kullanılır.</span>'; return; } if (!ui.auto) { const w = $('#bwho'); if (w) w.innerHTML = '<b>Hızlandırma</b> · <span>2x ve 3x yalnız OTO açıkken kullanılır.</span>'; return; } ui.speed = ui.speed < 1 ? 1 : ui.speed === 1 ? 2 : ui.speed === 2 ? 3 : (A11Y.speed < 1 ? A11Y.speed : 1); clock.scale = ui.speed; PREF.set('dd_speed', String(ui.speed)); renderButtons(); };
 $('#bexit').onclick = () => (potLock() ? lockMsg() : ui.onExit?.());
 

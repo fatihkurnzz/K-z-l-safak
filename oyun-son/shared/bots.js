@@ -6,7 +6,7 @@ import { newPlayer } from './state.js';
 import { CLASS_KEYS, TREE_MAX } from './content.js';
 import { SKILLS } from './skills.js';
 import { tierForLevel, ARMOR_SLOTS, minPlus } from './items.js';
-import { partyUnits, partyPower, itemLevel, statPointsTotal, skillPointsTotal, unlockedSkills, LOADOUT_ACTIVES } from './hero.js';
+import { partyUnits, partyPower, itemLevel, statPointsTotal, skillPointsTotal, unlockedSkills, LOADOUT_ACTIVES, bestLoadout, PATH_KIT } from './hero.js';
 import { rng, pickFrom } from './rng.js';
 import { PATH, pathsOf, pathOf, specTrees } from './paths.js';
 
@@ -16,44 +16,12 @@ const BUILD = {
   priest:  { stats: ['int', 'vit', 'str'], trees: ['sifa', 'kutsama', 'lanet'], first: ['kutsama', 'lanet'], w: ['w:mace', 'w:shield'] }, // first: tek başına salt şifa ağacı savaşı bitiremez (ilk ağaç vuran ağaçlardan)
   mage:    { stats: ['mp', 'mp', 'int'], trees: ['ates', 'buz', 'yildirim'], w: ['w:staff'] },
 };
-// Yol başına yapay oyuncunun (ve simülasyonun) düzeni: yolun usta yeteneği açıksa o, ardından kit sırasıyla açık olan ilk
-// iki yol aktifi; kalan yuva ağacın en ileri aktifiyle dolar. Sıra, yolun kendi içindeki bağını gözetir: patlatan ya da
-// fırsat kollayan yetenekten önce onu besleyen (zehir, yanık, kanama, nişan) gelir. pas: yol pasifi önceliği · w: yolun
-// silahı · heal: düzende ağaçtan bir şifa tutulur. Savaş içindeki kullanım önceliği motorun yapay zekâsındadır (battle.js: ai).
-export const PATH_KIT = {
-  sur:     { kit: ['a1', 'a2', 'a4', 'a3'], pas: ['p1', 'p3', 'p2'] },
-  yaran:   { kit: ['a1', 'a4', 'a3', 'a2'], pas: ['p1', 'p3', 'p2'], w: ['w:axe2'] },
-  agu:     { kit: ['a1', 'a4', 'a3', 'a2'], pas: ['p1', 'p3', 'p2'] },
-  nisanci: { kit: ['a1', 'a4', 'a2', 'a3'], pas: ['p1', 'p2', 'p3'], w: ['w:bow'] },
-  otaci:   { kit: ['a1', 'a4', 'a2', 'a3'], pas: ['p1', 'p3', 'p2'], heal: true },
-  bozan:   { kit: ['a4', 'a2', 'a1', 'a3'], pas: ['p1', 'p2', 'p3'], heal: true },
-  alaz:    { kit: ['a1', 'a3', 'a2', 'a4'], pas: ['p1', 'p2', 'p3'] },
-  boran:   { kit: ['a1', 'a2', 'a4', 'a3'], pas: ['p3', 'p1', 'p2'] },
-};
-const isHeal = S => (S.target === 'ally' || S.target === 'allies') && S.fx.some(f => f.k === 'heal');
+export { PATH_KIT };
 // Kahramanın düzenini kurar: yolu varsa kit önceliğiyle, yoksa eskisi gibi ağacın en ileri üç aktifi ve ilk pasifi.
 // Gerçek hesapla aynı kuraldan geçer: yalnızca açık yetenekler (unlockedSkills) düzene girer.
 export function botLoadout(p, id) {
-  const h = p.heroes[id], path = pathOf(h), K = path && p.lvl >= PATH.level ? PATH_KIT[path] : null;
-  const open = unlockedSkills(p, id).map(x => SKILLS[x]).sort((a, b) => (b.req || 0) - (a.req || 0));
-  const tree = open.filter(s => s.type === 'active' && !s.path), mine = open.filter(s => s.path);
-  let act = [];
-  if (K) {
-    const master = mine.find(s => s.pm && s.type === 'active');
-    act = [...(master ? [master] : []), ...K.kit.map(k => mine.find(s => s.id === `${path}_${k}`)).filter(Boolean).slice(0, 2)];
-  }
-  for (const s of tree) if (act.length < LOADOUT_ACTIVES && !act.includes(s)) act.push(s);
-  if (K?.heal || h.cls === 'priest') { // şifasız rahip tek başına ayakta kalamaz: ağacın en güçlü şifası (parti şifası tek hedeflinin üç katı sayılır) düzende kalır
-    const worth = S => S.fx.filter(f => f.k === 'heal').reduce((a, f) => a + (f.m || 0) + (f.pct || 0) * 5, 0) * (S.target === 'allies' ? 3 : 1);
-    const heal = tree.filter(isHeal).sort((a, b) => worth(b) - worth(a))[0];
-    if (heal && !act.includes(heal)) act = [heal, ...act].slice(0, LOADOUT_ACTIVES);
-  }
-  // Düzende en az iki vuran yetenek olsun (yalnız güçlendirmeyle dolan düzen tek başına savaşı bitiremez)
-  const hits = S => S.fx.some(f => f.k === 'dmg');
-  for (const s of tree.filter(hits)) { if (act.filter(hits).length >= 2) break; if (act.includes(s)) continue; const i = act.map(hits).lastIndexOf(false); if (act.length < LOADOUT_ACTIVES) act.push(s); else if (i >= 0) act[i] = s; }
-  h.act = act.map(s => s.id);
-  h.pas = open.find(s => s.type === 'passive' && !s.path)?.id || null;
-  h.ppas = (K ? K.pas.map(k => mine.find(s => s.id === `${path}_${k}`)).find(Boolean)?.id : null) || null;
+  const h = p.heroes[id], L = bestLoadout(p, id);
+  h.act = L.act; h.pas = L.pas; h.ppas = L.ppas;
 }
 const N1 = ['Kara', 'Boz', 'Ak', 'Demir', 'Yaman', 'Gök', 'Kızıl', 'Deli', 'Koca', 'Tunç', 'Çelik', 'Yalın', 'Sarp', 'Alp', 'Uzun'];
 const N2 = ['Kurt', 'Şahin', 'Bora', 'Tekin', 'Yürek', 'Bilek', 'Doğan', 'Ozan', 'Timur', 'Kaya', 'Pusat', 'Alaz', 'Ayaz', 'Tuğ', 'Erdem'];

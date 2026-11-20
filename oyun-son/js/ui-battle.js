@@ -20,7 +20,7 @@ import { svg, ri } from './icons.js';
 import { vsCoefs, vsCoefTable, ilvTag } from './esya-parts.js';
 import { PV, tierBar, tierNote, bagNote, modBanner, modVsNote, modResultLine, depthRow, depthVs, seasonHead, oppTags, oppRule, dimResult, levelUpNote } from './ui-pvp.js'; // sezon, zorluk kademeleri, zindan düzeni
 import { STAGE_TIERS, starsOf, CLIMB, ARENA_PTS } from '../shared/pvp.js';
-import { reportAside, reportClass, reportBtn } from './ui-rapor.js';
+import { reportAside, reportClass, reportBtn, reportStrip } from './ui-rapor.js';
 import { KULE, kuleRewards, isBossFloor, adsizName } from '../shared/kule.js'; // Kül Kulesi (20 Kas)
 import { YEMIN, yeminLevel } from '../shared/yemin.js'; // Taş Yemini (20 Kas)
 import { FRAMES } from '../shared/rankper.js';
@@ -223,17 +223,23 @@ export function showResult(b, r, args, auto) {
     r.bossDamage && !r.win && `Boss'a verilen hasar: ${pct(r.bossDamage)}`,
     r.pots && (r.pots.hp || r.pots.mp) && `İçilen iksir: ${[r.pots.hp && `${r.pots.hp} Can`, r.pots.mp && `${r.pots.mp} Mana`].filter(Boolean).join(', ')} <span class="mut">(kalan ${S.pots?.hp ?? 0} Can, ${S.pots?.mp ?? 0} Mana)</span>`,
   ].filter(Boolean);
+  // 20 Kas (Aşama 4): sonuç ekranı — büyük başlık, amblem, ödül kartları (akçe · TP · eşya), tek satır savaş dökümü; düğmeler ve işlevleri aynı.
+  // Ana üs düğmesi oyuncunun en son bulunduğu yere döner (başkent / Yemin Pazarı / klan toprağı; açılış ormanında Kemikli Koru).
+  const home = hooks.ormanOn?.() ? 'Kemikli Koru’ya dön' : (hooks.placeName?.() || capitalOf(S.faction));
+  const won = r.win || m === 'clanboss' || m === 'baskin';
+  const EMB = won ? '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 33l10 10 21-24" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 20l24 24M44 20L20 44" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>';
+  const loot = lootBox(r.loot);
   showModal(`<h2>${title}</h2><div class="in">${reportAside(r)}
-    <p><b>${esc(r.title || b.title)}</b></p>${r.stars ? `<p class="bres-stars">${stars(r.stars)}</p>` : ''}
+    <div class="rz-head"><i class="rz-emb">${EMB}</i><div><p class="rz-sub">${won ? 'Savaş tamamlandı' : 'Bu savaş burada sona erdi'}</p><p class="rz-name"><b>${esc(r.title || b.title)}</b></p>${r.stars ? `<p class="bres-stars">${stars(r.stars)}</p>` : ''}</div></div>
+    <div class="rz-cards"><div class="rz-card ak"><small>Akçe</small><b>${ri('akce')} +${fmt(r.akce || 0)}</b>${r.first ? '<em>ilk geçiş ödülü dahil</em>' : ''}</div><div class="rz-card xp"><small>Deneyim</small><b>${ri('xp')} ${r.xp ? xpGain(r.xp, S.lvl - (r.levels || 0)) : '—'}</b>${r.premium ? `<em>${PREMIUM[r.premium].name} Premium +%${Math.round(PREMIUM[r.premium].xp * 100)}</em>` : ''}</div><div class="rz-card es"><small>Eşya</small>${loot || `<b class="rz-none">${r.win && m === 'stage' ? 'Bu sefer düşmedi' : '—'}</b>`}</div></div>
     ${extra.map(x => `<p>${x}</p>`).join('')}
-    <p>${r.xp ? `${ri('xp')} ${xpGain(r.xp, S.lvl - (r.levels || 0))} · ` : ''}${ri('akce')} +${fmt(r.akce)} akçe${r.first ? ' (ilk geçiş ödülü dahil)' : ''}${r.premium ? ` <span class="chip up">${PREMIUM[r.premium].name} Premium +%${Math.round(PREMIUM[r.premium].xp * 100)}</span>` : ''}</p>
     ${r.levels ? levelUpNote(S.lvl - r.levels, S.lvl, `+${r.levels * ENERGY.levelUpBonus} enerji, +${r.levels * 3} nitelik puanı`) : ''}
-    ${lootBox(r.loot) || (r.win && m === 'stage' ? '<p class="mut">Bu sefer eşya düşmedi.</p>' : '')}
     ${!r.win && m === 'stage' ? '<p class="mut">Karakterini güçlendirip tekrar dene: Örs’te bas, nitelik ve yetenek puanlarını dağıt, İksir ve Parşömen dükkânından iksir al.</p>' : ''}
     ${r.win && m === 'stage' && r.stars < 3 ? `<p class="mut">${r.stars < 2 ? 'Canın %25\'in üstündeyken bitirirsen 2 yıldız.' : 'Canın %50\'nin üstündeyken bitirirsen 3 yıldız ve seri savaş açılır.'}</p>` : ''}
-    <div class="mbtns">${again ? `<button class="btn" data-a="again">${m === 'depth' || m === 'kule' ? 'Sonraki kat' : m === 'nobet' ? 'Sonraki dalga' : 'Tekrar'}</button>` : ''}${r.win && next && stageOpen(S, next.id, tier) ? '<button class="btn red" data-a="next">Sonraki</button>' : ''}
+    ${reportStrip(r)}
+    <div class="mbtns">${again ? `<button class="btn" data-a="again">${m === 'depth' || m === 'kule' ? 'Sonraki kat' : m === 'nobet' ? 'Sonraki dalga' : 'Tekrar'}</button>` : ''}${r.win && next && stageOpen(S, next.id, tier) ? '<button class="btn green" data-a="next">Devam</button>' : ''}
       ${m === 'arena' || m === 'live' || m === 'banner' ? '<button class="btn" data-a="backPvp">Meydan</button>' : ''}${m === 'clanboss' || m === 'siege' ? '<button class="btn" data-a="backClan">Klan</button>' : ''}
-      ${reportBtn(r)}<button class="btn blue" data-a="hub">${hooks.ormanOn?.() ? 'Kemikli Koru’ya dön' : capitalOf(S.faction)}</button></div></div>`, (r.win ? 'bres win' : 'lose bres') + reportClass(r)); // bres: savaş sonucu görünümü (css/v15-savas.css)
+      ${reportBtn(r)}<button class="btn ${won ? 'blue' : 'red'}" data-a="hub">${home}</button></div></div>`, (r.win ? 'bres win' : 'lose bres') + reportClass(r)); // bres: savaş sonucu görünümü (css/v15-savas.css, v23-ekranlar.css)
   // Sonuç penceresi arenada açılır: kapatılırsa (✕, dışarı dokunma, geri tuşu) oyuncu düğmesiz bir sahnede kalırdı. Kapatma
   // düğmesi ana üsse döner; dışarı dokunma ve geri tuşu pencereyi kapatmaz (core: closeModal düğmesi olmayan modal kapanmaz).
   const x = document.querySelector('#modal .mx[data-a="closeModal"]');

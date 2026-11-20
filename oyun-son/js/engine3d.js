@@ -349,11 +349,13 @@ let last = performance.now(), frame = 0;
 // Ekran yenilemesi sınırdan hızlıysa kareler atlanır; zaman gerçek geçen süreyle ilerler.
 const winEl = document.getElementById('win'), battleEl = document.getElementById('battleUI');
 const touchDev = matchMedia('(pointer: coarse)').matches;
-export const FPS_CAP = { battle: 60, battleLow: 30, scene: 30, win: 15, winFull: 5 };
+export const FPS_CAP = { battle: 60, battleLow: 30, scene: 30, win: 15, winFull: 5, off: 8 };
+// 20 Kas (Aşama 3): 2B başkent açıkken 3B sahne hiç çizilmez (RENDER.off); güncelleyiciler düşük hızda döner (etiket itme, sayaçlar)
+export const RENDER = { off: false };
 export function fpsCap() {
+  if (RENDER.off && (!battleEl || battleEl.hidden)) return FPS_CAP.off;
   if (winEl && !winEl.hidden) return winEl.classList.contains('full') ? FPS_CAP.winFull : FPS_CAP.win; // 20 Kas: tam ekran pencere sahneyi neredeyse örter → 5 kare/sn (pil, ısınma)
   if (battleEl && !battleEl.hidden) return gfx.T.fx >= 1 && gfx.T.shadow && !touchDev ? FPS_CAP.battle : FPS_CAP.battleLow; // telefonda savaş da 30 (ısınma)
-  if (document.documentElement.classList.contains('m2d')) return 20; // boyalı ana merkez (merkez2d.js): sahne resmin arkasında, yalnız etiketler güncellenir
   return FPS_CAP.scene;
 }
 // Kaydırma akıcılığı (19 Kas, kullanıcı: "ekranlar kaydırırken takılıyor"): pencere ya da kutu açıkken kaydırma sürerken
@@ -390,6 +392,7 @@ renderer.setAnimationLoop(now => {
   updateFloaters(realDt);
   const every = gfx.T.shadowEvery;
   if (every && frame % every === 0) renderer.shadowMap.needsUpdate = true;
+  if (RENDER.off && (!battleEl || battleEl.hidden)) return; // 2B başkent: çizim yok
   renderer.info.reset();
   if (composer) composer.render(); else renderer.render(scene, camera);
   const inf = renderer.info.render;

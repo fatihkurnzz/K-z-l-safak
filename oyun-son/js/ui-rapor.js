@@ -66,6 +66,8 @@ export function reportAside(r) {
   LAST = { rep, view: 'A', title: r.title || '' };
   return `<aside class="rside"><h4>Savaş Raporu <span class="mut">· ${rep.turns} tur</span></h4>${LEGEND}${rows(rep, 'A', 'A')}<p class="mut rtot">${totals(rep, 'A')}</p></aside>`;
 }
+// 20 Kas (Aşama 4): sonuç ekranındaki tek satır savaş özeti (bizim taraf): hasar · şifa · alınan · tur
+export const reportStrip = r => { const rep = r?.report; if (!rep?.units?.length) return ''; const s = sideStats(rep, 'A').sum; return `<div class="rz-strip"><b>Savaş dökümü</b><span>Hasar <i>${fmt(s.d)}</i></span><span>Şifa <i>${fmt(s.h)}</i></span><span>Alınan hasar <i>${fmt(s.t)}</i></span><span>Tur <i>${rep.turns}</i></span></div>`; };
 // Sonuç kutusunun düğme sırasına eklenen kayıt düğmesi
 export const reportBtn = r => (r?.report?.units?.length ? '<button class="btn" data-a="repLog">Savaş dökümü</button>' : '');
 export const reportClass = r => (r?.report?.units?.length ? ' rbox' : '');

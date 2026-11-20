@@ -279,6 +279,7 @@ function titlesHtml() {
     <p>${cur0 && achOf(cur0) ? `Seçili: ${achTag(cur0)} <button class="btn sm" data-a="titleSet" data-id="">Kaldır</button>` : own.length ? 'Henüz unvan seçmedin. Aşağıdan birine dokun.' : 'Henüz unvanın yok. Bir başarımın ilk kademesini tamamlayınca unvanı açılır.'}</p>
     <div class="tgrid">${own.map(A => `<button class="tbtn ${cur0 === A.id ? 'on' : ''}" data-a="titleSet" data-id="${A.id}"><b>${A.title}</b><small>${A.name}</small></button>`).join('')}${rest.map(A => `<button class="tbtn lock" data-a="titleLock" data-id="${A.id}"><b>${A.title}</b><small>${A.text(A.tiers[0])}</small></button>`).join('')}</div>`;
 }
+hooks.titlesHtml = titlesHtml; // Aşama 5: Karakter penceresinin Unvan sekmesi de aynı görünümü kullanır
 ACT.titleSet = async d => { const r = await run('title.set', { id: d.id || null }); if (r) { toast(r.title ? `Unvanın: ${achOf(r.title).title}` : 'Unvan kaldırıldı.'); redraw(); } };
 ACT.titleLock = d => { const A = achOf(d.id); if (A) toast(`${A.title}: ${A.text(A.tiers[0])}.`); };
 

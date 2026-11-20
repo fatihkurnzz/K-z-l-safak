@@ -84,4 +84,4 @@ export const RES_COLOR = {
   nisan: '#e0703a', berat: '#e9c46a', shard_kor: '#ff8a3c', shard_ayaz: '#8fd8ff', shard_simsek: '#ffe45c', crystal: '#7fd1ff', key: '#e7c75a', ticket: '#ffb36a',
 };
 // Kaynak ikonu (satır içi). Renk verilmezse kaynağın sabit rengi kullanılır.
-export const ri = (kind, color) => { const c = color || RES_COLOR[kind]; return `<span class="ri${RES_COLOR[kind] ? ' rk' : ''}"${c ? ` style="--ic:${c}"` : ''}>${svg(kind)}</span>`; };
+export const ri = (kind, color) => { const c = color || RES_COLOR[kind]; return `<span class="ri ri-${kind}${RES_COLOR[kind] ? ' rk' : ''}"${c ? ` style="--ic:${c}"` : ''}>${svg(kind)}</span>`; };

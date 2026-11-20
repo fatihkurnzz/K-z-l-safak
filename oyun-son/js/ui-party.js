@@ -2,7 +2,7 @@
 // eller iki yanda, ayak altta), yanda ekipman / yetenek / nitelik / ustalık paneli. Oyuncunun tek kahramanı vardır
 // (roster.js MAIN); sekmeler bu kahramanın bölümleridir. ACT.party adı eski çağıranlar için durur (= ACT.karakter).
 import { S } from './api.js';
-import { ACT, esc, fmt, pct, toast, confirmBox, openWin, redraw, doAct, cur, heroPic, heroArt, ico, itemLine, slotIco, med } from './ui-core.js';
+import { ACT, esc, fmt, pct, toast, confirmBox, openWin, redraw, doAct, cur, heroPic, heroArt, ico, itemLine, slotIco, med, hooks } from './ui-core.js';
 import { CLASSES, STATS, STAT_KEYS, RESET_COST, TREE_MAX, BAG_LIMIT, SKILL_POINTS_FROM_LEVEL, SKILL_POINTS_PER_LEVEL } from '../shared/content.js';
 import { SKILLS, describe, treeSkills, classSkills, BASIC, pathSkills } from '../shared/skills.js';
 import { SLOTS, itemBase, setsOf, SET_PIECES, fmtSetFx } from '../shared/items.js';
@@ -20,9 +20,9 @@ import { ytView } from './ui-yetenek.js'; // 19 Kas gece: yetenek ağacı görü
 const PV = { sub: 'eq', slot: null, sk: {} }; // sub: açık bölüm · sk: yetenek görünümü ('tree' ağaçlar · 'path' uzmanlık yolu)
 export const HID = () => mainId(S); // karakterin tek kahramanı
 const nameOf = () => S.name;
-const SUBS = ['eq', 'skill', 'stat', 'mst'];
+const SUBS = ['eq', 'skill', 'stat', 'mst', 'unvan'];
 const subTabs = hid => { const sp = statPointsFree(S, hid), kp = skillPointsFree(S, hid), mf = masteryOpen(S) ? masteryFree(S, S.heroes[hid]) : 0;
-  return [{ id: 'eq', label: 'Karakter', small: 'Ekipman, nitelik, envanter', icon: 'party', dot: sp > 0 }, { id: 'skill', label: `Yetenek${kp ? ` (${kp})` : ''}`, small: pathPending(hid) ? 'Yol seçilmedi' : 'Ağaç ve yol', icon: 'skills', dot: kp > 0 }, { id: 'mst', label: `Ustalık${mf ? ` (${mf})` : ''}`, small: `${MASTERY.unlock}. seviyeden`, icon: 'trophy' }]; }; // 19 Kas gece: Nitelik bölümü Karakter görünümüne katıldı (sekme 'stat' de Karakter'i açar) };
+  return [{ id: 'eq', label: 'Karakter', small: 'Ekipman, nitelik, envanter', icon: 'party', dot: sp > 0 }, { id: 'skill', label: `Yetenek${kp ? ` (${kp})` : ''}`, small: pathPending(hid) ? 'Yol seçilmedi' : 'Ağaç ve yol', icon: 'skills', dot: kp > 0 }, { id: 'mst', label: `Ustalık${mf ? ` (${mf})` : ''}`, small: `${MASTERY.unlock}. seviyeden`, icon: 'trophy' }, { id: 'unvan', label: 'Unvan', small: 'Başarım unvanları', icon: 'crown' }]; }; // Aşama 5: Unvan sekmesi (ui-kalicilik.js titlesHtml) // 19 Kas gece: Nitelik bölümü Karakter görünümüne katıldı (sekme 'stat' de Karakter'i açar) };
 // d.tab: açılacak bölüm (eq · skill · stat · mst); verilmezse en son bakılan · d.back: geri düğmesinin işlemi
 ACT.party = d => {
   const tab = SUBS.includes(d?.tab) ? d.tab : PV.sub;
@@ -85,6 +85,7 @@ function renderParty(tab) {
     <div class="chx-pills"><span><small>Seviye</small><b>${S.lvl}</b></span><span><small>Güç</small><b>${fmt(power(st0))}</b></span><span><small>Eşya Sv.</small><b>${heroItemLevel(S, hid)}</b></span></div></div>`;
   if (PV.sub === 'skill') return (PV.sk[hid] || (pathPending(hid) ? 'path' : 'tree')) === 'tree' ? ytView(hid) : `<div class="chx">${head}${partySkill(hid)}</div>`;
   if (PV.sub === 'mst') return `<div class="chx">${head}${partyMastery(hid)}</div>`;
+  if (PV.sub === 'unvan') return `<div class="chx chx-unvan">${head}${hooks.titlesHtml?.() || ''}</div>`;
   return kxView(hid); // eski görünüm (doll + partyEq/partyStat) yedek olarak duruyor
 }
 // Zırh seti bonusları (items.js): giyilen parça sayısı, açık ve kapalı eşikler

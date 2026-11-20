@@ -6,8 +6,8 @@ import { S } from './api.js';
 import { ACT, $, esc, fmt, toast, doAct, openWin, ico, itemLine, confirmBox } from './ui-core.js';
 import { ri } from './icons.js';
 import { equippedIds, ownerOf } from '../shared/hero.js';
-import { clsOf, ownIds } from '../shared/roster.js';
-import { subSection, setSection, gridBadges } from './esya-parts.js';
+import { clsOf, ownIds, mainId } from '../shared/roster.js';
+import { subSection, setSection, gridBadges, cmpLine } from './esya-parts.js';
 import { itemBase, itemName, dustYield, sellPrice } from '../shared/items.js';
 import { CLASSES, BAG_LIMIT } from '../shared/content.js';
 
@@ -25,13 +25,22 @@ export function invGrid(items, { act, sel = null, fill = 0, note = null, empty =
 }
 
 // Bilgi kartı: büyük simge, ad, nadirlik, statlar ve (çantada) eşyaya göre işlemler
-export function itemCard(it, actions = '') {
+export function itemCard(it, actions = '', extra = '') {
   if (!it) return '<div class="ivinfo nil"><p class="mut">Bir eşyaya dokun: bilgileri burada açılır.</p></div>';
   const B = itemBase(it.b), eq = equippedIds(S).has(it.id), o = eq ? ownerOf(S, it.id) : null;
   return `<div class="ivinfo"><div class="ivhead">${ico(it, 'lg')}<div class="grow">${itemLine(it)}</div></div>
     <div class="ivmeta">${o ? `<span class="chip up">${esc(heroName(o))} kuşandı</span>` : '<span class="chip">Boşta</span>'}${B.cls ? `<span class="chip">${B.cls.map(c => CLASSES[c]?.name || c).join(', ')}</span>` : ''}<span class="chip">${ri('akce')} ${fmt(sellPrice(it))}</span>${it.nt ? `<span class="chip ntc" title="Bağlı eşya (görev ödülü ya da hediye): Pazar'a konamaz, başka oyuncuya devredilemez; yalnız Tüccar'a satılır">${ri('lock')} Bağlı</span>` : ''}<span class="chip">${ri('toz')} ${fmt(dustYield(it))}</span></div>
     <div class="esx">${subSection(it)}${setSection(S, it, o, ownIds(S))}</div>
-    ${actions ? `<div class="ivacts">${actions}</div>` : ''}</div>`;
+    ${extra}${actions ? `<div class="ivacts">${actions}</div>` : ''}</div>`;
+}
+
+// Kuşanılıya göre kıyas (esya-parts.js cmpLine; eski Parti ekranındaki kıyas satırı): ana kahramanın aynı yuvadaki eşyası
+export function cmpWith(it, slot = null) {
+  if (!it || equippedIds(S).has(it.id)) return '';
+  const hid = mainId(S), h = S.heroes[hid], B = itemBase(it.b); if (!h || !B.slots?.length) return '';
+  const s = slot && B.slots.includes(slot) ? slot : B.slots.find(k => h.eq[k] != null) || B.slots[0];
+  const cu = h.eq[s] != null ? S.items.find(x => x.id === h.eq[s]) : null;
+  return cu ? cmpLine(it, cu) : '<div class="cmpl"><b>Kuşanılıya göre:</b> <span class="mut">bu yuva boş</span></div>';
 }
 
 // ---------- Çanta ----------
@@ -44,8 +53,8 @@ function bagHtml() {
   const it = S.items.find(x => x.id === BAGV.sel), free = it && !eq.has(it.id);
   const acts = it ? `<button class="btn sm green" data-a="bagGo" data-to="party">Kuşan</button><button class="btn sm" data-a="bagGo" data-to="anvil">Örs'te bas</button>${free ? `${it.nt ? '' : '<button class="btn sm" data-a="bagGo" data-to="market">Pazara koy</button>'}<button class="btn sm" data-a="bagOne" data-op="dismantle">Parçala</button><button class="btn sm red" data-a="bagOne" data-op="sell">Sat</button>` : ''}` : '';
   const full = S.items.length >= BAG_LIMIT;
-  return `<div class="ivbag"><div class="ivside">${itemCard(it, acts)}</div>
-    <div class="ivmain"><div class="ivtop"><b class="${full ? 'warn' : ''}">${ri('bag')} ${S.items.length}/${BAG_LIMIT}</b>${full ? '<span class="mut">Çanta dolu: eşya düşüren savaşlara girmeden önce sat ya da parçala.</span>' : ''}</div>
+  return `<div class="ivbag"><div class="ivside">${itemCard(it, acts, cmpWith(it))}</div>
+    <div class="ivmain"><div class="ivtop"><b class="${full ? 'warn' : ''}">${ri('bag')} ${S.items.length}/${BAG_LIMIT}</b>${full ? '<span class="mut">Çanta dolu: eşya düşüren savaşlara girmeden önce sat ya da parçala.</span>' : ''}<button class="btn sm ivbulk" data-a="breakWin">${ri('shatter')}Toplu sat / parçala</button></div>
       <div class="sub ivf">${BAG_F.map(([k, n, ic]) => `<button data-a="bagF" data-id="${k}" class="${BAGV.f === k ? 'on' : ''}">${ri(ic)}${n}</button>`).join('')}</div>
       ${invGrid(list, { act: 'bagPick', sel: BAGV.sel, fill: BAGV.f === 'all' ? BAG_LIMIT : 0, empty: BAGV.f === 'eq' ? 'Kuşanılı eşya yok.' : 'Bu türde eşya yok.' })}</div></div>`;
 }

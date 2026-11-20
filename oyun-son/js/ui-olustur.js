@@ -144,8 +144,9 @@ function drawL() {
   const el = $('#olzl'); if (!el) return;
   const C = CLASSES[CR.cls], T = CLS_TXT[CR.cls];
   el.innerHTML = `<h3 class="olz-h">Irk</h3><div class="olz-races">${['sancak', 'ocak'].map(k => `<button class="olz-race ${CR.race === k ? 'on' : ''}${NF?.closed === k ? ' lock' : ''}" data-o="race" data-v="${k}" style="--fc:${FACTIONS[k].color}"><i class="olz-ic">${IC[k]}</i><b>${RACE_TXT[k]}</b><small>${FACTIONS[k].name}</small>${nfTag(k)}</button>`).join('')}</div>
-    <p class="olz-desc">${FACTIONS[CR.race].desc} <i>“${FACTIONS[CR.race].motto}”</i></p>
     <h3 class="olz-h">Sınıf</h3>
+    <div class="olz-clsl">${CLASS_KEYS.map(k => `<button class="olz-cls ${CR.cls === k ? 'on' : ''}" data-o="cls" data-v="${k}" role="radio" aria-checked="${CR.cls === k}"><i class="olz-ic">${IC[k]}</i><b>${CLASSES[k].name}</b></button>`).join('')}</div>
+    <p class="olz-desc">${FACTIONS[CR.race].desc} <i>“${FACTIONS[CR.race].motto}”</i></p>
     <div class="olz-cinfo"><p class="olz-cname"><i class="olz-ic">${IC[CR.cls]}</i><b>${C.name}</b><small>${C.role}</small></p><p>${T.d}</p><p class="mut">Silah: ${T.w} · ${T.p}</p>
       <div class="olz-stats">${STAT.map(([k, n, m]) => `<span><em>${n}</em><i style="--v:${Math.min(1, (C.base[k] || 0) / m).toFixed(2)}"></i></span>`).join('')}</div></div>`;
 }
@@ -153,7 +154,8 @@ function drawL() {
 // ---------- Alt çubuk: sınıf kutuları ----------
 function drawC() {
   const el = $('#olzcls'); if (!el) return;
-  el.innerHTML = CLASS_KEYS.map(k => `<button class="olz-cls ${CR.cls === k ? 'on' : ''}" data-o="cls" data-v="${k}" role="radio" aria-checked="${CR.cls === k}"><i class="olz-ic">${IC[k]}</i><b>${CLASSES[k].name}</b></button>`).join('');
+  // 20 Kas (Aşama 4): sınıf kutuları sol sütuna taşındı (drawL); alt çubukta seçimin özeti
+  el.innerHTML = `<span class="olz-pick">Seçili: <b>${RACE_TXT[CR.race]}</b> · <b>${CLASSES[CR.cls].name}</b></span>`;
 }
 
 // ---------- Sağ panel: görünüş ----------

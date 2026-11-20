@@ -83,7 +83,7 @@ function tickWorld() {
   if (S && !hud.hidden && S.terr?.own?.week !== weekKey(now()) && now() - syncAt > 60000) { syncAt = now(); act('ping').then(() => hooks.hud(), () => {}); }
   const el = hud.querySelector('.wclock');
   if (el && !hud.hidden) { el.innerHTML = chipHtml(); const tc = hud.querySelector('.wterr'); if (tc) { tc.innerHTML = terrChip(); tc.title = terrTitle(); } place(); }
-  if (!S || hud.hidden || !world.env?.startsWith('hub:')) return;
+  if (!S || hud.hidden || !world.env?.startsWith('hub:') || document.documentElement.dataset.hub2d) return; // 2B başkentte 3B sahne yok
   if (!world.env.endsWith(':' + todKey())) ensureEnv('hub', S.faction);
   relightTown(); // bina pencereleri evreye göre yanar ya da söner (ana üs her kuruluşta binaları yeniden yapar; işlem yinelenebilir)
 }

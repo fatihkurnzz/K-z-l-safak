@@ -11,8 +11,8 @@ export const ANIT = {
   // kullanıcı 19 Kas: beş kuşak; k = kuşağın anıt canı çarpanı (benzetimde anıt savaşların yaklaşık yarısında kesilsin)
   brackets: [{ min: 20, max: 29, k: 0.55 }, { min: 30, max: 39, k: 0.8 }, { min: 40, max: 49, k: 1 }, { min: 50, max: 59, k: 1 }, { min: 60, max: 65, k: 0.88 }],
   side: 4,                                               // parti büyüklüğü (oyuncu + 3 yoldaş, karşıda 4)
-  rounds: 30, respawn: 5, regenEvery: 5, regenPct: 0.01, monPick: 0.3,
-  monHp: 12,                                             // anıtın canı: sahadaki kahramanların ortalama vuruş gücü × kahraman sayısı × monHp
+  rounds: 20, respawn: 5, regenEvery: 5, regenPct: 0.01, monPick: 0.3,
+  monHp: 8,                                              // 21 Kas (kullanıcı): 30 → 20 raunt, can 12 → 8 (kesilme oranı aynı kalsın). Anıtın canı: sahadaki kahramanların ortalama vuruş gücü × kahraman sayısı × monHp
   daily: 5,
   reward: { win: { akcePer: 60, san: 40 }, lose: { akcePer: 20, san: 10 }, perKill: 2 }, // akçe = seviye × akcePer; öldürme başına +şan
 };

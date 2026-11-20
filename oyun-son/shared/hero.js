@@ -34,8 +34,49 @@ export function unlockedSkills(p, id) {
   }).map(s => s.id);
 }
 // Yeni açılan yetenekleri boş loadout yuvalarına kendiliğinden yerleştirir; artık açık olmayanları çıkarır
+// Yol başına yapay oyuncunun (ve simülasyonun) düzeni: yolun usta yeteneği açıksa o, ardından kit sırasıyla açık olan ilk
+// iki yol aktifi; kalan yuva ağacın en ileri aktifiyle dolar. Sıra, yolun kendi içindeki bağını gözetir: patlatan ya da
+// fırsat kollayan yetenekten önce onu besleyen (zehir, yanık, kanama, nişan) gelir. pas: yol pasifi önceliği · w: yolun
+// silahı · heal: düzende ağaçtan bir şifa tutulur. Savaş içindeki kullanım önceliği motorun yapay zekâsındadır (battle.js: ai).
+export const PATH_KIT = {
+  sur:     { kit: ['a1', 'a2', 'a4', 'a3'], pas: ['p1', 'p3', 'p2'] },
+  yaran:   { kit: ['a1', 'a4', 'a3', 'a2'], pas: ['p1', 'p3', 'p2'], w: ['w:axe2'] },
+  agu:     { kit: ['a1', 'a4', 'a3', 'a2'], pas: ['p1', 'p3', 'p2'] },
+  nisanci: { kit: ['a1', 'a4', 'a2', 'a3'], pas: ['p1', 'p2', 'p3'], w: ['w:bow'] },
+  otaci:   { kit: ['a1', 'a4', 'a2', 'a3'], pas: ['p1', 'p3', 'p2'], heal: true },
+  bozan:   { kit: ['a4', 'a2', 'a1', 'a3'], pas: ['p1', 'p2', 'p3'], heal: true },
+  alaz:    { kit: ['a1', 'a3', 'a2', 'a4'], pas: ['p1', 'p2', 'p3'] },
+  boran:   { kit: ['a1', 'a2', 'a4', 'a3'], pas: ['p3', 'p1', 'p2'] },
+};
+const isHeal = S => (S.target === 'ally' || S.target === 'allies') && S.fx.some(f => f.k === 'heal');
+export function bestLoadout(p, id) {
+  const h = p.heroes[id], path = pathOf(h), K = path && p.lvl >= PATH.level ? PATH_KIT[path] : null;
+  const open = unlockedSkills(p, id).map(x => SKILLS[x]).sort((a, b) => (b.req || 0) - (a.req || 0));
+  const tree = open.filter(s => s.type === 'active' && !s.path), mine = open.filter(s => s.path);
+  let act = [];
+  if (K) {
+    const master = mine.find(s => s.pm && s.type === 'active');
+    act = [...(master ? [master] : []), ...K.kit.map(k => mine.find(s => s.id === `${path}_${k}`)).filter(Boolean).slice(0, 2)];
+  }
+  for (const s of tree) if (act.length < LOADOUT_ACTIVES && !act.includes(s)) act.push(s);
+  if (K?.heal || h.cls === 'priest') { // şifasız rahip tek başına ayakta kalamaz: ağacın en güçlü şifası (parti şifası tek hedeflinin üç katı sayılır) düzende kalır
+    const worth = S => S.fx.filter(f => f.k === 'heal').reduce((a, f) => a + (f.m || 0) + (f.pct || 0) * 5, 0) * (S.target === 'allies' ? 3 : 1);
+    const heal = tree.filter(isHeal).sort((a, b) => worth(b) - worth(a))[0];
+    if (heal && !act.includes(heal)) act = [heal, ...act].slice(0, LOADOUT_ACTIVES);
+  }
+  // Düzende en az iki vuran yetenek olsun (yalnız güçlendirmeyle dolan düzen tek başına savaşı bitiremez)
+  const hits = S => S.fx.some(f => f.k === 'dmg');
+  for (const s of tree.filter(hits)) { if (act.filter(hits).length >= 2) break; if (act.includes(s)) continue; const i = act.map(hits).lastIndexOf(false); if (act.length < LOADOUT_ACTIVES) act.push(s); else if (i >= 0) act[i] = s; }
+  return { act: act.map(s => s.id), pas: open.find(s => s.type === 'passive' && !s.path)?.id || null,
+    ppas: (K ? K.pas.map(k => mine.find(s => s.id === `${path}_${k}`)).find(Boolean)?.id : null) || null };
+}
+// Önerilen düzen (yapay oyuncularla aynı kural, bestLoadout). Oyuncu düzeni elle değiştirmedikçe (h.mact) her yeni yetenek
+// açılışında düzen önerilene göre yenilenir; elle değiştirdiyse yalnız boş yuvalar açılış sırasıyla dolar (20 Kas, oyun testi:
+// hiç dokunulmayan eski düzen Sv65'te uzmanlıkların çoğunda kazanmayı %0–50'ye düşürüyordu).
 export function fixLoadout(p, id) {
-  const h = p.heroes[id], open = unlockedSkills(p, id);
+  const h = p.heroes[id];
+  if (!h.mact && !p.bot) { h.act = bestLoadout(p, id).act.slice(0, LOADOUT_ACTIVES); h.pas = null; h.ppas = null; return; }
+  const open = unlockedSkills(p, id);
   h.act = h.act.filter(id => open.includes(id) && SKILLS[id].type === 'active').slice(0, LOADOUT_ACTIVES); // eski 6 yuvalı düzenler 5'e kırpılır
   h.pas = null; h.ppas = null; // pasifler düzene alınmaz: açık pasiflerin hepsi her zaman etkindir (passiveMods)
   const ord = id => SKILLS[id].lvl ?? 100 + (SKILLS[id].req || SKILLS[id].plv || 0); // boş yuvalar açılış sırasıyla dolar (temel aktifler önce)

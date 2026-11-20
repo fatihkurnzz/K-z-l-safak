@@ -1,5 +1,5 @@
 // 3D sahne yöneticisi: sahnedeki karakterler, ortam ve sahneye özel güncelleyici.
-import { THREE, scene, camera, clock, onUpdate, clearTweens, clearParticles, clearFloaters, gfx, onTier, pauseGovernor } from './engine3d.js';
+import { THREE, scene, camera, clock, onUpdate, clearTweens, clearParticles, clearFloaters, gfx, onTier, pauseGovernor, RENDER } from './engine3d.js';
 import { Character, buildEnv, WormCharacter } from './models.js';
 import { BeastCharacter, decorateMob } from './beasts.js';
 import { BEAST_KINDS } from '../shared/bestiary.js';
@@ -14,6 +14,7 @@ let stopUpdater = null, envArgs = null;
 
 export function setUpdater(fn) { stopUpdater?.(); stopUpdater = fn ? onUpdate(fn) : null; }
 export function clearScene() {
+  RENDER.off = false; delete document.documentElement.dataset.hub2d; // her sahne kurulumu 3B çizimi yeniden açar (2B başkent, kurduktan sonra kapatır)
   world.token++;
   clearTweens(); clearParticles(); clearFloaters(); clearFx();
   world.actors.forEach(drop);

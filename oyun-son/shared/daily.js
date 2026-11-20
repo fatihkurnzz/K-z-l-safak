@@ -6,7 +6,8 @@ import { MOBS } from './zones.js';
 import { itemBase, pickGear, tierForLevel, REFORGE, UNIQUES, G_UNIQUE, minPlus, KO_ARMOR, ARMOR_SLOTS, KO_JEWEL_IDS } from './items.js';
 import { REWARD_GRADE, wheelUniques } from './drops.js';
 import { itemOf } from './hero.js';
-import { clsOf } from './roster.js';
+import { clsOf, mainId } from './roster.js';
+import { botPlayer, botClass } from './bots.js'; // dev.kit: test için seviyeye uygun yapay oyuncu kuşamı
 import { fail, int, pay, grant, grantAll, bump, used, busy, addItem } from './util.js';
 import { premTier } from './state.js';
 import { addXp } from './modes.js';
@@ -140,6 +141,18 @@ export const DAILY_HANDLERS = {
     if (!env.dev) fail('forbidden');
     p.akce += 50000; p.yakut += 500; p.san += 2000; p.toz += 2000; p.ore += 2000; p.seals += 3; p.charms += 3; p.embers = (p.embers || 0) + 3; p.berat = (p.berat || 0) + 5;
     p.stones = p.stones.map(n => n + 30); for (const k in SHARDS) p.shards[k] = (p.shards[k] || 0) + 30;
+  },
+  // Test (yalnız dev): ana kahramana seviyesine uygun yapay oyuncu kuşamını giydirir (eski kuşam çantada kalır)
+  'dev.kit'(p, a, env) {
+    if (!env.dev) fail('forbidden');
+    const id = mainId(p), cls = clsOf(p, id), h = p.heroes[id]; let bp = null;
+    for (let s = 1; s < 4000 && !bp; s++) if (botClass(s) === cls) { const b = botPlayer(s, p.lvl, Math.min(1, Math.max(0, +(a?.q ?? 0.6)))); if (!h.path || b.heroes.h0.path === h.path) bp = b; } // yolun silahı (yay/dövüş) uysun
+    if (!bp) fail('bad');
+    const bh = bp.heroes.h0;
+    for (const [slot, iid] of Object.entries(bh.eq || {})) {
+      const it = bp.items.find(x => x.id === iid); if (!it || p.items.length >= BAG_LIMIT) continue;
+      const nw = { ...it, id: p.nextItem++ }; p.items.push(nw); h.eq[slot] = nw.id;
+    }
   },
   // Örs, katsayı ve nadirlik ekranlarını denemek için: seviyeye uygun kademeden artılı eşyalar ve bir eşsiz (çanta dolana kadar)
   'dev.gear'(p, _, env) {

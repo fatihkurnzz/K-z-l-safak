@@ -10,6 +10,10 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Yapı: 31 stil dosyası (css/v8 … v16), 90 `!important`; `index.html` 309 KB, 19 `<style>` bloğu. Ölçek değişkenleri `js/orient.js`: `--lw --lh` (mantıksal ekran), `--sat --sab --sal --sar` (güvenli alan), `--dock`, `--kb`. Dik telefonda gövde 90° döndürülür.
 - İçerik: 2 halk (Kragmir/ork, Elentha/insan; `p.faction`), 4 sınıf: Savaşçı (Hücum/Siper/Öfke), Suikastçı (Hançer/Yay/İz), Şifacı (Şifa/Rün Mührü/Kara Rün), Büyücü (Ateş/Buz/Yıldırım) — `shared/content.js`. Bölgeler (`shared/zones.js`): Vahran Ovası 1–20, Kül Geçidi 20–40, Kızıl Bahar Meydanı 40–60, Sisli Çukur 60–65; her bölge 25 aşama, 5'te bir kapı. Bosslar: Dev Solucan, Tepegöz, Kristal Muhafızı, Lav Yürek, Kül Ağası Karadun, Mareşal Marven, Adsız (Tarikat Lideri). Ana görev 64 adım / 16 bölüm (`shared/anagorev.js`).
 
+## Son eşitleme (20.11.2026, 2. kez)
+- KUfQG1bV27JFGDTjpBwEdk sürüm 1795210613-46a1 (507 dosya) çekildi: 182 yeni (img/kd/merkez, simge3, ui/ocak|sancak|ortak; css v23-ekranlar, v24-asama5, v25-cila; js/hub2d.js), 32 değişen. `js/merkez2d.js` ve `img/merkez/` kaynakta yok, silindi (ana merkez artık hub2d.js + img/kd/merkez/sehir-*.jpg). Xbot ve video/README yerelde tutuldu. Duman testi temiz. Kendi yayınımız (GwNoLLWnf5Wjc1PUJep2yi) bu sürüme HENÜZ güncellenmedi.
+- Kullanıcı: GPT'den oyunun her yeri için tasarım gönderecek; mekaniklere dokunmadan yalnız grafik/arayüz yeniden yapılacak.
+
 ## Boyalı ana merkez (20.11.2026) — GPT teslimleri işleniyor
 - 20.11'de `oyun-son/` KUfQG1bV27JFGDTjpBwEdk'nin yeni sürümüyle (326 dosya) yeniden eşitlendi; yayın GwNoLLWnf5Wjc1PUJep2yi Sürüm 3 (yalnız değişen dosyalar gönderildi).
 - GPT teslimleri `oyun-son/_tasarim/gelen/` (4.1 Kragmir, 4.2 Elentha, 4.3 bina parçaları, 4.4 alt şerit simgeleri, 4.5 UI kit). Denetim, yapılanlar ve **EKSİKLER listesi**: `_tasarim/gelen/HAZIRLIK.md`. Brief: `_tasarim/ANA_MERKEZ_BRIEF.md`. GPT limiti doldu; kullanıcı kalanları sonra getirecek.

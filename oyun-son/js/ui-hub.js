@@ -9,13 +9,13 @@ import { playFragman } from './ui-fragman.js';
 import { S, now, DEV, LOCAL, resetLocal, onState, logout } from './api.js';
 import { NUFUS_LINE, FULL_TEXT, blessed } from '../shared/nufus.js'; // nüfus dengesi: Bereket rozeti, dolu ırk kartı
 import { ACT, $, hud, openWin, lockNote, chatbar, esc, fmt, toast, run, showModal, closeModal, confirmBox, closeWin, hooks, heroImg, mobImg, avatarImg, myTier, DEF_W, energyNow, locked, me, titleChip, bonusBox, tName, rkBadge, lootToast } from './ui-core.js';
-import { camRig, project, setShift, setHfov, THREE } from './engine3d.js';
+import { camRig, project, setShift, setHfov, THREE, RENDER } from './engine3d.js';
+import { show2d, pos2d, hub2dOn, active2d, onHit } from './hub2d.js'; // 20 Kas Aşama 3: 2B başkent
 import { gfx, TIER_NAMES } from './gfx.js';
 import { view } from './orient.js';
 import { world, clearScene, ensureEnv, spawn, setUpdater } from './world.js';
 import { hideBattleUI, unitLook } from './combat.js';
 import { showTown, hideTown, updateTown, onTownTap, CARSI_SPOT, KLAN_SPOT } from './town.js';
-import { merkezOn, showMerkez, hideMerkez, toScreen, SPOTS as M2_SPOTS } from './merkez2d.js'; // 20 Kas: boyalı ana merkez (2B resim)
 import { botParty } from '../shared/bots.js';
 import { childHere } from './ui-ogretici.js';
 import { ilvTag } from './esya-parts.js';
@@ -75,9 +75,10 @@ ACT.npcKing = () => { const k = kingOf(); if (!k) return; showModal(`<div class=
 const KLAN = [{ id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'k_hq', name: 'Karargâh', tab: 'hq' }, { id: 'k_salon', name: 'Klan Salonu', tab: 'genel' },
   { id: 'k_gorev', name: 'Görev Panosu', tab: 'gorev' }, { id: 'k_dukkan', name: 'Klan Dükkânı', tab: 'dukkan' }, { id: 'k_sancak', name: 'Sancak Direği', tab: 'sancak' },
   { id: 'k_av', name: 'Oba Avı', tab: 'av' }, { id: 'k_hisar', name: 'Hisar', tab: 'hisar' }, { id: 'k_hazine', name: 'Klan Hazinesi', tab: 'hq' }].map(b => b.tab ? { ...b, act: 'klanTab' } : b);
-const M2_KARABORSA = { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }; // boyalı başkentte Karaborsa'nın binası da var
-const m2d = () => PLACE.cur === 'capital' && !!S && merkezOn(S.faction);
-const blds = () => (PLACE.cur === 'carsi' ? [...CARSI, ...npcs()] : PLACE.cur === 'klan' ? KLAN : m2d() ? [...BUILDINGS, M2_KARABORSA] : [...BUILDINGS, ...kingNpc()]); // boyalı merkezde kral etiketi yok (meydan kalabalıklaşıyordu; Kral Otağı açılır)
+hooks.placeName = () => PLACE.cur === 'carsi' ? 'Yemin Pazarı' : PLACE.cur === 'klan' ? 'Klan toprağı' : (CAPITAL[S.faction] || GAME.hub); // sonuç ekranının dönüş düğmesi (en son bulunulan yer)
+const blds = () => (PLACE.cur === 'carsi' ? [...CARSI, ...npcs()] : PLACE.cur === 'klan' ? KLAN : [...BUILDINGS, ...(hub2dOn() ? [{ id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }] : []), ...kingNpc()]); // 2B başkentte Karaborsa da var (Aşama 3; işlev Çarşı'dakiyle aynı)
+// Etiketin ekran noktası: 2B başkentte resim koordinatından, 3B'de sahne izdüşümünden
+const posOf = id => active2d() ? pos2d(id) : (anchors[id] ? project(anchors[id]) : null);
 ACT.klanTab = d => { const b = KLAN.find(x => x.id === (d?.id || LAST_BLD)); ACT.clan({ tab: b?.tab || 'hq' }); };
 let LAST_BLD = null;
 ACT.goKlan = () => { if (!S.clan) return ACT.clanhq(); if (PLACE.cur === 'klan') return showHub(); portalFlash(); PLACE.cur = 'klan'; document.documentElement.dataset.place = 'klan'; showHub(); toast(`Klan toprağı: ${S.clanTag?.n || 'klanının'} binaları.`); };
@@ -126,8 +127,6 @@ const HUB_FOV = 79, HUB_X = -0.07, FRONT = { x: 0, y: 0, z: 5.6 };
 let fitY = -0.02;
 // Omuz üstü kadraj (19 Kas, kullanıcının referansı): kamera karakterin arkasında, kapıya ve kale duvarına bakar
 const HUB_CAM = [0.6, 7, 14.8], HUB_LOOK = [0, 2.2, -4];
-// Etiket noktası: 3B çapada project(), boyalı merkezde resim noktası (merkez2d.js toScreen)
-const P = a => (a.m2 ? toScreen(a.m2) : project(a));
 function drawMm() {
   const cv = hud.querySelector('.mm-cv'); if (!cv) return;
   const pts = Object.entries(anchors).filter(([id]) => id !== 'me').map(([id, v]) => ({ id, x: v.x, z: v.z }));
@@ -137,7 +136,6 @@ function fitHub() {
   const top0 = PLACE.cur === 'carsi' ? 'monument' : PLACE.cur === 'klan' ? 'k_hq' : 'clanhq';
   const el = hud.querySelector(`.blabel[data-id="${top0}"]`), res = hud.querySelector('.res'), dock = hud.querySelector('.dock');
   if (!el || !res || !dock) return;
-  if (m2d()) return; // boyalı merkezde kamera kaydırması yok
   const top = project(anchors[top0]).y - el.offsetHeight, bottom = project(FRONT).y;
   const a = res.offsetTop + 32, b = dock.offsetTop - 6, want = a + Math.max(0, (b - a - (bottom - top)) / 2);
   if (Math.abs(top - want) > 2) { fitY = Math.max(-0.25, Math.min(0.25, fitY + (want - top) / view.h)); setShift(HUB_X, fitY); }
@@ -150,7 +148,7 @@ function planNudges() {
   const rot = document.documentElement.classList.contains('rot'), iw = innerWidth;
   const box = e => { const r = e.getBoundingClientRect(); return rot ? [r.top, iw - r.right, r.bottom, iw - r.left] : [r.left, r.top, r.right, r.bottom]; };
   const ui = [...NUDGE_UI.map(q => hud.querySelector(q)), chatbar].filter(e => e && !e.hidden && e.getClientRects().length).map(box);
-  const L = [...hud.querySelectorAll('.blabel')].filter(el => anchors[el.dataset.id]).map(el => { const q = P(anchors[el.dataset.id]), w = el.offsetWidth, h = el.offsetHeight; return { id: el.dataset.id, r: [q.x - w / 2, q.y - h, q.x + w / 2, q.y], dx: 0, dy: 0 }; });
+  const L = [...hud.querySelectorAll('.blabel')].filter(el => posOf(el.dataset.id)).map(el => { const q = posOf(el.dataset.id), w = el.offsetWidth, h = el.offsetHeight; return { id: el.dataset.id, r: [q.x - w / 2, q.y - h, q.x + w / 2, q.y], dx: 0, dy: 0 }; });
   const hit = (a, b) => a[0] < b[2] && b[0] < a[2] && a[1] < b[3] && b[1] < a[3];
   const move = (l, dx, dy) => { l.dx += dx; l.dy += dy; l.r = [l.r[0] + dx, l.r[1] + dy, l.r[2] + dx, l.r[3] + dy]; };
   const fits = (l, dx, dy) => l.r[0] + dx >= 2 && l.r[1] + dy >= 2 && l.r[2] + dx <= view.w - 2 && l.r[3] + dy <= view.h - 2 && Math.abs(l.dx + dx) <= NUDGE_MAX && Math.abs(l.dy + dy) <= NUDGE_MAX;
@@ -172,37 +170,31 @@ function planNudges() {
 }
 // Karakter portalın önünde durur
 const HERO_SPOT = [[0, 2.8]]; // 19 Kas: kapının önünde ortada, biraz ileride (sohbet kutusu sola uzadı)
-// Boyalı başkent: 3B kasaba, kahraman ve kral kurulmaz; etiketler resmin üstünde durur, binaya dokunmak etiketine dokunmaktır
-function showPainted() {
-  const S2 = M2_SPOTS[S.faction], ids = blds().map(b => b.id).filter(id => S2[id]);
-  anchors = {}; for (const id of ids) { const v = S2[id]; anchors[id] = { m2: [v[0], v[1]], x: (v[0] - 1170) / 90, z: (v[1] - 540) / 90 }; }
-  showMerkez(S.faction, ids, id => { if (!hud.hidden && document.getElementById('win')?.hidden !== false && blds().some(b => b.id === id)) ACT.building({ id }); });
-  let frame = 0; nudges = {};
-  setUpdater(() => {
-    if (++frame > 2 && frame % 20 === 3) planNudges();
-    for (const el of hud.querySelectorAll('.blabel')) {
-      const a = anchors[el.dataset.id];
-      if (!a) { if (el.style.display !== 'none') el.style.display = 'none'; continue; }
-      const p = toScreen(a.m2), n = nudges[el.dataset.id];
-      if (n) { n.x += (n.tx - n.x) * 0.3; n.y += (n.ty - n.y) * 0.3; }
-      const off = p.x < -10 || p.x > view.w + 10 || p.y < 0 || p.y > view.h + 10 || (n && Math.hypot(n.tx, n.ty) > 70), vis = off ? 'hidden' : ''; // bina ekran dışında ya da arayüzün altında: etiketi uzağa (başka binanın üstüne) itmek yerine gizle; kaydırınca geri gelir if (el.style.visibility !== vis) el.style.visibility = vis; // bina ekran dışında (tablette kaydırma)
-      const hw = el.offsetWidth / 2 + 4; p.x = Math.max(hw, Math.min(view.w - hw, p.x)); // yarısı görünen binanın etiketi ekranda kalır
-      const tf = `translate(${Math.round((p.x + (n ? n.x : 0)) * 2) / 2}px, ${Math.round((p.y + (n ? n.y : 0)) * 2) / 2}px) translate(-50%,-100%)`;
-      if (el._tf !== tf) { el._tf = tf; el.style.transform = tf; }
-    }
-  });
-  hud.hidden = false; renderHud(); showChatBar();
-  clearInterval(hudTimer); hudTimer = setInterval(() => { if (!hud.hidden) renderEnergy(); }, 1000);
-}
 export function showHub() {
-  if (hooks.orman?.()) { hideMerkez(); return; } // açılış ormanı (orman.js): öğreticinin ilk görevi bitene dek ana üs yerine orman kurulur
+  if (hooks.orman?.()) return; // açılış ormanı (orman.js): öğreticinin ilk görevi bitene dek ana üs yerine orman kurulur
   closeWin(true); hideBattleUI(); closeModal();
-  clearScene(); ensureEnv('hub', S.faction); setMood(S.faction);
+  clearScene(); if (PLACE.cur === 'carsi' || PLACE.cur === 'klan' || !hub2dOn()) ensureEnv('hub', S.faction); setMood(S.faction); // 2B başkentte 3B ortam kurulmaz
   if (S.battle) run('battle.abandon'); // sonucu gönderilemeyen savaş kaydı açık kalmasın
   if (PLACE.cur === 'klan' && !S.clan) { PLACE.cur = 'capital'; document.documentElement.dataset.place = 'capital'; } // klandan çıkınca
   const carsi = PLACE.cur === 'carsi', klan = PLACE.cur === 'klan';
-  if (m2d()) return showPainted();
-  hideMerkez();
+  if (!carsi && !klan && hub2dOn()) { // 20 Kas Aşama 3: 2B başkent — şehir resmi + dokunma alanları; 3B sahne çizilmez (pil)
+    hideTown(); anchors = {}; show2d(S.faction); RENDER.off = true; nudges = {};
+    let f2 = 0;
+    setUpdater(() => {
+      if (++f2 > 1 && f2 % 6 === 2) planNudges();
+      for (const el of hud.querySelectorAll('.blabel')) {
+        const p = posOf(el.dataset.id), n = nudges[el.dataset.id];
+        if (!p) { if (el.style.display !== 'none') el.style.display = 'none'; continue; }
+        if (el.style.display === 'none') el.style.display = '';
+        if (n) { n.x += (n.tx - n.x) * 0.5; n.y += (n.ty - n.y) * 0.5; }
+        const tf = `translate(${Math.round((p.x + (n ? n.x : 0)) * 2) / 2}px, ${Math.round((p.y + (n ? n.y : 0)) * 2) / 2}px) translate(-50%,-100%)`;
+        if (el._tf !== tf) { el._tf = tf; el.style.transform = tf; }
+      }
+    });
+    hud.hidden = false; renderHud(); showChatBar();
+    clearInterval(hudTimer); hudTimer = setInterval(() => { if (!hud.hidden) renderEnergy(); }, 1000);
+    return;
+  }
   anchors = showTown(blds().filter(b => !b.npc).map(b => b.id), carsi ? 'orta' : S.faction, S.clan ? S.clanTag?.b : null, carsi ? CARSI_SPOT : klan ? KLAN_SPOT : null); setHfov(HUB_FOV); setShift(HUB_X, fitY);
   if (carsi) for (const n of npcs()) { // tüccar: kaftanlı yetişkin · çocuk: küçük boylu; ikisi de silahsız, yalnızca görünüm
     const [x, z, f] = NPC_SPOT[n.id], u = botParty(n.id === 'child' ? 77 : 55, 10, 0.3, 'sancak').units[0], L = unitLook(u);
@@ -231,7 +223,7 @@ export function showHub() {
     if (mmDirty || frame % 45 === 0) { mmDirty = false; drawMm(); }
     for (const el of hud.querySelectorAll('.blabel')) {
       if (!anchors[el.dataset.id]) { if (el.style.display !== 'none') el.style.display = 'none'; continue; } // sahnesi henüz kurulmamış NPC etiketi (öğretici adımı değişti; ui-ogretici yeniden kurar)
-      const p = P(anchors[el.dataset.id]), n = nudges[el.dataset.id];
+      const p = project(anchors[el.dataset.id]), n = nudges[el.dataset.id];
       if (n) { n.x += (n.tx - n.x) * 0.3; n.y += (n.ty - n.y) * 0.3; }
       // yarım piksele yuvarlanır ve yalnızca değişince yazılır: her karede stil yazmak sürekli stil hesabı demektir
       const tf = `translate(${Math.round((p.x + (n ? n.x : 0)) * 2) / 2}px, ${Math.round((p.y + (n ? n.y : 0)) * 2) / 2}px) translate(-50%,-100%)`;
@@ -332,7 +324,7 @@ function renderHud() {
       <div class="pill" title="Yakut" data-a="yakutAl">${ri('gem', '#ff5a6a')}<b>${fmt(S.yakut)}</b><button data-a="yakutAl" title="Yakut al">+</button></div>
     </div>
     ${''/* 20 Kas (kullanıcı): mini harita ana ekrandan kalktı; Diyar Haritası sol rayda */}
-    <div class="dock">${btn('party', 'party', 'Karakter', pts || '')}${btn('bag', 'bag', 'Çanta', S.items.length >= BAG_LIMIT ? '!' : '')}${btn('quests', 'quest', 'Görevler', qr || '')}${btn('clan', 'clan', 'Klan')}${btn('shop', 'cart', 'Kervan', '', 'shop')}${btn('savas', 'battle', 'Savaş', '', 'savas-d')}</div>
+    ${active2d() ? '<button class="savas2d" data-a="savas" aria-label="Savaş" title="Savaş"><span>Savaş</span></button>' : ''}<div class="dock">${btn('party', 'party', 'Karakter', pts || '')}${btn('bag', 'bag', 'Çanta', S.items.length >= BAG_LIMIT ? '!' : '')}${btn('quests', 'quest', 'Görevler', qr || '')}${btn('clan', 'clan', 'Klan')}${btn('shop', 'cart', 'Kervan', '', 'shop')}${btn('savas', 'battle', 'Savaş', '', 'savas-d')}</div>
     ${''/* 20 Kas (kullanıcı): alttaki yetenek çubuğu kalktı (yetenekler Karakter → Yetenek'te) */}
     ${expHtml(S.xp, xpNeed(S.lvl))}
     ${starterBtn()}
@@ -343,6 +335,7 @@ function renderHud() {
 }
 hooks.hud = renderHud;
 // Binanın 3B modeline dokunmak da etiketine dokunmakla aynıdır (town.js seçimi yapar; pencere ya da modal açıkken çalışmaz)
+onHit(id => { if (!hud.hidden && blds().some(b => b.id === id)) { ACT.building({ id }); hooks.sfx?.('tap', 'building'); } });
 onTownTap(id => { if (!hud.hidden && blds().some(b => b.id === id)) ACT.building({ id }); });
 ACT.czpk = () => showModal(`<h2>CZ - PK</h2><div class="in"><div class="mbtns" style="flex-direction:column;align-items:stretch"><button class="btn red" data-a="czHall">Şan Divanı</button><button class="btn" data-a="czArena">Meydan</button><button class="btn" data-a="czMarket">Meydan Marketi</button></div></div>`);
 ACT.czHall = () => { closeModal(); ACT.hall(); };
