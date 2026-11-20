@@ -185,7 +185,7 @@ function showPainted() {
       if (!a) { if (el.style.display !== 'none') el.style.display = 'none'; continue; }
       const p = toScreen(a.m2), n = nudges[el.dataset.id];
       if (n) { n.x += (n.tx - n.x) * 0.3; n.y += (n.ty - n.y) * 0.3; }
-      const off = p.x < -10 || p.x > view.w + 10, vis = off ? 'hidden' : ''; if (el.style.visibility !== vis) el.style.visibility = vis; // bina ekran dışında (tablette kaydırma)
+      const off = p.x < -10 || p.x > view.w + 10 || p.y < 0 || p.y > view.h + 10 || (n && Math.hypot(n.tx, n.ty) > 70), vis = off ? 'hidden' : ''; // bina ekran dışında ya da arayüzün altında: etiketi uzağa (başka binanın üstüne) itmek yerine gizle; kaydırınca geri gelir if (el.style.visibility !== vis) el.style.visibility = vis; // bina ekran dışında (tablette kaydırma)
       const hw = el.offsetWidth / 2 + 4; p.x = Math.max(hw, Math.min(view.w - hw, p.x)); // yarısı görünen binanın etiketi ekranda kalır
       const tf = `translate(${Math.round((p.x + (n ? n.x : 0)) * 2) / 2}px, ${Math.round((p.y + (n ? n.y : 0)) * 2) / 2}px) translate(-50%,-100%)`;
       if (el._tf !== tf) { el._tf = tf; el.style.transform = tf; }

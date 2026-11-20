@@ -75,3 +75,8 @@ html.m2d #game #hud .dock .dbtn { background:radial-gradient(closest-side, rgba(
 html.m2d #game #hud .dock .dbtn > i { width:calc(40px * var(--h17-s, 1)) !important; height:calc(40px * var(--h17-s, 1)) !important; filter:drop-shadow(0 2px 3px #000c); }
 html.m2d #game #hud .dock .dbtn.savas-d > i { background:var(--kdi) center / contain no-repeat !important; border:0 !important; }
 html.m2d #game #hud .dock .dbtn > span:not(.badge) { text-shadow:0 1px 2px #000, 0 0 3px #000; color:#f2e6cc !important; }
+
+/* Telefon (kısa ekran, html.short): etiketler küçük, görev rolü satırı ([Demirci] gibi) gizli; resim kalabalık görünmesin */
+html.m2d.short #game #hud #blabels .blabel { padding:2px 7px 3px !important; }
+html.m2d.short #game #hud #blabels .blabel .rl { display:none; }
+html.m2d.short #game #hud #blabels .blabel > b { font-size:10.5px !important; }

@@ -21,12 +21,15 @@ const GLOW = {
 const OFF = new URLSearchParams(location.search).get('merkez') === '3d';
 export const merkezOn = f => !OFF && !!SPOTS[f];
 
-const M = { el: null, inner: null, f: null, s: 1, w: 0, h: 0, pan: 0, oy: 0, max: 0, tap: null, ids: [] };
+const M = { el: null, inner: null, f: null, s: 1, w: 0, h: 0, pan: 0, py: 0, oy: 0, max: 0, maxY: 0, tap: null, ids: [] };
+// Telefonda (kısa ekran) arayüz ekranın büyük kısmını kaplar: resim biraz büyütülür ve iki yönde kaydırılabilir,
+// böylece profil kartının ya da sohbetin altında kalan bina parmakla ortaya çekilebilir
+const ZOOM = () => (view.h <= 480 ? 1.18 : 1);
 const lay = () => {
   if (!M.el) return;
-  M.s = Math.max(view.w / IW, view.h / IH); M.w = IW * M.s; M.h = IH * M.s;
-  M.max = Math.max(0, M.w - view.w); M.oy = (view.h - M.h) / 2;
-  M.pan = Math.max(0, Math.min(M.max, M.pan));
+  M.s = Math.max(view.w / IW, view.h / IH) * ZOOM(); M.w = IW * M.s; M.h = IH * M.s;
+  M.max = Math.max(0, M.w - view.w); M.maxY = Math.max(0, M.h - view.h);
+  M.pan = Math.max(0, Math.min(M.max, M.pan)); M.py = Math.max(0, Math.min(M.maxY, M.py)); M.oy = -M.py;
   M.inner.style.cssText = `width:${M.w}px;height:${M.h}px;transform:translate(${-M.pan}px,${M.oy}px)`;
 };
 // resim noktası → ekran (mantıksal) noktası; ui-hub.js etiketleri buna göre yerleştirir
@@ -54,12 +57,12 @@ function flash(id) {
 }
 
 let drag = null;
-function down(e) { if (e.button > 0) return; const [x, y] = logical(e); drag = { x, y, pan: M.pan, moved: false, id: e.pointerId }; }
+function down(e) { if (e.button > 0) return; const [x, y] = logical(e); drag = { x, y, pan: M.pan, py: M.py, moved: false, id: e.pointerId }; }
 function move(e) {
   if (!drag || e.pointerId !== drag.id) return;
-  const [x] = logical(e), dx = x - drag.x;
-  if (!drag.moved && Math.abs(dx) > 8) { drag.moved = true; M.el.classList.add('pan'); }
-  if (drag.moved) { M.pan = drag.pan - dx; lay(); }
+  const [x, y] = logical(e), dx = x - drag.x, dy = y - drag.y;
+  if (!drag.moved && Math.hypot(dx, dy) > 8) { drag.moved = true; M.el.classList.add('pan'); }
+  if (drag.moved) { M.pan = drag.pan - dx; M.py = drag.py - dy; lay(); }
 }
 function up(e) {
   if (!drag || e.pointerId !== drag.id) return;
@@ -89,7 +92,7 @@ export function showMerkez(f, ids, tap) {
   M.ids = ids; M.tap = tap;
   stage.appendChild(M.el); M.el.hidden = false;
   document.documentElement.classList.add('m2d');
-  if (M.pan < 0) { M.pan = 1e9; lay(); M.pan = M.max / 2; }
+  if (M.pan < 0) { M.pan = 1e9; M.py = 1e9; lay(); M.pan = M.max / 2; M.py = M.maxY / 2; }
   lay();
 }
 export function hideMerkez() {

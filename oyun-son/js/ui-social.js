@@ -23,7 +23,7 @@ bar.innerHTML = `<div class="cb-tabs">${[['g', 'Genel'], ['f', 'Irk'], ['c', 'Kl
 // 19 Kas (kullanıcı): büyütme simgesi yerine kapatma işareti; basınca sohbet görev izleyicisi gibi tek satıra küçülür (dd_chatmini)
 const MINI_KEY = 'dd_chatmini';
 const setMini = on => { bar.classList.toggle('mini', on); const b = bar.querySelector('.cb-min'); if (b) { b.title = on ? 'Sohbeti aç' : 'Sohbeti küçült'; b.setAttribute('aria-label', b.title); } };
-try { setMini(localStorage.getItem(MINI_KEY) === '1'); } catch {}
+try { setMini((localStorage.getItem(MINI_KEY) ?? (Math.min(innerWidth, innerHeight) <= 480 ? '1' : '0')) === '1'); } catch {} // 20 Kas: telefonda (kısa ekran) ilk açılışta küçük: ana merkezin binalarını örtmesin
 ACT.chatMini = () => { const on = !bar.classList.contains('mini'); setMini(on); try { localStorage.setItem(MINI_KEY, on ? '1' : '0'); } catch {} };
 async function peek() {
   if (bar.hidden || !win.hidden || document.hidden) return;
