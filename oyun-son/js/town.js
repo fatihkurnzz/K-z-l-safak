@@ -6,6 +6,7 @@
 // çıkan duman, mangal alevleri, binaların altında zemin lekesi.
 import { THREE, scene, pick, gfx, particle } from './engine3d.js';
 import { drawBanner } from './banner.js';
+import { hideMerkez } from './merkez2d.js'; // boyalı ana merkez de kasabayla birlikte kalkar
 import { validBanner } from '../shared/clan.js';
 import { bakeRigid, batchMaterial, patchStd, blobField, flameMaterial, portalMaterial, disposeTree } from './scenery.js';
 
@@ -307,7 +308,7 @@ BUILD.k_hazine = g => {
 export const KLAN_SPOT = { gate: [0, 0, 1], k_hq: [0, -10, 1.3], k_salon: [-7.4, -6.6, 1], k_hisar: [7.4, -6.6, 1], k_gorev: [-10.8, -2.4, 0.95], k_dukkan: [10.8, -2.4, 1.1], k_av: [12.2, 3.0, 0.9], k_sancak: [5.5, 3.8, 0.9], k_hazine: [-6.4, 3.4, 0.95] }; // 19 Kas: sancak kapının sağ önünde (ana ekranda Taş Yemini anıtının yeri); eski yerinde Klan Hazinesi
 BUILD.pazar = BUILD.market; // Yemin Pazarı'ndaki Pazar tezgâhı (sürüm 13: Tüccar'dan ayrıldı)
 let group = null, spinners = [], flames = [], hits = [], smoke = null, smokeT = 0, sparkle = null, sparkT = 0;
-export function hideTown() { if (!group) return; scene.remove(group); disposeTree(group); group = null; spinners = []; flames = []; hits = []; smoke = null; sparkle = null; }
+export function hideTown() { hideMerkez(); if (!group) return; scene.remove(group); disposeTree(group); group = null; spinners = []; flames = []; hits = []; smoke = null; sparkle = null; }
 
 // Binaya dokunma: her binanın çevresinde görünmez bir kutu vardır; sahneye yapılan dokunuş (sürükleme değilse) ışınla
 // bu kutulara sorulur ve en öndeki binanın kimliği bildirilir. Etiketler ayrıca çalışmaya devam eder (arayüz düğmeleri).

@@ -353,6 +353,7 @@ export const FPS_CAP = { battle: 60, battleLow: 30, scene: 30, win: 15, winFull:
 export function fpsCap() {
   if (winEl && !winEl.hidden) return winEl.classList.contains('full') ? FPS_CAP.winFull : FPS_CAP.win; // 20 Kas: tam ekran pencere sahneyi neredeyse örter → 5 kare/sn (pil, ısınma)
   if (battleEl && !battleEl.hidden) return gfx.T.fx >= 1 && gfx.T.shadow && !touchDev ? FPS_CAP.battle : FPS_CAP.battleLow; // telefonda savaş da 30 (ısınma)
+  if (document.documentElement.classList.contains('m2d')) return 20; // boyalı ana merkez (merkez2d.js): sahne resmin arkasında, yalnız etiketler güncellenir
   return FPS_CAP.scene;
 }
 // Kaydırma akıcılığı (19 Kas, kullanıcı: "ekranlar kaydırırken takılıyor"): pencere ya da kutu açıkken kaydırma sürerken
