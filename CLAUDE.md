@@ -47,3 +47,8 @@ Kullanıcı grafik, arayüz, menüler, savaş sunumu dahil her şeyi BAŞKA bir 
 - Yayın: sayfa dosyasında iskelet yok; çok dosyalı yayında `root` + `files`, en çok 255 dosya, silinecek dosyaya `null`, uzantısız dosyaya `contentType`. `.glb` sunulmaz.
 - Yerel test: `python3 -m http.server 8765 -d oyun-son`, Playwright, `?gfx=low`; testleri sırayla çalıştır. Heredoc python güvenlik denetimine takılabilir: betiği dosyaya yazıp çalıştır.
 - PDF: reportlab + DejaVu yazı tipleri (Türkçe karakterler için).
+
+## GPT "Tüm Aşamalar Tek Paket" denetimi (20.11.2026)
+- Gelen: Aşama 1, 2 (+revize), 3 (+revize), 4. Aşama 5–8 YOK. Açılmış hali: scratchpad/gelen/ac (geçici).
+- Kullanılabilir: iki şehir arka planı (05 revize, 2340×1080, kaliteli), Aşama 3 revize madalyon simgeleri (27×2), UI kit dosya listesi tam (67×2).
+- Sorunlar: 18 bina PNG programatik clip-art (aynı şablon, arka plandakiyle eşleşmiyor); UI kit düz vektör, "kaliteli" değil; cubuk-*-dolu dosyaları ayrı dolgu değil (çerçeve + %65 dolgu gömülü); Aşama 4 maketleri tel kafes (40 KB), yalnız ocak, HUD YERLESIM_SPEC'e aykırı (yetenekler çeyrek yay değil, sahnenin ortasını kapatıyor, sınıfa uymayan yetenekler, "MANA +" taşıyor); sancak koordinatlarında Kapı sağ alt yasak alanda, Kader Çarkı/İksir kenara dayalı.
