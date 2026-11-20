@@ -10,6 +10,12 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Yapı: 31 stil dosyası (css/v8 … v16), 90 `!important`; `index.html` 309 KB, 19 `<style>` bloğu. Ölçek değişkenleri `js/orient.js`: `--lw --lh` (mantıksal ekran), `--sat --sab --sal --sar` (güvenli alan), `--dock`, `--kb`. Dik telefonda gövde 90° döndürülür.
 - İçerik: 2 halk (Kragmir/ork, Elentha/insan; `p.faction`), 4 sınıf: Savaşçı (Hücum/Siper/Öfke), Suikastçı (Hançer/Yay/İz), Şifacı (Şifa/Rün Mührü/Kara Rün), Büyücü (Ateş/Buz/Yıldırım) — `shared/content.js`. Bölgeler (`shared/zones.js`): Vahran Ovası 1–20, Kül Geçidi 20–40, Kızıl Bahar Meydanı 40–60, Sisli Çukur 60–65; her bölge 25 aşama, 5'te bir kapı. Bosslar: Dev Solucan, Tepegöz, Kristal Muhafızı, Lav Yürek, Kül Ağası Karadun, Mareşal Marven, Adsız (Tarikat Lideri). Ana görev 64 adım / 16 bölüm (`shared/anagorev.js`).
 
+## Boyalı ana merkez (20.11.2026) — GPT teslimleri işleniyor
+- 20.11'de `oyun-son/` KUfQG1bV27JFGDTjpBwEdk'nin yeni sürümüyle (326 dosya) yeniden eşitlendi; yayın GwNoLLWnf5Wjc1PUJep2yi Sürüm 3 (yalnız değişen dosyalar gönderildi).
+- GPT teslimleri `oyun-son/_tasarim/gelen/` (4.1 Kragmir, 4.2 Elentha, 4.3 bina parçaları, 4.4 alt şerit simgeleri, 4.5 UI kit). Denetim, yapılanlar ve **EKSİKLER listesi**: `_tasarim/gelen/HAZIRLIK.md`. Brief: `_tasarim/ANA_MERKEZ_BRIEF.md`. GPT limiti doldu; kullanıcı kalanları sonra getirecek.
+- Kod: `js/merkez2d.js` (resim koordinatlı SPOTS, cover + yatay kaydırma, dokunma), `ui-hub.js` showPainted (başkent; Karaborsa eklendi, kral etiketi yok), `town.js` hideTown→hideMerkez, `engine3d.js` fpsCap 20, `css/v22-merkez.css`. Görseller `img/merkez/`. `?merkez=3d` eski kasaba.
+- Playwright test betiği akışı: `.ld-go` → `[data-o="race"][data-v=ocak|sancak]` → `#olzname` + `#olzgo` → `[data-a="tkEnter"]` → `button:text-is("Geç")` (fragman).
+
 ## Kullanıcının büyük planı: A–Z görsel yeniden tasarım
 Kullanıcı grafik, arayüz, menüler, savaş sunumu dahil her şeyi BAŞKA bir yapay zekâya (başka bir Claude) yaptıracak; gelen işi bana gönderecek, **ben oyuna ekleyeceğim**. Hedef: "100 kişilik stüdyo" kalitesinde premium mobil oyun görünümü. Belgeler `oyun-son/_tasarim/` içinde (yayında bu klasörü dahil etme):
 - `VAHRAN_destan.txt`: kullanıcının verdiği tam hikâye (8 bölüm; Volgar/Demirdiş, Edran, Lira, Thrak, Yashka, Marven, Adsız, Küllerin Tarikatı, çatlak dikilitaş/Taş Yemini, Yerkıran çekici).
