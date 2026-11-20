@@ -16,6 +16,13 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kod: `js/merkez2d.js` (resim koordinatlı SPOTS, cover + yatay kaydırma, dokunma), `ui-hub.js` showPainted (başkent; Karaborsa eklendi, kral etiketi yok), `town.js` hideTown→hideMerkez, `engine3d.js` fpsCap 20, `css/v22-merkez.css`. Görseller `img/merkez/`. `?merkez=3d` eski kasaba.
 - Playwright test betiği akışı: `.ld-go` → `[data-o="race"][data-v=ocak|sancak]` → `#olzname` + `#olzgo` → `[data-a="tkEnter"]` → `button:text-is("Geç")` (fragman).
 
+## GPT ile SIFIRDAN tam yeniden tasarım (20.11.2026, en güncel plan)
+- Kullanıcı bütün görselleri GPT'ye sıfırdan yaptıracak; önceki GPT çıktıları (4.1–4.5) ve mevcut ekran görüntüleri pakete KONMADI (kullanıcı isteği).
+- Paket: `oyun-son/_tasarim/gpt-paket/` (GPT_BRIEF.md = düzeltilmiş tek brief; EKRANLAR.md = gerçek ekranlar ve korunacak düğmeler; OYUN_VERISI.md = kaynak koddan otomatik çıkarılmış eşya/silah/yetenek/yaratık/boss listesi; VAHRAN_destan.txt; ek/KONSEPT_BRIEF.md + ek/YERLESIM_SPEC.md; oyun-kaynak.zip). ZIP: kökte `Demir_Diyari_GPT_Paketi.zip` (git dışı). OYUN_VERISI üretici betiği: shared/*.js'yi import eden node betiği (gerekirse yeniden yaz).
+- Brief'te yaptığım düzeltmeler: iş bölümü (GPT yalnızca görsel + maket; kod/entegrasyon/test Claude'da; GLB ve ses yok); halk kodları `ocak`=Kragmir / `sancak`=Elentha (kullanıcının metnindeki "kragmir/elentha" yanlıştı); 3600 geniş sürüm kaldırıldı; UI kit kuralları + ölçüler + durum dosya adları (-normal/-basili/-pasif/-secili/-dolu/-bos, -ocak/-sancak); Python alfa denetim betiği zorunlu; aşama başına ZIP + onay; telefon gerçeği (846×412 mantıksal, önemli şey orta %60); oyunda 3 eşya derecesi (Standart/Nadir/Eşsiz), 6 nadirlik çerçevesini Claude eşler; 14 silah türü × 8 kademe; 13 ekipman yuvası.
+- UYARI: oyundaki silah/yetenek adlarının çoğu İngilizce ve Knight Online kaynaklı görünüyor (Kukry, Mirage Dagger, Iron Impact, Hell Fire…); brief'te "türü koru, görünüşü özgün yap" dendi. Kullanıcıya adları Türkçeleştirme önerilebilir.
+- GPT'den gelen her aşamada: biçim denetimi, alfa denetimi (bos% > 85 → bozuk), ölçü, iki halk eşliği; sonra WebP'ye çevir ve entegre et.
+
 ## Kullanıcının büyük planı: A–Z görsel yeniden tasarım
 Kullanıcı grafik, arayüz, menüler, savaş sunumu dahil her şeyi BAŞKA bir yapay zekâya (başka bir Claude) yaptıracak; gelen işi bana gönderecek, **ben oyuna ekleyeceğim**. Hedef: "100 kişilik stüdyo" kalitesinde premium mobil oyun görünümü. Belgeler `oyun-son/_tasarim/` içinde (yayında bu klasörü dahil etme):
 - `VAHRAN_destan.txt`: kullanıcının verdiği tam hikâye (8 bölüm; Volgar/Demirdiş, Edran, Lira, Thrak, Yashka, Marven, Adsız, Küllerin Tarikatı, çatlak dikilitaş/Taş Yemini, Yerkıran çekici).
