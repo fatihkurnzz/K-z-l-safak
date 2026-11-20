@@ -345,6 +345,16 @@ add('x_mark', { name: 'Kem Göz', type: 'active', target: 'enemy', cd: 4, anim: 
 add('x_execute', { name: 'Kelle Alan', type: 'active', target: 'enemy', cd: 4, anim: 'melee', sc: 'atk', fx: [d(2.0, { exec: { below: 0.4, bonus: 0.5 } })] });
 add('x_roar', { name: 'Yıldıran Nara', type: 'active', target: 'enemies', cd: 5, anim: 'stomp', sc: 'atk', fx: [d(0.5), st('atkDown', 2, 0.7)] });
 
+// 20 Kas (kullanıcı, oyun testi: hamlelerin %50–80'i temel saldırıydı): uzun bekleyen saldırı yetenekleri bir tur kısaldı.
+// Ağaçta 5 → 4, Thunder Impact 6 → 5; usta yetenekleri 7–8 → 6. Mana bedeli eski beklemeden türeyen değerde sabitlendi (S.mp).
+const CD_CUT = { hucum10: 4, hucum13: 4, hucum14: 4, hancer13: 4, yay10: 4, yay13: 4, ates10: 4, ates13: 4, yildirim10: 4, yildirim13: 5, buz8: 4,
+  yaran_um3: 6, agu_um3: 6, bozan_um2: 6, alaz_um1: 6, alaz_um2: 6, boran_um1: 6, boran_um2: 6 };
+for (const [id, cd] of Object.entries(CD_CUT)) {
+  const S = SKILLS[id]; if (!S) continue;
+  if (S.mp === undefined) S.mp = Math.round((6 + 3 * (S.cd || 0)) * (S.target === 'enemies' || S.target === 'allies' || S.target === 'random' ? 1.3 : 1));
+  S.cd = cd;
+}
+
 // ---- Yardımcılar ----
 // Ustalık sistemi kaldırıldı: sınıfın usta yeteneği (master) ve yolların usta yeteneği (pm) hiçbir listede yer almaz
 export const classSkills = cls => Object.values(SKILLS).filter(s => s.cls === cls && !s.master && !s.pm);
@@ -353,6 +363,10 @@ export const classSkills = cls => Object.values(SKILLS).filter(s => s.cls === cl
 export const pathSkills = key => treeSkills(PATHS[key]?.tree);
 export const treeSkills = key => Object.values(SKILLS).filter(s => s.tree === key).sort((a, b) => a.req - b.req);
 export const BASIC = { warrior: 'w_basic', rogue: 'r_basic', priest: 'p_basic', mage: 'm_basic' };
+// 20 Kas: temel saldırının görünen adı kuşanılan silahın sınıfına göre (oyun testi: yay tutan Okçu "Hançer Darbesi" görüyordu).
+// Yalnız görünüş; kural ve kimlik aynı. wt: birimin silah sınıfı (hero.js; sword/axe/spear/mace/dagger/bow/staff)
+const BASIC_BY_WT = { sword: 'Kılıç Darbesi', axe: 'Balta Darbesi', spear: 'Mızrak Darbesi', mace: 'Topuz Darbesi', dagger: 'Hançer Darbesi', bow: 'Ok Atışı', none: 'Yumruk' };
+export const skillName = (id, wt) => (SKILLS[id]?.type === 'basic' && id !== 'm_basic' && BASIC_BY_WT[wt]) || SKILLS[id]?.name || id;
 // Sınıfın seviyeyle açılan altı temel aktifi (savaş çubuğu kilitli yuvaları bunlardan gösterir), açılış seviyesine göre
 export const baseActives = cls => Object.values(SKILLS).filter(s => s.cls === cls && s.type === 'active' && s.lvl && !s.hidden && !s.master).sort((a, b) => a.lvl - b.lvl);
 // Mana bedelinin taban değeri (seviye 1): temel saldırı bedelsiz; verilmemişse bekleme süresinden ve hedef sayısından türer.

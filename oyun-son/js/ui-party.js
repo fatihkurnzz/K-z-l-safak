@@ -15,17 +15,19 @@ import { skillIcon } from './skill-icons.js';
 import { pathPanel, pathSlot, pathPending, pathLockNote } from './ui-sinif.js'; // uzmanlık yolları: karşılaştırma, yol ağacı, yol değiştirme
 
 import { PATH, PATHS, pathOf, pathsOf, specTrees } from '../shared/paths.js';
+import { kxView } from './ui-kahraman.js';
+import { ytView } from './ui-yetenek.js'; // 19 Kas gece: yetenek ağacı görünümü (üç dal, bağlı düğümler, sağda bilgi) // 19 Kas gece: Karakter görünümü (yuvalar + 3B + özellikler + envanter)
 const PV = { sub: 'eq', slot: null, sk: {} }; // sub: açık bölüm · sk: yetenek görünümü ('tree' ağaçlar · 'path' uzmanlık yolu)
 export const HID = () => mainId(S); // karakterin tek kahramanı
 const nameOf = () => S.name;
 const SUBS = ['eq', 'skill', 'stat', 'mst'];
 const subTabs = hid => { const sp = statPointsFree(S, hid), kp = skillPointsFree(S, hid), mf = masteryOpen(S) ? masteryFree(S, S.heroes[hid]) : 0;
-  return [{ id: 'eq', label: 'Ekipman', small: 'Kuşan, setler', icon: 'armor' }, { id: 'skill', label: `Yetenek${kp ? ` (${kp})` : ''}`, small: pathPending(hid) ? 'Yol seçilmedi' : 'Ağaç ve yol', icon: 'skills', dot: kp > 0 }, { id: 'stat', label: `Nitelik${sp ? ` (${sp})` : ''}`, small: 'Puan dağıt', icon: 'stats', dot: sp > 0 }, { id: 'mst', label: `Ustalık${mf ? ` (${mf})` : ''}`, small: `${MASTERY.unlock}. seviyeden`, icon: 'trophy' }]; };
+  return [{ id: 'eq', label: 'Karakter', small: 'Ekipman, nitelik, envanter', icon: 'party', dot: sp > 0 }, { id: 'skill', label: `Yetenek${kp ? ` (${kp})` : ''}`, small: pathPending(hid) ? 'Yol seçilmedi' : 'Ağaç ve yol', icon: 'skills', dot: kp > 0 }, { id: 'mst', label: `Ustalık${mf ? ` (${mf})` : ''}`, small: `${MASTERY.unlock}. seviyeden`, icon: 'trophy' }]; }; // 19 Kas gece: Nitelik bölümü Karakter görünümüne katıldı (sekme 'stat' de Karakter'i açar) };
 // d.tab: açılacak bölüm (eq · skill · stat · mst); verilmezse en son bakılan · d.back: geri düğmesinin işlemi
 ACT.party = d => {
   const tab = SUBS.includes(d?.tab) ? d.tab : PV.sub;
   PV.sub = tab;
-  openWin({ title: 'Karakter', top: true, tab, tabs: subTabs(HID()), tabsFn: () => subTabs(HID()), back: (typeof d?.back === 'string' && d.back) || undefined, render: renderParty, onTab: t => { PV.slot = null; PV.sub = t; } });
+  openWin({ title: 'Karakter', tab: tab === 'stat' ? 'eq' : tab, tabs: subTabs(HID()), tabsFn: () => subTabs(HID()), back: (typeof d?.back === 'string' && d.back) || undefined, render: renderParty, onTab: t => { PV.slot = null; PV.sub = t; } });
 };
 ACT.karakter = ACT.party;
 ACT.sub = d => ACT.party({ tab: d.id });
@@ -33,7 +35,7 @@ ACT.sub = d => ACT.party({ tab: d.id });
 ACT.partyPath = () => { PV.sk[HID()] = 'path'; ACT.party({ tab: 'skill' }); };
 
 function statsKv(st, cls = HID()) {
-  const rows = [['Can', 'maxHp', 'hp'], ['Saldırı', 'atk', 'atk'], ['Büyü', 'mag', 'mag'], ...(st.fire || st.bolt ? [['Alev Hasarı', 'fire', 'mag'], ['Yıldırım Hasarı', 'bolt', 'mag']] : []), ['Savunma', 'def', 'def'], ['Hız', 'spd', 'spd']];
+  const rows = [['Can', 'maxHp', 'hp'], ['Saldırı', 'atk', 'atk'], ['Büyü', 'mag', 'mag'], ...(st.fire || st.bolt ? [['Alev Hasarı', 'fire', 'mag'], ['Yıldırım Hasarı', 'bolt', 'mag']] : []), ['Savunma', 'def', 'def']]; // Hız gösterilmez (19 Kas: hız savaşta askıda)
   return `<div class="kv">${rows.map(([l, k, i]) => `<div><small>${ri(i)}${l}</small>${fmt(st[k])}</div>`).join('')}<div><small>${ri('crit')}Kritik</small>${pct(st.crit)}</div><div><small>${ri('power')}Güç</small>${fmt(power(st))}</div><div class="ilvc" title="Eşya Seviyesi: kuşanılan eşyaların kademe, nadirlik, artı ve su verme ortalaması"><small>${ri('gear')}Eşya Sv.</small>${heroItemLevel(S, cls)}</div></div>${coefSheet(st)}`;
 }
 // Kâğıt bebek: yuvalar karakterin üstünde durduğu yere göre dizilir.
@@ -81,9 +83,9 @@ function renderParty(tab) {
   const st0 = heroStats(S, hid), P0 = pathOf(S.heroes[hid]), CI = { warrior: 'atk', rogue: 'crit', priest: 'hp', mage: 'mag' }[clsOf(S, hid)] || 'atk';
   const head = `<div class="chx-band"><span class="chx-crest">${ri(CI)}</span><div class="chx-id"><small>${esc(C.name)}${P0 && PATHS[P0] ? ` · ${esc(PATHS[P0].role)}` : ''}</small><b>${esc(S.name)}</b></div>
     <div class="chx-pills"><span><small>Seviye</small><b>${S.lvl}</b></span><span><small>Güç</small><b>${fmt(power(st0))}</b></span><span><small>Eşya Sv.</small><b>${heroItemLevel(S, hid)}</b></span></div></div>`;
-  if (PV.sub === 'skill') return `<div class="chx">${head}${partySkill(hid)}</div>`;
+  if (PV.sub === 'skill') return (PV.sk[hid] || (pathPending(hid) ? 'path' : 'tree')) === 'tree' ? ytView(hid) : `<div class="chx">${head}${partySkill(hid)}</div>`;
   if (PV.sub === 'mst') return `<div class="chx">${head}${partyMastery(hid)}</div>`;
-  return `<div class="chx">${head}<div class="pgrid">${doll(hid)}<div class="pside">${PV.sub === 'eq' ? partyEq(hid) : partyStat(hid)}</div></div></div>`;
+  return kxView(hid); // eski görünüm (doll + partyEq/partyStat) yedek olarak duruyor
 }
 // Zırh seti bonusları (items.js): giyilen parça sayısı, açık ve kapalı eşikler
 function setPanel(hid) {

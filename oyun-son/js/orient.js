@@ -62,6 +62,7 @@ function measure() {
   root.classList.toggle('short', view.h <= 480); // telefon yüksekliği: sıkı yerleşim kuralları (.short)
   root.style.setProperty('--lw', view.w + 'px');
   root.style.setProperty('--lh', view.h + 'px');
+  root.style.setProperty('--s', Math.min(view.h / 1080, 1).toFixed(4)); // KD tasarım ölçeği: 1080 dp referans yükseklik (css --dp)
   // Ana üste sol sütun (kart, üyelik, Menü, Kapı) ile sohbet şeridi üst üste binmesin: önizleme satır sayısı
   // kalan yüksekliğe göre 2-5 arasıdır; çok basık ekranda (.tiny) Menü ve Kapı yan yana dizilir.
   const free = view.h - probe.offsetHeight, tiny = free < 358;

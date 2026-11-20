@@ -19,7 +19,7 @@ function otoIntro() {
   try { if (localStorage.getItem(OTO_INTRO)) return; } catch { return; }
   if (!OTO.ok() || (S.tut && !S.tut.end) || !$('#battleUI').hidden || !$('#modal').hidden || !$('#win').hidden) return;
   try { localStorage.setItem(OTO_INTRO, '1'); } catch { }
-  showModal(`<h2>Yeni: OTO savaş</h2><p>10. seviyeye ulaştın! Artık savaşta sağ üstteki <b>OTO</b> düğmesine dokunursan kahramanın yetenekleri ve iksirleri senin yerine kullanır.</p><p>Savaşa girmeden önceki ekranda <b>Oto: açık</b> seçersen savaş baştan otomatik başlar. İstediğin an OTO’ya yeniden dokunup kontrolü geri alırsın.</p><div class="mbtns"><button class="btn green" data-a="closeModal">Anladım</button></div>`, 'oto-intro');
+  showModal(`<h2>Yeni: OTO savaş</h2><p>10. seviyeye ulaştın! Artık savaşta sağ alttaki <b>Otomatik</b> düğmesine dokunursan kahramanın yetenekleri ve iksirleri senin yerine kullanır.</p><p>Savaşa girmeden önceki ekranda <b>Oto: açık</b> seçersen savaş baştan otomatik başlar. İstediğin an Otomatik’e yeniden dokunup kontrolü geri alırsın.</p><div class="mbtns"><button class="btn green" data-a="closeModal">Anladım</button></div>`, 'oto-intro');
 }
 setInterval(() => { if (S && !hud.hidden) otoIntro(); }, 1500);
 TUTLOCK.pot = () => !!(S?.tut && !S.tut.end && TUT_STEPS[S.tut.s] === 'bar' && !S.tut.f?.pot && !BT.pot); // iksir içilmeden savaş sürmez (19 Kas) // savaşta oyuncunun yetenek ve iksir kullandığı (öğretici 'bar' adımı)

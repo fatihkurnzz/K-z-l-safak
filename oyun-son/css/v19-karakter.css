@@ -1,0 +1,98 @@
+/* Karakter ve envanter ekranı (19 Kas gece, kullanıcının referansı): ana merkez ve savaşla aynı karanlık Orta Çağ dili.
+   Üç bölüm: kahraman (yuvalar + 3B), özellikler, envanter. Halk renkleri html[data-faction]. Bileşenler js/ui-kahraman.js. */
+:root { --k19-bg:linear-gradient(180deg,#1a1510f2,#0b0907f5); --k19-bd:#6b5534; --k19-gold:#d9b45a; --k19-tx:#eadfc6; --k19-acc:#c0502a; }
+html[data-faction="sancak"] { --k19-bg:linear-gradient(180deg,#141920f2,#080b0ff5); --k19-bd:#5d6f86; --k19-gold:#e2c475; --k19-acc:#4d8cc9; }
+.kx { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(170px,.8fr) minmax(0,1fr); gap:8px; height:100%; min-height:0; color:var(--k19-tx); }
+.kx > div { background:var(--k19-bg); border:1px solid var(--k19-bd); border-radius:8px; box-shadow:inset 0 0 0 1px #0009, inset 0 1px 0 #ffffff12, 0 3px 10px #0008; min-height:0; }
+.kx h4 { margin:6px 0 3px; text-align:center; font:700 11px/1.2 Cinzel, Georgia, serif; color:var(--k19-gold); letter-spacing:.5px; display:flex; align-items:center; gap:6px; }
+.kx h4::before, .kx h4::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--k19-bd)); }
+.kx h4::after { transform:scaleX(-1); }
+
+/* --- kahraman bölümü --- */
+.kx-hero { display:flex; flex-direction:column; padding:6px; overflow:hidden; }
+.kx-head { display:flex; align-items:center; gap:8px; padding:0 2px 4px; border-bottom:1px solid #6b553455; }
+.kx-head .kx-ava, .kx-head img { width:38px; height:38px; border-radius:50%; box-shadow:0 0 0 2px #000, 0 0 0 3px var(--k19-gold); object-fit:cover; flex:none; }
+.kx-head b { display:block; font:700 13px/1.15 Cinzel, Georgia, serif; color:#fff; } .kx-head b em { font-style:normal; color:var(--k19-gold); }
+.kx-fac { display:flex; align-items:center; gap:4px; font:700 10.5px Cinzel, Georgia, serif; color:var(--fc); }
+.kx-fac i { width:9px; height:12px; background:var(--fc); clip-path:polygon(0 0,100% 0,100% 70%,50% 100%,0 70%); }
+.kx-doll { flex:1; min-height:0; display:grid; grid-template-columns:auto 1fr auto; gap:4px; align-items:stretch; padding-top:4px; }
+.kx-col { display:flex; flex-direction:column; gap:3px; justify-content:center; }
+.kx-slot { position:relative; width:clamp(32px, 7.2vh, 52px); height:clamp(32px, 7.2vh, 52px); padding:0; border-radius:4px; border:1px solid #000; background:radial-gradient(#241b12,#0a0705); box-shadow:inset 0 0 0 1px #5a4a32, inset 0 0 8px #000; display:grid; place-items:center; }
+.kx-slot .ico { width:100%; height:100%; margin:0; border-radius:3px; }
+.kx-slot small { display:none; }
+.kx-slot.sel { box-shadow:inset 0 0 0 2px #ffe08a, 0 0 10px #ffd36a99; }
+.kx-slot:not(.full) .ico { opacity:.35; }
+.kx-model { position:relative; min-height:0; display:grid; place-items:center; overflow:hidden; border-radius:6px; background:radial-gradient(ellipse at 50% 70%, #ffffff10, transparent 60%); }
+.kx-model .h3d { max-height:100%; max-width:100%; height:100%; object-fit:contain; -webkit-mask-image:radial-gradient(ellipse 70% 75% at 50% 48%, #000 60%, transparent 100%); mask-image:radial-gradient(ellipse 70% 75% at 50% 48%, #000 60%, transparent 100%); }
+.kx-rot { position:absolute; top:50%; transform:translateY(-50%); width:22px; height:36px; border:1px solid var(--k19-bd); background:#0c0a08c0; color:var(--k19-gold); font:700 18px/1 Georgia, serif; border-radius:4px; padding:0; z-index:1; }
+.kx-rot.l { left:2px; } .kx-rot.r { right:2px; }
+.kx-ilv { position:absolute; bottom:3px; left:50%; transform:translateX(-50%); font:700 9px Inter, sans-serif; color:#cdbf9f; background:#0008; padding:1px 6px; border-radius:6px; white-space:nowrap; }
+.kx-cls { display:flex; align-items:center; gap:8px; margin-top:4px; padding:4px 8px; border:1px solid #6b553466; border-radius:5px; background:#0006; }
+.kx-cls b { font:700 11.5px Cinzel, Georgia, serif; color:#fff; white-space:nowrap; }
+.kx-trees { display:flex; gap:0; flex-wrap:wrap; margin-left:auto; } .kx-trees span { font:600 10px Inter, sans-serif; color:#a99d82; padding:0 6px; border-left:1px solid #6b553488; } .kx-trees span:first-child { border-left:0; }
+.kx-trees span.on { color:var(--k19-gold); }
+
+/* --- özellikler --- */
+.kx-stats { padding:6px 8px; overflow:auto; }
+.kx-pow { display:flex; align-items:center; gap:8px; padding:2px 2px 6px; border-bottom:1px solid #6b553455; }
+.kx-pow > :first-child { width:26px; height:26px; color:var(--k19-gold); }
+.kx-pow small { display:block; font:600 9.5px Inter, sans-serif; color:#cdbf9f; } .kx-pow b { font:700 19px/1 Cinzel, Georgia, serif; color:#ffd36a; text-shadow:0 0 8px #d9b45a66; }
+.kx-r, .kx-a { display:flex; align-items:center; gap:6px; padding:2px 0; font:600 11px Inter, sans-serif; border-bottom:1px solid #ffffff08; }
+.kx-r > :first-child { width:13px; height:13px; flex:none; } .kx-r span, .kx-a span { flex:1; color:#d8ccb0; } .kx-r b, .kx-a b { color:#fff; font-weight:700; }
+.kx-a small { color:#8d8166; font-size:9px; } .kx-a.main span { color:#ffe2a0; }
+.kx-plus { width:20px; height:20px; padding:0; border-radius:3px; border:1px solid #000; background:linear-gradient(#4e3a1e,#2a1d0e); box-shadow:inset 0 0 0 1px var(--k19-gold); color:#ffe08a; font:800 13px/1 Inter, sans-serif; }
+.kx-plus:disabled { opacity:.3; }
+.kx-free { text-align:center; margin:6px 0 4px; font:600 10.5px Inter, sans-serif; color:#cdbf9f; } .kx-free b.on { color:#7fe36a; }
+.kx-reset { display:flex; align-items:center; gap:5px; margin:0 auto; padding:4px 14px; border-radius:5px; border:1px solid #000; background:linear-gradient(#3a2c19,#1c140b); box-shadow:inset 0 0 0 1px var(--k19-bd); color:#f0e2bf; font:700 11px Cinzel, Georgia, serif; }
+.kx-reset > :first-child { width:12px; height:12px; }
+
+/* --- envanter --- */
+.kx-bag { display:flex; flex-direction:column; padding:6px; min-width:0; }
+.kx-ftabs { display:flex; gap:2px; margin-bottom:5px; flex-wrap:wrap; }
+.kx-ftabs button { flex:1; min-width:0; padding:4px 4px; border-radius:4px 4px 0 0; border:1px solid #000; background:#1d1610; color:#b9ad92; font:700 10.5px Cinzel, Georgia, serif; box-shadow:inset 0 0 0 1px #4a3a24; white-space:nowrap; }
+.kx-ftabs button.on { background:linear-gradient(#5a3f1a,#2a1d0e); color:#ffe9b0; box-shadow:inset 0 0 0 1px var(--k19-gold), inset 0 -2px 0 var(--k19-gold); }
+.kx-grid { flex:1; min-height:0; overflow:auto; }
+.kx-grid .ivg { display:grid !important; grid-template-columns:repeat(5, 1fr) !important; gap:3px !important; }
+.kx-grid .ivc { aspect-ratio:1; width:auto !important; height:auto !important; border-radius:4px; background:radial-gradient(#211a12,#0a0705); box-shadow:inset 0 0 0 1px #4a3a24, inset 0 0 8px #000; }
+.kx-grid .ivc.nil { display:block; }
+.kx-grid .ivc .ico { width:100%; height:100%; }
+.kx-foot { display:flex; justify-content:space-between; gap:6px; padding-top:5px; margin-top:4px; border-top:1px solid #6b553455; font:700 11px Inter, sans-serif; }
+.kx-foot span { display:flex; align-items:center; gap:4px; } .kx-foot span > :first-child { width:14px; height:14px; } .kx-foot .warn { color:#ff8a6a; }
+
+/* nadirlik çerçeveleri (items.js GRADES: Standart gri, Nadir mavi, Eşsiz turuncu) ve +7 üstü ışıma (kaplama-parts plusCls) */
+.kx .ico.it.g0 { box-shadow:inset 0 0 0 1.5px #b9c0c8aa; }
+.kx .ico.it.g1 { box-shadow:inset 0 0 0 1.5px #4aa3ff, inset 0 0 10px #4aa3ff55; }
+.kx .ico.it.g2 { box-shadow:inset 0 0 0 1.5px #ffb52e, inset 0 0 12px #ffb52e66; }
+
+/* bilgi kartı penceresi */
+#modal .box.kxcard { max-width:min(460px, 92vw); }
+.kx-card .ivacts { display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; }
+
+/* dar telefon: envanter sütunu daralır, yazılar küçülür */
+@media (max-width:800px), (max-height:400px) {
+  .kx { grid-template-columns:minmax(0,1.15fr) minmax(150px,.75fr) minmax(0,.95fr); gap:5px; }
+  .kx-r, .kx-a { font-size:10px; padding:1px 0; } .kx h4 { margin:3px 0 1px; font-size:10px; }
+  .kx-grid .ivg { grid-template-columns:repeat(4, 1fr) !important; }
+  .kx-pow b { font-size:16px; } .kx-head b { font-size:12px; } .kx-trees { display:none; }
+}
+
+/* --- pencere kabuğu bu ekranda koyu (referans): çerçeve, başlık, sol menü, sayfa --- */
+#win:has(.kx) .frame { width:min(1180px, calc(var(--lw) * 0.985)) !important; height:min(760px, calc(var(--lh) - 10px)) !important; background:linear-gradient(180deg,#14100c,#0a0806) !important; }
+#win:has(.kx) header h2 { font-family:Cinzel, Georgia, serif; color:#f0dfb0; }
+#win:has(.kx) #page { background:radial-gradient(130% 100% at 40% 0%, #2a2117 0%, #120e0a 55%, #090706 100%) !important; padding:6px !important; border-radius:8px; overflow:hidden; }
+html[data-faction="sancak"] #win:has(.kx) #page { background:radial-gradient(130% 100% at 40% 0%, #1e2734 0%, #0e1218 55%, #07090c 100%) !important; }
+#win:has(.kx) nav.tabs { width:clamp(92px, 15vw, 170px); gap:3px; }
+#win:has(.kx) nav.tabs button { border:1px solid #000 !important; border-radius:5px !important; background:linear-gradient(#211a12,#0f0b08) !important; box-shadow:inset 0 0 0 1px #4a3a24 !important; color:#e6d8b8 !important; padding:7px 6px !important; font-family:Cinzel, Georgia, serif; }
+#win:has(.kx) nav.tabs button.on { background:linear-gradient(90deg,#8a5a1e,#3a2610) !important; box-shadow:inset 0 0 0 1px var(--k19-gold), 0 0 10px #d9b45a55 !important; color:#fff3cc !important; }
+#win:has(.kx) nav.tabs button small { color:#b9ad92; }
+@media (max-height:420px) { #win:has(.kx) nav.tabs button small { display:none; } #win:has(.kx) nav.tabs { width:clamp(84px, 13vw, 140px); } }
+
+/* kısa ekranda yuvalar küçülür, sınıf şeridi başlığa sığmazsa gizlenir */
+.kx-slot { width:min(50px, calc((var(--lh) - 150px) / 7.6)) !important; height:min(50px, calc((var(--lh) - 150px) / 7.6)) !important; }
+@media (max-height:520px) { .kx-cls { display:none; } }
+.kx-model { height:100%; } .kx-model .h3d { width:auto; height:100%; }
+.kx-ftabs button { font-size:9.5px; padding:4px 2px; }
+@media (max-height:420px) { .kx-a { padding:0; } .kx-plus { width:17px; height:17px; font-size:12px; } .kx-pow { padding-bottom:3px; } .kx-pow > :first-child { width:20px; height:20px; } .kx-free { margin:3px 0 2px; } .kx-reset { padding:2px 12px; } }
+#modal .box.kxcard, #modal .box:has(.kx-card) { background:linear-gradient(180deg,#1a1510,#0b0907) !important; color:#eadfc6; }
+#modal .box:has(.kx-card) .ivinfo { background:none; color:#eadfc6; }
+#modal .box:has(.kx-card) .mut, #modal .box:has(.kx-card) .esx { color:#cdbf9f; }

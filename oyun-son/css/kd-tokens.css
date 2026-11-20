@@ -1,0 +1,20 @@
+/* DEMİR DİYARI · KÜL VE DEMİR · design tokens */
+:root {
+  --kd-ink:#0e0b10; --kd-coal:#1a1519; --kd-soot:#2a2328;
+  --kd-bone:#e9e1d3; --kd-ash:#8d8790; --kd-ash-light:#bfb9be;
+  --kd-blood:#9e1b1b; --kd-heal:#5fcb7a; --kd-mana:#3e8ef0; --kd-gold:#e2b44e;
+  --kd-panel-radius:12px; --kd-card-radius:10px; --kd-focus:#f4d78d;
+  --kd-hit-min:44px; --kd-transition-fast:80ms; --kd-transition-panel:220ms;
+}
+html[data-faction="ocak"] {
+  --kd-faction-1:#2b2622; --kd-faction-2:#4a423b; --kd-accent:#ff7a1a;
+  --kd-accent-soft:#ffb347; --kd-edge:#8a3b1e; --kd-rune:#d9c9a3;
+  --kd-panel-top:#2b211b; --kd-panel-bottom:#110e0c; --kd-frame:#a66a39;
+  --kd-button-top:#74401f; --kd-button-bottom:#211510; --kd-glow:rgba(255,122,26,.22);
+}
+html[data-faction="sancak"] {
+  --kd-faction-1:#253142; --kd-faction-2:#53677e; --kd-accent:#4d8cc9;
+  --kd-accent-soft:#b9d9ef; --kd-edge:#c0a56a; --kd-rune:#e8ddc5;
+  --kd-panel-top:#202b3b; --kd-panel-bottom:#0d121b; --kd-frame:#b7a16f;
+  --kd-button-top:#3b5c7d; --kd-button-bottom:#111d2d; --kd-glow:rgba(77,140,201,.22);
+}

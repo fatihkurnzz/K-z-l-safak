@@ -349,9 +349,9 @@ let last = performance.now(), frame = 0;
 // Ekran yenilemesi sınırdan hızlıysa kareler atlanır; zaman gerçek geçen süreyle ilerler.
 const winEl = document.getElementById('win'), battleEl = document.getElementById('battleUI');
 const touchDev = matchMedia('(pointer: coarse)').matches;
-export const FPS_CAP = { battle: 60, battleLow: 30, scene: 30, win: 15 };
+export const FPS_CAP = { battle: 60, battleLow: 30, scene: 30, win: 15, winFull: 5 };
 export function fpsCap() {
-  if (winEl && !winEl.hidden) return FPS_CAP.win;
+  if (winEl && !winEl.hidden) return winEl.classList.contains('full') ? FPS_CAP.winFull : FPS_CAP.win; // 20 Kas: tam ekran pencere sahneyi neredeyse örter → 5 kare/sn (pil, ısınma)
   if (battleEl && !battleEl.hidden) return gfx.T.fx >= 1 && gfx.T.shadow && !touchDev ? FPS_CAP.battle : FPS_CAP.battleLow; // telefonda savaş da 30 (ısınma)
   return FPS_CAP.scene;
 }

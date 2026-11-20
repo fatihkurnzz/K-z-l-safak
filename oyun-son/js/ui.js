@@ -27,14 +27,16 @@ import './ui-duyuru.js'; // sunucu duyuru şeridi
 import './ui-ogretici.js'; // Yemin Pazarı NPC'leri ve öğreticinin hikâyesi
 import './a11y.js'; // erişilebilirlik ayarları (html sınıfları açılışta uygulanır)
 import './ui-rehber.js'; // Rehber (ansiklopedi bölümleri)
-import './ui-reklam.js'; // reklam izleme ödülleri
 import './ui-anagorev.js'; // ana görev ağacı
 import './ui-minidizi.js'; // Mini Dizi: 10 bölüm, ödül, menü rozeti
 // import './ui-sandik.js'; // çevrimdışı ödül sandığı: 19 Kas kullanıcı isteğiyle oyundan kaldırıldı (kurallar shared/sandik.js duruyor)
 import './ui-balik.js'; // Yemin Pazarı göleti: balık tutma
 import './ui-sunucu.js'; // sunucu (Ares) bilgi paneli
 import './ui-karaborsa.js';
-import './ui-nobet.js'; // Kristal Nöbeti: Yemin Pazarı'nda Şaman Yashka (19 Kas) // Yemin Pazarı Karaborsası (19 Kas)
+import './ui-nobet.js';
+import './ui-yemin.js'; // Taş Yemini ortak baskını (20 Kas)
+import './ui-destan.js'; // Destan: sekiz hikâye bölümü (20 Kas)
+import './ui-anit.js'; // Anıt Savaşı: Şaman Yashka'dan (19 Kas) // Kristal Nöbeti: Yemin Pazarı'nda Şaman Yashka (19 Kas) // Yemin Pazarı Karaborsası (19 Kas)
 import './ui-klavye.js'; // döndürülmüş kipte (dik telefon) oyunun yatay ekran klavyesi
 import './ui-denetci.js'; // Oyun Denetçisi: FPS, kare süresi, bellek ölçümü // Zindanlar: mini sahneler ve ilerleme yolları // Meydan (CZ - PK): Savaş, Savunma, Meydan Marketi, Şan Dükkânı // çevrimiçi ödülleri (15 dk · 30 dk · 1 sa · 2 sa)
 export { showHub, showCreate } from './ui-hub.js';

@@ -17,6 +17,7 @@ import { MODES, startBattle, setupOf, stageOpen, parTurns, bagFull, needBagRoom 
 import { validTier, starsOf, CLIMB } from './pvp.js';
 import { DAILY_HANDLERS } from './daily.js';
 import { AD_HANDLERS } from './reklam.js';
+import { DESTAN_HANDLERS } from './destan.js';
 import { PROMO_HANDLERS } from './promo.js';
 import { NPC_HANDLERS } from './npc.js';
 import { FISH_HANDLERS } from './balik.js';
@@ -33,7 +34,7 @@ import { TUT_STEPS } from './meta.js';
 
 // İksir taşıyan savaşlar (mana.js): oyuncunun yaratıklara karşı savaşları. Meydan, Canlı Meydan, Sancak Savaşı ve Kuşatma
 // iksirsizdir; seri savaşlar (battle.sweep, depth.sweep) da iksir harcamaz.
-const POT_MODES = new Set(['stage', 'well', 'depth', 'rift', 'seal', 'worm', 'akin', 'clanboss', 'baskin']);
+const POT_MODES = new Set(['stage', 'well', 'depth', 'rift', 'seal', 'worm', 'akin', 'clanboss', 'baskin', 'kule', 'yemin', 'destan']);
 function armPots(p, b) {
   const u = b.party.find(x => !x.ai);
   if (!u || !POT_MODES.has(b.mode)) return;
@@ -303,6 +304,7 @@ const HANDLERS = {
   },
   ...DAILY_HANDLERS,
   ...AD_HANDLERS, // ödüllü reklam (reklam.js)
+  ...DESTAN_HANDLERS, // Destan bulmacaları (destan.js, 20 Kas)
   ...PROMO_HANDLERS, // promosyon kodu (promo.js)
   ...NPC_HANDLERS, // Yemin Pazarı tüccarı (npc.js)
   ...FISH_HANDLERS, // Yemin Pazarı göleti: balık tutma (balik.js)

@@ -67,7 +67,7 @@ export const MOBS = {
   erlik:     { name: 'Mareşal Marven', zone: 4, boss: true, k: { hp: 32, atk: 1.6, def: 1.4 }, spd: 102, crit: 0.18, weak: 'fire', skills: ['x_hit', 'x_drain', 'x_curse', 'x_execute'],
     phases: [{ at: 0.5, text: 'Marven kılıcını çekiyor: “Tarih hayatta kalanların!”' }], uniques: ['u:donukdis', 'u:mezarkupesi'],
     look: { skin: 0xcfe6f2, armor: 0x1a2a3a, trim: 0x9ae8ff, cape: 0x0a1420, weapon: 'scythe', helmet: 'crown', glowEyes: 0x9ae8ff, scale: 1.7, armorType: 'bones', fx: 0x9ae8ff } },
-  bozdag:    { name: 'Adsız, Tarikat Lideri', zone: 4, boss: true, k: { hp: 34, atk: 1.45, def: 1.5 }, spd: 106, crit: 0.18, weak: 'fire', skills: ['x_hit', 'x_cleave', 'x_blizzard', 'x_execute', 'x_rage'],
+  bozdag:    { name: 'Adsız, Tarikat Lideri', zone: 4, boss: true, cult: true, k: { hp: 34, atk: 1.45, def: 1.5 }, spd: 106, crit: 0.18, weak: 'fire', skills: ['x_hit', 'x_cleave', 'x_blizzard', 'x_execute', 'x_rage'],
     phases: [{ at: 0.6, text: 'Adsız kollarını açıyor; kül yağmaya başlıyor!' }, { at: 0.25, text: 'Korlar sönmek üzere: Adsız son gücünü topluyor!' }], uniques: ['u:yaylahukmu', 'u:hakanmuhru'],
     look: { skin: 0xd8c0a8, armor: 0xf2f6fa, trim: 0xe7c75a, accent: 0x2d6fa3, cape: 0x2d6fa3, weapon: 'mace', shield: true, helmet: 'crown', beard: true, hair: 0xffffff, scale: 1.95, fx: 0xfff3a0, spikes: true } },
 
@@ -81,7 +81,7 @@ export const MOBS = {
   lavyurek: { name: 'Lav Yürek', zone: 4, boss: true, event: true, k: { hp: 30, atk: 1.5, def: 1.35 }, spd: 94, crit: 0.12, weak: 'ice', skills: ['x_hit', 'x_lavanova', 'x_smash', 'x_firestorm', 'x_roar'], uniques: [],
     phases: [{ at: 0.6, text: 'Lav Yürek kaynıyor: kristal titriyor!' }, { at: 0.25, text: 'Lav Yürek’in kabuğu çatladı, ateş taşıyor!' }],
     look: { skin: 0x2a1c18, armor: 0x1a100c, trim: 0xff6a1a, accent: 0xffb347, weapon: 'club', helmet: 'none', glowEyes: 0xffb02e, scale: 2.3, fx: 0xff5a14, spikes: true, armorType: 'leather' } },
-  karaduman: { name: 'Kül Ağası Karadun', zone: 1, boss: true, event: true, k: { hp: 420, atk: 1.3, def: 1.25 }, spd: 100, crit: 0.12, weak: 'ice', skills: ['x_hit', 'x_fire', 'x_firestorm', 'x_smash', 'x_roar'], uniques: [],
+  karaduman: { name: 'Kül Ağası Karadun', zone: 1, cult: true, boss: true, event: true, k: { hp: 420, atk: 1.3, def: 1.25 }, spd: 100, crit: 0.12, weak: 'ice', skills: ['x_hit', 'x_fire', 'x_firestorm', 'x_smash', 'x_roar'], uniques: [],
     phases: [{ at: 0.66, text: 'Karadun külünü savuruyor!' }, { at: 0.33, text: 'Kor zırhı kızıla kesti!' }],
     look: { skin: 0x3a2e28, armor: 0x1c1512, trim: 0xff7a1a, accent: 0xffb347, cape: 0x2a120a, weapon: 'mace', helmet: 'horned', glowEyes: 0xff8a2a, scale: 2.0, fx: 0xff7a1a, spikes: true } },
   ...BEST.mobs,
@@ -125,7 +125,7 @@ export function mobUnit(mob, lvl, rank = 'n') {
     spd: M.spd, crit: M.crit, critDmg: 1.5, weak: M.weak || null, ccRes: M.boss ? 0.6 : M.captain ? 0.4 : 0,
     focus: M.boss || M.captain ? 0.6 : rank === 'e' ? 0.5 : 0.35, // en düşük canlı hedefe odaklanma olasılığı
     mods: {}, skills: M.skills, phases: M.phases || null,
-    wt: mobClass(mob), pen: 0, res: mobRes(mob, lvl),
+    wt: mobClass(mob), pen: 0, res: mobRes(mob, lvl), ...(M.cult ? { cult: true } : {}), // cult: Küllerin Tarikatı (istemcide sahne solar)
   };
 }
 

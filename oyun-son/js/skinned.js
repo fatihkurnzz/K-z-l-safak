@@ -23,15 +23,16 @@ let manifest = { characters: {}, anims: {} };
 
 // ?test=xbot → three.js örneklerindeki Mixamo iskeletli Xbot ile boru hattını dene (sadece geliştirme için)
 const TEST = new URLSearchParams(location.search).get('test');
-const XBOT = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/gltf/Xbot.glb';
+const XBOT = 'models/test/Xbot.glb.js'; // pakete gömülü (dış CDN yok); base64 .glb.js modülü
 
 const url = u => /^https?:/.test(u) || u.startsWith(BASE) ? u : BASE + u;
 
 async function load(u) {
   u = url(u);
   if (ready.has(u)) return ready.get(u);
-  const isG = /\.(glb|gltf|json)$/i.test(u);
-  const v = await (isG ? gltf.loadAsync(u).then(g => ({ scene: g.scene, clips: g.animations }))
+  const isG = /\.(glb|gltf|json)$/i.test(u), isB = /\.glb\.js$/i.test(u);
+  const v = await (isB ? import('../' + u).then(m => { const t = atob(m.default), b = new Uint8Array(t.length); for (let i = 0; i < t.length; i++) b[i] = t.charCodeAt(i); return gltf.parseAsync(b.buffer, ''); }).then(g => ({ scene: g.scene, clips: g.animations }))
+                 : isG ? gltf.loadAsync(u).then(g => ({ scene: g.scene, clips: g.animations }))
                        : fbx.loadAsync(u).then(o => ({ scene: o, clips: o.animations })))
     .catch(() => { console.warn('[model] yüklenemedi, prosedürel modele dönülüyor:', u); return null; });
   ready.set(u, v);

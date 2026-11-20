@@ -3031,4 +3031,5 @@ export const EN_CODES = {
   'Verilen hasar': 'Damage dealt', 'Alınan hasar': 'Damage taken', 'Kritik vuruş': 'Critical hits', 'En büyük vuruş': 'Biggest hit',
   'Sohbeti küçült': 'Minimize chat', 'Sohbeti aç': 'Open chat', 'Savaş hızı (yalnız OTO açıkken)': 'Battle speed (AUTO only)',
   'Hızlandırma': 'Speed-up', '2x ve 3x yalnız OTO açıkken kullanılır.': '2x and 3x work only while AUTO is on.', 'Kışkırtılmış': 'Provoked', 'Yalnız onu kışkırtana saldırabilir': 'Can only attack the one who provoked it',
+  'Anıt Savaşı': 'Monument War', 'Sınır Anıtı': 'Border Monument', 'Şaman Yashka': 'Shaman Yashka', 'Savaşa gir': 'Enter battle', 'Bugünlük hak bitti': 'No entries left today', 'Döndü': 'Returned', 'Rakip': 'Rival',
 };

@@ -68,6 +68,7 @@ taps.add((type, payload, p) => {
 let lvlWas = null, nameWas = null, achWas = null;
 onState(s => {
   setRace(s?.faction); if (document.body.dataset.faction !== (s?.faction || '')) document.body.dataset.faction = s?.faction || ''; // ırk: arayüz renkleri (css/irk.css) ve UI sesi çeşidi
+  if (s?.faction && document.documentElement.dataset.faction !== s.faction) document.documentElement.dataset.faction = s.faction; // 20 Kas: tema her ekranda kayıttaki halka bağlı (css html[data-faction])
   if (!s) { lvlWas = nameWas = achWas = null; return; }
   const inBattle = hud.hidden; // savaş sonucu ekranında zafer ezgisinin ardından
   if (nameWas === s.name && lvlWas !== null && s.lvl > lvlWas) play('ui.levelup', { delay: inBattle ? 1.3 : 0.15 });

@@ -126,7 +126,6 @@ nav.tabs .tdot { position:absolute; top:4px; right:6px; width:10px; height:10px;
   border-radius:4px; background:linear-gradient(90deg, rgba(232,196,106,.12), rgba(232,196,106,.02)); box-shadow:inset 3px 0 0 #c9a050; }
 #modal .box.bres .in > p:first-of-type { margin:2px 0 0; text-align:center; }
 #modal .box.bres .bres-stars { text-align:center; margin:2px 0 8px; }
-#modal .box.bres .in > p.ad-x2 { background:none; box-shadow:none; text-align:center; }
 /* Savaş dökümü */
 .dokum .dk-tiles { display:grid; grid-template-columns:repeat(auto-fill, minmax(118px, 1fr)); gap:6px; margin:6px 0 8px; }
 .dokum .dk-t { display:grid; gap:2px; padding:6px 9px; border-radius:6px; background:linear-gradient(180deg, rgba(232,196,106,.14), rgba(0,0,0,.18)); border:1px solid rgba(232,196,106,.3); }
@@ -152,3 +151,22 @@ nav.tabs .tdot { position:absolute; top:4px; right:6px; width:10px; height:10px;
 @media (prefers-reduced-motion:reduce) { .mz2-lamp .fl, .mz2-veins circle, .mz2-motes circle { animation:none; } }
 #loading.stuck .ld-txt { display:none; }
 #loading.stuck .ld-retry { padding:7px 20px; font-size:12px; }
+
+/* ---------- Anıt Savaşı (19 Kas): puan şeridi ve anıt göstergesi ---------- */
+#game #battleUI #bdwbar { position:absolute; left:50%; top:calc(var(--sat) + 40px); transform:translateX(-50%); display:flex; align-items:center; gap:10px; padding:4px 12px; z-index:3; pointer-events:none;
+  border-radius:8px; background:linear-gradient(180deg, rgba(14,10,18,.9), rgba(14,10,18,.72)); box-shadow:0 0 0 1px rgba(232,196,106,.4), 0 4px 12px #000a; color:#efe4cc; }
+#bdwbar .bd-a, #bdwbar .bd-b { display:flex; align-items:center; gap:6px; }
+#bdwbar small { font:800 9px/1 Inter, sans-serif; letter-spacing:1.5px; text-transform:uppercase; opacity:.8; }
+#bdwbar .bd-a b, #bdwbar .bd-b b { font:900 22px/1 var(--display, serif); min-width:26px; text-align:center; }
+#bdwbar .bd-a b { color:#8fc4ff; text-shadow:0 0 10px rgba(80,150,255,.6); } #bdwbar .bd-b b { color:#ff8f7a; text-shadow:0 0 10px rgba(255,90,60,.6); }
+#bdwbar .bd-mid { display:grid; justify-items:center; gap:3px; min-width:190px; }
+#bdwbar .bd-dmg { display:block; width:100%; height:6px; border-radius:3px; overflow:hidden; background:linear-gradient(90deg, #c2321e, #ff7a4a); }
+#bdwbar .bd-dmg s { display:block; height:100%; background:linear-gradient(90deg, #2f6ad8, #7fb8ff); text-decoration:none; }
+#bdwbar em { font:700 9.5px/1 Inter, sans-serif; font-style:normal; opacity:.9; white-space:nowrap; }
+#overlay .hud.mon .bars { width:120px; } #overlay .hud.mon .lv { display:none; } #overlay .hud.mon .tm { display:none; }
+#overlay .hud.mon .hp { box-shadow:0 0 0 1px #000, 0 0 0 2px #e8c46a, 0 0 10px rgba(232,196,106,.55); }
+.anit-info .anit-rules { margin:6px 0 8px; padding-left:18px; display:grid; gap:3px; font-size:12.5px; }
+#game #battleUI:has(#bdwbar) #btitle { display:none; }
+#game #battleUI #bdwbar { top:calc(var(--sat) + 6px); padding:3px 12px; gap:10px; }
+#bdwbar .bd-a b, #bdwbar .bd-b b { font-size:19px; }
+#bdwbar .bd-mid { gap:2px; min-width:200px; }

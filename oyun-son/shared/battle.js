@@ -26,7 +26,10 @@ const TM_FULL = 1000;     // sıra çubuğu dolunca birim oynar
 // Büyücü büyü vuruşunda yok sayılan savunma payı (1 = tamamı; testle ayarlanır)
 export let MAGE_AC_IGNORE = 0.8; // 19 Kas testi: 1 → Büyücü %64–96 (fazla), 0,8 → oyun sonu %50–64
 export const setMageAcIgnore = v => { MAGE_AC_IGNORE = v; };
-export const ENGINE_V = 7;
+export const ENGINE_V = 9;
+// v8 (kullanıcı 20 Kas): element zayıflığı yalnız PvE — yaratığa vuran kahraman vuruşunun elementi, yetenekte `el` yoksa yeteneğin
+// ağacından (Ateş/Alaz → ateş, Yıldırım/Boran → yıldırım, Buz → buz) ya da fiziksel vuruşta silah efektinden (alev/buz/yıldırım) gelir.
+// Hedefin zayıflığına denk gelirse ×WEAK_MULT. Kahramanların zayıflığı yok (weak: null): PvP'de hiç işlemez.
 // v7 (kullanıcı 19 Kas): hız faktörü askıda — bütün birimler sıra çubuğunu eşit doldurur (SPD_FLAT); hız statı, Çabukluk/Yavaşlık
 // sırayı etkilemez. Kimin önce başlayacağı yine kurulumdaki rastgele başlangıç çubuğuyla belirlenir. Geri açmak: SPEED_OFF = false.
 export const SPEED_OFF = true, SPD_FLAT = 100; // 6: Büyücünün büyü vuruşu savunmayı yok sayar (KO; yalnız direnç keser) · 4: zehirli silah (2 tur zehir) · 5: silah efektleri (isabet hasarının %1'i, tek seferlik, türlü)
@@ -40,6 +43,8 @@ const atkMod = u => (has(u, 'atkUp') ? 1.3 : 1) * (has(u, 'atkDown') ? 0.7 : 1);
 // Büyücü element gücü: uzmanlık ağacının (ve o yolun usta) yetenekleri büyü gücüne kendi element hasarını ekler
 const ELEM_OF = { ates: 'fire', yildirim: 'bolt', alaz: 'fire', boran: 'bolt' };
 export const elemOf = S => ELEM_OF[S.tree] || (S.pm ? ELEM_OF[S.path] : null) || null;
+const HIT_EL = { ...ELEM_OF, buz: 'ice' }; // v8: zayıflık için vuruşun elementi (güç hesabına girmez)
+export const hitElOf = S => HIT_EL[S.tree] || (S.pm ? HIT_EL[S.path] : null) || null;
 const stv = (u, s, d) => { const x = u.st.find(y => y.s === s); return x ? (x.v || d) : 0; }; // etkinin değeri (yoksa 0)
 const defMod = u => (has(u, 'defUp') ? 1.4 : 1) * (has(u, 'defDown') ? 0.6 : 1);
 const spdMod = u => (has(u, 'spdUp') ? 1.25 : 1) * (has(u, 'spdDown') ? 0.75 : 1);
@@ -60,7 +65,10 @@ export class Battle {
   //   hamle yapar; kendi aralarındaki sıra yine hız çubuğunun başlangıç değerine, eşitlikte dizilişe göredir. Sonrası
   //   olağan hız çubuğudur. Oyuncuya karşı modlarda (meydan, sancak, kuşatma) verilmez: orada sırayı hız belirler.
   // v: motor sürümü (ENGINE_V); verilmezse 1 (güncellemeden önce başlamış savaş kaydı)
-  constructor({ party, waves, seed, enrageTurn = 0, turnCap = 400, restoreOnWave = false, lead = false, v = 1 }) {
+  // bdw: Sınır Anıtı savaşı (anit.js; iki ırkın partisi + ortada iki tarafın da vurabildiği anıt). { mon: anıt birimi, respawn,
+  //   regenEvery, regenPct, rounds, monPick }. Raunt = sahadaki her canlı kahramanın bir hamlesi; ölen kahraman `respawn` raunt sonra
+  //   tam canla döner; anıt her `regenEvery` rauntta azami canının regenPct'i kadar iyileşir; öldürme 1 puan.
+  constructor({ party, waves, seed, enrageTurn = 0, turnCap = 400, restoreOnWave = false, lead = false, v = 1, bdw = null }) {
     this.v = v;
     this.rand = rng(seed);
     this.autoRand = rng((seed ^ 0x9e3779b9) >>> 0); // oyuncunun oto seçimi; ana akışı etkilemez
@@ -79,6 +87,39 @@ export class Battle {
     party.forEach((u, i) => this.addUnit(u, 'A', i));
     if (lead) for (const u of this.units) u.tm += TM_FULL; // çubuk dolu başlar: zar aynı kalır, yalnızca üstüne bir tam tur eklenir
     this.spawnWave();
+    if (bdw) {
+      const m = this.addUnit({ ...bdw.mon, skills: [] }, 'N', 0); m.mon = true; m.tm = 0;
+      this.bdw = { respawn: bdw.respawn ?? 5, regenEvery: bdw.regenEvery ?? 5, regenPct: bdw.regenPct ?? 0.01, rounds: bdw.rounds ?? 30, monPick: bdw.monPick ?? 0.3,
+        mon: m.id, round: 0, left: this.units.filter(x => x.alive && !x.mon).length, pts: { A: 0, B: 0 }, dmg: { A: 0, B: 0 }, monDown: false };
+    }
+  }
+  // ---- Sınır Anıtı savaşı ----
+  // Raunt sayacı: her hamle başında bir düşer; sıfırlanınca yeni raunt (dirilmeler, anıt yenilenmesi, raunt sınırı)
+  bdwTurn() {
+    const B = this.bdw;
+    if (--B.left > 0) return;
+    B.round++;
+    for (const x of this.units) if (!x.alive && !x.mon && x.rise && x.rise <= B.round) {
+      x.alive = true; x.hp = x.maxHp; x.st = []; x.tm = 0; x.rise = 0; x.hpb = 0; x.hpd = 0; for (const k of x.skills) k.cd = 0; if (x.maxMp > 0) x.mp = x.maxMp;
+      this.events.push({ t: 'bdw', k: 'rise', u: x.id, hp: x.hp });
+    }
+    const m = this.get(B.mon);
+    if (m.alive && B.round % B.regenEvery === 0 && m.hp < m.maxHp) {
+      const amt = Math.min(m.maxHp - m.hp, Math.max(1, Math.round(m.maxHp * B.regenPct))); m.hp += amt;
+      this.events.push({ t: 'bdw', k: 'mend', u: m.id, amt, hp: m.hp });
+    }
+    B.left = this.units.filter(x => x.alive && !x.mon).length || 1;
+    this.events.push({ t: 'bdw', k: 'round', n: B.round, of: B.rounds });
+    if (B.round >= B.rounds) this.finish(this.bdwWinner(false));
+  }
+  // Kazanan: anıt kesildiyse toplam anıt hasarının en az %50,1'ini veren taraf; değilse (ya da eşitse) öldürme puanı, o da eşitse
+  // anıta verilen toplam hasar; hepsi eşitse savunan (B)
+  bdwWinner(monDown) {
+    const { pts, dmg } = this.bdw, tot = dmg.A + dmg.B;
+    if (monDown && tot > 0) { if (dmg.A / tot >= 0.501) return 'A'; if (dmg.B / tot >= 0.501) return 'B'; }
+    if (pts.A !== pts.B) return pts.A > pts.B ? 'A' : 'B';
+    if (dmg.A !== dmg.B) return dmg.A > dmg.B ? 'A' : 'B';
+    return 'B';
   }
 
   addUnit(tpl, side, slot) {
@@ -102,7 +143,7 @@ export class Battle {
 
   get(id) { return this.units.find(u => u.id === id); }
   alive(side) { return this.units.filter(u => u.alive && u.side === side); }
-  foes(u) { return this.alive(u.side === 'A' ? 'B' : 'A'); }
+  foes(u) { const f = this.alive(u.side === 'A' ? 'B' : 'A'); return this.bdw && !u.mon ? [...f, ...this.alive('N')] : f; } // anıt iki tarafın da hedefidir
   // pve yeteneği (skills.js pve: true) yalnız yaratıklara iner: kahraman birimleri (cls taşıyan) hedef olamaz
   foesFor(u, S) { const f = this.foes(u); return S?.pve ? f.filter(x => !x.cls) : f; }
   allies(u) { return this.alive(u.side); }
@@ -111,8 +152,9 @@ export class Battle {
   // ---- Sıra ----
   nextActor() {
     for (;;) {
+      if (this.bdw && !this.units.some(x => x.alive && !x.mon)) { this.bdw.left = 1; this.bdwTurn(); if (this.over) return null; continue; } // herkes düştü: raunt ilerler, dirilenler gelir
       let best = null;
-      for (const u of this.units) if (u.alive && u.tm >= TM_FULL && (!best || u.tm > best.tm)) best = u;
+      for (const u of this.units) if (u.alive && !u.mon && u.tm >= TM_FULL && (!best || u.tm > best.tm)) best = u; // anıt sıra almaz
       if (best) { best.tm -= TM_FULL; return best; }
       for (const u of this.units) if (u.alive) u.tm += SPEED_OFF && this.v >= 7 ? SPD_FLAT : Math.round(u.spd * spdMod(u));
     }
@@ -137,6 +179,7 @@ export class Battle {
     }
     while (!this.over && !this.pending) {
       const u = this.nextActor();
+      if (!u) break;
       if (!this.startTurn(u)) { if (u.alive) this.endTurn(u); continue; }
       if (u.side === 'A' && !u.ai) { this.pending = u; break; } // ai: yapay zekânın oynadığı müttefik
       const c = this.ai(u, this.rand);
@@ -183,6 +226,7 @@ export class Battle {
   }
 
   startTurn(u) {
+    if (this.bdw) { this.bdwTurn(); if (this.over) return false; }
     this.turns++;
     for (const s of u.skills) if (s.cd > 0) s.cd--;
     const ev = { t: 'turn', u: u.id, ticks: [] };
@@ -300,6 +344,7 @@ export class Battle {
       let legal = this.targetsFor(u, id).map(t => this.get(t));
       if (v2 && vsOf(id) && legal.some(t => ripe(id, t))) legal = legal.filter(t => ripe(id, t)); // koşulu sağlayan hedefler arasından
       if (legal.length === 1) return legal[0].id;
+      if (this.bdw) { const m = legal.find(t => t.mon); if (m) { if (rand() < this.bdw.monPick) return m.id; legal = legal.filter(t => !t.mon); if (legal.length === 1) return legal[0].id; } } // anıt savaşı: arada anıta vurur
       return (rand() < (u.focus ?? 0.65) ? [...legal].sort((a, b) => a.hp - b.hp)[0] : legal[Math.floor(rand() * legal.length)]).id;
     };
     let attacks = of('attack').filter(id => SKILLS[id].cd > 0);
@@ -341,6 +386,7 @@ export class Battle {
     Object.assign(b, this);
     b.units = this.units.map(x => ({ ...x, st: x.st.map(y => ({ ...y })), skills: x.skills.map(k => ({ ...k })) }));
     b.events = []; b.kills = [...this.kills]; b.rand = () => 0.5; b.pending = null;
+    if (this.bdw) b.bdw = { ...this.bdw, pts: { ...this.bdw.pts }, dmg: { ...this.bdw.dmg } };
     return b;
   }
   worth(b, me) {
@@ -379,7 +425,10 @@ export class Battle {
       try { sim.perform(su, id, t); } catch { continue; }
       const S = SKILLS[id], c = this.costOf(u, id);
       // mana: bedelin havuza oranı kadar küçük bir eksi (gereksiz yere pahalı yeteneği yakmasın; mana alanı yoksa 0)
-      const s = this.worth(sim, u) - base - (S.cd || 0) * 0.015 - (c && u.maxMp > 0 ? 0.6 * c / u.maxMp : 0);
+      // v9 (20 Kas, kullanıcı: 'oto en yüksek hasarı önce versin'): vuran yeteneğe bekleme/mana eksisi yok; aynı puanda daha çok hasar veren seçilir.
+      // Eksi büyük canlı hedefte (boss) hasar payını bastırıp otoyu temel saldırıya itiyordu (oyun testi: hamlelerin %50–80'i temel saldırı).
+      const hits = this.v >= 9 && S.fx.some(f => f.k === 'dmg' || f.k === 'det');
+      const s = this.worth(sim, u) - base - (hits ? -1e-7 * sim.events.reduce((a, e) => a + (e.fx || []).reduce((x, f) => x + (f.k === 'dmg' && f.amt > 0 ? f.amt : 0), 0), 0) : (S.cd || 0) * 0.015 + (c && u.maxMp > 0 ? 0.6 * c / u.maxMp : 0));
       if (s > bs + 1e-9) { bs = s; best = [id, t]; }
     }
     return best;
@@ -412,6 +461,8 @@ export class Battle {
     const power = S.sc === 'mag' ? (E ? 0.8 * u.mag + ev2 : u.mag) * atkMod(u) : (u.atk + stv(u, 'strUp', 0)) * atkMod(u) * (1 - stv(u, 'weakP', 0.2));
     const group = f.to === 'self' ? [u] : f.to === 'allies' ? this.allies(u) : f.to === 'foes' ? this.foes(u) : [...hit];
     if (f.k === 'dmg') {
+      const HE = this.v >= 8 && !f.el ? hitElOf(S) : null;
+      if (HE) f = { ...f, hel: HE }; // v8: yeteneğin ağaç elementi (yalnız zayıflık)
       const hits = f.hits || 1;
       if (S.target === 'random') {
         for (let i = 0; i < hits; i++) {
@@ -429,7 +480,7 @@ export class Battle {
         let c = f.c;
         if (!info.good) c += u.mods.debuffAcc;
         if (f.pvpc !== undefined && t.cls) c = f.pvpc; // PvP'de (hedef kahraman) ayrı şans
-        if (f.s === 'stun' && E === 'bolt' && u.mag > 0) c += Math.min(0.15, 0.4 * ev2 / u.mag) + (u.lock || 0); // Yıldırım Hasarı kilidi artırır (en çok +15 puan) + Fırtına takısının kilit şansı
+        if (f.s === 'stun' && E === 'bolt' && u.mag > 0) c += (this.v >= 9 ? Math.min(0.1, 0.3 * ev2 / u.mag) : Math.min(0.15, 0.4 * ev2 / u.mag)) + (u.lock || 0); // Yıldırım Hasarı kilidi artırır (v9: en çok +10 puan, 20 Kas kullanıcı: 'biraz düşür'; v8 ve öncesi +15) + Fırtına takısının kilit şansı
         if (info.cc) c = (c + u.mods.ccAcc) * (1 - (t.ccRes || 0));
         if (f.s === 'stun' && has(t, 'resUp') && S.fx.some(x => x.el === 'bolt')) c *= 0.75; // Büyü Direnci: yıldırım kilidi %25 az tutar
         if (c < 1 && this.rand() >= c) { ev.fx.push({ k: 'resist', u: t.id, s: f.s }); continue; }
@@ -529,6 +580,12 @@ export class Battle {
   }
 
   damage(u, t, power, f, ev) {
+    if (!this.bdw || !t.mon) return this.hurt(u, t, power, f, ev);
+    const h0 = t.hp, r = this.hurt(u, t, power, f, ev);
+    this.bdw.dmg[u.side] += Math.max(0, h0 - Math.max(0, t.hp)); // anıta verilen hasar tarafa yazılır
+    return r;
+  }
+  hurt(u, t, power, f, ev) {
     // Sağlamlık (defUp) yalnız fiziksel hasara işler; büyü hasarında hedefin savunma artışı sayılmaz
     const dm = has(t, 'defUp') ? (f.magic ? 1 : 1 + stv(t, 'defUp', 0.4)) * (has(t, 'defDown') ? 0.6 : 1) : defMod(t);
     // Zırh (armorUp, Güçlendirici; 19 Kas): fiziksel vuruşta hedefin savunmasına düz eklenir
@@ -541,7 +598,8 @@ export class Battle {
     if (crit) dmg *= u.critDmg;
     if (f.exec && t.hp / t.maxHp < f.exec.below) dmg *= 1 + f.exec.bonus;
     if (has(t, 'mark')) dmg *= 1.2;
-    if (f.el && t.weak === f.el) dmg *= WEAK_MULT;
+    const wEl = f.el || (this.v >= 8 && !t.cls ? f.hel || (f.magic ? null : WFX_RES[u.wfx]) || null : null), weak = !!(wEl && t.weak === wEl);
+    if (weak) dmg *= WEAK_MULT;
     const combo = !!(f.vs && f.vs.s.some(s => has(t, s))); // fırsat vuruşu: hedef aranan etkilerden birini taşıyor
     if (combo) dmg *= 1 + f.vs.bonus;
     if (f.wt && u.wt === f.wt.k) dmg *= 1 + f.wt.bonus;     // silah ustalığı: yeteneğin istediği silah sınıfı kuşanılmış
@@ -567,7 +625,7 @@ export class Battle {
     const taken = Math.min(t.hp, dmg - abs);
     t.hp -= taken;
     let killed = t.hp <= 0;
-    ev.fx.push({ k: 'dmg', u: t.id, amt: dmg, abs, crit, killed, hp: t.hp, weak: !!(f.el && t.weak === f.el), ...(cut > 0 ? { cut } : {}), ...(combo ? { combo: true } : {}) });
+    ev.fx.push({ k: 'dmg', u: t.id, amt: dmg, abs, crit, killed, hp: t.hp, weak, ...(cut > 0 ? { cut } : {}), ...(combo ? { combo: true } : {}) });
     if (moved) {
       const g = moved.G, gs = g.st.find(x => x.s === 'shield');
       let ga = 0;
@@ -617,6 +675,11 @@ export class Battle {
   }
   kill(t) {
     t.alive = false; t.hp = 0; t.st = [];
+    if (this.bdw) { // anıt kesildi: kazanan hamle bitince (settle) anıt hasarına göre belirlenir · kahraman: karşı tarafa 1 puan, `respawn` raunt sonra döner
+      if (t.mon) this.bdw.monDown = true;
+      else { this.bdw.pts[t.side === 'A' ? 'B' : 'A']++; t.rise = this.bdw.round + this.bdw.respawn; }
+      return;
+    }
     if (t.side === 'B') this.kills.push({ mob: t.mob, rank: t.rank, lvl: t.lvl, ...(t.xr ? { xr: t.xr } : {}) }); // xr: tek kahraman dalgasında budanan yaratıkların ödül payı (solo.js)
   }
   // Ölümlerden sonra: dalga geçişi ya da savaş sonu
@@ -637,6 +700,7 @@ export class Battle {
   settle() {
     for (const u of this.units) if (u.hpb || u.hpd || u.st.some(y => y.s === 'hpUp' || y.s === 'hpDown')) this.syncHp(u);
     if (this.over) return;
+    if (this.bdw) { if (this.bdw.monDown) this.finish(this.bdwWinner(true)); return; } // anıt savaşında taraflar dirilir: yok olma bitirmez
     if (!this.alive('A').length) return this.finish('B');
     if (!this.alive('B').length) {
       if (this.wave + 1 < this.waves.length) this.spawnWave();
@@ -653,6 +717,7 @@ export class Battle {
       kills: this.kills,
       hpFrac: (() => { const a = this.units.filter(u => u.side === 'A'), mx = a.reduce((s, u) => s + u.maxHp, 0); return mx ? Math.round(1000 * a.reduce((s, u) => s + (u.alive ? Math.max(0, u.hp) : 0), 0) / mx) / 1000 : 0; })(),
       bossDamage: boss ? 1 - boss.hp / boss.maxHp : 0,
+      ...(this.bdw ? { bdw: { pts: { ...this.bdw.pts }, dmg: { ...this.bdw.dmg }, round: this.bdw.round, monDown: this.bdw.monDown } } : {}),
       ...this.potsUsed(),
     };
   }

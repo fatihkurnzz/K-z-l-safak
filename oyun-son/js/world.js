@@ -4,6 +4,7 @@ import { Character, buildEnv, WormCharacter } from './models.js';
 import { BeastCharacter, decorateMob } from './beasts.js';
 import { BEAST_KINDS } from '../shared/bestiary.js';
 import { createSkinned } from './skinned.js';
+import { MonumentCharacter } from './anit-model.js'; // Anıt Savaşı'nın Sınır Anıtı
 import { todEnv, todKey, afterEnv } from './daylight.js';
 import { blobGeo, blobMaterial } from './scenery.js';
 import { clearFx } from './fx.js';
@@ -33,7 +34,7 @@ const blobM = blobMaterial(gfx.T.blob);
 export function spawn(unit, x, z, faceAngle) {
   // models.json'da iskeletli model varsa onu, yoksa prosedürel modeli kullan
   const K = unit.look?.kind; // insansı olmayan gövdeler: Dev Solucan ve canavar ansiklopedisi (beasts.js); insansılara ekler (kanat, kuyruk…)
-  const char = K === 'worm' ? new WormCharacter(unit.look) : BEAST_KINDS.includes(K) ? new BeastCharacter(unit.look) : createSkinned(unit) || decorateMob(new Character(unit.look, unit.model), unit.look); // Dev Solucan: insansı olmayan model
+  const char = K === 'monument' ? new MonumentCharacter(unit.look) : K === 'worm' ? new WormCharacter(unit.look) : BEAST_KINDS.includes(K) ? new BeastCharacter(unit.look) : createSkinned(unit) || decorateMob(new Character(unit.look, unit.model), unit.look); // Dev Solucan: insansı olmayan model
   char.wt = unit.wt; // silah sınıfı (efekt tablosu, modelin silahı bilinmiyorsa buna bakar)
   char.pos.set(x, 0.1, z);
   char.root.rotation.y = faceAngle;

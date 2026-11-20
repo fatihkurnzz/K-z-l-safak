@@ -24,7 +24,6 @@ import { mineStock, mineRate, marketTax, idleStock, questProgress, stageOpen, bo
 import { svg, ri } from './icons.js';
 import { WEATHER, weatherAt } from '../shared/realm.js';
 import { RULES } from '../shared/rules.js';
-import { adBtn, adWheelBtn } from './ui-reklam.js';
 
 const lockPage = key => `<div class="hint">${ri('lock')} ${lockNote(key)}</div>`;
 const used = k => S.daily[k] || 0;
@@ -69,7 +68,7 @@ ACT.craft = d => doAct('anvil.craft', { g: +d.g, n: +d.n });
 ACT.mine = () => openWin({ title: 'Maden', render: () => {
   if (locked('mine')) return lockPage('mine');
   const M = S.mine, stock = mineStock(S, now()), rate = mineRate(S, now()), cap = rate * MINE.capHours, cost = MINE.upCost(M.lvl);
-  return `${mineScene(stock / cap, S.faction)}<div class="row">${med('mine')}<div class="grow"><b>Maden seviyesi ${M.lvl}/${MINE.max}</b><br><span class="mut">Saatte ${fmt(rate)} cevher · depo ${MINE.capHours} saatte dolar${weatherAt(now()) === 'rain' ? ` · <b class="up">yağmur: +%${WEATHER.rain.minePct}</b>` : ''}</span><div class="pbar" style="margin-top:4px"><i style="width:${Math.min(100, 100 * stock / cap)}%"></i></div></div><button class="btn green" data-a="mineCollect" ${stock >= 1 ? '' : 'disabled'}>${ri('ore')} Topla (${fmt(stock)})</button></div>${adBtn('maden', 'Reklamla hızlandır (+1 saat)', {}, 'ad-mine')}
+  return `${mineScene(stock / cap, S.faction)}<div class="row">${med('mine')}<div class="grow"><b>Maden seviyesi ${M.lvl}/${MINE.max}</b><br><span class="mut">Saatte ${fmt(rate)} cevher · depo ${MINE.capHours} saatte dolar${weatherAt(now()) === 'rain' ? ` · <b class="up">yağmur: +%${WEATHER.rain.minePct}</b>` : ''}</span><div class="pbar" style="margin-top:4px"><i style="width:${Math.min(100, 100 * stock / cap)}%"></i></div></div><button class="btn green" data-a="mineCollect" ${stock >= 1 ? '' : 'disabled'}>${ri('ore')} Topla (${fmt(stock)})</button></div>
     ${M.lvl < MINE.max ? `<div class="row">${med('grow', 'green')}<div class="grow"><b>Madeni büyüt</b><br><span class="mut">Seviye ${M.lvl + 1}: saatte ${fmt(mineRate(S, now(), M.lvl + 1))} cevher · seviye ${M.lvl * 6} gerekli</span></div><button class="btn" data-a="mineUp" ${S.akce >= cost && S.lvl >= M.lvl * 6 ? '' : 'disabled'}>${ri('akce')} ${fmt(cost)} akçe</button></div>` : ''}
     <h3>Madenci takası <span class="mut">· elinde ${ri('ore')} ${fmt(S.ore)} cevher</span></h3>
     <div class="row">${resTile('akce')}<div class="grow"><b>Akçe</b><br><span class="mut">${ri('ore')} ${MINE.trade.akce.ore} cevher → ${ri('akce')} ${MINE.trade.akce.give.n} akçe</span></div><button class="btn sm" data-a="mineTrade" data-k="akce" data-n="100" ${S.ore >= 100 ? '' : 'disabled'}>100 cevher</button><button class="btn sm" data-a="mineTrade" data-k="akce" data-n="${S.ore}" ${S.ore >= 1 ? '' : 'disabled'}>Hepsi</button></div>
@@ -300,7 +299,7 @@ ACT.wheel = () => { wheelLast = null; openWin({ title: 'Kader Çarkı', render: 
     : wheelLast ? `<div class="hint up wrev"><b>Çıkan: ${WHEEL.pool[wheelLast.index].name}</b>${lootBox(wheelLast.loot)}<button class="btn sm" data-a="wheelBack">Mücevherlere dön</button></div>`
     : `<div class="gem-row">${Object.entries(SHARDS).map(([k, n]) => `<button class="gem-card ${has(k) ? '' : 'off'}" data-a="spin" data-k="${k}" ${has(k) ? '' : 'disabled'}>${gemArt(k, true)}<b>${n}</b><small>${ri('shard_' + k)} ${S.shards[k] || 0}/${WHEEL.cost}</small><em>${has(k) ? 'Dokun: kır' : 'Parça yetmiyor'}</em></button>`).join('')}</div>`;
   return `<div class="hint">Gök Yarığı'ndan gelen parçalar burada mücevhere dönüşür. Bir mücevhere dokun: kırılır ve içinden bir ödül çıkar. Her kırma ${WHEEL.cost} parça ister.</div>
-  <div class="gem-stage">${stage}</div>${wheelAnim ? '' : `<div class="ad-wheel">${S.daily.adSpin > 0 ? `<button class="btn green" data-a="spin" data-k="ad">${ri('star')} Ücretsiz çevir</button>` : adWheelBtn()}</div>`}`; } }); };
+  <div class="gem-stage">${stage}</div>${wheelAnim ? '' : `<div class="ad-wheel">${S.daily.adSpin > 0 ? `<button class="btn green" data-a="spin" data-k="ad">${ri('star')} Ücretsiz çevir</button>` : ''}</div>`}`; } }); };
 ACT.wheelBack = () => { wheelLast = null; redraw(); };
 ACT.spin = async d => {
   if (wheelAnim) return;

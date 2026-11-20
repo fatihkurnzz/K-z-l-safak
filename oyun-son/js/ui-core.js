@@ -117,6 +117,14 @@ export function heroArt(id, c2 = '') {
   const L = unitLook({ cls, faction: S.faction, wm: w, cape, v }), ck = (cape ? `:c${cape.c}.${cape.a}.${cape.s}.${cape.l}` : '') + (v ? `:v${v}` : '');
   return `<img class="pt hero art ${c2}" alt="${CLASSES[cls].name}" ${portraitAttrs(`a:${S.faction}:${cls}:${w.weapon}${w.glb ? '~' + w.glb : ''}${w.sglb ? '~' + w.sglb : ''}:${+!!w.shield}:${w.plus || 0}${(w.ap || 0) >= 7 ? `:A${w.ap}.${w.ag || 0}` : ''}${ck}`, v ? '' : `art.${cls}.${S.faction}`, { look: L.look, model: L.model, bg: S.faction, full: true, art: true, tid: cls })}>`;
 }
+// Karakter ekranının 3B görünümü (19 Kas gece): boyasız, büyük çizim; rot = 0..7 (45° adım). Anahtarda silah, kalkan,
+// artı ışıması, pelerin ve ton var: ekipman değişince yeniden çizilir.
+export function heroView(id, rot = 0) {
+  const cls = clsOf(S, id), w = weaponModel(S, id), cape = S.clan ? capeOf(S.clanTag) : null, v = S.heroes[id]?.v || 0;
+  const L = unitLook({ cls, faction: S.faction, wm: w, cape, v }), ck = (cape ? `:c${cape.c}.${cape.a}.${cape.s}.${cape.l}` : '') + (v ? `:v${v}` : '');
+  const glow = (w.plus || 0) >= 7 ? `${w.plus}.${w.g || 0}` : w.g === 2 ? '0.2' : 0;
+  return `<img class="pt hero h3d" alt="${CLASSES[cls].name}" ${portraitAttrs(`v:${S.faction}:${cls}:${w.weapon}${w.glb ? '~' + w.glb : ''}${w.sglb ? '~' + w.sglb : ''}:${+!!w.shield}:${glow}${(w.ap || 0) >= 7 ? `:A${w.ap}.${w.ag || 0}` : ''}${ck}:r${rot}`, '', { look: L.look, model: L.model, bg: S.faction, big: true, rot: -0.38 + rot * Math.PI / 4, tid: cls })}>`;
+}
 // Kendi kadrondaki bir kahramanın portresi (kimlikle): sınıfı, silahı, pelerini ve tonu kayıttan okunur
 export const heroPic = (id, full = false, c2 = '') => heroImg(clsOf(S, id), full, c2, S.faction, weaponModel(S, id), S.clan ? capeOf(S.clanTag) : null, S.heroes[id].v || 0);
 // Üyelik kademesi (0 = yok)
@@ -153,7 +161,7 @@ export const tName = (name, id, rk) => `${rk != null ? rkBadge(rk) : ''}${tPre(i
 export function faceImg(who, size = 'sm') {
   const [k, v] = (who.av || 'h:warrior').split(':'), c = CLASSES[v] ? v : 'warrior';
   let frame = TITLES[who.title] ? who.title : seasonTitle(who.ti) ? `sz ${who.ti}` : who.tier ? `pr${who.tier}` : ''; // sezon unvanı (pvp.js) kendi çerçevesini takar: css/pvp.css
-  if (who.fr && /^[pc][dwm]$/.test(who.fr)) frame = `rf-${who.fr}`; // sıralama çerçevesi (shared/rankper.js): oyuncunun seçtiği, diğer çerçevelerin önünde
+  if (who.fr && /^([pc][dwm]|ty)$/.test(who.fr)) frame = `rf-${who.fr}`; // sıralama çerçevesi (shared/rankper.js): oyuncunun seçtiği, diğer çerçevelerin önünde
   const img = k === 'm' && MOBS[v] ? mobImg(v, false, frame ? '' : size) : heroImg(c, false, frame ? '' : size, who.faction || S.faction, who.wm || DEF_W[c]);
   return frame ? `<span class="avf ${frame} ${size}">${img}${TITLES[who.title] ? `<i class="avb">${TITLE_SVG[who.title]}</i>` : ''}</span>` : img;
 }

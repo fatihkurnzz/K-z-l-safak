@@ -17,7 +17,7 @@ const line = m => `<div class="cm ${m.me ? 'me' : ''}"><button class="cav" data-
 // ---------- Ana üsteki sohbet şeridi: son mesajlar + yazma kutusu; dokununca tam ekran ----------
 const bar = $('#chatbar');
 let barTimer = null, barKey = '';
-bar.innerHTML = `<div class="cb-msgs" data-a="chatOpen"><div class="mut">Sohbet yükleniyor…</div></div>
+bar.innerHTML = `<div class="cb-tabs">${[['g', 'Genel'], ['f', 'Irk'], ['c', 'Klan'], ['p', 'Özel']].map(([t, n]) => `<button data-a="chatOpen" data-tab="${t}" class="${t === 'g' ? 'on' : ''}">${n}</button>`).join('')}</div><div class="cb-msgs" data-a="chatOpen"><div class="mut">Sohbet yükleniyor…</div></div>
   <div class="cb-in"><input type="text" id="cbtext" maxlength="${CHAT.max}" placeholder="Genel sohbete yaz…" autocomplete="off" data-enter="cbSend"><button class="cb-b cb-emo" data-a="emoOpen" data-for="cbtext" title="Emoji" aria-label="Emoji ekle">😊</button><button class="cb-b" data-a="cbSend" title="Gönder">${svg('send')}</button></div>
   <button class="cb-b cb-exp cb-min" data-a="chatMini" title="Sohbeti küçült" aria-label="Sohbeti küçült"><b class="cb-x">✕</b><b class="cb-p">+</b><span class="badge" id="cbunread" hidden></span></button>`;
 // 19 Kas (kullanıcı): büyütme simgesi yerine kapatma işareti; basınca sohbet görev izleyicisi gibi tek satıra küçülür (dd_chatmini)

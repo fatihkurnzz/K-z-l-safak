@@ -1,0 +1,92 @@
+/* Yetenek ağacı ekranı (19 Kas gece, kullanıcının referansı). Bileşenler js/ui-yetenek.js. Her dalın kendi rengi (--tc). */
+.yt { display:grid; grid-template-columns:clamp(96px, 13vw, 170px) minmax(0,1fr) clamp(170px, 24vw, 280px); gap:6px; height:100%; min-height:0; color:#eadfc6; }
+.yt > div { min-height:0; }
+.yt h5 { margin:6px 0 3px; font:700 10px/1.2 Cinzel, Georgia, serif; color:#d9b45a; letter-spacing:.5px; }
+/* dal renkleri */
+.yt-tree[data-t=hucum], .yt-tree[data-t=hancer], .yt-tree[data-t=ates] { --tc:#d2452a; --tc2:#5a140a; }
+.yt-tree[data-t=siper], .yt-tree[data-t=buz], .yt-tree[data-t=kutsama] { --tc:#4a8fd8; --tc2:#0e2a4e; }
+.yt-tree[data-t=ofke] { --tc:#e0912a; --tc2:#4e2a08; }
+.yt-tree[data-t=yay] { --tc:#6cbf4a; --tc2:#173a10; }
+.yt-tree[data-t=iz] { --tc:#9a7ad8; --tc2:#2a1a4a; }
+.yt-tree[data-t=sifa] { --tc:#e8c85a; --tc2:#4a3a0a; }
+.yt-tree[data-t=lanet] { --tc:#b24ad8; --tc2:#30103e; }
+.yt-tree[data-t=yildirim] { --tc:#e0d84a; --tc2:#3e3a08; }
+
+/* sol: sınıflar ve temel yetenekler */
+.yt-left { display:flex; flex-direction:column; gap:4px; overflow:auto; padding-right:2px; }
+.yt-cls { display:flex; align-items:center; gap:6px; padding:5px 6px; border-radius:6px; border:1px solid #000; background:linear-gradient(#211a12,#0f0b08); box-shadow:inset 0 0 0 1px #4a3a24; color:#d8ccb0; text-align:left; }
+.yt-cls > span { width:24px; height:24px; flex:none; display:grid; place-items:center; border-radius:50%; background:#0008; box-shadow:0 0 0 1px #6b5534; }
+.yt-cls > span > * { width:16px; height:16px; }
+.yt-cls b { font:700 11px/1.15 Cinzel, Georgia, serif; } .yt-cls b small { display:block; font:600 9px Inter, sans-serif; color:#a99d82; }
+.yt-cls.on { background:linear-gradient(90deg,#8a5a1e,#3a2610); box-shadow:inset 0 0 0 1px #d9b45a, 0 0 10px #d9b45a44; color:#fff3cc; }
+.yt-base { display:grid; grid-template-columns:repeat(3, 1fr); gap:3px; }
+.yt-b { position:relative; aspect-ratio:1; padding:0; border-radius:4px; border:1px solid #000; background:#0b0806; box-shadow:inset 0 0 0 1px #5a4a32; }
+.yt-b.lock { filter:grayscale(1) brightness(.55); } .yt-b.sel { box-shadow:inset 0 0 0 2px #ffe08a; }
+.yt-b em { position:absolute; right:1px; bottom:0; font:800 8px Inter, sans-serif; font-style:normal; color:#fff; text-shadow:0 1px 1px #000; }
+
+/* orta: üç dal */
+.yt-mid { display:flex; flex-direction:column; gap:5px; min-width:0; }
+.yt-note { font:600 10px Inter, sans-serif; color:#ffcf8a; display:flex; gap:4px; align-items:center; } .yt-note > :first-child { width:12px; height:12px; }
+.yt-trees { flex:1; min-height:0; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:5px; }
+.yt-tree { position:relative; display:flex; flex-direction:column; border-radius:7px; border:1px solid #000; background:linear-gradient(180deg, color-mix(in srgb, var(--tc2) 55%, #0c0a08), #0a0806 40%); box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--tc) 45%, #000), 0 3px 8px #0008; min-height:0; overflow:hidden; }
+.yt-th { display:flex; align-items:center; gap:5px; padding:4px 6px; background:linear-gradient(90deg, var(--tc2), color-mix(in srgb, var(--tc) 60%, #000), var(--tc2)); border-bottom:1px solid #000; }
+.yt-ti { width:20px; height:20px; flex:none; color:#fff; filter:drop-shadow(0 0 3px var(--tc)); } .yt-ti svg { width:100%; height:100%; fill:currentColor; }
+.yt-th b { flex:1; font:700 12px Cinzel, Georgia, serif; color:#fff; text-shadow:0 1px 2px #000; text-align:center; }
+.yt-th small { font:700 9.5px Inter, sans-serif; color:#ffeccc; }
+.yt-map { position:relative; flex:1; min-height:0; margin:4px 2px; }
+.yt-map svg { position:absolute; inset:0; width:100%; height:100%; }
+.yt-map line { stroke:#5a4a32; stroke-width:1.4; vector-effect:non-scaling-stroke; } .yt-map line.lit { stroke:var(--tc); stroke-width:2.4; filter:drop-shadow(0 0 2px var(--tc)); }
+.yt-n { position:absolute; transform:translate(-50%,-50%); width:min(40px, calc((100% - 0px) / 3.6), calc(var(--lh, 100vh) / 12)); aspect-ratio:1; padding:0; border-radius:5px; border:1px solid #000; background:radial-gradient(color-mix(in srgb, var(--tc) 30%, #1a120a), #0a0705); box-shadow:inset 0 0 0 1.5px color-mix(in srgb, var(--tc) 80%, #000), 0 0 6px color-mix(in srgb, var(--tc) 35%, transparent); color:#fff; }
+.yt-n.pas { border-radius:50%; }
+.yt-n.lock { filter:grayscale(.85) brightness(.55); box-shadow:inset 0 0 0 1px #4a3a24; }
+.yt-n.eq { box-shadow:inset 0 0 0 2px #ffd36a, 0 0 8px #ffd36a99; }
+.yt-n.sel { outline:2px solid #fff; outline-offset:1px; }
+.yt-n .yt-ic, .yt-b .yt-ic { position:absolute; inset:12%; display:grid; place-items:center; } .yt-ic svg { width:100%; height:100%; fill:currentColor; }
+.yt-b .yt-ic { color:#f3e3bb; }
+.yt-n em { position:absolute; right:-3px; bottom:-4px; min-width:14px; padding:0 2px; font:800 8px/12px Inter, sans-serif; font-style:normal; color:#fff; background:#000d; border:1px solid color-mix(in srgb, var(--tc) 70%, #000); border-radius:3px; }
+.yt-lk { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:44%; height:44%; color:#d8ccb0; filter:drop-shadow(0 0 2px #000); z-index:1; } .yt-lk svg { width:100%; height:100%; fill:currentColor; }
+.yt-add { display:flex; gap:3px; padding:0 4px 4px; } .yt-add button { flex:1; padding:2px 0; border-radius:3px; border:1px solid #000; background:linear-gradient(#3a2c19,#1c140b); box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--tc) 60%, #000); color:#ffe9b0; font:800 10px Inter, sans-serif; }
+.yt-add button:disabled { opacity:.35; }
+.yt-tree.shut .yt-map { filter:grayscale(.7) brightness(.5); }
+.yt-shut { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; text-align:center; font:700 10px Inter, sans-serif; color:#ffe2a0; text-shadow:0 1px 2px #000; filter:none; z-index:2; }
+.yt-shut > :first-child { width:20px; height:20px; }
+
+/* alt şerit */
+.yt-bar { display:flex; align-items:center; gap:6px; padding:4px 6px; border-radius:6px; border:1px solid #000; background:linear-gradient(#1a1510,#0b0907); box-shadow:inset 0 0 0 1px #4a3a24; flex-wrap:wrap; }
+.yt-pts { display:flex; align-items:center; gap:4px; font:700 11px Cinzel, Georgia, serif; } .yt-pts > :first-child { width:14px; height:14px; color:#d9b45a; } .yt-pts b.on { color:#7fe36a; }
+.yt-load { display:flex; align-items:center; gap:2px; margin:0 auto; } .yt-load small { font:600 9px Inter, sans-serif; color:#a99d82; margin-right:3px; }
+.yt-ls { position:relative; width:22px; height:22px; border-radius:3px; background:#0b0806; box-shadow:inset 0 0 0 1px #6b5534; color:#f3e3bb; } .yt-ls.nil { opacity:.4; }
+.yt-bb { display:flex; align-items:center; gap:4px; padding:3px 9px; border-radius:5px; border:1px solid #000; background:linear-gradient(#3a2c19,#1c140b); box-shadow:inset 0 0 0 1px #6b5534; color:#f0e2bf; font:700 10.5px Cinzel, Georgia, serif; } .yt-bb > :first-child { width:12px; height:12px; }
+
+/* sağ: bilgi paneli */
+.yt-det { padding:8px; border-radius:7px; border:1px solid #000; background:linear-gradient(180deg,#1a1510,#0b0907); box-shadow:inset 0 0 0 1px #6b5534; overflow:auto; }
+.yt-dh { display:flex; align-items:center; gap:8px; padding-bottom:6px; border-bottom:1px solid #6b553455; }
+.yt-dh .yt-ic { position:relative; width:42px; height:42px; flex:none; display:grid; place-items:center; padding:6px; border-radius:5px; background:radial-gradient(#3a2a18,#0b0806); box-shadow:inset 0 0 0 1.5px #d9b45a; color:#fff; }
+.yt-dh b { display:block; font:700 13px/1.15 Cinzel, Georgia, serif; color:#fff; } .yt-dh small { font:600 10px Inter, sans-serif; color:#7fe36a; }
+.yt-desc { margin:6px 0; font:500 11px/1.4 Inter, sans-serif; color:#e3d6b8; }
+.yt-kv { border:1px solid #6b553466; border-radius:5px; padding:3px 6px; background:#0006; }
+.yt-kv div { display:flex; justify-content:space-between; gap:6px; padding:2px 0; font:600 10.5px Inter, sans-serif; border-bottom:1px solid #ffffff0a; } .yt-kv div:last-child { border-bottom:0; }
+.yt-kv span { color:#cdbf9f; } .yt-kv b { color:#fff; text-align:right; }
+.yt-btn { width:100%; margin-top:7px; padding:6px; border-radius:5px; border:1px solid #000; background:linear-gradient(#3a2c19,#1c140b); box-shadow:inset 0 0 0 1px #6b5534; color:#f0e2bf; font:700 11px Cinzel, Georgia, serif; }
+.yt-btn.go { background:linear-gradient(#3e6a2a,#1a3510); box-shadow:inset 0 0 0 1px #7fe36a; color:#eaffd8; }
+.yt-req { margin-top:7px; display:flex; align-items:center; gap:5px; font:600 10.5px Inter, sans-serif; color:#ffcf8a; } .yt-req > :first-child { width:13px; height:13px; }
+.yt-prev { margin-top:7px; }
+
+/* pencere kabuğu bu ekranda da koyu (karakter ekranıyla aynı) */
+#win:has(.yt) .frame { width:min(1180px, calc(var(--lw) * 0.985)) !important; height:min(760px, calc(var(--lh) - 10px)) !important; background:linear-gradient(180deg,#14100c,#0a0806) !important; }
+#win:has(.yt) #page { background:radial-gradient(130% 100% at 40% 0%, #2a2117 0%, #120e0a 55%, #090706 100%) !important; padding:6px !important; border-radius:8px; overflow:hidden; }
+#win:has(.yt) nav.tabs { width:clamp(92px, 15vw, 170px); gap:3px; }
+#win:has(.yt) nav.tabs button { border:1px solid #000 !important; border-radius:5px !important; background:linear-gradient(#211a12,#0f0b08) !important; box-shadow:inset 0 0 0 1px #4a3a24 !important; color:#e6d8b8 !important; padding:7px 6px !important; font-family:Cinzel, Georgia, serif; }
+#win:has(.yt) nav.tabs button.on { background:linear-gradient(90deg,#8a5a1e,#3a2610) !important; box-shadow:inset 0 0 0 1px #d9b45a, 0 0 10px #d9b45a55 !important; color:#fff3cc !important; }
+#win:has(.yt) nav.tabs button small { color:#b9ad92; }
+@media (max-height:420px) {
+  #win:has(.yt) nav.tabs button small { display:none; } #win:has(.yt) nav.tabs { width:clamp(84px, 13vw, 140px); }
+  .yt { grid-template-columns:86px minmax(0,1fr) 168px; gap:4px; }
+  .yt-cls { padding:3px 4px; } .yt-cls > span { display:none; } .yt h5 { margin:3px 0 2px; }
+  .yt-load small { display:none; } .yt-ls { width:18px; height:18px; } .yt-bar { padding:3px 4px; gap:4px; } .yt-bb { padding:2px 6px; font-size:9.5px; }
+  .yt-desc { font-size:10px; } .yt-dh .yt-ic { width:34px; height:34px; } .yt-th { padding:3px 4px; } .yt-th b { font-size:11px; }
+}
+.yt-shut > :first-child, .yt-shut svg { width:22px !important; height:22px !important; flex:none; }
+.yt-shut span { max-width:90%; background:#000a; padding:2px 6px; border-radius:4px; }
+.yt-pts > :first-child svg, .yt-bb > :first-child svg, .yt-req > :first-child svg, .yt-note > :first-child svg, .yt-cls > span svg { width:100%; height:100%; }
+.yt-shut > :first-child { display:none; }

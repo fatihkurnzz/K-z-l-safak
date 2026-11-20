@@ -29,17 +29,5 @@
 .hq-join-art svg { width:30px; height:30px; color:#f4d470; fill:#f4d470; }
 
 /* Ödüllü reklam (ui-reklam.js) */
-.ad-ov { position:fixed; inset:0; z-index:9000; display:grid; place-items:center; background:#000c; padding:12px; }
-.ad-box { position:relative; width:min(460px,92vw); max-height:94vh; overflow:auto; display:grid; gap:7px; padding:12px; border-radius:14px; background:#1b1611; color:#f3e6c8; border:2px solid #a57a2c; box-shadow:0 8px 30px #000c; }
-.ad-tag { position:absolute; right:10px; top:8px; font-size:11px; padding:1px 7px; border-radius:6px; background:#f4d470; color:#2a1d12; font-weight:700; z-index:1; }
-.ad-art { position:relative; border-radius:10px; overflow:hidden; aspect-ratio:16/9; max-height:42vh; }
-.ad-art svg { width:100%; height:100%; display:block; }
-.ad-art b { position:absolute; inset:0; display:grid; place-items:center; font-family:var(--display); font-size:22px; letter-spacing:1px; text-shadow:0 2px 4px #000; }
-.ad-why, .ad-note { margin:0; font-size:12px; color:#cdbb95; text-align:center; }
-.ad-bar { height:7px; border-radius:4px; background:#ffffff22; overflow:hidden; } .ad-bar i { display:block; height:100%; width:0; background:linear-gradient(90deg,#e0a83c,#f4d470); transition:width .2s linear; }
-.ad-row { display:flex; justify-content:space-between; gap:8px; }
-.ad-sec { font-variant-numeric:tabular-nums; }
-.ad-btn small { opacity:.75; font-size:10px; } .ad-btn svg { width:14px; height:14px; vertical-align:-2px; }
-.ad-x2 { margin:4px 0; } .ad-wheel { display:flex; justify-content:center; margin-top:6px; } .ad-mine { margin-top:6px; }
-.ad-card.dim { opacity:.6; } .ad-rew { font-size:12px; color:#2f7a2a; font-weight:600; } .ad-wait b { font-variant-numeric:tabular-nums; }
-@media (max-height:420px) { .hq-title b { font-size:16px; } .ad-art { max-height:34vh; } .ad-box { gap:5px; padding:9px; } }
+.ad-wheel { display:flex; justify-content:center; margin-top:6px; } /* reklam kuralları 20 Kas kaldırıldı; çark ücretsiz çevirme düğmesi duruyor */
+@media (max-height:420px) { .hq-title b { font-size:16px; } }

@@ -37,7 +37,7 @@ const CLS_TXT = {
   mage: { d: 'Ateş, buz ve yıldırım büyüleri; alan saldırısı ve kontrol.', w: 'Asa', p: 'Gizemli büyücü duruşu' },
 };
 const RACE_TXT = { sancak: 'İnsan', ocak: 'Ork' };
-const STAT = [['hp', 'Can', 400], ['atk', 'Saldırı', 40], ['mag', 'Büyü', 40], ['def', 'Savunma', 26], ['spd', 'Hız', 112]];
+const STAT = [['hp', 'Can', 400], ['atk', 'Saldırı', 40], ['mag', 'Büyü', 40], ['def', 'Savunma', 26]]; // Hız gösterilmez (hız askıda)
 
 // ---------- Durum ----------
 const CR = { race: 'sancak', cls: 'warrior', gender: 'm', look: lookDefault('sancak', 'warrior', 'm'), name: '' };

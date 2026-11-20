@@ -3,11 +3,11 @@ import { A as A11Y } from './a11y.js';
 import { capitalOf } from '../shared/content.js';
 import { S, act } from './api.js';
 import { ACT, hud, esc, fmt, xpGain, pct, stars, toast, run, showModal, closeModal, confirmBox, openWin, redraw, closeWin, reload, cur, mobImg, heroImg, unitImg, lootBox, locked, lockNote, loading, ico, itemLine, myPerks, med, hooks } from './ui-core.js';
-import { runBattle } from './combat.js';
+import { runBattle, otoPref } from './combat.js';
 import { hisarOpen } from '../shared/hisar.js';
 import { HISAR } from '../shared/content.js';
 import { hideTown } from './town.js';
-import { hideChatBar } from './ui-social.js';
+import { hideChatBar, showChatBar } from './ui-social.js';
 import { ZONES, MOBS, zoneStages, stageDef, mobUnit } from '../shared/zones.js';
 import { CLASSES, CLASS_KEYS, ENERGY, UNLOCK, ARENA, BOSS_PITY, FACTIONS, GAME, PREMIUM, leagueOf, weekDay, hourOf } from '../shared/content.js';
 import { stageOpen, bossAvailable } from '../shared/calc.js';
@@ -21,9 +21,11 @@ import { vsCoefs, vsCoefTable, ilvTag } from './esya-parts.js';
 import { PV, tierBar, tierNote, bagNote, modBanner, modVsNote, modResultLine, depthRow, depthVs, seasonHead, oppTags, oppRule, dimResult, levelUpNote } from './ui-pvp.js'; // sezon, zorluk kademeleri, zindan düzeni
 import { STAGE_TIERS, starsOf, CLIMB, ARENA_PTS } from '../shared/pvp.js';
 import { reportAside, reportClass, reportBtn } from './ui-rapor.js';
+import { KULE, kuleRewards, isBossFloor, adsizName } from '../shared/kule.js'; // Kül Kulesi (20 Kas)
+import { YEMIN, yeminLevel } from '../shared/yemin.js'; // Taş Yemini (20 Kas)
+import { FRAMES } from '../shared/rankper.js';
 import { RULES } from '../shared/rules.js'; // ekranda yazan ödül, bedel ve puanlar sunucuyla aynı tablodan okunur
 import { warBonusLine } from '../shared/content.js';
-import { adBtn } from './ui-reklam.js';
 
 const GV = { zone: 1, tab: 'zones' };
 const used = k => S.daily[k] || 0;
@@ -67,6 +69,7 @@ function gateDungeons() {
   return `${modBanner()}<div class="hint">Zindanlar enerji yerine günlük hak ya da anahtar ister. Düşmanlar seviyene göre kurulur.</div>
     ${card('well', 'Dipsiz Kuyu', `${RULES.well.waves} dalga dayan. Geçtiğin her dalga bir bileği taşı verir.`, [...lockChip('well'), `Bugün ${used('well')}/${RULES.well.daily}`, `En iyi ${S.wellBest}/${RULES.well.waves} dalga`], enter('well', !locked('well') && used('well') < RULES.well.daily))}
     ${depthRow(lockChip('depth'), enter('depth', !locked('depth') && S.depth < CLIMB.floors))}
+    ${card('depth', 'Kül Kulesi', `Bölgelerin bittiği yerde başlar. Sonsuz kat; her ${KULE.bossEvery} katta Küllerin Tarikatı’nın bir adsızı bekler. Katlar sıfırlanmaz.`, [...(S.lvl < KULE.unlock ? [`Kilitli · Sv. ${KULE.unlock}`] : []), `Sıradaki kat ${(S.kule || 0) + 1}`, `${KULE.energy} enerji`, ...(isBossFloor((S.kule || 0) + 1) ? [adsizName((S.kule || 0) + 1)] : [])], enter('kule', S.lvl >= KULE.unlock), 'red')}
     ${card('rift', 'Gök Yarığı', 'Yalnızca cumartesi ve pazar açılır. Kader Çarkı için parça verir.', [...lockChip('rift'), weekend ? 'Açık' : 'Hafta sonu açılır', `Bugün ${used('rift')}/${RULES.rift.daily}`], enter('rift', !locked('rift') && weekend && used('rift') < RULES.rift.daily))}
     ${card('sealroom', 'Mühürlü Oda', `Bir Mühür Taşı harcar; rastgele bir boss çıkar. Eşsiz şansı ${RULES.seal.unique} kat, günlük sınır yok.`, [...lockChip('seal'), `${ri('seal')} Mühür Taşı ${S.seals}`], enter('seal', !locked('seal') && S.seals > 0))}`;
 }
@@ -75,7 +78,7 @@ function gateEvents() {
   if (!D) return loading;
   const w = D.war, a = D.akin, sg = D.siege;
   const bar = w ? (() => { const t = Math.max(1, w.now.ocak + w.now.sancak), o = 100 * w.now.ocak / t; return `<div class="warbar"><i style="width:${o}%;background:${FACTIONS.ocak.color}"></i><i style="width:${100 - o}%;background:${FACTIONS.sancak.color}"></i></div><div class="sub"><b style="color:${FACTIONS.ocak.color}">${FACTIONS.ocak.name} ${fmt(w.now.ocak)}</b><span class="sp"></span><b style="color:${FACTIONS.sancak.color}">${fmt(w.now.sancak)} ${FACTIONS.sancak.name}</b></div>`; })() : '';
-  return `${hooks.baskinCard?.(D.baskin) || ''}<h3>Büyük Sefer <span class="mut">· haftalık taraf savaşı</span></h3>${bar}
+  return `${hooks.baskinCard?.(D.baskin) || ''}${hooks.yeminCard?.() || ''}<h3 style="margin-top:10px">Büyük Sefer <span class="mut">· haftalık taraf savaşı</span></h3>${bar}
     <p class="mut">Kazandığın her savaş tarafına puan yazar (bu hafta katkın: <b>${w ? fmt(w.mine) : 0}</b>). Haftayı kazanan taraf ${warBonusLine} düşürür.
     ${w?.winner ? `Geçen haftanın galibi: <b style="color:${FACTIONS[w.winner].color}">${FACTIONS[w.winner].name}</b>.` : ''} ${w?.buff ? '<b class="up">Drop bonusun etkin.</b>' : ''}</p>
     <h3 style="margin-top:10px">Akın <span class="mut">· 4 saatte bir, 1 saat açık</span></h3>
@@ -106,16 +109,19 @@ ACT.arenaRefresh = async () => { const r = await run('arena.list', { refresh: tr
 // Sol taraf: karakterin tek kahramanı (sürüm 12: parti ve dizilim yok)
 let VS = null;
 const vsLeft = () => VS.left || partyUnits(S);
-function openVs(cfg) { VS = { auto: false, ...cfg }; openWin({ title: cfg.title, back: 'vsBack', render: renderVs }); }
+function openVs(cfg) { VS = { auto: (S.lvl | 0) >= 10 && otoPref() && !['arena', 'live', 'banner', 'anit'].includes(cfg.args?.mode), ...cfg }; openWin({ title: cfg.title, back: 'vsBack', render: renderVs }); } // 20 Kas: son OTO tercihi hatırlanır (PvP'de kapalı başlar)
 // Öğretici: Dev Solucan'a karşı (ui-ogretici.js çocuğun diyaloğundan açar)
 ACT.wormGo = () => openVs({ title: 'Dev Solucan', foe: 'Dev Solucan <span class="mut">· Nessa’yı yuttu</span>', waves: soloWaves([[mobUnit('devsolucan', Math.max(2, S.lvl))]], 'worm'), args: { mode: 'worm' }, rules: ['Ateş onu yakar (zayıflığı)', 'Yarı canında topraktan yeniden fırlar', 'Zafer: Nessa kurtulur, 600 akçe ve bileği taşları'] });
 ACT.vsBack = () => (['arena', 'live', 'banner'].includes(VS?.args?.mode) ? ACT.meydan({ tab: 'fight' }) : ACT.gate({ tab: GV.tab === 'pvp' ? 'zones' : GV.tab, zone: GV.zone }));
+// 20 Kas: VS ekranında yaratığın zayıf (▲, +%RULES.weak hasar alır) ve dirençli (▼) elementleri; yalnız yaratıklarda (PvE)
+const EL_TXT = { fire: 'Ateş', ice: 'Buz', bolt: 'Yıldırım' };
+const elChips = u => { if (u.cls) return ''; const w = u.weak && EL_TXT[u.weak] ? `<i class="elc w el-${u.weak}" title="Zayıflığı: ${EL_TXT[u.weak]} (+%${RULES.weak} hasar alır)">▲ ${EL_TXT[u.weak]}</i>` : '', r = Object.keys(EL_TXT).filter(k => (u.res?.[k] || 0) > 0 && k !== u.weak).map(k => `<i class="elc r el-${k}" title="${EL_TXT[k]} direnci %${Math.round(u.res[k] * 100)}">▼ ${EL_TXT[k]}</i>`).join(''); return w || r ? `<span class="elcs">${w}${r}</span>` : ''; };
 const unitCard = (u, big) => `<div class="uc">${unitImg(u, big ? 'lg' : '')}<small>${u.lvl ? 'Sv. ' + u.lvl : ''}</small></div>`;
 // Sağ taraf: yaratıklar türe göre gruplanır; kahraman birimleri tek tek gösterilir (aynı sınıftan iki kahraman olabilir)
 function renderVs() {
   const c = VS, left = vsLeft();
   const pw = left.reduce((a, u) => a + power(u), 0);
-  const right = c.waves ? c.waves.map((w, i) => { const g = {}; w.forEach((u, j) => { const k = u.cls ? 'h' + j : u.mob + (u.elite ? ':e' : ''); (g[k] || (g[k] = { u, n: 0 })).n++; }); return `<div class="vwave">${c.waves.length > 1 ? `<small>${i + 1}. dalga</small>` : ''}<div class="vrow">${Object.values(g).map(x => `<div class="uc">${unitImg(x.u)}<small>${x.u.boss || x.u.captain || x.u.cls ? esc(x.u.name) : (x.n > 1 ? '×' + x.n + ' ' : '') + esc(x.u.name)}</small></div>`).join('')}</div></div>`; }).join('') : `<div class="hint">${c.unknown || 'Düşmanlar savaş başlayınca belli olur.'}</div>`;
+  const right = c.waves ? c.waves.map((w, i) => { const g = {}; w.forEach((u, j) => { const k = u.cls ? 'h' + j : u.mob + (u.elite ? ':e' : ''); (g[k] || (g[k] = { u, n: 0 })).n++; }); return `<div class="vwave">${c.waves.length > 1 ? `<small>${i + 1}. dalga</small>` : ''}<div class="vrow">${Object.values(g).map(x => `<div class="uc">${unitImg(x.u)}<small>${x.u.boss || x.u.captain || x.u.cls ? esc(x.u.name) : (x.n > 1 ? '×' + x.n + ' ' : '') + esc(x.u.name)}</small>${elChips(x.u)}</div>`).join('')}</div></div>`; }).join('') : `<div class="hint">${c.unknown || 'Düşmanlar savaş başlayınca belli olur.'}</div>`;
   const can = c.can !== false;
   return `<div class="vs"><div class="vside a"><h4>${c.left ? 'Senin tarafın' : esc(S.name)} <span class="mut">· Güç ${fmt(pw)}</span></h4><div class="vrow">${left.map(u => unitCard(u, false)).join('')}</div>${c.left ? '' : '<div class="vsform"><button class="btn sm" data-a="vsForm">Karakter</button></div>'}</div>
     <div class="vmid"><b class="vsx">VS</b>${c.rules ? `<div class="vrules">${c.rules.map(r => `<div>${r}</div>`).join('')}</div>` : ''}${c.desc ? `<p class="mut" style="text-align:center;max-width:190px">${c.desc}</p>` : ''}${vsCoefs(left, c.waves)}</div>
@@ -125,7 +131,7 @@ function renderVs() {
       ${(S.lvl | 0) >= 10 ? `<button class="btn ${VS.auto ? 'green' : ''}" data-a="vsAuto">Oto: ${VS.auto ? 'açık' : 'kapalı'}</button>` : ''}
       <button class="btn red big" data-a="vsStart" ${can ? '' : 'disabled'}>${c.startLabel || 'Başla'}${c.energy ? ` ${ri('energy', '#fff')} ${c.energy}` : ''}</button></div>`;
 }
-ACT.vsAuto = () => { if ((S.lvl | 0) < 10) return; VS.auto = !VS.auto; redraw(); };
+ACT.vsAuto = () => { if ((S.lvl | 0) < 10) return; VS.auto = !VS.auto; try { localStorage.setItem('dd_oto', VS.auto ? '1' : '0'); } catch { } redraw(); };
 ACT.vsCoef = () => showModal(`<h2>Saldırı Türleri</h2><div class="in" style="text-align:left">${vsCoefTable(vsLeft(), VS.waves)}</div>`, 'cxbox');
 ACT.vsStart = () => startBattle(VS.args, VS.auto);
 // Karakter ekranı (eşya, yetenek, nitelik); geri düğmesi bu ekrana döner
@@ -154,6 +160,8 @@ ACT.exchangeDo = async d => { const r = await run('boss.exchange', { boss: d.bos
 const MODE_VS = {
   well: () => ({ title: 'Dipsiz Kuyu', rules: [`${RULES.well.waves} dalga`, `Dalga başına ${RULES.well.stonePerWave} bileği taşı`, 'Kaybetsen de geçtiğin dalgalar sayılır'], unknown: `Seviyene göre karışık yaratıklar (Sv. ${Math.max(1, S.lvl - 3)}-${Math.min(80, S.lvl + 6)}).` }),
   depth: () => depthVs(), // kat ödülü ve haftanın düzeni: ui-pvp.js
+  yemin: () => ({ title: 'Taş Yemini', foe: 'Küllerin Tarikatı', rules: ['İki halktan dört kahraman aynı grupta (yoldaşları yapay zekâ oynar)', `${YEMIN.waves} dalga, son dalgada Yemin Bozan`, 'Haftada bir zafer; kaybedersen aynı hafta yeniden denersin'], unknown: `Tarikat yaratıkları · Sv. ${yeminLevel(S)}`, left: null, back: null }),
+  kule: () => { const f = (S.kule || 0) + 1, B = isBossFloor(f); return { title: `Kül Kulesi · ${f}. kat`, rules: [B ? `${adsizName(f)} bekliyor` : '2 dalga Tarikat yaratığı', `Kat kat sertleşir (can +%${Math.round(KULE.hpStep * 100)}/kat)`, 'Kat ödülü yalnız ilk geçişte'], unknown: `Küllerin Tarikatı · Sv. ${KULE.unlock}`, extra: `<div class="hint"><b>${f}. kat ödülü:</b> ${kuleRewards(f).map(d => d.t === 'akce' ? `${fmt(d.n)} akçe` : d.t === 'stone' ? `${d.n} taş` : d.t === 'yakut' ? `${d.n} yakut` : 'Nadir eşya').join(' · ')}</div>` }; },
   rift: () => ({ title: 'Gök Yarığı', rules: [`${RULES.rift.waves} dalga`, `Zafer: ${RULES.rift.shards[0]}-${RULES.rift.shards[1]} parça`, 'Parçalar Kader Çarkı’nda kırılır'], unknown: `Sv. ${S.lvl} yaratıklar.` }),
   seal: () => ({ title: 'Mühürlü Oda', rules: ['1 Mühür Taşı harcar', 'Rastgele bir boss', `Eşsiz şansı ${RULES.seal.unique} kat`], unknown: 'Hangi boss’un çıkacağı kapı açılınca belli olur.' }),
   akin: () => ({ title: 'Akın', rules: [`${RULES.akin.waves} dalga, ${RULES.akin.turnCap} tur`, `Kesilen her yaratık ${RULES.akin.perKill} puan`, `${RULES.akin.stoneAt}+ puan: İnce taş`], unknown: 'Kalabalık ama zayıf yaratıklar.' }),
@@ -166,13 +174,15 @@ ACT.arenaVs = d => { const o = S.arena.opp[+d.i]; openVs({ title: `Meydan · ${o
 ACT.liveFind = async () => { const r = await run('live.find'); if (!r) return; const o = S.arena.liveOpp; openVs({ title: `Canlı Meydan · ${o.name}`, foe: `${esc(o.name)} <span class="mut">· ${o.rating} puan</span>`, waves: [soloUnits(o.units)], args: { mode: 'live' }, rules: [`Hamle süresi ${RULES.live.timer} sn`, 'Süre dolarsa yapay zekâ oynar', `Zafer: +${RULES.live.san[0]} şan · +${ARENA_PTS.win} puan`] }); };
 
 // ---------- Savaşı başlat ve sonucu göster ----------
+// 2x/3x hız yalnız PvE ve tek oyunculu savaşta (kullanıcı 19 Kas): oyuncuya karşı modlarda kapalı (ortak savaş combat.js'te coop ile kapanır)
+const FAST_OFF = new Set(['arena', 'live', 'banner', 'siege', 'feud', 'duel', 'pk', 'anit']);
 export async function startBattle(args, auto = false) {
   const r = await run('battle.start', args);
   if (!r) return;
   const b = r.battle;
-  closeWin(true); closeModal(); hud.hidden = true; hideTown(); hideChatBar();
+  closeWin(true); closeModal(); hud.hidden = true; hideTown(); hideChatBar(); if (!S.tut || S.tut.end) showChatBar(); // savaşta da sol altta sohbet (19 Kas gece, kullanıcının referansı); öğreticide yok
   runBattle({
-    setup: { party: b.party, waves: b.waves, seed: b.seed, enrageTurn: b.enrageTurn, turnCap: b.turnCap, restoreOnWave: !!b.opts.restoreOnWave, lead: !!b.lead, v: b.eng || 1 }, env: b.env, title: b.title, auto, timer: (b.opts.timer || 0) * (A11Y.slowTimer ? 2 : 1),
+    setup: { party: b.party, waves: b.waves, seed: b.seed, enrageTurn: b.enrageTurn, turnCap: b.turnCap, restoreOnWave: !!b.opts.restoreOnWave, lead: !!b.lead, v: b.eng || 1, bdw: b.opts.bdw || null }, env: b.env, title: b.title, auto, timer: (b.opts.timer || 0) * (A11Y.slowTimer ? 2 : 1), fast: !FAST_OFF.has(args.mode),
     onDone: async (won, actions) => {
       // Bağlantı koparsa sonuç kaybolmasın: birkaç kez yeniden dene (sunucu aynı savaşı yalnızca bir kez öder)
       let res = null;
@@ -189,8 +199,8 @@ export async function startBattle(args, auto = false) {
 }
 export function showResult(b, r, args, auto) {
   const m = r.mode, tier = (m === 'stage' && b.opts.tier) || 0, stage = m === 'stage' ? stageDef(b.ref, tier) : null, next = stage && stageDef(`${stage.zone}-${stage.n + 1}`, tier);
-  const again = (m === 'nobet' && r.nobet && !r.nobet.won && !r.nobet.lost && !r.nobet.party?.failed) || (m === 'stage' && stage.kind !== 'boss') || (m === 'depth' && r.win && S.depth < CLIMB.floors) || (m === 'well' && (S.daily.well || 0) < 2);
-  ACT.again = () => (m === 'nobet' ? ACT.nbGo() : startBattle(m === 'depth' ? { mode: 'depth' } : args, auto)); // Kristal Nöbeti: parti savaşına (ui-nobet.js)
+  const again = (m === 'nobet' && r.nobet && !r.nobet.won && !r.nobet.lost && !r.nobet.party?.failed) || (m === 'stage' && stage.kind !== 'boss') || (m === 'depth' && r.win && S.depth < CLIMB.floors) || (m === 'kule' && r.win) || (m === 'well' && (S.daily.well || 0) < 2);
+  ACT.again = () => (m === 'nobet' ? ACT.nbGo() : startBattle(m === 'depth' || m === 'kule' ? { mode: m } : args, auto)); // Kristal Nöbeti: parti savaşına (ui-nobet.js)
   ACT.next = () => startBattle(tier ? { stage: next.id, tier } : { stage: next.id }, auto);
   ACT.backPvp = () => { ACT.hub(); ACT.meydan({ tab: 'fight' }); };
   ACT.backClan = () => { ACT.hub(); ACT.clan(m === 'clanboss' ? { tab: 'av' } : undefined); };
@@ -203,9 +213,12 @@ export function showResult(b, r, args, auto) {
     r.score !== undefined && `Skor: <b>${fmt(r.score)}</b>`,
     r.rating !== undefined && `Puan: <b class="${r.rating >= 0 ? 'up' : 'down'}">${r.rating >= 0 ? '+' : ''}${r.rating}</b> → ${m === 'live' ? S.arena.live : S.arena.rating}${dimResult(r)}`,
     r.nobet && `Kristal Nöbeti: <b>${r.nobet.total}/55</b> dalga${r.nobet.party ? ` · ${r.nobet.party.name} payı ${r.nobet.party.done}/${r.nobet.party.quota}${r.nobet.party.failed ? ' <b class="down">(parti düştü)</b>' : ''}` : ''} · Güçlendirme ${r.nobet.buffs}${r.nobet.won ? ' · <b class="up">Nöbet kazanıldı! Sandığını Şaman Yashka’dan al.</b>' : r.nobet.lost ? ' · <b class="down">Nöbet düştü.</b>' : ''}`,
+    r.anit && `Puan: <b>${r.anit.pts.A}–${r.anit.pts.B}</b> · Anıt ${r.anit.monDown ? '<b>kesildi</b>' : 'ayakta kaldı'} · anıta senin tarafının hasarı <b>%${String(r.anit.share).replace('.', ',')}</b> · ${r.anit.round} raunt`,
     r.mod && modResultLine(r),
     r.mastery && `<b class="up">Ustalık seviyesi +${r.mastery}</b>`, // 60. seviyeden sonra (mastery.js)
     hooks.resultLine?.(r), // bölge hâkimiyeti bonusu (ui-dunya.js)
+    r.destan ? `Destan bölümü tamamlandı · <b class="up">kilitli anı açıldı</b> <button class="btn sm red" data-a="destanOutro" data-id="${r.destan}">Bölüm sonu</button>` : r.chapter && r.win ? `<button class="btn sm" data-a="destanOutro" data-id="${r.chapter}">Bölüm sonu</button>` : '',
+    r.frame ? `Yeni kaplama: <b class="up">${FRAMES[r.frame] || r.frame} çerçevesi</b> <button class="btn sm green" data-a="frameSet" data-id="${r.frame}">Kullan</button>` : '', // Taş Yemini ilk zaferi (20 Kas)
     r.raid && hooks.baskinLine?.(r), // Dünya Baskını: ortak havuz ve baraj (ui-baskin.js)
     r.bossDamage && !r.win && `Boss'a verilen hasar: ${pct(r.bossDamage)}`,
     r.pots && (r.pots.hp || r.pots.mp) && `İçilen iksir: ${[r.pots.hp && `${r.pots.hp} Can`, r.pots.mp && `${r.pots.mp} Mana`].filter(Boolean).join(', ')} <span class="mut">(kalan ${S.pots?.hp ?? 0} Can, ${S.pots?.mp ?? 0} Mana)</span>`,
@@ -214,12 +227,11 @@ export function showResult(b, r, args, auto) {
     <p><b>${esc(r.title || b.title)}</b></p>${r.stars ? `<p class="bres-stars">${stars(r.stars)}</p>` : ''}
     ${extra.map(x => `<p>${x}</p>`).join('')}
     <p>${r.xp ? `${ri('xp')} ${xpGain(r.xp, S.lvl - (r.levels || 0))} · ` : ''}${ri('akce')} +${fmt(r.akce)} akçe${r.first ? ' (ilk geçiş ödülü dahil)' : ''}${r.premium ? ` <span class="chip up">${PREMIUM[r.premium].name} Premium +%${Math.round(PREMIUM[r.premium].xp * 100)}</span>` : ''}</p>
-    ${r.win && r.akce > 0 && m !== 'clanboss' ? `${adBtn('savas', `Akçeyi ×2 yap (+${fmt(r.akce)})`, { battle: b.id }, 'red') ? `<p class="ad-x2">${adBtn('savas', `Akçeyi ×2 yap (+${fmt(r.akce)})`, { battle: b.id }, 'red')}</p>` : ''}` : ''}
     ${r.levels ? levelUpNote(S.lvl - r.levels, S.lvl, `+${r.levels * ENERGY.levelUpBonus} enerji, +${r.levels * 3} nitelik puanı`) : ''}
     ${lootBox(r.loot) || (r.win && m === 'stage' ? '<p class="mut">Bu sefer eşya düşmedi.</p>' : '')}
     ${!r.win && m === 'stage' ? '<p class="mut">Karakterini güçlendirip tekrar dene: Örs’te bas, nitelik ve yetenek puanlarını dağıt, İksir ve Parşömen dükkânından iksir al.</p>' : ''}
     ${r.win && m === 'stage' && r.stars < 3 ? `<p class="mut">${r.stars < 2 ? 'Canın %25\'in üstündeyken bitirirsen 2 yıldız.' : 'Canın %50\'nin üstündeyken bitirirsen 3 yıldız ve seri savaş açılır.'}</p>` : ''}
-    <div class="mbtns">${again ? `<button class="btn" data-a="again">${m === 'depth' ? 'Sonraki kat' : m === 'nobet' ? 'Sonraki dalga' : 'Tekrar'}</button>` : ''}${r.win && next && stageOpen(S, next.id, tier) ? '<button class="btn red" data-a="next">Sonraki</button>' : ''}
+    <div class="mbtns">${again ? `<button class="btn" data-a="again">${m === 'depth' || m === 'kule' ? 'Sonraki kat' : m === 'nobet' ? 'Sonraki dalga' : 'Tekrar'}</button>` : ''}${r.win && next && stageOpen(S, next.id, tier) ? '<button class="btn red" data-a="next">Sonraki</button>' : ''}
       ${m === 'arena' || m === 'live' || m === 'banner' ? '<button class="btn" data-a="backPvp">Meydan</button>' : ''}${m === 'clanboss' || m === 'siege' ? '<button class="btn" data-a="backClan">Klan</button>' : ''}
       ${reportBtn(r)}<button class="btn blue" data-a="hub">${hooks.ormanOn?.() ? 'Kemikli Koru’ya dön' : capitalOf(S.faction)}</button></div></div>`, (r.win ? 'bres win' : 'lose bres') + reportClass(r)); // bres: savaş sonucu görünümü (css/v15-savas.css)
   // Sonuç penceresi arenada açılır: kapatılırsa (✕, dışarı dokunma, geri tuşu) oyuncu düğmesiz bir sahnede kalırdı. Kapatma

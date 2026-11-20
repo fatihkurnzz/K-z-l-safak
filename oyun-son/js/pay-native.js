@@ -19,23 +19,6 @@ export async function storePrices(ids) {
   try { const r = await N.getProducts({ productIdentifiers: ids, productType: 'inapp' }), out = {}; for (const p of r.products || []) if (p?.identifier && p.priceString) out[p.identifier] = p.priceString; return out; }
   catch { return {}; }
 }
-// Ödüllü reklam (tek arayüz): mağaza paketinde reklam eklentisi varsa gösterir ve izleme tamamlandıysa true, yarıda kesildiyse
-// ya da yüklenemediyse false döner; eklenti yoksa (tarayıcı, deneme kipi, eklentisiz paket) null döner ve arayüz kendi
-// 15 sn'lik yer tutucu katmanını (ui-reklam.js) kullanır.
-// TODO: gerçek reklam için pakete bir reklam eklentisi (ör. AdMob) eklenmeli: bağımlılık bilerek eklenmedi. Eklenti
-// window.Capacitor.Plugins.AdMob olarak görününce aşağıdaki çağrılar çalışır; REWARD_UNIT yerine gerçek reklam birimi
-// kimlikleri (Android/iOS) konmalı ve ödül, reklam ağının sunucu tarafı doğrulamasıyla (SSV) bağlanmalı (shared/reklam.js).
-const REWARD_UNIT = { android: '', ios: '' };
-export async function showRewardedAd() {
-  const C = cap(); let A = null;
-  try { A = C?.isNativePlatform?.() && C.isPluginAvailable?.('AdMob') ? C.Plugins.AdMob : null; } catch { A = null; }
-  if (!A) return null;
-  try {
-    await A.prepareRewardVideoAd({ adId: REWARD_UNIT[nativePlatform()] || '' });
-    const r = await A.showRewardVideoAd();
-    return !!r && (r.amount > 0 || r.type !== undefined || r.rewarded === true);
-  } catch { return false; }
-}
 export class StoreError extends Error { constructor(code, message) { super(message); this.code = code; } }
 // Mağaza satın alma penceresini açar. account: sipariş kimliği (UUID) — satın almaya iliştirilir, sunucu bununla eşler.
 // Dönen: Android { token } · iOS { txn }. Otomatik onay kapalıdır: yakut sunucuda verildikten sonra kapatılır.

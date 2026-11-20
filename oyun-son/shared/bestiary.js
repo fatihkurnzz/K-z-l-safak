@@ -115,11 +115,11 @@ export const FAMILIES = [
         ['red_ghost', 'Red Ghost', 'm', { ghost: 0xff4a4a, glowEyes: 0xff4a4a, fx: 0xff4a4a }], ['wandering_spectre', 'Wandering Spectre', 'b'], ['shadow_spectre', 'Shadow Spectre', 'e', { ghost: 0x3a3a5a }],
         ['mana_spectre', 'Mana Spectre', 'm', { ghost: 0x6ab0ff, fx: 0x6ab0ff }], ['mage_ghost', 'Mage Ghost', 'm', { weapon: 'staff' }], ['wandering_knight_ghost', 'Wandering Knight Ghost', 'w', { weapon: 'sword', shield: true, robe: false, armorType: 'plate' }]],
     gate: ['mana_predator', 'Mana Predator', 'B', { ghost: 0x4a8aff, glowEyes: 0x4affff, fx: 0x4affff, scale: 1.7 }, [{ at: 0.5, text: 'Mana Predator büyüyü emiyor!' }]] },
-  { id: 'darkknight', zone: 4, block: 2, el: 'dark', weak: 'bolt', look: { skin: 0x8a8a8a, armor: 0x1c1c22, trim: 0x8a1a1a, cape: 0x14141a, weapon: 'sword', helmet: 'horned', glowEyes: 0xff3a3a, armorType: 'plate' },
+  { id: 'darkknight', zone: 4, block: 2, cult: true, el: 'dark', weak: 'bolt', look: { skin: 0x8a8a8a, armor: 0x1c1c22, trim: 0x8a1a1a, cape: 0x14141a, weapon: 'sword', helmet: 'horned', glowEyes: 0xff3a3a, armorType: 'plate' },
     m: [['dark_soldier', 'Dark Soldier', 'b'], ['black_guard', 'Black Guard', 'w', { shield: true }], ['doom_soldier', 'Doom Soldier', 'b', { trim: 0x5a1a8a }], ['dark_knight', 'Dark Knight', 'e'], ['shade_knight', 'Shade Knight', 'r', { ghost: 0x3a3a4a }],
         ['shadow_knight', 'Shadow Knight', 'r', { armor: 0x0a0a10 }], ['dread_knight', 'Dread Knight', 'w', { weapon: 'axe' }], ['doom_knight', 'Doom Knight', 'e', { trim: 0x5a1a8a, weapon: 'scythe' }], ['revenge_knight', 'Revenge Knight', 'm', { weapon: 'staff', fx: 0xff3a3a }]],
     gate: ['death_knight', 'Death knight', 'B', { armor: 0x0e0e14, trim: 0x9ae8ff, glowEyes: 0x9ae8ff, helmet: 'crown', scale: 1.7, fx: 0x9ae8ff }, [{ at: 0.5, text: 'Death knight kılıcına ölüleri çağırıyor!' }]] },
-  { id: 'darkmage', zone: 4, block: 3, el: 'dark', weak: 'fire', look: { skin: 0xd8c8b8, armor: 0x2a1a3a, trim: 0x9a6aff, weapon: 'staff', helmet: 'hood', robe: true, glowEyes: 0x9a6aff, fx: 0x9a6aff },
+  { id: 'darkmage', zone: 4, block: 3, cult: true, el: 'dark', weak: 'fire', look: { skin: 0xd8c8b8, armor: 0x2a1a3a, trim: 0x9a6aff, weapon: 'staff', helmet: 'hood', robe: true, glowEyes: 0x9a6aff, fx: 0x9a6aff },
     m: [['evil_wizard', 'Evil Wizard', 'm'], ['skeleton_lord', 'Skeleton lord', 'w', { skin: 0xe8e2d0, armorType: 'bones', robe: false, weapon: 'sword', helmet: 'crown' }], ['death_wizard', 'Death Wizard', 'm', { armor: 0x0a0a10, trim: 0x4affff, fx: 0x4affff }],
         ['reaper', 'Reaper', 'r', { weapon: 'scythe', armor: 0x0a0a0a, ghost: 0x2a2a2a }], ['screamer', 'Screamer', 'm', { ghost: 0xd8d8ff, longHair: true }], ['lamentation', 'Lamentation', 'b', { ghost: 0xa8b8d8, longHair: true }]],
     gate: ['lich', 'LICH', 'B', { skin: 0xd8d0b0, armorType: 'bones', armor: 0x1a2a3a, trim: 0x4affff, helmet: 'crown', glowEyes: 0x4affff, fx: 0x4affff, scale: 1.65 }, [{ at: 0.5, text: 'LICH ruh taşını yükseltiyor!' }]] },
@@ -169,9 +169,10 @@ export function buildBestiary(uniquesByGate = {}) {
   const sized = (base, over, role) => ({ ...base, ...over, scale: over.scale || (base.scale || 1) * SCALE[role] });
   for (const F of FAMILIES) {
     const ids = [], roleOf = {};
-    for (const [id, name, role, over = {}] of F.m) { make(id, name, role, sized(F.look, over, role), F.zone, F.el, F.weak); ids.push(id); roleOf[id] = role; }
+    const cx = F.cult ? { cult: true } : {}; // Küllerin Tarikatı ailesi
+    for (const [id, name, role, over = {}] of F.m) { make(id, name, role, sized(F.look, over, role), F.zone, F.el, F.weak, cx); ids.push(id); roleOf[id] = role; }
     const [gid, gname, grole, gover = {}, phases] = F.gate;
-    if (grole !== 'keep') make(gid, gname, grole, sized(F.look, gover, grole), F.zone, F.el, F.weak, phases ? { phases } : {});
+    if (grole !== 'keep') make(gid, gname, grole, sized(F.look, gover, grole), F.zone, F.el, F.weak, phases ? { phases, ...cx } : cx);
     const pick = (...rs) => { for (const r of rs) { const id = ids.find(i => roleOf[i] === r); if (id) return id; } return ids[0]; };
     const b = pick('b'), w = pick('w', 'e'), m = pick('m', 'a', 'r');
     blocks[`${F.zone}-${F.block}`] = { fam: F.id, b, w, m, x: ids.filter(id => id !== b && id !== w && id !== m), all: ids, gate: gid, env: F.env, bossEnv: F.bossEnv };

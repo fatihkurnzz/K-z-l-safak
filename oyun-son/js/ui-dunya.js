@@ -7,6 +7,8 @@ import { weekKey } from '../shared/content.js';
 import { ACT, $, hud, win, esc, fmt, toast, run, showModal, closeModal, openWin, reload, cur, loading, hooks, me, faceImg, titleChip, titleSvg, clockText, myPerks, myTier } from './ui-core.js';
 import { FACTIONS, FACTION_BONUS, WAR_BONUS, PREMIUM, bonusLines } from '../shared/content.js';
 import { ZONES } from '../shared/zones.js';
+import { stageOpen } from '../shared/calc.js';
+const zAsh = id => !stageOpen(S, `${id}-1`, 0); // 20 Kas (Kül, oynanışta): oyuncunun henüz açmadığı bölge haritada küllü durur
 import {
   KINGDOM, GRANT, DECREE, TERR, WEATHER, PHASES, phaseOf, clockOf, weatherAt, forecast, zoneBonusText, zoneBonusFor, zoneOwnerFor, HOUR, DAY,
 } from '../shared/realm.js';
@@ -243,7 +245,7 @@ function mapSvg(zs) {
   const hub = [198, 172];
   const defs = zs.map(z => `<clipPath id="mc${z.id}"><path d="${MAP_SHAPE[z.id].d}"/></clipPath>`).join('');
   const lands = zs.map(z => { const M = MAP_SHAPE[z.id], mine = z.owner === S.faction, col = fcol(z.owner);
-    return `<g class="mzf ${z.owner || 'none'} ${mine ? 'mine' : ''}"><g clip-path="url(#mc${z.id})">${TERRAIN[z.id]()}<path d="${M.d}" fill="${col}" fill-opacity="${z.owner ? .32 : .12}"/></g>
+    return `<g class="mzf ${z.owner || 'none'} ${mine ? 'mine' : ''} ${zAsh(z.id) ? 'ash' : ''}"><g clip-path="url(#mc${z.id})">${TERRAIN[z.id]()}<path d="${M.d}" fill="${col}" fill-opacity="${z.owner ? .32 : .12}"/></g>
       <path d="${M.d}" class="mz-edge" stroke="${col}"/>${mine ? `<path d="${M.d}" class="mz-mine"/>` : ''}</g>`; }).join('');
   const roads = zs.map(z => { const M = MAP_SHAPE[z.id]; return `<path d="M${hub[0]} ${hub[1]} Q${(hub[0] + M.lx) / 2 + 12} ${(hub[1] + M.ly) / 2 - 10} ${M.lx} ${M.ly - 14}" class="road"/>`; }).join('');
   const labels = zs.map(z => { const M = MAP_SHAPE[z.id], w = Math.max(56, z.name.length * 6.6);
@@ -265,7 +267,7 @@ function mapHtml(M) {
   // Bölge kartı: bölgenin manzarası, hâkim ırkın rengi ve imzası, bonus, iki ırkın puan çekişmesi
   const card = z => {
     const tot = Math.max(1, z.score.ocak + z.score.sancak), lead = z.score.ocak === z.score.sancak ? null : z.score.ocak > z.score.sancak ? 'ocak' : 'sancak', mine = z.owner === S.faction, po = Math.round(100 * z.score.ocak / tot);
-    return `<div class="zcard z${z.id} ${mine ? 'mine' : ''} ${z.owner ? 'own-' + z.owner : 'own-none'}" style="--fc:${fcol(z.owner)}">
+    return `<div class="zcard z${z.id} ${mine ? 'mine' : ''} ${z.owner ? 'own-' + z.owner : 'own-none'} ${zAsh(z.id) ? 'ash' : ''}" style="--fc:${fcol(z.owner)}">${zAsh(z.id) ? '<span class="zc-ash">Küllü · henüz açmadın</span>' : ''}
       <div class="zc-top"><span class="zc-name">${ri('zone' + z.id)}<b>${esc(z.name)}</b></span><span class="zc-own"><i class="zc-sign"></i>${z.owner ? fname(z.owner) : 'Sahipsiz'}</span></div>
       <div class="zc-bon ${mine ? 'on' : ''}">${zoneBonusText(z.id)}${mine ? ' · <b>sende etkin</b>' : ''}</div>
       <div class="zc-war"><b style="color:${FACTIONS.ocak.color}">${fmt(z.score.ocak)}</b><div class="zc-bar"><i style="width:${po}%;background:${FACTIONS.ocak.color}"></i><i style="width:${100 - po}%;background:${FACTIONS.sancak.color}"></i><em style="left:${po}%"></em></div><b style="color:${FACTIONS.sancak.color}">${fmt(z.score.sancak)}</b></div>

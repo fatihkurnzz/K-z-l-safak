@@ -30,7 +30,12 @@ import { hisarOpen } from './hisar.js';
 import { HISAR } from './content.js';
 import { BASKIN, raidOpen } from './baskin.js';
 import { NOBET, nobetLocked, minuteOf } from './nobet.js';
+import { ANIT, bracketOf, monUnit } from './anit.js';
 import { weekKey } from './content.js';
+import { KULE, kuleWaves, kuleRewards, isBossFloor } from './kule.js';
+import { YEMIN, yeminWaves, yeminDone, yeminRewards, yeminLevel } from './yemin.js';
+import { rkOf } from './rankper.js';
+import { DESTAN_BY, chapterOpen, chapterDone, destanSetup, finishChapter, destanOf, needsBattle } from './destan.js';
 
 const need = (p, key) => { if (p.lvl < UNLOCK[key]) fail('locked', `${UNLOCK[key]}. seviyede açılır.`); };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -61,7 +66,7 @@ export { parTurns };
 // ---------- Çanta sınırı ----------
 // Eşya veren bir savaşa çanta doluyken girilemez (bedel alınmadan reddedilir); eşyalı kazanç da toplanamaz. Savaş
 // sürerken dolan çantada taşan eşya eskisi gibi örs tozuna döner (util.js: grant). Posta ekleri postada bekler.
-export const ITEM_MODES = new Set(['stage', 'depth', 'seal']);
+export const ITEM_MODES = new Set(['stage', 'depth', 'seal', 'kule']);
 export const bagFull = p => p.items.length >= BAG_LIMIT;
 export function needBagRoom(p) { if (bagFull(p)) fail('bag-full', `Çanta dolu (${BAG_LIMIT}/${BAG_LIMIT}). Önce eşya sat ya da parçala.`); }
 
@@ -221,6 +226,73 @@ export const MODES = {
         addXp(p, modXp(b, true, xp), out);
       } else out.akce = Math.round(out.akce * 0.25);
       modBonus(p, b, out);
+      return finish(p, out);
+    },
+  },
+
+  // ---------- Kül Kulesi (kule.js): 65 sonrası sonsuz kat; her 10 katta Tarikat'ın bir adsızı. Katlar kalıcı ----------
+  kule: {
+    build(p, _, env) {
+      if (p.lvl < KULE.unlock) fail('locked', `${KULE.unlock}. seviyede açılır.`);
+      const f = (p.kule || 0) + 1;
+      if (p.energy < KULE.energy) fail('no-energy', 'Yeterli enerji yok.');
+      if (p.energy >= ENERGY.max) p.energyAt = env.now;
+      p.energy -= KULE.energy;
+      return { ref: String(f), waves: kuleWaves(env.rand, f), enrageTurn: isBossFloor(f) ? 120 : 0, title: `Kül Kulesi · ${f}. kat`, env: 'graveyard' };
+    },
+    settle(p, b, sum, env) {
+      const f = +b.ref, out = base(sum, { floor: f });
+      const xp = killRewards(p, sum.kills, env, out, { xp: out.win, drops: out.win });
+      if (out.win && f === (p.kule || 0) + 1) {
+        p.kule = f; out.stars = sum.deaths ? 2 : 3;
+        for (const d of kuleRewards(f)) grant(p, out.loot, d.t === 'gear' ? { t: 'item', b: pickGear(env.rand, tierForLevel(p.lvl)), g: REWARD_GRADE, key: 'gear' } : d);
+        addXp(p, xp, out);
+      } else if (!out.win) out.akce = Math.round(out.akce * 0.25);
+      return finish(p, out);
+    },
+  },
+
+  // ---------- Taş Yemini (yemin.js): haftada bir zafer; iki halktan kahramanlar aynı grupta, Tarikat'a karşı ----------
+  yemin: {
+    build(p, _, env) {
+      if (p.lvl < YEMIN.unlock) fail('locked', `${YEMIN.unlock}. seviyede açılır.`);
+      const wk = weekKey(env.now);
+      if (yeminDone(p, wk)) fail('yemin-done', 'Bu haftanın Taş Yemini tutuldu. Pazartesi yenilenir.');
+      const id = mainId(p), cls = clsOf(p, id), rest = CLASS_KEYS.filter(c => c !== cls), other = p.faction === 'ocak' ? 'sancak' : 'ocak', lvl = yeminLevel(p);
+      const tag = u => ({ ...u, ai: true, name: `${u.name} (yemin)` });
+      const allies = [...botTeam(env, lvl, YEMIN.allyQ, other, rest.slice(0, YEMIN.allies.other)), ...botTeam(env, lvl, YEMIN.allyQ, p.faction, rest.slice(YEMIN.allies.other, YEMIN.allies.other + YEMIN.allies.own))].map(tag);
+      return { ref: String(wk), waves: yeminWaves(env.rand, lvl), party: [heroUnit(p, id), ...allies], turnCap: 300, enrageTurn: 140, title: 'Taş Yemini', env: 'graveyard', solo: false };
+    },
+    settle(p, b, sum, env) {
+      const out = base(sum, {});
+      const xp = killRewards(p, sum.kills, env, out, { xp: out.win, drops: false });
+      if (out.win && !yeminDone(p, +b.ref)) {
+        const first = !rkOf(p).fr.includes(YEMIN.frame);
+        p.yemin = { w: +b.ref, n: (p.yemin?.n || 0) + 1 };
+        for (const d of yeminRewards(yeminLevel(p))) grant(p, out.loot, d);
+        if (first) { rkOf(p).fr.push(YEMIN.frame); out.frame = YEMIN.frame; }
+        out.stars = sum.deaths ? 2 : 3;
+        addXp(p, xp, out);
+      } else if (!out.win) out.akce = Math.round(out.akce * 0.25);
+      return finish(p, out);
+    },
+  },
+
+  // ---------- Destan (destan.js): hikâye bölümlerinin savaşları. Ödül yalnız ilk bitirişte; bitmiş bölüm yeniden oynanabilir ----------
+  destan: {
+    build(p, a, env) {
+      const C = DESTAN_BY[+a.ch];
+      if (!C || !needsBattle(C)) fail('bad-chapter', 'Bu bölüm savaşla oynanmaz.');
+      if (!chapterOpen(p, C.id)) fail('locked', `Bu bölüm ${C.lvl}. seviyede ve bir önceki bölümden sonra açılır.`);
+      if (C.kind === 'runes' && !destanOf(p).pz[C.id]) fail('need-puzzle', 'Önce taşın iki yüzünü oku.');
+      const id = mainId(p), S = destanSetup(p, C, env, { hero: heroUnit(p, id), botTeam });
+      return { ref: String(C.id), waves: S.waves, party: S.party, solo: false, turnCap: 320, enrageTurn: 150, title: S.title, env: S.env, opts: S.opts || {} };
+    },
+    settle(p, b, sum, env) {
+      const C = DESTAN_BY[+b.ref], out = base(sum, { chapter: C.id });
+      const xp = killRewards(p, sum.kills, env, out, { xp: out.win, drops: false });
+      if (out.win) { out.first = !chapterDone(p, C.id); finishChapter(p, C, out); out.stars = sum.deaths ? 2 : 3; addXp(p, xp, out); }
+      else out.akce = Math.round(out.akce * 0.25);
       return finish(p, out);
     },
   },
@@ -456,6 +528,33 @@ export const MODES = {
   },
 
   // ---------- Akın: saatli yarış; 12 dalgada en çok yaratığı kes, skor tabloya yazılır ----------
+  // ---------- Anıt Savaşı (anit.js): iki ırkın partisi + iki tarafın da vurabildiği Sınır Anıtı ----------
+  anit: {
+    build(p, _, env) {
+      if (p.lvl < ANIT.minLevel) fail('locked', `${ANIT.name} ${ANIT.minLevel}. seviyede açılır.`);
+      useDaily(p, 'anit', ANIT.daily, `Bugünkü ${ANIT.name} hakkın bitti (${ANIT.daily}).`);
+      const id = mainId(p), cls = clsOf(p, id), br = bracketOf(p.lvl), seed = seedOf(env), foe = p.faction === 'ocak' ? 'sancak' : 'ocak';
+      // yoldaşlar: diğer sınıflardan (Rahip öncelikli); rakip parti: her sınıftan bir kahraman (tohumlar ayrı: adlar çakışmaz)
+      const team = (off, faction, classes, q) => classes.map(c => { let sd = (seed + off) >>> 0; sd = sd - (sd % 4) + CLASS_KEYS.indexOf(c); return botParty(sd >>> 0, p.lvl, q, faction).units[0]; });
+      const allyCls = CLASS_KEYS.filter(c => c !== cls).sort((a, b) => (b === 'priest') - (a === 'priest')).slice(0, ANIT.side - 1);
+      const allies = team(0, p.faction, allyCls, 0.5).map(u => ({ ...u, ai: true }));
+      const foes = team(4096, foe, CLASS_KEYS.slice(0, ANIT.side), 0.5);
+      const me = heroUnit(p, id), mon = monUnit(p.lvl, [me, ...allies, ...foes]);
+      return { ref: br ? `${br.min}-${br.max}` : String(p.lvl), waves: [foes], party: [me, ...allies], solo: false, turnCap: 100000, title: ANIT.name, env: 'arena',
+        opts: { bdw: { mon, rounds: ANIT.rounds, respawn: ANIT.respawn, regenEvery: ANIT.regenEvery, regenPct: ANIT.regenPct, monPick: ANIT.monPick } } };
+    },
+    settle(p, b, sum) {
+      const B = sum.bdw || { pts: { A: 0, B: 0 }, dmg: { A: 0, B: 0 } }, R = ANIT.reward[sum.winner === 'A' ? 'win' : 'lose'];
+      const tot = B.dmg.A + B.dmg.B, share = tot ? B.dmg.A / tot : 0;
+      const out = base(sum, { anit: { pts: B.pts, dmg: B.dmg, share: Math.round(share * 1000) / 10, monDown: !!B.monDown, round: B.round } });
+      out.akce = p.lvl * R.akcePer;
+      grant(p, out.loot, { t: 'san', n: R.san + ANIT.reward.perKill * B.pts.A });
+      out.stars = out.win ? (B.monDown ? 3 : 2) : 1;
+      p.pend.war += out.win ? 3 : 1;
+      return finish(p, out);
+    },
+  },
+
   akin: {
     build(p, _, env) {
       need(p, 'arena');
@@ -481,7 +580,7 @@ export const MODES = {
 
 // Oyuncuya (ya da kahraman sınıflarından kurulu rakip partiye) karşı modlar: sırayı hız çubuğu belirler. Diğer bütün modlar
 // yaratıklara karşıdır ve açılış turu partinindir (battle.js: lead).
-const PVP = new Set(['arena', 'live', 'banner', 'siege']);
+const PVP = new Set(['arena', 'live', 'banner', 'siege', 'anit']);
 // Klan Karargâhı Talim Meydanı: yaratıklara karşı (PvP olmayan) savaşlarda kahramanların saldırı ve büyü gücü +%; savaş kaydına işlendiği için sunucu tekrarı aynı sayıyı oynar
 const talim = (p, mode, party) => { const k = PVP.has(mode) ? 0 : hqPct(p, 'talim'); return k > 0 ? party.map(u => (u.cls ? { ...u, atk: Math.round(u.atk * (100 + k) / 100), mag: Math.round(u.mag * (100 + k) / 100) } : u)) : party; };
 // Savaşı başlatır (kayıt p.battle'a yazılır) — game.js 'battle.start' buradan geçer.
@@ -493,7 +592,7 @@ export function startBattle(p, args, env) {
   const s = M.build(p, args, env);
   p.stats.battles++;
   const waves = s.solo === false ? s.waves : soloWaves(s.waves, mode, s.solo); // tek kahramana göre dalga (solo.js)
-  p.battle = { id: p.nextBattle++, mode: args.mode || 'stage', ref: s.ref, seed: seedOf(env), party: talim(p, mode, (s.party || partyUnits(p)).map(u => (u.ai ? u : soloHero(u, mode)))), lead: PVP.has(mode) ? 0 : 1, eng: ENGINE_V, waves, enrageTurn: s.enrageTurn || 0, turnCap: s.turnCap || TURN_CAP, opts: s.opts || {}, title: s.title, env: s.env, at: env.now };
+  p.battle = { id: p.nextBattle++, mode: args.mode || 'stage', ref: s.ref, seed: seedOf(env), party: talim(p, mode, (s.party || partyUnits(p)).map(u => (u.ai ? u : soloHero(u, mode, p.heroes?.[u.key]?.path)))), lead: PVP.has(mode) ? 0 : 1, eng: ENGINE_V, waves, enrageTurn: s.enrageTurn || 0, turnCap: s.turnCap || TURN_CAP, opts: s.opts || {}, title: s.title, env: s.env, at: env.now };
   return p.battle;
 }
-export const setupOf = b => ({ party: b.party, waves: b.waves, seed: b.seed, enrageTurn: b.enrageTurn, turnCap: b.turnCap, restoreOnWave: !!b.opts.restoreOnWave, lead: !!b.lead, v: b.eng || 1 }); // eng: savaşın başladığı motor sürümü (eski kayıt: 1)
+export const setupOf = b => ({ party: b.party, waves: b.waves, seed: b.seed, enrageTurn: b.enrageTurn, turnCap: b.turnCap, restoreOnWave: !!b.opts.restoreOnWave, lead: !!b.lead, v: b.eng || 1, bdw: b.opts.bdw || null }); // eng: savaşın başladığı motor sürümü (eski kayıt: 1)

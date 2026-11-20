@@ -3,7 +3,7 @@
 // dışarıdan görsel dosyası ve lisans gerekmez.
 // Elle çizilmiş görsel eklemek için: dosyayı public/img/ altına koy ve img/portraits.json'a yaz
 //   { "yagmaci": "img/yagmaci.webp", "warrior.ocak": "img/savasci-ocak.webp" }  → o birim için çizim yerine dosya kullanılır.
-import { THREE, renderer, onUpdate, studioEnv, withStudioExposure } from './engine3d.js';
+import { THREE, renderer, onUpdate, studioEnv, withStudioExposure, fpsCap } from './engine3d.js';
 import { Character, WormCharacter } from './models.js';
 import { BeastCharacter, decorateMob } from './beasts.js';
 import { BEAST_KINDS } from '../shared/bestiary.js';
@@ -48,20 +48,20 @@ function bgTex(kind) {
 
 // spec: { look, model, bg, full } — full: boydan (3:4), değilse büst (kare)
 function draw(spec) {
-  const art = !!spec.art, full = !!spec.full || art;
-  let w = art ? 360 : full ? 300 : 192, h = art ? 480 : full ? 400 : 192;
+  const art = !!spec.art, big = !!spec.big, full = !!spec.full || art || big; // big: karakter ekranının döndürülebilir 3B görünümü (boyasız, büyük)
+  let w = art || big ? 360 : full ? 300 : 192, h = art || big ? 480 : full ? 400 : 192;
   { const dm = renderer.domElement, k = Math.min(1, dm.width / w, dm.height / h); if (k < 1) { w = Math.floor(w * k); h = Math.floor(h * k); } } // küçük ekranda tuvalden büyük çizilemez
   // İskeletli modeli olan birimin portresi de o modelden çizilir (3B görünümle aynı olsun)
   const sk = createSkinned({ tid: spec.tid, mid: spec.mid, look: spec.look, model: spec.model || {} });
   const K = spec.look?.kind, c = sk || (K === 'worm' ? new WormCharacter(spec.look) : BEAST_KINDS.includes(K) ? new BeastCharacter(spec.look) : decorateMob(new Character(spec.look, spec.model || {}), spec.look)); // Dev Solucan insansı değildir (world.js ile aynı seçim)
   if (sk) { sk.update(0.5, 0.5); sk.bodyU.glow.value = 1; } else { c.phase = 1.2; c.combat = full ? 0.7 : 0; c.update(0, 0); } // portre sabit pozlamayla çizilir: kendinden aydınlık pay kısılmaz
-  c.root.rotation.y = full ? -0.38 : -0.3;
+  c.root.rotation.y = spec.rot ?? (full ? -0.38 : -0.3);
   pScene.add(c.root);
-  const s = c.scale, beast = c instanceof BeastCharacter; let hv = null, ty = art ? 1.42 * s : full ? 1.3 * s : 1.95 * s, dist = art ? 4.7 * s : full ? 6.0 * s : 3.2 * s; // illüstrasyon: kahraman kareyi daha çok doldurur
+  const s = c.scale, beast = c instanceof BeastCharacter; let hv = null, ty = big ? 1.25 * s : art ? 1.42 * s : full ? 1.3 * s : 1.95 * s, dist = big ? 6.6 * s : art ? 4.7 * s : full ? 6.0 * s : 3.2 * s; // illüstrasyon: kahraman kareyi daha çok doldurur
   if (beast) { c.root.updateMatrixWorld(true); hv = c.headTo(new THREE.Vector3()); const hy = hv.y - 0.35 * s; ty = full ? hy * 0.7 : hy; dist = (full ? 4.2 : 2.9) * s * (c.look.kind === 'dragon' ? 1.6 : 1); } // hayvan gövdesi alçak: kamera başa bakar
   cam.aspect = w / h;
   const fx = hv ? hv.x * 0.6 : 0, fz = hv ? hv.z * 0.6 : 0;
-  cam.position.set(fx, ty + (full ? 0.5 * s : 0.12 * s), fz + dist);
+  cam.position.set(fx, ty + (big ? 0.35 * s : full ? 0.5 * s : 0.12 * s), fz + dist);
   cam.lookAt(fx, ty, fz);
   cam.updateProjectionMatrix();
   pScene.background = bgTex(spec.bg);
@@ -123,7 +123,7 @@ onUpdate(() => {
     try { url = draw(spec); } catch (e) { console.warn('[portre] çizilemedi', k, e); }
     cache.set(k, url);
     document.querySelectorAll('img[data-pt]').forEach(img => { if (img.dataset.pt === k) img.src = url; });
-    if (++n >= 3 || performance.now() - t0 > 8) break; // telefonda bir portre (3B çizim + JPEG) tek başına bir kareyi doldurabilir; hızlı cihazda (ve kare sınırı düşükken) birkaç tane
+    if (++n >= Math.max(3, Math.round(45 / fpsCap())) || performance.now() - t0 > (fpsCap() <= 5 ? 40 : 8)) break; // 20 Kas: kare sınırı düşükken (tam ekran pencere 5 kare/sn) kare başına daha çok portre: saniyedeki çizim aynı kalır // telefonda bir portre (3B çizim + JPEG) tek başına bir kareyi doldurabilir; hızlı cihazda (ve kare sınırı düşükken) birkaç tane
   }
 });
 

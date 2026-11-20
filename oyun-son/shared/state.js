@@ -22,7 +22,7 @@ export const newGuard = () => ({ score: 0, at: 0, until: 0, perm: false, n: 0, l
 // Sonradan eklenen alanların varsayılanları (v1 kayıtları da bununla tamamlanır)
 const DEFAULTS = now => ({
   freeReset: { stat: 3, skill: 3 }, // ücretsiz sıfırlama hakkı (19 Kas): her hesap (yeni ve eski) 3 nitelik + 3 yetenek sıfırlamasıyla başlar
-  ore: 0, san: 0, seals: 0, embers: 0, shards: {}, depth: 0, wellBest: 0, trials: {}, premium: { tier: 0, until: 0 }, avatar: 'h:warrior', lastStage: '1-1',
+  ore: 0, san: 0, seals: 0, embers: 0, shards: {}, depth: 0, kule: 0, wellBest: 0, trials: {}, premium: { tier: 0, until: 0 }, avatar: 'h:warrior', lastStage: '1-1',
   mine: { lvl: 1, at: now }, idle: { at: now },
   daily: { day: dayKey(now), q: {}, qdone: {}, boss: {} }, weekly: { week: weekKey(now) }, monthly: { month: monthKey(now), q: {}, done: {} },
   welcome: 0, rseen: now, // hoş geldin postası alındı mı; raporlar sekmesinde en son bakılan an (okunmamış rozeti)

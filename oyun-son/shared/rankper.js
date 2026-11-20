@@ -20,6 +20,7 @@ export const prevKey = (per, now) => perKey(per, now) - 1;
 export const FRAMES = {
   pd: 'Günün Şampiyonu', pw: 'Haftanın Şampiyonu', pm: 'Ayın Şampiyonu',
   cd: 'Günün Klanı', cw: 'Haftanın Klanı', cm: 'Ayın Klanı',
+  ty: 'Taş Yemini', // 20 Kas: ortak baskının ilk zaferi (yemin.js); iki halkın malzemesi
 };
 // Sıra ödülleri (oyuncu ve klan üyesi için aynı tablo): to = bu sıraya kadar
 const band = m => [

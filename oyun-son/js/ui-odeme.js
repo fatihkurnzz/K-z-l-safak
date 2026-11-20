@@ -12,7 +12,6 @@ import { itemBase, itemStats, STARTER_WEAPONS } from '../shared/items.js';
 import { priceText } from '../shared/pay.js';
 import { REPORT_REASONS, REPORT_NOTE_MAX } from '../shared/reasons.js';
 import { svg, ri } from './icons.js';
-import { adShop, adsOn } from './ui-reklam.js';
 import { nativeKind, storeReady, storePrices, storeBuy, storeFinish } from './pay-native.js';
 
 const ls = { get: k => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch { } } };
@@ -202,10 +201,10 @@ function shopMoney(D) {
     <div class="row">${resTile('gem')}<div class="grow"><b>Yakut Kartı</b><br><span class="mut">30 gün boyunca her gün yakut.</span></div><button class="btn" data-a="yakutAl" data-tab="card">Kart</button><button class="btn" data-a="yakutAl" data-tab="hist">Geçmiş</button></div>`;
 }
 ACT.shop = d => {
-  const free = adsOn(); // reklam ödülleri kapalıyken (sürüm 13) "Ücretsiz" sekmesi hiç görünmez
+  const free = false; // 20 Kas: reklam modülü kaldırıldı, "Ücretsiz" sekmesi yok
   Y.shop = { title: 'Kervan', top: true, tab: d?.tab === 'money' || d?.tab === 'copy' ? 'money' : d?.tab === 'free' && free ? 'free' : 'yakut', tabs: [{ id: 'yakut', label: 'Yakut ile', small: 'Günlük erzak', icon: 'gem' }, ...(free ? [{ id: 'free', label: 'Ücretsiz', small: 'Reklam ödülleri', icon: 'star' }] : []), { id: 'money', label: 'Gerçek para', small: 'Paket ve üyelik', icon: 'cart' }],
     load: t => (t === 'money' ? loadPay('packs') : null),
-    render: t => { if (t === 'free' && free) return adShop(); if (t !== 'money') return shopYakut(); const D = cur().data; return D ? shopMoney(D) : loading; } };
+    render: t => { if (t !== 'money') return shopYakut(); const D = cur().data; return D ? shopMoney(D) : loading; } };
   openWin(Y.shop);
   if (Y.shop.tab === 'money') resumePending();
 };
