@@ -1,7 +1,7 @@
 """Tek parça boyanmış şehir sahnelerini (GPT, 21 Kas) oyuna hazırlar.
 Her binanın kaba kutusu elle verilir (BOLGE); bina şekli GrabCut ile kutunun içinden ayrılır.
-Çıktı: img/kd/sehir/<yer>/sahne.webp, b<i>.webp (bina kesiti, basınca parlar), hit.png (R = bölge sırası+1, 1/4 ölçek),
-js/hub2d-data.js (OTOMATİK).
+Çıktı: img/kd/sehir/<yer>/sahne.webp, atlas.webp (bina kesitleri; basınca parlar), js/hub2d-data.js (OTOMATİK; dokunma
+haritası RLE olarak içinde: değer = bölge sırası+1, 1/4 ölçek).
 Kullanım: python3 sahne.py <kaynak_klasoru (ocak.jpg sancak.jpg carsi.jpg)> <oyun-son> [kontrol_klasoru]
 """
 import sys, os, json
@@ -75,14 +75,14 @@ for yer, bl in BOLGE.items():
     im = Image.open(f'{SRC}/{yer}.jpg').convert('RGB'); W, H = im.size
     rgb = np.asarray(im)
     im.save(f'{hedef}/sahne.webp', 'WEBP', quality=88, method=6)
-    idmap = np.zeros((H, W), np.uint8); bolge = []
+    idmap = np.zeros((H, W), np.uint8); bolge = []; kesit = []
     kont = rgb.copy() if KONT else None
     for i, (oid, box) in enumerate(bl):
         mk = kes(rgb, box)
         ys, xs = np.nonzero(mk)
         bx = [int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1]
         al = Image.fromarray((mk * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(2.5))
-        cut = im.copy(); cut.putalpha(al); cut.crop(bx).save(f'{hedef}/b{i}.webp', 'WEBP', quality=86, method=6)
+        cut = im.copy(); cut.putalpha(al); kesit.append(cut.crop(bx))
         dil = cv2.dilate(mk.astype(np.uint8), np.ones((15, 15), np.uint8)).astype(bool)  # parmak payı
         kutu = np.zeros_like(dil); kutu[box[1]:box[3], box[0]:box[2]] = True  # dokunma: kutunun tamamı
         idmap[(dil | kutu) & (idmap == 0)] = i + 1
@@ -92,7 +92,20 @@ for yer, bl in BOLGE.items():
             c = (0, 255, 0) if oid not in ('carsi', 'gate') else (255, 0, 255)
             ov = kont.copy(); ov[mk] = (0.55 * ov[mk] + 0.45 * np.array(c)).astype(np.uint8); kont = ov
             cv2.putText(kont, f'{i}:{oid}', (bx[0] + 4, bx[1] + 18), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
-    Image.fromarray(idmap).resize((W // HIT, H // HIT), Image.NEAREST).save(f'{hedef}/hit.png', optimize=True)
+    # atlas: kesitler raf raf tek resimde (yayında dosya sayısı sınırı); bölgeye 'a' = atlastaki sol üst köşe
+    AW, x, y, rh = 2048, 0, 0, 0
+    for b, c in zip(bolge, kesit):
+        if x + c.width > AW: x, y, rh = 0, y + rh + 2, 0
+        b['a'] = [x, y]; x += c.width + 2; rh = max(rh, c.height)
+    atlas = Image.new('RGBA', (AW, y + rh), (0, 0, 0, 0))
+    for b, c in zip(bolge, kesit): atlas.paste(c, tuple(b['a']))
+    atlas.save(f'{hedef}/atlas.webp', 'WEBP', quality=86, method=6)
+    # dokunma haritası: 1/HIT ölçek, satır satır [değer, uzunluk] çiftleri (RLE) veri dosyasına gömülü
+    sm = np.asarray(Image.fromarray(idmap).resize((W // HIT, H // HIT), Image.NEAREST)).ravel()
+    rle, i0 = [], 0
+    for j in range(1, len(sm) + 1):
+        if j == len(sm) or sm[j] != sm[i0]: rle += [int(sm[i0]), j - i0]; i0 = j
+    hit = {'w': W // HIT, 'h': H // HIT, 'rle': rle}
     isik = ELLE.get(yer)
     if isik is None:  # alev tespiti (karanlık sahne)
         A = rgb.astype(np.int16); R, G, B = A[..., 0], A[..., 1], A[..., 2]
@@ -101,11 +114,11 @@ for yer, bl in BOLGE.items():
         n, lab, st, cen = cv2.connectedComponentsWithStats(k)
         top = sorted([(st[i, cv2.CC_STAT_AREA], cen[i]) for i in range(1, n) if 14 <= st[i, cv2.CC_STAT_AREA] < 6000], key=lambda t: -t[0])[:40]
         isik = {'ates': [[int(c[0]), int(c[1]), int(min(55, 6 + a ** .5 * 1.5))] for a, c in top], 'buz': [[838, 410, 40]]}
-    veri[yer] = {'size': [W, H], 'r': bolge, 'isik': isik, 'ek': EK[yer]}
+    veri[yer] = {'size': [W, H], 'hit': hit, 'r': bolge, 'isik': isik, 'ek': EK[yer]}
     if KONT: Image.fromarray(kont).save(f'{KONT}/maske-{yer}.jpg', quality=80)
 
 js = ('// OTOMATİK ÜRETİLDİ (_tasarim/araclar/sahne.py): tek parça boyanmış GPT şehir sahneleri (21 Kas).\n'
-      '// size: sahne pikseli · r: bölgeler (hit.png R değeri-1 = sıra; id = oyundaki bina kimliği; box [sol,üst,sağ,alt]; label [x,y] bina tepesi; kesit b<sıra>.webp)\n'
+      '// size: sahne pikseli · hit: dokunma haritası (w×h, RLE [değer, uzunluk]…; değer-1 = bölge sırası) · r: bölgeler (id = oyundaki bina kimliği;\n// box [sol,üst,sağ,alt]; label [x,y] bina tepesi; a [x,y] kesitin atlas.webp içindeki yeri)\n'
       '// isik: titreyen ışıklar [x,y,yarıçap] · ek: binasız etiket noktaları\n'
       f'export const HIT_SCALE = {HIT};\nexport const SAHNE = ' + json.dumps(veri, separators=(',', ':')) + ';\n')
 open(f'{O}/js/hub2d-data.js', 'w', encoding='utf-8').write(js)

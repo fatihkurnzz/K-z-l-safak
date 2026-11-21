@@ -1,6 +1,6 @@
 // 2B şehir sahneleri (21 Kas, GPT "Vahran Perspektif Son Teslim"): başkent (ocak = Kragmir, sancak = Elentha) ve Yemin Pazarı (carsi).
 // 21 Kas (2): GPT'nin tek parça boyanmış sahneleri. Veri js/hub2d-data.js (otomatik; _tasarim/araclar/sahne.py). Görseller
-// img/kd/sehir/<yer>/: sahne.webp, b<i>.webp (bölge i'nin GrabCut kesiti; basınca parlar), hit.png (R değeri-1 = bölge sırası).
+// img/kd/sehir/<yer>/: sahne.webp, atlas.webp (bölge kesitleri; basınca parlar). Dokunma haritası veri dosyasında (RLE).
 // Yerleşim: sahne ekranı KAPLAR (cover); taşan eksende parmakla kaydırılır. Dokunma dikdörtgenle değil binanın kendi şekliyle.
 // Canlılık: tek tuvalde titreyen ışıklar (meşale/kristal) + süzülen zerreler (Kragmir kor, Elentha/çarşı ışık tozu).
 // Düşük grafik kademesinde ya da "hareketi azalt" açıkken tuval çizilmez. Tercih: localStorage dd_hub2d = '0' eski 3B kasabayı açar.
@@ -46,30 +46,24 @@ function zoomAt(cx, cy, k) { // ekran noktası (cx, cy) yerinde kalarak k kat ya
 }
 function apply() { if (wrap) wrap.style.transform = `translate(${ox}px,${oy}px) scale(${s})`; }
 
-// --- dokunma: kimlik haritası ---
-function loadHit(src) {
-  hitData = null;
-  const im = new Image();
-  im.onload = () => {
-    const c = document.createElement('canvas'); c.width = im.width; c.height = im.height;
-    const g = c.getContext('2d', { willReadFrequently: true }); g.drawImage(im, 0, 0);
-    hitData = { w: im.width, h: im.height, px: g.getImageData(0, 0, im.width, im.height).data };
-  };
-  im.src = src;
+// --- dokunma: kimlik haritası (veri dosyasında RLE; açılınca bir kez çözülür) ---
+function loadHit(H) {
+  const px = new Uint8Array(H.w * H.h); let o = 0;
+  for (let i = 0; i < H.rle.length; i += 2) { px.fill(H.rle[i], o, o + H.rle[i + 1]); o += H.rle[i + 1]; }
+  hitData = { w: H.w, h: H.h, px };
 }
 function pick(lx, ly) { // mantıksal ekran noktası → bina kimliği
   if (!hitData) return null;
   const x = Math.floor((lx - ox) / s / HIT_SCALE), y = Math.floor((ly - oy) / s / HIT_SCALE);
   if (x < 0 || y < 0 || x >= hitData.w || y >= hitData.h) return null;
-  const v = hitData.px[(y * hitData.w + x) * 4];
+  const v = hitData.px[y * hitData.w + x];
   return v ? v - 1 : null; // bölge sırası
 }
 function glow(i) {
   if (!glowEl) return;
   const b = i != null && D.r[i];
   if (!b) { glowEl.classList.remove('on'); return; }
-  glowEl.src = `${DIR}${cur}/b${i}.webp`;
-  glowEl.style.cssText = `left:${b.box[0]}px;top:${b.box[1]}px;width:${b.box[2] - b.box[0]}px;height:${b.box[3] - b.box[1]}px`;
+  glowEl.style.cssText = `left:${b.box[0]}px;top:${b.box[1]}px;width:${b.box[2] - b.box[0]}px;height:${b.box[3] - b.box[1]}px;background-image:url("${DIR}${cur}/atlas.webp");background-position:${-b.a[0]}px ${-b.a[1]}px`;
   glowEl.classList.add('on');
 }
 
@@ -155,10 +149,10 @@ export function show2d(yer) {
     addEventListener('resize', () => requestAnimationFrame(() => { if (active2d()) layout(true); }));
   }
   const [W, H] = D.size;
-  layer.innerHTML = `<div class="h2-wrap" style="width:${W}px;height:${H}px"><img class="h2-img" src="${DIR}${cur}/sahne.webp" alt="" decoding="async" draggable="false"><img class="h2-glow" alt="" draggable="false"></div>${calm() ? '' : '<canvas class="h2-fx" aria-hidden="true"></canvas>'}`;
+  layer.innerHTML = `<div class="h2-wrap" style="width:${W}px;height:${H}px"><img class="h2-img" src="${DIR}${cur}/sahne.webp" alt="" decoding="async" draggable="false"><div class="h2-glow" aria-hidden="true"></div></div>${calm() ? '' : '<canvas class="h2-fx" aria-hidden="true"></canvas>'}`;
   wrap = layer.querySelector('.h2-wrap'); glowEl = layer.querySelector('.h2-glow'); cvs = layer.querySelector('.h2-fx');
   document.documentElement.dataset.hub2d = cur;
-  loadHit(`${DIR}${cur}/hit.png`);
+  loadHit(D.hit);
   s = 0; s0 = 0; layout(false);
   if (cvs) { seed(); if (!raf) raf = requestAnimationFrame(tick); }
 }
