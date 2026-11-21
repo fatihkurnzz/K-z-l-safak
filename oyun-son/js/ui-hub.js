@@ -173,12 +173,12 @@ const HERO_SPOT = [[0, 2.8]]; // 19 Kas: kapının önünde ortada, biraz ilerid
 export function showHub() {
   if (hooks.orman?.()) return; // açılış ormanı (orman.js): öğreticinin ilk görevi bitene dek ana üs yerine orman kurulur
   closeWin(true); hideBattleUI(); closeModal();
-  clearScene(); if (PLACE.cur === 'carsi' || PLACE.cur === 'klan' || !hub2dOn()) ensureEnv('hub', S.faction); setMood(S.faction); // 2B başkentte 3B ortam kurulmaz
+  clearScene(); if (PLACE.cur === 'klan' || !hub2dOn()) ensureEnv('hub', S.faction); setMood(S.faction); // 2B başkentte 3B ortam kurulmaz
   if (S.battle) run('battle.abandon'); // sonucu gönderilemeyen savaş kaydı açık kalmasın
   if (PLACE.cur === 'klan' && !S.clan) { PLACE.cur = 'capital'; document.documentElement.dataset.place = 'capital'; } // klandan çıkınca
   const carsi = PLACE.cur === 'carsi', klan = PLACE.cur === 'klan';
-  if (!carsi && !klan && hub2dOn()) { // 20 Kas Aşama 3: 2B başkent — şehir resmi + dokunma alanları; 3B sahne çizilmez (pil)
-    hideTown(); anchors = {}; show2d(S.faction); RENDER.off = true; nudges = {};
+  if (!klan && hub2dOn()) { // 20 Kas Aşama 3: 2B başkent (21 Kas: Yemin Pazarı da 2B) — şehir resmi + dokunma alanları; 3B sahne çizilmez (pil)
+    hideTown(); anchors = {}; show2d(carsi ? 'carsi' : S.faction); RENDER.off = true; nudges = {};
     let f2 = 0;
     setUpdater(() => {
       if (++f2 > 1 && f2 % 6 === 2) planNudges();
