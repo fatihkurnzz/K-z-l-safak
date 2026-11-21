@@ -1,6 +1,6 @@
 // 2B şehir sahneleri (21 Kas, GPT "Vahran Perspektif Son Teslim"): başkent (ocak = Kragmir, sancak = Elentha) ve Yemin Pazarı (carsi).
-// Veri js/hub2d-data.js (otomatik; _tasarim/araclar/kur.py). Görseller img/kd/sehir/<yer>/: sahne.webp, <bina>.webp (sahneden
-// piksel piksel kesilmiş bina; basınca parlar), hit.png (dokunma kimlik haritası: R değeri-1 = SAHNE.ids sırası).
+// 21 Kas (2): GPT'nin tek parça boyanmış sahneleri. Veri js/hub2d-data.js (otomatik; _tasarim/araclar/sahne.py). Görseller
+// img/kd/sehir/<yer>/: sahne.webp, b<i>.webp (bölge i'nin GrabCut kesiti; basınca parlar), hit.png (R değeri-1 = bölge sırası).
 // Yerleşim: sahne ekranı KAPLAR (cover); taşan eksende parmakla kaydırılır. Dokunma dikdörtgenle değil binanın kendi şekliyle.
 // Canlılık: tek tuvalde titreyen ışıklar (meşale/kristal) + süzülen zerreler (Kragmir kor, Elentha/çarşı ışık tozu).
 // Düşük grafik kademesinde ya da "hareketi azalt" açıkken tuval çizilmez. Tercih: localStorage dd_hub2d = '0' eski 3B kasabayı açar.
@@ -8,18 +8,12 @@ import { view, toLocal, toLocalDelta } from './orient.js';
 import { SAHNE, HIT_SCALE } from './hub2d-data.js';
 
 const DIR = 'img/kd/sehir/';
-// Binası olmayan oyun noktaları (yalnız etiket; etikete dokunmak işlevi açar): sahne pikseli [x, y]
-const EK = {
-  ocak: {},
-  sancak: {},
-  carsi: { gate: [650, 905], monument: [250, 455], child: [768, 590] },
-};
 // Etiket binanın tepesinden biraz içeride durur (üst sıradakiler HUD altına girmesin); ek pay:
 // Kişi etiketi bir binanın etiketini kullanır (Tüccar Halvor kendi tezgâhının üstünde)
 const TAKMA = { merchant: 'tuccar' };
-const ETIKET_PAY = { clanhq: 10 }; // genel kural: etiket bina yüksekliğinin %22'si kadar içeride
+const ETIKET_PAY = { king: 30 }; // genel kural: etiket bina yüksekliğinin %22'si kadar içeride
 // İlk açılışta ekranın ortasına gelecek nokta (sahne pikseli)
-const ODAK = { ocak: [768, 430], sancak: [768, 430], carsi: [768, 470] };
+const ODAK = { ocak: [836, 430], sancak: [836, 430], carsi: [836, 420] };
 // Yakınlaştırma sınırı: 1 = ekranı tam kaplar (en uzak), ZMAX kat yakın
 
 export const hub2dOn = () => { try { return localStorage.getItem('dd_hub2d') !== '0'; } catch { return true; } };
@@ -28,6 +22,9 @@ let cur = null, D = null, layer = null, wrap = null, hitFn = null, glowEl = null
 let s = 1, s0 = 1, ox = 0, oy = 0, hitData = null, pan = {};
 const ZMAX = 1.8, ptr = new Map();
 export const onHit = fn => { hitFn = fn; };
+// ui-hub: kimliğin o yerde bir işlevi var mı (yoksa bina basınca parlamaz)
+let hitOk = () => true;
+export const onHitOk = fn => { hitOk = fn; };
 
 // --- yerleşim: cover + kaydırma payı ---
 function clampPan() {
@@ -65,13 +62,13 @@ function pick(lx, ly) { // mantıksal ekran noktası → bina kimliği
   const x = Math.floor((lx - ox) / s / HIT_SCALE), y = Math.floor((ly - oy) / s / HIT_SCALE);
   if (x < 0 || y < 0 || x >= hitData.w || y >= hitData.h) return null;
   const v = hitData.px[(y * hitData.w + x) * 4];
-  return v ? D.ids[v - 1] : null;
+  return v ? v - 1 : null; // bölge sırası
 }
-function glow(id) {
+function glow(i) {
   if (!glowEl) return;
-  const b = id && D.b[id];
+  const b = i != null && D.r[i];
   if (!b) { glowEl.classList.remove('on'); return; }
-  glowEl.src = `${DIR}${cur}/${id}.webp`;
+  glowEl.src = `${DIR}${cur}/b${i}.webp`;
   glowEl.style.cssText = `left:${b.box[0]}px;top:${b.box[1]}px;width:${b.box[2] - b.box[0]}px;height:${b.box[3] - b.box[1]}px`;
   glowEl.classList.add('on');
 }
@@ -83,6 +80,7 @@ function bind() {
     const p = toLocal(e.clientX, e.clientY); ptr.set(e.pointerId, p);
     if (ptr.size === 2) { glow(null); const [a, b] = [...ptr.values()]; pan = { pinch: Math.hypot(a.x - b.x, a.y - b.y), moved: true }; return; }
     pan = { id: e.pointerId, x: e.clientX, y: e.clientY, ox, oy, moved: false, hit: pick(p.x, p.y) };
+    if (pan.hit != null && !hitOk(D.r[pan.hit].id)) pan.hit = null; // oyunda karşılığı olmayan bina parlamaz
     glow(pan.hit);
   });
   layer.addEventListener('pointermove', e => {
@@ -102,9 +100,9 @@ function bind() {
     ptr.delete(e.pointerId);
     if (pan.pinch) { if (!ptr.size) pan = {}; return; }
     if (pan.id !== e.pointerId) return;
-    const id = !pan.moved && e.type === 'pointerup' ? pan.hit : null;
-    pan = {}; setTimeout(() => glow(null), id ? 140 : 0);
-    if (id && hitFn) hitFn(id);
+    const i = !pan.moved && e.type === 'pointerup' ? pan.hit : null;
+    pan = {}; setTimeout(() => glow(null), i != null ? 140 : 0);
+    if (i != null && hitFn) hitFn(D.r[i].id);
   };
   layer.addEventListener('pointerup', end); layer.addEventListener('pointercancel', end);
   layer.addEventListener('wheel', e => { e.preventDefault(); const p = toLocal(e.clientX, e.clientY); zoomAt(p.x, p.y, Math.exp(-e.deltaY * 0.0015)); }, { passive: false });
@@ -169,7 +167,7 @@ export const active2d = () => !!document.documentElement.dataset.hub2d;
 // Etiketin ekrandaki noktası (oyundaki bina kimliğiyle; 'king' kral, 'merchant'/'child' çarşı kişileri). Yoksa null.
 export function pos2d(id) {
   if (!D) return null;
-  const k = TAKMA[id] || id, b = D.b[k], p = b ? [b.label[0], b.label[1] + (b.box[3] - b.box[1]) * 0.22 + (ETIKET_PAY[k] || 0)] : EK[cur]?.[id];
+  const k = TAKMA[id] || id, b = D.r.find(r => r.id === k), p = b ? [b.label[0], b.label[1] + (b.box[3] - b.box[1]) * 0.22 + (ETIKET_PAY[k] || 0)] : D.ek?.[id];
   if (!p) return null;
   return { x: ox + p[0] * s, y: oy + p[1] * s };
 }

@@ -10,7 +10,7 @@ import { S, now, DEV, LOCAL, resetLocal, onState, logout } from './api.js';
 import { NUFUS_LINE, FULL_TEXT, blessed } from '../shared/nufus.js'; // nüfus dengesi: Bereket rozeti, dolu ırk kartı
 import { ACT, $, hud, openWin, lockNote, chatbar, esc, fmt, toast, run, showModal, closeModal, confirmBox, closeWin, hooks, heroImg, mobImg, avatarImg, myTier, DEF_W, energyNow, locked, me, titleChip, bonusBox, tName, rkBadge, lootToast } from './ui-core.js';
 import { camRig, project, setShift, setHfov, THREE, RENDER } from './engine3d.js';
-import { show2d, pos2d, hub2dOn, active2d, onHit } from './hub2d.js'; // 20 Kas Aşama 3: 2B başkent
+import { show2d, pos2d, hub2dOn, active2d, onHit, onHitOk } from './hub2d.js'; // 20 Kas Aşama 3: 2B başkent
 import { gfx, TIER_NAMES } from './gfx.js';
 import { view } from './orient.js';
 import { world, clearScene, ensureEnv, spawn, setUpdater } from './world.js';
@@ -76,7 +76,7 @@ const KLAN = [{ id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'k_hq', name
   { id: 'k_gorev', name: 'Görev Panosu', tab: 'gorev' }, { id: 'k_dukkan', name: 'Klan Dükkânı', tab: 'dukkan' }, { id: 'k_sancak', name: 'Sancak Direği', tab: 'sancak' },
   { id: 'k_av', name: 'Oba Avı', tab: 'av' }, { id: 'k_hisar', name: 'Hisar', tab: 'hisar' }, { id: 'k_hazine', name: 'Klan Hazinesi', tab: 'hq' }].map(b => b.tab ? { ...b, act: 'klanTab' } : b);
 hooks.placeName = () => PLACE.cur === 'carsi' ? 'Yemin Pazarı' : PLACE.cur === 'klan' ? 'Klan toprağı' : (CAPITAL[S.faction] || GAME.hub); // sonuç ekranının dönüş düğmesi (en son bulunulan yer)
-const blds = () => (PLACE.cur === 'carsi' ? [...CARSI, ...npcs()] : PLACE.cur === 'klan' ? KLAN : [...BUILDINGS, ...(hub2dOn() ? [{ id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }] : []), ...kingNpc()]); // 2B başkentte Karaborsa da var (Aşama 3; işlev Çarşı'dakiyle aynı)
+const blds = () => (PLACE.cur === 'carsi' ? [...CARSI, ...npcs()] : PLACE.cur === 'klan' ? KLAN : [...BUILDINGS, ...(hub2dOn() ? [{ id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, { id: 'arena', name: 'Savaş Çadırı', act: 'savas' }] : []), ...kingNpc()]); // 2B başkentte Karaborsa da var (Aşama 3; işlev Çarşı'dakiyle aynı)
 // Etiketin ekran noktası: 2B başkentte resim koordinatından, 3B'de sahne izdüşümünden
 const posOf = id => active2d() ? pos2d(id) : (anchors[id] ? project(anchors[id]) : null);
 ACT.klanTab = d => { const b = KLAN.find(x => x.id === (d?.id || LAST_BLD)); ACT.clan({ tab: b?.tab || 'hq' }); };
@@ -335,6 +335,7 @@ function renderHud() {
 }
 hooks.hud = renderHud;
 // Binanın 3B modeline dokunmak da etiketine dokunmakla aynıdır (town.js seçimi yapar; pencere ya da modal açıkken çalışmaz)
+onHitOk(id => blds().some(b => b.id === id)); // 2B sahnede işlevi olmayan bina parlamaz
 onHit(id => { if (!hud.hidden && blds().some(b => b.id === id)) { ACT.building({ id }); hooks.sfx?.('tap', 'building'); } });
 onTownTap(id => { if (!hud.hidden && blds().some(b => b.id === id)) ACT.building({ id }); });
 ACT.czpk = () => showModal(`<h2>CZ - PK</h2><div class="in"><div class="mbtns" style="flex-direction:column;align-items:stretch"><button class="btn red" data-a="czHall">Şan Divanı</button><button class="btn" data-a="czArena">Meydan</button><button class="btn" data-a="czMarket">Meydan Marketi</button></div></div>`);

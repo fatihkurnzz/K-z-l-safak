@@ -81,4 +81,4 @@ export function drawMinimap(cv, pts, me, faction) {
 
 /** NPC ad levhası içeriği: yeşil rol etiketi + ad (görseldeki "[Demirci] Grom" düzeni). */
 export const plate = (role, name) => `${role ? `<small class="rl">[${esc(role)}]</small>` : ''}<b>${esc(name)}</b>`;
-export const ROLE = { gate: 'Geçit', carsi: 'Geçit', clanhq: 'Kral Otağı', anvil: 'Demirci', mine: 'Madenci', iksir: 'Simyacı', wheel: 'Talih', monument: 'Anıt', king: 'Kral', merchant: 'Tüccar', child: '', karaborsa: 'Kaçakçı', yashka: 'Şaman', pazar: 'Pazar', tuccar: 'Tüccar', pier: 'Balıkçı', k_hq: 'Klan', k_salon: 'Klan', k_gorev: 'Görev', k_dukkan: 'Dükkân', k_sancak: 'Sancak', k_av: 'Av', k_hisar: 'Hisar', k_hazine: 'Hazine' };
+export const ROLE = { arena: 'Savaş', gate: 'Geçit', carsi: 'Geçit', clanhq: 'Kral Otağı', anvil: 'Demirci', mine: 'Madenci', iksir: 'Simyacı', wheel: 'Talih', monument: 'Anıt', king: 'Kral', merchant: 'Tüccar', child: '', karaborsa: 'Kaçakçı', yashka: 'Şaman', pazar: 'Pazar', tuccar: 'Tüccar', pier: 'Balıkçı', k_hq: 'Klan', k_salon: 'Klan', k_gorev: 'Görev', k_dukkan: 'Dükkân', k_sancak: 'Sancak', k_av: 'Av', k_hisar: 'Hisar', k_hazine: 'Hazine' };
