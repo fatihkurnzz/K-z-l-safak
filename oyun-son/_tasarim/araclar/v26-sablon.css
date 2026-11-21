@@ -1,0 +1,80 @@
+/* v26 (21.11.2026): GPT 4.8 / 4.9 / Çanta-Mağaza V2 / 4.11 / 4.14 paketlerinden gelen görseller.
+   Yalnız görünüş; oyun mekaniği yok. Dosyalar img/kd/v4/ (WebP). Halk kodları: ocak = Kragmir, sancak = Elentha. */
+html[data-faction="ocak"] {
+  --g-arma:url("../img/kd/v4/arma/ocak-arma.webp"); --g-kapat:url("../img/kd/v4/sistem/ocak-kapat.webp");
+  --g-ayarlar:url("../img/kd/v4/sistem/ocak-ayarlar.webp"); --g-yardim:url("../img/kd/v4/sistem/ocak-yardim.webp");
+  --g-kilit:url("../img/kd/v4/sistem/ocak-kilit.webp"); --g-ses:url("../img/kd/v4/sistem/ocak-ses.webp");
+  --g-muzik:url("../img/kd/v4/sistem/ocak-muzik.webp"); --g-bildirim:url("../img/kd/v4/sistem/ocak-bildirim.webp");
+  --g-onay:url("../img/kd/v4/sistem/ocak-onay.webp");
+  --g-silah:url("../img/kd/v4/canta/ocak-kat-silah.webp"); --g-zirh:url("../img/kd/v4/canta/ocak-kat-zirh.webp");
+  --g-taki:url("../img/kd/v4/canta/ocak-kat-taki.webp"); --g-tuketim:url("../img/kd/v4/canta/ocak-kat-tuketim.webp");
+  --g-kervan:url("../img/kd/v4/kervan/ocak.webp");
+  --u-xn:var(--g-kapat); --u-xps:var(--g-kapat);
+}
+html[data-faction="sancak"] {
+  --g-arma:url("../img/kd/v4/arma/sancak-arma.webp"); --g-kapat:url("../img/kd/v4/sistem/sancak-kapat.webp");
+  --g-ayarlar:url("../img/kd/v4/sistem/sancak-ayarlar.webp"); --g-yardim:url("../img/kd/v4/sistem/sancak-yardim.webp");
+  --g-kilit:url("../img/kd/v4/sistem/sancak-kilit.webp"); --g-ses:url("../img/kd/v4/sistem/sancak-ses.webp");
+  --g-muzik:url("../img/kd/v4/sistem/sancak-muzik.webp"); --g-bildirim:url("../img/kd/v4/sistem/sancak-bildirim.webp");
+  --g-onay:url("../img/kd/v4/sistem/sancak-onay.webp");
+  --g-silah:url("../img/kd/v4/canta/sancak-kat-silah.webp"); --g-zirh:url("../img/kd/v4/canta/sancak-kat-zirh.webp");
+  --g-taki:url("../img/kd/v4/canta/sancak-kat-taki.webp"); --g-tuketim:url("../img/kd/v4/canta/sancak-kat-tuketim.webp");
+  --g-kervan:url("../img/kd/v4/kervan/sancak.webp");
+  --u-xn:var(--g-kapat); --u-xps:var(--g-kapat);
+}
+
+/* ---- 1. Kapat düğmesi (4.9): basılıyken parlar ---- */
+html[data-faction] .x:active { filter:brightness(1.35) drop-shadow(0 0 4px var(--a5-hi, #fd8)); }
+/* Profil kartındaki ayarlar düğmesi kapat görselini alıyordu: kendi dişli simgesi */
+html[data-faction] .x.pf-gear { background-image:var(--g-ayarlar) !important; }
+html[data-faction] .x.pf-gear > svg { visibility:hidden; }
+
+/* ---- 2. Menü ve Ayarlar sekmeleri: sistem simgeleri (4.9) ---- */
+html[data-faction] #modal .box.menu :is([data-a="supportMenu"],[data-a="logoutMenu"],[data-a="settings"]) .ico {
+  border-image:none !important; background:var(--kdi) center / contain no-repeat !important; box-shadow:none !important; border-color:transparent !important;
+}
+html[data-faction] #modal .box.menu :is([data-a="supportMenu"],[data-a="logoutMenu"],[data-a="settings"]) .ico > * { visibility:hidden; }
+/* Menü/Kapı madalyonlarının üstüne koyu ::after zemini biniyordu (simgeler boş kare görünüyordu) */
+html[data-faction] #modal :is(.box.menu :is([data-a="seriesOpen"],[data-a="rehber"],[data-a="friendsMenu"],[data-a="supportMenu"],[data-a="server"],[data-a="logoutMenu"],[data-a="settings"]), .gatemenu [data-a]) .ico::before,
+html[data-faction] #modal :is(.box.menu :is([data-a="seriesOpen"],[data-a="rehber"],[data-a="friendsMenu"],[data-a="supportMenu"],[data-a="server"],[data-a="logoutMenu"],[data-a="settings"]), .gatemenu [data-a]) .ico::after { display:none !important; }
+html[data-faction] #modal .box.menu [data-a="supportMenu"] .ico { --kdi:var(--g-yardim); }
+html[data-faction] #modal .box.menu [data-a="logoutMenu"] .ico { --kdi:var(--g-kilit); }
+html[data-faction] #modal .box.menu [data-a="settings"] .ico { --kdi:var(--g-ayarlar); }
+html[data-faction] #win nav.tabs button:is([data-id="gfx"],[data-id="ses"],[data-id="notif"]) .tico {
+  border-image:none !important; background:var(--kdi) center / contain no-repeat !important; box-shadow:none !important; border-color:transparent !important;
+}
+html[data-faction] #win nav.tabs button:is([data-id="gfx"],[data-id="ses"],[data-id="notif"]) .tico > * { visibility:hidden; }
+html[data-faction] #win nav.tabs button:is([data-id="gfx"],[data-id="ses"],[data-id="notif"]) .tico::after { display:none !important; }
+html[data-faction] #win nav.tabs button[data-id="gfx"] .tico { --kdi:var(--g-ayarlar); }
+html[data-faction] #win nav.tabs button[data-id="ses"] .tico { --kdi:var(--g-ses); }
+html[data-faction] #win nav.tabs button[data-id="notif"] .tico { --kdi:var(--g-bildirim); }
+
+/* ---- 3. Çanta süzgeçleri: kategori simgeleri (Çanta-Mağaza V2) ---- */
+html[data-faction] #win .ivf button:is([data-id="weapon"],[data-id="armor"],[data-id="jewel"]) .ri {
+  background:var(--kdi) center / contain no-repeat; width:20px; height:20px; border-radius:3px; flex:none;
+}
+html[data-faction] #win .ivf button:is([data-id="weapon"],[data-id="armor"],[data-id="jewel"]) .ri > svg { visibility:hidden; }
+html[data-faction] #win .ivf button[data-id="weapon"] .ri { --kdi:var(--g-silah); }
+html[data-faction] #win .ivf button[data-id="armor"] .ri { --kdi:var(--g-zirh); }
+html[data-faction] #win .ivf button[data-id="jewel"] .ri { --kdi:var(--g-taki); }
+
+/* ---- 4. Kervan: mağaza salonu resmi (4.14 mağaza referansından, halka göre yarısı) ---- */
+html[data-faction] #win .page .hint:has(+ .kv-grid) {
+  position:relative; min-height:64px; padding:10px 14px 10px 38%;
+  background:linear-gradient(90deg, #0000 0%, #0000 26%, rgba(8,8,14,.88) 42%, rgba(8,8,14,.92) 100%), var(--g-kervan) left 30% / 48% auto no-repeat, #0b0a10 !important;
+  border-radius:6px; overflow:hidden;
+}
+
+/* ---- 5. Profil: halk armasi (4.8) ---- */
+html[data-faction] .pf-fac::before { content:''; display:inline-block; width:1.25em; height:1.25em; margin-right:4px; vertical-align:-0.3em; background:var(--g-arma) center / contain no-repeat; }
+
+/* ---- 6. Karakter oluşturma: ırk kartında arma + kahraman (4.8 + 4.11 konsept) ---- */
+.olz-race { isolation:isolate; }
+.olz-race::before { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.30; transition:opacity .2s;
+  background:var(--hero) 50% 6% / 118% auto no-repeat; -webkit-mask:linear-gradient(#000 40%, #0000 100%); mask:linear-gradient(#000 40%, #0000 100%); }
+.olz-race.on::before { opacity:.55; }
+.olz-race[data-v="sancak"] { --hero:url("../img/kd/v4/kahraman/sancak.webp"); --arma:url("../img/kd/v4/arma/sancak-arma.webp"); }
+.olz-race[data-v="ocak"] { --hero:url("../img/kd/v4/kahraman/ocak.webp"); --arma:url("../img/kd/v4/arma/ocak-arma.webp"); }
+.olz-race .olz-ic { background:var(--arma) center / contain no-repeat; }
+.olz-race .olz-ic > * { visibility:hidden; }
+.olz-race :is(b, small) { text-shadow:0 1px 2px #000, 0 0 6px #000; }
