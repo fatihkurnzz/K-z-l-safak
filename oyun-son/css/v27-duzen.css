@@ -1,0 +1,119 @@
+/* v27 · ORTAK DÜZEN KATMANI (21 Kas, tam arayüz denetimi)
+   Bütün pencere, modal ve alt sekmelere tek kural takımı. Elentha (sancak) ve Kragmir (ocak) aynı yapıyı kullanır;
+   yalnız renk/görsel değişkenleri (--u-*, --a5-*, --kp-*) halka göre değişir. Oyun mekaniğine dokunmaz.
+   Denetim aracı: _tasarim/araclar/ui-denetim.js · rapor: _tasarim/UI_DENETIM_RAPORU.md
+   En son yüklenir (index.html); önceki katmanların !important kurallarını bilerek ezer. */
+
+:root {
+  --d-ink:#1a1206;            /* açık zemin üstü yazı */
+  --d-on:#f4ecd8;             /* koyu zemin üstü yazı */
+  --d-on2:#cdbf9f;            /* ikincil yazı */
+  --d-tap:30px;               /* en küçük dokunma yüksekliği (telefon yatay, 411 px) */
+}
+html[data-faction="sancak"] { --d-acc:#f0d488; --d-acc2:#7fb2ff; --d-mut:#d0d8e3; }
+html[data-faction="ocak"]   { --d-acc:#ffb347; --d-acc2:#ff8a3c; --d-mut:#ddd0bb; }
+
+/* ---------- 1. Yatay alt sekme / süzgeç düğmesi (.sub) ----------
+   GPT sekme görseli 360×120; eski kural %50 dilimlediği için alçak düğmede alt altın şerit bütün yüzeye yayılıp
+   seçili düğmeyi sarıya boyuyordu (yazı okunmuyordu). Köşe payıyla dilimle; seçili düğme parlatılmaz, yazı açık ve gölgeli. */
+html[data-faction] .sub button, html[data-faction] .win.side nav.tabs button, html[data-faction] #win.ttop nav.tabs button {
+  border-image-slice:30 44 fill !important; border-image-width:9px 13px !important; border-image-outset:0 !important;
+  min-height:var(--d-tap); line-height:1.15;
+}
+html[data-faction] .win.side nav.tabs button.on, html[data-faction] #win.ttop nav.tabs button.on {
+  filter:none !important; color:#fff6dc !important; text-shadow:0 1px 2px #000, 0 0 6px #000a !important;
+}
+/* alt sekme / süzgeç seçili: altın zemin + koyu yazı (ortak kural; iki halkta aynı) */
+html[data-faction] .sub button.on { filter:none !important; color:var(--d-ink) !important; text-shadow:0 1px 0 #fff6 !important; font-weight:800; }
+html[data-faction] .sub button.on .ri { --ic:var(--d-ink) !important; color:var(--d-ink); }
+html[data-faction] .sub button.on svg { fill:var(--d-ink) !important; }
+html[data-faction] .sub button.on :is(span, b, small, em) { color:inherit !important; }
+html[data-faction] #win .zonerow button.on { color:var(--d-ink) !important; text-shadow:0 1px 0 #fff6 !important; }
+html[data-faction] .sub button:not(.on) { color:var(--d-on) !important; }
+html[data-faction] .sub button .ri { --ic:currentColor; }
+
+/* ---------- 2. Dikey pencere sekmeleri: Karakter / Yetenek de ortak sekme sistemini kullanır ----------
+   v19/v20 dar, büyük harfli ayrı bir sekme türü kullanıyordu; telefonda "KARAKT", "YETENE" diye kesiliyordu. */
+html[data-faction] #win:is(:has(.kx), :has(.yt)) nav.tabs { width:clamp(104px, 16vw, 170px) !important; gap:4px !important; }
+html[data-faction] #win:is(:has(.kx), :has(.yt)) nav.tabs button {
+  background:none !important; box-shadow:none !important; border-radius:0 !important;
+  border:0 solid transparent !important; border-image:var(--u-tv) 50% 60 fill / 50% 16px / 0 stretch !important;
+  color:var(--u-t2) !important; font-family:inherit !important; text-transform:none !important; letter-spacing:0 !important; filter:none !important;
+}
+html[data-faction] #win:is(:has(.kx), :has(.yt)) nav.tabs button.on { border-image-source:var(--u-tvs) !important; color:#fff6e0 !important; text-shadow:0 1px 2px #000 !important; }
+html[data-faction] #win:is(:has(.kx), :has(.yt)) nav.tabs button span { text-transform:none !important; font-family:inherit !important; letter-spacing:0 !important; }
+/* bütün dikey sekmeler: yazı kesilmez, gerekirse iki satıra iner */
+html[data-faction] #win nav.tabs button { white-space:normal !important; text-overflow:clip !important; overflow:visible; }
+html[data-faction] #win nav.tabs button > span { min-width:0; overflow-wrap:anywhere; hyphens:auto; }
+
+/* Karakter penceresi çanta süzgeci (Hepsi/Silah/Zırh/Takı/Boşta): 9,5 px büyük harf yerine okunur düğmeler */
+html[data-faction] .kx-ftabs { display:flex !important; flex-wrap:wrap; gap:3px !important; }
+html[data-faction] .kx-ftabs button { flex:1 1 auto; min-width:0; min-height:24px; padding:2px 6px !important; font-size:11px !important; font-family:inherit !important;
+  text-transform:none !important; letter-spacing:0 !important; white-space:nowrap; }
+html[data-faction] .kx-ftabs button.on { color:#fff6dc !important; }
+
+/* ---------- 3. Modal başlık şeridi: şerit yazının boyunda (uzun başlıklar şeridin dışına taşıyordu) ---------- */
+html[data-faction] #modal .box > h2 {
+  width:max-content !important; max-width:calc(100% - 56px) !important; box-sizing:border-box;
+  padding:6px 34px 8px 16px !important; background-size:100% 100% !important;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:clamp(16px, 4.2vh, 22px) !important;
+}
+
+/* ---------- 4. Okunurluk: koyu zeminde koyu / açık zeminde açık kalan yazılar ---------- */
+/* ayar kaydırıcılarının değeri (%70, %80) */
+html[data-faction] #page .aysl output, html[data-faction] #page input[type=range] + output { color:var(--d-acc) !important; font-weight:800; text-shadow:0 1px 2px #000; }
+/* Taş Yemini · Üstün Irk: önde olan ırkın kartı beyaz zemindi, yazı beyaz */
+html[data-faction] .racevs .race.lead { background:linear-gradient(180deg, color-mix(in srgb, var(--fc) 40%, #0b1220), #0b1220) !important; box-shadow:inset 0 0 0 2px color-mix(in srgb, var(--fc) 80%, #fff), 0 0 14px color-mix(in srgb, var(--fc) 50%, transparent) !important; }
+html[data-faction] .racevs .race :is(h3, b, small) { color:var(--d-on) !important; text-shadow:0 1px 2px #000; }
+/* duyuru / bildirim kartı simgeleri (dolgu verilmemişti: kara daire) */
+html[data-faction] .v13-ic svg { fill:var(--kc, var(--d-acc)) !important; color:var(--kc, var(--d-acc)); }
+/* sıralama: açık satır zemininde açık mavi ad */
+html[data-faction] #page .rkrow:nth-child(odd), html[data-faction] #page .rank-row:nth-child(odd) { background:rgba(255,255,255,.06) !important; }
+
+/* ---------- 5. Pazar: süzgeçler telefonda tek kaydırılır şerit; ilan listesine yer kalır ---------- */
+html.short .pz-filters { flex-wrap:nowrap !important; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; gap:6px !important; padding:4px 6px !important; }
+html.short .pz-filters::-webkit-scrollbar { display:none; }
+html.short .pz-filters > * { flex:none !important; }
+html.short .pz-filters .pz-sub { flex-wrap:nowrap !important; }
+html.short .pz-filters input { width:150px !important; min-width:150px; }
+html.short .pz-grid { grid-template-columns:repeat(auto-fill, minmax(196px, 1fr)) !important; }
+
+/* ---------- 6. Küçük rozetler yazının üstüne binmesin ---------- */
+html[data-faction] #win nav.tabs button .tdot, html[data-faction] #win nav.tabs button > em { z-index:2; }
+html[data-faction] #win nav.tabs button:has(> em) > span { padding-left:4px; }
+
+/* ---------- 7. Kontrast düzeltmeleri (kontrast.py ölçümüyle bulundu; eşik 2,4) ----------
+   index.html'deki parşömen dönemi kuralı satır içi ırk renklerini koyulaştırıyordu (#861a08, #1e4379): koyu panelde
+   okunmuyordu. Irk renkleri açık tona çekilir; anlamı (kırmızı Kragmir, mavi Elentha) korunur. */
+html[data-faction] :is(.page, .box, .tin, #win, #modal, #chatbar) [style*="color:#c2321e"] { color:#ff7f66 !important; }
+html[data-faction] :is(.page, .box, .tin, #win, #modal, #chatbar) [style*="color:#3d6fb6"] { color:#8cb8ff !important; }
+html[data-faction] :is(#win, #modal) :is(.ayopt b, .aylang button b, .ayacc h3) { color:var(--d-acc) !important; text-shadow:0 1px 2px #000; }
+html[data-faction] :is(#win, #modal) .ayopt.on b::before { color:#7be08a !important; }
+html[data-faction] :is(#win, #modal) :is(.fbon em, .race b, .zstrip > b, .rcol b) { color:var(--d-acc) !important; text-shadow:0 1px 2px #000; }
+html[data-faction] :is(#win, #modal) :is(.up, .pv-gain) { color:#7be08a !important; }
+html[data-faction] :is(#win, #modal) .mut { color:var(--d-mut); }
+html[data-faction] #win time { color:var(--d-mut); }
+html[data-faction] #win .chpin time { color:#4a3208 !important; }
+html[data-faction] :is(#win, #modal) :is(.page, .in) [style*="color:#c2321e"]:is(b, strong) { color:#ff9a85 !important; }
+html[data-faction] :is(#win, #modal) .fbon em[style], html[data-faction] :is(#win, #modal) .race em { color:var(--d-acc) !important; }
+html[data-faction] #modal .box small { color:var(--d-mut); }
+html[data-faction] #win .ivset span:not(.on), html[data-faction] #win [class*=set] .off { color:#a9a08d; }
+
+/* ---------- 8. Karakter oluşturma: sınıf adları kesilmez ("SUİKAS…") ---------- */
+.olz-cls b { letter-spacing:0 !important; overflow:visible !important; text-overflow:clip !important; font-size:clamp(10.5px, 1.75vw, 13px) !important; }
+.olz-cls { min-width:0; gap:4px !important; }
+
+/* ---------- 9. Dar sütun başlıkları ---------- */
+/* Yetenek ağacı başlığı (HÜCUM 0/60): ad küçülür, sayı alta kaymaz ve kesilmez */
+html.short .yt-th { gap:3px !important; padding:3px 4px !important; min-width:0; }
+html.short .yt-th b { font-size:10.5px !important; letter-spacing:0 !important; min-width:0; overflow:hidden; text-overflow:clip; }
+html.short .yt-th small { flex:none; font-size:9px !important; }
+/* profil kutucuk etiketleri (Başarısız basma) iki satıra inebilir */
+.pf-tile small { white-space:normal !important; text-overflow:clip !important; overflow:visible !important; line-height:1.1; }
+
+/* ---------- 10. Kragmir teması kontrast kalıntıları ---------- */
+html[data-faction] .kv-badge { background:linear-gradient(#ffd36a, #e09a2a) !important; color:var(--d-ink) !important; text-shadow:none !important; }
+html[data-faction] .rar.g0 { background:#c9d0d8 !important; color:#14181d !important; }
+html[data-faction] :is(#win, #modal) .zstrip em { filter:brightness(1.9) saturate(1.2); }
+html[data-faction] :is(#win, #modal) i.elc { background:#2a1a10 !important; color:#ffb07a !important; border-color:#ff8a4a !important; }
+html[data-faction] :is(#win, #modal) p.mut { color:var(--d-mut) !important; }

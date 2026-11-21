@@ -142,7 +142,7 @@ function fitHub() {
 }
 // Bina etiketleri binanın ekrandaki yerine konur; bir arayüz parçasının (sohbet kutusu, şeritler, kaynak çubuğu) ya da
 // başka bir etiketin üstüne düşen etiket en kısa yoldan kenara itilir. Plan birkaç karede bir yapılır, itme yumuşakça uygulanır.
-const NUDGE_UI = ['.pcard', '.premrow', '.lrail', '.krail', '.res', '.wclock', '.wterr', '.dock', '.mmap', '.hotbar', '.qtrk', '.expbar'], NUDGE_GAP = 3, NUDGE_MAX = 140;
+const NUDGE_UI = ['.pcard', '.premrow', '.lrail', '.krail', '.res', '.wclock', '.wterr', '.dock', '.mmap', '.hotbar', '.qtrk', '.expbar', '.wsrv', '.dev', '.srail', '.savas2d', '.rrail'], NUDGE_GAP = 3, NUDGE_MAX = 140; // 21 Kas: sunucu rozeti, deneme şeridi, İlk Alım, Savaş düğmesi de korunur
 let nudges = {};
 function planNudges() {
   const rot = document.documentElement.classList.contains('rot'), iw = innerWidth;
