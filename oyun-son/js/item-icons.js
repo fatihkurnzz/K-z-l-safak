@@ -3,6 +3,7 @@
 // Değerler 512×512 görüş kutusunda tek yol verisidir (noktalar tam sayıya yuvarlanmıştır); renk CSS fill ile verilir.
 import { itemBase } from '../shared/items.js';
 import { OWN_GLYPHS, OWN_ICONS, VARIANT_MARKS } from './item-icons-ozgun.js'; // esya2: yeni silah türlerinin özgün simgeleri; esya3: varyant süsleri
+import { MAP as PNG_MAP, esyaUrl } from './esya-png.js'; // GPT Paket 2 raster eşya simgeleri
 export const ITEM_ICON_AUTHORS = ["Lorc","Delapouite","Skoll","Carl Olsen","DarkZaitzev","Lucas"];
 // Oyundaki bütün game-icons.net ikonlarının (yetenek + eşya + arayüz) yazarları: "Emeği geçenler" penceresi için
 export const ICON_AUTHORS = ["Lorc","Delapouite","Skoll","Carl Olsen","DarkZaitzev","Lucas","Felbrigg","HeavenlyDog","Sbed","SeregaCthtuf"];
@@ -343,7 +344,23 @@ export const itemGlyph = b => { const [k, a, c, e] = String(b).split(':'), key =
 // Varyant tabanı (items-var.js: "w:mace:2:1", "a:mage:2:chest:1", "j:ear:1:2"): tür simgesi, tek sıradakilerde aynalanmış,
 // sol üst köşede sıraya özgü küçük bir süs (esya3; özgün çizim)
 const variantNo = b => { const P = String(b).split(':'), v = P[P[0] === 'a' ? 4 : 3]; return (P[0] === 'w' || P[0] === 'a' || P[0] === 'j') && v ? +v : 0; };
+// GPT Paket 2 (21 Kas): çizilmiş eşya simgeleri (js/esya-png.js). Taban kendi kimliğiyle eşlenir (varyant soneki atılır);
+// eşlemede olmayan taban (eşsiz u:, başlangıç s:, ileride eklenecek kademe) aynı türün en yakın kademesine düşer.
+const pngKey = b => { const P = String(b).split(':'); return P[0] === 'a' ? P.slice(0, 4).join(':') : P.slice(0, 3).join(':'); };
+const PNG_IDX = {}; for (const k in PNG_MAP) { const P = k.split(':'), t = P[0] === 'a' ? `a:${P[1]}:${P[3]}` : `${P[0]}:${P[1]}`; (PNG_IDX[t] ||= []).push([+P[2], PNG_MAP[k]]); }
+const nearPng = (t, c) => { const L = PNG_IDX[t]; if (!L) return null; let best = L[0]; for (const x of L) if (Math.abs(x[0] - c) < Math.abs(best[0] - c)) best = x; return best[1]; };
+export const itemPng = b => {
+  const P = String(b).split(':'), k = pngKey(b);
+  if (PNG_MAP[k]) return PNG_MAP[k];
+  if (P[0] === 'w' || P[0] === 'j') return nearPng(`${P[0]}:${P[1]}`, +P[2]);
+  if (P[0] === 'a') return nearPng(`a:${P[1]}:${P[3]}`, +P[2]);
+  const B = itemBase(b); if (!B || !B.type) return null; // eşsiz / başlangıç: türünün kademesine göre (3B model görseli yerine; görünüm birliği)
+  const c = Math.max(0, Math.min(7, (B.tier || 1) - 1));
+  return B.kind === 'jewel' ? nearPng(`j:${B.type}`, c) : nearPng(`w:${B.type}`, c);
+};
 export const itemIcon = b => {
+  const pn = itemPng(b), pu = pn && esyaUrl(pn);
+  if (pu) return `<img class="gi g3d gpng" src="${pu}" alt="" draggable="false">`;
   const glb = itemBase(b)?.glb; // hazır 3B modeli olan eşya: modelden çizilmiş görsel (img/items3d, models.js GLB_ITEM)
   if (glb) return `<img class="gi g3d" src="img/items3d/${glb}.png" alt="" draggable="false">`;
   const g = itemGlyph(b), v = variantNo(b), d = g && (G[g] || OWN_GLYPHS[g]);

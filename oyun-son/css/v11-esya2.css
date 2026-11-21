@@ -4,3 +4,9 @@
 /* hazır 3B modelden çizilmiş eşya görseli (item-icons.js itemIcon) */
 .ico img.gi.g3d { width:86%; height:86%; object-fit:contain; display:block; filter:drop-shadow(0 1px 2px #000a); pointer-events:none; }
 .ico.empty img.gi.g3d { opacity:.35; filter:grayscale(1); }
+/* GPT Paket 2 (21 Kas): çizilmiş eşya / iksir / taş simgeleri (img.gpng, js/esya-png.js) */
+.ico img.gi.gpng { width:90%; height:90%; filter:drop-shadow(0 1px 2px #000c); }
+.ico.empty img.gi.gpng { opacity:.3; filter:grayscale(1) brightness(1.3); }
+.ri img.gi.gpng { width:100%; height:100%; object-fit:contain; display:block; }
+img.potsvg.gpng { object-fit:contain; display:block; filter:drop-shadow(0 1px 2px #000a); }
+.potcard .potico img.potsvg { width:46px; height:46px; }

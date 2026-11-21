@@ -4,6 +4,7 @@
 // Kaynak, sekme ve satır ikonlarının çoğu da item-icons.js'ten (game-icons.net) gelir: svg() önce orada arar,
 // bulamazsa aşağıdaki kodla çizilmiş ikona düşer.
 import { uiIcon } from './item-icons.js';
+import { esyaUrl } from './esya-png.js';
 const P = {
   sword: '<path d="M20.5 2l1.5 1.5L21 7l-8.6 8.6-3-3L18 4z"/><path d="M7.5 12.5l4 4-1.4 1.4-1.3-1.3-3.6 3.6-1.8-1.8 3.6-3.6-1.3-1.3z"/>',
   dagger: '<path d="M19 3l2 2-2 3-6 6-3-3 6-6z"/><path d="M8.5 11.5l4 4-1.4 1.4-1.3-1.3L7 18.4l1 1-1.6 1.6-3.4-3.4L4.6 16l1 1 2.8-2.8-1.3-1.3z"/>',
@@ -76,7 +77,10 @@ const P = {
   film: '<path d="M3 5h18v14H3zm2 2v2h2V7zm0 4v2h2v-2zm0 4v2h2v-2zm12-8v2h2V7zm0 4v2h2v-2zm0 4v2h2v-2zM10 8.500v7l5.500-3.500z" fill-rule="evenodd"/>',
   passive: '<path d="M12 1.500L22.500 12 12 22.500 1.500 12zm0 4.500L6 12l6 6 6-6z"/>',
 };
-export const svg = kind => uiIcon(kind) || `<svg viewBox="0 0 24 24" aria-hidden="true">${P[kind] || P.passive}</svg>`;
+// GPT Paket 2: bileği taşları çizilmiş simgeyle (js/esya-png.js); Örs Tozu v25-cila.css'teki halk simgesini korur
+const RES_PNG = { stone: 'tas-kaba', stone0: 'tas-kaba', stone1: 'tas-ince', stone2: 'tas-usta' };
+const resPng = kind => { const u = RES_PNG[kind] && esyaUrl(RES_PNG[kind]); return u ? `<img class="gi gpng" src="${u}" alt="" draggable="false">` : ''; };
+export const svg = kind => resPng(kind) || uiIcon(kind) || `<svg viewBox="0 0 24 24" aria-hidden="true">${P[kind] || P.passive}</svg>`;
 // Kaynakların sabit renkleri: aynı kaynak her ekranda aynı renkte görünür (koyu çerçeve çizgisi sayesinde parşömende de okunur)
 export const RES_COLOR = {
   akce: '#f2c84b', gem: '#ff5a6a', energy: '#7fe08a', san: '#ffb84a', toz: '#c9b8a0', ore: '#7fd1ff', xp: '#ffe9a8',
