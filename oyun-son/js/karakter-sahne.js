@@ -7,7 +7,7 @@
 // Isınma: kare sınırı 30; 4 sn dokunulmazsa 20; 18 sn sonra sahne donar ve saniyede 2 kare çizilir (çizim isteğe bağlı gibi).
 // Dokunuş, tuş ya da tekerlek sahneyi uyandırır. Kapatınca (stageClose) bütün geometri, malzeme ve dokular bırakılır, gizlenen
 // ortam geri açılır ve bir sonraki ekran ortamını yeniden kurar (world.env sıfırlanır).
-import { THREE, scene, FPS_CAP, setExposure, setSkyEnv, setKeyLight, gfx, clock, onUpdate, pauseGovernor } from './engine3d.js';
+import { THREE, scene, camera, FPS_CAP, setExposure, setSkyEnv, setKeyLight, gfx, clock, onUpdate, pauseGovernor } from './engine3d.js';
 import { world, spawn, removeActor } from './world.js';
 
 const ST = { on: false, race: null, g: null, hidden: [], actor: null, fires: [], cloth: [], motes: null, off: null, idleA: 0, idleB: 0, frozen: false, enter: 0, t: 0, root: null };
@@ -280,7 +280,31 @@ export function stageRace(race) {
   if (ST.race === race && ST.g) return;
   if (ST.g) disposeGroup(ST.g);
   ST.race = race; ST.g = build(race); scene.add(ST.g);
+  loadBg(race);
   pauseGovernor(1500); wake();
+}
+// 22 Kas (GPT karakter ekranları paketi): boyalı sahne resmi (Elentha / Kragmir) ekranı kaplayan arka plan olur; yüklenince
+// koddan çizilen dekor (silindir, zemin, kürsü, sancak, mangal) gizlenir, ışıklar ve zerreler kalır; karakterin gölgesi
+// görünmez bir gölge düzlemine düşer. Resim gelmezse eski dekor olduğu gibi kalır.
+const BG = { sancak: 'img/kd/karakter/sahne-sancak.webp', ocak: 'img/kd/karakter/sahne-ocak.webp' };
+function loadBg(race) {
+  new THREE.TextureLoader().load(BG[race], t => {
+    if (!ST.on || ST.race !== race || !ST.g) { t.dispose(); return; }
+    t.colorSpace = THREE.SRGBColorSpace;
+    if (ST.bgTex) ST.bgTex.dispose(); else ST.bg0 = scene.background;
+    ST.bgTex = t; scene.background = t; fitBg();
+    for (const o of ST.g.children) if (o.isMesh || o.isSprite) o.visible = false;
+    ST.ring = null; ST.cloth = []; ST.fires.forEach(f => { f.fl.visible = f.fl2.visible = false; });
+    const sh = new THREE.Mesh(new THREE.PlaneGeometry(10, 10).rotateX(-Math.PI / 2), new THREE.ShadowMaterial({ opacity: race === 'ocak' ? 0.45 : 0.3 }));
+    sh.receiveShadow = true; sh.position.y = 0.002; ST.g.add(sh);
+    scene.fog = null; wake();
+  }, undefined, () => { });
+}
+// Resim ekranı kaplar (oran korunur, taşan kırpılır); alt kenara yakın tutulur (platform kadrajda kalsın)
+function fitBg() {
+  const t = ST.bgTex, im = t?.image; if (!im) return;
+  const a = camera.aspect || 2, I = im.width / im.height;
+  if (a > I) { t.repeat.set(1, I / a); t.offset.set(0, (1 - I / a) * 0.35); } else { t.repeat.set(a / I, 1); t.offset.set((1 - a / I) / 2, 0); }
 }
 // Sahnedeki kahramanı değiştir (eskisi bırakılır). Girişte kısa bir yükselme ve halka parlaması olur.
 export function stageHero(unit, yaw = 0) {
@@ -317,6 +341,7 @@ export function stageClose() {
   if (ST.actor && world.actors.includes(ST.actor)) removeActor(ST.actor);
   ST.actor = null;
   if (ST.g) { disposeGroup(ST.g); ST.g = null; }
+  if (ST.bgTex) { if (scene.background === ST.bgTex) scene.background = ST.bg0 ?? null; ST.bgTex.dispose(); ST.bgTex = null; ST.bg0 = undefined; }
   ST.race = null; ST.cloth = []; ST.fires = []; ST.motes = null; ST.ring = null;
   for (const o of ST.hidden) o.visible = true;
   ST.hidden = [];
@@ -328,6 +353,7 @@ function tick(dt, t) {
   // ortamı ve başka nesneleri gizle (kahraman ve bu sahne hariç)
   const keep = new Set(world.actors.map(a => a.char.root));
   for (const o of scene.children) if (o !== ST.g && !keep.has(o) && o.visible && !o.isCamera) { o.visible = false; ST.hidden.push(o); }
+  if (ST.bgTex) fitBg();
   if (!dt) return;
   ST.t += dt;
   for (const f of ST.fires) {

@@ -1,0 +1,41 @@
+/* 22 Kas — GPT "Karakter Ekranları (tüm sınıflar)" paketi: karakter oluşturma (.olz) ve seçme (.ks) ekranları.
+   Arka plan: boyalı sahne (js/karakter-sahne.js, img/kd/karakter/sahne-*.webp). Burada: yazısız çerçeveler (paket SVG'leri
+   PNG'ye çevrildi, dokuz dilimli), taraf simgeleri. Davranış ve veri aynı (ui-olustur.js, ui-karakter.js). */
+:root { --kz-panel:url("@panel"); --kz-yuva:url("@yuva"); --kz-sec:url("@secili"); --kz-sec2:url("@secili-mavi"); --kz-btn:url("@dugme"); --kz-btn-o:url("@dugme-ocak"); --kz-ik:url("@ikincil");
+  --kz-elentha:url("@ik-elentha"); --kz-kragmir:url("@ik-kragmir"); --kz-zar:url("@ik-zar"); }
+
+/* ---- ortak: çerçeveli paneller ve düğmeler ---- */
+html body .olz .olz-pan, html body .ks .ks-plate { background:none !important; border:10px solid transparent !important; border-image:var(--kz-panel) 30 fill / 10px stretch !important; border-radius:0 !important; box-shadow:0 8px 22px #000b !important; }
+html body .olz .olz-pan::before, html body .olz .olz-pan::after { display:none !important; }
+html body .olz .olz-race, html body .olz .olz-clsl .olz-cls, html body .ks .ks-card { background:none !important; border:7px solid transparent !important; border-image:var(--kz-yuva) 28 fill / 7px stretch !important; border-radius:0 !important; box-shadow:none !important; clip-path:none !important; }
+html body .olz .olz-race.on, html body .olz .olz-clsl .olz-cls.on, html body .ks .ks-card.on { border-image-source:var(--kz-sec) !important; filter:drop-shadow(0 0 6px #ffcf6a88); color:#fff3d6 !important; }
+html[data-faction="sancak"] body .olz .olz-clsl .olz-cls.on, html body .olz[data-race="sancak"] .olz-clsl .olz-cls.on { border-image-source:var(--kz-sec2) !important; }
+html body .olz .olz-race::before, html body .olz .olz-race::after, html body .olz .olz-cls::before, html body .olz .olz-cls::after, html body .ks .ks-card::before, html body .ks .ks-card::after { display:none !important; }
+
+/* birincil: Oluştur / Oyuna gir (Elentha mavi, Kragmir kızıl) */
+html body .olz .olz-go, html body .ks .ks-enter { background:none !important; border:12px solid transparent !important; border-image:var(--kz-btn) 30 fill / 12px stretch !important; border-radius:0 !important; box-shadow:0 6px 16px #000b !important; clip-path:none !important; color:#fff4da !important; text-shadow:0 2px 3px #000 !important; }
+html body .olz[data-race="ocak"] .olz-go, html body .ks[data-race="ocak"] .ks-enter { border-image-source:var(--kz-btn-o) !important; }
+html body .olz .olz-go::before, html body .olz .olz-go::after, html body .ks .ks-enter::before, html body .ks .ks-enter::after { display:none !important; }
+html body .olz .olz-go:disabled, html body .ks .ks-enter:disabled { filter:saturate(.35) brightness(.7); }
+html body .olz .olz-dice, html body .olz .olz-back { background:none !important; border:8px solid transparent !important; border-image:var(--kz-ik) 26 fill / 8px stretch !important; border-radius:0 !important; box-shadow:none !important; }
+
+/* ---- oluşturma: üst şerit saydam, başlık ortada; alt şerit saydam ---- */
+html body .olz .olz-top, html body .olz .olz-b { background:linear-gradient(#000a, #0000) !important; border:0 !important; border-image:none !important; box-shadow:none !important; }
+html body .olz .olz-b { background:linear-gradient(#0000, #000b) !important; }
+html body .olz .olz-top::before, html body .olz .olz-top::after, html body .olz .olz-b::before, html body .olz .olz-b::after { display:none !important; }
+html body .olz .olz-top > b:first-child { position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); padding:2px 22px; border:8px solid transparent; border-image:var(--kz-sec) 28 fill / 8px stretch; white-space:nowrap; background:none !important; color:#f6dfa4 !important; -webkit-text-fill-color:#f6dfa4 !important; text-shadow:0 2px 3px #000; }
+html body .olz .olz-top .olz-lang { position:absolute; left:118px; top:50%; transform:translateY(-50%); }
+html body .olz .olz-shade { background:radial-gradient(ellipse at 50% 55%, #0000 55%, #0006) !important; }
+/* ırk düğmeleri: taraf sancağı simgesi */
+html body .olz .olz-race .olz-ic { width:44px !important; height:32px !important; background:var(--kz-elentha) center / contain no-repeat; border-radius:4px; }
+html body .olz .olz-race[data-v="ocak"] .olz-ic { background-image:var(--kz-kragmir); }
+html body .olz .olz-race .olz-ic > svg { display:none !important; }
+
+/* ---- seçme: yuvalar ve plaka ---- */
+html body .ks .ks-plate { padding:6px 4px !important; }
+html body .ks .ks-shade { background:radial-gradient(ellipse at 50% 55%, #0000 50%, #0007) !important; }
+html body .olz .olz-clsl .olz-cls { padding:0 4px !important; gap:4px !important; }
+html body .olz .olz-clsl .olz-cls b { font-size:11px !important; letter-spacing:0 !important; white-space:nowrap; }
+html body .olz .olz-dice > svg { opacity:0; }
+html body .olz .olz-dice { position:relative; }
+html body .olz .olz-dice::after { content:''; position:absolute; inset:2px; background:var(--kz-zar) center / 70% no-repeat; border-radius:4px; pointer-events:none; }
