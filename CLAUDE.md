@@ -2,7 +2,18 @@
 
 Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı** (sayfa başlığı "Korant Online"), tarayıcıda çalışan, YALNIZCA YATAY çizilen 3B mobil RPG (vanilla ES modülleri + three.js r160 gömülü, sıra tabanlı belirlenimci savaş). Hikâye: **Vahran: Tarihin Külleri**.
 
-## SON DURUM (22.11 sabah) — clear sonrası buradan devam
+## SON DURUM (22.11 öğle) — clear sonrası buradan devam
+- **Sürüm 19 YAYINDA** (504 dosya; son yayın commit'i e85a485, sonraki yayında `git diff --name-status e85a485 HEAD -- oyun-son`). Kullanıcı istekleri:
+  - Tema müziği: kullanıcının mp4'ünden `oyun-son/audio/kizil-goz.mp3` (157 sn, 112k). `audio.js` döngüde `url` desteği (fetch+decode, `loadBuf`, `preloadMusic`); `sfx.js` `MUSIC_URL`, döngüler `mus.tema` (başkent+pazar, eski sentez `mus.hub.*` artık çalmıyor) ve `mus.fragman`; `ui-ses.js` #fragman varken yer 'fragman'. Savaş/boss ezgileri hâlâ sentez.
+  - Fragman: resimler (hikaye-png) ve müzik yüklenmeden başlamaz (en çok 4 sn siyah) → eski çizimli ilk saniye görünmez.
+  - Balık Tut (Çarşı `pier`): üst ortadaki şelale (sahne.py BOLGE carsi, pier ilk sırada).
+  - Pencere sekmeleri HEP SOLDA: `ui-core drawWin` `W.top` yok sayılır (Posta, Kervan, Klan, Taş Yemini, Başarımlar, Ansiklopedi).
+  - VS ekranı: ortak P5 taş çerçeve uygulanmaz (`openWin({scr:'vs'})` → `#win[data-scr=vs]`, v32-sablon :not). Düzen zaten hiç değişmemişti (b1ef844^, ee91450 ile karşılaştırıldı). Kullanıcı başka bir şey kastettiyse sor.
+  - Savaş: CAM (13.65,5.36,0) (%30 geride); OTO her seviyede (`OTO.lvl=1`, VS'de Oto düğmesi hep); hız OTO'dan bağımsız 1x→2x→3x→1x (PvP'de kapalı); #bprim (Saldır) ve #bparty (sol sıra kutusu) gizli; Çekil yerine sağ üst köşede ✕ (v31-sablon sonu). OTO tanıtım penceresi artık öğretici bitince bir kez çıkar.
+  - Açılış: `.ld-art` cover (tam ekran, center 22%).
+- Test betikleri scratchpad `t/` (gir.js, vs.js, hep.js; PORT env).
+
+## ÖNCEKİ DURUM (22.11 sabah) — clear sonrası buradan devam
 - **Sürüm 18 YAYINDA** (son yayın commit'i eb5ed69; sonraki yayında `git diff --name-status <bu commit> HEAD -- oyun-son`; yayın 503 dosya). GPT 2340×1080 teslimi işlendi. Kayıt `oyun-son/_tasarim/gelen/p2340/` (maketler, parcalar, hikaye, yerlesim.json, savas-katmanlari.json, notlar); haritalar `_tasarim/gelen/sehir-2340/`.
 - Teslim zinciri (SHA-256 ile karşılaştırıldı): 1) "2340x1080 Tasarım Devri" ZIP, 2) "Son Teslim" 2 parça (373 dosya; +P5 sayfa maketleri p1–p80, merkez maketi, merkez-flama; eşya simgeleri Paket 2 ile aynı), 3) "Son Devir Claude" 2 parça (00_ONCE_OKU.md, Güncel_Teslim/, Referans/): GÖRSEL DEĞİŞİKLİK YOK; yalnız önizleme kodu (Kragmir Kapı etiketi 28 px yukarı) ve doğrulama notu. Referans/ = kullanıcının 2 şehir görseli + savaş referansı + bizim EKSIK_LISTESI.
 - Haritalar: `sahne.py` 2340 kaynağı okur, eski 1672×941 kutularını x'=210+x·1920/1672, y'=y·1080/941 ile taşır (ölçüyle doğrulandı). Klan toprağı iki tema: `klan-ocak`, `klan-sancak` (ui-hub show2d; hub2d dataset hub2d yine 'klan').
