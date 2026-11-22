@@ -17,7 +17,7 @@ const line = m => `<div class="cm ${m.me ? 'me' : ''}"><button class="cav" data-
 // ---------- Ana üsteki sohbet şeridi: son mesajlar + yazma kutusu; dokununca tam ekran ----------
 const bar = $('#chatbar');
 let barTimer = null, barKey = '';
-bar.innerHTML = `<div class="cb-tabs">${[['g', 'Genel'], ['f', 'Irk'], ['c', 'Klan'], ['p', 'Özel']].map(([t, n]) => `<button data-a="chatOpen" data-tab="${t}" class="${t === 'g' ? 'on' : ''}">${n}</button>`).join('')}</div><div class="cb-msgs" data-a="chatOpen"><div class="mut">Sohbet yükleniyor…</div></div>
+bar.innerHTML = `<div class="cb-tabs">${[['g', 'Genel'], ['f', 'Irk'], ['c', 'Klan'], ['p', 'Özel']].map(([t, n]) => `<button data-a="cbTab" data-tab="${t}" class="${t === 'g' ? 'on' : ''}">${n}</button>`).join('')}</div><div class="cb-msgs" data-a="cbFull"><div class="mut">Sohbet yükleniyor…</div></div>
   <div class="cb-in"><input type="text" id="cbtext" maxlength="${CHAT.max}" placeholder="Genel sohbete yaz…" autocomplete="off" data-enter="cbSend"><button class="cb-b cb-emo" data-a="emoOpen" data-for="cbtext" title="Emoji" aria-label="Emoji ekle">😊</button><button class="cb-b" data-a="cbSend" title="Gönder">${svg('send')}</button></div>
   <button class="cb-b cb-exp cb-min" data-a="chatMini" title="Sohbeti küçült" aria-label="Sohbeti küçült"><b class="cb-x">✕</b><b class="cb-p">+</b><span class="badge" id="cbunread" hidden></span></button>`;
 // 19 Kas (kullanıcı): büyütme simgesi yerine kapatma işareti; basınca sohbet görev izleyicisi gibi tek satıra küçülür (dd_chatmini)
@@ -25,16 +25,43 @@ const MINI_KEY = 'dd_chatmini';
 const setMini = on => { bar.classList.toggle('mini', on); const b = bar.querySelector('.cb-min'); if (b) { b.title = on ? 'Sohbeti aç' : 'Sohbeti küçült'; b.setAttribute('aria-label', b.title); } };
 try { setMini(localStorage.getItem(MINI_KEY) === '1'); } catch {}
 ACT.chatMini = () => { const on = !bar.classList.contains('mini'); setMini(on); try { localStorage.setItem(MINI_KEY, on ? '1' : '0'); } catch {} };
+// 22 Kas (kullanıcı): şeritteki Genel/Irk/Klan/Özel sekmeleri ekranı büyütmeden şeritteki mesajları o kanala çevirir
+let barTab = 'g';
+const BAR_PH = { g: 'Genel sohbete yaz…', f: 'Irkına yaz…', c: 'Klanına yaz…', p: 'Özel mesaj için dokun…' };
+const cl = m => `<div class="cl"><b style="color:${FACTIONS[m.faction]?.color || '#ccc'}">${esc(m.name)}:</b> ${esc(m.text)}</div>`;
+ACT.cbTab = d => {
+  barTab = ['g', 'f', 'c', 'p'].includes(d.tab) ? d.tab : 'g'; barKey = '';
+  bar.querySelectorAll('.cb-tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === barTab));
+  const i = $('#cbtext'); if (i) i.placeholder = BAR_PH[barTab];
+  if (bar.classList.contains('mini')) setMini(false);
+  bar.querySelector('.cb-msgs').innerHTML = '<div class="mut">Yükleniyor…</div>';
+  peek();
+};
+ACT.cbFull = () => ACT.chatOpen({ tab: barTab });
+async function peekTab(tab) {
+  const box = bar.querySelector('.cb-msgs');
+  if (tab === 'c' && !S.clan) { box.innerHTML = '<div class="mut">Bir klana katılınca klan sohbeti burada görünür.</div>'; barKey = 'c-'; return; }
+  if (tab === 'p') {
+    const r = await run('chat.convs').catch(() => null); if (!r || barTab !== 'p') return;
+    const key = 'p' + JSON.stringify(r.convs.map(c => [c.id, c.last, c.unread])); if (key === barKey) return; barKey = key;
+    box.innerHTML = r.convs.slice(0, 3).map(c => `<div class="cl"><b style="color:${FACTIONS[c.faction]?.color || '#ccc'}">${esc(c.name)}:</b> ${esc(c.last || '')}</div>`).join('') || '<div class="mut">Özel mesajın yok.</div>';
+    return;
+  }
+  const r = await run('chat.list', { ch: tab }).catch(() => null); if (!r || barTab !== tab) return;
+  const key = tab + r.msgs.map(m => m.id).join(); if (key === barKey) return; barKey = key;
+  box.innerHTML = r.msgs.slice(-3).map(cl).join('') || '<div class="mut">Henüz mesaj yok. İlk sen yaz.</div>';
+}
 async function peek() {
   if (bar.hidden || !win.hidden || document.hidden) return;
+  if (barTab !== 'g') return peekTab(barTab);
   const r = await run('chat.peek').catch(() => null);
-  if (!r) return;
+  if (!r || barTab !== 'g') return;
   hooks.chatMute?.(r.mute || null, 'bar'); // susturma bildirimi (ui-guvenlik.js)
   if (r.title !== me.title || (r.req || 0) !== (me.req || 0)) { me.title = r.title; me.req = r.req || 0; hooks.hud(); } // unvan ya da bekleyen arkadaşlık isteği değişti: kart çerçevesi ve Menü rozeti yenilenir
   const key = r.msgs.map(m => m.id).join() + r.unread;
   if (key !== barKey) {
     barKey = key;
-    bar.querySelector('.cb-msgs').innerHTML = r.msgs.slice(-3).map(m => `<div class="cl"><b style="color:${FACTIONS[m.faction]?.color || '#ccc'}">${esc(m.name)}:</b> ${esc(m.text)}</div>`).join('') || '<div class="mut">Henüz mesaj yok. İlk sen yaz.</div>';
+    bar.querySelector('.cb-msgs').innerHTML = r.msgs.slice(-3).map(cl).join('') || '<div class="mut">Henüz mesaj yok. İlk sen yaz.</div>';
     const u = $('#cbunread'); u.hidden = !r.unread; u.textContent = r.unread;
   }
 }
@@ -42,8 +69,8 @@ export function showChatBar() { bar.hidden = false; clearInterval(barTimer); bar
 export function hideChatBar() { bar.hidden = true; clearInterval(barTimer); }
 ACT.cbSend = async () => {
   const el = $('#cbtext'), text = el.value.trim();
-  if (!text) return ACT.chatOpen();
-  const r = await run('chat.send', { ch: 'g', text });
+  if (!text || barTab === 'p' || (barTab === 'c' && !S.clan)) return ACT.chatOpen({ tab: barTab });
+  const r = await run('chat.send', { ch: barTab, text });
   if (r) { el.value = ''; barKey = ''; if (r.sent === false) toast(r.muted.message); peek(); }
 };
 

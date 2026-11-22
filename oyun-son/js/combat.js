@@ -75,8 +75,8 @@ export function unitLook(u) {
 }
 
 // 19 Kas (kullanıcı): kamera %20 daha yüksekten ve uzaktan (eski konum 0, 8.6, 9.0: bakış noktasına uzaklık ×1,2)
-// 22 Kas (kullanıcı): kamera %30 geride (bakış noktasından uzaklık 1,3 kat: 10.5,4.4 → 13.65,5.36)
-const CAM = { pos: new THREE.Vector3(13.65, 5.36, 0), look: new THREE.Vector3(0, 1.2, 0) };
+// 22 Kas (kullanıcı): karakter ve düşmanlar %25 geriden görünür (bakış noktasından uzaklık 1,25 kat: 10.5,4.4 → 13.125,5.2)
+const CAM = { pos: new THREE.Vector3(13.125, 5.2, 0), look: new THREE.Vector3(0, 1.2, 0) };
 // Dizilişler (birim sayısı → [x, z] sıra sırasıyla; sıra 0 = oyuncunun kahramanı, önde). Düşman tarafı z'nin aynası.
 const FORM = {
   1: [[2.18, 3.23]],

@@ -6,18 +6,18 @@
    - Alt: Sohbet (sol) · Görevler · Karakter…Kervan · Savaş */
 
 /* --- oyuncu kartı: dikey, sol şeride sığar (Kader Çarkı'nı örtmez) --- */
-html[data-hub2d] #game #hud .pcard.uf { width:66px !important; top:6px !important; padding:5px 4px 6px !important; flex-direction:column !important; align-items:center !important; gap:3px !important; border-radius:12px !important; }
-html[data-hub2d] #game #hud .pcard.uf > img, html[data-hub2d] #game #hud .pcard.uf > .ava, html[data-hub2d] #game #hud .pcard.uf > :first-child:not(.uf-info) { width:44px !important; height:44px !important; }
+html[data-hub2d] #game #hud .pcard.uf { width:100px !important; top:6px !important; padding:5px 4px 6px !important; flex-direction:column !important; align-items:center !important; gap:3px !important; border-radius:12px !important; }
+html[data-hub2d] #game #hud .pcard.uf > img, html[data-hub2d] #game #hud .pcard.uf > .ava, html[data-hub2d] #game #hud .pcard.uf > :first-child:not(.uf-info) { width:66px !important; height:66px !important; }
 html[data-hub2d] #game #hud .pcard.uf .uf-info { width:100% !important; min-width:0 !important; display:flex !important; flex-direction:column !important; gap:2px !important; padding:0 !important; }
-html[data-hub2d] #game #hud .pcard.uf .uf-nm { display:block !important; width:100%; font-size:9px !important; line-height:11px !important; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin:0 !important; letter-spacing:0 !important; }
-html[data-hub2d] #game #hud .pcard.uf .uf-nm * { font-size:9px !important; line-height:11px !important; }
-html[data-hub2d] #game #hud .pcard.uf .uf-nm em { display:block; font-size:11px !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-nm { display:block !important; width:100%; font-size:11px !important; line-height:13px !important; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin:0 !important; letter-spacing:0 !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-nm * { font-size:11px !important; line-height:13px !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-nm em { display:block; font-size:14px !important; }
 html[data-hub2d] #game #hud .pcard.uf .uf-nm svg { width:8px !important; height:8px !important; }
-html[data-hub2d] #game #hud .pcard.uf .uf-bar { height:5px !important; min-height:0 !important; width:100% !important; margin:0 !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-bar { height:7px !important; min-height:0 !important; width:100% !important; margin:0 !important; }
 html[data-hub2d] #game #hud .pcard.uf .uf-bar s { display:none !important; }
 
 /* --- sol menü düğmeleri: kartın altında, şeridin ortasında --- */
-html[data-hub2d] #game #hud .lrail { top:108px !important; left:calc(var(--h17-sl) + 16px) !important; }
+html[data-hub2d] #game #hud .lrail { top:148px !important; left:calc(var(--h17-sl) + 34px) !important; } /* 22 Kas: kart büyüdü (100 px), menü altında ortada */
 
 /* --- sağ üst düğmeler: sağ şeritte dikey sütun --- */
 html[data-hub2d] #game #hud .krail { top:6px !important; right:var(--h17-sr) !important; left:auto !important; width:auto !important; flex-direction:column !important; flex-wrap:nowrap !important; align-items:center !important; }
@@ -33,7 +33,12 @@ html[data-hub2d] #game #hud .premrow .prem i svg { width:13px; height:13px; }
 
 /* --- Görevler: altta, sohbet ile alt düğmelerin arasında --- */
 html[data-hub2d] #chatbar { width:250px !important; }
-html[data-hub2d] #game #hud .qtrk { top:auto !important; right:auto !important; bottom:calc(var(--h17-sab) + 12px) !important; left:calc(var(--h17-sl) + 278px) !important; width:clamp(120px, calc(var(--lw, 100vw) - 650px), 220px) !important; }
+html[data-hub2d] #game #hud .qtrk { top:auto !important; right:auto !important; bottom:calc(var(--h17-sab) + 12px) !important; left:calc(var(--h17-sl) + 293px) !important; width:clamp(150px, calc(var(--lw, 100vw) - 640px), 240px) !important; }
+/* 22 Kas (kullanıcı): Destan satırı yok (tek satır); açıkken pano yukarı doğru büyür, ana görev satırı kırılmaz, satırlar aynı boyda */
+html[data-hub2d] #game #hud .qtrk.open { height:auto !important; max-height:200px; }
+html[data-hub2d] #game #hud .qtrk.open .qt-row.main { margin-right:0 !important; }
+html[data-hub2d] #game #hud .qtrk .qt-row b { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+html[data-hub2d] #game #hud .qtrk.open .qt-grid { grid-auto-rows:24px; gap:4px; overflow-y:auto; }
 
 /* --- harita kenarları: aynı resmin aynalanmış, koyulaştırılmış devamı (js/hub2d.js .h2-mir) + flama --- */
 #hub2d .h2-mir { position:absolute; top:0; width:100%; height:100%; transform:scaleX(-1); filter:brightness(.5) saturate(.85); pointer-events:none; user-select:none; max-width:none; }
