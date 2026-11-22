@@ -114,6 +114,8 @@ ACT.tuccar = () => {
   if (tutorialBuy() || TV.sub === 'pots') TV.sub = 'weapons';
   openWin({ title: TC_TITLE, render: tuccarPage });
 };
+ACT.tuccarSub = k => { TV.sub = k; ACT.tuccar(); }; // 22 Kas: çarşı tezgâhından rafı seçili aç
+ACT.marketKindOpen = k => { MV.kind = k; MV.sub = 'buy'; ACT.market({}); };
 ACT.marketSub = d => { MV.sub = d.k; const w = cur(); w.data = null; redraw(); reload(); };
 ACT.marketKind = d => { MV.kind = d.k; redraw(); };
 ACT.marketRar = d => { MV.rar = d.k; redraw(); };

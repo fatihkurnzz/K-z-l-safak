@@ -2,7 +2,7 @@
 Her binanın kaba kutusu elle verilir (BOLGE); bina şekli GrabCut ile kutunun içinden ayrılır.
 Çıktı: img/kd/sehir/<yer>/sahne.webp, atlas.webp (bina kesitleri; basınca parlar), js/hub2d-data.js (OTOMATİK; dokunma
 haritası RLE olarak içinde: değer = bölge sırası+1, 1/4 ölçek).
-Kullanım: python3 sahne.py <kaynak_klasoru (ocak.jpg sancak.jpg carsi.jpg)> <oyun-son> [kontrol_klasoru]
+Kullanım: python3 sahne.py <kaynak_klasoru (ocak, sancak, carsi, klan: .webp ya da .jpg)> <oyun-son> [kontrol_klasoru]
 """
 import sys, os, json
 import numpy as np, cv2
@@ -13,32 +13,43 @@ KONT = sys.argv[3] if len(sys.argv) > 3 else None
 HIT = 4
 # yer → [(oyun kimliği, [sol, üst, sağ, alt])]; aynı kimlik birden çok bölgede olabilir (etiket ilkinde)
 BOLGE = {
+    # 22 Kas: GPT "VAHRAN Haritalar" (dört harita, 1672×941). gate = sur kapısı (sefer), portal = ışınlanma kapısı (yer seçimi)
     'ocak': [
-        ('king', [590, 0, 1090, 330]), ('arena', [262, 160, 512, 335]), ('iksir', [148, 325, 445, 485]),
-        ('monument', [136, 478, 348, 645]), ('clanhq', [492, 505, 735, 695]), ('mine', [936, 495, 1185, 702]),
-        ('karaborsa', [1330, 478, 1590, 648]), ('anvil', [1255, 295, 1550, 485]), ('wheel', [1172, 160, 1410, 328]),
-        ('carsi', [698, 330, 985, 518]), ('gate', [688, 688, 1018, 941]),
+        ('wheel', [100, 20, 410, 270]), ('clanhq', [590, 0, 1150, 300]), ('anvil', [370, 270, 790, 520]),
+        ('iksir', [1200, 90, 1610, 330]), ('karaborsa', [1090, 330, 1400, 510]), ('mine', [0, 390, 360, 690]),
+        ('monument', [560, 510, 800, 750]), ('carsi', [20, 650, 600, 870]), ('portal', [880, 540, 1150, 820]),
+        ('gate', [1280, 480, 1672, 860]),
     ],
     'sancak': [
-        ('king', [500, 0, 1132, 245]), ('clanhq', [352, 82, 578, 248]), ('wheel', [1122, 82, 1318, 248]),
-        ('arena', [192, 248, 458, 388]), ('karaborsa', [62, 356, 348, 508]), ('iksir', [1232, 232, 1488, 392]),
-        ('mine', [1372, 362, 1603, 508]), ('monument', [382, 536, 568, 765]), ('anvil', [1282, 496, 1548, 668]),
-        ('carsi', [676, 318, 994, 562]), ('gate', [636, 776, 1024, 941]),
+        ('wheel', [100, 40, 410, 290]), ('clanhq', [470, 0, 1110, 300]), ('anvil', [290, 270, 660, 480]),
+        ('iksir', [1230, 100, 1610, 330]), ('karaborsa', [1190, 330, 1500, 500]), ('carsi', [330, 490, 710, 640]),
+        ('mine', [0, 560, 340, 900]), ('monument', [600, 590, 860, 880]), ('portal', [920, 560, 1260, 820]),
+        ('gate', [1290, 500, 1672, 800]),
     ],
     'carsi': [
-        ('tuccar', [172, 18, 472, 288]), ('tuccar', [1178, 18, 1618, 240]), ('monument', [52, 238, 302, 468]),
-        ('pazar', [0, 492, 648, 848]), ('pazar', [502, 146, 728, 288]), ('yashka', [926, 142, 1218, 308]),
-        ('karaborsa', [1312, 238, 1660, 488]), ('pier', [1106, 496, 1672, 824]), ('carsi', [598, 216, 1102, 572]),
-        ('gate', [636, 0, 1012, 196]),
+        ('c_silah', [100, 100, 680, 410]), ('c_zirh', [700, 40, 1260, 290]), ('c_taki', [1260, 180, 1650, 460]),
+        ('c_sarf', [20, 400, 600, 790]), ('yashka', [575, 505, 705, 620]), ('pazar', [1000, 370, 1320, 485]),
+        ('karaborsa', [1000, 530, 1180, 670]), ('pier', [0, 110, 135, 340]), ('portal', [1240, 450, 1560, 830]),
+    ],
+    'klan': [
+        ('k_salon', [610, 0, 1010, 200]), ('k_hq', [690, 200, 1000, 450]), ('k_hazine', [90, 260, 520, 470]),
+        ('k_dukkan', [220, 510, 610, 740]), ('k_hisar', [1190, 230, 1600, 420]), ('k_av', [1200, 410, 1610, 520]),
+        ('k_gorev', [950, 440, 1120, 570]), ('k_sancak', [310, 100, 560, 260]), ('gate', [730, 710, 990, 900]),
+        ('portal', [1220, 520, 1500, 780]),
     ],
 }
-# Işıklar [x, y, yarıçap]: Kragmir otomatik (alev pikselleri), diğerleri elle
+# Işıklar [x, y, yarıçap]: Kragmir ateşi otomatik (alev pikselleri), diğerleri elle; buz = soğuk ışık (geçit, kristal)
 ELLE = {
-    'sancak': {'ates': [[1405, 615, 22], [457, 790, 14], [1212, 790, 14], [1633, 808, 14], [298, 805, 12]], 'buz': [[838, 455, 50], [838, 520, 34], [470, 640, 30], [1260, 140, 26], [1490, 432, 18]]},
-    'carsi': {'ates': [[302, 210, 20], [418, 360, 14], [1255, 352, 14], [1025, 622, 16], [651, 625, 16], [742, 785, 12], [945, 785, 12], [1520, 610, 14]], 'buz': [[835, 330, 52], [838, 455, 40], [1490, 415, 16]]},
+    'ocak': {'buz': [[1030, 680, 58]]},
+    'sancak': {'ates': [[945, 710, 16], [1160, 712, 16], [620, 745, 14], [822, 740, 14], [1367, 745, 14], [1568, 745, 14], [1098, 215, 14], [637, 238, 14], [787, 305, 12], [975, 300, 12], [185, 205, 12], [330, 190, 12], [425, 410, 18]],
+               'buz': [[1035, 690, 60], [180, 480, 20], [30, 750, 24], [150, 740, 22]]},
+    'carsi': {'ates': [[1275, 700, 18], [1535, 740, 16], [655, 470, 12], [735, 530, 12], [340, 815, 12], [900, 850, 12], [1160, 355, 12], [930, 335, 10], [435, 130, 10], [1565, 460, 10], [290, 330, 14]],
+              'buz': [[1400, 650, 60]]},
+    'klan': {'ates': [[150, 180, 12], [578, 95, 10], [1035, 105, 10], [1585, 215, 12], [1360, 265, 12], [1530, 285, 12], [750, 385, 14], [912, 385, 14], [180, 690, 12], [770, 730, 14], [940, 730, 14], [1245, 635, 14], [1480, 650, 14], [1180, 705, 10], [1440, 705, 10], [420, 680, 18]],
+             'buz': [[1355, 660, 60]]},
 }
-# Etiketi olmayan ek noktalar (hub2d.js EK ile aynı anlam): sahne pikseli
-EK = {'ocak': {}, 'sancak': {}, 'carsi': {'child': [838, 640]}}
+# Etiketi olmayan ek noktalar (hub2d.js EK ile aynı anlam): sahne pikseli. king = Kral (saray merdiveni), merchant = Tüccar Halvor (meydan)
+EK = {'ocak': {'king': [870, 330]}, 'sancak': {'king': [870, 330]}, 'carsi': {'merchant': [905, 440], 'child': [870, 640]}, 'klan': {}}
 
 def kes(rgb, box):
     x0, y0, x1, y1 = box
@@ -72,7 +83,8 @@ for yer, bl in BOLGE.items():
     hedef = f'{O}/img/kd/sehir/{yer}'
     os.makedirs(hedef, exist_ok=True)
     for f in os.listdir(hedef): os.remove(os.path.join(hedef, f))  # eski teslimin dosyaları
-    im = Image.open(f'{SRC}/{yer}.jpg').convert('RGB'); W, H = im.size
+    kay = f'{SRC}/{yer}.webp' if os.path.exists(f'{SRC}/{yer}.webp') else f'{SRC}/{yer}.jpg'
+    im = Image.open(kay).convert('RGB'); W, H = im.size
     rgb = np.asarray(im)
     im.save(f'{hedef}/sahne.webp', 'WEBP', quality=88, method=6)
     idmap = np.zeros((H, W), np.uint8); bolge = []; kesit = []
@@ -89,7 +101,7 @@ for yer, bl in BOLGE.items():
         top = bx[1]; band = ys < top + max(8, (bx[3] - top) * 0.08)
         bolge.append({'id': oid, 'box': bx, 'label': [int(xs[band].mean()), top]})
         if KONT is not None:
-            c = (0, 255, 0) if oid not in ('carsi', 'gate') else (255, 0, 255)
+            c = (0, 255, 0) if oid not in ('portal', 'gate') else (255, 0, 255)
             ov = kont.copy(); ov[mk] = (0.55 * ov[mk] + 0.45 * np.array(c)).astype(np.uint8); kont = ov
             cv2.putText(kont, f'{i}:{oid}', (bx[0] + 4, bx[1] + 18), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
     # atlas: kesitler raf raf tek resimde (yayında dosya sayısı sınırı); bölgeye 'a' = atlastaki sol üst köşe
@@ -106,14 +118,15 @@ for yer, bl in BOLGE.items():
     for j in range(1, len(sm) + 1):
         if j == len(sm) or sm[j] != sm[i0]: rle += [int(sm[i0]), j - i0]; i0 = j
     hit = {'w': W // HIT, 'h': H // HIT, 'rle': rle}
-    isik = ELLE.get(yer)
-    if isik is None:  # alev tespiti (karanlık sahne)
+    isik = dict(ELLE.get(yer) or {})
+    if 'ates' not in isik:  # alev tespiti (karanlık sahne)
         A = rgb.astype(np.int16); R, G, B = A[..., 0], A[..., 1], A[..., 2]
         k = ((R > 235) & (G > 140) & (B < 110) & (R - B > 150)).astype(np.uint8)
         k = cv2.dilate(k, np.ones((5, 5), np.uint8))
         n, lab, st, cen = cv2.connectedComponentsWithStats(k)
         top = sorted([(st[i, cv2.CC_STAT_AREA], cen[i]) for i in range(1, n) if 14 <= st[i, cv2.CC_STAT_AREA] < 6000], key=lambda t: -t[0])[:40]
-        isik = {'ates': [[int(c[0]), int(c[1]), int(min(55, 6 + a ** .5 * 1.5))] for a, c in top], 'buz': [[838, 410, 40]]}
+        isik['ates'] = [[int(c[0]), int(c[1]), int(min(55, 6 + a ** .5 * 1.5))] for a, c in top]
+        isik.setdefault('buz', [])
     veri[yer] = {'size': [W, H], 'hit': hit, 'r': bolge, 'isik': isik, 'ek': EK[yer]}
     if KONT: Image.fromarray(kont).save(f'{KONT}/maske-{yer}.jpg', quality=80)
 

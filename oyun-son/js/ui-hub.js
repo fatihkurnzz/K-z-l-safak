@@ -39,6 +39,7 @@ import { mqReady, mqNext, mqState, mqProg } from '../shared/anagorev.js'; // ana
 // Binalar (açılış seviyeleri content.js UNLOCK tablosunda). Kapı meydanın ortasındadır.
 // Sürüm 13: Kapı'nın yanında Yemin Pazarı'na götüren ışıklı geçit (Çarşı; eski sol sütun düğmesinin yerine). Pazar ve Tüccar Yemin Pazarı'na
 // taşındı; başkentte onların yerinde İksir ve Parşömen dükkânı durur (ui-town.js: ACT.iksir).
+const PORTAL = { id: 'portal', name: 'Işınlanma Kapısı', act: 'portalMenu', cls: 'portal' };
 const BUILDINGS = [
   { id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'carsi', name: 'Çarşı', act: 'goCarsi', cls: 'portal' },
   { id: 'clanhq', name: 'Kral Otağı', act: 'otag' }, // 19 Kas: başkentteki büyük çadır Kral Otağı'na açılır (eski Klan Karargâhı; klan evi Klan düğmesinden ve klan toprağından)
@@ -55,6 +56,11 @@ const BUILDINGS = [
 export const CAPITAL = CAPITALS;
 // 19 Kas: Yemin Pazarı'nda da ışıklı geçit (Başkente dön) ve Karaborsa (ui-karaborsa.js)
 const CARSI = [{ id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'carsi', name: 'Başkente dön', act: 'goCapital', cls: 'portal' }, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, { id: 'yashka', name: 'Şaman Yashka', act: 'yashka' }, { id: 'pazar', name: 'Pazar', act: 'pazar', key: 'market' }, { id: 'tuccar', name: 'Tüccar', act: 'tuccar', nolabel: true }, { id: 'monument', name: 'Taş Yemini', act: 'monument' }, { id: 'pier', name: 'Balık Tut', act: 'balik' }]; // iskele: balık tutma (ui-balik.js) · Kader Çarkı yalnız başkentte
+// 22 Kas (GPT "VAHRAN Haritalar"): 2B çarşıda dört satış noktası Tüccar'ın raflarına ve Pazar'ın takı süzgecine açılır;
+// ışınlanma kapısı (portal) yer seçimini açar. Pazar, Karaborsa, Şaman Yashka ve Balık Tut çarşıda kalır (yalnız yerleri değişti).
+const CARSI2 = [{ id: 'c_silah', name: 'Silah ve Kalkan', act: 'tcWeapons' }, { id: 'c_zirh', name: 'Zırh', act: 'tcArmors' }, { id: 'c_taki', name: 'Takı', act: 'pzTaki', key: 'market' },
+  { id: 'c_sarf', name: 'Sarf ve Malzeme', act: 'tcMats' }, { id: 'pazar', name: 'Pazar', act: 'pazar', key: 'market' }, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' },
+  { id: 'yashka', name: 'Şaman Yashka', act: 'yashka' }, { id: 'pier', name: 'Balık Tut', act: 'balik' }, PORTAL];
 const PLACE = { cur: 'capital' };
 // NPC'ler (ui-ogretici.js): bina değil, meydanda duran kişiler; etiketleri binalarınki gibi dokunulabilir. Tüccar kendi tezgâhının önünde
 const NPC_SPOT = { merchant: [5.6, -0.9, -0.6], child: [3.6, 1.2, -0.4] };
@@ -72,11 +78,11 @@ const kingNpc = () => { const k = kingOf(); return k ? [{ id: 'king', name: k.na
 const KING_SVG = (c, orc) => `<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#1a1612"/><path d="M8 64c3-14 12-19 24-19s21 5 24 19z" fill="${c}"/>${orc ? '<path d="M18 26l-6-4 7 8zM46 26l6-4-7 8z" fill="#5e7a3e"/>' : ''}<ellipse cx="32" cy="30" rx="11" ry="13" fill="${orc ? '#6f8a4a' : '#e2bf98'}"/><path d="M20 20l4-9 4 6 4-8 4 8 4-6 4 9z" fill="${orc ? '#8a8f96' : '#e8c25a'}" stroke="${orc ? '#3a3c40' : '#7a5a14'}"/><path d="M26 28l4 1M38 28l-4 1" stroke="#1a1612" stroke-width="1.6"/><circle cx="27.5" cy="31" r="1.5" fill="${orc ? '#e8b030' : '#2a3a5a'}"/><circle cx="36.5" cy="31" r="1.5" fill="${orc ? '#e8b030' : '#2a3a5a'}"/>${orc ? '<path d="M26 38q6 3 12 0" stroke="#2a1a10" fill="none" stroke-width="1.8"/><path d="M27 38l1-4 1 4M35 38l1-4 1 4" fill="#e8e0cc"/><rect x="31" y="37" width="2.4" height="2.6" fill="#8a8f96"/>' : '<path d="M27 38q5 3 10 0" stroke="#5a2a1a" fill="none" stroke-width="1.6"/><path d="M25 40q7 6 14 0" stroke="#8a6a3a" fill="none" stroke-width="2"/>'}</svg>`;
 ACT.npcKing = () => { const k = kingOf(); if (!k) return; showModal(`<div class="npc-talk"><div class="npc-por">${KING_SVG(k.color, S.faction === 'ocak')}<b>${esc(k.name)}</b></div><div class="npc-txt">${k.lines.map(l => `<p>${l}</p>`).join('')}<div class="mbtns"><button class="btn red" data-a="gateDestan">Destan</button><button class="btn" data-a="closeModal">Emrindeyim</button></div></div></div>`); };
 // Klan haritası: binalar klan penceresinin sekmelerini açar (ui-klan.js ACT.clan({ tab }))
-const KLAN = [{ id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'k_hq', name: 'Karargâh', tab: 'hq' }, { id: 'k_salon', name: 'Klan Salonu', tab: 'genel' },
+const KLAN = [{ id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'portal', name: 'Işınlanma Kapısı', act: 'portalMenu', cls: 'portal' }, { id: 'k_hq', name: 'Karargâh', tab: 'hq' }, { id: 'k_salon', name: 'Klan Salonu', tab: 'genel' },
   { id: 'k_gorev', name: 'Görev Panosu', tab: 'gorev' }, { id: 'k_dukkan', name: 'Klan Dükkânı', tab: 'dukkan' }, { id: 'k_sancak', name: 'Sancak Direği', tab: 'sancak' },
   { id: 'k_av', name: 'Oba Avı', tab: 'av' }, { id: 'k_hisar', name: 'Hisar', tab: 'hisar' }, { id: 'k_hazine', name: 'Klan Hazinesi', tab: 'hq' }].map(b => b.tab ? { ...b, act: 'klanTab' } : b);
 hooks.placeName = () => PLACE.cur === 'carsi' ? 'Yemin Pazarı' : PLACE.cur === 'klan' ? 'Klan toprağı' : (CAPITAL[S.faction] || GAME.hub); // sonuç ekranının dönüş düğmesi (en son bulunulan yer)
-const blds = () => (PLACE.cur === 'carsi' ? [...CARSI, ...npcs()] : PLACE.cur === 'klan' ? KLAN : [...BUILDINGS, ...(hub2dOn() ? [{ id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, { id: 'arena', name: 'Savaş Çadırı', act: 'savas' }] : []), ...kingNpc()]); // 2B başkentte Karaborsa da var (Aşama 3; işlev Çarşı'dakiyle aynı)
+const blds = () => (PLACE.cur === 'carsi' ? [...(hub2dOn() ? CARSI2 : CARSI), ...npcs()] : PLACE.cur === 'klan' ? KLAN : [...BUILDINGS, ...(hub2dOn() ? [PORTAL, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, { id: 'arena', name: 'Savaş Çadırı', act: 'savas' }] : []), ...kingNpc()]); // 2B başkentte Karaborsa da var (Aşama 3; işlev Çarşı'dakiyle aynı)
 // Etiketin ekran noktası: 2B başkentte resim koordinatından, 3B'de sahne izdüşümünden
 const posOf = id => active2d() ? pos2d(id) : (anchors[id] ? project(anchors[id]) : null);
 ACT.klanTab = d => { const b = KLAN.find(x => x.id === (d?.id || LAST_BLD)); ACT.clan({ tab: b?.tab || 'hq' }); };
@@ -95,13 +101,26 @@ ACT.gateMenu = () => { // 19 Kas: her yerde ve öğreticide de önce seçim penc
   showModal(`<h2>Kapı</h2><div class="in"><div class="mbtns" style="flex-direction:column;align-items:stretch">${[
     opt('gateGo', 'battle', 'Sefer', 'Bölgeler ve zindanlar'),
     opt('gateDestan', 'book', 'Destan', 'Tarihin Külleri: sekiz bölüm'),
+    ...(hub2dOn() ? [] : [ // 2B haritalarda yer değiştirme ışınlanma kapısındadır (sur kapısı yalnız savaşa açılır)
     here !== 'capital' ? opt('gateCapital', 'gate', esc(CAPITAL[S.faction] || GAME.hub), 'Irkının başkenti') : '',
     here !== 'carsi' ? opt('gateCarsi', 'market', 'Yemin Pazarı', 'İki ırkın buluştuğu tarafsız pazar') : '',
-    S.clan && here !== 'klan' ? opt('gateKlan', 'clan', 'Klan toprağı', 'Klanının binaları') : '',
+    S.clan && here !== 'klan' ? opt('gateKlan', 'clan', 'Klan toprağı', 'Klanının binaları') : '']),
     opt('gateCz', 'arena', 'CZ - PK', cz ? lockNote('arena') : 'Meydan ve Şan Divanı', cz),
   ].join('')}</div></div>`, 'gatemenu');
 };
 ACT.gateGo = () => { closeModal(); ACT.gate(); };
+// Işınlanma kapısı (22 Kas): her haritada bir tane; buradan olmayan, erişilebilen yerler seçilir (başkent yalnız kendi halkının,
+// klan toprağı yalnız klan üyesine)
+ACT.portalMenu = () => {
+  const here = PLACE.cur, opt = (a, ic, t, sub) => `<button class="btn red" data-a="${a}" style="display:flex;align-items:center;gap:10px;justify-content:flex-start"><span class="ico g1 sm">${svg(ic)}</span><span style="text-align:left"><b>${t}</b><br><small>${sub}</small></span></button>`;
+  const L = [here !== 'capital' ? opt('gateCapital', 'gate', esc(CAPITAL[S.faction] || GAME.hub), 'Irkının başkenti') : '',
+    here !== 'carsi' ? opt('gateCarsi', 'market', 'Yemin Pazarı', 'Silah, zırh, takı ve erzak tezgâhları') : '',
+    S.clan && here !== 'klan' ? opt('gateKlan', 'clan', 'Klan toprağı', esc(S.clanTag?.n || 'Klanının otağı')) : ''].filter(Boolean);
+  showModal(`<h2>Işınlanma Kapısı</h2><div class="in"><div class="mbtns" style="flex-direction:column;align-items:stretch">${L.join('')}</div>${S.clan ? '' : '<p class="mut">Klan toprağına geçmek için bir klana katıl.</p>'}</div>`, 'gatemenu');
+};
+// Çarşı tezgâhları (yalnız yönlendirme: Tüccar'ın rafı ya da Pazar'ın süzgeci seçili açılır)
+ACT.tcWeapons = () => ACT.tuccarSub?.('weapons'); ACT.tcArmors = () => ACT.tuccarSub?.('armors'); ACT.tcMats = () => ACT.tuccarSub?.('mats');
+ACT.pzTaki = () => ACT.marketKindOpen?.('jewel');
 ACT.gateDestan = () => { closeModal(); ACT.destan(); };
 ACT.gateCapital = () => { closeModal(); ACT.goCapital(); };
 ACT.gateCarsi = () => { closeModal(); ACT.goCarsi(); };
@@ -173,12 +192,12 @@ const HERO_SPOT = [[0, 2.8]]; // 19 Kas: kapının önünde ortada, biraz ilerid
 export function showHub() {
   if (hooks.orman?.()) return; // açılış ormanı (orman.js): öğreticinin ilk görevi bitene dek ana üs yerine orman kurulur
   closeWin(true); hideBattleUI(); closeModal();
-  clearScene(); if (PLACE.cur === 'klan' || !hub2dOn()) ensureEnv('hub', S.faction); setMood(S.faction); // 2B başkentte 3B ortam kurulmaz
+  clearScene(); if (!hub2dOn()) ensureEnv('hub', S.faction); setMood(S.faction); // 2B başkentte 3B ortam kurulmaz
   if (S.battle) run('battle.abandon'); // sonucu gönderilemeyen savaş kaydı açık kalmasın
   if (PLACE.cur === 'klan' && !S.clan) { PLACE.cur = 'capital'; document.documentElement.dataset.place = 'capital'; } // klandan çıkınca
   const carsi = PLACE.cur === 'carsi', klan = PLACE.cur === 'klan';
-  if (!klan && hub2dOn()) { // 20 Kas Aşama 3: 2B başkent (21 Kas: Yemin Pazarı da 2B) — şehir resmi + dokunma alanları; 3B sahne çizilmez (pil)
-    hideTown(); anchors = {}; show2d(carsi ? 'carsi' : S.faction); RENDER.off = true; nudges = {};
+  if (hub2dOn()) { // 22 Kas: klan toprağı da 2B (GPT Klan Otağı haritası) // 20 Kas Aşama 3: 2B başkent (21 Kas: Yemin Pazarı da 2B) — şehir resmi + dokunma alanları; 3B sahne çizilmez (pil)
+    hideTown(); anchors = {}; show2d(carsi ? 'carsi' : klan ? 'klan' : S.faction); RENDER.off = true; nudges = {};
     let f2 = 0;
     setUpdater(() => {
       if (++f2 > 1 && f2 % 6 === 2) planNudges();

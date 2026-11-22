@@ -10,10 +10,10 @@ import { SAHNE, HIT_SCALE } from './hub2d-data.js';
 const DIR = 'img/kd/sehir/';
 // Etiket binanın tepesinden biraz içeride durur (üst sıradakiler HUD altına girmesin); ek pay:
 // Kişi etiketi bir binanın etiketini kullanır (Tüccar Halvor kendi tezgâhının üstünde)
-const TAKMA = { merchant: 'tuccar' };
+const TAKMA = {}; // 22 Kas: Tüccar Halvor çarşı meydanında ayrı nokta (hub2d-data ek.merchant)
 const ETIKET_PAY = { king: 30 }; // genel kural: etiket bina yüksekliğinin %22'si kadar içeride
 // İlk açılışta ekranın ortasına gelecek nokta (sahne pikseli)
-const ODAK = { ocak: [836, 430], sancak: [836, 430], carsi: [836, 420] };
+const ODAK = { ocak: [836, 450], sancak: [836, 450], carsi: [836, 440], klan: [836, 440] };
 // Yakınlaştırma sınırı: 1 = ekranı tam kaplar (en uzak), ZMAX kat yakın
 
 export const hub2dOn = () => { try { return localStorage.getItem('dd_hub2d') !== '0'; } catch { return true; } };
@@ -105,7 +105,7 @@ function bind() {
 // --- canlılık: ışıklar + zerreler ---
 let raf = 0, last = 0, parts = [];
 const calm = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches || /gfx=(min|low)/.test(location.search) || ['min', 'low'].includes(localStorage.getItem('dd_gfx')); } catch { return false; } };
-const RENK = { ocak: { ates: '255,140,40', buz: '255,60,40', zerre: '255,120,40' }, sancak: { ates: '255,190,90', buz: '90,170,255', zerre: '255,236,180' }, carsi: { ates: '255,180,80', buz: '80,160,255', zerre: '210,225,255' } };
+const RENK = { ocak: { ates: '255,140,40', buz: '255,60,40', zerre: '255,120,40' }, sancak: { ates: '255,190,90', buz: '90,170,255', zerre: '255,236,180' }, carsi: { ates: '255,180,80', buz: '80,160,255', zerre: '210,225,255' }, klan: { ates: '255,180,80', buz: '80,220,255', zerre: '235,240,210' } };
 function seed() {
   const [W, H] = D.size, n = cur === 'ocak' ? 46 : 30;
   parts = Array.from({ length: n }, () => newPart(W, H, true));
