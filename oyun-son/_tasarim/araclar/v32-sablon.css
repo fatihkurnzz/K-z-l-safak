@@ -22,3 +22,16 @@ html[data-hub2d] #hub2d img.h2-flama { content:var(--mz-flama); width:46px !impo
 :root[data-faction="ocak"] { --p5-panel:url("@p3-panel-orta-ocak"); }
 html[data-faction][data-faction] #win .frame, html[data-faction][data-faction] #modal .box { border-image:var(--p5-panel) 26 / 10px / 3px stretch !important; background:var(--p5-panel) center / 100% 100% no-repeat !important; }
 html[data-faction][data-faction] #modal .box .in { background:transparent !important; }
+
+/* Karakter oluşturma (karakter-olusturma maketi): yan paneller secim-sol/sag, sınıf düğmeleri sinif-normal/secili, Oluştur birincil düğme.
+   Ortadaki canlı 3B alan ve bütün kontroller aynı (ui-olustur.js); yalnız görünüş. */
+:root { --oz-sol:url("@secim-sol-sancak"); --oz-sag:url("@secim-sag-sancak"); --oz-s0:url("@sinif-normal-sancak"); --oz-s1:url("@sinif-secili-sancak"); --oz-go:url("@p3-dugme-birincil-normal-sancak"); --oz-ik:url("@p3-dugme-ikincil-normal-sancak"); }
+:root[data-faction="ocak"] { --oz-sol:url("@secim-sol-ocak"); --oz-sag:url("@secim-sag-ocak"); --oz-s0:url("@sinif-normal-ocak"); --oz-s1:url("@sinif-secili-ocak"); --oz-go:url("@p3-dugme-birincil-normal-ocak"); --oz-ik:url("@p3-dugme-ikincil-normal-ocak"); }
+html body .olz .olz-pan.olz-l { background:var(--oz-sol) center / 100% 100% no-repeat !important; border:0 !important; border-image:none !important; box-shadow:0 6px 18px #000a !important; }
+html body .olz .olz-pan.olz-r { background:var(--oz-sag) center / 100% 100% no-repeat !important; border:0 !important; border-image:none !important; box-shadow:0 6px 18px #000a !important; }
+html body .olz .olz-pan::before, html body .olz .olz-pan::after { display:none !important; }
+html body .olz .olz-clsl .olz-cls { background:var(--oz-s0) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:none !important; border-radius:4px !important; }
+html body .olz .olz-clsl .olz-cls.on { background-image:var(--oz-s1) !important; color:#fff7e2 !important; filter:drop-shadow(0 0 6px #ffd36a55); }
+html body .olz .olz-go { background:var(--oz-go) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 4px 12px #000a !important; clip-path:none !important; border-radius:4px !important; color:#fff0d2 !important; }
+html body .olz .olz-go:disabled { filter:saturate(.4) brightness(.75); }
+html body .olz .olz-dice { background:var(--oz-ik) center / 100% 100% no-repeat !important; border:0 !important; }
