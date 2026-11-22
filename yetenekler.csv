@@ -1,0 +1,204 @@
+﻿kimlik;ad;sınıf;ağaç_veya_yol;tür;hedef;element;açılış;animasyon;gizli;öncelik;renk_önerisi;açıklama;dosya_adı
+w_basic;Kılıç Darbesi;Savaşçı;temel;basic;enemy;fiziksel/yok;;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar.;yetenek-w_basic.png
+r_basic;Hançer Darbesi;Suikastçı;temel;basic;enemy;fiziksel/yok;;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar.;yetenek-r_basic.png
+p_basic;Topuz Darbesi;Şifacı;temel;basic;enemy;fiziksel/yok;;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar.;yetenek-p_basic.png
+m_basic;Kıvılcım;Büyücü;temel;basic;enemy;fiziksel/yok;;bolt;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: büyü gücü × 1 hasar.;yetenek-m_basic.png
+w_k1;Stroke;Savaşçı;seviye yeteneği;active;enemy;fiziksel/yok;sv 3;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 0.7 hasar; %20 şansla 1 tur Sersemleme. Bekleme 2 tur.";yetenek-w_k1.png
+w_k2;Sprint;Savaşçı;seviye yeteneği;active;self;fiziksel/yok;sv 5;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Çabukluk (kendine). Bekleme 4 tur.;yetenek-w_k2.png
+w_k3;Slash;Savaşçı;seviye yeteneği;active;enemy;fiziksel/yok;sv 8;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.2 hasar. Bekleme 2 tur.;yetenek-w_k3.png
+w_k4;Crash;Savaşçı;seviye yeteneği;active;self;fiziksel/yok;sv 10;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Keskinlik (kendine). Bekleme 4 tur.;yetenek-w_k4.png
+w_k5;Defense;Savaşçı;seviye yeteneği;active;self;fiziksel/yok;sv 99;buff;evet;2;güçlendirme: sarı-amber #f0b43c;Kendisi: 3 tur Sağlamlık (kendine). Bekleme 5 tur.;yetenek-w_k5.png
+w_k6;Piercing;Savaşçı;seviye yeteneği;active;enemy;fiziksel/yok;sv 99;melee;evet;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.2 hasar, savunmanın %30'ini yok sayar. Bekleme 3 tur.";yetenek-w_k6.png
+hucum1;Hash;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 0;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1 hasar, savunmanın %15'ini yok sayar. Bekleme 1 tur.";yetenek-hucum1.png
+hucum2;Hoodwink;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 5;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.5 hasar. Bekleme 3 tur.;yetenek-hucum2.png
+hucum3;Shear;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 10;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1 hasar, savunmanın %25'ini yok sayar. Bekleme 2 tur.";yetenek-hucum3.png
+hucum4;Pierce;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 15;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1 hasar, savunmanın %30'ini yok sayar. Bekleme 2 tur.";yetenek-hucum4.png
+hucum5;Leg Cutting;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 20;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1 hasar; %80 şansla 2 tur Yavaşlık. Bekleme 3 tur.";yetenek-hucum5.png
+hucum6;Carving;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 25;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 2 hasar. Bekleme 4 tur.;yetenek-hucum6.png
+hucum7;Sever;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 30;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.2 hasar, savunmanın %40'ini yok sayar. Bekleme 3 tur.";yetenek-hucum7.png
+hucum8;Prick;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 35;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.5 hasar, savunmanın %30'ini yok sayar. Bekleme 3 tur.";yetenek-hucum8.png
+hucum9;Multiple Shock;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 40;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.6 hasar. Bekleme 3 tur.;yetenek-hucum9.png
+hucum10;Cleave;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 45;whirl;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 2.5 hasar. Bekleme 4 tur.;yetenek-hucum10.png
+hucum11;Mangling;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 50;stomp;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.4 hasar, savunmanın %50'ini yok sayar. Bekleme 4 tur.";yetenek-hucum11.png
+hucum12;Thrust;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 55;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 2 hasar, savunmanın %30'ini yok sayar. Bekleme 4 tur.";yetenek-hucum12.png
+hucum13;Sword Aura;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 57;whirl;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 2.7 hasar, savunmanın %30'ini yok sayar. Bekleme 4 tur.";yetenek-hucum13.png
+hucum14;Sword Dancing;Savaşçı;Hücum;active;enemy;fiziksel/yok;puan 60;whirl;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 2.52 hasar, savunmanın %30'ini yok sayar. Bekleme 4 tur.";yetenek-hucum14.png
+siper1;Hinder;Savaşçı;Siper;passive;;fiziksel/yok;puan 5;;;1;pasif: soluk bronz #a88a5c;Savunma +%10 (üst üste binmez: aynı türden yalnız en güçlüsü işler).;yetenek-siper1.png
+siper2;Resist;Savaşçı;Siper;passive;;fiziksel/yok;puan 10;;;1;pasif: soluk bronz #a88a5c;Bütün element dirençleri +%6.;yetenek-siper2.png
+siper3;Arrest;Savaşçı;Siper;passive;;fiziksel/yok;puan 15;;;1;pasif: soluk bronz #a88a5c;Savunma +%15 (üst üste binmez: aynı türden yalnız en güçlüsü işler).;yetenek-siper3.png
+siper4;Endure;Savaşçı;Siper;passive;;fiziksel/yok;puan 20;;;1;pasif: soluk bronz #a88a5c;Bütün element dirençleri +%12.;yetenek-siper4.png
+siper5;Binding;Savaşçı;Siper;active;enemy;fiziksel/yok;puan 30;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 0.5 hasar; 2 tur Meydan Okuma (kendine). Bekleme 3 tur.";yetenek-siper5.png
+siper6;Bulwark;Savaşçı;Siper;passive;;fiziksel/yok;puan 35;;;1;pasif: soluk bronz #a88a5c;Savunma +%20 (üst üste binmez: aynı türden yalnız en güçlüsü işler).;yetenek-siper6.png
+siper7;Provoke;Savaşçı;Siper;active;enemies;fiziksel/yok;puan 45;buff;;1;zayıflatma: koyu mor #7a4a9a;"Rastgele 2 düşman: 1 tur Kışkırtılmış; 2 tur Sağlamlık +%20 (yalnız fiziksel hasara) (kendine). Bekleme 4 tur.";yetenek-siper7.png
+siper8;Sacrifice;Savaşçı;Siper;active;ally;fiziksel/yok;puan 60;heal;;1;şifa: yeşil-altın #7fd36b;Tek müttefik: azami canın %35'i kadar şifa. Bekleme 6 tur.;yetenek-siper8.png
+ofke1;Gain;Savaşçı;Öfke;active;self;fiziksel/yok;puan 5;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 3 tur Güçlenme (kendine). Bekleme 5 tur.;yetenek-ofke1.png
+ofke2;Wink;Savaşçı;Öfke;active;enemy;fiziksel/yok;puan 8;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.5 hasar. Bekleme 3 tur.;yetenek-ofke2.png
+ofke3;Rise;Savaşçı;Öfke;passive;;fiziksel/yok;puan 10;;;1;pasif: soluk bronz #a88a5c;Can +%3.;yetenek-ofke3.png
+ofke4;Pain Killer;Savaşçı;Öfke;active;enemy;fiziksel/yok;puan 15;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar. Bekleme 2 tur.;yetenek-ofke4.png
+ofke5;Outrage;Savaşçı;Öfke;active;self;fiziksel/yok;puan 20;buff;;1;koruma: çelik mavisi #8fa9c4;Kendisi: 1 tur azami canının %25'i kadar kalkan (kendine). Bekleme 5 tur.;yetenek-ofke5.png
+ofke6;Shock;Savaşçı;Öfke;active;enemy;fiziksel/yok;puan 28;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.3 hasar, savunmanın %50'ini yok sayar. Bekleme 3 tur.";yetenek-ofke6.png
+yaran_um1;Howling Sword;Savaşçı;Zırh Yaran (usta);active;enemy;fiziksel/yok;ustalık 1;whirl;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 3.4 hasar, savunmanın %30'ini yok sayar. Bekleme 6 tur.";yetenek-yaran_um1.png
+yaran_um2;Blooding;Savaşçı;Zırh Yaran (usta);active;enemy;fiziksel/yok;ustalık 10;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 2.3 hasar; 2 tur Kanama. Bekleme 6 tur.";yetenek-yaran_um2.png
+yaran_um3;Hell Blade;Savaşçı;Zırh Yaran (usta);active;enemy;fiziksel/yok;ustalık 20;stomp;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 3.7 hasar, savunmanın %30'ini yok sayar. Bekleme 6 tur.";yetenek-yaran_um3.png
+sur_um1;Iron Skin;Savaşçı;Sur Bekçisi (usta);passive;;fiziksel/yok;ustalık 1;;;1;pasif: soluk bronz #a88a5c;Savunma +%30 (üst üste binmez: aynı türden yalnız en güçlüsü işler).;yetenek-sur_um1.png
+sur_um2;Wall Of Iron;Savaşçı;Sur Bekçisi (usta);active;self;fiziksel/yok;ustalık 10;buff;;1;koruma: çelik mavisi #8fa9c4;"Kendisi: 1 tur Sağlamlık (kendine); 1 tur azami canının %30'i kadar kalkan (kendine). Bekleme 6 tur.";yetenek-sur_um2.png
+sur_um3;Iron Body;Savaşçı;Sur Bekçisi (usta);passive;;fiziksel/yok;ustalık 20;;;1;pasif: soluk bronz #a88a5c;Savunma +%40 (üst üste binmez: aynı türden yalnız en güçlüsü işler).;yetenek-sur_um3.png
+r_k1;Stab;Suikastçı;seviye yeteneği;active;enemy;fiziksel/yok;sv 3;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 0.7 hasar. Bekleme 1 tur.;yetenek-r_k1.png
+r_k2;Sprint;Suikastçı;seviye yeteneği;active;self;fiziksel/yok;sv 5;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Çabukluk (kendine). Bekleme 4 tur.;yetenek-r_k2.png
+r_k3;Thrust;Suikastçı;seviye yeteneği;active;enemy;fiziksel/yok;sv 8;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.2 hasar. Bekleme 2 tur.;yetenek-r_k3.png
+hancer1;Stab;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 0;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar. Bekleme 1 tur.;yetenek-hancer1.png
+hancer2;Stab2;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 5;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.3 hasar. Bekleme 2 tur.;yetenek-hancer2.png
+hancer3;Jab;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 10;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.5 hasar. Bekleme 2 tur.;yetenek-hancer3.png
+hancer4;Blood Drain;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 15;melee;;1;şifa: yeşil-altın #7fd36b;"Tek düşman: saldırı × 1.2 hasar; azami canın %4'i kadar şifa (kendine). Bekleme 3 tur.";yetenek-hancer4.png
+hancer5;Pierce;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 20;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.2 hasar, savunmanın %30'ini yok sayar. Bekleme 2 tur.";yetenek-hancer5.png
+hancer6;Shock;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 25;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1 hasar; %50 şansla 1 tur Sersemleme. Bekleme 4 tur.";yetenek-hancer6.png
+hancer7;Thrust;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 30;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 2 hasar. Bekleme 3 tur.;yetenek-hancer7.png
+hancer8;Cut;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 35;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.2 hasar; 2 tur Kanama. Bekleme 3 tur.";yetenek-hancer8.png
+hancer9;Vampiric Touch;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 40;melee;;1;şifa: yeşil-altın #7fd36b;"Tek düşman: saldırı × 1.5 hasar; azami canın %6'i kadar şifa (kendine). Bekleme 4 tur.";yetenek-hancer9.png
+hancer10;Bloody Beast;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 45;whirl;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 2.5 hasar. Bekleme 4 tur.;yetenek-hancer10.png
+hancer11;Blinding;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 50;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 0.8 hasar; %80 şansla 2 tur Zayıflık. Bekleme 3 tur.";yetenek-hancer11.png
+hancer12;Beast Hiding;Suikastçı;Hançer;active;self;fiziksel/yok;puan 55;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Keskinlik (kendine). Bekleme 5 tur.;yetenek-hancer12.png
+hancer13;Spike;Suikastçı;Hançer;active;enemy;fiziksel/yok;puan 60;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 3 hasar, +%30 kritik şansı. Bekleme 4 tur.";yetenek-hancer13.png
+yay1;Archery;Suikastçı;Yay;active;enemy;fiziksel/yok;puan 0;arrow;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar. Bekleme 1 tur.;yetenek-yay1.png
+yay2;Arrow Shower;Suikastçı;Yay;active;enemies;fiziksel/yok;puan 5;arrowBig;;1;fiziksel: çelik gri #b9c0c8;Tüm düşmanlar: saldırı × 0.7 hasar. Bekleme 3 tur.;yetenek-yay2.png
+yay3;Fire Arrow;Suikastçı;Yay;active;enemy;ateş;puan 10;arrow;;1;ateş: turuncu-kızıl #e2572b;"Tek düşman: saldırı × 1.2 ateş hasarı; 2 tur Yanık. Bekleme 3 tur.";yetenek-yay3.png
+yay4;Poison Arrow;Suikastçı;Yay;active;enemy;fiziksel/yok;puan 15;arrow;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.1 hasar; 2 tur Zehir. Bekleme 3 tur.";yetenek-yay4.png
+yay5;Multiple Shot;Suikastçı;Yay;active;random;fiziksel/yok;puan 20;arrowBig;;1;fiziksel: çelik gri #b9c0c8;Rastgele düşmanlar: 3 kez saldırı × 0.8 hasar. Bekleme 3 tur.;yetenek-yay5.png
+yay6;Guided Arrow;Suikastçı;Yay;active;enemy;fiziksel/yok;puan 25;arrow;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.4 hasar, savunmanın %30'ini yok sayar. Bekleme 3 tur.";yetenek-yay6.png
+yay7;Perfect Shot;Suikastçı;Yay;active;enemy;fiziksel/yok;puan 30;arrow;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 2 hasar. Bekleme 3 tur.;yetenek-yay7.png
+yay8;Ice Arrow;Suikastçı;Yay;active;enemy;buz;puan 35;arrow;;1;buz: buz mavisi #6cc6ff;"Tek düşman: saldırı × 1.4 buz hasarı; %70 şansla 2 tur Yavaşlık. Bekleme 3 tur.";yetenek-yay8.png
+yay9;Arc Shot;Suikastçı;Yay;active;enemies;fiziksel/yok;puan 40;arrowBig;;1;fiziksel: çelik gri #b9c0c8;Tüm düşmanlar: saldırı × 1.2 hasar. Bekleme 4 tur.;yetenek-yay9.png
+yay10;Explosive Shot;Suikastçı;Yay;active;enemies;fiziksel/yok;puan 45;arrowBig;;1;fiziksel: çelik gri #b9c0c8;Tüm düşmanlar: saldırı × 1.4 hasar. Bekleme 4 tur.;yetenek-yay10.png
+yay11;Viper;Suikastçı;Yay;active;random;fiziksel/yok;puan 50;arrowBig;;1;fiziksel: çelik gri #b9c0c8;"Rastgele düşmanlar: 3 kez saldırı × 0.9 hasar; %50 şansla 2 tur Zehir. Bekleme 4 tur.";yetenek-yay11.png
+yay12;Counter Strike;Suikastçı;Yay;active;self;fiziksel/yok;puan 55;buff;;1;güçlendirme: sarı-amber #f0b43c;"Kendisi: 2 tur Keskinlik (kendine); 1 tur Sakınma (kendine). Bekleme 5 tur.";yetenek-yay12.png
+yay13;Shadow Shot;Suikastçı;Yay;active;enemy;fiziksel/yok;puan 60;arrowBig;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 3 hasar, savunmanın %30'ini yok sayar. Bekleme 4 tur.";yetenek-yay13.png
+iz1;Hide;Suikastçı;İz;active;self;fiziksel/yok;puan 5;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 1 tur Sakınma (kendine). Bekleme 4 tur.;yetenek-iz1.png
+iz2;Light Feet;Suikastçı;İz;active;self;fiziksel/yok;puan 10;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Çabukluk (kendine). Bekleme 4 tur.;yetenek-iz2.png
+iz3;Evade;Suikastçı;İz;passive;;fiziksel/yok;puan 15;;;1;pasif: soluk bronz #a88a5c;Alınan hasar −%5.;yetenek-iz3.png
+iz4;Safety;Suikastçı;İz;active;self;fiziksel/yok;puan 20;buff;;1;koruma: çelik mavisi #8fa9c4;Kendisi: 2 tur azami canının %20'i kadar kalkan (kendine). Bekleme 5 tur.;yetenek-iz4.png
+iz5;Scaled Skin;Suikastçı;İz;passive;;fiziksel/yok;puan 25;;;1;pasif: soluk bronz #a88a5c;Savunma +%15.;yetenek-iz5.png
+iz6;Minor Healing;Suikastçı;İz;active;self;fiziksel/yok;puan 30;heal;;1;şifa: yeşil-altın #7fd36b;Kendisi: azami canın %20'i kadar şifa (kendine). Bekleme 4 tur.;yetenek-iz6.png
+iz7;Lupine Eyes;Suikastçı;İz;active;self;fiziksel/yok;puan 35;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Keskinlik (kendine). Bekleme 5 tur.;yetenek-iz7.png
+iz8;Taunt;Suikastçı;İz;active;self;fiziksel/yok;puan 40;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Meydan Okuma (kendine). Bekleme 4 tur.;yetenek-iz8.png
+iz9;Invisibility;Suikastçı;İz;active;self;fiziksel/yok;puan 45;buff;;1;güçlendirme: sarı-amber #f0b43c;"Kendisi: 1 tur Sakınma (kendine); 1 tur Güçlenme (kendine). Bekleme 6 tur.";yetenek-iz9.png
+agu_um1;Critical Point;Suikastçı;Ağu Ustası (usta);active;self;fiziksel/yok;ustalık 1;buff;;1;güçlendirme: sarı-amber #f0b43c;"Kendisi: 2 tur Keskinlik (kendine); 2 tur Güçlenme (kendine). Bekleme 6 tur.";yetenek-agu_um1.png
+agu_um2;Cold Wave;Suikastçı;Ağu Ustası (usta);active;enemies;buz;ustalık 10;whirl;;1;buz: buz mavisi #6cc6ff;"Tüm düşmanlar: saldırı × 1.2 buz hasarı; %70 şansla 2 tur Yavaşlık. Bekleme 6 tur.";yetenek-agu_um2.png
+agu_um3;Eskrima;Suikastçı;Ağu Ustası (usta);active;enemy;fiziksel/yok;ustalık 20;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 3.5 hasar, savunmanın %30'ini yok sayar. Bekleme 6 tur.";yetenek-agu_um3.png
+nisanci_um1;Power Shot;Suikastçı;Keskin Nişancı (usta);active;enemy;fiziksel/yok;ustalık 1;arrowBig;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 3 hasar. Bekleme 5 tur.;yetenek-nisanci_um1.png
+nisanci_um2;Blinding Strafe;Suikastçı;Keskin Nişancı (usta);active;enemies;fiziksel/yok;ustalık 10;arrowBig;;1;fiziksel: çelik gri #b9c0c8;"Tüm düşmanlar: saldırı × 0.8 hasar; %70 şansla 2 tur Zayıflık. Bekleme 6 tur.";yetenek-nisanci_um2.png
+nisanci_um3;Super Archer;Suikastçı;Keskin Nişancı (usta);active;self;fiziksel/yok;ustalık 20;buff;;1;güçlendirme: sarı-amber #f0b43c;"Kendisi: 2 tur Güçlenme (kendine); 2 tur Keskinlik (kendine). Bekleme 6 tur.";yetenek-nisanci_um3.png
+p_k1;Holy Attack;Şifacı;seviye yeteneği;active;enemy;fiziksel/yok;sv 3;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: büyü gücü × 0.7 hasar. Bekleme 1 tur.;yetenek-p_k1.png
+p_k2;Sprint;Şifacı;seviye yeteneği;active;self;fiziksel/yok;sv 5;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Çabukluk (kendine). Bekleme 4 tur.;yetenek-p_k2.png
+p_k3;Collision;Şifacı;seviye yeteneği;active;enemy;fiziksel/yok;sv 8;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: büyü gücü × 1.2 hasar. Bekleme 2 tur.;yetenek-p_k3.png
+kutsama1;Strength;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 0;buff;;1;güçlendirme: sarı-amber #f0b43c;Tüm parti: 3 tur Güç Artışı +15 STR. Bekleme 5 tur.;yetenek-kutsama1.png
+kutsama2;Armor;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 5;buff;;1;güçlendirme: sarı-amber #f0b43c;"Tüm parti: 3 tur Zırh +50 savunma (yalnız fiziksel hasara; birikmez; Kırık Zırh gelince silinir). Bekleme 5 tur.";yetenek-kutsama2.png
+kutsama3;Grace;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 10;buff;;1;güçlendirme: sarı-amber #f0b43c;Tüm parti: 3 tur Can Artışı (azami can +250). Bekleme 5 tur.;yetenek-kutsama3.png
+kutsama4;Resist;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 15;buff;;1;güçlendirme: sarı-amber #f0b43c;"Tüm parti: 3 tur Büyü Direnci (ateş/yıldırım hasarı −%20, yıldırım kilidi −%25). Bekleme 5 tur.";yetenek-kutsama4.png
+kutsama7;Heapness;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 30;buff;;1;güçlendirme: sarı-amber #f0b43c;Tüm parti: 3 tur Can Artışı (azami can +750). Bekleme 6 tur.;yetenek-kutsama7.png
+kutsama9;Superioris;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 40;buff;;1;güçlendirme: sarı-amber #f0b43c;"Tüm parti: 3 tur Zırh +150 savunma (yalnız fiziksel hasara; birikmez; Kırık Zırh gelince silinir). Bekleme 5 tur.";yetenek-kutsama9.png
+kutsama11;Imposingness;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 50;buff;;1;güçlendirme: sarı-amber #f0b43c;Tüm parti: 3 tur Can Artışı (azami can +1000). Bekleme 6 tur.;yetenek-kutsama11.png
+kutsama12;Undying;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 55;buff;;1;güçlendirme: sarı-amber #f0b43c;Tüm parti: 3 tur Can Artışı (azami can +%60). Bekleme 7 tur.;yetenek-kutsama12.png
+kutsama13;Massiveness;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 60;buff;;1;güçlendirme: sarı-amber #f0b43c;Tüm parti: 3 tur Can Artışı (azami can +1500). Bekleme 7 tur.;yetenek-kutsama13.png
+kutsama14;Mace Strike;Şifacı;Rün Mührü;active;enemy;fiziksel/yok;puan 2;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman (yalnız yaratıklar): büyü gücü × 1.4 hasar. Bekleme 2 tur.;yetenek-kutsama14.png
+kutsama15;Crushing Blow;Şifacı;Rün Mührü;active;enemy;fiziksel/yok;puan 17;melee;;1;fiziksel: çelik gri #b9c0c8;"Tek düşman (yalnız yaratıklar): büyü gücü × 2 hasar; %50 şansla 1 tur Zayıflık. Bekleme 3 tur.";yetenek-kutsama15.png
+kutsama16;Shock Wave;Şifacı;Rün Mührü;active;enemies;fiziksel/yok;puan 37;stomp;;1;fiziksel: çelik gri #b9c0c8;Tüm düşmanlar (yalnız yaratıklar): büyü gücü × 1.2 hasar. Bekleme 4 tur.;yetenek-kutsama16.png
+kutsama17;Iron Skin;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 25;buff;;1;güçlendirme: sarı-amber #f0b43c;"Tüm parti: 3 tur Zırh +100 savunma (yalnız fiziksel hasara; birikmez; Kırık Zırh gelince silinir). Bekleme 5 tur.";yetenek-kutsama17.png
+kutsama18;Steel Skin;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 50;buff;;1;güçlendirme: sarı-amber #f0b43c;"Tüm parti: 3 tur Zırh +200 savunma (yalnız fiziksel hasara; birikmez; Kırık Zırh gelince silinir). Bekleme 5 tur.";yetenek-kutsama18.png
+kutsama19;Holy Bulwark;Şifacı;Rün Mührü;active;allies;fiziksel/yok;puan 60;buff;;1;güçlendirme: sarı-amber #f0b43c;"Tüm parti: 3 tur Zırh +300 savunma (yalnız fiziksel hasara; birikmez; Kırık Zırh gelince silinir). Bekleme 5 tur.";yetenek-kutsama19.png
+lanet1;Holy Strike;Şifacı;Kara Rün;active;enemy;şimşek;puan 0;bolt;;1;şimşek: mor-beyaz #b48cff;Tek düşman: büyü gücü × 1 yıldırım hasarı. Bekleme 1 tur.;yetenek-lanet1.png
+lanet2;Slow;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 5;bolt;;1;zayıflatma: koyu mor #7a4a9a;Tek düşman: %90 şansla 2 tur Yavaşlık. Bekleme 3 tur.;yetenek-lanet2.png
+lanet3;Malice;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 10;bolt;;1;zayıflatma: koyu mor #7a4a9a;Tek düşman: %90 şansla 3 tur Kırık Zırh. Bekleme 3 tur.;yetenek-lanet3.png
+lanet4;Confusion;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 15;bolt;;1;zayıflatma: koyu mor #7a4a9a;Tek düşman: %80 şansla 2 tur Zayıflık. Bekleme 3 tur.;yetenek-lanet4.png
+lanet5;Parasite;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 20;bolt;;1;zayıflatma: koyu mor #7a4a9a;"Tek düşman: Can Artışı etkilerini siler (geri gelmez); 2 tur Can Kaybı (azami can −%20; bitince kaybedilen can geri gelmez). Bekleme 4 tur.";yetenek-lanet5.png
+lanet6;Weaken;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 25;bolt;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: hedefin 480 manasını siler. Bekleme 4 tur.;yetenek-lanet6.png
+lanet7;Dispel;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 30;bolt;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: hedefin 2 güçlendirmesini söker. Bekleme 4 tur.;yetenek-lanet7.png
+lanet8;Sleep;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 35;bolt;;1;zayıflatma: koyu mor #7a4a9a;Tek düşman: %70 şansla (PvP'de %20) 1 tur Sersemleme. Bekleme 5 tur.;yetenek-lanet8.png
+lanet10;Helis;Şifacı;Kara Rün;active;enemy;şimşek;puan 45;bolt;;1;şimşek: mor-beyaz #b48cff;Tek düşman: büyü gücü × 2 yıldırım hasarı. Bekleme 4 tur.;yetenek-lanet10.png
+lanet11;Torment;Şifacı;Kara Rün;active;enemies;fiziksel/yok;puan 50;meteor;;1;zayıflatma: koyu mor #7a4a9a;Düşmanların %40’ı (rastgele): %90 şansla 3 tur Kırık Zırh. Bekleme 5 tur.;yetenek-lanet11.png
+lanet13;Atak Kır;Şifacı;Kara Rün;active;enemy;fiziksel/yok;puan 60;bolt;;1;zayıflatma: koyu mor #7a4a9a;"Tek düşman: Güçlenme / Güç Artışı etkilerini siler (geri gelmez); 2 tur Atak Kırığı (fiziksel saldırı −%20). Bekleme 5 tur.";yetenek-lanet13.png
+lanet14;Dark Strike;Şifacı;Kara Rün;active;enemy;şimşek;puan 2;bolt;;1;şimşek: mor-beyaz #b48cff;Tek düşman (yalnız yaratıklar): büyü gücü × 1.4 yıldırım hasarı. Bekleme 2 tur.;yetenek-lanet14.png
+lanet15;Shadow Blast;Şifacı;Kara Rün;active;enemy;şimşek;puan 17;bolt;;1;şimşek: mor-beyaz #b48cff;Tek düşman (yalnız yaratıklar): büyü gücü × 2 yıldırım hasarı. Bekleme 3 tur.;yetenek-lanet15.png
+lanet16;Curse Wave;Şifacı;Kara Rün;active;enemies;şimşek;puan 37;meteor;;1;şimşek: mor-beyaz #b48cff;Tüm düşmanlar (yalnız yaratıklar): büyü gücü × 1.2 yıldırım hasarı. Bekleme 4 tur.;yetenek-lanet16.png
+sifa1;Minor Heal;Şifacı;Şifa;active;ally;fiziksel/yok;puan 0;heal;;1;şifa: yeşil-altın #7fd36b;Tek müttefik: 60 can kadar şifa. Bekleme 2 tur.;yetenek-sifa1.png
+sifa2;Heal;Şifacı;Şifa;active;ally;fiziksel/yok;puan 5;heal;;1;şifa: yeşil-altın #7fd36b;Tek müttefik: 240 can kadar şifa. Bekleme 2 tur.;yetenek-sifa2.png
+sifa3;Cure Curse;Şifacı;Şifa;active;ally;fiziksel/yok;puan 10;heal;;1;şifa: yeşil-altın #7fd36b;Tek müttefik: zararlı etkileri temizler. Bekleme 3 tur.;yetenek-sifa3.png
+sifa4;Greater Heal;Şifacı;Şifa;active;ally;fiziksel/yok;puan 15;heal;;1;şifa: yeşil-altın #7fd36b;Tek müttefik: 720 can kadar şifa. Bekleme 3 tur.;yetenek-sifa4.png
+sifa5;Restore;Şifacı;Şifa;active;ally;fiziksel/yok;puan 20;heal;;1;güçlendirme: sarı-amber #f0b43c;Tek müttefik: 4 tur Yenilenme (her tur +100 can). Bekleme 1 tur.;yetenek-sifa5.png
+sifa6;Group Heal;Şifacı;Şifa;active;allies;fiziksel/yok;puan 25;heal;;1;şifa: yeşil-altın #7fd36b;Tüm parti: 960 can kadar şifa. Bekleme 4 tur.;yetenek-sifa6.png
+sifa7;Complete Heal;Şifacı;Şifa;active;ally;fiziksel/yok;puan 30;heal;;1;şifa: yeşil-altın #7fd36b;Tek müttefik: 1920 can kadar şifa. Bekleme 4 tur.;yetenek-sifa7.png
+sifa8;Group Complete Heal;Şifacı;Şifa;active;allies;fiziksel/yok;puan 35;heal;;1;şifa: yeşil-altın #7fd36b;Tüm parti: 1920 can kadar şifa. Bekleme 5 tur.;yetenek-sifa8.png
+p_um1;Resurrection;Şifacı;usta (ortak);active;dead;fiziksel/yok;ustalık 1;heal;;1;şifa: yeşil-altın #7fd36b;Ölü müttefik: %40 canla diriltir. Bekleme 8 tur.;yetenek-p_um1.png
+otaci_um1;Blessing of Light;Şifacı;Otacı (usta);active;allies;fiziksel/yok;ustalık 10;buff;;1;güçlendirme: sarı-amber #f0b43c;"Tüm parti: 3 tur Güçlenme; 3 tur Sağlamlık; 3 tur Keskinlik. Bekleme 7 tur.";yetenek-otaci_um1.png
+otaci_um2;Divine Guard;Şifacı;Otacı (usta);active;allies;fiziksel/yok;ustalık 20;buff;;1;koruma: çelik mavisi #8fa9c4;"Tüm parti: 3 tur büyü gücü × 3 kadar kalkan; 2 tur Sakınma. Bekleme 8 tur.";yetenek-otaci_um2.png
+bozan_um1;Curse of Ruin;Şifacı;Büyübozan (usta);active;enemies;fiziksel/yok;ustalık 10;meteor;;1;zayıflatma: koyu mor #7a4a9a;"Tüm düşmanlar: %90 şansla 2 tur Zayıflık; %90 şansla 2 tur Kırık Zırh. Bekleme 7 tur.";yetenek-bozan_um1.png
+bozan_um2;Dark Pact;Şifacı;Büyübozan (usta);active;enemy;şimşek;ustalık 20;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: hedefin 3 güçlendirmesini söker; büyü gücü × 2.5 yıldırım hasarı. Bekleme 6 tur.";yetenek-bozan_um2.png
+m_k1;Staff Attack;Büyücü;seviye yeteneği;active;enemy;fiziksel/yok;sv 3;melee;;1;fiziksel: çelik gri #b9c0c8;Tek düşman: büyü gücü × 0.7 hasar. Bekleme 1 tur.;yetenek-m_k1.png
+m_k2;Sprint;Büyücü;seviye yeteneği;active;self;fiziksel/yok;sv 5;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Çabukluk (kendine). Bekleme 4 tur.;yetenek-m_k2.png
+ates1;Flame Strike;Büyücü;Ateş;active;enemy;ateş;puan 0;bolt;;1;ateş: turuncu-kızıl #e2572b;Tek düşman: büyü gücü × 1 ateş hasarı. Bekleme 1 tur.;yetenek-ates1.png
+ates2;Fire Ball;Büyücü;Ateş;active;enemy;ateş;puan 5;bolt;;1;ateş: turuncu-kızıl #e2572b;Tek düşman: büyü gücü × 1.3 ateş hasarı. Bekleme 2 tur.;yetenek-ates2.png
+ates3;Burn;Büyücü;Ateş;active;enemy;ateş;puan 10;bolt;;1;ateş: turuncu-kızıl #e2572b;"Tek düşman: büyü gücü × 0.6 ateş hasarı; 3 tur Yanık. Bekleme 3 tur.";yetenek-ates3.png
+ates4;Fire Spear;Büyücü;Ateş;active;enemy;ateş;puan 15;bolt;;1;ateş: turuncu-kızıl #e2572b;Tek düşman: büyü gücü × 1.5 ateş hasarı. Bekleme 2 tur.;yetenek-ates4.png
+ates5;Fire Blast;Büyücü;Ateş;active;enemy;ateş;puan 20;bolt;;1;ateş: turuncu-kızıl #e2572b;Tek düşman: büyü gücü × 1.8 ateş hasarı. Bekleme 3 tur.;yetenek-ates5.png
+ates6;Hell Fire;Büyücü;Ateş;active;enemies;ateş;puan 25;meteor;;1;ateş: turuncu-kızıl #e2572b;Tüm düşmanlar: büyü gücü × 1 ateş hasarı. Bekleme 4 tur.;yetenek-ates6.png
+ates7;Pillar of Fire;Büyücü;Ateş;active;enemy;ateş;puan 30;meteor;;1;ateş: turuncu-kızıl #e2572b;Tek düşman: büyü gücü × 2.2 ateş hasarı. Bekleme 4 tur.;yetenek-ates7.png
+ates8;Fire Thorn;Büyücü;Ateş;active;enemy;ateş;puan 35;bolt;;1;ateş: turuncu-kızıl #e2572b;"Tek düşman: büyü gücü × 1.6 ateş hasarı; 2 tur Yanık. Bekleme 4 tur.";yetenek-ates8.png
+ates9;Fire Impact;Büyücü;Ateş;active;enemy;ateş;puan 40;meteor;;1;ateş: turuncu-kızıl #e2572b;Tek düşman: büyü gücü × 2.5 ateş hasarı. Bekleme 4 tur.;yetenek-ates9.png
+ates10;Flame Nova;Büyücü;Ateş;active;enemies;ateş;puan 45;meteor;;1;ateş: turuncu-kızıl #e2572b;Tüm düşmanlar: büyü gücü × 1.5 ateş hasarı. Bekleme 4 tur.;yetenek-ates10.png
+ates11;Fire Staff;Büyücü;Ateş;passive;;fiziksel/yok;puan 50;;;1;pasif: soluk bronz #a88a5c;Element hasarı +%15.;yetenek-ates11.png
+ates12;Fire Wall;Büyücü;Ateş;active;enemy;fiziksel/yok;puan 55;meteor;;1;zayıflatma: koyu mor #7a4a9a;Tek düşman: 3 tur Yanık. Bekleme 5 tur.;yetenek-ates12.png
+ates13;Meteor Fall;Büyücü;Ateş;active;enemies;ateş;puan 60;meteor;;1;ateş: turuncu-kızıl #e2572b;Tüm düşmanlar: büyü gücü × 3 ateş hasarı. Bekleme 4 tur.;yetenek-ates13.png
+yildirim1;Lightning;Büyücü;Yıldırım;active;enemy;şimşek;puan 0;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 1 yıldırım hasarı; %5 şansla 1 tur Sersemleme. Bekleme 1 tur.";yetenek-yildirim1.png
+yildirim2;Shock;Büyücü;Yıldırım;active;enemy;şimşek;puan 5;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 0.8 yıldırım hasarı; %40 şansla 1 tur Sersemleme. Bekleme 3 tur.";yetenek-yildirim2.png
+yildirim3;Charge;Büyücü;Yıldırım;active;self;fiziksel/yok;puan 10;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 3 tur Güçlenme (kendine). Bekleme 5 tur.;yetenek-yildirim3.png
+yildirim4;Lightning Bolt;Büyücü;Yıldırım;active;enemy;şimşek;puan 15;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 1.5 yıldırım hasarı; %5 şansla 1 tur Sersemleme. Bekleme 2 tur.";yetenek-yildirim4.png
+yildirim5;Counter Spell;Büyücü;Yıldırım;active;enemy;şimşek;puan 20;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 0.6 yıldırım hasarı; hedefin 1 güçlendirmesini söker; %5 şansla 1 tur Sersemleme. Bekleme 3 tur.";yetenek-yildirim5.png
+yildirim6;Static Hemisphere;Büyücü;Yıldırım;active;self;fiziksel/yok;puan 25;buff;;1;koruma: çelik mavisi #8fa9c4;Kendisi: 2 tur büyü gücü × 1.5 kadar kalkan (kendine). Bekleme 5 tur.;yetenek-yildirim6.png
+yildirim7;Paralyze;Büyücü;Yıldırım;active;enemy;fiziksel/yok;puan 30;bolt;;1;zayıflatma: koyu mor #7a4a9a;Tek düşman: %80 şansla 1 tur Sersemleme. Bekleme 5 tur.;yetenek-yildirim7.png
+yildirim8;Thunder;Büyücü;Yıldırım;active;enemy;şimşek;puan 35;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 2 yıldırım hasarı; %5 şansla 1 tur Sersemleme. Bekleme 3 tur.";yetenek-yildirim8.png
+yildirim9;Static Thorn;Büyücü;Yıldırım;active;enemy;şimşek;puan 40;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 1.6 yıldırım hasarı; %30 şansla 1 tur Sersemleme. Bekleme 4 tur.";yetenek-yildirim9.png
+yildirim10;Lightning Nova;Büyücü;Yıldırım;active;enemies;şimşek;puan 45;meteor;;1;şimşek: mor-beyaz #b48cff;"Tüm düşmanlar: büyü gücü × 1.5 yıldırım hasarı; %5 şansla 1 tur Sersemleme. Bekleme 4 tur.";yetenek-yildirim10.png
+yildirim11;Chain Lightning;Büyücü;Yıldırım;active;random;şimşek;puan 50;bolt;;1;şimşek: mor-beyaz #b48cff;"Rastgele düşmanlar: 4 kez büyü gücü × 0.9 yıldırım hasarı; %5 şansla 1 tur Sersemleme. Bekleme 4 tur.";yetenek-yildirim11.png
+yildirim12;Thunder Blast;Büyücü;Yıldırım;active;enemy;şimşek;puan 55;meteor;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 2.5 yıldırım hasarı; %5 şansla 1 tur Sersemleme. Bekleme 4 tur.";yetenek-yildirim12.png
+yildirim13;Thunder Impact;Büyücü;Yıldırım;active;enemy;şimşek;puan 60;bolt;;1;şimşek: mor-beyaz #b48cff;"Tek düşman: büyü gücü × 3 yıldırım hasarı; %40 şansla 1 tur Sersemleme. Bekleme 5 tur.";yetenek-yildirim13.png
+buz1;Freeze;Büyücü;Buz;active;enemy;buz;puan 0;bolt;;1;buz: buz mavisi #6cc6ff;Tek düşman: büyü gücü × 1 buz hasarı. Bekleme 1 tur.;yetenek-buz1.png
+buz2;Chill;Büyücü;Buz;active;enemy;buz;puan 5;bolt;;1;buz: buz mavisi #6cc6ff;"Tek düşman: büyü gücü × 0.9 buz hasarı; %60 şansla 2 tur Yavaşlık. Bekleme 2 tur.";yetenek-buz2.png
+buz3;Solid;Büyücü;Buz;active;self;fiziksel/yok;puan 10;buff;;1;güçlendirme: sarı-amber #f0b43c;Kendisi: 3 tur Sağlamlık (kendine). Bekleme 5 tur.;yetenek-buz3.png
+buz4;Ice Arrow;Büyücü;Buz;active;enemy;buz;puan 15;bolt;;1;buz: buz mavisi #6cc6ff;Tek düşman: büyü gücü × 1.5 buz hasarı. Bekleme 2 tur.;yetenek-buz4.png
+buz5;Glacier Beam;Büyücü;Buz;active;enemy;buz;puan 20;bolt;;1;buz: buz mavisi #6cc6ff;"Tek düşman: büyü gücü × 1.2 buz hasarı; %40 şansla 1 tur Donma. Bekleme 3 tur.";yetenek-buz5.png
+buz6;Frostbite;Büyücü;Buz;active;enemy;buz;puan 25;bolt;;1;buz: buz mavisi #6cc6ff;"Tek düşman: büyü gücü × 1.3 buz hasarı; %80 şansla 2 tur Yavaşlık. Bekleme 3 tur.";yetenek-buz6.png
+buz7;Ice Comet;Büyücü;Buz;active;enemy;buz;puan 30;meteor;;1;buz: buz mavisi #6cc6ff;Tek düşman: büyü gücü × 2 buz hasarı. Bekleme 4 tur.;yetenek-buz7.png
+buz8;Glacier Nova;Büyücü;Buz;active;enemies;buz;puan 35;meteor;;1;buz: buz mavisi #6cc6ff;"Tüm düşmanlar: büyü gücü × 1.1 buz hasarı; %35 şansla 1 tur Donma. Bekleme 4 tur.";yetenek-buz8.png
+m_um1;Staff Mastery;Büyücü;usta (ortak);passive;;fiziksel/yok;ustalık 1;;;1;pasif: soluk bronz #a88a5c;Büyü gücü +%15.;yetenek-m_um1.png
+alaz_um1;Inferno;Büyücü;Alazcı (usta);active;enemies;ateş;ustalık 10;meteor;;1;ateş: turuncu-kızıl #e2572b;"Tüm düşmanlar: büyü gücü × 2.2 ateş hasarı; 2 tur Yanık. Bekleme 6 tur.";yetenek-alaz_um1.png
+alaz_um2;Dragon Tooth;Büyücü;Alazcı (usta);active;enemy;ateş;ustalık 20;meteor;;1;ateş: turuncu-kızıl #e2572b;"Tek düşman: büyü gücü × 3.8 ateş hasarı, +%30 kritik şansı. Bekleme 6 tur.";yetenek-alaz_um2.png
+boran_um1;Blizzard;Büyücü;Boran Bilgesi (usta);active;enemies;şimşek;ustalık 10;meteor;;1;şimşek: mor-beyaz #b48cff;"Tüm düşmanlar: büyü gücü × 1.8 yıldırım hasarı; %70 şansla 2 tur Yavaşlık; %5 şansla 1 tur Sersemleme. Bekleme 6 tur.";yetenek-boran_um1.png
+boran_um2;Arc Lightning;Büyücü;Boran Bilgesi (usta);active;enemies;şimşek;ustalık 20;bolt;;1;şimşek: mor-beyaz #b48cff;"Tüm düşmanlar: büyü gücü × 2.2 yıldırım hasarı; %50 şansla 1 tur Sersemleme. Bekleme 6 tur.";yetenek-boran_um2.png
+x_hit;Saldırı;yaratık/boss;temel;basic;enemy;fiziksel/yok;;melee;;2;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar.;yetenek-x_hit.png
+x_bolt;Kara Kıvılcım;yaratık/boss;temel;basic;enemy;şimşek;;bolt;;2;şimşek: mor-beyaz #b48cff;Tek düşman: büyü gücü × 1 yıldırım hasarı.;yetenek-x_bolt.png
+x_stab;Pusu;yaratık/boss;—;active;enemy;fiziksel/yok;;melee;;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.5 hasar, +%20 kritik şansı. Bekleme 3 tur.";yetenek-x_stab.png
+x_hex;Bataklık Bedduası;yaratık/boss;—;active;enemy;fiziksel/yok;;bolt;;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: büyü gücü × 0.9 hasar; %80 şansla 2 tur Zehir. Bekleme 4 tur.";yetenek-x_hex.png
+x_mend;Çamur Merhemi;yaratık/boss;—;active;ally;fiziksel/yok;;heal;;2;şifa: yeşil-altın #7fd36b;Tek müttefik: büyü gücü × 1.8 kadar şifa. Bekleme 4 tur.;yetenek-x_mend.png
+x_smash;Ezici Darbe;yaratık/boss;—;active;enemy;fiziksel/yok;;melee;;2;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1.7 hasar. Bekleme 3 tur.;yetenek-x_smash.png
+x_quake;Yer Sarsıntısı;yaratık/boss;—;active;enemies;fiziksel/yok;;stomp;;2;fiziksel: çelik gri #b9c0c8;"Tüm düşmanlar: saldırı × 0.75 hasar; %15 şansla 1 tur Sersemleme. Bekleme 4 tur.";yetenek-x_quake.png
+x_guard;Kemik Siperi;yaratık/boss;—;active;self;fiziksel/yok;;buff;;2;güçlendirme: sarı-amber #f0b43c;Kendisi: 2 tur Sağlamlık (kendine). Bekleme 4 tur.;yetenek-x_guard.png
+x_howl;Akın Çığlığı;yaratık/boss;—;active;allies;fiziksel/yok;;buff;;2;güçlendirme: sarı-amber #f0b43c;Tüm parti: 2 tur Güçlenme. Bekleme 5 tur.;yetenek-x_howl.png
+x_cleave;Geniş Savuruş;yaratık/boss;—;active;enemies;fiziksel/yok;;whirl;;2;fiziksel: çelik gri #b9c0c8;Tüm düşmanlar: saldırı × 0.6 hasar. Bekleme 4 tur.;yetenek-x_cleave.png
+x_curse;Mezar Soğuğu;yaratık/boss;—;active;enemies;buz;;meteor;;2;buz: buz mavisi #6cc6ff;"Tüm düşmanlar: büyü gücü × 0.6 buz hasarı; %60 şansla 2 tur Yavaşlık. Bekleme 5 tur.";yetenek-x_curse.png
+x_mire;Sazlık Fırtınası;yaratık/boss;—;active;enemies;fiziksel/yok;;stomp;;2;fiziksel: çelik gri #b9c0c8;"Tüm düşmanlar: saldırı × 0.95 hasar; %50 şansla 2 tur Yavaşlık. Bekleme 4 tur.";yetenek-x_mire.png
+x_crush;Bey Yumruğu;yaratık/boss;—;active;enemy;fiziksel/yok;;melee;;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 2.1 hasar; %60 şansla 2 tur Kırık Zırh. Bekleme 3 tur.";yetenek-x_crush.png
+x_shot;Ok;yaratık/boss;temel;basic;enemy;fiziksel/yok;;arrow;;2;fiziksel: çelik gri #b9c0c8;Tek düşman: saldırı × 1 hasar.;yetenek-x_shot.png
+x_volley;Ok Sağanağı;yaratık/boss;—;active;enemies;fiziksel/yok;;arrowBig;;2;fiziksel: çelik gri #b9c0c8;Tüm düşmanlar: saldırı × 0.65 hasar. Bekleme 4 tur.;yetenek-x_volley.png
+x_aim;Nişanlı Atış;yaratık/boss;—;active;enemy;fiziksel/yok;;arrowBig;;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.7 hasar, +%25 kritik şansı. Bekleme 3 tur.";yetenek-x_aim.png
+x_fire;Kor Topu;yaratık/boss;—;active;enemy;ateş;;bolt;;2;ateş: turuncu-kızıl #e2572b;"Tek düşman: büyü gücü × 1.3 ateş hasarı; %70 şansla 2 tur Yanık. Bekleme 3 tur.";yetenek-x_fire.png
+x_lavanova;Lav Dalgası;yaratık/boss;—;active;enemies;ateş;;meteor;;2;ateş: turuncu-kızıl #e2572b;"Tüm düşmanlar: büyü gücü × 1.25 ateş hasarı; %80 şansla 2 tur Yanık. Bekleme 3 tur.";yetenek-x_lavanova.png
+x_firestorm;Kül Fırtınası;yaratık/boss;—;active;enemies;ateş;;meteor;;2;ateş: turuncu-kızıl #e2572b;"Tüm düşmanlar: büyü gücü × 0.75 ateş hasarı; %50 şansla 2 tur Yanık. Bekleme 5 tur.";yetenek-x_firestorm.png
+x_frost;Ayaz Oku;yaratık/boss;—;active;enemy;buz;;bolt;;2;buz: buz mavisi #6cc6ff;"Tek düşman: büyü gücü × 1.2 buz hasarı; 2 tur Yavaşlık. Bekleme 3 tur.";yetenek-x_frost.png
+x_freeze;Buz Kesen;yaratık/boss;—;active;enemy;buz;;bolt;;2;buz: buz mavisi #6cc6ff;"Tek düşman: büyü gücü × 1 buz hasarı; %35 şansla 1 tur Donma. Bekleme 4 tur.";yetenek-x_freeze.png
+x_blizzard;Yayla Tipisi;yaratık/boss;—;active;enemies;buz;;meteor;;2;buz: buz mavisi #6cc6ff;"Tüm düşmanlar: büyü gücü × 0.7 buz hasarı; %60 şansla 2 tur Yavaşlık. Bekleme 5 tur.";yetenek-x_blizzard.png
+x_rage;Kan Öfkesi;yaratık/boss;—;active;self;fiziksel/yok;;buff;;2;güçlendirme: sarı-amber #f0b43c;"Kendisi: 3 tur Güçlenme (kendine); 3 tur Keskinlik (kendine). Bekleme 5 tur.";yetenek-x_rage.png
+x_drain;Can Sömüren;yaratık/boss;—;active;enemy;fiziksel/yok;;melee;;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 1.4 hasar, hasarın %50'i kadar can çalar. Bekleme 3 tur.";yetenek-x_drain.png
+x_ward;Tuğ Gölgesi;yaratık/boss;—;active;allies;fiziksel/yok;;buff;;2;koruma: çelik mavisi #8fa9c4;Tüm parti: 2 tur büyü gücü × 0.9 kadar kalkan. Bekleme 5 tur.;yetenek-x_ward.png
+x_bigheal;Ata Rünü;yaratık/boss;—;active;allies;fiziksel/yok;;heal;;2;şifa: yeşil-altın #7fd36b;Tüm parti: büyü gücü × 0.9 kadar şifa. Bekleme 5 tur.;yetenek-x_bigheal.png
+x_mark;Kem Göz;yaratık/boss;—;active;enemy;fiziksel/yok;;bolt;;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: büyü gücü × 0.6 hasar; 2 tur Nişan; %70 şansla 2 tur Kırık Zırh. Bekleme 4 tur.";yetenek-x_mark.png
+x_execute;Kelle Alan;yaratık/boss;—;active;enemy;fiziksel/yok;;melee;;2;fiziksel: çelik gri #b9c0c8;"Tek düşman: saldırı × 2 hasar, canı %40 altındaki hedefe +%50 hasar. Bekleme 4 tur.";yetenek-x_execute.png
+x_roar;Yıldıran Nara;yaratık/boss;—;active;enemies;fiziksel/yok;;stomp;;2;fiziksel: çelik gri #b9c0c8;"Tüm düşmanlar: saldırı × 0.5 hasar; %70 şansla 2 tur Zayıflık. Bekleme 5 tur.";yetenek-x_roar.png
