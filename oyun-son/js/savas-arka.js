@@ -1,5 +1,5 @@
-// 22 Kas (kullanıcı): savaş arka planları artık GPT'nin boyalı sahne resimleri (10 resim, ikişer üst üste 5 WebP:
-// img/kd/savas/arka-N.webp; kaynak _tasarim/gelen/savas-arka/). Koddan çizilen savaş ortamı (gök kubbe, çimen, ağaç, kaya,
+// 22 Kas (kullanıcı): savaş arka planları artık GPT'nin boyalı sahne resimleri (10 resim, ikişer üst üste 5 WebP,
+// js/savas-arka-png.js'e gömülü; kaynak _tasarim/gelen/savas-arka/, üretici _tasarim/araclar/savas-arka-gom.py). Koddan çizilen savaş ortamı (gök kubbe, çimen, ağaç, kaya,
 // meydan taşı) savaşta artık kurulmaz (models.js buildEnv 'foto:' kipi).
 // Resim, savaşın taban kamerasından (projektör) zemine ve arkadaki kavisli perdeye yansıtılır: taban kadrajda resim birebir
 // görünür, kamera yaklaşınca ya da döndüğünde zemin ve ufuk gerçek derinlikte kayar (düz bir kâğıt gibi kaymaz).
@@ -56,11 +56,12 @@ function tex(n, onLoad) {
   let t = cache.get(n);
   if (t) { if (t.image) onLoad(t); else t.userData.wait.push(onLoad); return t; }
   t = new THREE.Texture(); t.userData.wait = [onLoad]; cache.set(n, t);
-  new THREE.ImageLoader().load(`img/kd/savas/arka-${n}.webp`, im => {
+  // resimler js/savas-arka-png.js'e gömülü (yayın dosya sınırı); ilk savaşta bir kez indirilir, Blob URL'den çözülür
+  import('./savas-arka-png.js').then(M => URL.createObjectURL(new Blob([Uint8Array.from(atob(M.PNG[n]), c => c.charCodeAt(0))], { type: 'image/webp' }))).then(url => new THREE.ImageLoader().load(url, im => {
     t.image = im; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
     t.wrapS = THREE.MirroredRepeatWrapping; t.wrapT = THREE.ClampToEdgeWrapping; t.needsUpdate = true;
     t.userData.wait.splice(0).forEach(f => f(t));
-  }, undefined, () => { cache.delete(n); });
+  }, undefined, () => { cache.delete(n); })).catch(() => cache.delete(n));
   return t;
 }
 // Önden yükle (ör. VS ekranı açılınca): savaş başladığında resim hazır olsun
@@ -141,3 +142,5 @@ export function buildBackdrop(group, id) {
   tex(B[0], t => { if (!mats.has(mat)) return; U.map.value = t; const t0 = performance.now(); const f = () => { if (!mats.has(mat)) return; U.ready.value = Math.min(1, (performance.now() - t0) / 350); if (U.ready.value < 1) requestAnimationFrame(f); }; f(); });
   return root;
 }
+// Resim paketi (~4 MB) oyun açıldıktan biraz sonra boşta önden indirilir: ilk savaşta arka plan beklemeden gelir
+if (typeof window !== 'undefined') setTimeout(() => (window.requestIdleCallback || setTimeout)(() => import('./savas-arka-png.js').catch(() => { })), 8000);
