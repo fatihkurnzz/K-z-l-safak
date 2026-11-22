@@ -16,3 +16,9 @@ html[data-hub2d][data-faction] #game #hud .pcard.uf::before, html[data-hub2d][da
 html[data-hub2d][data-faction] #game #hud .res .pill { background:var(--mz-sayac) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 2px 6px #0008 !important; border-radius:3px !important; }
 html[data-hub2d][data-faction] #game #hud .premrow .prem { background:var(--mz-prem) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 2px 6px #0008 !important; border-radius:3px !important; }
 html[data-hub2d] #hub2d img.h2-flama { content:var(--mz-flama); width:46px !important; right:calc(var(--h17-sr) + 2px) !important; }
+
+/* Ortak pencere şablonu (P5 sayfa maketleri): ince gümüş-altın kenarlı taş panel; pencere (#win .frame) ve kutular (#modal .box) */
+:root { --p5-panel:url("@p3-panel-orta-sancak"); }
+:root[data-faction="ocak"] { --p5-panel:url("@p3-panel-orta-ocak"); }
+html[data-faction][data-faction] #win .frame, html[data-faction][data-faction] #modal .box { border-image:var(--p5-panel) 26 / 10px / 3px stretch !important; background:var(--p5-panel) center / 100% 100% no-repeat !important; }
+html[data-faction][data-faction] #modal .box .in { background:transparent !important; }
