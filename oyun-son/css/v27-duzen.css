@@ -155,3 +155,35 @@ html[data-faction] .nb-boss span::before { content:"·"; margin-right:8px; color
    Görevler sohbetin sağında, alt düğmelerin bir satır üstüne; saat oyuncu kartının sağına alınır. */
 html.narrow[data-hub2d] #game #hud .qtrk { left:calc(var(--h17-sl) + 246px) !important; bottom:calc(var(--h17-sab) + 60px) !important; width:200px !important; }
 html.narrow[data-hub2d] #game #hud .wclock { left:calc(var(--h17-sl) + 108px) !important; transform:none !important; }
+
+/* ---- Diyalog (görsel roman) · görev C8, Gemini M4 olcu-diyalog.md (880×406 maket; konumlar yüzde) · 23 Kas ----
+   Solda NPC yarım boy (%40), altta tam genişlik şerit (y 278, h 128), ad levhası (344,260 290×34), metin (344,302 368×88),
+   İleri (736,346 124×40), kapat (830,10 40×40). Halk dolgusu: Elentha #1f2c40/#4d8cc9 · Kragmir #2b211b/#c2552b. */
+#modal:has(> .box.dlgbox) { background:rgba(8,6,10,.42) !important; backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px); padding:0 !important; }
+#modal .box.dlgbox { position:absolute !important; inset:0 !important; width:auto !important; max-width:none !important; height:auto !important; max-height:none !important; margin:0 !important; padding:0 !important;
+  border:0 !important; border-radius:0 !important; clip-path:none !important; background:none !important; box-shadow:none !important; overflow:hidden !important; animation:dlgIn .22s ease-out both; }
+#modal .box.dlgbox.still { animation:none; }
+@keyframes dlgIn { from { opacity:0; } to { opacity:1; } }
+#modal .box.dlgbox::before, #modal .box.dlgbox::after { content:none !important; }
+#modal .box.dlgbox > .x.mx { position:absolute !important; left:auto !important; right:1.136% !important; top:10px !important; width:40px !important; height:40px !important; z-index:5;
+  background:#1a1519e6 !important; border:1px solid #8d8790 !important; border-radius:8px !important; color:#e9e1d3 !important; font-size:16px !important; display:grid; place-items:center; box-shadow:0 2px 8px #0008 !important; }
+.dlg { position:absolute; inset:0; --hf:#1f2c40; --hv:#4d8cc9; color:#e9e1d3; font-family:Inter, system-ui, sans-serif; }
+.dlg[data-h="ocak"] { --hf:#2b211b; --hv:#c2552b; }
+.dlg-serit { position:absolute; left:0; right:0; top:68.47%; bottom:0; background:linear-gradient(180deg, #1a1519f2, #0e0b10fa); border-top:2px solid #c9a45c;
+  box-shadow:0 -10px 30px #0009, inset 0 1px 0 #ffffff14; z-index:1; }
+.dlg-por { position:absolute; left:0; top:3.45%; width:40%; bottom:0; z-index:2; pointer-events:none; display:flex; align-items:flex-end; justify-content:center; }
+.dlg-por img { height:100%; width:100%; object-fit:contain; object-position:50% 100%; filter:drop-shadow(0 6px 14px #000a); }
+.dlg-por svg { width:62%; margin-bottom:24%; border-radius:10px; }
+.dlg-ad { position:absolute; left:39.09%; top:64.04%; width:32.95%; height:34px; z-index:3; display:flex; align-items:center; gap:10px; padding:0 14px; box-sizing:border-box;
+  background:linear-gradient(90deg, var(--hf), color-mix(in srgb, var(--hf) 70%, #000)); border:1px solid #c9a45c; border-left:3px solid var(--hv); border-radius:4px; box-shadow:0 4px 10px #0009; }
+.dlg-ad b { font:700 15px/1 Cinzel, Georgia, serif; letter-spacing:.04em; color:#e9e1d3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dlg-ad small { font:400 11px/1 Inter, sans-serif; color:#bdb3a6; white-space:nowrap; }
+.dlg-txt { position:absolute; left:39.09%; top:74.38%; width:41.82%; height:88px; z-index:3; margin:0; font:400 15px/1.45 Inter, sans-serif; color:#e9e1d3; overflow:auto; text-shadow:0 1px 2px #000; }
+.dlg-say { position:absolute; right:2.27%; top:71%; z-index:3; font:600 11px/1 Inter, sans-serif; color:#8d8790; }
+.dlg-btns { position:absolute; right:2.27%; bottom:20px; z-index:4; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
+.dlg-btns .btn.dlg-b { min-width:124px; height:40px; margin:0; padding:0 16px; font:600 13px/1 Inter, sans-serif; color:#e9e1d3; background:#1a1519; border:1px solid #8d8790; border-radius:6px; box-shadow:0 2px 6px #0008; }
+.dlg-btns .btn.dlg-b.ana { font-weight:800; background:linear-gradient(180deg, color-mix(in srgb, var(--hv) 55%, var(--hf)), var(--hf)); border-color:#c9a45c; }
+.dlg-btns .btn.dlg-b i { font-style:normal; margin-left:6px; }
+html[data-faction][data-faction] #modal .box.dlgbox { border-image:none !important; background:none !important; border:0 !important; box-shadow:none !important; }
+.dlg-txt { text-align:left; }
+.tport img.npc-yuz, .tpor img.npc-yuz { width:100%; height:100%; object-fit:cover; display:block; border-radius:inherit; }

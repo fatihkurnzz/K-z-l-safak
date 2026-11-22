@@ -76,4 +76,11 @@ for t in TURLER:
         d[p] = webp(Image.open(f), (384, 384))
     veri[t] = d
 yaz(os.path.join(OUT, 'js', 'b2d-yaratik.js'), 'yaratıklar, 3 poz, 384x384, zemin alttan 48/1024', veri)
+# Karakter seçme/oluşturma tam boyu için savaşçıların temizlenmiş bekleme pozu (kullanıcı kararı: kılıç + kalkan) → karakter-gom.py okur
+SV = os.path.join(OUT, '_tasarim', 'gelen', 'g1g2-savasci'); os.makedirs(SV, exist_ok=True)
+for halk in ['sancak', 'ocak']:
+    for cins in ['kadin', 'erkek']:
+        k = f'{halk}-savasci-{cins}'; im = Image.open(bul(f'kahraman-{k}-bekleme'))
+        if k in HALE: im = temizle(im)
+        im = im.convert('RGBA').resize((512, 683), Image.LANCZOS); c = Image.new('RGBA', (512, 768)); c.paste(im, (0, 85)); c.save(os.path.join(SV, k + '.png'))
 print('eksik:', eksik)

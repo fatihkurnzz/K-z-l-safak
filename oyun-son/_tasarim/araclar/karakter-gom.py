@@ -2,7 +2,7 @@
 # 16 tam boy (05_OYUN_ICIN_OPTIMIZE_512x768, kaynak 01_KARAKTERLER; manifest.json eşleme kaynağı) + 20 yüz (02_YUZLER).
 # WebP base64 (yayın dosya sınırı); görünür sınır (alfa > 24) burada ölçülür: ayak hizası ve ölçek için.
 # Kullanım: python3 -I karakter-gom.py <oyun-son>
-import sys, json, base64, io
+import sys, json, base64, io, os
 from PIL import Image
 R = sys.argv[1]; K = R + '/_tasarim/gelen/karakter-son'
 M = json.load(open(K + '/05_OYUN_ICIN_OPTIMIZE_512x768/manifest.json', encoding='utf-8'))
@@ -20,6 +20,9 @@ for s in M['sprites']:
         r, g, b, a = im.split(); im = Image.merge('RGBA', (r, g, b, a.point(lambda v: 255 if v >= 250 else v)))
     else:
         im = Image.open(K + '/' + s['optimized']).convert('RGBA')
+    # 23 Kas (kullanıcı kararı: savaşçı kılıç + kalkan): savaşçılar GPT G1/G2 bekleme pozundan (b2d-gom.py hazırlar)
+    gs = f"{R}/_tasarim/gelen/g1g2-savasci/{FR[s['faction']]}-savasci-{s['gender']}.png"
+    if s['class'] == 'savasci' and os.path.exists(gs): im = Image.open(gs).convert('RGBA')
     bb = im.getchannel('A').point(lambda v: 255 if v > 24 else 0).getbbox()
     D[key] = webp(im, 84); BOX[key] = list(bb)
 assert len(D) == 16, len(D)

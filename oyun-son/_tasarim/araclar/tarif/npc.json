@@ -1,0 +1,110 @@
+{
+ "aciklama": "GPT G4 hik\u00e2ye karakterleri: yar\u0131m boy 528x704 (saydam) ve y\u00fcz 192x192",
+ "q": 80,
+ "ogeler": [
+  {
+   "k": "lira",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-lira-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "lira-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-lira-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  },
+  {
+   "k": "corin",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-corin-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "corin-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-corin-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  },
+  {
+   "k": "maelis",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-maelis-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "maelis-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-maelis-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  },
+  {
+   "k": "halvor",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-halvor-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "halvor-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-halvor-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  },
+  {
+   "k": "thrak",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-thrak-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "thrak-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-thrak-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  },
+  {
+   "k": "yashka",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-yashka-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "yashka-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-yashka-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  },
+  {
+   "k": "edran",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-edran-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "edran-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-edran-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  },
+  {
+   "k": "volgar",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-volgar-yarimboy.png",
+   "w": 528,
+   "h": 704
+  },
+  {
+   "k": "volgar-yuz",
+   "src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-volgar-yuz.png",
+   "w": 192,
+   "h": 192,
+   "q": 82
+  }
+ ]
+}
