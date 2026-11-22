@@ -2,7 +2,13 @@
 
 Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı** (sayfa başlığı "Korant Online"), tarayıcıda çalışan, YALNIZCA YATAY çizilen 3B mobil RPG (vanilla ES modülleri + three.js r160 gömülü, sıra tabanlı belirlenimci savaş). Hikâye: **Vahran: Tarihin Külleri**.
 
-## SON DURUM (22.11 gece geç) — clear sonrası buradan devam
+## SON DURUM (22.11 gece, en son) — clear sonrası buradan devam
+- **Sürüm 24 YAYINDA** (511 dosya = SINIR; yalnız css/v31-savas-hud.css değişti; son yayın commit'i = bu notun önceki commit'i).
+- GPT "VAHRAN V16 Temiz Claude Devir" ZIP (189 dosya) incelendi → kayıt `_tasarim/gelen/v16/` (yalnız belgeler + CLAUDE_ kontak/sonuç görselleri; görseller scratchpad'deydi, oyuna girmedi). 10 arka plan = oyundaki AYNI resimler (paketteki 1536 px, bizdeki 1824 px daha iyi) → değişiklik yok. ui/ (düz dikdörtgen + basit vektör simgeler) ve fx/ (düz halkalar) mevcut P1/P4'ten zayıf → KULLANILMADI.
+- Uygulanan yerleşim (v31-sablon.css sonu): yetenekler SOLDA TEK DİKEY SÜTUN (8 yuva, oyuncu kartının altında, yuva ölçüsü `--sz` ekran yüksekliğinden; 880×406'da 36 px — küçük), mana rozeti yuvanın sağında; ipucu (#bwho) sol altta sütunun sağında; ✕ Dalga şeridinin hemen altında ortada; düşman kartı sağ kenara; boss çubuğu (#bboss) ✕'in altına (192g). Otomatik/Oto İksir/tek hız zaten vardı.
+- Test (scratchpad t/sv.js, t/fn.js; R=ocak|sancak W H O EVAL): 880×406 iki halk, 1024×768, 1280×720; gerçek tıklama: yetenek seçimi, Oto İksir (Otomatik'ten bağımsız), hız 1x→2x→3x→1x, ✕ → Çekil onayı. Gerçek boss savaşı ve telefon test edilmedi (boss çubuğu yalnız ölçüyle).
+
+## ÖNCEKİ DURUM (22.11 gece geç) — clear sonrası buradan devam
 - **Sürüm 23 YAYINDA** (511 dosya = SINIR! yeni dosya eklemek için önce bir şey çıkar; son yayın commit'i = bu notun önceki commit'i; sonraki yayında `git diff --name-status <o> HEAD -- oyun-son`).
 - GPT "VAHRAN Claude Devir" 4 parça ZIP birleştirildi (166 dosya, yol çakışması yok) → `_tasarim/gelen/karakter-son/` (özgün yollar). Kanonik referans `00_REFERANS/ONAYLI_KARAKTER_OLUSTUR.png`.
 - Karakter OLUŞTURMA yeniden yazıldı (`js/ui-olustur.js`, kök `#olz.vz`, yeni ad alanı `.vz-*`; eski .olz CSS'i artık uygulanmıyor): üst levha, sol TARAF SEÇ sancakları, 5 yüz portresi sütunu (portre = shared/gorunus FACES 0-4, oyundaki 3B yüze uygulanır; 2B görsel değişmez), ortada 2B tam boy (ayak çizgisi H·0.835, görünür boy eşit), sağda Sınıf 2×2 / Cinsiyet ♂♀ / Görünüm (Yüz, Saç Stili, Saç/Göz/Ten Rengi, erkekte Sakal), altta Geri · ad+zar · Oluştur. Vücut/Boy satırları kaldırıldı (kayıtta varsayılan). Referanstaki 4 donanım simgesi satırı EKLENMEDİ (işlevi yok). Sınıf adları oyunun (Şifacı/Şaman), referansta "Rahip".
