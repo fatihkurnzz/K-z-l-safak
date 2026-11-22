@@ -4,15 +4,15 @@
 // (ui-duyuru.js) ve hayalet tıklama koruması pencerelerle aynı çalışır. Kural içermez; yalnız sunum.
 import { ACT, showModal, closeModal } from './ui-core.js';
 
-let P = null; // npc-png.js (ilk konuşmada yüklenir)
-export const npcPng = () => (P ? Promise.resolve(P) : import('./npc-png.js').then(m => (P = m)).catch(() => null));
-export const npcYuz = k => P?.url(k + '-yuz') || null; // eşzamanlı (yüklendiyse): küçük yüz resmi
-npcPng(); // ana üste girerken arkada iner (858 KB)
+import { gorselYukle, npcYuz } from './sahne.js'; // G4 portreleri gorsel-png.js içinde
+export { npcYuz };
+let P = null;
+const npcPng = () => gorselYukle().then(m => (P = m));
 
 const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 const D = { s: null, i: 0 };
 
-// kim: npc-png anahtarı (lira, corin, maelis, halvor, thrak, yashka, edran, volgar) · ad, unvan: levha · halk: 'sancak' | 'ocak'
+// kim: gorsel-png NPC anahtarı (lira, corin, maelis, halvor, thrak, yashka, edran, volgar) · ad, unvan: levha · halk: 'sancak' | 'ocak'
 // satirlar: dizi (HTML değil, düz metin; <b> gerekirse html: true) · son: [{ t: 'Destan', a: 'gateDestan', ana: true }] · svg: portre yoksa yedek çizim
 export async function diyalog({ kim, ad, unvan = '', halk = 'sancak', satirlar = [], son = [], svg = '', html = false }) {
   await npcPng();

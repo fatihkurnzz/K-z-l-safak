@@ -1,7 +1,7 @@
 // Kalıcılık katmanının arayüzü: ana üsteki sağ sütun (zil, takvim, başarım), bildirim merkezi ve ayarları, giriş
 // takvimleri, haftalık görevler, başarımlar ve unvanlar, öğretici ve cihaz bildirimleri.
 // Kural hesaplamaz: içerik ve saf hesaplar shared/meta.js'ten okunur, her değişiklik sunucuya sorulur.
-import { npcYuz } from './ui-diyalog.js'; // 23 Kas: anlatıcı yüz portresi (G4)
+import { npcYuz } from './sahne.js'; // 23 Kas: anlatıcı yüz portresi (G4)
 import { rescueCard } from './ui-ogretici.js';
 import { placeNow } from './ui-hub.js';
 import { ormanOn, ORMAN } from './orman.js'; // açılış ormanı: öğreticinin ilk görevi ormanda geçer

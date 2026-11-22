@@ -1,7 +1,7 @@
 // Giriş ekranı (19 Kas): kullanıcı adı + şifreyle hesap açma ve giriş (yeni sunucu, sunucu/auth.js).
 // Yalnızca sunucuya bağlı derlemede görünür; çevrimdışı deneme kipinde (LOCAL) hesap yerel olduğu için atlanır.
 // showLogin() başarılı giriş/kayıt olunca çözülür; ardından açılış (main.js) karakter listesini alır.
-import './amblem.js'; // 23 Kas: G8 logo ve halk amblemleri (CSS değişkeni)
+import './sahne.js'; // 23 Kas: G8 logo/amblem hemen, G4–G6 görselleri arkada (CSS değişkenleri)
 import { authCall } from './api.js';
 
 const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);

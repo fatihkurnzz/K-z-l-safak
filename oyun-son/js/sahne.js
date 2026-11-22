@@ -1,13 +1,22 @@
-// 23 Kas (görev C7, GPT G5): tek parça boyalı sahneler ve Mini Dizi kapakları. js/sahne-png.js ana üs açıldıktan sonra arkada
-// iner (≈2.3 MB). Yüklenince her sahne kök öğeye CSS değişkeni olarak yazılır: --sc-<anahtar> (url). Pencereler bu değişkeni
-// arka plan olarak kullanır (css/v27-duzen.css "Boyalı sahneler"); değişken yokken eski çizim kalır. Kural içermez.
-// Anahtarlar: koru-sancak, koru-ocak, maden, dipsiz-kuyu, yeralti-ocagi, balik-tut, kristal-nobeti, dunya-baskini, minidizi-01…10
-let P = null, L = null;
-export const sahneUrl = k => P?.url(k) || null;
-export const sahneYukle = () => (L ||= import('./sahne-png.js').then(m => {
-  P = m; const st = document.documentElement.style;
-  for (const k of m.KEYS) st.setProperty('--sc-' + k, `url(${m.url(k)})`);
-  document.documentElement.classList.add('sahneli');
+// 23 Kas: GPT görsel teslimlerinin yükleyicisi (yayın 511 dosya sınırı yüzünden tek dosyada).
+//  · js/amblem-png.js (160 KB, G8): hemen iner → kök öğeye --amb-sancak, --amb-ocak, --logo-korant; html.amblemli
+//  · js/gorsel-png.js (≈4 MB): G4 NPC portreleri (ad, ad-yuz), G5 sahneler ve Mini Dizi kapakları, G6 yetenek simgeleri (kimlik).
+//    Giriş ekranı açıldıktan 3,5 sn sonra arkada iner; sahneler kök öğeye --sc-<anahtar> olarak yazılır, html.sahneli eklenir.
+//    Yüklenene dek eski çizimler kalır (CSS değişkenleri yoktur, skillIcon siluet çizer, diyalog bekler).
+// Sahne anahtarları: koru-sancak, koru-ocak, maden, dipsiz-kuyu, yeralti-ocagi, balik-tut, kristal-nobeti, dunya-baskini, minidizi-01…10
+const root = document.documentElement;
+let G = null, L = null;
+export const gorsel = () => G;
+export const gorselYukle = () => (L ||= import('./gorsel-png.js').then(m => {
+  G = m;
+  for (const k of m.KEYS) if (/^(koru-|maden$|dipsiz-|yeralti-|balik-|kristal-|dunya-|minidizi-)/.test(k)) root.style.setProperty('--sc-' + k, `url(${m.url(k)})`);
+  root.classList.add('sahneli');
   return m;
 }).catch(() => null));
-setTimeout(sahneYukle, 3500);
+export const sahneUrl = k => G?.url(k) || null;
+export const npcYuz = k => G?.url(k + '-yuz') || null;
+setTimeout(gorselYukle, 3500);
+import('./amblem-png.js').then(m => {
+  root.style.setProperty('--amb-sancak', `url(${m.url('amblem-sancak')})`); root.style.setProperty('--amb-ocak', `url(${m.url('amblem-ocak')})`); root.style.setProperty('--logo-korant', `url(${m.url('logo')})`);
+  root.classList.add('amblemli');
+}).catch(() => {});

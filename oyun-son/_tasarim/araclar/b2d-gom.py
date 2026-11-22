@@ -1,6 +1,7 @@
 # Savaş birimi 2B pozları (GPT G1/G2 teslimi) → gömülü JS (WebP base64)
 # Kullanım: python3 -I b2d-gom.py <paket klasörü (G1, G2_Elentha, G2_Kragmir alt klasörleri)> <oyun-son>
-# Çıktı (OTOMATİK, elle düzenleme): js/b2d-sancak.js, js/b2d-ocak.js, js/b2d-yaratik.js
+# Çıktı (OTOMATİK, elle düzenleme): js/b2d-sancak.js, js/b2d-ocak.js (her biri o halkın 8 kahramanı + bütün yaratıklar;
+# yayın dosya sınırı yüzünden ayrı yaratık dosyası yok: savaş oyuncunun halk dosyasını yükler)
 # - Beyaz zemin artığı olan setler (HALE) temizlenir: saydam alana bağlı açık/nötr pikseller silinir.
 # - Kahraman 1086x1448 → 384x512 (zemin çizgisi alttan 64/1448), yaratık 1024x1024 → 384x384 (zemin alttan 48/1024).
 # - YEDEK: sorunlu pozun yerine geçici olarak başka poz kullanılır (GPT yeniden çizene dek).
@@ -52,6 +53,18 @@ def yaz(yol, aciklama, veri):
 
 
 eksik = []
+YV = {}
+for t in TURLER:
+    d = {}
+    for p in MPOZ:
+        f = bul(f'yaratik-{t}-{p}')
+        if not f: eksik.append(t + '-' + p); continue
+        d[p] = webp(Image.open(f), (384, 384))
+        if p == 'bekleme':  # düşman çerçevesi için baş kırpması (yaratık sola bakar: baş sol yarıda)
+            im = Image.open(f).convert('RGBA'); x0, y0, x1, y1 = im.getchannel('A').point(lambda v: 255 if v > 40 else 0).getbbox()
+            a = int((y1 - y0) * 0.95); cx = x0 + int((x1 - x0) * 0.3); cy = y0 + a // 2
+            d['portre'] = webp(im.crop((cx - a // 2, cy - a // 2, cx + a // 2, cy + a // 2)), (128, 128))
+    YV[t] = d
 for halk in ['sancak', 'ocak']:
     veri = {}
     for sinif in ['savasci', 'suikastci', 'buyucu', 'sifaci']:
@@ -65,21 +78,9 @@ for halk in ['sancak', 'ocak']:
                 if k in HALE: im = temizle(im)
                 d[p] = webp(im, (384, 512))
             veri[f'{sinif}-{cins}'] = d
-    yaz(os.path.join(OUT, 'js', f'b2d-{halk}.js'), f'{halk} kahramanları, 7 poz, 384x512, zemin alttan 64/1448', veri)
+    veri.update(YV)
+    yaz(os.path.join(OUT, 'js', f'b2d-{halk}.js'), f'{halk} kahramanları (7 poz, 384x512, zemin alttan 64/1448) + yaratıklar (3 poz + portre, 384x384, zemin alttan 48/1024)', veri)
 
-veri = {}
-for t in TURLER:
-    d = {}
-    for p in MPOZ:
-        f = bul(f'yaratik-{t}-{p}')
-        if not f: eksik.append(t + '-' + p); continue
-        d[p] = webp(Image.open(f), (384, 384))
-        if p == 'bekleme':  # düşman çerçevesi için baş kırpması (yaratık sola bakar: baş sol yarıda)
-            im = Image.open(f).convert('RGBA'); x0, y0, x1, y1 = im.getchannel('A').point(lambda v: 255 if v > 40 else 0).getbbox()
-            a = int((y1 - y0) * 0.95); cx = x0 + int((x1 - x0) * 0.3); cy = y0 + a // 2
-            d['portre'] = webp(im.crop((cx - a // 2, cy - a // 2, cx + a // 2, cy + a // 2)), (128, 128))
-    veri[t] = d
-yaz(os.path.join(OUT, 'js', 'b2d-yaratik.js'), 'yaratıklar, 3 poz, 384x384, zemin alttan 48/1024', veri)
 # Karakter seçme/oluşturma tam boyu için savaşçıların temizlenmiş bekleme pozu (kullanıcı kararı: kılıç + kalkan) → karakter-gom.py okur
 SV = os.path.join(OUT, '_tasarim', 'gelen', 'g1g2-savasci'); os.makedirs(SV, exist_ok=True)
 for halk in ['sancak', 'ocak']:

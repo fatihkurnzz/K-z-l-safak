@@ -1,7 +1,7 @@
 // 23 Kas (görev C3/C5, GPT G1+G2): savaşta boyalı 2B birimler. 3B karakterin (models.js Character) yerine geçen, aynı
 // arayüzü taşıyan bir pano: yere oturan, kameraya dönen düzlem + poz resimleri (bekleme, hazırlık, vuruş, büyü, vurulma,
 // düşüş, zafer). Yalnız çizim katmanıdır; savaşın kuralına, sırasına ve sonucuna dokunmaz (combat.js aynı yöntemleri çağırır).
-// Resimler gömülü JS'tedir (b2d-sancak.js, b2d-ocak.js, b2d-yaratik.js; _tasarim/araclar/b2d-gom.py) ve yalnız savaşta yüklenir.
+// Resimler gömülü JS'tedir (b2d-sancak.js, b2d-ocak.js; yaratıklar ikisinde de; _tasarim/araclar/b2d-gom.py) ve yalnız savaşta yüklenir.
 // Eski 3B çizime dönmek: localStorage dd_b2d = '0' (ya da adres ?b2d=0).
 import { THREE, camera, to, tween, wait, ease, camRig, hitStop } from './engine3d.js';
 import { play as fxPlay } from './fx.js';
@@ -42,7 +42,7 @@ export function cozum(u) {
     return { ad: f, anahtar: `${s}-${g === 'f' ? 'kadin' : 'erkek'}`, hero: true, sinif: s };
   }
   const Y = YARATIK[u.mob]; if (!Y) return null;
-  return { ad: 'yaratik', anahtar: Y[0], hero: false, tint: Y[1] || 0xffffff };
+  return { ad: document.documentElement.dataset.faction === 'sancak' ? 'sancak' : 'ocak', anahtar: Y[0], hero: false, tint: Y[1] || 0xffffff }; // yaratıklar iki halk dosyasında da var
 }
 // Görünüşü bilinmeyen kahraman (yapay zekâ yoldaşı, rakip parti): addan kararlı bir cinsiyet (her savaşta aynı kalır)
 function cinsTahmin(u) { let h = 7; for (const c of String(u.name || u.id || '')) h = (h * 31 + c.charCodeAt(0)) | 0; return (h >>> 3) & 1 ? 'f' : 'm'; }

@@ -1,0 +1,1454 @@
+{
+"aciklama": "GPT G4 NPC portreleri (ad, ad-yuz) + G5 sahneler ve Mini Dizi kapaklar\u0131 + G6 yetenek simgeleri (kimlik). Tarifler: tarif/npc.json, sahne.json, yetenek.json",
+"q": 80,
+"ogeler": [
+{
+"k": "lira",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-lira-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "lira-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-lira-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "corin",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-corin-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "corin-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-corin-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "maelis",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-maelis-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "maelis-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-maelis-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "halvor",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-halvor-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "halvor-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-halvor-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "thrak",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-thrak-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "thrak-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-thrak-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "yashka",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-yashka-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "yashka-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-yashka-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "edran",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-edran-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "edran-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-edran-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "volgar",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-volgar-yarimboy.png",
+"w": 528,
+"h": 704
+},
+{
+"k": "volgar-yuz",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G4/npc-volgar-yuz.png",
+"w": 192,
+"h": 192,
+"q": 82
+},
+{
+"k": "koru-sancak",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/koru-sancak.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "koru-ocak",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/koru-ocak.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "maden",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/maden.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "dipsiz-kuyu",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/dipsiz-kuyu.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "yeralti-ocagi",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/yeralti-ocagi.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "balik-tut",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/balik-tut.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "kristal-nobeti",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/kristal-nobeti.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "dunya-baskini",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/dunya-baskini.webp",
+"w": 1600,
+"h": 738,
+"q": 74
+},
+{
+"k": "minidizi-01",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-01.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-02",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-02.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-03",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-03.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-04",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-04.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-05",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-05.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-06",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-06.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-07",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-07.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-08",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-08.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-09",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-09.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "minidizi-10",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G5/minidizi-10.webp",
+"w": 960,
+"h": 540,
+"q": 74
+},
+{
+"k": "agu_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-agu_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "agu_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-agu_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "agu_um3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-agu_um3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "alaz_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-alaz_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "alaz_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-alaz_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates10",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates10.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates11",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates11.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates12",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates12.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates13",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates13.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ates9",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ates9.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "boran_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-boran_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "boran_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-boran_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "bozan_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-bozan_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "bozan_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-bozan_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "buz8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-buz8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer10",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer10.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer11",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer11.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer12",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer12.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer13",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer13.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hancer9",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hancer9.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum10",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum10.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum11",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum11.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum12",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum12.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum13",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum13.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum14",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum14.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "hucum9",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-hucum9.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "iz9",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-iz9.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama11",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama11.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama12",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama12.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama13",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama13.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama14",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama14.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama15",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama15.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama16",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama16.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama17",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama17.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama18",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama18.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama19",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama19.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "kutsama9",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-kutsama9.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet10",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet10.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet11",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet11.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet13",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet13.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet14",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet14.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet15",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet15.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet16",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet16.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "lanet8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-lanet8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "m_basic",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-m_basic.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "m_k1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-m_k1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "m_k2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-m_k2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "m_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-m_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "nisanci_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-nisanci_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "nisanci_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-nisanci_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "nisanci_um3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-nisanci_um3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ofke1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ofke1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ofke2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ofke2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ofke3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ofke3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ofke4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ofke4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ofke5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ofke5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "ofke6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-ofke6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "otaci_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-otaci_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "otaci_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-otaci_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "p_basic",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-p_basic.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "p_k1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-p_k1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "p_k2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-p_k2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "p_k3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-p_k3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "p_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-p_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "r_basic",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-r_basic.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "r_k1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-r_k1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "r_k2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-r_k2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "r_k3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-r_k3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sifa8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sifa8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "siper8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-siper8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sur_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sur_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sur_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sur_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "sur_um3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-sur_um3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "w_basic",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-w_basic.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "w_k1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-w_k1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "w_k2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-w_k2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "w_k3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-w_k3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "w_k4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-w_k4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "w_k5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-w_k5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "w_k6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-w_k6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_aim",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_aim.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_bigheal",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_bigheal.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_blizzard",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_blizzard.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_bolt",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_bolt.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_cleave",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_cleave.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_crush",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_crush.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_curse",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_curse.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_drain",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_drain.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_execute",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_execute.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_fire",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_fire.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_firestorm",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_firestorm.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_freeze",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_freeze.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_frost",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_frost.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_guard",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_guard.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_hex",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_hex.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_hit",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_hit.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_howl",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_howl.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_lavanova",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_lavanova.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_mark",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_mark.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_mend",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_mend.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_mire",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_mire.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_quake",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_quake.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_rage",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_rage.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_roar",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_roar.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_shot",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_shot.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_smash",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_smash.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_stab",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_stab.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_volley",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_volley.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "x_ward",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-x_ward.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yaran_um1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yaran_um1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yaran_um2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yaran_um2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yaran_um3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yaran_um3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay10",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay10.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay11",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay11.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay12",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay12.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay13",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay13.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yay9",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yay9.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim1",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim1.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim10",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim10.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim11",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim11.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim12",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim12.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim13",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim13.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim2",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim2.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim3",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim3.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim4",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim4.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim5",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim5.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim6",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim6.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim7",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim7.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim8",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim8.png",
+"w": 112,
+"h": 112
+},
+{
+"k": "yildirim9",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/g6/yetenek-yildirim9.png",
+"w": 112,
+"h": 112
+}
+]
+}
