@@ -40,38 +40,37 @@ Kullanıcının isteğiyle ana ekranın düzeni değişti. Paket 5'teki "ana mer
 - Menü kutuları (T3): Menü penceresindeki madalyon/kutu düğmelerinin yeni tasarımı, `menu-kutu-<halk>-{normal,basili}.png`
 
 ## 4. Savaş ekranı (T5): kullanıcının asıl isteği, YENİ YAPI
-Kullanıcı savaşı ekteki referans görüntüdeki **yapıyla** istiyor (`referans-savas-yapisi.jpg`). Görüntünün kendisi değil, **yerleşimi ve bileşenleri** örnek alınacak. Sahne, karakterler, renkler bizim (iki halk teması, KÜL VE DEMİR). Paket 4'ün 1200×600 maketlerindeki düzen **bırakılıyor**; yeni maketler bu yapıya göre, **2340×1080**, iki halk: savaş, boss savaşı, savaş sonucu (hazırlık ekranı aynı kalabilir).
+Kullanıcı savaşı ekteki referans görüntüdeki **yapıyla** istiyor (`referans-savas-yapisi.jpg`). **Ama referanstaki şu dört şey bizde OLMAYACAK: "Tur" yazısı (tur sayacı/sistemi), "Sıra Sonu" düğmesi, sohbet kutusu, sıra göstergesi.** İksir yuvaları (can, mana) olacak. Görüntünün kendisi değil, **yerleşimi ve bileşenleri** örnek alınacak. Sahne, karakterler, renkler bizim (iki halk teması, KÜL VE DEMİR). Paket 4'ün 1200×600 maketlerindeki düzen **bırakılıyor**; yeni maketler bu yapıya göre, **2340×1080**, iki halk: savaş, boss savaşı, savaş sonucu (hazırlık ekranı aynı kalabilir).
 
 ### 4.1 Yerleşim (referanstaki yapı → bizim oyundaki karşılığı)
 | Bölge (2340×1080) | Referansta | Bizde ne olacak |
 |---|---|---|
 | Sol üst | Büyük yuvarlak portre + "Lv.65 Ad" + sayılı can (kırmızı) ve mana (mavi) çubuğu | **Takım lideri kartı**: portre çemberi (halk çerçevesi), Sv. + ad, can ve mana çubuğu, içinde "8.420 / 8.420" yazısı. ≈ x 30–600, y 20–160 |
-| Üst orta | "Tur 1 / 10" şeridi | **Dalga şeridi**: "Dalga 2 / 3" ya da tek dalgada "Savaş" (oyunda tur sınırı yok, dalga var). Yanına zamanlayıcı (⏱ sayaç, yalnız süreli kiplerde) |
+| Üst orta | "Tur 1 / 10" şeridi | **Dalga şeridi**: yalnız "Dalga 2 / 3" (tek dalgada "Savaş"). **Tur yazısı ve tur sayacı OLMAYACAK.** |
 | Sağ üst | Boss adı + uzun can çubuğu + Lv + yuvarlak portre (sol üstün aynası) | **Düşman lideri / boss kartı**: ad, uzun can çubuğu, Sv., portre. Boss'ta evre yazısı ve zayıflık (element simgesi) bu kartın altında küçük rozet |
-| Sol kenar, dikey | Parti üyelerinin portre sütunu (6 yuva), üstte ve altta süs uç | **Sıra / kadro sütunu**: dostların portreleri dikey; sırası gelen vurgulu (parlak çerçeve), ölen gri. Oyunda bugün "Sıra" göstergesi var, buraya taşınacak |
+| Sol kenar, dikey | Parti üyelerinin portre sütunu (6 yuva), üstte ve altta süs uç | **Kadro sütunu**: dostların portreleri dikey, can şeridi, ölen gri. **Sıra göstergesi OLMAYACAK** (kimin sırası geldiğini gösteren şerit/vurgu yok). |
 | Sahne | Dostlar solda, düşmanlar sağda, açık zemin | Aynı: 3B birimler solda (A) ve sağda (B). Orta bölge boş kalmalı |
 | Her birimin başında | Seviye rozeti (yuvarlak) + can çubuğu (dost yeşil, düşman kırmızı) + ince mana çubuğu | Aynı: `savas-birim-rozet` + birim can çubuğu (dost/düşman/boss renkleri) |
-| Sol alt | Sohbet: sekmeler (Genel / Klan / Parti / Sistem), 3 satır, yazma kutusu + ifade düğmesi | Aynı. Ayrıca savaş bilgisi satırı (kim ne yaptı, "Hedefe dokun") buraya ya da yetenek çubuğunun üstüne gelir. ≈ x 30–620, y 760–1060 |
+| Sol alt | Sohbet | **Sohbet OLMAYACAK.** Sol alt boş kalır (yalnız savaş bilgi satırı yetenek çubuğunun üstünde: "Hedefe dokun") |
 | Alt orta | Tek sıra, 6 kare yetenek yuvası, süslü çerçeve; her yuvanın altında mana bedeli (mavi elmas noktalar) | **6 yuva = temel saldırı + 5 yetenek**. Temel saldırı 1. yuva (bedelsiz, çerçevesi hafif farklı). Altta mana bedeli noktaları. Çubuğun sağ ucunda **2 küçük iksir yuvası** (can, mana; adet rozetli). ≈ x 660–1700, y 830–1060 |
-| Sağ alt | "Otomatik", "x2" küçük düğmeler + büyük "Sıra Sonu" birincil düğme | **Otomatik** (aç/kapa), **Oto iksir** (aç/kapa), **hız** (1× / 2× / 3× döner) küçük düğmeler. Büyük birincil düğme yerine: oyunda "sıra sonu" yok (yetenek seçilip tekrar dokununca kullanılır), o yüzden büyük düğme **seçili yeteneği kullan / Saldır** olsun; seçim yoksa temel saldırı. **Çekil** küçük ve ayrı (sağ üstte, boss kartının altında ya da sol üst kartın yanında), kazara basılmasın |
+| Sağ alt | "Otomatik", "x2" küçük düğmeler + büyük "Sıra Sonu" | **Otomatik** (aç/kapa), **Oto iksir** (aç/kapa, Otomatik'in üstünde), **hız** (1× / 2× / 3×). **"Sıra Sonu" düğmesi OLMAYACAK.** **Çekil** küçük ve ayrı, kazara basılmasın |
 
 ### 4.2 Oyunun gerçek kuralları (maket bunlara uysun)
-- Sıra tabanlı; oyuncu yalnız kendi sırasında yetenek seçer. Hedef isteyen yetenekte "hedefe dokun" adımı var: düşmanın üstünde **hedef işareti**, seçili yetenek yuvasında **seçili** durumu gerekir.
+- Oyuncu yetenek seçer (ekranda tur ya da sıra yazısı gösterilmez). Hedef isteyen yetenekte "hedefe dokun" adımı var: düşmanın üstünde **hedef işareti**, seçili yetenek yuvasında **seçili** durumu gerekir.
 - Yetenek yuvası durumları: hazır / seçili / bekleme (üstünde kalan tur sayısı) / mana yetmez (soluk + kırmızı nokta) / kilitli (asma kilit + "Sv. 30") / boş.
 - Hız yalnız Otomatik açıkken çalışır (kapalıyken düğme soluk). Oto iksir yalnız PvE'de görünür.
 - Hasar sayıları (−148, kritik büyük ve altın), durum simgeleri (yanma, zehir, buz, kalkan) birimin can çubuğunun yanında küçük simgeler.
 
 ### 4.3 İstenen parçalar (iki halk, ayrı katman, yazısız)
+- `savas-kadro-sutun-<halk>.png` (sol dikey çerçeve) + `savas-kadro-yuva-{normal,olu}.png`
 - `savas-lider-kart-<halk>.png` (sol üst; sağ üst için aynası `savas-dusman-kart-<halk>.png`), portre çemberi ayrı: `savas-portre-cember-<halk>.png`
 - `savas-dalga-serit-<halk>.png` (üst orta)
-- `savas-sira-sutun-<halk>.png` (dikey çerçeve, üst/alt uç süsü) + `savas-sira-yuva-{normal,aktif,olu}.png`
 - `savas-yetenek-cubuk-<halk>.png` (alt orta süslü çerçeve, 6 yuva + 2 iksir yeri)
 - `savas-yetenek-yuva-<halk>-{hazir,secili,bekleme,pasif,kilitli,bos}.png` + `savas-temel-yuva-<halk>.png` + `savas-mana-nokta.png`
 - `savas-iksir-yuva-<halk>.png` (+ adet rozeti)
 - `savas-birincil-<halk>-{normal,basili,pasif}.png` (sağ alt büyük düğme)
 - `savas-kucuk-dugme-<halk>-{acik,kapali}.png` (Otomatik / Oto iksir / hız / Çekil)
 - `savas-can-cubugu-{lider,birim}-{dost,dusman,boss}` çerçeve + dolgu ayrı, mana dolgusu ayrı; `savas-birim-rozet.png` (seviye)
-- `savas-sohbet-panel-<halk>.png` + `savas-sohbet-sekme-<halk>-{normal,secili}.png`
 - `savas-hedef-isaret.png`, `savas-durum-<yanma|zehir|buz|kalkan|sersem>.png`
 - Yetenek **simgeleri** referanstaki gibi dolu, renkli kare resimler olabilir; sınıf × yetenek listesi OYUN_VERISI.md'de (ayrı paket olarak sonra da gelebilir).
 

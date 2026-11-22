@@ -180,7 +180,7 @@ export async function startBattle(args, auto = false) {
   const r = await run('battle.start', args);
   if (!r) return;
   const b = r.battle;
-  closeWin(true); closeModal(); hud.hidden = true; hideTown(); hideChatBar(); if (!S.tut || S.tut.end) showChatBar(); // savaşta da sol altta sohbet (19 Kas gece, kullanıcının referansı); öğreticide yok
+  closeWin(true); closeModal(); hud.hidden = true; hideTown(); hideChatBar(); // 22 Kas (kullanıcı): savaşta sohbet yok
   runBattle({
     setup: { party: b.party, waves: b.waves, seed: b.seed, enrageTurn: b.enrageTurn, turnCap: b.turnCap, restoreOnWave: !!b.opts.restoreOnWave, lead: !!b.lead, v: b.eng || 1, bdw: b.opts.bdw || null }, env: b.env, title: b.title, auto, timer: (b.opts.timer || 0) * (A11Y.slowTimer ? 2 : 1), fast: !FAST_OFF.has(args.mode),
     onDone: async (won, actions) => {

@@ -889,8 +889,6 @@ export const EN_UI = {
   'Savaştan çekil': 'Leave battle',
   'Harcanan enerji ve haklar geri gelmez.': 'Spent energy and attempts are not refunded.',
   'Çekil': 'Leave',
-  'Sıra Sonu': 'End Turn',
-  'Seçili yeteneği kullan ve sırayı bitir': 'Use the selected skill and end your turn',
   'AV BİTTİ': 'HUNT OVER',
   'YENİLGİ': 'DEFEAT',
   'Geçilen dalga:': 'Waves cleared:',

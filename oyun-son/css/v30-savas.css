@@ -1,49 +1,7 @@
-/* 22 Kas — Savaş ekranı, kullanıcının referans yapısı (GPT notu §4): üst ortada "Tur N" (altında dalga), sağ altta
-   Otomatik · hız · büyük "Sıra Sonu", sol altta sohbet (telefonda da), Çekil sağ üstte hedef çerçevesinin altında küçük.
-   Veriler ve davranış js/combat.js (markTurn, ui.endTurn). Mekanik değişmedi. Bu dosya en son yüklenir. */
-
-/* --- üst orta: Tur yazısı + dalga alt satırı --- */
-body #game #battleUI #bwave { display:flex !important; flex-direction:column !important; align-items:center !important; gap:0 !important; padding:3px calc(26px * var(--b18-s)) 4px !important; min-width:calc(120px * var(--b18-s)); }
-body #game #battleUI #bwave .bw-big { font:700 calc(15px * var(--b18-s))/1.1 Cinzel, Georgia, serif !important; letter-spacing:1px; }
-body #game #battleUI #bwave .bw-sub { display:block; font:600 calc(9px * var(--b18-s))/1.2 Inter, system-ui, sans-serif; font-style:normal; color:#cdbf9f; letter-spacing:.3px; white-space:nowrap; }
-body #game #battleUI #bwave > span { display:none !important; }
-
-/* --- sağ alt: Otomatik · hız · Sıra Sonu tek sıra; Oto İksir sıranın üstünde --- */
-body #game #battleUI #bctl2 { align-items:center !important; gap:5px !important; flex-wrap:nowrap !important; }
-body #game #battleUI #bctl2 #bauto { order:1; } body #game #battleUI #bctl2 #bspeed { order:2; min-width:calc(36px * var(--b18-s)) !important; padding:0 8px !important; }
-body #game #battleUI #bctl2 #bapot { position:absolute !important; right:0; bottom:calc(100% + 6px); height:calc(26px * var(--b18-s)) !important; font-size:calc(10px * var(--b18-s)) !important; }
-body #game #battleUI #bctl2 .rb.bend { order:3; height:calc(44px * var(--b18-s)) !important; min-width:calc(104px * var(--b18-s)) !important; padding:0 14px !important; border-radius:10px !important;
-  font:700 calc(13px * var(--b18-s))/1 Cinzel, Georgia, serif !important; letter-spacing:.5px; color:#1b0f04 !important;
-  background:linear-gradient(180deg,#f4d98c,#c9993f 55%,#9c7128) !important; border:1px solid #2a1c08 !important;
-  box-shadow:inset 0 1px 0 #fff6, inset 0 0 0 2px #e9c46a88, 0 0 0 1px #000, 0 4px 12px #000b !important; text-shadow:0 1px 0 #fff5; }
-html[data-faction="ocak"] body #game #battleUI #bctl2 .rb.bend { background:linear-gradient(180deg,#ffbe6a,#d9661f 55%,#9a3412) !important; color:#1e0a02 !important; box-shadow:inset 0 1px 0 #fff5, inset 0 0 0 2px #ffb34788, 0 0 0 1px #000, 0 4px 12px #000b, 0 0 14px #ff6a1a55 !important; }
-body #game #battleUI #bctl2 .rb.bend:not([disabled]):active { transform:translateY(1px); filter:brightness(.9); }
-body #game #battleUI #bctl2 .rb.bend[disabled] { filter:grayscale(.7) brightness(.55); box-shadow:inset 0 0 0 1px #0008, 0 2px 6px #0009 !important; }
-
-/* --- Çekil: sağ üstte, hedef çerçevesinin altında, küçük (kazara basılmasın) --- */
-body #game #battleUI #bctl { top:calc(8px + 62px * var(--b18-s)) !important; bottom:auto !important; right:max(8px,var(--sar)) !important; }
-body #game #battleUI.bossf #bctl { top:calc(8px + 62px * var(--b18-s)) !important; }
-body #game #battleUI #bctl #bexit { height:calc(24px * var(--b18-s)) !important; font-size:calc(10px * var(--b18-s)) !important; opacity:.85; }
-
-/* --- sol alt: sohbet savaşta telefonda da görünür (eskiden 900 px altında gizliydi), yetenek çubuğunun solunda --- */
-@media (max-width:900px) { #game:has(#battleUI:not([hidden])) #chatbar:not([hidden]) { display:grid !important; } }
-#game:has(#battleUI:not([hidden])) #chatbar { width:calc(200px * var(--b18-s)) !important; left:max(6px,var(--sal)) !important; bottom:calc(var(--sab,0px) + 6px) !important; zoom:1 !important; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-msgs { max-height:calc(46px * var(--b18-s)) !important; font-size:10px; line-height:15px; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-tabs button { font-size:9px !important; padding:1px 6px !important; min-height:0 !important; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-in input[type=text] { height:22px !important; font-size:10px !important; }
-
-/* --- yetenek çubuğu: sohbet ile sağ alt düğmeler arasında ortalanır --- */
-@media (max-width:1000px) {
-  body #game #battleUI #skills { left:calc(max(6px,var(--sal)) + 206px * var(--b18-s)) !important; transform:none !important; }
-  body #game #battleUI #skills .skill { width:calc(40px * var(--b18-s)) !important; height:calc(40px * var(--b18-s)) !important; }
-  body #game #battleUI #skills .yrow { gap:3px !important; padding:4px 5px 5px !important; }
-}
-
-/* sohbet yerleşimi savaşta: 1. satır sekmeler + küçült, 2. satır son mesajlar (tam genişlik), 3. satır yazma kutusu */
-#game:has(#battleUI:not([hidden])) #chatbar { grid-template-columns:minmax(0,1fr) auto !important; grid-template-rows:auto auto auto !important; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-tabs { grid-column:1 !important; grid-row:1 !important; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-exp { grid-column:2 !important; grid-row:1 !important; width:20px !important; height:20px !important; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-msgs { grid-column:1 / -1 !important; grid-row:2 !important; min-height:30px; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-in { grid-column:1 / -1 !important; grid-row:3 !important; }
-#game:has(#battleUI:not([hidden])) #chatbar .cb-in .cb-b { width:24px !important; height:22px !important; min-height:0 !important; font-size:12px !important; }
-#game:has(#battleUI:not([hidden])) #chatbar.mini .cb-msgs, #game:has(#battleUI:not([hidden])) #chatbar.mini .cb-in { display:none !important; }
+/* 22 Kas — Savaş ekranı (kullanıcı): sıra şeridi, sohbet, tur yazısı ve Sıra Sonu YOK. İksirler yetenek çubuğunda kalır.
+   Bu dosya en son yüklenir. */
+body #game #battleUI #border { display:none !important; }
+#game:has(#battleUI:not([hidden])) #chatbar { display:none !important; }
+/* dar ekranda (telefon) Oto İksir, Otomatik'in üstüne: hız düğmesi yetenek çubuğuna binmesin */
+@media (max-width:1000px) { body #game #battleUI #bctl2 #bapot { position:absolute !important; right:0; bottom:calc(100% + 6px); } }
+body #game #battleUI:has(#bapot:not([hidden])) #bctl { bottom:calc(var(--sab,0px) + 20px + 68px * var(--b18-s)) !important; }

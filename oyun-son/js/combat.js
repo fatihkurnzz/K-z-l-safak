@@ -50,7 +50,7 @@ const lockMsg = () => { const w = $('#bwho'); if (w) w.innerHTML = '<b style="co
 
 // 20 Kas (Kül, oynanışta): Tarikat düşmanı (birim `cult`) sahadayken savaş sahnesinin rengi solar (css .kul, v21 §16)
 const ashScene = on => document.getElementById('stage')?.classList.toggle('kul', !!on);
-export function hideBattleUI() { ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; ui.endTurn = null; BT.on = false; }
+export function hideBattleUI() { ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; BT.on = false; }
 
 // Motor birimi → 3D görünüm. Kahraman birimleri tarafını (faction) ve silah modelini (wm) kendi taşır;
 // böylece meydandaki rakip parti de doğru görünür.
@@ -210,14 +210,10 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   if (auto && ui.fast && [2, 3].includes(+PREF.get('dd_speed'))) ui.speed = +PREF.get('dd_speed'); // hatırlanan hız (OTO ile başlayan PvE savaşı)
   clock.scale = ui.speed;
   battleUI.hidden = false;
-  // 22 Kas (kullanıcının savaş referansı): üst ortada "Tur N". Tur sınırı yok, yalnız gösterim: sahadaki her birim bir kez
-  // oynayınca (aynı birim yeniden sıraya gelince) tur artar. Dalga bilgisi altında küçük satır.
-  let tur = 0, turLast = null; const turSeen = new Set();
-  const markTurn = id => { if (id == null || id === turLast) return; turLast = id; if (!tur || turSeen.has(id)) { tur++; turSeen.clear(); } turSeen.add(id); setTitle(); };
   const setTitle = () => {
     $('#btitle').textContent = title;
     const n = setup.waves.length, w = battle.wave;
-    $('#bwave').innerHTML = `<b class="bw-big">Tur ${Math.max(1, tur)}</b><em class="bw-sub">${n > 1 ? `Dalga ${w + 1} / ${n}` : escH(title || 'Savaş')}</em><small>${n > 1 ? 'Dalga' : 'Savaş'}</small><span>${Array.from({ length: n }, (_, i) => `<i class="${i < w ? 'done' : i === w ? 'on' : ''}"></i>`).join('')}</span><b>${w + 1}/${n}</b>`;
+    $('#bwave').innerHTML = `<b class="bw-big">${n > 1 ? `Dalga ${w + 1} / ${n}` : 'Savaş'}</b><small>${n > 1 ? 'Dalga' : 'Savaş'}</small><span>${Array.from({ length: n }, (_, i) => `<i class="${i < w ? 'done' : i === w ? 'on' : ''}"></i>`).join('')}</span><b>${w + 1}/${n}</b>`;
   };
   // Sıra şeridi: sıradaki birimler (sıra çubuğu benzetimi; hız değişikliği yok sayılır, yalnızca gösterim)
   const PORT = new Map();
@@ -327,7 +323,6 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     };
     // 19 Kas gece (kullanıcının savaş referansı): alt ortada yatay çubuk — temel saldırı + 5 yetenek, sağ ucunda Can ve Mana iksiri
     $('#skills').innerHTML = `<div class="yrow"><i class="yr-end l" aria-hidden="true"></i>${out.join('')}<span class="ypots">${pot('hp')}${pot('mp')}</span><i class="yr-end r" aria-hidden="true"></i></div>`;
-    { const e = $('#bend'); if (e) e.disabled = !turn || ui.auto; }
     if (turn && potLock()) lockMsg();
     if (!turn) return;
     $('#skills').querySelectorAll('[data-skill]').forEach(b => b.onclick = () => ui.pickSkill?.(b.dataset.skill));
@@ -356,7 +351,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       const pickDefault = () => { const c = battle.autoChoice(); return usable.includes(c[0]) ? c[0] : usable[0]; };
       ui.selected = pickDefault();
       let left = timer, tick = null;
-      ui.choose = c => { clearInterval(tick); ui.choose = null; ui.legal = []; ui.pickSkill = null; ui.endTurn = null; if (!ui.auto && SKILLS[c[0]]?.type === 'active') BT.sk = true; drawBar(null); $('#bwho').textContent = ''; resolve(c); };
+      ui.choose = c => { clearInterval(tick); ui.choose = null; ui.legal = []; ui.pickSkill = null; if (!ui.auto && SKILLS[c[0]]?.type === 'active') BT.sk = true; drawBar(null); $('#bwho').textContent = ''; resolve(c); };
       // Canlı modlarda hamle süresi: dolunca yapay zekâ seçer
       if (timer) tick = setInterval(() => { left--; const t = $('#btimer'); if (t) t.textContent = `⏱ ${Math.max(0, left)}`; if (left <= 0) ui.choose?.(battle.autoChoice()); }, 1000);
       const draw = () => {
@@ -373,17 +368,6 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
         if (ui.selected === id && !['enemy', 'ally'].includes(T)) return ui.choose([id, T === 'dead' ? battle.targetsFor(u, id)[0] : 0]);
         if (ui.selected === id && T === 'ally' && ui.legal.length === 1) return ui.choose([id, ui.legal[0]]); // tek kahraman: şifaya ikinci dokunuş kendine
         ui.selected = id; draw();
-      };
-      // Sıra Sonu (22 Kas): seçili yeteneği kullanır, hedefe dokunmadan. Düşman hedefi = sağ üst çerçevedeki birim (yoksa ilki),
-      // müttefik hedefi = canı en düşük olan. Seçim kuralı değişmez; yalnız "hedefe dokun / tekrar dokun" adımının kısayolu.
-      ui.endTurn = () => {
-        if (potLock()) return lockMsg();
-        const id = ui.selected, T = SKILLS[id]?.target, L = ui.legal;
-        let t = 0;
-        if (T === 'enemy') { if (!L.length) return; t = L.includes(tgtId) ? tgtId : L[0]; }
-        else if (T === 'ally') { if (!L.length) return; t = L.map(x => battle.get(x)).filter(Boolean).sort((a, b) => a.hp / a.maxHp - b.hp / b.maxHp)[0]?.id ?? L[0]; }
-        else if (T === 'dead') t = battle.targetsFor(u, id)[0];
-        ui.choose([id, t]);
       };
       draw();
       if (potLock()) lockMsg();
@@ -582,7 +566,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
         const lead = fresh.find(a => a.unit.boss) || fresh.find(a => a.unit.captain);
         if (lead) { await wait(ev.n > 0 ? 0 : 1.5); if (token !== world.token) return; await bossIntro(lead); } // ilk dalgada açılış kamerası bitsin
       } else if (ev.t === 'turn') {
-        ui.active = ev.u; renderOrder(); markTurn(ev.u);
+        ui.active = ev.u; renderOrder();
         const a = byId(ev.u);
         if (ev.mp !== undefined) a.shownMp = ev.mp;
         if (a.unit.alive) fx(EVENT_FX.turn, a.char);
@@ -627,7 +611,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     await play(r.events);
     while (!r.over) {
       if (token !== world.token) return;
-      ui.active = r.pending; renderOrder(); markTurn(r.pending);
+      ui.active = r.pending; renderOrder();
       const pu = battle.pending, mine = !coop || String(pu.ctl) === coop.me;
       let c;
       if (!mine) { // ortak savaş: sıra parti arkadaşında
@@ -667,7 +651,6 @@ function renderButtons() {
 $('#bauto').onclick = () => { if (potLock()) return lockMsg(); if (!OTO.ok()) return; document.querySelector('.oto-tip')?.remove(); ui.auto = !ui.auto; BT.auto = ui.auto; PREF.set('dd_oto', ui.auto ? '1' : '0'); if (ui.auto && [2, 3].includes(+PREF.get('dd_speed')) && ui.fast !== false) { ui.speed = +PREF.get('dd_speed'); clock.scale = ui.speed; } renderButtons(); if (ui.auto) ui.autoPick?.(); };
 $('#bapot').onclick = () => { const on = !potPref(); PREF.set('dd_autopot', on ? '1' : '0'); if (ui.battle) ui.battle.noAutoPot = !on; const w = $('#bwho'); if (w) w.innerHTML = `<b>Oto İksir ${on ? 'açık' : 'kapalı'}</b> · <span>${on ? 'Can %40, mana %15 altına inince OTO iksir içer.' : 'OTO iksir harcamaz; istersen kendin içebilirsin.'}</span>`; renderButtons(); };
 $('#bspeed').onclick = () => { if (ui.fast === false) { const w = $('#bwho'); if (w) w.innerHTML = '<b>Hızlandırma</b> · <span>2x ve 3x yalnız PvE ve tek oyunculu savaşta kullanılır.</span>'; return; } if (!ui.auto) { const w = $('#bwho'); if (w) w.innerHTML = '<b>Hızlandırma</b> · <span>2x ve 3x yalnız OTO açıkken kullanılır.</span>'; return; } ui.speed = ui.speed < 1 ? 1 : ui.speed === 1 ? 2 : ui.speed === 2 ? 3 : (A11Y.speed < 1 ? A11Y.speed : 1); clock.scale = ui.speed; PREF.set('dd_speed', String(ui.speed)); renderButtons(); };
-$('#bend').onclick = () => ui.endTurn?.();
 $('#bexit').onclick = () => (potLock() ? lockMsg() : ui.onExit?.());
 
 let downAt = null;
