@@ -5,3 +5,5 @@ body #game #battleUI #border { display:none !important; }
 /* dar ekranda (telefon) Oto İksir, Otomatik'in üstüne: hız düğmesi yetenek çubuğuna binmesin */
 @media (max-width:1000px) { body #game #battleUI #bctl2 #bapot { position:absolute !important; right:0; bottom:calc(100% + 6px); } }
 body #game #battleUI:has(#bapot:not([hidden])) #bctl { bottom:calc(var(--sab,0px) + 20px + 68px * var(--b18-s)) !important; }
+/* 22 Kas: yan görünüşte boss sağ arkada; başının üstündeki küçük gösterge sağ üst çerçeveyle çakışır (can zaten çerçevede ve üst çubukta) */
+#overlay .hud.B.big { visibility:hidden !important; }

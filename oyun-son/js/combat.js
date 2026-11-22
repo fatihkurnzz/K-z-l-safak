@@ -75,7 +75,15 @@ export function unitLook(u) {
 }
 
 // 19 Kas (kullanıcı): kamera %20 daha yüksekten ve uzaktan (eski konum 0, 8.6, 9.0: bakış noktasına uzaklık ×1,2)
-const CAM = { pos: new THREE.Vector3(0, 10.28, 10.9), look: new THREE.Vector3(0, 0.2, -0.5) };
+const CAM = { pos: new THREE.Vector3(10.5, 4.4, 0), look: new THREE.Vector3(0, 1.2, 0) };
+// Dizilişler (birim sayısı → [x, z] sıra sırasıyla; sıra 0 = oyuncunun kahramanı, önde). Düşman tarafı z'nin aynası.
+const FORM = {
+  1: [[2.18, 3.23]],
+  2: [[2.63, 3.08], [0.29, 5.64]],
+  3: [[2.70, 2.98], [1.07, 5.45], [-0.38, 2.21]],
+  4: [[2.76, 3.04], [1.34, 5.51], [0.29, 2.09], [-1.53, 4.84]],
+  5: [[2.83, 2.93], [1.59, 5.38], [0.89, 1.88], [-0.74, 4.66], [-3.10, 3.11]],
+}; // 22 Kas: yandan 3/4 (parti solda, düşman sağda)
 const SCALE_HERO = 1.3, SCALE_MOB = 1.15; // savaşta kahramanlar %30, canavarlar %15 büyük (kullanıcı 19 Kas)
 function moveCam(pos, look, dur) {
   const p0 = camRig.pos.clone(), l0 = camRig.look.clone(), p1 = pos.clone(), l1 = look.clone();
@@ -127,10 +135,10 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   ui.fast = fast && !coop; // 2x/3x yalnız PvE ve tek oyunculu savaşta (ortak savaş ve PvP'de 1x)
   clearScene();
   const token = world.token;
-  setHfov(41); // ana üs geniş açıyla bakar; savaş kendi açısına döner
-  setShift(0, view.h <= 480 ? 0.08 : 0); // telefonda sahne biraz aşağı: düşman göstergeleri başlık ve ipucu şeridinin altında kalsın
+  setHfov(42); // ana üs geniş açıyla bakar; savaş kendi açısına döner
+  setShift(0, 0); // 22 Kas: yandan görünüşte kadraj CAM ile ayarlı
   ensureEnv(env);
-  camRig.pos.set(-4, 2.2, -9.5); camRig.look.set(0, 1.2, -2.6);
+  camRig.pos.set(12.5, 7.8, 3.5); camRig.look.set(0, 0.6, 1); // 22 Kas açılış: yüksekten, partinin önünden başlar; alçalıp iki hattı birden gösteren yan görünüşe iner
   moveCam(CAM.pos, CAM.look, 1.6);
   const battle = new Battle(setup);
   battle.noAutoPot = !potPref(); ui.battle = battle; ui.hasPot = battle.units.some(x => x.side === 'A' && x.potHp !== undefined && (x.potHp > 0 || x.potMp > 0)) && !battle.units.some(x => x.side !== 'A' && x.cls && !x.mon); // Oto İksir yalnız PvE
@@ -138,17 +146,24 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   const actors = new Map(); // birim kimliği → sahne aktörü
   const byId = id => actors.get(id);
 
-  function place(u, n) {
+  function place(u, n, idx = u.slot) {
+    const big = u.boss && u.side !== 'A'; // boss sağ arkada durur (referans): iri gövdesi kadraja sığar, öndeki birimleri örtmez
     const mon = !!u.mon; // Anıt Savaşı: Sınır Anıtı sahanın sağında, iki hattın arasında
-    const x = mon ? 4.6 : (u.slot - (n - 1) / 2) * 1.5;
-    const z = mon ? 0 : u.side === 'A' ? 2.6 + Math.abs(x) * 0.12 : -2.6 - Math.abs(x) * 0.12;
-    const face = u.side === 'A' ? Math.PI : 0;
+    // 22 Kas (kullanıcının savaş referansı): YANDAN 3/4 görünüş. Kamera +x yanında; parti solda (z>0) sağa, düşman sağda (z<0) sola bakar.
+    // Sıra (slot 0 = öndeki) kameraya en yakın; birimler önlü arkalı kademeli dizilir, yüzleri biraz kameraya döner.
+    // Konumlar 880×406 telefonda ekrandaki hedef ayak noktalarından geri hesaplandı (referans: önde büyük, arkada küçük, kademeli);
+    // dar ekranda (tablet, masaüstü) yanal açıklık ekran oranına göre daraltılır ki iki hat da kadrajda kalsın.
+    const F = FORM[n], i = Math.min(Math.max(0, idx | 0), n - 1), kz = Math.min(1, view.w / view.h / 2.17);
+    const x = mon ? -4.6 : big ? -5.5 : F ? F[i][0] : ((n - 1) / 2 - i) * 1.4;
+    const z = mon ? 0 : (u.side === 'A' ? 1 : -1) * (big ? 6.2 : F ? F[i][1] : 3.4) * kz;
+    const face = u.side === 'A' ? Math.PI - 0.55 : 0.55;
     const lk = mon ? { look: u.look || { kind: 'monument' }, model: {} } : unitLook(u); if (!mon) lk.look = { ...lk.look, scale: (lk.look.scale || 1) * (u.cls ? SCALE_HERO : SCALE_MOB) };
+    if (big) lk.look.scale = Math.min(lk.look.scale, 1.9); // 22 Kas: yan görünüşte boss kadraja sığsın (kahramanın ~1.5 katı)
     const a = spawn({ ...u, ...lk }, x, z, face);
     a.hitbox.scale.setScalar(Math.max(1, 1.1 / a.char.scale)); // küçük yaratıkların dokunma alanı da yeterince büyük kalsın
     a.unit = u; a.home = new THREE.Vector3(x, 0.1, z); a.face = face; a.shown = u.hp; a.hold = { t: Math.random() * 0.16 };
     const hud = a.hud = document.createElement('div');
-    hud.className = 'hud ' + u.side + (u.boss || u.captain || mon ? ' boss' : '') + (mon ? ' mon' : '');
+    hud.className = 'hud ' + u.side + (u.boss || u.captain || mon ? ' boss' : '') + (mon ? ' mon' : '') + (big ? ' big' : '');
     hud.innerHTML = `${u.boss || u.captain || mon ? `<b class="nm">${escH(u.name)}</b>` : ''}<i class="lv">${u.lvl}</i><div class="bars"><div class="hp"><b class="tr"></b><div></div></div>${u.maxMp > 0 ? '<div class="mp"><div></div></div>' : ''}<div class="tm"><div></div></div><div class="sts"></div></div>`;
     a.hpEl = hud.querySelector('.hp div'); a.trEl = hud.querySelector('.hp .tr'); a.tmEl = hud.querySelector('.tm div'); a.stEl = hud.querySelector('.sts'); a.mpEl = hud.querySelector('.mp div'); a.shownMp = u.mp;
     hud.onclick = () => tapUnit(a);
@@ -217,6 +232,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   };
   // Sıra şeridi: sıradaki birimler (sıra çubuğu benzetimi; hız değişikliği yok sayılır, yalnızca gösterim)
   const PORT = new Map();
+  const portOf = u => { let v = PORT.get(u.id); if (!v) { v = portraitOf(u); if (v && !v.includes('data:image/gif')) PORT.set(u.id, v); } return v || ''; }; // boş portre saklanmaz (22 Kas: düşman çerçevesi boş kalıyordu)
   const portraitOf = u => { try { return u.side === 'A' || u.cls ? heroImg(u.cls, false, '', u.faction, u.wm) : u.mob ? mobImg(u.mob) : ''; } catch { return ''; } };
   function renderOrder() {
     const el = $('#border'); if (!el) return;
@@ -232,7 +248,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     }
     const k = out.map(u => u.id).join();
     if (el.dataset.k === k) return;
-    for (const u of out) if (!PORT.get(u.id)) PORT.set(u.id, portraitOf(u)); // boş portre (henüz çizilmemiş) saklanmaz: sonraki çağrıda yeniden denenir
+    for (const u of out) portOf(u); // boş portre (henüz çizilmemiş) saklanmaz: sonraki çağrıda yeniden denenir
     el.dataset.k = out.every(u => PORT.get(u.id)) ? k : '';
     el.innerHTML = out.map((u, i) => `<span class="bo ${u.side}${i === 0 && cur ? ' now' : ''}${u.boss ? ' boss' : ''}" title="${escH(u.name)}">${PORT.get(u.id)}<i>${u.lvl}</i></span>`).join('');
   }
@@ -283,23 +299,22 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   function syncSide() {
     ashScene([...actors.values()].some(a => a.unit.side === 'B' && a.unit.cult && a.shown > 0));
     const mine = [...actors.values()].filter(a => a.unit.side === 'A');
-    const k = mine.map(a => `${a.unit.id}:${Math.round(100 * Math.max(0, a.shown) / a.unit.maxHp)}:${ui.active === a.unit.id ? 1 : 0}`).join();
+    const k = mine.map(a => `${a.unit.id}:${Math.round(100 * Math.max(0, a.shown) / a.unit.maxHp)}:${ui.active === a.unit.id ? 1 : 0}:${PORT.get(a.unit.id) ? 1 : 0}`).join(); mine.forEach(a => portOf(a.unit));
     if (k !== railK) {
       railK = k;
-      rail.innerHTML = mine.map(a => { const u = a.unit, p = Math.max(0, Math.min(100, 100 * Math.max(0, a.shown) / u.maxHp)); if (!PORT.has(u.id)) PORT.set(u.id, portraitOf(u)); return `<span class="bp ${p <= 0 ? 'dead' : ''} ${ui.active === u.id ? 'now' : ''} ${u === hero ? 'me' : ''}" title="${escH(u.name)}">${PORT.get(u.id)}<em>${u.lvl}</em><i style="width:${p}%"></i></span>`; }).join('');
+      rail.innerHTML = mine.map(a => { const u = a.unit, p = Math.max(0, Math.min(100, 100 * Math.max(0, a.shown) / u.maxHp)); return `<span class="bp ${p <= 0 ? 'dead' : ''} ${ui.active === u.id ? 'now' : ''} ${u === hero ? 'me' : ''}" title="${escH(u.name)}">${portOf(u)}<em>${u.lvl}</em><i style="width:${p}%"></i></span>`; }).join('');
     }
-    const foes = [...actors.values()].filter(a => (a.unit.side === 'B' || a.unit.side === 'N') && !a.gone && a.unit.alive);
+    const foes = [...actors.values()].filter(a => (a.unit.side === 'B' || a.unit.side === 'N') && !a.gone && a.shown > 0); // 22 Kas: ekranda canlı olan (motor ileride olabilir; OTO'da çerçeve kayboluyordu)
     syncBoss(foes);
     const act = foes.find(a => a.unit.id === ui.active);
     const t = foes.find(a => a.unit.boss) || act || foes.find(a => a.unit.id === tgtId) || foes[0];
     tgtId = t ? t.unit.id : null;
-    const tk = t ? `${t.unit.id}:${Math.round(Math.max(0, t.shown))}` : '';
+    const tk = t ? `${t.unit.id}:${Math.round(Math.max(0, t.shown))}:${PORT.get(t.unit.id) ? 1 : 0}` : ''; if (t && !PORT.get(t.unit.id)) portOf(t.unit); // portre henüz çizilmediyse sonra yeniden dene
     if (tk === tgtK) return; tgtK = tk;
     if (!t) { tgtEl.hidden = true; return; }
     const u = t.unit, p = Math.max(0, Math.min(100, 100 * Math.max(0, t.shown) / u.maxHp));
-    if (!PORT.has(u.id)) PORT.set(u.id, portraitOf(u));
     tgtEl.hidden = false; tgtEl.className = u.boss ? 'boss' : '';
-    tgtEl.innerHTML = `<div class="bt-info"><b>${escH(u.name)}</b><div class="bt-bar"><s style="width:${p}%"></s><i style="width:${p}%"></i><em>${Math.round(Math.max(0, t.shown)).toLocaleString('tr-TR')} / ${u.maxHp.toLocaleString('tr-TR')}</em></div><small>Sv. ${u.lvl}${u.boss ? ' · Boss' : ''}</small></div><div class="bt-port">${PORT.get(u.id) || ''}</div>`;
+    tgtEl.innerHTML = `<div class="bt-info"><b>${escH(u.name)}</b><div class="bt-bar"><s style="width:${p}%"></s><i style="width:${p}%"></i><em>${Math.round(Math.max(0, t.shown)).toLocaleString('tr-TR')} / ${u.maxHp.toLocaleString('tr-TR')}</em></div><small>Sv. ${u.lvl}${u.boss ? ' · Boss' : ''}</small></div><div class="bt-port">${portOf(u)}</div>`;
   }
   // usable: sıra oyuncudaysa kullanılabilir yeteneklerin listesi; değilse null (çubuk görünür ama kapalı)
   function drawBar(usable) {
@@ -560,7 +575,8 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
           fx(EVENT_FX.restore, a.char); syncStatus(a);
         }
         const us = ev.ids.map(id => battle.get(id));
-        const fresh = us.map(u => { const a = place(u, us.length); const z = a.home.z; a.char.pos.z = z - 4; tween(0.5, k => { a.char.pos.z = z - 4 + 4 * k; }, ease.out).then(() => fx(EVENT_FX.wave, a.char)); return a; });
+        const rest = us.filter(u => !u.boss); // boss ayrı yerde; kalanlar kendi sayılarına göre dizilir
+        const fresh = us.map(u => { const a = place(u, u.boss ? 1 : rest.length, u.boss ? 0 : rest.indexOf(u)); const z = a.home.z; a.char.pos.z = z - 4; tween(0.5, k => { a.char.pos.z = z - 4 + 4 * k; }, ease.out).then(() => fx(EVENT_FX.wave, a.char)); return a; });
         setTitle(); renderOrder();
         await wait(ev.n > 0 ? 0.6 : 0.1);
         const lead = fresh.find(a => a.unit.boss) || fresh.find(a => a.unit.captain);
