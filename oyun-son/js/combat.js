@@ -20,6 +20,7 @@ import { skillIcon } from './skill-icons.js';
 import { SFX } from './sfx.js';
 import * as KAM from './savas-kamera.js'; // 22 Kas: dinamik savaş kamerası (durum makinesi, sınırlara göre kadraj)
 import { pickBg, setProjector } from './savas-arka.js'; // 22 Kas: boyalı savaş arka planları
+import { cozum as b2dOf, onYukle as b2dYukle } from './savas-birim2d.js'; // 23 Kas (C3/C5): boyalı 2B savaş birimleri (yalnız çizim)
 import { heroImg, mobImg } from './ui-core.js'; // 19 Kas: savaş arayüzü portreleri (sıra şeridi, kahraman çerçevesi) // savaş sesleri: olay türü, silah türü ve elemente göre (kural içermez)
 
 const $ = s => document.querySelector(s);
@@ -145,6 +146,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   setShift(0, 0); // 22 Kas: kadraj savas-kamera.js ile
   ensureEnv(env, 'foto:' + pickBg(env, setup.seed)); // 22 Kas (kullanıcı): eski çizilmiş savaş alanı yerine boyalı resim
   const battle = new Battle(setup);
+  b2dYukle([...battle.units, ...(setup.waves || []).flat()]); // 2B poz paketlerini önden indir
   battle.noAutoPot = !potPref(); ui.battle = battle; ui.hasPot = battle.units.some(x => x.side === 'A' && x.potHp !== undefined && (x.potHp > 0 || x.potMp > 0)) && !battle.units.some(x => x.side !== 'A' && x.cls && !x.mon); // Oto İksir yalnız PvE
   const actions = [];
   const actors = new Map(); // birim kimliği → sahne aktörü
@@ -160,7 +162,8 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     const { x, z } = spot(u, n, idx);
     const face = u.side === 'A' ? Math.PI - 0.55 : 0.55;
     const lk = mon ? { look: u.look || { kind: 'monument' }, model: {} } : unitLook(u); if (!mon) lk.look = { ...lk.look, scale: (lk.look.scale || 1) * (u.cls ? SCALE_HERO : SCALE_MOB) };
-    if (big) lk.look.scale = Math.min(lk.look.scale, 1.9); // 22 Kas: yan görünüşte boss kadraja sığsın (kahramanın ~1.5 katı)
+    if (big) lk.look.scale = Math.min(lk.look.scale, 1.9);
+    const b2 = mon ? null : b2dOf({ ...u, model: lk.model }); if (b2) { lk.b2d = b2; if (!b2.hero) lk.look.scale = 0.8 * SCALE_MOB * (u.elite ? 1.2 : 1); } // 2B yaratık: türün kendi çiziminde boyu var (bestiary ölçeği iki kez küçültmesin) // 22 Kas: yan görünüşte boss kadraja sığsın (kahramanın ~1.5 katı)
     const a = spawn({ ...u, ...lk }, x, z, face);
     a.hitbox.scale.setScalar(Math.max(1, 1.1 / a.char.scale)); // küçük yaratıkların dokunma alanı da yeterince büyük kalsın
     a.unit = u; a.home = new THREE.Vector3(x, 0.1, z); a.face = face; a.shown = u.hp; a.hold = { t: Math.random() * 0.16 };

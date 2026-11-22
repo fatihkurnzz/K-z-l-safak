@@ -1,0 +1,168 @@
+// 23 Kas (görev C3/C5, GPT G1+G2): savaşta boyalı 2B birimler. 3B karakterin (models.js Character) yerine geçen, aynı
+// arayüzü taşıyan bir pano: yere oturan, kameraya dönen düzlem + poz resimleri (bekleme, hazırlık, vuruş, büyü, vurulma,
+// düşüş, zafer). Yalnız çizim katmanıdır; savaşın kuralına, sırasına ve sonucuna dokunmaz (combat.js aynı yöntemleri çağırır).
+// Resimler gömülü JS'tedir (b2d-sancak.js, b2d-ocak.js, b2d-yaratik.js; _tasarim/araclar/b2d-gom.py) ve yalnız savaşta yüklenir.
+// Eski 3B çizime dönmek: localStorage dd_b2d = '0' (ya da adres ?b2d=0).
+import { THREE, camera, to, tween, wait, ease, camRig, hitStop } from './engine3d.js';
+import { play as fxPlay } from './fx.js';
+import { EVENT_FX } from './fx-table.js';
+import { charLookFor } from './gorunus.js';
+
+const off = (() => { try { return /[?&]b2d=0/.test(location.search) || localStorage.getItem('dd_b2d') === '0'; } catch { return false; } })();
+export const B2D = { on: !off };
+
+const SINIF = { warrior: 'savasci', rogue: 'suikastci', mage: 'buyucu', priest: 'sifaci' };
+const SILAH = { savasci: 'sword', suikastci: 'dagger', buyucu: 'staff', sifaci: 'mace' };
+// Yaratık → çizim (tür, renk çarpanı). Leşçil ve Yamyam Bandikut'un kendi çizimi gelene dek (G3) yakın türden renkle türetilir.
+const YARATIK = {
+  small_bandicoot: ['kucuk-bandikut'], bandicoot: ['bandikut'], wild_bandicoot: ['yaman-bandikut'], rabid_bandicoot: ['kuduz-bandikut'],
+  scavenger_bandicoot: ['bandikut', 0xb9b0a6], cannibal_bandicoot: ['yaman-bandikut', 0xffb4a4],
+};
+
+// ---- Paket ve doku önbelleği ----
+const PAKET = {}, DOKU = new Map();
+const paket = ad => (PAKET[ad] ||= import(`./b2d-${ad}.js`).then(m => m.B).catch(() => null));
+const yukleyici = new THREE.TextureLoader();
+function doku(ad, anahtar, poz, b64) {
+  const k = `${ad}/${anahtar}/${poz}`;
+  let t = DOKU.get(k);
+  if (!t) { t = yukleyici.load('data:image/webp;base64,' + b64); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; DOKU.set(k, t); }
+  return t;
+}
+// Savaş açılmadan önce paketleri ısıt (açılış kartı sürerken iner)
+export function onYukle(units) { if (!B2D.on) return; for (const u of units) { const s = cozum(u); if (s) paket(s.ad); } }
+
+// Birimin 2B karşılığı: { ad: paket, anahtar, hero, tint } ya da null (çizimi yoksa 3B kalır)
+export function cozum(u) {
+  if (!B2D.on || !u || u.mon) return null;
+  if (u.cls) {
+    const s = SINIF[u.cls]; if (!s) return null;
+    const f = u.faction === 'sancak' ? 'sancak' : 'ocak';
+    const L = charLookFor(u), g = L?.gender || u.gender || cinsTahmin(u);
+    return { ad: f, anahtar: `${s}-${g === 'f' ? 'kadin' : 'erkek'}`, hero: true, sinif: s };
+  }
+  const Y = YARATIK[u.mob]; if (!Y) return null;
+  return { ad: 'yaratik', anahtar: Y[0], hero: false, tint: Y[1] || 0xffffff };
+}
+// Görünüşü bilinmeyen kahraman (yapay zekâ yoldaşı, rakip parti): addan kararlı bir cinsiyet (her savaşta aynı kalır)
+function cinsTahmin(u) { let h = 7; for (const c of String(u.name || u.id || '')) h = (h * 31 + c.charCodeAt(0)) | 0; return (h >>> 3) & 1 ? 'f' : 'm'; }
+
+// Kahraman tuvali 1086x1448, karakter ~1250 px, ayak alttan 64 px. Yaratık tuvali 1024x1024, ayak alttan 48 px.
+const OLCU = {
+  hero: { w: 2.72 * 1086 / 1448, h: 2.72, taban: 64 / 1448, bas: 2.25, gogus: 1.45 },
+  mob: { w: 3.0, h: 3.0, taban: 48 / 1024, bas: 1.2, gogus: 0.75 },
+};
+const V0 = new THREE.Vector3();
+
+export class Birim2D {
+  constructor(spec, look = {}, sag = true) {
+    this.spec = spec; this.hero = spec.hero;
+    const O = this.O = spec.hero ? OLCU.hero : OLCU.mob;
+    this.scale = look.scale || 1; this.fx = look.fx || (spec.hero ? 0 : 0); this.phase = Math.random() * 6;
+    this.weaponKind = spec.hero ? SILAH[spec.sinif] : 'club'; this.deathN = 0; this.dead = false; this.flash = 0;
+    this.root = new THREE.Group(); this.root.scale.setScalar(this.scale);
+    this.bb = new THREE.Group(); this.root.add(this.bb);
+    const geo = new THREE.PlaneGeometry(O.w, O.h); geo.translate(0, O.h / 2 - O.h * O.taban, 0);
+    this.mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, alphaTest: 0.03, depthWrite: false, toneMapped: false, side: THREE.DoubleSide });
+    this.taban = new THREE.Color(spec.tint ?? 0xffffff).multiplyScalar(0.96);
+    this.mat.color.copy(this.taban);
+    this.mesh = new THREE.Mesh(geo, this.mat); this.mesh.renderOrder = 2;
+    // Kahraman resimleri sağa, yaratıklar sola bakar. Birim öbür yöne bakacaksa yatay çevrilir.
+    this.yon = spec.hero ? (sag ? 1 : -1) : (sag ? -1 : 1);
+    this.mesh.scale.x = this.yon;
+    this.bb.add(this.mesh);
+    this.poz = 'bekleme'; this.lunge = 0; this.tilt = 0; this.hop = 0;
+    paket(spec.ad).then(P => { const d = P?.[spec.anahtar]; if (!d) return; this.d = d; this.set(this.poz); if (!this.dead) to(this.mat, { opacity: 1 }, 0.25); });
+  }
+  set(poz) {
+    this.poz = poz;
+    const d = this.d; if (!d) return;
+    const p = d[poz] ? poz : this.hero ? 'bekleme' : ({ 'saldiri-hazirlik': 'bekleme', 'saldiri-vurus': 'saldiri', buyu: 'saldiri', 'yere-dusus': 'vurulma', zafer: 'saldiri' }[poz] || 'bekleme');
+    const m = doku(this.spec.ad, this.spec.anahtar, p, d[p]);
+    if (this.mat.map !== m) { this.mat.map = m; this.mat.needsUpdate = true; }
+  }
+  update(dt, t) {
+    // Kameraya dön (yalnız dikey eksende): düzlem her zaman ekrana paralel durur
+    const ry = Math.atan2(camera.position.x - this.root.position.x, camera.position.z - this.root.position.z);
+    this.bb.rotation.y = ry - this.root.rotation.y;
+    const nefes = this.dead ? 0 : Math.sin(t * 2.2 + this.phase);
+    this.mesh.scale.y = 1 + nefes * 0.009; this.mesh.scale.x = this.yon * (1 - nefes * 0.004);
+    this.mesh.position.set(this.lunge * this.yon * (this.hero ? 1 : -1) * 0.35, this.hop, 0);
+    this.mesh.rotation.z = this.tilt * this.yon;
+    if (this.flash > 0) {
+      this.flash = Math.max(0, this.flash - dt * 3.5);
+      const k = this.flash; this.mat.color.setRGB(this.taban.r * (1 + k * 0.18), this.taban.g * (1 - k * 0.42), this.taban.b * (1 - k * 0.42));
+    }
+  }
+  get pos() { return this.root.position; }
+  headTo(v) { return v.copy(this.root.position).setY(this.root.position.y + this.O.bas * this.scale); }
+  chestTo(v) { return v.copy(this.root.position).setY(this.root.position.y + this.O.gogus * this.scale); }
+  headPos() { return this.headTo(new THREE.Vector3()); }
+  chestPos() { return this.chestTo(new THREE.Vector3()); }
+  handPos() { // eli: göğüs hizasında, baktığı yöne yarım adım
+    const r = this.root.rotation.y; return this.chestTo(new THREE.Vector3()).add(V0.set(Math.sin(r), 0.15, Math.cos(r)).multiplyScalar(0.6 * this.scale));
+  }
+  face(target) { this.root.rotation.y = Math.atan2(target.x - this.pos.x, target.z - this.pos.z); }
+  async moveTo(target, dur = 0.35) {
+    this.face(target);
+    const from = this.pos.clone(), back = target.distanceTo(from) > 0.2 && this.poz !== 'bekleme';
+    if (this.hero && !back) this.set('saldiri-hazirlik');
+    await tween(dur, k => { this.pos.lerpVectors(from, target, k); this.hop = Math.abs(Math.sin(k * Math.PI * 2)) * 0.08; }, ease.inOut);
+    this.hop = 0;
+  }
+  relax() { } ready() { if (!this.dead) this.set('bekleme'); }
+  async swing() {
+    this.set(this.hero ? 'saldiri-hazirlik' : 'bekleme');
+    await to(this, { lunge: -0.25 }, 0.18, ease.out);
+    this.set(this.hero ? 'saldiri-vurus' : 'saldiri');
+    await to(this, { lunge: 0.55 }, 0.07, ease.in);
+    to(this, { lunge: 0 }, 0.4, ease.out).then(() => wait(0.05)).then(() => this.ready());
+  }
+  async whirl() { await this.swing(); this.set(this.hero ? 'saldiri-vurus' : 'saldiri'); await to(this, { tilt: 0.12 }, 0.12); await to(this, { tilt: 0 }, 0.2); this.ready(); }
+  async castSpell() {
+    this.set(this.hero ? 'buyu' : 'saldiri');
+    await to(this, { lunge: 0.15, hop: 0.04 }, 0.25, ease.out);
+    await to(this, { lunge: 0, hop: 0 }, 0.1);
+    wait(0.35).then(() => this.ready());
+  }
+  async raiseArms() { this.set(this.hero ? 'buyu' : 'saldiri'); await to(this, { hop: 0.08 }, 0.3, ease.out); wait(0.35).then(() => { to(this, { hop: 0 }, 0.3); this.ready(); }); }
+  async shoot() { this.set(this.hero ? 'saldiri-hazirlik' : 'bekleme'); await wait(0.18); this.set(this.hero ? 'saldiri-vurus' : 'saldiri'); await to(this, { lunge: 0.2 }, 0.12); to(this, { lunge: 0 }, 0.3).then(() => wait(0.15)).then(() => this.ready()); }
+  async stomp() {
+    this.set(this.hero ? 'saldiri-hazirlik' : 'bekleme');
+    await to(this, { hop: 0.55 }, 0.22, ease.out);
+    this.set(this.hero ? 'saldiri-vurus' : 'saldiri');
+    await to(this, { hop: 0 }, 0.12, ease.in);
+    camRig.shake = Math.max(camRig.shake, 0.25);
+    wait(0.3).then(() => this.ready());
+  }
+  // Vurulma: kırmızı parlama, geri savrulma, vurulma pozu. Ağır vuruşta (kritik, özel yetenek) kısa donma ve ekran sarsıntısı (M2 bulgusu)
+  hit(from, heavy = false) {
+    if (this.dead) return;
+    this.flash = 1;
+    const home = this.pos.clone(), dir = from ? this.pos.clone().sub(from).setY(0).normalize() : new THREE.Vector3();
+    const k = (heavy ? 0.45 : 0.22) / this.scale;
+    this.set('vurulma');
+    if (heavy) { hitStop(0.06); camRig.shake = Math.max(camRig.shake, 0.18); }
+    tween(0.08, e => this.pos.copy(home).addScaledVector(dir, k * e), ease.out).then(() => tween(0.3, e => this.pos.copy(home).addScaledVector(dir, k * (1 - e)), ease.inOut));
+    to(this, { tilt: heavy ? -0.08 : -0.04 }, 0.07).then(() => to(this, { tilt: 0 }, 0.3, ease.back));
+    const n = this.deathN; wait(0.42).then(() => { if (!this.dead && n === this.deathN && this.poz === 'vurulma') this.ready(); });
+  }
+  async die() {
+    this.dead = true;
+    const n = ++this.deathN;
+    this.set(this.hero ? 'yere-dusus' : 'vurulma');
+    if (!this.hero) await to(this, { tilt: -0.5, hop: -0.05 }, 0.45, ease.in); else await wait(0.45);
+    await wait(0.25);
+    if (n !== this.deathN) return;
+    fxPlay(EVENT_FX.kill, this);
+    await tween(0.9, k => { if (n === this.deathN) this.mat.opacity = 1 - k; });
+    if (n === this.deathN) this.root.visible = false;
+  }
+  revive(face, home) {
+    this.deathN++; this.dead = false; this.tilt = 0; this.hop = 0; this.lunge = 0;
+    this.root.visible = true; this.root.rotation.set(0, face, 0); if (home) this.pos.copy(home);
+    this.mat.opacity = this.d ? 1 : 0; this.set('bekleme');
+  }
+  cheer() { if (this.dead) return; this.set(this.hero ? 'zafer' : 'saldiri'); to(this, { hop: 0.12 }, 0.25, ease.out).then(() => to(this, { hop: 0 }, 0.35)); }
+  dispose() { this.root.parent?.remove(this.root); this.mesh.geometry.dispose(); this.mat.dispose(); }
+}

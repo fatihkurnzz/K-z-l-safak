@@ -1,0 +1,79 @@
+# Savaş birimi 2B pozları (GPT G1/G2 teslimi) → gömülü JS (WebP base64)
+# Kullanım: python3 -I b2d-gom.py <paket klasörü (G1, G2_Elentha, G2_Kragmir alt klasörleri)> <oyun-son>
+# Çıktı (OTOMATİK, elle düzenleme): js/b2d-sancak.js, js/b2d-ocak.js, js/b2d-yaratik.js
+# - Beyaz zemin artığı olan setler (HALE) temizlenir: saydam alana bağlı açık/nötr pikseller silinir.
+# - Kahraman 1086x1448 → 384x512 (zemin çizgisi alttan 64/1448), yaratık 1024x1024 → 384x384 (zemin alttan 48/1024).
+# - YEDEK: sorunlu pozun yerine geçici olarak başka poz kullanılır (GPT yeniden çizene dek).
+import sys, os, io, glob, base64, json
+import numpy as np
+from PIL import Image
+from scipy import ndimage as nd
+
+SRC, OUT = sys.argv[1], sys.argv[2]
+POZ = ['bekleme', 'saldiri-hazirlik', 'saldiri-vurus', 'buyu', 'vurulma', 'yere-dusus', 'zafer']
+MPOZ = ['bekleme', 'saldiri', 'vurulma']
+HALE = {'sancak-buyucu-kadin', 'sancak-savasci-erkek', 'ocak-savasci-kadin', 'ocak-sifaci-erkek', 'ocak-suikastci-kadin'}
+YEDEK = {('sancak-savasci-kadin', 'buyu'): 'zafer'}  # teslimdeki büyü pozu başka yüz/saç (sarışın): GPT'den yeniden istendi
+TURLER = ['bandikut', 'kucuk-bandikut', 'kuduz-bandikut', 'yaman-bandikut']
+
+
+def temizle(im, thr=200, sat=28):
+    a = np.array(im.convert('RGBA')).astype(np.int16)
+    rgb, al = a[..., :3], a[..., 3]
+    light = (rgb.min(axis=2) > thr) & ((rgb.max(axis=2) - rgb.min(axis=2)) < sat) & (al > 0)
+    trans = al < 10
+    lab, _ = nd.label(light | trans)
+    seeds = np.unique(lab[trans]); seeds = seeds[seeds > 0]
+    al2 = al.copy(); al2[np.isin(lab, seeds) & light] = 0
+    for _ in range(2):
+        edge = nd.binary_dilation(al2 < 10) & (al2 >= 10)
+        al2[edge & (rgb.min(axis=2) > thr - 35) & ((rgb.max(axis=2) - rgb.min(axis=2)) < sat + 10)] = 0
+    bl = nd.uniform_filter((al2 > 0).astype(np.float32), 3)
+    a[..., 3] = np.where(al2 > 0, np.maximum(np.minimum(al2, (bl * 255).astype(np.int16)), al2 * 0.6).astype(np.int16), 0)
+    return Image.fromarray(a.astype(np.uint8), 'RGBA')
+
+
+def webp(im, size, q=80):
+    im = im.convert('RGBA').resize(size, Image.LANCZOS)
+    b = io.BytesIO(); im.save(b, 'WEBP', quality=q, method=6, alpha_quality=90)
+    return base64.b64encode(b.getvalue()).decode()
+
+
+def bul(ad):
+    f = glob.glob(os.path.join(SRC, '*', ad + '.png'))
+    return f[0] if f else None
+
+
+def yaz(yol, aciklama, veri):
+    with open(yol, 'w') as f:
+        f.write('// OTOMATİK (_tasarim/araclar/b2d-gom.py) — elle düzenleme. ' + aciklama + '\n')
+        f.write('export const B = ' + json.dumps(veri, separators=(',', ':')) + ';\n')
+    print(yol, os.path.getsize(yol) // 1024, 'KB')
+
+
+eksik = []
+for halk in ['sancak', 'ocak']:
+    veri = {}
+    for sinif in ['savasci', 'suikastci', 'buyucu', 'sifaci']:
+        for cins in ['kadin', 'erkek']:
+            k = f'{halk}-{sinif}-{cins}'; d = {}
+            for p in POZ:
+                p2 = YEDEK.get((k, p), p)
+                f = bul(f'kahraman-{k}-{p2}')
+                if not f: eksik.append(k + '-' + p); continue
+                im = Image.open(f)
+                if k in HALE: im = temizle(im)
+                d[p] = webp(im, (384, 512))
+            veri[f'{sinif}-{cins}'] = d
+    yaz(os.path.join(OUT, 'js', f'b2d-{halk}.js'), f'{halk} kahramanları, 7 poz, 384x512, zemin alttan 64/1448', veri)
+
+veri = {}
+for t in TURLER:
+    d = {}
+    for p in MPOZ:
+        f = bul(f'yaratik-{t}-{p}')
+        if not f: eksik.append(t + '-' + p); continue
+        d[p] = webp(Image.open(f), (384, 384))
+    veri[t] = d
+yaz(os.path.join(OUT, 'js', 'b2d-yaratik.js'), 'yaratıklar, 3 poz, 384x384, zemin alttan 48/1024', veri)
+print('eksik:', eksik)
