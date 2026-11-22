@@ -1,6 +1,7 @@
 // Vahran Sınırı binalarının ve alt çubuğun ekranları: Örs, Maden, Usta Odası, Pazar ve Tüccar, Şan Divanı,
 // Kader Çarkı, Kervan, Görevler, Posta, Klan, Ansiklopedi.
 import { S, now, DEV } from './api.js';
+import { url as g5url } from './grafik5-png.js';
 import { MERCHANT_SVG } from './ui-ogretici.js';
 import { TUT_STEPS } from '../shared/meta.js';
 import { merchantShelves, NPC, NPC_DAILY, npcLeft, POT_PACKS, npcPots, npcScrolls } from '../shared/npc.js';
@@ -288,7 +289,8 @@ const crystal = k => { const [c, l, d] = SHARD_COL[k] || SHARD_COL.kor;
     <circle class="wfl" cx="50" cy="55" r="40" fill="#fff"/></svg><b>Parça kırılıyor…</b></div>`; };
 // Kader Çarkı: üç mücevher türü (Kor, Ayaz, Şimşek parçası) çarkın yerinde büyük görüntüleriyle durur. Birine dokununca
 // o mücevher ortaya gelir ve kırılır; içinden çıkan ödül gösterilir. Oranlar aşağıdaki havuzda açıktır (WHEEL.pool).
-const gemArt = (k, big) => { const [c, l, d] = SHARD_COL[k] || SHARD_COL.kor;
+const gemArt = (k, big) => { const [c, l, d] = SHARD_COL[k] || SHARD_COL.kor, u = g5url('parca-' + k);
+  if (u) return `<span class="gem-art gem-png ${big ? 'big' : ''}" style="--c:${c}"><img src="${u}" alt="" aria-hidden="true"></span>`; // GPT Paket 5 çizimi
   return `<svg class="gem-art ${big ? 'big' : ''}" viewBox="0 0 100 120" aria-hidden="true"><defs><radialGradient id="gg${k}" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="${l}" stop-opacity=".9"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient></defs>
     <circle cx="50" cy="58" r="48" fill="url(#gg${k})"/><polygon points="50,6 82,40 70,104 30,104 18,40" fill="${c}" stroke="${d}" stroke-width="3"/><polygon points="50,6 64,40 50,104 36,40" fill="${l}" opacity=".55"/>
     <polygon points="18,40 82,40 64,40 50,6 36,40" fill="#fff" opacity=".18"/><path d="M28 30 L34 22" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/></svg>`; };
@@ -299,7 +301,8 @@ ACT.wheel = () => { wheelLast = null; openWin({ title: 'Kader Çarkı', render: 
     : wheelLast ? `<div class="hint up wrev"><b>Çıkan: ${WHEEL.pool[wheelLast.index].name}</b>${lootBox(wheelLast.loot)}<button class="btn sm" data-a="wheelBack">Mücevherlere dön</button></div>`
     : `<div class="gem-row">${Object.entries(SHARDS).map(([k, n]) => `<button class="gem-card ${has(k) ? '' : 'off'}" data-a="spin" data-k="${k}" ${has(k) ? '' : 'disabled'}>${gemArt(k, true)}<b>${n}</b><small>${ri('shard_' + k)} ${S.shards[k] || 0}/${WHEEL.cost}</small><em>${has(k) ? 'Dokun: kır' : 'Parça yetmiyor'}</em></button>`).join('')}</div>`;
   return `<div class="hint">Gök Yarığı'ndan gelen parçalar burada mücevhere dönüşür. Bir mücevhere dokun: kırılır ve içinden bir ödül çıkar. Her kırma ${WHEEL.cost} parça ister.</div>
-  <div class="gem-stage">${stage}</div>${wheelAnim ? '' : `<div class="ad-wheel">${S.daily.adSpin > 0 ? `<button class="btn green" data-a="spin" data-k="ad">${ri('star')} Ücretsiz çevir</button>` : ''}</div>`}`; } }); };
+  <div class="gem-stage">${stage}</div>${wheelAnim ? '' : `<div class="ad-wheel">${S.daily.adSpin > 0 ? `<button class="btn green" data-a="spin" data-k="ad">${ri('star')} Ücretsiz çevir</button>` : ''}</div>`}
+`; } }); };
 ACT.wheelBack = () => { wheelLast = null; redraw(); };
 ACT.spin = async d => {
   if (wheelAnim) return;

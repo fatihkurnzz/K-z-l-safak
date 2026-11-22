@@ -11,6 +11,12 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kalan/bilinen: Kragmir Kervan .kv-badge rozeti hâlâ düşük kontrast (kural tutmadı, zemin başka katmandan); savaş sonu ekranı otomatik doğrulanamadı; klan içi ekranlar (üyelik gerekir), ödeme, canlı PvP test edilemedi.
 - Sıradaki: GPT Paket 5 (3 ve 4 atlanıyor). Kullanıcı gerçek telefonda deneyip geri bildirim verecek.
 
+## 22.11 — Paket 3, 4, 5 OYUNDA (Sürüm 11)
+- Üretici: `oyun-son/_tasarim/araclar/p345-gom.py <p3> <p4> <p5> <oyun-son>` → `js/portre-png.js`, `js/vfx-png.js`, `js/grafik5-png.js` (OTOMATİK, WebP base64 → Blob URL; yayın dosya sınırı yüzünden). Kayıtlar `_tasarim/gelen/paket3|4|5/` (büyük PNG'ler WebP'ye çevrildi).
+- P3 portreler: `portraits.js loadPortraitOverrides` portre-png.js'i overrides'a ekler; anahtarlar `sınıf.halk` (büst), `sınıf.halk:f` (tam boy; ui-core heroImg full'da `:f` ekler), `art.sınıf.halk` (kadro). Ton varyantlı (v) kahramanda 3B çizim kalır. Karakter ekranı/oluşturma 3B model korunur.
+- P4 efektler: fx.js'e şerit oynatıcı (`strip()`, ShaderMaterial, 12 kare 24 fps, oyun saati, kademe sprites>0, kenar maskesi, `tint` ile buz/yıldırım/zehir boyama). Bağlananlar: phys kıvılcım, element çarpmaları (burst/blast/shatter/arc), mermi başı (orb/fireball/shard, ekranda yöne döner), zap, şifa, kalkan kubbesi, durum işaretleri (flame/drip/orbit/crystal/mote), critHit, dissolve, bossEntrance. Dokular ilk kullanımda yüklenir. Test: `window.DD_FX.strip(ad,x,y,z,{loop,dur,size})`. P4 HUD parçaları = Paket 1 ile aynı (sha), değişiklik yok.
+- P5: Kader Çarkı parçaları (gemArt → çizim; Kor'daki soluk alfa kutusu temizlendi), pencere başlığı amblemi (`ui-core embOf`: Örs=ors, Görev/Destan/Takvim=defter, Posta/Sohbet/Destek=mektup, zindan/maden=fener, Balık=makara, Kapı=pusula, Klan/Hisar/Meydan/Taş Yemini=halk flaması). CSS `css/v28-paket345.css` (en son). Sandık şeridi KULLANILMADI (çevrimdışı sandık 19 Kas'ta kaldırılmıştı). P5 ekran maketleri yalnız referans.
+
 ## ŞU ANKİ İŞ (21.11.2026)
 - Kullanıcı oyunun HER YERİNİN görselini GPT'ye yaptırıp bana gönderiyor; ben oyuna yerleştiriyorum. **Oyun mekaniklerine dokunma**; yalnız grafik, arayüz, yerleşim.
 - Kullanıcı iş bitince **yapıt (artifact) olarak yayımlanmasını** istiyor → kendi yayınımızı güncelle ve bağlantıyı ver.

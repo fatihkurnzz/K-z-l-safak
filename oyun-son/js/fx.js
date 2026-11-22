@@ -100,6 +100,80 @@ onUpdate(dt => {
   for (let i = 0; i < lights.length; i++) { const L = lights[i]; if (L.userData.life > 0) { L.userData.life -= dt; L.intensity = L.userData.peak * Math.max(0, L.userData.life / L.userData.max); } else if (L.intensity) L.intensity = 0; }
 });
 
+// ---------- Çizilmiş efekt şeritleri (GPT Paket 4, 21 Kas) ----------
+// Her şerit 12 kare (soldan sağa), 24 kare/sn: tek oynatım 0.5 sn. Görseller js/vfx-png.js'te gömülüdür; dokular ilk
+// kullanımda çözülür (yalnız kullanılan şeritler GPU'ya yüklenir). Levha havuzu efekt levhalarıyla aynı kademeye bağlıdır:
+// en düşük kademede (sprites 0) şerit de yoktur. Süreler oyun saatine bağlı (onUpdate dt).
+const SV = 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }';
+const SF = `varying vec2 vUv; uniform sampler2D map; uniform float fr; uniform float alpha; uniform float gain; uniform vec3 tint; uniform float tk;
+  void main(){ vec4 c = texture2D(map, vec2((fr + clamp(vUv.x, 0.002, 0.998)) / 12.0, vUv.y)); c.a *= alpha * smoothstep(0.5, 0.34, length(vUv - 0.5)); if (c.a < 0.01) discard; // kare kenarında kalan duman yuvarlak söner
+    float l = dot(c.rgb, vec3(0.299, 0.587, 0.114)); vec3 t = mix(tint * l * 1.7, vec3(1.0), smoothstep(0.75, 1.0, l)); // boyama: parlak çekirdek beyaz kalır
+    gl_FragColor = vec4(mix(c.rgb, t, tk) * gain, c.a);
+    #include <colorspace_fragment>
+  }`;
+let VFX = null, vfxLoading = null;
+const vtex = {};
+function vfxLoad() { if (!vfxLoading) vfxLoading = import('./vfx-png.js').then(m => (VFX = m)).catch(e => console.warn('[fx] şeritler yüklenemedi', e)); return vfxLoading; }
+function vfxTex(name) {
+  if (vtex[name] !== undefined) return vtex[name];
+  if (!VFX) { vfxLoad(); return null; }
+  const u = VFX.url(name); if (!u) return (vtex[name] = null);
+  const img = new Image(), t = new THREE.Texture(img);
+  t.colorSpace = THREE.SRGBColorSpace; t.generateMipmaps = false; t.minFilter = THREE.LinearFilter; t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping;
+  vtex[name] = null; // yüklenene kadar çizilmez
+  img.onload = () => { t.needsUpdate = true; vtex[name] = t; };
+  img.src = u;
+  return null;
+}
+const strips = [];
+function rebuildStrips() {
+  for (const s of strips) { s.mesh.parent?.remove(s.mesh); s.mesh.material.dispose(); }
+  strips.length = 0;
+  const n = gfx.T.sprites ? Math.max(6, Math.round(gfx.T.sprites / 2)) : 0;
+  for (let i = 0; i < n; i++) {
+    const mat = new THREE.ShaderMaterial({ vertexShader: SV, fragmentShader: SF, transparent: true, depthWrite: false, side: THREE.DoubleSide,
+      uniforms: { map: { value: null }, fr: { value: 0 }, alpha: { value: 1 }, gain: { value: 1.25 }, tint: { value: new THREE.Color() }, tk: { value: 0 } } });
+    const mesh = new THREE.Mesh(GEO, mat); mesh.visible = false; mesh.frustumCulled = false; mesh.renderOrder = 10;
+    strips.push({ mesh, u: mat.uniforms, on: false, t: 0, dur: 0.5, loop: false, s: 1, sy: 1, bill: 1, rot: 0, follow: null, fadeIn: 0 });
+  }
+  if (n) setTimeout(vfxLoad, 2500); // savaştan önce indirilmiş olsun
+}
+// name: Paket 4 kod anahtarı (spark, burst, blast, shatter, arc, orb, fireball, shard, zap, dome, flame, drip, orbit, crystal,
+// mote, critHit, dissolve, heal, bossEntrance). o: { size, sy, dur (döngüde toplam süre), loop, bill (1 kameraya dönük, 0 serbest),
+// rot (ekran düzlemindeki dönüş), delay, gain (parlaklık), alpha, tint (renge boyama; şeridin kendi rengi elementle uyuşmadığında), tk }. Doku henüz yoksa null döner (çağıran yine kendi efektini çizer).
+function strip(name, x, y, z, o = {}) {
+  if (!strips.length) return null;
+  const tex = vfxTex(name); if (!tex) return null;
+  let s = strips.find(q => !q.on); if (!s) { s = strips.reduce((a, b) => (a.t > b.t ? a : b)); }
+  const m = s.mesh; if (m.parent !== scene) scene.add(m);
+  s.on = true; s.t = -(o.delay || 0); s.loop = !!o.loop; s.dur = o.dur || 0.5; s.s = o.size || 1; s.sy = o.sy || 1; s.bill = o.bill ?? 1; s.rot = o.rot || 0;
+  s.a0 = o.alpha ?? 1; s.u.map.value = tex; s.u.gain.value = o.gain ?? 1.25; s.u.fr.value = 0;
+  if (o.tint) { s.u.tint.value.setHex(o.tint); s.u.tk.value = o.tk ?? 0.85; } else s.u.tk.value = 0; s.u.alpha.value = 0;
+  m.position.set(x, y, z); m.scale.set(s.s, s.s * s.sy, 1); m.visible = false;
+  return s;
+}
+const stripOff = s => { if (s) { s.on = false; s.mesh.visible = false; } };
+onUpdate(dt => {
+  for (let i = 0; i < strips.length; i++) {
+    const s = strips[i]; if (!s.on) continue;
+    s.t += dt; if (s.t < 0) continue;
+    const m = s.mesh, f = Math.floor(s.t * 24);
+    if (!s.loop && f >= 12) { stripOff(s); continue; }
+    if (s.loop && s.t >= s.dur) { stripOff(s); continue; }
+    m.visible = true; s.u.fr.value = f % 12;
+    // döngüde son 0.2 sn söner; tek oynatımda şeridin kendi sönmesi kullanılır
+    s.u.alpha.value = s.a0 * (s.loop ? Math.min(1, s.t * 8, (s.dur - s.t) / 0.2) : 1);
+    if (s.bill === 1) { m.quaternion.copy(camera.quaternion); if (s.rot) m.rotateZ(s.rot); }
+  }
+});
+// Ekrandaki yön (a→b) açısı: yönlü şeritler (ateş topu, kıymık) hareket yönüne döner
+const sa = new THREE.Vector3(), sb = new THREE.Vector3();
+const screenAngle = (a, b) => { sa.copy(a).project(camera); sb.copy(b).project(camera); return Math.atan2(sb.y - sa.y, (sb.x - sa.x) * (camera.aspect || 1)); };
+export const vfxOn = () => strips.length > 0;
+// Şeritlerin çizildiği renk: efsun (mor) ve ateş kendi rengindedir; buz ve yıldırım şeritleri elementin rengine boyanır,
+// silahın özel rengi (artı parıltısı vb.) verilmişse efsun da o renge döner
+const STRIP_TINT = (el, E) => (el === 'ice' || el === 'bolt' || (el === 'arcane' && E.color !== ELEMENT_FX.arcane.color) ? E.color : 0);
+
 // ---------- Efekt ışıkları ----------
 // Sahnedeki ışık sayısı sabit kalmalıdır (değişirse bütün gölgelendiriciler yeniden derlenir): ışıklar hep sahnededir,
 // boştayken şiddetleri sıfırdır.
@@ -117,6 +191,8 @@ function flashLight(x, y, z, color, peak = 8, dur = 0.35) {
 }
 rebuild();
 onTier(rebuild);
+rebuildStrips();
+onTier(rebuildStrips);
 export const fxOn = () => slots.length > 0;
 export function clearFx() { for (const s of slots) { s.on = false; s.mesh.visible = false; if (s.mesh.parent !== scene) scene.add(s.mesh); } for (const L of lights) { L.userData.life = 0; L.intensity = 0; } setExposureMul(1); }
 
@@ -170,6 +246,7 @@ export function hitSpark(pos, from, weaponKind, wt, { crit = false, heavy = fals
   if (W.spark === 'slash' || W.spark === 'pierce') sprite(K.streak, pos.x, pos.y, pos.z, { color: tint, s0: 1.6 * big, s1: 3.4 * big, sy: 0.35, dur: 0.18, alpha: 1, rot: rnd(-0.9, 0.9), q: W.spark === 'pierce' ? 4 : 1 });
   if (W.spark === 'chunk') for (let i = 0; i < 2; i++) sprite(K.streak, pos.x, pos.y, pos.z, { color: tint, s0: 1.4 * big, s1: 3 * big, sy: 0.5, dur: 0.2, alpha: 1, rot: 0.6 - i * 1.2, q: 0.5 });
   if (W.ring) sprite(K.ring, pos.x, 0.16, pos.z, { bill: 2, color: 0xe8d2a8, s0: 0.8, s1: 2.6 * W.weight, dur: 0.3, alpha: 0.6, q: 0.04 });
+  if (el === 'phys') strip('spark', pos.x, pos.y, pos.z, { size: 1.5 * big * Math.max(0.8, W.weight), rot: rnd(-0.6, 0.6) });
   if (W.dust) burst(v1.set(pos.x, 0.25, pos.z), { color: 0x8a7a66, count: N(6), speed: 1.6, size: 0.16, life: 0.7, gravity: 0.4, up: 0.6, smoke: true, grow: 1.5, drag: 1.5 });
   if (el !== 'phys') elementImpact(pos, el, color, false);
 }
@@ -194,7 +271,8 @@ export function elementImpact(pos, el, color, big = true) {
   const E = elOf(el, color), k = big ? 1 : 0.6;
   if (!slots.length) { burst(pos, { color: E.color, count: 6, speed: 2.6, size: 0.06, life: 0.4 }); return; }
   flashLight(pos.x, pos.y + 0.3, pos.z, E.light, big ? 12 : 6, 0.35);
-  sprite(K.glow, pos.x, pos.y, pos.z, { color: E.color, core: E.core, s0: 0.6 * k, s1: 2.6 * k, dur: 0.22, alpha: 1 });
+  const drawn = ['burst', 'blast', 'shatter', 'arc'].includes(E.impact) && strip(E.impact, pos.x, pos.y, pos.z, { size: 2.6 * k, gain: E.impact === 'blast' ? 1.0 : 1.25, rot: E.impact === 'arc' ? rnd(-0.5, 0.5) : 0, tint: STRIP_TINT(el, E) });
+  sprite(K.glow, pos.x, pos.y, pos.z, { color: E.color, core: E.core, s0: 0.6 * k, s1: (drawn ? 1.6 : 2.6) * k, dur: 0.22, alpha: drawn ? 0.6 : 1 });
   if (E.impact === 'blast') {
     burst(pos, { color: E.color, count: N(22 * k), speed: 4.2, size: 0.09, life: 0.55, gravity: -2, drag: 1.2 });
     burst(pos, { color: E.core, count: N(8 * k), speed: 2, size: 0.1, life: 0.35, gravity: 1 });
@@ -232,16 +310,20 @@ export async function projectile(from, toPos, { color = 0xff7a1a, size = 0.18, d
       const mid = a.clone().add(b).multiplyScalar(0.5), len = a.distanceTo(b);
       for (let i = 0; i < 2; i++) { const s = sprite(K.zap, mid.x, mid.y, mid.z, { color: E.color, core: E.core, s0: len, sy: 0.22 + i * 0.1, dur: 0.16 + i * 0.05, alpha: 1, flick: true, bill: 0 }); if (s) orientAlong(s.mesh, a, b); }
       flashLight(mid.x, mid.y, mid.z, E.light, 10, 0.2);
+      const z = strip('zap', mid.x, mid.y, mid.z, { size: len * 0.9, sy: 0.45, bill: 0, tint: STRIP_TINT(el, E) }); if (z) orientAlong(z.mesh, a, b);
     }
     return wait(0.12);
   }
   const obj = arrow ? arrowMesh() : null, head = arrow ? null : sprite(K.glow, a.x, a.y, a.z, { color: E.color, core: E.core, s0: size * 4.2, s1: size * 4.2, dur: dur + 0.05, alpha: 1, fade: 0.01 });
   if (obj) { obj.visible = true; obj.position.copy(a); }
+  const ps = !arrow && ['orb', 'fireball', 'shard'].includes(E.proj) ? strip(E.proj, a.x, a.y, a.z, { size: size * (E.proj === 'orb' ? 5.5 : 7), loop: true, dur: dur + 0.05, rot: E.proj === 'orb' ? 0 : screenAngle(a, b), tint: STRIP_TINT(el, E) }) : null;
+  if (ps && head) head.a0 = 0.5;
   const trail = arrow ? 0x000000 : E.color;
   await tween(dur, k => {
     v2.lerpVectors(a, b, k); v2.y += Math.sin(k * Math.PI) * arc;
     if (obj) { v1.copy(v2).sub(obj.position); if (v1.lengthSq() > 1e-8) { v1.add(v2); obj.position.copy(v2); obj.lookAt(v1); } }
     else if (head) head.mesh.position.copy(v2);
+    if (ps) ps.mesh.position.copy(v2);
     if (arrow) { if (color && Math.random() < 0.5) particle(v2.x, v2.y, v2.z, 0, 0, 0, color, 0.07, 0.25, 0, 0); }
     else {
       particle(v2.x + rnd(-0.05, 0.05), v2.y + rnd(-0.05, 0.05), v2.z, rnd(-0.3, 0.3), rnd(-0.1, 0.5), rnd(-0.3, 0.3), Math.random() < 0.3 ? E.core : trail, size * 1.1, 0.32, E.proj === 'fireball' ? 1.5 : E.proj === 'shard' ? -1.5 : 0, 1);
@@ -250,6 +332,7 @@ export async function projectile(from, toPos, { color = 0xff7a1a, size = 0.18, d
   }, ease.linear);
   if (obj) obj.visible = false;
   if (head) head.on = false, head.mesh.visible = false;
+  stripOff(ps);
   if (!slots.length) burst(b, { color: E.color, count: 8, speed: 2.6, size: 0.06, life: 0.4 });
 }
 // Levhayı a→b doğrusu boyunca yatır ve kameraya çevir
@@ -286,6 +369,7 @@ export function healAura(char, color = 0x6dff8a) {
   const k = char.scale || 1, x = char.pos.x, z = char.pos.z;
   burst(v0.set(x, 0.3, z), { color, count: N(16), speed: 1.5, size: 0.06, life: 1.0, gravity: 1.4, up: 3, spread: 0.55, drag: 0.8 });
   if (!slots.length) return;
+  char.chestTo(v1); strip('heal', x, v1.y, z, { size: 2.8 * k });
   sprite(K.ring, x, 0.16, z, { bill: 2, color, core: 0xffffff, s0: 0.6 * k, s1: 2.2 * k, dur: 0.7, alpha: 0.8, q: 0.03 });
   sprite(K.beam, x, 1.7 * k, z, { color, core: 0xffffff, s0: 1.3 * k, s1: 0.7 * k, sy: 3.2, dur: 0.85, alpha: 0.45 });
   flashLight(x, 1.2 * k, z, color, 4, 0.6);
@@ -293,7 +377,8 @@ export function healAura(char, color = 0x6dff8a) {
 export function shieldUp(char, color = 0x7fc8ff) {
   if (!slots.length) return;
   const k = char.scale || 1; char.chestTo(v0);
-  sprite(K.dome, v0.x, v0.y - 0.15 * k, v0.z, { color, core: 0xffffff, s0: 0.6 * k, s1: 2.7 * k, sy: 1.15, dur: 0.9, alpha: 0.9, p0: 0, p1: 1, fade: 0.7 });
+  const d = strip('dome', v0.x, v0.y - 0.1 * k, v0.z, { size: 2.9 * k, loop: true, dur: 1.0 });
+  sprite(K.dome, v0.x, v0.y - 0.15 * k, v0.z, { color, core: 0xffffff, s0: 0.6 * k, s1: 2.7 * k, sy: 1.15, dur: 0.9, alpha: d ? 0.35 : 0.9, p0: 0, p1: 1, fade: 0.7 });
   sprite(K.ring, char.pos.x, 0.16, char.pos.z, { bill: 2, color, s0: 2.4 * k, s1: 1.4 * k, dur: 0.5, alpha: 0.6, q: 0.03 });
 }
 // Kalkan darbeyi emdi: kubbe kısa bir an parlar
@@ -310,6 +395,11 @@ export function statusMark(char, s) {
   const k = char.scale || 1, x = char.pos.x, z = char.pos.z, c = F.color;
   char.chestTo(v0);
   if (!slots.length) { if (F.tone !== 'buff') burst(v0, { color: c, count: 4, speed: 1.2, size: 0.05, life: 0.5, gravity: 0.5 }); return; }
+  { // çizilmiş durum şeridi bir saniye döner (kendi rengi uymayan durumlarda durumun rengine boyanır)
+    const m = F.mark, own = { flame: 0xff6a1a, crystal: 0x8fdcff, drip: 0xb48aff, orbit: 0xb48aff, mote: 0xffd9a0 };
+    if (m in own) { if (m === 'orbit') char.headTo(v1); else v1.copy(v0);
+      strip(m, v1.x, v1.y + (m === 'orbit' ? 0.15 * k : m === 'crystal' ? -0.2 * k : 0), v1.z, { size: (m === 'orbit' ? 1.6 : 2.2) * k, loop: true, dur: 1.0, tint: c !== own[m] ? c : 0, tk: 0.8 }); }
+  }
   switch (F.mark) {
     case 'up': case 'down': {
       const up = F.mark === 'up';
@@ -361,6 +451,7 @@ const IMPL = {
     hitStop(C.stop); camRig.shake = Math.max(camRig.shake, C.shake);
     chest(c, v2); v1.copy(v2).sub(camRig.pos).normalize().multiplyScalar(C.nudge); nudgeCam(v1.x, v1.y, v1.z);
     if (!slots.length) return;
+    strip('critHit', v2.x, v2.y, v2.z, { size: 3.0 * (c.scale || 1), rot: rnd(-0.4, 0.4) });
     sprite(K.ring, v2.x, v2.y, v2.z, { color: 0xffd23a, core: 0xffffff, s0: 0.5, s1: 3.4, dur: 0.3, alpha: 1, q: 0.02 });
     for (let i = 0; i < 4; i++) sprite(K.streak, v2.x, v2.y, v2.z, { color: 0xffe9a0, s0: 0.6, s1: 3.6, sy: 0.14, dur: 0.24, alpha: 1, rot: i * 0.785 + 0.3, q: 6 });
     flashLight(v2.x, v2.y, v2.z, 0xffe0a0, 10, 0.25);
@@ -370,6 +461,7 @@ const IMPL = {
   // ölüm: gövde erir (malzemedeki erime değeri), kül ve kor yükselir
   dissolve(c) {
     const k = c.scale || 1, n = N(18);
+    chest(c, v2); strip('dissolve', v2.x, v2.y, v2.z, { size: 2.6 * k, gain: 1.1 });
     for (let i = 0; i < n; i++) particle(c.pos.x + rnd(-0.5, 0.5) * k, rnd(0.1, 1.6) * k, c.pos.z + rnd(-0.4, 0.4) * k, rnd(-0.3, 0.3), rnd(0.5, 1.6), rnd(-0.3, 0.3), i % 3 ? 0xff8a3a : 0xffd9a0, 0.09, rnd(0.6, 1.2), 0.6, 0.8);
     burst(v0.set(c.pos.x, 0.5 * k, c.pos.z), { color: 0x3a342e, count: N(8), speed: 0.9, size: 0.24, life: 1.2, gravity: 0.7, up: 1.2, smoke: true, grow: 1.4, drag: 1 });
   },
@@ -414,6 +506,7 @@ const IMPL = {
     burst(v0.set(x, 0.3, z), { color: 0x6a5a4a, count: N(14), speed: 2.6, size: 0.3, life: 1.1, gravity: 0.3, up: 0.5, smoke: true, grow: 1.6, drag: 1.6 });
     burst(v0.set(x, 0.4, z), { color: c.fx || 0xff5a3a, count: N(22), speed: 3, size: 0.07, life: 0.9, gravity: 1.5, up: 1.8 });
     if (!slots.length) return;
+    strip('bossEntrance', x, 1.6 * k, z, { size: 4.4 * k, dur: 0.5 });
     for (let i = 0; i < 3; i++) sprite(K.ring, x, 0.16, z, { bill: 2, color: c.fx || 0xff5a3a, core: 0xffe0c0, s0: 0.8, s1: (3 + i * 1.6) * k, dur: 0.7, alpha: 0.9, q: 0.05, delay: i * 0.14 });
     sprite(K.beam, x, 2.2 * k, z, { color: c.fx || 0xff5a3a, core: 0xffffff, s0: 2.4 * k, s1: 0.8 * k, sy: 2.6, dur: 0.8, alpha: 0.6 });
     flashLight(x, 1.5 * k, z, c.fx || 0xff5a3a, 16, 0.9);
@@ -438,4 +531,4 @@ export const FX_MISSING = FX_NAMES.filter(n => typeof IMPL[n] !== 'function');
 if (FX_MISSING.length) console.warn('[fx] uygulanmamış efekt:', FX_MISSING.join(', '));
 // Efekti adıyla oynat (bilinmeyen ad sessizce geçilir)
 export function play(name, target, opt) { const f = Object.hasOwn(IMPL, name) ? IMPL[name] : null; if (f && target) f(target, opt); }
-window.DD_FX = { missing: FX_MISSING, slots: () => slots.filter(s => s.on).length, cap: () => slots.length, lights: () => lights.length };
+window.DD_FX = { missing: FX_MISSING, strip: (n, x, y, z, o) => strip(n, x, y, z, o), vfx: () => strips.filter(s => s.on).length, slots: () => slots.filter(s => s.on).length, cap: () => slots.length, lights: () => lights.length };

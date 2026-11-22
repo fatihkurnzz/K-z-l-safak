@@ -1,6 +1,7 @@
 // Arayüz çekirdeği: ortak yardımcılar, tıklama yönlendirme, pencere ve modal sistemi, eşya/portre parçaları.
 // Arayüz kural hesaplamaz: gösterim için shared/ tablolarını okur, her değişikliği api.act ile sunucuya sorar.
 import { rankName } from '../shared/rutbe.js';
+import { url as g5url } from './grafik5-png.js';
 import { S, act, now } from './api.js';
 import { CLASSES, ENERGY, UNLOCK, SHARDS, PREMIUM, TITLES, FACTION_BONUS, bonusLines, xpNeed } from '../shared/content.js';
 import { premTier } from '../shared/state.js';
@@ -108,7 +109,7 @@ export function heroImg(cls, full = false, c2 = '', faction, w, cape, v = 0) {
   if (faction === undefined && w === undefined && cape === undefined) cape = S.clan ? capeOf(S.clanTag) : null;
   faction ??= S.faction; w ??= S?.heroes?.[cls] ? weaponModel(S, cls) : S && clsOf(S) === cls ? weaponModel(S, mainId(S)) : DEF_W[cls]; // sınıf anahtarı: karakterin sınıfıysa kendi silahı, değilse varsayılan
   const L = unitLook({ cls, faction, wm: w, cape, v }), glow = (w.plus || 0) >= 7 ? `${w.plus}.${w.g || 0}` : w.g === 2 ? '0.2' : 0, ck = (cape ? `:c${cape.c}.${cape.a}.${cape.s}.${cape.l}` : '') + (v ? `:v${v}` : '');
-  return `<img class="pt hero ${c2}" alt="${CLASSES[cls].name}" ${portraitAttrs(`h:${faction}:${cls}:${w.weapon}${w.glb ? '~' + w.glb : ''}${w.sglb ? '~' + w.sglb : ''}:${+!!w.shield}:${glow}:${full ? 'f' : 'b'}${(w.ap || 0) >= 7 ? `:A${w.ap}.${w.ag || 0}` : ''}${ck}`, v ? '' : `${cls}.${faction}`, { look: L.look, model: L.model, bg: faction, full, tid: cls })}>`; // glow: artılı silahın parıltısı (artı ve nadirlik) portrede de görünür
+  return `<img class="pt hero ${c2}" alt="${CLASSES[cls].name}" ${portraitAttrs(`h:${faction}:${cls}:${w.weapon}${w.glb ? '~' + w.glb : ''}${w.sglb ? '~' + w.sglb : ''}:${+!!w.shield}:${glow}:${full ? 'f' : 'b'}${(w.ap || 0) >= 7 ? `:A${w.ap}.${w.ag || 0}` : ''}${ck}`, v ? '' : `${cls}.${faction}${full ? ':f' : ''}`, { look: L.look, model: L.model, bg: faction, full, tid: cls })}>`; // glow: artılı silahın parıltısı (artı ve nadirlik) portrede de görünür
 }
 // Büyük illüstrasyon portresi (Kadro, kahraman ekranı, Meydan savunması): boydan, boyalı görünüm (portraits.js: paintArt).
 // Elle çizilmiş görsel eklemek için img/portraits.json'a "art.<sınıf>.<taraf>" anahtarıyla dosya yolu yazılır.
@@ -204,6 +205,13 @@ export function energyNow() {
 export function openWin(cfg) { hooks.sfx?.('win'); W = cfg; win.hidden = false; drawWin(); reload(); }
 export async function reload() { const w = W; if (!w?.load) return; w.data = await w.load(w.tab); if (W === w) redraw(); }
 const tabsHtml = () => `${W.tabs.map(t => `<button data-a="tab" data-id="${t.id}" class="${t.id === W.tab ? 'on' : ''}" ${t.off ? 'disabled style="opacity:.5"' : ''}>${t.pre || tabPre(t)}<span>${t.label}${t.small ? `<small>${t.small}</small>` : ''}</span>${t.dot ? '<i class="tdot" aria-label="Bekleyen puan"></i>' : ''}</button>`).join('')}`;
+// GPT Paket 5 (21 Kas): pencere başlığında işlevin nesnesi (örs, defter, mektup, fener, makara, pusula)
+const EMB = [['Örs', 'ors'], ['Görev', 'defter'], ['Günlük Görevler', 'defter'], ['Destan', 'defter'], ['Takvim', 'defter'], ['Başarımlar', 'defter'], ['Ansiklopedi', 'defter'],
+  ['Posta', 'mektup'], ['Sorun', 'mektup'], ['Sohbet', 'mektup'], ['Duyurular', 'mektup'], ['Bildirimler', 'mektup'],
+  ['Yeraltı Ocağı', 'fener'], ['Kül Kulesi', 'fener'], ['Maden', 'fener'], ['Dipsiz Kuyu', 'fener'], ['Mühürlü Oda', 'fener'], ['Zindanlar', 'fener'],
+  ['Balık', 'makara'], ['Kapı', 'pusula'], ['Sefer', 'pusula'], ['Diyar', 'pusula'],
+  ['Klan', 'flama'], ['Hisar', 'flama'], ['Taş Yemini', 'flama'], ['Sancak Savaşı', 'flama'], ['Otağ', 'flama'], ['Meydan', 'flama'], ['Canlı Meydan', 'flama'], ['Şan Divanı', 'flama'], ['Sıralama', 'flama']];
+const embOf = t => { const e = EMB.find(([p]) => String(t).startsWith(p)); const u = e && g5url(e[1] === 'flama' ? 'flama-' + (S?.faction === 'sancak' ? 'sancak' : 'ocak') : e[1]); return u ? `<img class="wemb" src="${u}" alt="" aria-hidden="true">` : ''; };
 const SCR = { 'Çanta': 'canta', 'Karakter': 'karakter', 'Görevler': 'gorev', 'Görev Defteri': 'gorev', 'Takvim': 'gorev', 'Klan Karargâhı': 'klan' };
 function drawWin() {
   // Aynı pencere açıksa kabuğu yıkma: yalnız sekme çubuğunu yerinde güncelle (titreme olmasın)
@@ -216,7 +224,7 @@ function drawWin() {
   win._key = key;
   win.dataset.scr = SCR[W.title] || 'genel'; // Aşama 5: ekran kimliği (css/v24-asama5.css büyük pencere ve tema)
   win.className = 'win full' + (W.top ? ' ttop' : ''); // top: sekme şeridi solda değil üstte (19 Kas)
-  win.innerHTML = `<div class="scrim" data-a="closeWin"></div><div class="frame"><header>${W.back ? `<button class="x bk" data-a="${W.back}">‹</button>` : ''}<h2>${W.title}</h2><div class="wres"></div><button class="x" data-a="closeWin">✕</button></header>
+  win.innerHTML = `<div class="scrim" data-a="closeWin"></div><div class="frame"><header>${W.back ? `<button class="x bk" data-a="${W.back}">‹</button>` : ''}${embOf(W.title)}<h2>${W.title}</h2><div class="wres"></div><button class="x" data-a="closeWin">✕</button></header>
     <div class="wbody">${W.tabs ? `<nav class="tabs">${tabsHtml()}</nav>` : ''}<section class="page" id="page"></section></div></div>`;
   redraw();
 }

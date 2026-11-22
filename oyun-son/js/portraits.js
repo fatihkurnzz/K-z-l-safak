@@ -17,6 +17,8 @@ let overrides = {};
 // Elle eklenmiş görseller (isteğe bağlı)
 export async function loadPortraitOverrides() {
   try { const r = await fetch('img/portraits.json', { cache: 'no-cache' }); if (r.ok) overrides = await r.json(); } catch { }
+  // GPT Paket 3 (21 Kas): sınıf × halk çizimleri — "sınıf.halk" büst, "sınıf.halk:f" tam boy, "art.sınıf.halk" kadro
+  try { const P = await import('./portre-png.js'); for (const k of P.KEYS) if (!overrides[k]) overrides[k] = P.url(k); } catch (e) { console.warn('[portre] çizimler yüklenemedi', e); }
 }
 
 // ---- Portre sahnesi ----
