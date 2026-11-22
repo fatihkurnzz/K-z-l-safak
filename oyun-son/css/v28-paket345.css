@@ -35,3 +35,6 @@ html[data-faction="sancak"][data-hub2d] #game #hud .savas2d.sv3:active { backgro
 html[data-hub2d] #game #hud .qtrk { top:auto !important; bottom:calc(var(--h17-sab) + 12px + 44px * var(--h17-s) + 8px) !important; }
 /* 22 Kas cila: uzun eşya adı (İlk Alım) ve uzun bölge adı (Sefer sekmesi) kesilmesin */
 #modal .kv-name, #win .kv-name { white-space:normal !important; overflow:visible !important; text-overflow:clip !important; line-height:1.15; }
+/* 22 Kas (2): 2B harita resmin tamamını gösterir; ekran resimden genişse yanlar aynı resmin bulanık, koyu hali */
+#hub2d .h2-bg { position:absolute; inset:-40px; background-size:cover; background-position:center; filter:blur(22px) brightness(.55) saturate(1.1); pointer-events:none; }
+#hub2d .h2-img { -webkit-mask-image:linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); mask-image:linear-gradient(to right, transparent, #000 4%, #000 96%, transparent); }

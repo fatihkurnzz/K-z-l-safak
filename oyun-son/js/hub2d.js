@@ -29,14 +29,17 @@ export const onHitOk = fn => { hitOk = fn; };
 // --- yerleşim: cover + kaydırma payı ---
 function clampPan() {
   const [W, H] = D.size, w = view.w, h = view.h;
-  ox = Math.min(0, Math.max(w - W * s, ox)); oy = Math.min(0, Math.max(h - H * s, oy));
+  // sahne ekrandan darsa ortala (yanlarda bulanık zemin görünür), genişse kenarlara kadar kaydır
+  ox = W * s <= w ? (w - W * s) / 2 : Math.min(0, Math.max(w - W * s, ox));
+  oy = H * s <= h ? (h - H * s) / 2 : Math.min(0, Math.max(h - H * s, oy));
 }
 function layout(keep) {
   if (!D) return;
   const [W, H] = D.size, w = view.w, h = view.h;
+  if (!w || !h) { requestAnimationFrame(() => layout(keep)); return; } // ekran ölçüsü henüz yok
   let fx, fy;
   if (keep && s) { fx = (w / 2 - ox) / s; fy = (h / 2 - oy) / s; } else [fx, fy] = ODAK[cur];
-  const z = keep && s0 ? s / s0 : 1; s0 = Math.max(w / W, h / H); s = s0 * z;
+  const z = keep && s0 ? s / s0 : 1; s0 = Math.min(w / W, h / H); s = s0 * z; // 22 Kas: resmin TAMAMI görünür (eskiden kaplıyordu; geniş telefonda üst/alt %18 kesiliyordu)
   ox = w / 2 - fx * s; oy = h / 2 - fy * s; clampPan(); apply();
   if (cvs) { const r = Math.min(2, devicePixelRatio || 1); cvs.width = Math.round(w * r); cvs.height = Math.round(h * r); cvs._r = r; }
 }
@@ -149,7 +152,7 @@ export function show2d(yer) {
     addEventListener('resize', () => requestAnimationFrame(() => { if (active2d()) layout(true); }));
   }
   const [W, H] = D.size;
-  layer.innerHTML = `<div class="h2-wrap" style="width:${W}px;height:${H}px"><img class="h2-img" src="${DIR}${cur}/sahne.webp" alt="" decoding="async" draggable="false"><div class="h2-glow" aria-hidden="true"></div></div>${calm() ? '' : '<canvas class="h2-fx" aria-hidden="true"></canvas>'}`;
+  layer.innerHTML = `<div class="h2-bg" style="background-image:url('${DIR}${cur}/sahne.webp')"></div><div class="h2-wrap" style="width:${W}px;height:${H}px"><img class="h2-img" src="${DIR}${cur}/sahne.webp" alt="" decoding="async" draggable="false"><div class="h2-glow" aria-hidden="true"></div></div>${calm() ? '' : '<canvas class="h2-fx" aria-hidden="true"></canvas>'}`;
   wrap = layer.querySelector('.h2-wrap'); glowEl = layer.querySelector('.h2-glow'); cvs = layer.querySelector('.h2-fx');
   document.documentElement.dataset.hub2d = cur;
   loadHit(D.hit);
