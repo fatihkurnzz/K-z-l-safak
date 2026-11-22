@@ -70,7 +70,7 @@ function plate(c) {
   return `<div class="ks-pl-race"><i class="ks-ri">${IC[c.race] || ''}</i><span>${RACE[c.race] || ''}</span><em>${FACTIONS[c.race]?.name || ''}</em></div>
     <b class="ks-name" translate="no">${esc(c.name)}</b>
     <div class="ks-orn" aria-hidden="true"><i></i></div>
-    <div class="ks-pl-cls"><i class="ks-ci">${IC[c.cls] || ''}</i><span>${C.name || ''}</span></div>
+    <div class="ks-pl-cls"><i class="ks-ci" data-c="${c.cls}">${IC[c.cls] || ''}</i><span>${C.name || ''}</span></div>
     ${C.role ? `<small class="ks-role">${C.role}</small>` : ''}
     <div class="ks-pl-meta"><span>Seviye <em>${c.lvl}</em></span>${c.clan ? `<span>${esc(c.clan)}</span>` : ''}</div>`;
 }

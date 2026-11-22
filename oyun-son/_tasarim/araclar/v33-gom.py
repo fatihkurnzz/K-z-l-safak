@@ -4,7 +4,9 @@
 import sys, re, base64, io, os
 from PIL import Image
 R = sys.argv[1]; K = R + '/_tasarim/gelen/karakter-ekran/assets'
-YOL = {'ik-elentha': K + '/ikon/elentha.png', 'ik-kragmir': K + '/ikon/kragmir.png', 'ik-zar': K + '/ikon/zar.png'}
+YOL = {'ik-elentha': K + '/ikon/elentha.png', 'ik-kragmir': K + '/ikon/kragmir.png', 'ik-zar': K + '/ikon/zar.png',
+       # 22 Kas akşam — 'Karakter Kararlı Devir v2': başlık levhası ve sınıf simgeleri
+       'levha-ocak': R + '/_tasarim/gelen/karakter-v2/arayuz/baslik-levha-ocak.png', 'levha-sancak': R + '/_tasarim/gelen/karakter-v2/arayuz/baslik-levha-sancak.png', 's-warrior': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-warrior.png', 's-rogue': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-rogue.png', 's-priest': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-priest.png', 's-mage': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-mage.png'}
 def gom(m):
     ad = m.group(1); f = YOL.get(ad, f'{K}/arayuz/{ad}.png')
     b = io.BytesIO(); Image.open(f).convert('RGBA').save(b, 'WEBP', quality=90, method=6)

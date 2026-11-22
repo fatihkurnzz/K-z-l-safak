@@ -39,3 +39,14 @@ html body .olz .olz-clsl .olz-cls b { font-size:11px !important; letter-spacing:
 html body .olz .olz-dice > svg { opacity:0; }
 html body .olz .olz-dice { position:relative; }
 html body .olz .olz-dice::after { content:''; position:absolute; inset:2px; background:var(--kz-zar) center / 70% no-repeat; border-radius:4px; pointer-events:none; }
+
+/* ---- 22 Kas akşam: "Karakter Kararlı Devir v2" paketinden — başlık levhası (dokuz dilimli, uçlar 120 px) ve sınıf simgeleri ---- */
+html body .olz .olz-top > b:first-child { border:0 !important; border-image:url("@levha-sancak") 13 120 fill / 8px 40px stretch !important; padding:9px 46px !important; line-height:1.1; }
+html body .olz[data-race="ocak"] .olz-top > b:first-child, html[data-faction="ocak"] body .olz:not([data-race="sancak"]) .olz-top > b:first-child { border-image-source:url("@levha-ocak") !important; }
+html body .olz .olz-ic[data-c], html body .ks .ks-ci[data-c] { background:center / contain no-repeat; filter:drop-shadow(0 1px 2px #000c); }
+html body .olz .olz-ic[data-c] > svg, html body .ks .ks-ci[data-c] > svg { visibility:hidden; }
+html body .olz .olz-ic[data-c="warrior"], html body .ks .ks-ci[data-c="warrior"] { background-image:url("@s-warrior"); }
+html body .olz .olz-ic[data-c="rogue"], html body .ks .ks-ci[data-c="rogue"] { background-image:url("@s-rogue"); }
+html body .olz .olz-ic[data-c="priest"], html body .ks .ks-ci[data-c="priest"] { background-image:url("@s-priest"); }
+html body .olz .olz-ic[data-c="mage"], html body .ks .ks-ci[data-c="mage"] { background-image:url("@s-mage"); }
+html body .olz .olz-clsl .olz-ic[data-c] { width:22px !important; height:22px !important; transform:scale(1.25); }
