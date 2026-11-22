@@ -1,0 +1,20 @@
+const {chromium}=require('playwright');const race=process.argv[2]||'sancak',o=process.argv[3]||'s';
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:880,height:406},deviceScaleFactor:1});const err=[];p.on('pageerror',e=>err.push(e.message));
+const tk=async(sel,ms=6000)=>{try{await p.waitForSelector(sel,{timeout:ms});await p.evaluate(s=>document.querySelector(s).click(),sel);return true}catch{err.push('yok '+sel);return false}};
+const act=async(n,d={})=>p.evaluate(async([n,d])=>{const C=await import('/js/ui-core.js');await C.ACT[n]?.(d)},[n,d]);
+const closeAll=async()=>p.evaluate(()=>{const m=document.querySelector('#modal');if(m&&!m.hidden){m.hidden=true;m.innerHTML=''}const w=document.querySelector('#win');if(w&&!w.hidden)w.querySelector('[data-a="closeWin"], .x')?.click()});
+await p.goto('http://localhost:8765/?gfx=min');await p.waitForTimeout(2500);await tk('.ld-go',15000);await p.waitForTimeout(1200);await p.waitForSelector('[data-o="race"]',{timeout:15000});
+await p.evaluate(r=>[...document.querySelectorAll('[data-o="race"]')][r==='ocak'?1:0].click(),race);await p.fill('#olzname','Deneme');await tk('#olzgo');await p.waitForTimeout(900);await p.screenshot({path:o+'-secim.png'});
+await p.waitForTimeout(1500);await tk('#tkenter',10000);await p.waitForTimeout(2500);await p.evaluate(()=>[...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='Geç')?.click());await p.waitForTimeout(2000);
+await p.evaluate(()=>document.querySelector('.tskip')?.click());await p.waitForTimeout(1500);
+for(let i=0;i<3;i++){if(await p.evaluate(()=>!!document.documentElement.dataset.hub2d))break;await p.evaluate(()=>{for(const b of document.querySelectorAll('button')){if(/^(Atla|Evet|Tamam|Onayla|Evet, atla|Öğreticiyi atla)$/.test(b.textContent.trim())&&b.offsetParent){b.click();break}}});await p.waitForTimeout(2500);}
+await closeAll();await p.waitForTimeout(800);await p.screenshot({path:o+'-hub.png'});
+await act('profile');await p.waitForTimeout(1200);await p.screenshot({path:o+'-profil.png'});
+console.log('test araçları görünür mü:',await p.evaluate(()=>!!document.querySelector('[data-a="devLevel"]')),' rozet:',await p.evaluate(()=>!!document.querySelector('.dev')),' unvan:',await p.evaluate(()=>document.querySelector('.pf-ttl')?.textContent));
+await closeAll();for(let i=0;i<6;i++)await act('devLevel');await act('devGear');await p.waitForTimeout(1000);await closeAll();
+await act('bag');await p.waitForTimeout(1500);await p.screenshot({path:o+'-canta.png'});
+console.log('çantada svg glif:',await p.evaluate(()=>document.querySelectorAll('#win .ico.it svg.gi').length),' boyalı:',await p.evaluate(()=>document.querySelectorAll('#win .ico.it img.gpng').length));
+await closeAll();await p.waitForTimeout(500);await act('nobet');await p.waitForTimeout(2500);
+await p.evaluate(()=>{const e=document.querySelector('#page .nb-head');if(e)e.insertAdjacentHTML('afterend','<em>Güçlendirme: saldırı ve savunma +%10</em><div class="nb-boss"><b>Lav Yürek geldi</b><span>Ateş direnci önemli</span></div>')});
+await p.waitForTimeout(500);await p.screenshot({path:o+'-nobet.png'});
+console.log(err.join('\n')||'hata yok');await b.close();})();

@@ -1,0 +1,10 @@
+const hub=require('./hub.js');(async()=>{const race=process.argv[2]||'sancak',out=process.argv[3]||'y3';const {b,p,err,act,closeAll,tk}=await hub({race});
+for(let i=0;i<4;i++)await act('devLevel');await act('devEnergy');await p.waitForTimeout(800);await closeAll();
+await act('stage',{id:'1-1'});await p.waitForTimeout(1200);
+await p.evaluate(()=>document.querySelector('[data-a="vsAuto"]')?.click());await p.waitForTimeout(300);
+await tk('[data-a="vsStart"]');
+for(let i=0;i<4;i++){await p.waitForTimeout(1500);await p.evaluate(()=>{const s=[...document.querySelectorAll('#battleUI button')].find(b=>/^[123]x$/.test(b.textContent.trim()));if(s&&s.textContent.trim()!=='3x')s.click();const a=[...document.querySelectorAll('#battleUI button')].find(b=>/Otomatik/.test(b.textContent)&&!b.classList.contains('on'));});}
+await p.waitForSelector('#modal.bres, #modal .bres, .bres',{timeout:90000}).catch(()=>err.push('sonuç gelmedi'));
+await p.waitForTimeout(2500);await p.screenshot({path:out+'.png'});
+const st=await p.evaluate(()=>{const e=document.querySelector('.bres-stars');if(!e)return 'yildiz yok';const r=e.getBoundingClientRect();return e.outerHTML.slice(0,400)+' '+JSON.stringify([r.x,r.y,r.width,r.height].map(Math.round))+' fs='+getComputedStyle(e.querySelector('.stars')||e).fontSize});console.log(st);const m=await p.evaluate(()=>{const h=document.querySelector('#modal h2');if(!h)return null;const r=h.getBoundingClientRect(),f=document.querySelector('#modal .frame, #modal > div')?.getBoundingClientRect();const bt=[...document.querySelectorAll('#modal .mbtns .btn')].map(b=>Math.round(b.getBoundingClientRect().bottom));const ins=document.querySelector('#modal .in');return {bt,scroll:ins&&[ins.scrollHeight,ins.clientHeight,getComputedStyle(ins).overflowY],h2:[r.x,r.y,r.width,r.height].map(Math.round),frame:f&&[f.x,f.y,f.width,f.height].map(Math.round),txt:h.textContent,xp:document.querySelector('.rz-card.xp b')?.textContent}});
+console.log(JSON.stringify(m));console.log(err.join('\n')||'hata yok');await b.close();})();

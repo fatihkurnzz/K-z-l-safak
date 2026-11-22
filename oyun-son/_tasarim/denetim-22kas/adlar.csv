@@ -1,0 +1,902 @@
+﻿kimlik,tur,sinif,derece,mevcut_ad
+w:sword:0,silah:sword,Savaşçı,k0,Short Sword
+w:sword:0:1,silah:sword,Savaşçı,k0,Short Blade
+w:axe1:0,silah:axe1,Savaşçı,k0,Stone Axe
+w:sword2:0,silah:sword2,Savaşçı,k0,Bastard Sword
+w:sword2:0:1,silah:sword2,Savaşçı,k0,Training Warrior's Two-Handed Sword
+w:sword2:0:2,silah:sword2,Savaşçı,k0,Two-Handed Training Sword
+w:sword2:0:3,silah:sword2,Savaşçı,k0,Combined Blade
+w:axe2:0,silah:axe2,Savaşçı,k0,Battle Axe
+w:spear:0,silah:spear,Savaşçı,k0,Spear
+w:spear:0:1,silah:spear,Savaşçı,k0,Spike
+w:lance:0,silah:lance,Savaşçı,k6,Raptor
+w:lance:0:1,silah:lance,Savaşçı,k0,Spear Axe
+w:lance:0:2,silah:lance,Savaşçı,k0,Pole Axe
+w:mace2:0,silah:mace2,Savaşçı,k0,Great Maul
+w:mace2:0:1,silah:mace2,Savaşçı,k0,Giant Maul
+w:dagger:0,silah:dagger,Suikastçı,k0,Dagger
+w:dagger:0:1,silah:dagger,Suikastçı,k0,Training Knife
+w:dagger:0:2,silah:dagger,Suikastçı,k0,Practice Dagger
+w:bow:0,silah:bow,Suikastçı,k0,Training Bow
+w:mace:0,silah:mace,Şifacı,k0,Maul
+w:mace:0:1,silah:mace,Şifacı,k0,Training Mace
+w:mace:0:2,silah:mace,Şifacı,k0,Morning Star
+w:mace:0:3,silah:mace,Şifacı,k0,Priest Maul
+w:staff:0,silah:staff,Büyücü,k0,Wood Staff
+w:staff:0:1,silah:staff,Büyücü,k0,Training Staff
+w:staff:0:2,silah:staff,Büyücü,k0,Orc Staff
+w:staff:0:3,silah:staff,Büyücü,k0,Wooden Staff
+w:shield:0,kalkan,Savaşçı/Şifacı,k0,Wooden Shield
+a:warrior:0:helm,zirh:helm,Savaşçı,k0,Leather Cap
+a:warrior:0:chest,zirh:chest,Savaşçı,k0,Quilted Pauldron
+a:warrior:0:legs,zirh:legs,Savaşçı,k0,Leather Pads
+a:warrior:0:gloves,zirh:gloves,Savaşçı,k0,Leather Gloves
+a:warrior:0:boots,zirh:boots,Savaşçı,k0,Leather Shoes
+a:rogue:0:helm,zirh:helm,Suikastçı,k0,Rogue Cap
+a:rogue:0:chest,zirh:chest,Suikastçı,k0,Rogue Shirt
+a:rogue:0:legs,zirh:legs,Suikastçı,k0,Rogue Pads
+a:rogue:0:gloves,zirh:gloves,Suikastçı,k0,Rogue Gloves
+a:rogue:0:boots,zirh:boots,Suikastçı,k0,Rogue Shoes
+a:priest:0:helm,zirh:helm,Şifacı,k0,Priest Cap
+a:priest:0:chest,zirh:chest,Şifacı,k0,Fabric Coat
+a:priest:0:legs,zirh:legs,Şifacı,k0,Fabric Pants
+a:priest:0:gloves,zirh:gloves,Şifacı,k0,Priest Gloves
+a:priest:0:boots,zirh:boots,Şifacı,k0,Priest Shoes
+a:mage:0:helm,zirh:helm,Büyücü,k0,Mage Hat
+a:mage:0:chest,zirh:chest,Büyücü,k0,Mage Cotton Robe
+a:mage:0:legs,zirh:legs,Büyücü,k0,Mage Cloth Pants
+a:mage:0:gloves,zirh:gloves,Büyücü,k0,Mage Cotton Gloves
+a:mage:0:boots,zirh:boots,Büyücü,k0,Mage Shoes
+j:ear:0,taki:ear,,k5,Bronze Earring
+j:neck:0,taki:neck,,k0,Messenger Pendant
+j:neck:0:1,taki:neck,,k0,Cleric Pendant
+j:ring:0,taki:ring,,k0,Silver Ring
+j:ring:0:1,taki:ring,,k0,Messenger Ring
+j:belt:0,taki:belt,,k0,Linen Belt
+j:kor_ear:0,taki:kor_ear,Büyücü,k0,Bakır Kor Küpesi
+j:kor_neck:0,taki:kor_neck,Büyücü,k0,Bakır Kor Kolyesi
+j:kor_ring:0,taki:kor_ring,Büyücü,k0,Bakır Kor Yüzüğü
+j:alaz_ear:0,taki:alaz_ear,Büyücü,k0,Bakır Alaz Küpesi
+j:alaz_neck:0,taki:alaz_neck,Büyücü,k0,Bakır Alaz Kolyesi
+j:alaz_ring:0,taki:alaz_ring,Büyücü,k0,Bakır Alaz Yüzüğü
+j:simsek_ear:0,taki:simsek_ear,Büyücü,k0,Bakır Şimşek Küpesi
+j:simsek_neck:0,taki:simsek_neck,Büyücü,k0,Bakır Şimşek Kolyesi
+j:simsek_ring:0,taki:simsek_ring,Büyücü,k0,Bakır Şimşek Yüzüğü
+j:firtina_ear:0,taki:firtina_ear,Büyücü,k0,Bakır Fırtına Küpesi
+j:firtina_neck:0,taki:firtina_neck,Büyücü,k0,Bakır Fırtına Kolyesi
+j:firtina_ring:0,taki:firtina_ring,Büyücü,k0,Bakır Fırtına Yüzüğü
+w:sword:1,silah:sword,Savaşçı,k1,Long Sword
+w:axe1:1,silah:axe1,Savaşçı,k1,Hand Axe
+w:axe1:1:1,silah:axe1,Savaşçı,k1,Wood Cutter
+w:sword2:1,silah:sword2,Savaşçı,k1,Two-Handed Sword
+w:sword2:1:1,silah:sword2,Savaşçı,k1,Hero Sword
+w:axe2:1,silah:axe2,Savaşçı,k1,Timber Axe
+w:axe2:1:1,silah:axe2,Savaşçı,k1,Lumber Axe
+w:spear:1,silah:spear,Savaşçı,k1,Cross Spear
+w:lance:1,silah:lance,Savaşçı,k1,Battle Scythe
+w:mace2:1,silah:mace2,Savaşçı,k1,Battle Mace
+w:dagger:1,silah:dagger,Suikastçı,k1,Knife
+w:dagger:1:1,silah:dagger,Suikastçı,k1,Dirk
+w:jamadar:1,silah:jamadar,Suikastçı,k1,Jamadar
+w:bow:1,silah:bow,Suikastçı,k1,Bow
+w:mace:1,silah:mace,Şifacı,k1,Mace
+w:mace:1:1,silah:mace,Şifacı,k1,Hero Mace
+w:mace:1:2,silah:mace,Şifacı,k1,Priest Mace
+w:mace:1:3,silah:mace,Şifacı,k1,Priest Morning Star
+w:staff:1,silah:staff,Büyücü,k1,Wizard Staff
+w:shield:1,kalkan,Savaşçı/Şifacı,k1,Small Shield
+a:warrior:1:helm,zirh:helm,Savaşçı,k1,Novice Warrior's Helmet
+a:warrior:1:chest,zirh:chest,Savaşçı,k1,Novice Warrior's Pauldron
+a:warrior:1:legs,zirh:legs,Savaşçı,k1,Novice Warrior's Pants
+a:warrior:1:gloves,zirh:gloves,Savaşçı,k1,Novice Warrior's Gauntlets
+a:warrior:1:boots,zirh:boots,Savaşçı,k1,Novice Warrior's Boots
+a:rogue:1:helm,zirh:helm,Suikastçı,k1,Novice Rogue's Helmet
+a:rogue:1:chest,zirh:chest,Suikastçı,k1,Novice Rogue's Pauldron
+a:rogue:1:legs,zirh:legs,Suikastçı,k1,Novice Rogue's Pants
+a:rogue:1:gloves,zirh:gloves,Suikastçı,k1,Novice Rogue's Gauntlets
+a:rogue:1:boots,zirh:boots,Suikastçı,k1,Novice Rogue's Boots
+a:priest:1:helm,zirh:helm,Şifacı,k1,Priest Helmet
+a:priest:1:helm:1,zirh:helm,Şifacı,k1,Novice Priest's Helmet
+a:priest:1:chest,zirh:chest,Şifacı,k1,Silk Coat
+a:priest:1:chest:1,zirh:chest,Şifacı,k1,Novice Priest's Pauldron
+a:priest:1:legs,zirh:legs,Şifacı,k1,Silk Pants
+a:priest:1:legs:1,zirh:legs,Şifacı,k1,Novice Priest's Pants
+a:priest:1:gloves,zirh:gloves,Şifacı,k1,Priest Gauntlet
+a:priest:1:gloves:1,zirh:gloves,Şifacı,k1,Novice Priest's Gauntlets
+a:priest:1:boots,zirh:boots,Şifacı,k1,Priest Boots
+a:priest:1:boots:1,zirh:boots,Şifacı,k1,Novice Priest's Boots
+a:mage:1:helm,zirh:helm,Büyücü,k1,Mage Hemp Cap
+a:mage:1:helm:1,zirh:helm,Büyücü,k1,Novice Magician's Helmet
+a:mage:1:chest,zirh:chest,Büyücü,k1,Mage Hemp Robe
+a:mage:1:chest:1,zirh:chest,Büyücü,k1,Novice Magician's Robe
+a:mage:1:legs,zirh:legs,Büyücü,k1,Mage Hemp Pants
+a:mage:1:legs:1,zirh:legs,Büyücü,k1,Novice Magician's Pants
+a:mage:1:gloves,zirh:gloves,Büyücü,k1,Mage Hemp Gloves
+a:mage:1:gloves:1,zirh:gloves,Büyücü,k1,Novice Magician's Gauntlets
+a:mage:1:boots,zirh:boots,Büyücü,k1,Mage Hemp Boots
+a:mage:1:boots:1,zirh:boots,Büyücü,k1,Novice Magician's Boots
+j:ear:1,taki:ear,,k5,Silver Earring
+j:ear:1:1,taki:ear,,k1,Mage Earring
+j:ear:1:2,taki:ear,,k1,Mercenary Earring
+j:neck:1,taki:neck,,k1,Mercenary Pendant
+j:neck:1:1,taki:neck,,k1,Necklace of Life
+j:ring:1,taki:ring,,k1,Gold Ring
+j:ring:1:1,taki:ring,,k1,Mercenary Ring
+j:ring:1:2,taki:ring,,k1,Assassin Ring
+j:belt:1,taki:belt,,k1,Low Fur Belt
+j:kor_ear:1,taki:kor_ear,Büyücü,k1,Pirinç Kor Küpesi
+j:kor_neck:1,taki:kor_neck,Büyücü,k1,Pirinç Kor Kolyesi
+j:kor_ring:1,taki:kor_ring,Büyücü,k1,Pirinç Kor Yüzüğü
+j:alaz_ear:1,taki:alaz_ear,Büyücü,k1,Pirinç Alaz Küpesi
+j:alaz_neck:1,taki:alaz_neck,Büyücü,k1,Pirinç Alaz Kolyesi
+j:alaz_ring:1,taki:alaz_ring,Büyücü,k1,Pirinç Alaz Yüzüğü
+j:simsek_ear:1,taki:simsek_ear,Büyücü,k1,Pirinç Şimşek Küpesi
+j:simsek_neck:1,taki:simsek_neck,Büyücü,k1,Pirinç Şimşek Kolyesi
+j:simsek_ring:1,taki:simsek_ring,Büyücü,k1,Pirinç Şimşek Yüzüğü
+j:firtina_ear:1,taki:firtina_ear,Büyücü,k1,Pirinç Fırtına Küpesi
+j:firtina_neck:1,taki:firtina_neck,Büyücü,k1,Pirinç Fırtına Kolyesi
+j:firtina_ring:1,taki:firtina_ring,Büyücü,k1,Pirinç Fırtına Yüzüğü
+w:sword:2,silah:sword,Savaşçı,k2,Scimitar
+w:axe1:2,silah:axe1,Savaşçı,k2,Double Axe
+w:axe1:2:1,silah:axe1,Savaşçı,k2,Large Axe
+w:sword2:2,silah:sword2,Savaşçı,k2,Battle Sword
+w:sword2:2:1,silah:sword2,Savaşçı,k2,War Sword
+w:axe2:2,silah:axe2,Savaşçı,k2,Twin Axe
+w:spear:2,silah:spear,Savaşçı,k2,Spetum
+w:lance:2,silah:lance,Savaşçı,k2,War Scythe
+w:mace2:2,silah:mace2,Savaşçı,k2,War Club
+w:dagger:2,silah:dagger,Suikastçı,k2,Stiletto
+w:jamadar:2,silah:jamadar,Suikastçı,k2,Half moon Jamadar
+w:bow:2,silah:bow,Suikastçı,k2,Short Bow
+w:mace:2,silah:mace,Şifacı,k2,War Hammer
+w:mace:2:1,silah:mace,Şifacı,k2,Novice Paladin Mace
+w:mace:2:2,silah:mace,Şifacı,k2,Spiked Club
+w:mace:2:3,silah:mace,Şifacı,k2,Priest Iron Star
+w:staff:2,silah:staff,Büyücü,k2,Bone Staff
+w:staff:2:1,silah:staff,Büyücü,k2,Horned Staff
+w:shield:2,kalkan,Savaşçı/Şifacı,k2,Round Shield
+a:warrior:2:helm,zirh:helm,Savaşçı,k2,Half Plate Helmet
+a:warrior:2:helm:1,zirh:helm,Savaşçı,k2,Training warriors' Helmet
+a:warrior:2:chest,zirh:chest,Savaşçı,k2,Half Plate Pauldron
+a:warrior:2:chest:1,zirh:chest,Savaşçı,k2,Training warriors' Pauldron
+a:warrior:2:legs,zirh:legs,Savaşçı,k2,Half Plate Pads
+a:warrior:2:legs:1,zirh:legs,Savaşçı,k2,Training warriors' Pants
+a:warrior:2:gloves,zirh:gloves,Savaşçı,k2,Half Plate Gauntlet
+a:warrior:2:gloves:1,zirh:gloves,Savaşçı,k2,Training warriors' Gauntlets
+a:warrior:2:boots,zirh:boots,Savaşçı,k2,Half Plate Boots
+a:warrior:2:boots:1,zirh:boots,Savaşçı,k2,Training warriors' Boots
+a:rogue:2:helm,zirh:helm,Suikastçı,k2,Rogue Helmet
+a:rogue:2:chest,zirh:chest,Suikastçı,k2,Rogue Half Plate Pauldron
+a:rogue:2:legs,zirh:legs,Suikastçı,k2,Rogue Half Plate Pads
+a:rogue:2:gloves,zirh:gloves,Suikastçı,k2,Rogue Gauntlet
+a:rogue:2:boots,zirh:boots,Suikastçı,k2,Rogue Boots
+a:priest:2:helm,zirh:helm,Şifacı,k2,Priest Plate Helmet
+a:priest:2:helm:1,zirh:helm,Şifacı,k2,Training Priest's Helmet
+a:priest:2:chest,zirh:chest,Şifacı,k2,Priest Plate Pauldron
+a:priest:2:chest:1,zirh:chest,Şifacı,k2,Training Priest's Pauldron
+a:priest:2:legs,zirh:legs,Şifacı,k2,Priest Plate Pads
+a:priest:2:legs:1,zirh:legs,Şifacı,k2,Training Priest's Pants
+a:priest:2:gloves,zirh:gloves,Şifacı,k2,Priest Plate Gauntlet
+a:priest:2:gloves:1,zirh:gloves,Şifacı,k2,Training Priest's Gauntlets
+a:priest:2:boots,zirh:boots,Şifacı,k2,Priest Plate Boots
+a:priest:2:boots:1,zirh:boots,Şifacı,k2,Training Priest's Boots
+a:mage:2:helm,zirh:helm,Büyücü,k2,Mage Helmet
+a:mage:2:helm:1,zirh:helm,Büyücü,k2,Training Magician's Helmet
+a:mage:2:chest,zirh:chest,Büyücü,k2,Mage Silk Robe
+a:mage:2:chest:1,zirh:chest,Büyücü,k2,Training Magician's Robe
+a:mage:2:legs,zirh:legs,Büyücü,k2,Mage Silk Pants
+a:mage:2:legs:1,zirh:legs,Büyücü,k2,Training Magician's Pants
+a:mage:2:gloves,zirh:gloves,Büyücü,k2,Mage Hard Leather Gloves
+a:mage:2:gloves:1,zirh:gloves,Büyücü,k2,Training Magician's Gauntlets
+a:mage:2:boots,zirh:boots,Büyücü,k2,Mage Hard Leather Boots
+a:mage:2:boots:1,zirh:boots,Büyücü,k2,Training Magician's Boots
+j:ear:2,taki:ear,,k2,Pearl Earring
+j:ear:2:1,taki:ear,,k2,Assassin Earring
+j:ear:2:2,taki:ear,,k2,Priest Earring
+j:neck:2,taki:neck,,k2,Topaz Pendant
+j:neck:2:1,taki:neck,,k2,Elemental Necklace
+j:neck:2:2,taki:neck,,k2,Strength Necklace
+j:ring:2,taki:ring,,k2,Sapphire Ring
+j:ring:2:1,taki:ring,,k2,Priest Ring
+j:belt:2,taki:belt,,k2,Body Belt
+j:belt:2:1,taki:belt,,k5,Mana Belt
+j:kor_ear:2,taki:kor_ear,Büyücü,k2,Gümüş Kor Küpesi
+j:kor_neck:2,taki:kor_neck,Büyücü,k2,Gümüş Kor Kolyesi
+j:kor_ring:2,taki:kor_ring,Büyücü,k2,Gümüş Kor Yüzüğü
+j:alaz_ear:2,taki:alaz_ear,Büyücü,k2,Gümüş Alaz Küpesi
+j:alaz_neck:2,taki:alaz_neck,Büyücü,k2,Gümüş Alaz Kolyesi
+j:alaz_ring:2,taki:alaz_ring,Büyücü,k2,Gümüş Alaz Yüzüğü
+j:simsek_ear:2,taki:simsek_ear,Büyücü,k2,Gümüş Şimşek Küpesi
+j:simsek_neck:2,taki:simsek_neck,Büyücü,k2,Gümüş Şimşek Kolyesi
+j:simsek_ring:2,taki:simsek_ring,Büyücü,k2,Gümüş Şimşek Yüzüğü
+j:firtina_ear:2,taki:firtina_ear,Büyücü,k2,Gümüş Fırtına Küpesi
+j:firtina_neck:2,taki:firtina_neck,Büyücü,k2,Gümüş Fırtına Kolyesi
+j:firtina_ring:2,taki:firtina_ring,Büyücü,k2,Gümüş Fırtına Yüzüğü
+w:sword:3,silah:sword,Savaşçı,k3,Sabre
+w:sword:3:1,silah:sword,Savaşçı,k3,Sword of Novice Mercenary
+w:axe1:3,silah:axe1,Savaşçı,k3,Bipennis
+w:axe1:3:1,silah:axe1,Savaşçı,k3,Warrior Axe
+w:sword2:3,silah:sword2,Savaşçı,k3,Great Sword
+w:sword2:3:1,silah:sword2,Savaşçı,k3,Two-handed Sword of Novice
+w:sword2:3:2,silah:sword2,Savaşçı,k3,Giant Sword
+w:axe2:3,silah:axe2,Savaşçı,k3,Great Axe
+w:spear:3,silah:spear,Savaşçı,k3,Long Spear
+w:lance:3,silah:lance,Savaşçı,k3,Grim Scythe
+w:mace2:3,silah:mace2,Savaşçı,k3,Great Mace
+w:mace2:3:1,silah:mace2,Savaşçı,k3,Giant Morning Star
+w:dagger:3,silah:dagger,Suikastçı,k3,Assassin Dagger
+w:dagger:3:1,silah:dagger,Suikastçı,k3,Dagger of Novice Assassin
+w:jamadar:3,silah:jamadar,Suikastçı,k3,Ripper's Jamadar
+w:bow:3,silah:bow,Suikastçı,k3,Bamboo Bow
+w:mace:3,silah:mace,Şifacı,k3,Breaker
+w:mace:3:1,silah:mace,Şifacı,k3,Priest Breaker
+w:mace:3:2,silah:mace,Şifacı,k3,Priest War Hammer
+w:mace:3:3,silah:mace,Şifacı,k3,Priest Spike Club
+w:staff:3,silah:staff,Büyücü,k3,Mage Staff
+w:staff:3:1,silah:staff,Büyücü,k3,Staff of Novice Rudimentary Magic
+w:staff:3:2,silah:staff,Büyücü,k3,Novice Evil Sage Staff
+w:shield:3,kalkan,Savaşçı/Şifacı,k3,Large Shield
+a:warrior:3:helm,zirh:helm,Savaşçı,k3,Plate Armor Helmet
+a:warrior:3:helm:1,zirh:helm,Savaşçı,k3,Skilled Warrior's Helmet
+a:warrior:3:chest,zirh:chest,Savaşçı,k3,Plate Armor Pauldron
+a:warrior:3:chest:1,zirh:chest,Savaşçı,k3,Skilled Warrior's Pauldron
+a:warrior:3:legs,zirh:legs,Savaşçı,k3,Plate Armor Pads
+a:warrior:3:legs:1,zirh:legs,Savaşçı,k3,Skilled Warrior's Pants
+a:warrior:3:gloves,zirh:gloves,Savaşçı,k3,Plate Armor Gauntlet
+a:warrior:3:gloves:1,zirh:gloves,Savaşçı,k3,Skilled Warrior's Gauntlets
+a:warrior:3:boots,zirh:boots,Savaşçı,k3,Plate Armor Boots
+a:warrior:3:boots:1,zirh:boots,Savaşçı,k3,Skilled Warrior's Boots
+a:rogue:3:helm,zirh:helm,Suikastçı,k3,Training Rogue's Helmet
+a:rogue:3:helm:1,zirh:helm,Suikastçı,k3,Helmet of Novice Mercenary
+a:rogue:3:chest,zirh:chest,Suikastçı,k3,Training Rogue's Pauldron
+a:rogue:3:chest:1,zirh:chest,Suikastçı,k3,Pauldron of Novice Mercenary
+a:rogue:3:legs,zirh:legs,Suikastçı,k3,Training Rogue's Pants
+a:rogue:3:legs:1,zirh:legs,Suikastçı,k3,Pads of Novice Mercenary
+a:rogue:3:gloves,zirh:gloves,Suikastçı,k3,Training Rogue's Gauntlets
+a:rogue:3:gloves:1,zirh:gloves,Suikastçı,k3,Gauntlets of Novice Mercenary
+a:rogue:3:boots,zirh:boots,Suikastçı,k3,Training Rogue's Boots
+a:rogue:3:boots:1,zirh:boots,Suikastçı,k3,Boots of Novice Mercenary
+a:priest:3:helm,zirh:helm,Şifacı,k3,Priest Heavy Plate Armor Helmet
+a:priest:3:helm:1,zirh:helm,Şifacı,k3,Skilled Priest's Helmet
+a:priest:3:chest,zirh:chest,Şifacı,k3,Priest Heavy Plate Armor Pauldron
+a:priest:3:chest:1,zirh:chest,Şifacı,k3,Skilled Priest's Pauldron
+a:priest:3:legs,zirh:legs,Şifacı,k3,Priest Heavy Plate Armor Pads
+a:priest:3:legs:1,zirh:legs,Şifacı,k3,Skilled Priest's Pants
+a:priest:3:gloves,zirh:gloves,Şifacı,k3,Priest Heavy Plate Armor Gauntlet
+a:priest:3:gloves:1,zirh:gloves,Şifacı,k3,Skilled Priest's Gauntlets
+a:priest:3:boots,zirh:boots,Şifacı,k3,Priest Heavy Plate Armor Boots
+a:priest:3:boots:1,zirh:boots,Şifacı,k3,Skilled Priest's Boots
+a:mage:3:helm,zirh:helm,Büyücü,k3,Mage Satin Hat
+a:mage:3:helm:1,zirh:helm,Büyücü,k3,Skilled Magician's Helmet
+a:mage:3:chest,zirh:chest,Büyücü,k3,Mage Satin Robe
+a:mage:3:chest:1,zirh:chest,Büyücü,k3,Skilled Magician's Robe
+a:mage:3:legs,zirh:legs,Büyücü,k3,Mage Satin Pants
+a:mage:3:legs:1,zirh:legs,Büyücü,k3,Skilled Magician's Pants
+a:mage:3:gloves,zirh:gloves,Büyücü,k3,Mage Satin Gloves
+a:mage:3:gloves:1,zirh:gloves,Büyücü,k3,Skilled Magician's Gauntlets
+a:mage:3:boots,zirh:boots,Büyücü,k3,Mage Satin Boots
+a:mage:3:boots:1,zirh:boots,Büyücü,k3,Skilled Magician's Boots
+j:ear:3,taki:ear,,k3,Gold Earring
+j:ear:3:1,taki:ear,,k5,White Silver Earring
+j:neck:3,taki:neck,,k3,Golden Pendant
+j:neck:3:1,taki:neck,,k3,Agility Necklace
+j:neck:3:2,taki:neck,,k3,Health Necklace
+j:ring:3,taki:ring,,k3,Opal Ring
+j:ring:3:1,taki:ring,,k3,Ring of Purity
+j:belt:3,taki:belt,,k3,Bronze Belt
+j:belt:3:1,taki:belt,,k3,Curse Belt
+j:kor_ear:3,taki:kor_ear,Büyücü,k3,Akik Kor Küpesi
+j:kor_neck:3,taki:kor_neck,Büyücü,k3,Akik Kor Kolyesi
+j:kor_ring:3,taki:kor_ring,Büyücü,k3,Akik Kor Yüzüğü
+j:alaz_ear:3,taki:alaz_ear,Büyücü,k3,Akik Alaz Küpesi
+j:alaz_neck:3,taki:alaz_neck,Büyücü,k3,Akik Alaz Kolyesi
+j:alaz_ring:3,taki:alaz_ring,Büyücü,k3,Akik Alaz Yüzüğü
+j:simsek_ear:3,taki:simsek_ear,Büyücü,k3,Akik Şimşek Küpesi
+j:simsek_neck:3,taki:simsek_neck,Büyücü,k3,Akik Şimşek Kolyesi
+j:simsek_ring:3,taki:simsek_ring,Büyücü,k3,Akik Şimşek Yüzüğü
+j:firtina_ear:3,taki:firtina_ear,Büyücü,k3,Akik Fırtına Küpesi
+j:firtina_neck:3,taki:firtina_neck,Büyücü,k3,Akik Fırtına Kolyesi
+j:firtina_ring:3,taki:firtina_ring,Büyücü,k3,Akik Fırtına Yüzüğü
+w:sword:4,silah:sword,Savaşçı,k4,Rapier
+w:axe1:4,silah:axe1,Savaşçı,k4,Military Pick
+w:sword2:4,silah:sword2,Savaşçı,k4,Claymore
+w:axe2:4,silah:axe2,Savaşçı,k4,Broad Axe
+w:spear:4,silah:spear,Savaşçı,k4,Pike
+w:lance:4,silah:lance,Savaşçı,k4,Bill
+w:mace2:4,silah:mace2,Savaşçı,k4,Weight Hammer
+w:dagger:4,silah:dagger,Suikastçı,k4,Sword breaker
+w:jamadar:4,silah:jamadar,Suikastçı,k4,Wind storm
+w:bow:4,silah:bow,Suikastçı,k4,Hunter's Bow
+w:xbow:4,silah:xbow,Suikastçı,k4,Crossbow
+w:xbow:4:1,silah:xbow,Suikastçı,k4,Bow of Novice Assassin
+w:mace:4,silah:mace,Şifacı,k4,Hacker
+w:mace:4:1,silah:mace,Şifacı,k4,Mace of Novice Paladin
+w:mace:4:2,silah:mace,Şifacı,k4,Bone Breaker
+w:mace:4:3,silah:mace,Şifacı,k4,Priest Hacker
+w:staff:4,silah:staff,Büyücü,k4,Alchemy Staff
+w:shield:4,kalkan,Savaşçı/Şifacı,k4,Kite Shield
+a:warrior:4:helm,zirh:helm,Savaşçı,k4,Heavy Plate Armor Helmet
+a:warrior:4:chest,zirh:chest,Savaşçı,k4,Heavy Plate Armor Pauldron
+a:warrior:4:legs,zirh:legs,Savaşçı,k4,Heavy Plate Armor Pads
+a:warrior:4:gloves,zirh:gloves,Savaşçı,k4,Heavy Plate Armor Gauntlet
+a:warrior:4:boots,zirh:boots,Savaşçı,k4,Heavy Plate Armor Boots
+a:rogue:4:helm,zirh:helm,Suikastçı,k4,Rogue Plate Helmet
+a:rogue:4:chest,zirh:chest,Suikastçı,k4,Rogue Plate Armor Pauldron
+a:rogue:4:legs,zirh:legs,Suikastçı,k4,Rogue Plate Armor Pads
+a:rogue:4:gloves,zirh:gloves,Suikastçı,k4,Rogue Plate Gauntlet
+a:rogue:4:boots,zirh:boots,Suikastçı,k4,Rogue Plate Boots
+a:priest:4:helm,zirh:helm,Şifacı,k4,Helmet of Destruction
+a:priest:4:helm:1,zirh:helm,Şifacı,k4,Helmet of Novice Paladin
+a:priest:4:chest,zirh:chest,Şifacı,k4,Armor of Destruction
+a:priest:4:chest:1,zirh:chest,Şifacı,k4,Pauldron of Novice Paladin
+a:priest:4:legs,zirh:legs,Şifacı,k4,Pads of Destruction
+a:priest:4:legs:1,zirh:legs,Şifacı,k4,Pads of Novice Paladin
+a:priest:4:gloves,zirh:gloves,Şifacı,k4,Gauntlet of Destruction
+a:priest:4:gloves:1,zirh:gloves,Şifacı,k4,Gauntlets of Novice Paladin
+a:priest:4:boots,zirh:boots,Şifacı,k4,Boots of Destruction
+a:priest:4:boots:1,zirh:boots,Şifacı,k4,Boots of Novice Paladin
+a:mage:4:helm,zirh:helm,Büyücü,k4,Mage Velvet Hat
+a:mage:4:helm:1,zirh:helm,Büyücü,k4,Helmet of Novice Rudimentary Magic
+a:mage:4:chest,zirh:chest,Büyücü,k4,Mage Velvet Robe
+a:mage:4:chest:1,zirh:chest,Büyücü,k4,Robe of Novice Rudimentary Magic
+a:mage:4:legs,zirh:legs,Büyücü,k4,Mage Velvet Pants
+a:mage:4:legs:1,zirh:legs,Büyücü,k4,Pants of of Novice Rudimentary Magic
+a:mage:4:gloves,zirh:gloves,Büyücü,k4,Mage Velvet Gloves
+a:mage:4:gloves:1,zirh:gloves,Büyücü,k4,Gauntlets of Novice Rudimentary
+a:mage:4:boots,zirh:boots,Büyücü,k4,Mage Velvet Boots
+a:mage:4:boots:1,zirh:boots,Büyücü,k4,Boots of Novice Rudimentary Magic
+j:ear:4,taki:ear,,k4,Ruby Earring
+j:ear:4:1,taki:ear,,k4,Grand Mage Earring
+j:neck:4,taki:neck,,k4,Crystal Necklace
+j:neck:4:1,taki:neck,,k4,Intelligence Necklace
+j:neck:4:2,taki:neck,,k5,Warrior Pendant
+j:ring:4,taki:ring,,k4,Emerald Ring
+j:ring:4:1,taki:ring,,k4,Crystal Ring
+j:belt:4,taki:belt,,k4,Light's Belt
+j:kor_ear:4,taki:kor_ear,Büyücü,k4,Altın Kor Küpesi
+j:kor_neck:4,taki:kor_neck,Büyücü,k4,Altın Kor Kolyesi
+j:kor_ring:4,taki:kor_ring,Büyücü,k4,Altın Kor Yüzüğü
+j:alaz_ear:4,taki:alaz_ear,Büyücü,k4,Altın Alaz Küpesi
+j:alaz_neck:4,taki:alaz_neck,Büyücü,k4,Altın Alaz Kolyesi
+j:alaz_ring:4,taki:alaz_ring,Büyücü,k4,Altın Alaz Yüzüğü
+j:simsek_ear:4,taki:simsek_ear,Büyücü,k4,Altın Şimşek Küpesi
+j:simsek_neck:4,taki:simsek_neck,Büyücü,k4,Altın Şimşek Kolyesi
+j:simsek_ring:4,taki:simsek_ring,Büyücü,k4,Altın Şimşek Yüzüğü
+j:firtina_ear:4,taki:firtina_ear,Büyücü,k4,Altın Fırtına Küpesi
+j:firtina_neck:4,taki:firtina_neck,Büyücü,k4,Altın Fırtına Kolyesi
+j:firtina_ring:4,taki:firtina_ring,Büyücü,k4,Altın Fırtına Yüzüğü
+w:sword:5,silah:sword,Savaşçı,k5,Crescent
+w:sword:5:1,silah:sword,Savaşçı,k5,Skeleton Sword
+w:axe1:5,silah:axe1,Savaşçı,k5,Cleaver Axe
+w:sword2:5,silah:sword2,Savaşçı,k5,Flamberge
+w:axe2:5,silah:axe2,Savaşçı,k5,Bone Axe
+w:spear:5,silah:spear,Savaşçı,k5,Trident
+w:lance:5,silah:lance,Savaşçı,k5,Halberd
+w:mace2:5,silah:mace2,Savaşçı,k5,Large Breaker
+w:dagger:5,silah:dagger,Suikastçı,k5,Kukry
+w:jamadar:5,silah:jamadar,Suikastçı,k5,Abyss Jamadar
+w:bow:5,silah:bow,Suikastçı,k5,Composite Bow
+w:xbow:5,silah:xbow,Suikastçı,k5,Cross Bow
+w:mace:5,silah:mace,Şifacı,k5,Cracker
+w:mace:5:1,silah:mace,Şifacı,k5,Priest Cracker
+w:staff:5,silah:staff,Büyücü,k5,Elemental Staff
+w:staff:5:1,silah:staff,Büyücü,k5,Eerie Skull Cane
+w:shield:5,kalkan,Savaşçı/Şifacı,k5,Octagon Shield
+a:warrior:5:helm,zirh:helm,Savaşçı,k5,Troll Armor: Helmet
+a:warrior:5:chest,zirh:chest,Savaşçı,k5,Troll Armor: Upper Garment
+a:warrior:5:legs,zirh:legs,Savaşçı,k5,Troll Armor: Lower Garment
+a:warrior:5:gloves,zirh:gloves,Savaşçı,k5,Troll Armor: Gauntlets
+a:warrior:5:boots,zirh:boots,Savaşçı,k5,Troll Armor: Boots
+a:rogue:5:helm,zirh:helm,Suikastçı,k5,Skilled Rogue's Helmet
+a:rogue:5:chest,zirh:chest,Suikastçı,k5,Skilled Rogue's Pauldron
+a:rogue:5:legs,zirh:legs,Suikastçı,k5,Skilled Rogue's Pants
+a:rogue:5:gloves,zirh:gloves,Suikastçı,k5,Skilled Rogue's Gauntlets
+a:rogue:5:boots,zirh:boots,Suikastçı,k5,Skilled Rogue's Boots
+a:priest:5:helm,zirh:helm,Şifacı,k5,Protection Hat
+a:priest:5:chest,zirh:chest,Şifacı,k5,Protection Fabric Coat
+a:priest:5:legs,zirh:legs,Şifacı,k5,Protection Fabric Pants
+a:priest:5:gloves,zirh:gloves,Şifacı,k5,Protection Gloves
+a:priest:5:boots,zirh:boots,Şifacı,k5,Protection Shoes
+a:mage:5:helm,zirh:helm,Büyücü,k5,Complete Helmet
+a:mage:5:chest,zirh:chest,Büyücü,k5,Complete Robe
+a:mage:5:legs,zirh:legs,Büyücü,k5,Complete Pants
+a:mage:5:gloves,zirh:gloves,Büyücü,k5,Complete Glove
+a:mage:5:boots,zirh:boots,Büyücü,k5,Complete Boots
+j:ear:5,taki:ear,,k6,Opal Earring
+j:ear:5:1,taki:ear,,k5,Warrior's Earring
+j:neck:5,taki:neck,,k5,Green Dragon Necklace
+j:neck:5:1,taki:neck,,k5,Curse Necklace
+j:neck:5:2,taki:neck,,k6,Elemental Pendant
+j:ring:5,taki:ring,,k5,Ruby Ring
+j:ring:5:1,taki:ring,,k5,Ring of Life
+j:belt:5,taki:belt,,k5,Strength Belt
+j:belt:5:1,taki:belt,,k5,Intelligence Belt
+j:kor_ear:5,taki:kor_ear,Büyücü,k5,Zümrüt Kor Küpesi
+j:kor_neck:5,taki:kor_neck,Büyücü,k5,Zümrüt Kor Kolyesi
+j:kor_ring:5,taki:kor_ring,Büyücü,k5,Zümrüt Kor Yüzüğü
+j:alaz_ear:5,taki:alaz_ear,Büyücü,k5,Zümrüt Alaz Küpesi
+j:alaz_neck:5,taki:alaz_neck,Büyücü,k5,Zümrüt Alaz Kolyesi
+j:alaz_ring:5,taki:alaz_ring,Büyücü,k5,Zümrüt Alaz Yüzüğü
+j:simsek_ear:5,taki:simsek_ear,Büyücü,k5,Zümrüt Şimşek Küpesi
+j:simsek_neck:5,taki:simsek_neck,Büyücü,k5,Zümrüt Şimşek Kolyesi
+j:simsek_ring:5,taki:simsek_ring,Büyücü,k5,Zümrüt Şimşek Yüzüğü
+j:firtina_ear:5,taki:firtina_ear,Büyücü,k5,Zümrüt Fırtına Küpesi
+j:firtina_neck:5,taki:firtina_neck,Büyücü,k5,Zümrüt Fırtına Kolyesi
+j:firtina_ring:5,taki:firtina_ring,Büyücü,k5,Zümrüt Fırtına Yüzüğü
+w:sword:6,silah:sword,Savaşçı,k6,Blade
+w:axe1:6,silah:axe1,Savaşçı,k6,Tomahawk
+w:axe1:6:1,silah:axe1,Savaşçı,k6,Wrist Cutter
+w:sword2:6,silah:sword2,Savaşçı,k6,Double Blade
+w:axe2:6,silah:axe2,Savaşçı,k6,Bone Cleaver
+w:spear:6,silah:spear,Savaşçı,k6,Harpoon
+w:lance:6,silah:lance,Savaşçı,k6,Bardish
+w:mace2:6,silah:mace2,Savaşçı,k6,Large Hacker
+w:dagger:6,silah:dagger,Suikastçı,k6,Mirage Dagger
+w:jamadar:6,silah:jamadar,Suikastçı,k6,Blood finger
+w:bow:6,silah:bow,Suikastçı,k6,Horn Bow
+w:xbow:6,silah:xbow,Suikastçı,k6,Horn Crossbow
+w:mace:6,silah:mace,Şifacı,k6,Bone Crasher
+w:mace:6:1,silah:mace,Şifacı,k6,Priest Bone crasher
+w:staff:6,silah:staff,Büyücü,k6,Salamander Staff
+w:staff:6:1,silah:staff,Büyücü,k6,Monk's Staff of Destruction
+w:staff:6:2,silah:staff,Büyücü,k6,Viper Staff
+w:shield:6,kalkan,Savaşçı/Şifacı,k6,Large Kite Shield
+w:shield:6:1,kalkan,Savaşçı/Şifacı,k6,Sacred Defender
+w:shield:6:2,kalkan,Savaşçı/Şifacı,k6,Round Kite Shield
+a:warrior:6:helm,zirh:helm,Savaşçı,k6,Dragon Scale Helmet
+a:warrior:6:chest,zirh:chest,Savaşçı,k6,Dragon Scale Armor Top
+a:warrior:6:legs,zirh:legs,Savaşçı,k6,Dragon Scale Armor Pants
+a:warrior:6:gloves,zirh:gloves,Savaşçı,k6,Dragon Scale Gauntlet
+a:warrior:6:boots,zirh:boots,Savaşçı,k6,Dragon Scale Boots
+a:rogue:6:helm,zirh:helm,Suikastçı,k6,Rogue Heavy Plate Armor Helmet
+a:rogue:6:chest,zirh:chest,Suikastçı,k6,Rogue Heavy Plate Armor Pauldron
+a:rogue:6:legs,zirh:legs,Suikastçı,k6,Rogue Heavy Plate Armor Pads
+a:rogue:6:gloves,zirh:gloves,Suikastçı,k6,Rogue Heavy Plate Armor Gauntlet
+a:rogue:6:boots,zirh:boots,Suikastçı,k6,Rogue Heavy Plate Armor Boots
+a:priest:6:helm,zirh:helm,Şifacı,k6,Helmet of Trial
+a:priest:6:chest,zirh:chest,Şifacı,k6,Pauldron of Trial
+a:priest:6:legs,zirh:legs,Şifacı,k6,Pads of Trial
+a:priest:6:gloves,zirh:gloves,Şifacı,k6,Gauntlet of Trial
+a:priest:6:boots,zirh:boots,Şifacı,k6,Boots of Trial
+a:mage:6:helm,zirh:helm,Büyücü,k6,Wisdom's Hat
+a:mage:6:chest,zirh:chest,Büyücü,k6,Wisdom's Robe
+a:mage:6:legs,zirh:legs,Büyücü,k6,Wisdom's Cloth Pants
+a:mage:6:gloves,zirh:gloves,Büyücü,k6,Wisdom's Gloves
+a:mage:6:boots,zirh:boots,Büyücü,k6,Wisdom's Shoes
+j:ear:6,taki:ear,,k6,Platinum Earring
+j:ear:6:1,taki:ear,,k6,Rogue's Earring
+j:neck:6,taki:neck,,k6,Blue Dragon Necklace
+j:neck:6:1,taki:neck,,k6,Priest Pendant
+j:neck:6:2,taki:neck,,k6,Goddess Necklace
+j:ring:6,taki:ring,,k6,Platinum Ring
+j:ring:6:1,taki:ring,,k6,Grand Flame Ring
+j:belt:6,taki:belt,,k6,Agility Belt
+j:belt:6:1,taki:belt,,k6,Holy Ghost Belt
+j:kor_ear:6,taki:kor_ear,Büyücü,k6,Safir Kor Küpesi
+j:kor_neck:6,taki:kor_neck,Büyücü,k6,Safir Kor Kolyesi
+j:kor_ring:6,taki:kor_ring,Büyücü,k6,Safir Kor Yüzüğü
+j:alaz_ear:6,taki:alaz_ear,Büyücü,k6,Safir Alaz Küpesi
+j:alaz_neck:6,taki:alaz_neck,Büyücü,k6,Safir Alaz Kolyesi
+j:alaz_ring:6,taki:alaz_ring,Büyücü,k6,Safir Alaz Yüzüğü
+j:simsek_ear:6,taki:simsek_ear,Büyücü,k6,Safir Şimşek Küpesi
+j:simsek_neck:6,taki:simsek_neck,Büyücü,k6,Safir Şimşek Kolyesi
+j:simsek_ring:6,taki:simsek_ring,Büyücü,k6,Safir Şimşek Yüzüğü
+j:firtina_ear:6,taki:firtina_ear,Büyücü,k6,Safir Fırtına Küpesi
+j:firtina_neck:6,taki:firtina_neck,Büyücü,k6,Safir Fırtına Kolyesi
+j:firtina_ring:6,taki:firtina_ring,Büyücü,k6,Safir Fırtına Yüzüğü
+w:sword:7,silah:sword,Savaşçı,k7,Slayer
+w:axe1:7,silah:axe1,Savaşçı,k7,Deep Scar
+w:sword2:7,silah:sword2,Savaşçı,k7,Destroyer
+w:sword2:7:1,silah:sword2,Savaşçı,k7,Mirage
+w:axe2:7,silah:axe2,Savaşçı,k7,Blade Axe
+w:spear:7,silah:spear,Savaşçı,k7,Totemic Spear
+w:lance:7,silah:lance,Savaşçı,k7,Glaive
+w:mace2:7,silah:mace2,Savaşçı/Şifacı,k7,Iron Impact
+w:mace2:7:1,silah:mace2,Savaşçı/Şifacı,k7,Hell Breaker
+w:dagger:7,silah:dagger,Suikastçı,k7,Shard
+w:jamadar:7,silah:jamadar,Suikastçı,k7,True silver
+w:bow:7,silah:bow,Suikastçı,k7,Iron Bow
+w:xbow:7,silah:xbow,Suikastçı,k7,Iron Crossbow
+w:mace:7,silah:mace,Şifacı,k7,Impact
+w:mace:7:1,silah:mace,Şifacı,k7,Priest Impact
+w:staff:7,silah:staff,Büyücü,k7,Elixir Staff
+w:staff:7:1,silah:staff,Büyücü,k7,Oasis Staff
+w:shield:7,kalkan,Savaşçı/Şifacı,k7,Plate Shield
+w:shield:7:1,kalkan,Savaşçı/Şifacı,k7,Hidden Secret Holy Shield
+w:shield:7:2,kalkan,Savaşçı/Şifacı,k7,Defender of the Lord
+w:shield:7:3,kalkan,Savaşçı/Şifacı,k7,Sacred Shield
+a:warrior:7:helm,zirh:helm,Savaşçı,k7,Legendary king's helmet
+a:warrior:7:helm:1,zirh:helm,Savaşçı,k7,Subjugation Force's Hat
+a:warrior:7:chest,zirh:chest,Savaşçı,k7,Legendary king's steel corset
+a:warrior:7:chest:1,zirh:chest,Savaşçı,k7,Subjugation Force's Pauldron
+a:warrior:7:legs,zirh:legs,Savaşçı,k7,Legendary king's strong armor
+a:warrior:7:legs:1,zirh:legs,Savaşçı,k7,Subjugation Force's Pants
+a:warrior:7:gloves,zirh:gloves,Savaşçı,k7,Legendary king's gauntlet
+a:warrior:7:gloves:1,zirh:gloves,Savaşçı,k7,Subjugation Force's Gloves
+a:warrior:7:boots,zirh:boots,Savaşçı,k7,Legendary king's boots
+a:warrior:7:boots:1,zirh:boots,Savaşçı,k7,Subjugation Force's Shoes
+a:rogue:7:helm,zirh:helm,Suikastçı,k7,Cool-headed king's do-rag
+a:rogue:7:chest,zirh:chest,Suikastçı,k7,Cool-headed king's chest armor
+a:rogue:7:legs,zirh:legs,Suikastçı,k7,Cool-headed king's leg armor
+a:rogue:7:gloves,zirh:gloves,Suikastçı,k7,Cool-headed king's glove
+a:rogue:7:boots,zirh:boots,Suikastçı,k7,Cool-headed king's boots
+a:priest:7:helm,zirh:helm,Şifacı,k7,Wise king's helmet
+a:priest:7:chest,zirh:chest,Şifacı,k7,Wise king's steel corset
+a:priest:7:legs,zirh:legs,Şifacı,k7,Wise king's strong armor
+a:priest:7:gloves,zirh:gloves,Şifacı,k7,Wise king's gauntlet
+a:priest:7:boots,zirh:boots,Şifacı,k7,Wise king's boots
+a:mage:7:helm,zirh:helm,Büyücü,k7,Intelligent king's head armor
+a:mage:7:chest,zirh:chest,Büyücü,k7,Intelligent king's robe
+a:mage:7:legs,zirh:legs,Büyücü,k7,Intelligent king's kilt
+a:mage:7:gloves,zirh:gloves,Büyücü,k7,Intelligent king's hands armor
+a:mage:7:boots,zirh:boots,Büyücü,k7,Intelligent king's boots
+j:ear:7,taki:ear,,k6,Crystal Earring
+j:ear:7:1,taki:ear,,k7,Priest's Earring
+j:neck:7,taki:neck,,k6,Red Dragon Necklace
+j:neck:7:1,taki:neck,,k7,Necklace of the Lost One
+j:ring:7,taki:ring,,k6,Diamond Ring
+j:belt:7,taki:belt,,k7,Crystal Belt
+j:kor_ear:7,taki:kor_ear,Büyücü,k7,Elmas Kor Küpesi
+j:kor_neck:7,taki:kor_neck,Büyücü,k7,Elmas Kor Kolyesi
+j:kor_ring:7,taki:kor_ring,Büyücü,k7,Elmas Kor Yüzüğü
+j:alaz_ear:7,taki:alaz_ear,Büyücü,k7,Elmas Alaz Küpesi
+j:alaz_neck:7,taki:alaz_neck,Büyücü,k7,Elmas Alaz Kolyesi
+j:alaz_ring:7,taki:alaz_ring,Büyücü,k7,Elmas Alaz Yüzüğü
+j:simsek_ear:7,taki:simsek_ear,Büyücü,k7,Elmas Şimşek Küpesi
+j:simsek_neck:7,taki:simsek_neck,Büyücü,k7,Elmas Şimşek Kolyesi
+j:simsek_ring:7,taki:simsek_ring,Büyücü,k7,Elmas Şimşek Yüzüğü
+j:firtina_ear:7,taki:firtina_ear,Büyücü,k7,Elmas Fırtına Küpesi
+j:firtina_neck:7,taki:firtina_neck,Büyücü,k7,Elmas Fırtına Kolyesi
+j:firtina_ring:7,taki:firtina_ring,Büyücü,k7,Elmas Fırtına Yüzüğü
+u:sazkiran,silah:dagger,Suikastçı,Eşsiz,Sharp Fang
+u:camuryaran,silah:axe2,Savaşçı,Eşsiz,War Axe
+u:ilkkivilcim,silah:staff,Büyücü,Eşsiz,Red Eye Staff
+u:demirhukum,silah:mace,Şifacı,Eşsiz,Iron Star
+u:beykemeri,taki:belt,,Eşsiz,Skeleton Belt
+u:bataklikmuhru,taki:ring,,Eşsiz,Legionnaire Band
+u:kuldilimi,silah:sword,Savaşçı,Eşsiz,Flame Sword
+u:kulyayi,silah:bow,Suikastçı,Eşsiz,Hero Bow
+u:korasa,silah:staff,Büyücü,Eşsiz,Scorching Staff
+u:alazyuzugu,taki:ring,,Eşsiz,Flame Ring
+u:curufkusagi,taki:belt,,Eşsiz,Fire Belt
+u:tungakalkani,kalkan,Savaşçı/Şifacı,Eşsiz,Hoplon
+u:gecitbekcisi,silah:sword,Savaşçı,Eşsiz,Falchion
+u:iskolyesi,taki:neck,,Eşsiz,Black Dragon Necklace
+u:sirtyaran,silah:dagger,Suikastçı,Eşsiz,Mail breaker
+u:kamdegnegi,silah:staff,Büyücü,Eşsiz,Chaotic Staff
+u:capulcudisi,silah:dagger,Suikastçı,Eşsiz,Cleaver
+u:sirtlankupesi,taki:ear,,Eşsiz,Minotaur's Earring
+u:kamtokmagi,silah:mace,Şifacı,Eşsiz,Smite Hammer
+u:kamboncugu,taki:neck,,Eşsiz,Magic Power Necklace
+u:aysarteberi,silah:axe2,Savaşçı,Eşsiz,Tabar
+u:bozkirmuhru,taki:ring,,Eşsiz,Hero's Valor
+u:tolunyayi,silah:bow,Suikastçı,Eşsiz,Eagle's Eye
+u:kartalkupesi,taki:ear,,Eşsiz,Howling Rooster
+u:hankilici,silah:sword,Savaşçı,Eşsiz,Broad Sword
+u:hankusagi,taki:belt,,Eşsiz,Lightening Belt
+u:kiragitopuzu,silah:mace,Şifacı,Eşsiz,Stone Splitter
+u:buzkiran,silah:axe2,Savaşçı,Eşsiz,Wolf Slayer
+u:ayazsiperi,kalkan,Savaşçı/Suikastçı/Büyücü/Şifacı,Eşsiz,Dread Shield
+u:kiragiyuzugu,taki:ring,,Eşsiz,Red Pearl Ring
+u:buzkahinasasi,silah:staff,Büyücü,Eşsiz,Hidden Secret Staff
+u:buzkolyesi,taki:neck,,Eşsiz,White Dragon Necklace
+u:cig,silah:axe2,Savaşçı,Eşsiz,Secret Executor
+u:devkusagi,taki:belt,,Eşsiz,Ice Belt
+u:donukdis,silah:dagger,Suikastçı,Eşsiz,Cold-Hearted Dagger
+u:mezarkupesi,taki:ear,,Eşsiz,Secret Silver Earring
+u:lugias,silah:spear,Savaşçı/Şifacı,Eşsiz,Lugias
+u:hanguk,silah:sword,Savaşçı/Şifacı,Eşsiz,Hanguk Sword
+u:kutsalasa,silah:mace,Şifacı,Eşsiz,Holy Animor
+u:helenid,silah:xbow,Suikastçı,Eşsiz,Helenid
+u:erenion,silah:staff,Büyücü,Eşsiz,Wreath of Erenion
+u:kanasa,silah:staff,Büyücü,Eşsiz,Hell Blood
+u:garp,silah:staff,Büyücü,Eşsiz,Garp
+u:kurtcekici,silah:mace,Şifacı,Eşsiz,Lycaon Hammer
+u:bozkurtcekici,silah:mace,Şifacı,Eşsiz,Lupus Hammer
+u:kitinyayi,silah:bow,Suikastçı,Eşsiz,Chitin Bow
+u:lobocekici,silah:mace,Şifacı,Eşsiz,Lobo Hammer
+u:karakanat,silah:dagger,Suikastçı,Eşsiz,Dark Vane
+u:kitinsiper,kalkan,Savaşçı/Şifacı,Eşsiz,Chitin Shield
+u:seraptigi,silah:sword2,Savaşçı,Eşsiz,Mirage Sword
+u:devcekic,silah:mace2,Savaşçı,Eşsiz,Giga Hammer
+u:beylersiperi,kalkan,Savaşçı/Şifacı,Eşsiz,Defense of Lords
+u:yaylahukmu,silah:mace,Şifacı,Eşsiz,Hidden Secret Bone Crusher
+u:hakanmuhru,taki:ring,,Eşsiz,Ring of Courage
+u:chitin_w_helm,zirh:helm,Savaşçı,Eşsiz,Chitin Helmet
+u:chitin_w_chest,zirh:chest,Savaşçı,Eşsiz,Chitin Pauldron
+u:chitin_w_legs,zirh:legs,Savaşçı,Eşsiz,Chitin Pads
+u:chitin_w_gloves,zirh:gloves,Savaşçı,Eşsiz,Chitin Gauntlets
+u:chitin_w_boots,zirh:boots,Savaşçı,Eşsiz,Chitin Boots
+u:fplate_w_helm,zirh:helm,Savaşçı,Eşsiz,Full Plate Helmet
+u:fplate_w_chest,zirh:chest,Savaşçı,Eşsiz,Full Plate Pauldron
+u:fplate_w_legs,zirh:legs,Savaşçı,Eşsiz,Full Plate Pads
+u:fplate_w_gloves,zirh:gloves,Savaşçı,Eşsiz,Full Plate Gauntlets
+u:fplate_w_boots,zirh:boots,Savaşçı,Eşsiz,Full Plate Boots
+u:chitin_r_helm,zirh:helm,Suikastçı,Eşsiz,Rogue Chitin Helmet
+u:chitin_r_chest,zirh:chest,Suikastçı,Eşsiz,Rogue Chitin Pauldron
+u:chitin_r_legs,zirh:legs,Suikastçı,Eşsiz,Rogue Chitin Pads
+u:chitin_r_gloves,zirh:gloves,Suikastçı,Eşsiz,Rogue Chitin Gauntlets
+u:chitin_r_boots,zirh:boots,Suikastçı,Eşsiz,Rogue Chitin Boots
+u:fplate_r_helm,zirh:helm,Suikastçı,Eşsiz,Rogue Full Plate Helmet
+u:fplate_r_chest,zirh:chest,Suikastçı,Eşsiz,Rogue Full Plate Pauldron
+u:fplate_r_legs,zirh:legs,Suikastçı,Eşsiz,Rogue Full Plate Pads
+u:fplate_r_gloves,zirh:gloves,Suikastçı,Eşsiz,Rogue Full Plate Gauntlets
+u:fplate_r_boots,zirh:boots,Suikastçı,Eşsiz,Rogue Full Plate Boots
+u:chitin_p_helm,zirh:helm,Şifacı,Eşsiz,Priest Chitin Helmet
+u:chitin_p_chest,zirh:chest,Şifacı,Eşsiz,Priest Chitin Pauldron
+u:chitin_p_legs,zirh:legs,Şifacı,Eşsiz,Priest Chitin Pads
+u:chitin_p_gloves,zirh:gloves,Şifacı,Eşsiz,Priest Chitin Gauntlets
+u:chitin_p_boots,zirh:boots,Şifacı,Eşsiz,Priest Chitin Boots
+u:fplate_p_helm,zirh:helm,Şifacı,Eşsiz,Priest Full Plate Helmet
+u:fplate_p_chest,zirh:chest,Şifacı,Eşsiz,Priest Full Plate Pauldron
+u:fplate_p_legs,zirh:legs,Şifacı,Eşsiz,Priest Full Plate Pads
+u:fplate_p_gloves,zirh:gloves,Şifacı,Eşsiz,Priest Full Plate Gauntlets
+u:fplate_p_boots,zirh:boots,Şifacı,Eşsiz,Priest Full Plate Boots
+u:crimson_m_helm,zirh:helm,Büyücü,Eşsiz,Crimson Helmet
+u:crimson_m_chest,zirh:chest,Büyücü,Eşsiz,Crimson Robe
+u:crimson_m_legs,zirh:legs,Büyücü,Eşsiz,Crimson Pants
+u:crimson_m_gloves,zirh:gloves,Büyücü,Eşsiz,Crimson Gloves
+u:crimson_m_boots,zirh:boots,Büyücü,Eşsiz,Crimson Boots
+u:crystal_m_helm,zirh:helm,Büyücü,Eşsiz,Crystal Helmet
+u:crystal_m_chest,zirh:chest,Büyücü,Eşsiz,Crystal Robe
+u:crystal_m_legs,zirh:legs,Büyücü,Eşsiz,Crystal Pants
+u:crystal_m_gloves,zirh:gloves,Büyücü,Eşsiz,Crystal Gloves
+u:crystal_m_boots,zirh:boots,Büyücü,Eşsiz,Crystal Boots
+u:linen_hp_helm,zirh:helm,Büyücü,Eşsiz,Mage Linen Cap (HP)
+u:linen_hp_chest,zirh:chest,Büyücü,Eşsiz,Mage Linen Robe (HP)
+u:linen_hp_legs,zirh:legs,Büyücü,Eşsiz,Mage Linen Pants (HP)
+u:linen_hp_gloves,zirh:gloves,Büyücü,Eşsiz,Mage Leather Gloves (HP)
+u:linen_hp_boots,zirh:boots,Büyücü,Eşsiz,Mage Leather Boots (HP)
+u:linen_mp_helm,zirh:helm,Büyücü,Eşsiz,Mage Linen Cap (MP)
+u:linen_mp_chest,zirh:chest,Büyücü,Eşsiz,Mage Linen Robe (MP)
+u:linen_mp_legs,zirh:legs,Büyücü,Eşsiz,Mage Linen Pants (MP)
+u:linen_mp_gloves,zirh:gloves,Büyücü,Eşsiz,Mage Leather Gloves (MP)
+u:linen_mp_boots,zirh:boots,Büyücü,Eşsiz,Mage Leather Boots (MP)
+u:wool_hp_helm,zirh:helm,Büyücü,Eşsiz,Wizard Hat (HP)
+u:wool_hp_chest,zirh:chest,Büyücü,Eşsiz,Wool Robe (HP)
+u:wool_hp_legs,zirh:legs,Büyücü,Eşsiz,Wool Pants (HP)
+u:wool_hp_gloves,zirh:gloves,Büyücü,Eşsiz,Mage Gloves (HP)
+u:wool_hp_boots,zirh:boots,Büyücü,Eşsiz,Mage Boots (HP)
+u:wool_mp_helm,zirh:helm,Büyücü,Eşsiz,Wizard Hat (MP)
+u:wool_mp_chest,zirh:chest,Büyücü,Eşsiz,Wool Robe (MP)
+u:wool_mp_legs,zirh:legs,Büyücü,Eşsiz,Wool Pants (MP)
+u:wool_mp_gloves,zirh:gloves,Büyücü,Eşsiz,Mage Gloves (MP)
+u:wool_mp_boots,zirh:boots,Büyücü,Eşsiz,Mage Boots (MP)
+u:lycaonstaff,silah:staff,Büyücü,Eşsiz,Lycaon Staff
+u:lupusstaff,silah:staff,Büyücü,Eşsiz,Lupus Staff
+u:lobostaff,silah:staff,Büyücü,Eşsiz,Lobo Staff
+u:ironneck,taki:neck,,Eşsiz,Iron Necklace
+u:ironbelt,taki:belt,,Eşsiz,Iron Belt
+u:glassbelt,taki:belt,,Eşsiz,Glass Belt
+u:rol,taki:ring,,Eşsiz,Ring of Life
+u:rom,taki:ring,,Eşsiz,Ring of Magic
+u:roc,taki:ring,,Eşsiz,Ring of Courage
+u:flamering,taki:ring,,Eşsiz,Flame Ring
+u:imirring,taki:ring,,Eşsiz,Imir Ring
+u:warear,taki:ear,,Eşsiz,Warrior Earring
+u:rogear,taki:ear,,Eşsiz,Rogue Earring
+u:mageear,taki:ear,,Eşsiz,Mage Earring
+u:clericear,taki:ear,,Eşsiz,Cleric Earring
+u:aos,taki:neck,,Eşsiz,Amulet of Strength
+u:aod,taki:neck,,Eşsiz,Amulet of Dexterity
+u:aoh,taki:neck,,Eşsiz,Amulet of Health
+u:aomp,taki:neck,,Eşsiz,Amulet of Magic Power
+u:lupuspend,taki:neck,,Eşsiz,Lupus Pendant
+u:lobopend,taki:neck,,Eşsiz,Lobo Pendant
+u:lycaonpend,taki:neck,,Eşsiz,Lycaon Pendant
+u:sos,taki:belt,,Eşsiz,String of Skulls
+u:coc,taki:ear,,Eşsiz,Cockatrice's Earring
+u:lkp,taki:ear,,Eşsiz,Lich King's Pride
+u:lillime,taki:ear,,Eşsiz,Lillime's Enticement
+u:goldear,taki:ear,,Eşsiz,Golden Earring
+u:eme,taki:ear,,Eşsiz,Elf-Metal Earring
+u:agate,taki:ear,,Eşsiz,Agate Earring
+u:foverin,taki:ring,,Eşsiz,Foverin
+u:kekuri,taki:ring,,Eşsiz,Kekuri Ring
+u:elfring,taki:ring,,Eşsiz,Elf Ring
+u:elfbelt,taki:belt,,Eşsiz,Elf Belt
+u:judbelt,taki:belt,,Eşsiz,Judicious Belt
+u:lbol,taki:belt,,Eşsiz,Light Belt of Life
+skill:w_basic,yetenek,Savaşçı,,Kılıç Darbesi
+skill:r_basic,yetenek,Suikastçı,,Hançer Darbesi
+skill:p_basic,yetenek,Şifacı,,Topuz Darbesi
+skill:m_basic,yetenek,Büyücü,,Kıvılcım
+skill:w_k1,yetenek,Savaşçı,,Stroke
+skill:w_k2,yetenek,Savaşçı,,Sprint
+skill:w_k3,yetenek,Savaşçı,,Slash
+skill:w_k4,yetenek,Savaşçı,,Crash
+skill:w_k5,yetenek,Savaşçı,,Defense
+skill:w_k6,yetenek,Savaşçı,,Piercing
+skill:hucum1,yetenek,Savaşçı,,Hash
+skill:hucum2,yetenek,Savaşçı,,Hoodwink
+skill:hucum3,yetenek,Savaşçı,,Shear
+skill:hucum4,yetenek,Savaşçı,,Pierce
+skill:hucum5,yetenek,Savaşçı,,Leg Cutting
+skill:hucum6,yetenek,Savaşçı,,Carving
+skill:hucum7,yetenek,Savaşçı,,Sever
+skill:hucum8,yetenek,Savaşçı,,Prick
+skill:hucum9,yetenek,Savaşçı,,Multiple Shock
+skill:hucum10,yetenek,Savaşçı,,Cleave
+skill:hucum11,yetenek,Savaşçı,,Mangling
+skill:hucum12,yetenek,Savaşçı,,Thrust
+skill:hucum13,yetenek,Savaşçı,,Sword Aura
+skill:hucum14,yetenek,Savaşçı,,Sword Dancing
+skill:siper1,yetenek,Savaşçı,,Hinder
+skill:siper2,yetenek,Savaşçı,,Resist
+skill:siper3,yetenek,Savaşçı,,Arrest
+skill:siper4,yetenek,Savaşçı,,Endure
+skill:siper5,yetenek,Savaşçı,,Binding
+skill:siper6,yetenek,Savaşçı,,Bulwark
+skill:siper7,yetenek,Savaşçı,,Provoke
+skill:siper8,yetenek,Savaşçı,,Sacrifice
+skill:ofke1,yetenek,Savaşçı,,Gain
+skill:ofke2,yetenek,Savaşçı,,Wink
+skill:ofke3,yetenek,Savaşçı,,Rise
+skill:ofke4,yetenek,Savaşçı,,Pain Killer
+skill:ofke5,yetenek,Savaşçı,,Outrage
+skill:ofke6,yetenek,Savaşçı,,Shock
+skill:yaran_um1,yetenek,Savaşçı,,Howling Sword
+skill:yaran_um2,yetenek,Savaşçı,,Blooding
+skill:yaran_um3,yetenek,Savaşçı,,Hell Blade
+skill:sur_um1,yetenek,Savaşçı,,Iron Skin
+skill:sur_um2,yetenek,Savaşçı,,Wall Of Iron
+skill:sur_um3,yetenek,Savaşçı,,Iron Body
+skill:r_k1,yetenek,Suikastçı,,Stab
+skill:r_k2,yetenek,Suikastçı,,Sprint
+skill:r_k3,yetenek,Suikastçı,,Thrust
+skill:hancer1,yetenek,Suikastçı,,Stab
+skill:hancer2,yetenek,Suikastçı,,Stab2
+skill:hancer3,yetenek,Suikastçı,,Jab
+skill:hancer4,yetenek,Suikastçı,,Blood Drain
+skill:hancer5,yetenek,Suikastçı,,Pierce
+skill:hancer6,yetenek,Suikastçı,,Shock
+skill:hancer7,yetenek,Suikastçı,,Thrust
+skill:hancer8,yetenek,Suikastçı,,Cut
+skill:hancer9,yetenek,Suikastçı,,Vampiric Touch
+skill:hancer10,yetenek,Suikastçı,,Bloody Beast
+skill:hancer11,yetenek,Suikastçı,,Blinding
+skill:hancer12,yetenek,Suikastçı,,Beast Hiding
+skill:hancer13,yetenek,Suikastçı,,Spike
+skill:yay1,yetenek,Suikastçı,,Archery
+skill:yay2,yetenek,Suikastçı,,Arrow Shower
+skill:yay3,yetenek,Suikastçı,,Fire Arrow
+skill:yay4,yetenek,Suikastçı,,Poison Arrow
+skill:yay5,yetenek,Suikastçı,,Multiple Shot
+skill:yay6,yetenek,Suikastçı,,Guided Arrow
+skill:yay7,yetenek,Suikastçı,,Perfect Shot
+skill:yay8,yetenek,Suikastçı,,Ice Arrow
+skill:yay9,yetenek,Suikastçı,,Arc Shot
+skill:yay10,yetenek,Suikastçı,,Explosive Shot
+skill:yay11,yetenek,Suikastçı,,Viper
+skill:yay12,yetenek,Suikastçı,,Counter Strike
+skill:yay13,yetenek,Suikastçı,,Shadow Shot
+skill:iz1,yetenek,Suikastçı,,Hide
+skill:iz2,yetenek,Suikastçı,,Light Feet
+skill:iz3,yetenek,Suikastçı,,Evade
+skill:iz4,yetenek,Suikastçı,,Safety
+skill:iz5,yetenek,Suikastçı,,Scaled Skin
+skill:iz6,yetenek,Suikastçı,,Minor Healing
+skill:iz7,yetenek,Suikastçı,,Lupine Eyes
+skill:iz8,yetenek,Suikastçı,,Taunt
+skill:iz9,yetenek,Suikastçı,,Invisibility
+skill:agu_um1,yetenek,Suikastçı,,Critical Point
+skill:agu_um2,yetenek,Suikastçı,,Cold Wave
+skill:agu_um3,yetenek,Suikastçı,,Eskrima
+skill:nisanci_um1,yetenek,Suikastçı,,Power Shot
+skill:nisanci_um2,yetenek,Suikastçı,,Blinding Strafe
+skill:nisanci_um3,yetenek,Suikastçı,,Super Archer
+skill:p_k1,yetenek,Şifacı,,Holy Attack
+skill:p_k2,yetenek,Şifacı,,Sprint
+skill:p_k3,yetenek,Şifacı,,Collision
+skill:kutsama1,yetenek,Şifacı,,Strength
+skill:kutsama2,yetenek,Şifacı,,Armor
+skill:kutsama3,yetenek,Şifacı,,Grace
+skill:kutsama4,yetenek,Şifacı,,Resist
+skill:kutsama7,yetenek,Şifacı,,Heapness
+skill:kutsama9,yetenek,Şifacı,,Superioris
+skill:kutsama11,yetenek,Şifacı,,Imposingness
+skill:kutsama12,yetenek,Şifacı,,Undying
+skill:kutsama13,yetenek,Şifacı,,Massiveness
+skill:kutsama14,yetenek,Şifacı,,Mace Strike
+skill:kutsama15,yetenek,Şifacı,,Crushing Blow
+skill:kutsama16,yetenek,Şifacı,,Shock Wave
+skill:kutsama17,yetenek,Şifacı,,Iron Skin
+skill:kutsama18,yetenek,Şifacı,,Steel Skin
+skill:kutsama19,yetenek,Şifacı,,Holy Bulwark
+skill:lanet1,yetenek,Şifacı,,Holy Strike
+skill:lanet2,yetenek,Şifacı,,Slow
+skill:lanet3,yetenek,Şifacı,,Malice
+skill:lanet4,yetenek,Şifacı,,Confusion
+skill:lanet5,yetenek,Şifacı,,Parasite
+skill:lanet6,yetenek,Şifacı,,Weaken
+skill:lanet7,yetenek,Şifacı,,Dispel
+skill:lanet8,yetenek,Şifacı,,Sleep
+skill:lanet10,yetenek,Şifacı,,Helis
+skill:lanet11,yetenek,Şifacı,,Torment
+skill:lanet13,yetenek,Şifacı,,Atak Kır
+skill:lanet14,yetenek,Şifacı,,Dark Strike
+skill:lanet15,yetenek,Şifacı,,Shadow Blast
+skill:lanet16,yetenek,Şifacı,,Curse Wave
+skill:sifa1,yetenek,Şifacı,,Minor Heal
+skill:sifa2,yetenek,Şifacı,,Heal
+skill:sifa3,yetenek,Şifacı,,Cure Curse
+skill:sifa4,yetenek,Şifacı,,Greater Heal
+skill:sifa5,yetenek,Şifacı,,Restore
+skill:sifa6,yetenek,Şifacı,,Group Heal
+skill:sifa7,yetenek,Şifacı,,Complete Heal
+skill:sifa8,yetenek,Şifacı,,Group Complete Heal
+skill:p_um1,yetenek,Şifacı,,Resurrection
+skill:otaci_um1,yetenek,Şifacı,,Blessing of Light
+skill:otaci_um2,yetenek,Şifacı,,Divine Guard
+skill:bozan_um1,yetenek,Şifacı,,Curse of Ruin
+skill:bozan_um2,yetenek,Şifacı,,Dark Pact
+skill:m_k1,yetenek,Büyücü,,Staff Attack
+skill:m_k2,yetenek,Büyücü,,Sprint
+skill:ates1,yetenek,Büyücü,,Flame Strike
+skill:ates2,yetenek,Büyücü,,Fire Ball
+skill:ates3,yetenek,Büyücü,,Burn
+skill:ates4,yetenek,Büyücü,,Fire Spear
+skill:ates5,yetenek,Büyücü,,Fire Blast
+skill:ates6,yetenek,Büyücü,,Hell Fire
+skill:ates7,yetenek,Büyücü,,Pillar of Fire
+skill:ates8,yetenek,Büyücü,,Fire Thorn
+skill:ates9,yetenek,Büyücü,,Fire Impact
+skill:ates10,yetenek,Büyücü,,Flame Nova
+skill:ates11,yetenek,Büyücü,,Fire Staff
+skill:ates12,yetenek,Büyücü,,Fire Wall
+skill:ates13,yetenek,Büyücü,,Meteor Fall
+skill:yildirim1,yetenek,Büyücü,,Lightning
+skill:yildirim2,yetenek,Büyücü,,Shock
+skill:yildirim3,yetenek,Büyücü,,Charge
+skill:yildirim4,yetenek,Büyücü,,Lightning Bolt
+skill:yildirim5,yetenek,Büyücü,,Counter Spell
+skill:yildirim6,yetenek,Büyücü,,Static Hemisphere
+skill:yildirim7,yetenek,Büyücü,,Paralyze
+skill:yildirim8,yetenek,Büyücü,,Thunder
+skill:yildirim9,yetenek,Büyücü,,Static Thorn
+skill:yildirim10,yetenek,Büyücü,,Lightning Nova
+skill:yildirim11,yetenek,Büyücü,,Chain Lightning
+skill:yildirim12,yetenek,Büyücü,,Thunder Blast
+skill:yildirim13,yetenek,Büyücü,,Thunder Impact
+skill:buz1,yetenek,Büyücü,,Freeze
+skill:buz2,yetenek,Büyücü,,Chill
+skill:buz3,yetenek,Büyücü,,Solid
+skill:buz4,yetenek,Büyücü,,Ice Arrow
+skill:buz5,yetenek,Büyücü,,Glacier Beam
+skill:buz6,yetenek,Büyücü,,Frostbite
+skill:buz7,yetenek,Büyücü,,Ice Comet
+skill:buz8,yetenek,Büyücü,,Glacier Nova
+skill:m_um1,yetenek,Büyücü,,Staff Mastery
+skill:alaz_um1,yetenek,Büyücü,,Inferno
+skill:alaz_um2,yetenek,Büyücü,,Dragon Tooth
+skill:boran_um1,yetenek,Büyücü,,Blizzard
+skill:boran_um2,yetenek,Büyücü,,Arc Lightning
+skill:x_hit,yetenek,,,Saldırı
+skill:x_bolt,yetenek,,,Kara Kıvılcım
+skill:x_stab,yetenek,,,Pusu
+skill:x_hex,yetenek,,,Bataklık Bedduası
+skill:x_mend,yetenek,,,Çamur Merhemi
+skill:x_smash,yetenek,,,Ezici Darbe
+skill:x_quake,yetenek,,,Yer Sarsıntısı
+skill:x_guard,yetenek,,,Kemik Siperi
+skill:x_howl,yetenek,,,Akın Çığlığı
+skill:x_cleave,yetenek,,,Geniş Savuruş
+skill:x_curse,yetenek,,,Mezar Soğuğu
+skill:x_mire,yetenek,,,Sazlık Fırtınası
+skill:x_crush,yetenek,,,Bey Yumruğu
+skill:x_shot,yetenek,,,Ok
+skill:x_volley,yetenek,,,Ok Sağanağı
+skill:x_aim,yetenek,,,Nişanlı Atış
+skill:x_fire,yetenek,,,Kor Topu
+skill:x_lavanova,yetenek,,,Lav Dalgası
+skill:x_firestorm,yetenek,,,Kül Fırtınası
+skill:x_frost,yetenek,,,Ayaz Oku
+skill:x_freeze,yetenek,,,Buz Kesen
+skill:x_blizzard,yetenek,,,Yayla Tipisi
+skill:x_rage,yetenek,,,Kan Öfkesi
+skill:x_drain,yetenek,,,Can Sömüren
+skill:x_ward,yetenek,,,Tuğ Gölgesi
+skill:x_bigheal,yetenek,,,Ata Rünü
+skill:x_mark,yetenek,,,Kem Göz
+skill:x_execute,yetenek,,,Kelle Alan
+skill:x_roar,yetenek,,,Yıldıran Nara
