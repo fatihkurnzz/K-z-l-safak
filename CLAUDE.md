@@ -2,7 +2,16 @@
 
 Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı** (sayfa başlığı "Korant Online"), tarayıcıda çalışan, YALNIZCA YATAY çizilen 3B mobil RPG (vanilla ES modülleri + three.js r160 gömülü, sıra tabanlı belirlenimci savaş). Hikâye: **Vahran: Tarihin Külleri**.
 
-## SON DURUM (22.11 gece) — clear sonrası buradan devam
+## SON DURUM (22.11 gece geç) — clear sonrası buradan devam
+- **Sürüm 23 YAYINDA** (511 dosya = SINIR! yeni dosya eklemek için önce bir şey çıkar; son yayın commit'i = bu notun önceki commit'i; sonraki yayında `git diff --name-status <o> HEAD -- oyun-son`).
+- GPT "VAHRAN Claude Devir" 4 parça ZIP birleştirildi (166 dosya, yol çakışması yok) → `_tasarim/gelen/karakter-son/` (özgün yollar). Kanonik referans `00_REFERANS/ONAYLI_KARAKTER_OLUSTUR.png`.
+- Karakter OLUŞTURMA yeniden yazıldı (`js/ui-olustur.js`, kök `#olz.vz`, yeni ad alanı `.vz-*`; eski .olz CSS'i artık uygulanmıyor): üst levha, sol TARAF SEÇ sancakları, 5 yüz portresi sütunu (portre = shared/gorunus FACES 0-4, oyundaki 3B yüze uygulanır; 2B görsel değişmez), ortada 2B tam boy (ayak çizgisi H·0.835, görünür boy eşit), sağda Sınıf 2×2 / Cinsiyet ♂♀ / Görünüm (Yüz, Saç Stili, Saç/Göz/Ten Rengi, erkekte Sakal), altta Geri · ad+zar · Oluştur. Vücut/Boy satırları kaldırıldı (kayıtta varsayılan). Referanstaki 4 donanım simgesi satırı EKLENMEDİ (işlevi yok). Sınıf adları oyunun (Şifacı/Şaman), referansta "Rahip".
+- Varsayılan (kullanıcı isteği): Elentha → kadın Savaşçı, Kragmir → erkek Savaşçı; taraf değişince bu ikili gelir (`SIDE_DEF`).
+- Görseller `js/karakter-png.js` (OTOMATİK: `_tasarim/araclar/karakter-gom.py .`): 05_OYUN_ICIN_OPTIMIZE_512x768 (kaynak 01_KARAKTERLER) + kullanıcı kararıyla 09_SECILI'deki 3 "YENİ ADAY - ONAYSIZ" (elentha_savasci_kadin, kragmir_savasci_erkek, kragmir_buyucu_kadin; alfa 254→255) + 20 yüz. CSS: `v33-sablon.css` sonu (`.vz`, --U = 406 birim), `v33-gom.py` ks-<ad>=03_UI/UI_PNG_2X, ko-<ad>=IKON_ORIJINAL.
+- SEÇME ekranı (`ui-karakter.js`): 3B geçici model yerine 2B tam boy (#kshero), kartlarda yüz portresi, paket yuva/Oyuna gir çerçeveleri; "Geçici model" etiketi kaldırıldı. Oyundaki 3B kahraman/savaş değişmedi (test edildi).
+- Testler (scratchpad t/vztam.js, ekr3.js, oyun.js): 16 kombinasyon, 20 portre, adımlayıcılar, ad denetimi/zar, Geri/Yeni karakter akışı, kalıcılık (yeniden yükleme), Oyuna gir, ana üs+karakter penceresi+savaş, dik telefon (döndürülmüş), 2340×1080 (880×406 dpr 2.66), tablet 4:3, masaüstü 16:9 — hepsi geçti, sayfa hatası 0. Gerçek Android cihaz/APK YOK. Görünüm oklarının dokunma alanı 26×20 mantıksal px (küçük).
+
+## ÖNCEKİ DURUM (22.11 gece)
 - **Sürüm 22 YAYINDA** (510 dosya; sonraki yayında `git diff --name-status <bu notun önceki commit'i> HEAD -- oyun-son`).
 - GPT "Karakter Kararlı Devir v2" ZIP → kayıt `_tasarim/gelen/karakter-v2/` (tamboy 16, yuz 20, arayuz 7, QA). Oyuna giren: başlık levhası (Karakter oluştur, ırka göre) + 4 sınıf simgesi (oluşturma düğmeleri/bilgi, seçme plakası; `data-c` özniteliği) — `v33-sablon.css` sonu, `v33-gom.py` YOL'a eklendi. Girmeyen: dugme-birincil-ocak (Elentha düğmesiyle aynı şekil değil), tamboy (4'ü başsız: mage-sancak-m, priest-sancak-f, warrior-sancak-m, warrior-ocak-f; 3 suikastçide ayak kırıntısı; ork büyücü≈şaman), yuz (ork kadın 5'i aynı kişi, erkekler sakallı). QA görselleri `CLAUDE_QA_tamboy.jpg`, `CLAUDE_once-sonra-*.jpg`; GPT notu `_tasarim/gpt-paket/GPT_ISTEK_KARAKTER_v3_22KASIM.md`.
 - Kullanıcıya soruldu: 12 sağlam tam boy seçme ekranında (3B geçici model yerine) vitrin olarak kullanılsın mı? Cevap bekleniyor.
