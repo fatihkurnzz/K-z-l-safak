@@ -215,15 +215,15 @@ const embOf = t => { const e = EMB.find(([p]) => String(t).startsWith(p)); const
 const SCR = { 'Çanta': 'canta', 'Karakter': 'karakter', 'Görevler': 'gorev', 'Görev Defteri': 'gorev', 'Takvim': 'gorev', 'Klan Karargâhı': 'klan' };
 function drawWin() {
   // Aynı pencere açıksa kabuğu yıkma: yalnız sekme çubuğunu yerinde güncelle (titreme olmasın)
-  const key = W.title + '|' + (W.back || '') + '|' + (W.tabs ? 1 : 0) + (W.top ? 't' : '');
+  const key = W.title + '|' + (W.back || '') + '|' + (W.tabs ? 1 : 0) + (W.scr || '');
   if (!win.hidden && win._key === key && win.querySelector('#page')) {
     const nav = win.querySelector('nav.tabs');
     if (nav && W.tabs) nav.innerHTML = tabsHtml();
     return redraw();
   }
   win._key = key;
-  win.dataset.scr = SCR[W.title] || 'genel'; // Aşama 5: ekran kimliği (css/v24-asama5.css büyük pencere ve tema)
-  win.className = 'win full' + (W.top ? ' ttop' : ''); // top: sekme şeridi solda değil üstte (19 Kas)
+  win.dataset.scr = W.scr || SCR[W.title] || 'genel'; // Aşama 5: ekran kimliği (css/v24-asama5.css büyük pencere ve tema)
+  win.className = 'win full'; // 22 Kas (kullanıcı): bütün pencerelerde sekmeler solda (eski 'top' seçeneği yok sayılır)
   win.innerHTML = `<div class="scrim" data-a="closeWin"></div><div class="frame"><header>${W.back ? `<button class="x bk" data-a="${W.back}">‹</button>` : ''}${embOf(W.title)}<h2>${W.title}</h2><div class="wres"></div><button class="x" data-a="closeWin">✕</button></header>
     <div class="wbody">${W.tabs ? `<nav class="tabs">${tabsHtml()}</nav>` : ''}<section class="page" id="page"></section></div></div>`;
   redraw();

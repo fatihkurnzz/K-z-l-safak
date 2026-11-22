@@ -19,7 +19,7 @@ function otoIntro() {
   try { if (localStorage.getItem(OTO_INTRO)) return; } catch { return; }
   if (!OTO.ok() || (S.tut && !S.tut.end) || !$('#battleUI').hidden || !$('#modal').hidden || !$('#win').hidden) return;
   try { localStorage.setItem(OTO_INTRO, '1'); } catch { }
-  showModal(`<h2>Yeni: OTO savaş</h2><p>10. seviyeye ulaştın! Artık savaşta sağ alttaki <b>Otomatik</b> düğmesine dokunursan kahramanın yetenekleri ve iksirleri senin yerine kullanır.</p><p>Savaşa girmeden önceki ekranda <b>Oto: açık</b> seçersen savaş baştan otomatik başlar. İstediğin an Otomatik’e yeniden dokunup kontrolü geri alırsın.</p><div class="mbtns"><button class="btn green" data-a="closeModal">Anladım</button></div>`, 'oto-intro');
+  showModal(`<h2>OTO savaş</h2><p>Savaşta sağ alttaki <b>Otomatik</b> düğmesine dokunursan kahramanın yetenekleri ve iksirleri senin yerine kullanır.</p><p>Savaşa girmeden önceki ekranda <b>Oto: açık</b> seçersen savaş baştan otomatik başlar. İstediğin an Otomatik’e yeniden dokunup kontrolü geri alırsın.</p><div class="mbtns"><button class="btn green" data-a="closeModal">Anladım</button></div>`, 'oto-intro');
 }
 setInterval(() => { if (S && !hud.hidden) otoIntro(); }, 1500);
 TUTLOCK.pot = () => !!(S?.tut && !S.tut.end && TUT_STEPS[S.tut.s] === 'bar' && !S.tut.f?.pot && !BT.pot); // iksir içilmeden savaş sürmez (19 Kas) // savaşta oyuncunun yetenek ve iksir kullandığı (öğretici 'bar' adımı)
@@ -440,7 +440,7 @@ function guide() {
   const SK = '#skills .skill.act:not([disabled])', POTB = '#skills .skill.pot:not([disabled])';
   const forest = ormanOn(), FOE = '.blabel[data-id="yol"]'; // açılış ormanı: savaşa Kapı'dan değil, patikadaki yağmacılardan girilir
   if (step === 'battle') {
-    if (inBattle) return vis(q1(SK)) ? { text: 'Alttaki <b>savaş çubuğu</b>: solda temel saldırı, yanında yetenek yuvaların. Bir yeteneğe dokun, sonra bir düşmana. (<b>OTO</b> savaş 10. seviyede açılır.)', target: SK, strip: 'battle' } : { text: 'Sıra sendeyken alttaki çubuktan bir yetenek seç, sonra bir düşmana dokun.', target: '#skills', strip: 'battle' };
+    if (inBattle) return vis(q1(SK)) ? { text: 'Alttaki <b>savaş çubuğu</b>: solda temel saldırı, yanında yetenek yuvaların. Bir yeteneğe dokun, sonra bir düşmana.', target: SK, strip: 'battle' } : { text: 'Sıra sendeyken alttaki çubuktan bir yetenek seç, sonra bir düşmana dokun.', target: '#skills', strip: 'battle' };
     if (S.stats.wins >= 1) return { text: result ? 'İlk zafer! Savaşın ganimeti (akçe ve düşen eşyalar) çantana girer; deneyim seviyeni yükseltir.' : 'İlk zaferini kazandın. Savaşlardan akçe, deneyim ve eşya kazanırsın; ganimet çantana girer.', btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
     if (result) return { text: 'Bu kez olmadı. Yeniden dene; zorlanırsan önce iksir iç.', strip: 'modal' };
     if (vis(q1('[data-a="vsStart"]'))) return { text: 'Solda sen, sağda düşmanlar. Hazırsan savaşı başlat.', target: '[data-a="vsStart"]' };

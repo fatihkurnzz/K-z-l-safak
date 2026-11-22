@@ -3,7 +3,8 @@
 // Kural içermez. Sesler mevcut sentezlenmiş yamalarla (sfx.js) çalınır. Kayıt: localStorage "dd_fragman:<hesap adı>".
 import { S } from './api.js';
 import { getGfx } from './gfx.js';
-import { play, unlock } from './audio.js';
+import { play, unlock, audioContext, loadBuf } from './audio.js';
+import { SFX, MUSIC_URL } from './sfx.js';
 import { t } from './i18n.js';
 
 const LS = { get(k) { try { return localStorage.getItem(k); } catch { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch { } } };
@@ -110,7 +111,11 @@ let open = null;
 // çekimlerin yerine geçer; süre, altyazı ve sesler aynı. Her çekim: [kare, başlangıç merkez x, bitiş merkez x, başlangıç ölçek, bitiş ölçek]
 const PIC = { forge: [1, .32, .45, 1.18, 1.08], realm: [1, .55, .68, 1.08, 1.0], humans: [2, .3, .36, 1.32, 1.22], orcs: [2, .76, .7, 1.32, 1.22], war: [3, .5, .5, 1.0, 1.22], hero: [4, .5, .5, 1.2, 1.0] };
 const IMG = {};
-function loadPics() { import('./hikaye-png.js').then(H => { for (let i = 1; i <= 4; i++) { const im = new Image(); im.onload = () => { IMG[i] = im; }; im.src = H.url('yemin-' + i); } }).catch(() => { }); }
+// 22 Kas: fragman resimler ve müzik hazır olmadan başlamaz (önceden ilk ~1 sn eski çizimli çekim görünüyordu); en çok 4 sn beklenir
+function loadPics() {
+  return import('./hikaye-png.js').then(H => Promise.all([1, 2, 3, 4].map(i => IMG[i] ? 0 : new Promise(r => { const im = new Image(); im.onload = () => { IMG[i] = im; r(); }; im.onerror = r; im.src = H.url('yemin-' + i); im.decode?.().then(() => { IMG[i] = im; r(); }, () => { }); })))).catch(() => { });
+}
+const waitMusic = () => { const ac = audioContext(); return ac ? loadBuf(ac, MUSIC_URL).catch(() => { }) : Promise.resolve(); };
 function drawPic(c, w, h, name, p) {
   const P = PIC[name], im = P && IMG[P[0]]; if (!im) return false;
   const e = p * p * (3 - 2 * p), z = P[3] + (P[4] - P[3]) * e, cx = P[1] + (P[2] - P[1]) * e;
@@ -122,7 +127,6 @@ function drawPic(c, w, h, name, p) {
 export function playFragman(done, { force = false } = {}) {
   if (open) return;
   if (!force && fragmanSeen()) { done?.(); return; }
-  loadPics();
   const hq = getGfx().tier !== 'low' && getGfx().tier !== 'min';
   const reduce = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   const el = document.createElement('div'); el.id = 'fragman';
@@ -134,14 +138,17 @@ export function playFragman(done, { force = false } = {}) {
   const ctx = cv.getContext('2d'); let W = 0, H = 0, raf = 0, t0 = 0, last = -1, ended = false, lastFrame = 0, titled = false;
   const size = () => { const sc = hq ? Math.min(window.devicePixelRatio || 1, 1.5) : 0.6; W = cv.width = Math.max(320, Math.round(el.clientWidth * sc)); H = cv.height = Math.max(180, Math.round(el.clientHeight * sc)); };
   size(); addEventListener('resize', size);
+  let ready = false; // resimler ve müzik gelene dek siyah ekran (en çok 4 sn)
+  Promise.race([Promise.all([loadPics(), waitMusic()]), new Promise(r => setTimeout(r, 4000))]).then(() => { if (ended) return; ready = true; try { SFX.onScene?.(); } catch { } });
   const finish = () => {
     if (ended) return; ended = true; cancelAnimationFrame(raf); removeEventListener('resize', size); LS.set(key(), '1');
-    el.classList.remove('on'); setTimeout(() => { el.remove(); open = null; done?.(); }, 600);
+    el.classList.remove('on'); setTimeout(() => { el.remove(); open = null; try { SFX.onScene?.(); } catch { } done?.(); }, 600);
   };
   open = { finish };
   skip.addEventListener('click', e => { e.stopPropagation(); finish(); });
   const frame = ts => {
     if (ended) return; raf = requestAnimationFrame(frame);
+    if (!ready) { ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H); return; }
     if (!t0) t0 = ts; const tt = (ts - t0) / 1000;
     if (tt >= END) return finish();
     if (!hq && ts - lastFrame < 66) return; lastFrame = ts; // Düşük kademe: ~15 kare/sn

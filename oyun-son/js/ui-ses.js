@@ -114,6 +114,7 @@ const battleUI = document.getElementById('battleUI'), root = document.documentEl
 let wasBattle = false, sceneKey = '', scenePlace = '';
 function scene() {
   if (document.getElementById('loading')) return { place: 'none' };
+  if (document.getElementById('fragman')) return { place: 'fragman' }; // 22 Kas: fragmanda tema müziği çalar
   const wx = { phase: phaseNow(), weather: weatherNow() };
   if (battleUI && !battleUI.hidden) { wasBattle = true; return { place: SFX.over ? 'result' : SFX.boss ? 'boss' : 'battle', ...wx }; }
   if (!hud.hidden && S) { wasBattle = false; return { place: document.documentElement.dataset.place === 'carsi' ? 'carsi' : 'hub', faction: S.faction, ...wx }; }

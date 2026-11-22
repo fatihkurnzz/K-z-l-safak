@@ -20,7 +20,8 @@ html[data-hub2d] #hub2d img.h2-flama { content:var(--mz-flama); width:46px !impo
 /* Ortak pencere şablonu (P5 sayfa maketleri): ince gümüş-altın kenarlı taş panel; pencere (#win .frame) ve kutular (#modal .box) */
 :root { --p5-panel:url("@p3-panel-orta-sancak"); }
 :root[data-faction="ocak"] { --p5-panel:url("@p3-panel-orta-ocak"); }
-html[data-faction][data-faction] #win .frame, html[data-faction][data-faction] #modal .box { border-image:var(--p5-panel) 26 / 10px / 3px stretch !important; background:var(--p5-panel) center / 100% 100% no-repeat !important; }
+/* 22 Kas (kullanıcı): savaş öncesi (VS) ekranı eski görünümünde kalır (data-scr=vs) */
+html[data-faction][data-faction] #win:not([data-scr="vs"]) .frame, html[data-faction][data-faction] #modal .box { border-image:var(--p5-panel) 26 / 10px / 3px stretch !important; background:var(--p5-panel) center / 100% 100% no-repeat !important; }
 html[data-faction][data-faction] #modal .box .in { background:transparent !important; }
 
 /* Karakter oluşturma (karakter-olusturma maketi): yan paneller secim-sol/sag, sınıf düğmeleri sinif-normal/secili, Oluştur birincil düğme.

@@ -109,7 +109,7 @@ ACT.arenaRefresh = async () => { const r = await run('arena.list', { refresh: tr
 // Sol taraf: karakterin tek kahramanı (sürüm 12: parti ve dizilim yok)
 let VS = null;
 const vsLeft = () => VS.left || partyUnits(S);
-function openVs(cfg) { VS = { auto: (S.lvl | 0) >= 10 && otoPref() && !['arena', 'live', 'banner', 'anit'].includes(cfg.args?.mode), ...cfg }; openWin({ title: cfg.title, back: 'vsBack', render: renderVs }); } // 20 Kas: son OTO tercihi hatırlanır (PvP'de kapalı başlar)
+function openVs(cfg) { VS = { auto: otoPref() && !['arena', 'live', 'banner', 'anit'].includes(cfg.args?.mode), ...cfg }; openWin({ title: cfg.title, back: 'vsBack', scr: 'vs', render: renderVs }); } // 20 Kas: son OTO tercihi hatırlanır (PvP'de kapalı başlar)
 // Öğretici: Dev Solucan'a karşı (ui-ogretici.js çocuğun diyaloğundan açar)
 ACT.wormGo = () => openVs({ title: 'Dev Solucan', foe: 'Dev Solucan <span class="mut">· Nessa’yı yuttu</span>', waves: soloWaves([[mobUnit('devsolucan', Math.max(2, S.lvl))]], 'worm'), args: { mode: 'worm' }, rules: ['Ateş onu yakar (zayıflığı)', 'Yarı canında topraktan yeniden fırlar', 'Zafer: Nessa kurtulur, 600 akçe ve bileği taşları'] });
 ACT.vsBack = () => (['arena', 'live', 'banner'].includes(VS?.args?.mode) ? ACT.meydan({ tab: 'fight' }) : ACT.gate({ tab: GV.tab === 'pvp' ? 'zones' : GV.tab, zone: GV.zone }));
@@ -128,15 +128,15 @@ function renderVs() {
     <div class="vside b"><h4>${c.foe || 'Düşman'}</h4>${right}</div></div>
     ${c.extra || ''}
     <div class="vbtns">${c.sweep ? `<button class="btn blue" data-a="sweep" data-n="5">Seri ×5</button><button class="btn blue" data-a="sweep" data-n="10">×10</button>` : ''}
-      ${(S.lvl | 0) >= 10 ? `<button class="btn ${VS.auto ? 'green' : ''}" data-a="vsAuto">Oto: ${VS.auto ? 'açık' : 'kapalı'}</button>` : ''}
+      <button class="btn ${VS.auto ? 'green' : ''}" data-a="vsAuto">Oto: ${VS.auto ? 'açık' : 'kapalı'}</button>
       <button class="btn red big" data-a="vsStart" ${can ? '' : 'disabled'}>${c.startLabel || 'Başla'}${c.energy ? ` ${ri('energy', '#fff')} ${c.energy}` : ''}</button></div>`;
 }
-ACT.vsAuto = () => { if ((S.lvl | 0) < 10) return; VS.auto = !VS.auto; try { localStorage.setItem('dd_oto', VS.auto ? '1' : '0'); } catch { } redraw(); };
+ACT.vsAuto = () => { VS.auto = !VS.auto; try { localStorage.setItem('dd_oto', VS.auto ? '1' : '0'); } catch { } redraw(); };
 ACT.vsCoef = () => showModal(`<h2>Saldırı Türleri</h2><div class="in" style="text-align:left">${vsCoefTable(vsLeft(), VS.waves)}</div>`, 'cxbox');
 ACT.vsStart = () => startBattle(VS.args, VS.auto);
 // Karakter ekranı (eşya, yetenek, nitelik); geri düğmesi bu ekrana döner
 ACT.vsForm = () => ACT.party({ back: 'vsReturn' });
-ACT.vsReturn = () => { if (VS) openWin({ title: VS.title, back: 'vsBack', render: renderVs }); else ACT.hub(); };
+ACT.vsReturn = () => { if (VS) openWin({ title: VS.title, back: 'vsBack', scr: 'vs', render: renderVs }); else ACT.hub(); };
 ACT.sweep = async d => {
   const lv = S.lvl, r = await run('battle.sweep', { stage: VS.args.stage, tier: VS.args.tier || 0, n: +d.n }); if (!r) return;
   showModal(`<h2>Seri Savaş</h2><div class="in"><p><b>${r.runs} savaş · ${r.wins} zafer</b></p><p>${ri('xp')} ${xpGain(r.xp, lv)} · ${ri('akce')} +${fmt(r.akce)} akçe</p>${r.levels ? levelUpNote(lv, S.lvl) : ''}${r.bagFull ? '<p class="warn">Çanta doldu: kalan savaşlar yapılmadı.</p>' : ''}${lootBox(r.loot) || '<p class="mut">Eşya düşmedi.</p>'}<div class="mbtns"><button class="btn" data-a="closeModal">Tamam</button></div></div>`);

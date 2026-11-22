@@ -5,7 +5,8 @@
 #loading.ld { display:block; padding:0; background:#050306; font:inherit; color:var(--ko-g1); overflow:hidden; letter-spacing:0; text-shadow:none; }
 #loading.ld::after { display:none; }
 #loading .ld-blur { position:absolute; inset:-30px; background:url(../img/korant-acilis.jpg) center/cover no-repeat; filter:blur(18px) brightness(.45); }
-#loading .ld-art { position:absolute; inset:0 0 calc(var(--sab, 0px) + 62px) 0; background:url(../img/korant-acilis.jpg) center top/contain no-repeat; }
+/* 22 Kas (kullanıcı): açılış resmi ekranın tamamını kaplar (yanlar boş kalmasın); alttaki yükleme çubuğu için hafif karartma */
+#loading .ld-art { position:absolute; inset:0; background:linear-gradient(transparent 72%, rgba(5,3,6,.75)), url(../img/korant-acilis.jpg) center 22%/cover no-repeat; }
 #loading .ld-foot { position:absolute; left:50%; bottom:calc(var(--sab, 0px) + 8px); transform:translateX(-50%); width:min(560px, 70vw); display:grid; justify-items:center; gap:6px; z-index:2; }
 #loading .ld-txt { font:700 12px/1 var(--display); letter-spacing:3px; text-transform:uppercase; color:var(--ko-g2); text-shadow:0 1px 0 #000, 0 0 12px rgba(240,180,80,.45); }
 #loading .ld-txt::after { content:''; display:inline-block; width:1.2em; text-align:left; animation:koDots 1.2s steps(4) infinite; }

@@ -33,7 +33,7 @@ export const BT = { sk: false, pot: false, auto: false, on: false };
 // Öğretici kilidi (ui-kalicilik.js doldurur): 'bar' adımında iksir içilene dek saldırı, OTO ve çıkış kapalı
 export const TUTLOCK = { pot: () => false, say: null };
 // OTO 10. seviyede açılır (19 Kas): ok() ui-kalicilik.js'te seviyeye bağlanır. İlk 3 savaşta OTO düğmesi hatırlatılır.
-export const OTO = { lvl: 10, ok: () => true };
+export const OTO = { lvl: 1, ok: () => true }; // 22 Kas (kullanıcı): OTO her seviyede açık
 const OTO_HINT = 'dd_oto_hint';
 function otoHint() {
   let n = 0; try { n = +localStorage.getItem(OTO_HINT) || 0; } catch { }
@@ -75,7 +75,8 @@ export function unitLook(u) {
 }
 
 // 19 Kas (kullanıcı): kamera %20 daha yüksekten ve uzaktan (eski konum 0, 8.6, 9.0: bakış noktasına uzaklık ×1,2)
-const CAM = { pos: new THREE.Vector3(10.5, 4.4, 0), look: new THREE.Vector3(0, 1.2, 0) };
+// 22 Kas (kullanıcı): kamera %30 geride (bakış noktasından uzaklık 1,3 kat: 10.5,4.4 → 13.65,5.36)
+const CAM = { pos: new THREE.Vector3(13.65, 5.36, 0), look: new THREE.Vector3(0, 1.2, 0) };
 // Dizilişler (birim sayısı → [x, z] sıra sırasıyla; sıra 0 = oyuncunun kahramanı, önde). Düşman tarafı z'nin aynası.
 const FORM = {
   1: [[2.18, 3.23]],
@@ -222,7 +223,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   });
 
   Object.assign(ui, { auto, choose: null, active: null, onExit, legal: [] });
-  if (auto && ui.fast && [2, 3].includes(+PREF.get('dd_speed'))) ui.speed = +PREF.get('dd_speed'); // hatırlanan hız (OTO ile başlayan PvE savaşı)
+  if (ui.fast && [2, 3].includes(+PREF.get('dd_speed'))) ui.speed = +PREF.get('dd_speed'); // hatırlanan hız (PvE; 22 Kas: OTO'dan bağımsız)
   clock.scale = ui.speed;
   battleUI.hidden = false;
   const setTitle = () => {
@@ -673,12 +674,12 @@ const baseSpeed = () => (A11Y.speed < 1 ? A11Y.speed : 1);
 function prim(on, label) { const b = document.getElementById('bprim'); if (!b) return; b.disabled = !on; if (label) b.textContent = label; }
 document.getElementById('bprim')?.addEventListener('click', () => ui.primary?.());
 function renderButtons() {
-  if ((!ui.auto || ui.fast === false) && ui.speed > 1) { ui.speed = baseSpeed(); clock.scale = ui.speed; }
-  $('#bauto').hidden = !OTO.ok(); { const b = $('#bapot'); if (b) { b.hidden = !OTO.ok() || !ui.hasPot; b.classList.toggle('on', potPref()); b.title = potPref() ? 'Oto İksir açık: OTO can %40, mana %15 altına inince iksir içer' : 'Oto İksir kapalı: OTO iksir harcamaz'; } } $('#bauto').classList.toggle('on', ui.auto); $('#bspeed').textContent = `${ui.speed}x`; $('#bspeed').classList.toggle('off', !ui.auto || ui.fast === false);
+  if (ui.fast === false && ui.speed > 1) { ui.speed = baseSpeed(); clock.scale = ui.speed; } // 22 Kas (kullanıcı): hız OTO kapalıyken de 1x→2x→3x→1x döner
+  $('#bauto').hidden = !OTO.ok(); { const b = $('#bapot'); if (b) { b.hidden = !OTO.ok() || !ui.hasPot; b.classList.toggle('on', potPref()); b.title = potPref() ? 'Oto İksir açık: OTO can %40, mana %15 altına inince iksir içer' : 'Oto İksir kapalı: OTO iksir harcamaz'; } } $('#bauto').classList.toggle('on', ui.auto); $('#bspeed').textContent = `${ui.speed}x`; $('#bspeed').classList.toggle('off', ui.fast === false);
 }
 $('#bauto').onclick = () => { if (potLock()) return lockMsg(); if (!OTO.ok()) return; document.querySelector('.oto-tip')?.remove(); ui.auto = !ui.auto; BT.auto = ui.auto; PREF.set('dd_oto', ui.auto ? '1' : '0'); if (ui.auto && [2, 3].includes(+PREF.get('dd_speed')) && ui.fast !== false) { ui.speed = +PREF.get('dd_speed'); clock.scale = ui.speed; } renderButtons(); if (ui.auto) ui.autoPick?.(); };
 $('#bapot').onclick = () => { const on = !potPref(); PREF.set('dd_autopot', on ? '1' : '0'); if (ui.battle) ui.battle.noAutoPot = !on; const w = $('#bwho'); if (w) w.innerHTML = `<b>Oto İksir ${on ? 'açık' : 'kapalı'}</b> · <span>${on ? 'Can %40, mana %15 altına inince OTO iksir içer.' : 'OTO iksir harcamaz; istersen kendin içebilirsin.'}</span>`; renderButtons(); };
-$('#bspeed').onclick = () => { if (ui.fast === false) { const w = $('#bwho'); if (w) w.innerHTML = '<b>Hızlandırma</b> · <span>2x ve 3x yalnız PvE ve tek oyunculu savaşta kullanılır.</span>'; return; } if (!ui.auto) { const w = $('#bwho'); if (w) w.innerHTML = '<b>Hızlandırma</b> · <span>2x ve 3x yalnız OTO açıkken kullanılır.</span>'; return; } ui.speed = ui.speed < 1 ? 1 : ui.speed === 1 ? 2 : ui.speed === 2 ? 3 : (A11Y.speed < 1 ? A11Y.speed : 1); clock.scale = ui.speed; PREF.set('dd_speed', String(ui.speed)); renderButtons(); };
+$('#bspeed').onclick = () => { if (ui.fast === false) { const w = $('#bwho'); if (w) w.innerHTML = '<b>Hızlandırma</b> · <span>2x ve 3x yalnız PvE ve tek oyunculu savaşta kullanılır.</span>'; return; } ui.speed = ui.speed < 1 ? 1 : ui.speed === 1 ? 2 : ui.speed === 2 ? 3 : (A11Y.speed < 1 ? A11Y.speed : 1); clock.scale = ui.speed; PREF.set('dd_speed', String(ui.speed)); renderButtons(); };
 $('#bexit').onclick = () => (potLock() ? lockMsg() : ui.onExit?.());
 
 let downAt = null;

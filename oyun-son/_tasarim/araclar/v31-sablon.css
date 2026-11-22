@@ -97,3 +97,12 @@ html:root body #game #battleUI #bctl, html:root body #game #battleUI:has(#bapot:
 html:root body #game #battleUI #bctl #bexit { width:calc(200 * var(--g)) !important; height:calc(76 * var(--g)) !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:var(--sv-kd0) center / 100% 100% no-repeat !important; box-shadow:none !important; font-size:0 !important; color:var(--sv-tx) !important; }
 html:root body #game #battleUI #bctl #bexit::before { content:'Çekil' !important; font:600 calc(32 * var(--g)) Georgia, serif; color:var(--sv-tx); text-shadow:0 1px 2px #000; }
 html:root body #game #battleUI #bctl #bexit::after { content:none !important; }
+
+/* ---- 22 Kas (kullanıcı): Saldır düğmesi ve soldaki sıra kutusu (kadro) kaldırıldı; Otomatik/hız sağ altta; Çekil yerine sağ üst köşede ✕ ---- */
+html:root body #game #battleUI #bprim, html:root body #game #battleUI #bparty { display:none !important; }
+html:root body #game #battleUI #bctl2 { right:calc(60 * var(--g)) !important; bottom:calc(70 * var(--g) + var(--sab,0px)) !important; }
+html:root body #game #battleUI #bctl, html:root body #game #battleUI:has(#bapot:not([hidden])) #bctl { right:calc(22 * var(--g)) !important; top:calc(42 * var(--g)) !important; bottom:auto !important; left:auto !important; }
+html:root body #game #battleUI #bctl #bexit { width:calc(104 * var(--g)) !important; height:calc(104 * var(--g)) !important; min-width:0 !important; padding:0 !important; border:calc(3 * var(--g)) solid #97794e !important; border-radius:calc(14 * var(--g)) !important; background:linear-gradient(#2a2119, #120d09) !important; box-shadow:0 0 0 1px #000a, 0 calc(4 * var(--g)) calc(10 * var(--g)) #0008 !important; font:700 calc(56 * var(--g))/1 system-ui, sans-serif !important; color:#f3e2bd !important; display:flex !important; align-items:center; justify-content:center; }
+html:root body #game #battleUI #bctl #bexit::before, html:root body #game #battleUI #bctl #bexit::after { content:none !important; }
+html:root body #game #battleUI #bctl #bexit:active { filter:brightness(1.3); }
+

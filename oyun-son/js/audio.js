@@ -259,6 +259,7 @@ export function unlock() {
       const b = ac.createBufferSource(); b.buffer = ac.createBuffer(1, 1, ac.sampleRate); b.connect(ac.destination); b.start(0); // iOS: dokunuş içinde çalınan sessiz örnek bağlamı açar
     }
     opened = true;
+    for (const u of pending) loadBuf(ac, u).catch(() => { }); pending.clear();
     pump();
     return true;
   } catch { return false; }
@@ -366,8 +367,25 @@ function startLoop(g, name, t, o = NO_OPTS) {
   }
   const st = { name, P, lg, wet, nodes, dest: { dry: lg, wet: null }, evNext: (P.ev || []).map(e => t + e.every[0] * (0.3 + g.rand())), seq: null, dying: 0 };
   if (P.seq) st.seq = { t0: t + (P.seq.lead ?? 0.3), bar: -1, notes: null, ni: 0, barDur: P.seq.beats * 60 / P.seq.bpm };
+  // Dosyadan çalan müzik (22 Kas, kullanıcının verdiği parça): P.url ilk istekte indirilip çözülür, hazır olunca döngüde çalar
+  if (P.url) {
+    const go = buf => { if (st.dying) return; const src = ctx.createBufferSource(); src.buffer = buf; src.loop = true; src.connect(lg); src.start(Math.max(t, ctx.currentTime + 0.02)); nodes.push(src); };
+    const b = BUFS.get(P.url);
+    if (b instanceof AudioBuffer) go(b); else loadBuf(ctx, P.url).then(go, () => { });
+  }
   return st;
 }
+const BUFS = new Map();
+export function loadBuf(ctx, url) {
+  const c = BUFS.get(url); if (c) return c instanceof AudioBuffer ? Promise.resolve(c) : c;
+  const p = fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+    .then(a => new Promise((res, rej) => { const q = ctx.decodeAudioData(a, res, rej); q?.then?.(res, rej); }))
+    .then(b => { BUFS.set(url, b); return b; }, e => { BUFS.delete(url); throw e; });
+  BUFS.set(url, p); return p;
+}
+// Müzik dosyasını bağlam açılır açılmaz önden indir (fragman ve şehir müziği beklemeden başlasın)
+export function preloadMusic(url) { if (ac) loadBuf(ac, url).catch(() => { }); else pending.add(url); }
+const pending = new Set();
 // Döngünün "until" anına kadarki olaylarını zamanlar (ortamın seyrek sesleri ve ezginin notaları)
 function fillLoop(g, st, until, cap = 8) {
   const P = st.P, now = g.ctx.currentTime;
