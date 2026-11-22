@@ -7,8 +7,10 @@ R = sys.argv[1]; K = R + '/_tasarim/gelen/karakter-ekran/assets'
 YOL = {'ik-elentha': K + '/ikon/elentha.png', 'ik-kragmir': K + '/ikon/kragmir.png', 'ik-zar': K + '/ikon/zar.png',
        # 22 Kas akşam — 'Karakter Kararlı Devir v2': başlık levhası ve sınıf simgeleri
        'levha-ocak': R + '/_tasarim/gelen/karakter-v2/arayuz/baslik-levha-ocak.png', 'levha-sancak': R + '/_tasarim/gelen/karakter-v2/arayuz/baslik-levha-sancak.png', 's-warrior': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-warrior.png', 's-rogue': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-rogue.png', 's-priest': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-priest.png', 's-mage': R + '/_tasarim/gelen/karakter-v2/arayuz/sinif-mage.png'}
+KS = R + '/_tasarim/gelen/karakter-son/03_UI'  # 22 Kas gece — 'VAHRAN Claude Devir' (4 parça): ks-<ad> = UI_PNG_2X, ko-<ad> = IKON_ORIJINAL
 def gom(m):
-    ad = m.group(1); f = YOL.get(ad, f'{K}/arayuz/{ad}.png')
+    ad = m.group(1)
+    f = f'{KS}/UI_PNG_2X/{ad[3:]}.png' if ad.startswith('ks-') else f'{KS}/IKON_ORIJINAL/{ad[3:]}.png' if ad.startswith('ko-') else YOL.get(ad, f'{K}/arayuz/{ad}.png')
     b = io.BytesIO(); Image.open(f).convert('RGBA').save(b, 'WEBP', quality=90, method=6)
     return 'url("data:image/webp;base64,' + base64.b64encode(b.getvalue()).decode() + '")'
 T = open(R + '/_tasarim/araclar/v33-sablon.css', encoding='utf-8').read()
