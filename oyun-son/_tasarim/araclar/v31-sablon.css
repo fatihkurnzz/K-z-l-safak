@@ -129,3 +129,26 @@ html:root body #game #battleUI #bctl, html:root body #game #battleUI:has(#bapot:
 html:root body #game #battleUI #bctl #bexit { width:calc(76 * var(--g)) !important; height:calc(76 * var(--g)) !important; font-size:calc(42 * var(--g)) !important; border-width:calc(2.5 * var(--g)) !important; border-radius:calc(12 * var(--g)) !important; }
 /* boss çubuğu ✕'in altına iner (✕ Dalga'nın hemen altında kalır) */
 html:root body #game #battleUI #bboss { top:calc(192 * var(--g)) !important; }
+
+/* ---- 22 Kas gece (kullanıcı, 2): can/mana iksiri 1. yuvanın YANINDA (sütunda 6 yuva kalır, yuvalar büyür); oyuncu ve düşman kartı
+   ekranın sol/sağ kenarına yaslı; ✕ Dalga şeridinin ÜSTÜNDE; sağ alttaki Otomatik / Oto İksir / hız düğmeleri yuvarlak. ---- */
+html:root body #game #battleUI { --sz:min(calc(60 * var(--g) / .47), calc((var(--lh, 100vh) - 172 * var(--g) - var(--sab, 0px) - 6px) / 6 - 4px)); }
+html:root body #game #battleUI #ystat { left:calc(12 * var(--g)) !important; }
+html:root body #game #battleUI #btgt { right:calc(12 * var(--g)) !important; }
+html:root body #game #battleUI #skills { left:calc(12 * var(--g)) !important; }
+html:root body #game #battleUI #skills .yrow { position:static !important; }
+html:root body #game #battleUI #skills .ypots { position:absolute !important; top:0 !important; left:calc(100% + 4px) !important; flex-direction:row !important; gap:4px !important; padding:3px !important; border-radius:6px !important;
+  background:linear-gradient(90deg, #120d09a6, #120d09d9) !important; box-shadow:0 0 0 1px #97794e88, 0 2px 8px #0008 !important; }
+html:root body #game #battleUI #bwho { left:calc(12 * var(--g) + var(--sz) + 14px) !important; }
+html:root body #game #battleUI #bctl, html:root body #game #battleUI:has(#bapot:not([hidden])) #bctl { top:calc(10 * var(--g)) !important; }
+html:root body #game #battleUI #bwave { top:calc(94 * var(--g)) !important; }
+html:root body #game #battleUI #bboss { top:calc(172 * var(--g)) !important; }
+html:root body #game #battleUI #bctl2 { right:calc(36 * var(--g)) !important; bottom:calc(30 * var(--g) + var(--sab,0px)) !important; gap:calc(18 * var(--g)) !important; align-items:center !important; }
+html:root body #game #battleUI #bctl2 .rb, html:root body #game #battleUI #bctl2 #bapot { width:calc(122 * var(--g)) !important; height:calc(122 * var(--g)) !important; min-width:0 !important; padding:0 calc(10 * var(--g)) !important;
+  border:calc(3 * var(--g)) solid #97794e !important; border-radius:50% !important; background:radial-gradient(circle at 50% 35%, #3a2d20, #120d09 75%) !important;
+  box-shadow:0 0 0 1px #000a, inset 0 0 calc(10 * var(--g)) #000c, 0 calc(4 * var(--g)) calc(10 * var(--g)) #0008 !important;
+  font:700 calc(22 * var(--g))/1.05 Georgia, serif !important; white-space:normal !important; text-align:center; display:flex !important; align-items:center; justify-content:center; color:#d9c9a8 !important; }
+html:root body #game #battleUI #bctl2 #bspeed { font-size:calc(38 * var(--g)) !important; }
+html:root body #game #battleUI #bctl2 .rb.on { border-color:#ffd36a !important; color:#fff7e2 !important; background:radial-gradient(circle at 50% 35%, #7a5a2a, #2a1d10 75%) !important;
+  box-shadow:0 0 0 1px #000a, 0 0 calc(14 * var(--g)) #ffd36a88, inset 0 0 calc(10 * var(--g)) #0008 !important; }
+html:root body #game #battleUI #bctl2 .rb:active { filter:brightness(1.3); }
