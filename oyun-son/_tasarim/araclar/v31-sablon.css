@@ -1,0 +1,99 @@
+/* 22 Kas — Savaş HUD'u, GPT 2340×1080 teslimi (savas-katmanlari.json). Ölçüler maket pikselinde: --g = 1 maket pikseli
+   (telefon 880×406'da ≈ 0,376 px; geniş olmayan ekranda genişliğe göre küçülür). Sol öğeler sola, sağ öğeler sağa çapalı.
+   Veri ve davranış combat.js'te; burası yalnız görünüş. Bu dosya en son yüklenir. */
+:root { --sv-lider:url("@savas-lider-kart-sancak"); --sv-dusman:url("@savas-dusman-kart-sancak"); --sv-cember:url("@savas-portre-cember-sancak");
+  --sv-dalga:url("@savas-dalga-serit-sancak"); --sv-kadro:url("@savas-kadro-sutun-sancak"); --sv-cubuk:url("@savas-yetenek-cubuk-sancak");
+  --sv-temel:url("@savas-temel-yuva-sancak"); --sv-hazir:url("@savas-yetenek-yuva-hazir-sancak"); --sv-bekle:url("@savas-yetenek-yuva-bekleme-sancak");
+  --sv-kilit:url("@savas-yetenek-yuva-kilitli-sancak"); --sv-bos:url("@savas-yetenek-yuva-bos-sancak"); --sv-secili:url("@savas-yetenek-yuva-secili-sancak");
+  --sv-pasif:url("@savas-yetenek-yuva-pasif-sancak"); --sv-iksir:url("@savas-iksir-yuva-sancak");
+  --sv-kd0:url("@savas-kucuk-dugme-kapali-sancak"); --sv-kd1:url("@savas-kucuk-dugme-acik-sancak");
+  --sv-b0:url("@savas-birincil-normal-sancak"); --sv-b1:url("@savas-birincil-basili-sancak"); --sv-b2:url("@savas-birincil-pasif-sancak");
+  --g:min(calc(var(--lh, 100vh) / 1080), calc(var(--lw, 100vw) / 2340)); --sv-tx:#fff0d2; }
+:root[data-faction="ocak"] { --sv-lider:url("@savas-lider-kart-ocak"); --sv-dusman:url("@savas-dusman-kart-ocak"); --sv-cember:url("@savas-portre-cember-ocak");
+  --sv-dalga:url("@savas-dalga-serit-ocak"); --sv-kadro:url("@savas-kadro-sutun-ocak"); --sv-cubuk:url("@savas-yetenek-cubuk-ocak");
+  --sv-temel:url("@savas-temel-yuva-ocak"); --sv-hazir:url("@savas-yetenek-yuva-hazir-ocak"); --sv-bekle:url("@savas-yetenek-yuva-bekleme-ocak");
+  --sv-kilit:url("@savas-yetenek-yuva-kilitli-ocak"); --sv-bos:url("@savas-yetenek-yuva-bos-ocak"); --sv-secili:url("@savas-yetenek-yuva-secili-ocak");
+  --sv-pasif:url("@savas-yetenek-yuva-pasif-ocak"); --sv-iksir:url("@savas-iksir-yuva-ocak");
+  --sv-kd0:url("@savas-kucuk-dugme-kapali-ocak"); --sv-kd1:url("@savas-kucuk-dugme-acik-ocak");
+  --sv-b0:url("@savas-birincil-normal-ocak"); --sv-b1:url("@savas-birincil-basili-ocak"); --sv-b2:url("@savas-birincil-pasif-ocak"); }
+
+/* ---- sol üst: oyuncu kartı (140,35 · 510×126) ---- */
+html:root body #game #battleUI #ystat { left:calc(140 * var(--g)) !important; top:calc(35 * var(--g)) !important; bottom:auto !important; width:calc(510 * var(--g)); height:calc(126 * var(--g)); display:block !important; padding:0 !important; background:var(--sv-lider) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 calc(4 * var(--g)) calc(12 * var(--g)) #0008 !important; border-radius:calc(8 * var(--g)); }
+html:root body #game #battleUI #ystat .yport { position:absolute !important; left:calc(3 * var(--g)); top:calc(3 * var(--g)); width:calc(120 * var(--g)) !important; height:calc(120 * var(--g)) !important; margin:0 !important; border-radius:50%; box-shadow:none !important; background:#120d09; overflow:visible !important; }
+html:root body #game #battleUI #ystat .yport > img, html:root body #game #battleUI #ystat .yport > svg { position:absolute; left:6%; top:6%; width:88% !important; height:88% !important; border-radius:50%; object-fit:cover; }
+html:root body #game #battleUI #ystat .yport::after { content:''; position:absolute; inset:0; background:var(--sv-cember) center / 100% 100% no-repeat; pointer-events:none; }
+html:root body #game #battleUI #ystat .ylv { display:none !important; }
+html:root body #game #battleUI #ystat .ybars { position:absolute !important; left:calc(133 * var(--g)); top:calc(10 * var(--g)); width:calc(341 * var(--g)) !important; margin:0 !important; padding:0 !important; background:none !important; border:0 !important; box-shadow:none !important; display:flex !important; flex-direction:column; gap:calc(2 * var(--g)) !important; }
+html:root body #game #battleUI #ystat .ynm { height:calc(40 * var(--g)); display:flex; align-items:center; gap:calc(14 * var(--g)); font:600 calc(31 * var(--g))/1 Cinzel, Georgia, serif !important; color:var(--sv-tx) !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-shadow:0 1px 2px #000; }
+html:root body #game #battleUI #ystat .yb, html:root body #game #battleUI #ystat .yb.mp { position:relative; height:calc(31 * var(--g)) !important; border:calc(2 * var(--g)) solid #97794e !important; border-image:none !important; border-radius:0 !important; background:#140f0b !important; box-shadow:0 0 0 1px #0009 !important; overflow:hidden; }
+html:root body #game #battleUI #ystat .yb.hp i { background:linear-gradient(180deg,#c4533d,#963524 55%,#5e1c12) !important; }
+html:root body #game #battleUI #ystat .yb.mp i { background:linear-gradient(180deg,#3f72b8,#234c86 55%,#132c52) !important; }
+html:root body #game #battleUI #ystat .yb b { font:600 calc(26 * var(--g))/calc(27 * var(--g)) Georgia, serif !important; color:var(--sv-tx) !important; }
+
+/* ---- sağ üst: hedef kartı (1690,35 · 510×126; portre sağda) ---- */
+html:root body #game #battleUI #btgt { right:calc(140 * var(--g)) !important; top:calc(35 * var(--g)) !important; width:calc(510 * var(--g)); height:calc(126 * var(--g)); display:block !important; background:var(--sv-dusman) center / 100% 100% no-repeat !important; box-shadow:0 calc(4 * var(--g)) calc(12 * var(--g)) #0008 !important; border-radius:calc(8 * var(--g)); }
+html:root body #game #battleUI #btgt[hidden] { display:none !important; }
+html:root body #game #battleUI #btgt .bt-port { position:absolute !important; right:calc(3 * var(--g)); top:calc(3 * var(--g)); width:calc(120 * var(--g)) !important; height:calc(120 * var(--g)) !important; box-shadow:none !important; overflow:visible !important; background:none !important; }
+html:root body #game #battleUI #btgt .bt-port > img, html:root body #game #battleUI #btgt .bt-port > svg { position:absolute; left:6%; top:6%; width:88% !important; height:88% !important; border-radius:50%; object-fit:cover; background:#120d09; }
+html:root body #game #battleUI #btgt .bt-port::after { content:''; position:absolute; inset:0; background:var(--sv-cember) center / 100% 100% no-repeat; pointer-events:none; }
+html:root body #game #battleUI #btgt.boss .bt-port::after { filter:hue-rotate(-20deg) saturate(1.6); }
+html:root body #game #battleUI #btgt .bt-info { position:absolute !important; left:calc(36 * var(--g)); top:calc(10 * var(--g)); width:calc(339 * var(--g)) !important; margin:0 !important; padding:0 !important; background:none !important; border:0 !important; box-shadow:none !important; display:flex !important; flex-direction:column; gap:calc(4 * var(--g)) !important; text-align:right; }
+html:root body #game #battleUI #btgt b { order:0; height:calc(40 * var(--g)); line-height:calc(40 * var(--g)); font:600 calc(32 * var(--g))/calc(40 * var(--g)) Cinzel, Georgia, serif !important; color:var(--sv-tx) !important; text-shadow:0 1px 2px #000; }
+html:root body #game #battleUI #btgt.boss b { color:#ffcf8a !important; }
+html:root body #game #battleUI #btgt .bt-bar { order:1; height:calc(33 * var(--g)) !important; border:calc(2 * var(--g)) solid #97794e !important; border-radius:0 !important; box-shadow:0 0 0 1px #0009 !important; background:#140f0b !important; }
+html:root body #game #battleUI #btgt .bt-bar i { background:linear-gradient(180deg,#c4533d,#963524 55%,#5e1c12) !important; }
+html:root body #game #battleUI #btgt .bt-bar em { font:600 calc(26 * var(--g))/calc(29 * var(--g)) Georgia, serif !important; color:var(--sv-tx) !important; }
+html:root body #game #battleUI #btgt small { order:2; font:600 calc(22 * var(--g))/1 Georgia, serif !important; color:#d8c7a2 !important; }
+
+/* ---- üst orta: dalga şeridi (1008,32 · 324×69) ---- */
+html:root body #game #battleUI #bwave { top:calc(32 * var(--g)) !important; min-width:calc(324 * var(--g)); height:calc(69 * var(--g)); padding:0 calc(40 * var(--g)) !important; box-sizing:border-box; justify-content:center; gap:0 !important; background:var(--sv-dalga) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:none !important; clip-path:none !important; border-radius:0 !important; }
+html:root body #game #battleUI #bwave .bw-big { font:600 calc(33 * var(--g))/1 Cinzel, Georgia, serif !important; color:var(--sv-tx) !important; text-shadow:0 1px 2px #000; white-space:nowrap; }
+html:root body #game #battleUI #bwave span { display:none !important; }
+
+/* ---- sol: kadro sütunu (133,284 · 110 geniş; portre 78 + çember 84, adım 85) ---- */
+html:root body #game #battleUI #bparty { left:calc(133 * var(--g)) !important; top:calc(284 * var(--g)) !important; width:calc(110 * var(--g)); box-sizing:border-box; padding:calc(13 * var(--g)) 0 !important; gap:calc(1 * var(--g)) !important; align-items:center; border-radius:0 !important; background:var(--sv-kadro) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 calc(4 * var(--g)) calc(12 * var(--g)) #0008 !important; }
+html:root body #game #battleUI #bparty .bp { width:calc(84 * var(--g)) !important; height:calc(84 * var(--g)) !important; overflow:visible !important; box-shadow:none !important; background:none !important; }
+html:root body #game #battleUI #bparty .bp > img, html:root body #game #battleUI #bparty .bp > svg { position:absolute; left:4%; top:4%; width:92% !important; height:92% !important; border-radius:50%; object-fit:cover; transform:none !important; background:#120d09; }
+html:root body #game #battleUI #bparty .bp::after { content:''; position:absolute; inset:0; background:var(--sv-cember) center / 100% 100% no-repeat; pointer-events:none; }
+html:root body #game #battleUI #bparty .bp.now::after { filter:drop-shadow(0 0 calc(8 * var(--g)) #ffd36a) brightness(1.3); }
+html:root body #game #battleUI #bparty .bp > i { left:14% !important; right:auto; bottom:calc(-2 * var(--g)) !important; max-width:72%; height:calc(7 * var(--g)) !important; background:#6e9d3f !important; box-shadow:0 0 0 calc(3 * var(--g)) #251e19 !important; z-index:1; }
+html:root body #game #battleUI #bparty .bp em { z-index:1; right:0 !important; top:0 !important; font:700 calc(19 * var(--g))/1 Georgia, serif !important; padding:calc(2 * var(--g)) calc(5 * var(--g)) !important; border-radius:calc(8 * var(--g)) !important; }
+
+/* ---- alt: yetenek çubuğu (358,836 · 1185×186; yuva 132, adım 142) ---- */
+html:root body #game #battleUI #skills { left:calc(358 * var(--g)) !important; right:auto !important; bottom:calc(58 * var(--g) + var(--sab,0px)) !important; transform:none !important; width:calc(1185 * var(--g)) !important; height:calc(186 * var(--g)) !important; background:var(--sv-cubuk) center / 100% 100% no-repeat !important; }
+html:root body #game #battleUI #skills .yrow { height:100%; box-sizing:border-box; padding:0 0 0 calc(36 * var(--g)) !important; gap:calc(10 * var(--g)) !important; background:none !important; border:0 !important; box-shadow:none !important; border-radius:0 !important; }
+html:root body #game #battleUI #skills .yr-end { display:none !important; }
+html:root body #game #battleUI #skills .ypots { gap:calc(10 * var(--g)) !important; margin:0 !important; padding:0 !important; border:0 !important; }
+html:root body #game #battleUI #skills .skill { width:calc(132 * var(--g)) !important; height:calc(132 * var(--g)) !important; border:0 !important; border-radius:0 !important; background:var(--sv-hazir) center / 100% 100% no-repeat !important; box-shadow:none !important; filter:none !important; overflow:visible; }
+html:root body #game #battleUI #skills .skill > span { width:80% !important; height:80% !important; border-radius:calc(4 * var(--g)); overflow:hidden; }
+html:root body #game #battleUI #skills .skill > span img { width:100%; height:100%; object-fit:cover; }
+html:root body #game #battleUI #skills .skill.basic { background-image:var(--sv-temel) !important; }
+html:root body #game #battleUI #skills .skill:has(> em:not(.dry)) { background-image:var(--sv-bekle) !important; }
+html:root body #game #battleUI #skills .skill:has(> em.dry) > span { filter:saturate(.35) brightness(.7); }
+html:root body #game #battleUI #skills .skill.sel { background-image:var(--sv-secili) !important; filter:drop-shadow(0 0 calc(10 * var(--g)) #ffd36a99) !important; }
+html:root body #game #battleUI #skills .skill.lock { background-image:var(--sv-kilit) !important; }
+html:root body #game #battleUI #skills .skill.lock > span { display:none !important; }
+html:root body #game #battleUI #skills .skill.empty { background-image:var(--sv-bos) !important; }
+html:root body #game #battleUI #skills .skill.pot { background-image:var(--sv-iksir) !important; }
+html:root body #game #battleUI #skills .skill:disabled:not(.lock):not(.empty) > span { filter:saturate(.7) brightness(.78); }
+html:root body #game #battleUI #skills .skill em { inset:9% !important; border-radius:calc(4 * var(--g)) !important; font:700 calc(46 * var(--g)) Georgia, serif !important; color:var(--sv-tx) !important; }
+html:root body #game #battleUI #skills .skill .mpc { bottom:calc(-14 * var(--g)) !important; font:700 calc(19 * var(--g))/1 Inter, sans-serif !important; padding:calc(2 * var(--g)) calc(6 * var(--g)) calc(2 * var(--g)) calc(19 * var(--g)) !important; }
+html:root body #game #battleUI #skills .skill.pot .pn { right:calc(10 * var(--g)) !important; bottom:calc(8 * var(--g)) !important; font:700 calc(29 * var(--g))/1 Georgia, serif !important; color:var(--sv-tx) !important; }
+html:root body #game #battleUI #bwho { bottom:calc(252 * var(--g) + var(--sab,0px)) !important; left:calc(950 * var(--g)) !important; }
+
+/* ---- sağ alt: Otomatik / Oto iksir / hız (1566…2098, y 812, yük. 78) ve birincil Saldır/Kullan (1720,894 · 300×128) ---- */
+html:root body #game #battleUI #bctl2 { right:calc(242 * var(--g)) !important; bottom:calc(190 * var(--g) + var(--sab,0px)) !important; flex-direction:row-reverse !important; gap:calc(8 * var(--g)) !important; }
+html:root body #game #battleUI #bctl2 .rb, html:root body #game #battleUI #bctl2 #bapot { position:static !important; height:calc(78 * var(--g)) !important; min-width:calc(135 * var(--g)) !important; padding:0 calc(26 * var(--g)) !important; border:0 !important; border-radius:0 !important; background:var(--sv-kd0) center / 100% 100% no-repeat !important; box-shadow:none !important; font:600 calc(30 * var(--g)) Georgia, serif !important; color:var(--sv-tx) !important; text-shadow:0 1px 2px #000; opacity:1 !important; }
+html:root body #game #battleUI #bctl2 .rb.on { background-image:var(--sv-kd1) !important; color:#fff7e2 !important; }
+html:root body #game #battleUI #bctl2 .rb.off { color:#a89c88 !important; }
+html:root body #game #battleUI #bctl2 .rb[hidden] { display:none !important; }
+html:root body #game #battleUI #bprim { right:calc(320 * var(--g)); bottom:calc(58 * var(--g) + var(--sab,0px)); width:calc(300 * var(--g)); height:calc(128 * var(--g)); border:0; padding:0; background:var(--sv-b0) center / 100% 100% no-repeat; font:600 calc(36 * var(--g)) Cinzel, Georgia, serif; color:var(--sv-tx); text-shadow:0 1px 3px #000; letter-spacing:.02em; cursor:pointer; }
+html:root body #game #battleUI #bprim:active:not(:disabled) { background-image:var(--sv-b1); }
+html:root body #game #battleUI #bprim:disabled { background-image:var(--sv-b2); color:#b9ad98; cursor:default; }
+html:root body #game #battleUI #bprim[hidden] { display:none; }
+
+/* ---- Çekil: düşman kartının altında (1920,217 · 200×76) ---- */
+html:root body #game #battleUI #bctl, html:root body #game #battleUI:has(#bapot:not([hidden])) #bctl { right:calc(220 * var(--g)) !important; top:calc(217 * var(--g)) !important; bottom:auto !important; left:auto !important; }
+html:root body #game #battleUI #bctl #bexit { width:calc(200 * var(--g)) !important; height:calc(76 * var(--g)) !important; padding:0 !important; border:0 !important; border-radius:0 !important; background:var(--sv-kd0) center / 100% 100% no-repeat !important; box-shadow:none !important; font-size:0 !important; color:var(--sv-tx) !important; }
+html:root body #game #battleUI #bctl #bexit::before { content:'Çekil' !important; font:600 calc(32 * var(--g)) Georgia, serif; color:var(--sv-tx); text-shadow:0 1px 2px #000; }
+html:root body #game #battleUI #bctl #bexit::after { content:none !important; }

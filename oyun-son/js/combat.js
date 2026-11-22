@@ -50,7 +50,7 @@ const lockMsg = () => { const w = $('#bwho'); if (w) w.innerHTML = '<b style="co
 
 // 20 Kas (Kül, oynanışta): Tarikat düşmanı (birim `cult`) sahadayken savaş sahnesinin rengi solar (css .kul, v21 §16)
 const ashScene = on => document.getElementById('stage')?.classList.toggle('kul', !!on);
-export function hideBattleUI() { ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; BT.on = false; }
+export function hideBattleUI() { ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; ui.primary = null; prim(false); BT.on = false; }
 
 // Motor birimi → 3D görünüm. Kahraman birimleri tarafını (faction) ve silah modelini (wm) kendi taşır;
 // böylece meydandaki rakip parti de doğru görünür.
@@ -366,7 +366,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       const pickDefault = () => { const c = battle.autoChoice(); return usable.includes(c[0]) ? c[0] : usable[0]; };
       ui.selected = pickDefault();
       let left = timer, tick = null;
-      ui.choose = c => { clearInterval(tick); ui.choose = null; ui.legal = []; ui.pickSkill = null; if (!ui.auto && SKILLS[c[0]]?.type === 'active') BT.sk = true; drawBar(null); $('#bwho').textContent = ''; resolve(c); };
+      ui.choose = c => { clearInterval(tick); ui.choose = null; ui.legal = []; ui.pickSkill = null; ui.primary = null; prim(false); if (!ui.auto && SKILLS[c[0]]?.type === 'active') BT.sk = true; drawBar(null); $('#bwho').textContent = ''; resolve(c); };
       // Canlı modlarda hamle süresi: dolunca yapay zekâ seçer
       if (timer) tick = setInterval(() => { left--; const t = $('#btimer'); if (t) t.textContent = `⏱ ${Math.max(0, left)}`; if (left <= 0) ui.choose?.(battle.autoChoice()); }, 1000);
       const draw = () => {
@@ -375,7 +375,16 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
         $('#bwho').innerHTML = `${timer ? `<em id="btimer" style="font-style:normal;font-weight:800;color:#ffd36a">⏱ ${left}</em> ` : ''}<b></b> · <span></span> <i>${needs ? (S.target === 'enemy' ? 'Hedefe dokun.' : ui.legal.length === 1 ? 'Kendine dokun ya da tekrar dokun.' : 'Müttefike dokun.') : 'Kullanmak için tekrar dokun.'}</i>`;
         const cost = battle.costOf(u, ui.selected);
         $('#bwho b').textContent = `${u.name} — ${skillName(ui.selected, u.wt)}`; $('#bwho span').textContent = describe(S) + (cost ? ` Mana ${cost}.` : '');
-        drawBar(usable);
+        drawBar(usable); prim(true, SKILLS[ui.selected].type === 'basic' ? 'Saldır' : 'Kullan');
+      };
+      // 22 Kas (GPT 2340 teslimi): birincil Saldır/Kullan düğmesi — seçili yeteneği, hedef seçmeden kullanır: düşman hedefinde
+      // sağ üst çerçevedeki düşman (geçerliyse) ya da ilk geçerli hedef, müttefikte canı en düşük olan. Kural ve motor aynı.
+      ui.primary = () => {
+        if (potLock()) return lockMsg();
+        const id = ui.selected, T = SKILLS[id].target;
+        if (T === 'enemy') { const t = ui.legal.includes(tgtId) ? tgtId : ui.legal[0]; if (t != null) ui.choose?.([id, t]); return; }
+        if (T === 'ally') { const t = ui.legal.map(byId).filter(Boolean).sort((p, q) => p.shown / p.unit.maxHp - q.shown / q.unit.maxHp)[0]; if (t) ui.choose?.([id, t.unit.id]); return; }
+        ui.choose?.([id, T === 'dead' ? battle.targetsFor(u, id)[0] : 0]);
       };
       ui.pickSkill = id => {
         if (potLock()) return lockMsg();
@@ -660,6 +669,9 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
 
 // Hızlandırma (2x/3x) yalnız OTO açıkken (kullanıcı 19 Kas); OTO kapanınca hız 1x'e döner (erişilebilirlik yavaşlatması korunur)
 const baseSpeed = () => (A11Y.speed < 1 ? A11Y.speed : 1);
+// Birincil Saldır/Kullan düğmesi (22 Kas): sıra oyuncudayken açık; OTO açıkken de basılabilir (yapay zekâdan önce davranır)
+function prim(on, label) { const b = document.getElementById('bprim'); if (!b) return; b.disabled = !on; if (label) b.textContent = label; }
+document.getElementById('bprim')?.addEventListener('click', () => ui.primary?.());
 function renderButtons() {
   if ((!ui.auto || ui.fast === false) && ui.speed > 1) { ui.speed = baseSpeed(); clock.scale = ui.speed; }
   $('#bauto').hidden = !OTO.ok(); { const b = $('#bapot'); if (b) { b.hidden = !OTO.ok() || !ui.hasPot; b.classList.toggle('on', potPref()); b.title = potPref() ? 'Oto İksir açık: OTO can %40, mana %15 altına inince iksir içer' : 'Oto İksir kapalı: OTO iksir harcamaz'; } } $('#bauto').classList.toggle('on', ui.auto); $('#bspeed').textContent = `${ui.speed}x`; $('#bspeed').classList.toggle('off', !ui.auto || ui.fast === false);
