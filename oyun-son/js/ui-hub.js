@@ -343,7 +343,7 @@ function renderHud() {
       <div class="pill" title="Yakut" data-a="yakutAl">${ri('gem', '#ff5a6a')}<b>${fmt(S.yakut)}</b><button data-a="yakutAl" title="Yakut al">+</button></div>
     </div>
     ${''/* 20 Kas (kullanıcı): mini harita ana ekrandan kalktı; Diyar Haritası sol rayda */}
-    ${active2d() ? '<button class="savas2d" data-a="savas" aria-label="Savaş" title="Savaş"><span>Savaş</span></button>' : ''}<div class="dock">${btn('party', 'party', 'Karakter', pts || '')}${btn('bag', 'bag', 'Çanta', S.items.length >= BAG_LIMIT ? '!' : '')}${btn('quests', 'quest', 'Görevler', qr || '')}${btn('clan', 'clan', 'Klan')}${btn('shop', 'cart', 'Kervan', '', 'shop')}${btn('savas', 'battle', 'Savaş', '', 'savas-d')}</div>
+    ${active2d() ? '<button class="savas2d sv3" data-a="savas" aria-label="Savaş" title="Savaş"><i aria-hidden="true"></i><b>Savaş</b></button>' : ''}<div class="dock">${btn('party', 'party', 'Karakter', pts || '')}${btn('bag', 'bag', 'Çanta', S.items.length >= BAG_LIMIT ? '!' : '')}${btn('quests', 'quest', 'Görevler', qr || '')}${btn('clan', 'clan', 'Klan')}${btn('shop', 'cart', 'Kervan', '', 'shop')}${btn('savas', 'battle', 'Savaş', '', 'savas-d')}</div>
     ${''/* 20 Kas (kullanıcı): alttaki yetenek çubuğu kalktı (yetenekler Karakter → Yetenek'te) */}
     ${expHtml(S.xp, xpNeed(S.lvl))}
     ${starterBtn()}
