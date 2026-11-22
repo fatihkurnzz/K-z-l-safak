@@ -95,3 +95,28 @@ Yukarıdaki tabloda "doğrulandı" yalnız "ekran açılıyor, bozuk değil" dem
 | T3 | Menü kutuları | P1 + 4.9 simgeleri (#12) | Yeni tasarım |
 | T4 | Para / yakut / enerji kutuları | P1 sayaçlar (#5) | Yeni tasarım |
 | T5 | Savaş ekranı (HUD, düğmeler, düzen) | Eski düzen; P4 yalnız efektler bağlandı, P4 HUD maket düzeni uygulanmadı | Değiştirilecek (kullanıcı özellikle istiyor) |
+
+## GPT paketlerinden gelip oyuna EKLENMEYENLER (22 Kas denetimi; hepsi eksik sayılır)
+Yöntem: paket dosyaları ve manifestleri oyundaki dosyalar, gömülü JS'ler (esya-png, portre-png, vfx-png, grafik5-png) ve CSS/JS adlarıyla karşılaştırıldı.
+
+| # | Paket | Ne | Adet | Durum |
+|---|---|---|---|---|
+| E1 | P1 UI kiti | 114 arayüz parçası | 0 eksik | Hepsi oyunda (img/kd/ui), adları kodda geçiyor |
+| E2 | P2 Çanta ve Kervan | `esya-ors-tozu` simgesi | 1 | Eklenmedi; Örs Tozu eski halk simgesini kullanıyor |
+| E3 | P2 Çanta ve Kervan | `esya-sandik` simgesi | 1 | Eklenmedi; oyunda sandık simgesinin yeri yok |
+| E4 | P3 Karakter | Karakter seçimi ekran maketi (Elentha + Kragmir) | 2 | Düzen uygulanmadı |
+| E5 | P3 Karakter | Karakter oluşturma ekran maketi (iki halk) | 2 | Düzen uygulanmadı; eski ekran + 3B model duruyor |
+| E6 | P3 Karakter | Ekipman ekranı maketi (iki halk) | 2 | Düzen uygulanmadı |
+| E7 | P3 Karakter | 8 ana çizim (1086×1448, sınıf × halk) | 8 | Doğrudan kullanılmıyor (oyunda büst, tam boy, kadro kesitleri var) |
+| E8 | P4 Savaş HUD | Savaş hazırlığı maketi (iki halk) | 2 | Uygulanmadı |
+| E9 | P4 Savaş HUD | Savaş ekranı maketi (iki halk) | 2 | Uygulanmadı; savaş ekranı eski düzen (kullanıcı değiştirmek istiyor) |
+| E10 | P4 Savaş HUD | Boss savaşı maketi (iki halk) | 2 | Uygulanmadı |
+| E11 | P4 Savaş HUD | Savaş sonucu maketi (iki halk) | 2 | Uygulanmadı |
+| E12 | P4 Efektler | 19 VFX şeridi | 0 eksik | Hepsi fx.js'e bağlı |
+| E13 | P5 Kalan ekranlar | `sandik-acilis` sandık açılış animasyonu | 1 | Eklenmedi (ödül sandığı 19 Kas'ta kaldırılmıştı) |
+| E14 | P5 Kalan ekranlar | Ana merkez maketi (iki halk): oyuncu paneli, kaynak kutuları, menü, dock | 2 | Düzen uygulanmadı |
+| E15 | P5 Kalan ekranlar | Kervan maketi (iki halk) | 2 | Düzen uygulanmadı |
+| E16 | P5 Kalan ekranlar | 59 işlevin ekran maketleri (142 WebP, gorunumler.js katmanları) | 59 × 2 | Hiçbirinin düzeni birebir uygulanmadı (yukarıdaki tabloda "doğrulandı" = yalnız açılıyor) |
+| E17 | P5 Kalan ekranlar | 11 grafik (flama ×2, Kor/Ayaz/Şimşek parçaları, örs, defter, mektup, fener, makara, pusula) | 0 eksik | Hepsi oyunda |
+
+Kısaca: grafik parçalarından yalnız 3 tanesi dışarıda kaldı (E2, E3, E13) ve 8 büyük çizim doğrudan kullanılmıyor (E7). Asıl eksik **ekran düzenleri**: P3'ün 3, P4'ün 4, P5'in 59 ekranı (iki halk). Kullanıcının saydığı karakter oluşturma, oyuncu paneli, menü, kaynak kutuları ve savaş ekranı bunların içinde (E5, E9, E14).
