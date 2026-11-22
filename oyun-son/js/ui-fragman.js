@@ -106,9 +106,23 @@ const DRAW = {
 
 let open = null;
 
+// 22 Kas (GPT 2340 teslimi): dört boyalı hikâye karesi (köprü, yemin, bozulan mühür, şafakta karşılaşma). Yüklenince çizimli
+// çekimlerin yerine geçer; süre, altyazı ve sesler aynı. Her çekim: [kare, başlangıç merkez x, bitiş merkez x, başlangıç ölçek, bitiş ölçek]
+const PIC = { forge: [1, .32, .45, 1.18, 1.08], realm: [1, .55, .68, 1.08, 1.0], humans: [2, .3, .36, 1.32, 1.22], orcs: [2, .76, .7, 1.32, 1.22], war: [3, .5, .5, 1.0, 1.22], hero: [4, .5, .5, 1.2, 1.0] };
+const IMG = {};
+function loadPics() { import('./hikaye-png.js').then(H => { for (let i = 1; i <= 4; i++) { const im = new Image(); im.onload = () => { IMG[i] = im; }; im.src = H.url('yemin-' + i); } }).catch(() => { }); }
+function drawPic(c, w, h, name, p) {
+  const P = PIC[name], im = P && IMG[P[0]]; if (!im) return false;
+  const e = p * p * (3 - 2 * p), z = P[3] + (P[4] - P[3]) * e, cx = P[1] + (P[2] - P[1]) * e;
+  const sc = Math.max(w / im.width, h / im.height) * z, dw = im.width * sc, dh = im.height * sc;
+  const x = Math.min(0, Math.max(w - dw, w / 2 - cx * dw)), y = (h - dh) / 2;
+  c.drawImage(im, x, y, dw, dh); return true;
+}
+
 export function playFragman(done, { force = false } = {}) {
   if (open) return;
   if (!force && fragmanSeen()) { done?.(); return; }
+  loadPics();
   const hq = getGfx().tier !== 'low' && getGfx().tier !== 'min';
   const reduce = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   const el = document.createElement('div'); el.id = 'fragman';
@@ -135,7 +149,7 @@ export function playFragman(done, { force = false } = {}) {
     const [a, b, name, line, snd] = SHOTS[i], p = clamp((tt - a) / (b - a));
     if (i !== last) { last = i; sub.classList.remove('on'); setTimeout(() => { if (!ended) { sub.textContent = t(line); sub.classList.add('on'); } }, 350); try { play(snd); } catch { } }
     if (!titled && tt >= TITLE_AT) { titled = true; ttl.classList.add('on'); sub.classList.remove('on'); try { play('ui.horn'); } catch { } }
-    DRAW[name](ctx, W, H, reduce ? 0 : p, tt, hq);
+    if (!drawPic(ctx, W, H, name, reduce ? 0 : p)) DRAW[name](ctx, W, H, reduce ? 0 : p, tt, hq);
     // vinyet ve çekim geçişlerinde siyaha solma
     const vg = ctx.createRadialGradient(W / 2, H / 2, H * 0.4, W / 2, H / 2, W * 0.7); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.6)'); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
     const fadeIn = clamp(1 - (tt - a) / 0.6), out = i === SHOTS.length - 1 ? clamp((tt - (END - 1.2)) / 1.2) : clamp((tt - (b - 0.5)) / 0.5);

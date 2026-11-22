@@ -1,0 +1,18 @@
+/* 22 Kas — GPT 2340×1080 teslimi: savaş dışı ekranlar (kral diyaloğu, Diyar Haritası, ortak pencere şablonu). En son yüklenir. */
+/* Kral diyaloğu: GPT portresi (volgar / edran) */
+#modal .npc-talk.kral { display:flex; gap:16px; align-items:flex-start; }
+#modal .npc-talk.kral .npc-por { flex:none; width:clamp(120px, 34vh, 190px); }
+#modal .npc-talk.kral .kral-por { width:100%; aspect-ratio:1; height:auto; object-fit:cover; object-position:50% 20%; border-radius:10px; border:2px solid var(--d-acc, #c9a15a); box-shadow:0 6px 18px #000a, inset 0 0 0 1px #0008; }
+#modal .npc-talk.kral .npc-por b { text-align:center; line-height:1.2; }
+#modal .npc-talk.kral .npc-txt { min-width:0; flex:1; max-height:min(62vh, 300px); overflow:auto; }
+/* Diyar Haritası: boyalı resim 2340×1080 */
+.dmap.img { width:100%; height:auto; aspect-ratio:13 / 6; border-radius:10px; box-shadow:0 0 0 2px #6a4a24, 0 6px 16px #000a; }
+
+/* Ana merkez (yalnız 2B harita): GPT merkez maketinin parçaları — dikey oyuncu kartı, sayaçlar, küçük Premium, merkez flaması */
+:root { --mz-kart:url("@kart-dikey-sancak"); --mz-sayac:url("@sayac-sancak"); --mz-prem:url("@premium-kucuk-sancak"); --mz-flama:url("@merkez-flama-sancak"); }
+:root[data-faction="ocak"] { --mz-kart:url("@kart-dikey-ocak"); --mz-sayac:url("@sayac-ocak"); --mz-prem:url("@premium-kucuk-ocak"); --mz-flama:url("@merkez-flama-ocak"); }
+html[data-hub2d][data-faction] #game #hud .pcard.uf { background:var(--mz-kart) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 4px 12px #0009 !important; border-radius:6px !important; padding-top:8px !important; }
+html[data-hub2d][data-faction] #game #hud .pcard.uf::before, html[data-hub2d][data-faction] #game #hud .pcard.uf::after { display:none !important; }
+html[data-hub2d][data-faction] #game #hud .res .pill { background:var(--mz-sayac) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 2px 6px #0008 !important; border-radius:3px !important; }
+html[data-hub2d][data-faction] #game #hud .premrow .prem { background:var(--mz-prem) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:0 2px 6px #0008 !important; border-radius:3px !important; }
+html[data-hub2d] #hub2d img.h2-flama { content:var(--mz-flama); width:46px !important; right:calc(var(--h17-sr) + 2px) !important; }

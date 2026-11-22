@@ -123,7 +123,7 @@ ACT.worldInfo = () => {
 const OT = { amRuler: false };
 const TABS = () => [{ id: 'ruler', label: KINGDOM.title, small: 'Taht ve seçim', pre: `<span class="tico">${titleSvg('ruler')}</span>` }, { id: 'treasury', label: 'Hazine', small: 'Ulufe defteri', icon: 'akce' }, { id: 'grant', label: GRANT.name, small: 'Dağıt, ferman yaz', icon: 'gift' }, { id: 'map', label: 'Harita', small: 'Bölge hâkimiyeti', icon: 'zones' }];
 async function loadOtag(tab) {
-  if (tab === 'map') return { map: await run('realm.map') };
+  if (tab === 'map') { try { DIYAR_IMG = (await import('./hikaye-png.js')).url('diyar'); } catch { } return { map: await run('realm.map') }; } // 22 Kas: GPT Diyar Haritası resmi
   const v = await run('realm.view'); if (!v) return null;
   OT.amRuler = v.isRuler;
   return { v, led: tab === 'treasury' ? await run('realm.ledger') : null, ros: tab === 'grant' && v.isRuler ? await run('realm.roster') : null };
@@ -241,6 +241,18 @@ const TERRAIN = {
   4: () => { let g = '<rect x="0" y="0" width="400" height="300" fill="#c8dbea"/>'; for (const [x, y, w] of [[230, 90, 36], [300, 70, 44], [350, 120, 30], [270, 130, 26], [320, 150, 22]]) g += `<path d="M${x - w} ${y + w * .55} L${x} ${y - w * .5} L${x + w} ${y + w * .55} Z" fill="#7d98b4" stroke="#56708c" stroke-width="1.5"/><path d="M${x - w * .38} ${y - w * .05} L${x} ${y - w * .5} L${x + w * .38} ${y - w * .05} L${x + w * .15} ${y - w * .15} L${x} ${y - w * .02} L${x - w * .15} ${y - w * .15} Z" fill="#f4fbff"/>`; return g; },
 };
 const RIBBON = (x, y, text, w) => `<g class="rib"><path d="M${x - w / 2 - 8} ${y - 9} h${w + 16} l-5 9 l5 9 h-${w + 16} l5 -9 Z" class="rib-b"/><text x="${x}" y="${y + 4}">${text}</text></g>`;
+// 22 Kas (GPT 2340 teslimi): boyalı Diyar Haritası — soldan sağa Vahran Ovası, Kül Geçidi, Kızıl Bahar Meydanı, Sisli Çukur.
+// Resim üstünde bölge şeridi (hâkim ırk rengi), kurdele etiket ve hâkim imzası. Resim yüklenemezse eski çizim (mapSvg).
+let DIYAR_IMG = null;
+const BAND = { 1: [0, 585, 300, 600], 2: [585, 1095, 840, 760], 3: [1095, 1720, 1390, 300], 4: [1720, 2340, 2030, 560] }; // [sol, sağ, etiket x, etiket y]
+function mapImg(zs) {
+  const k = 6.6;
+  const lands = zs.map(z => { const [x0, x1] = BAND[z.id] || [0, 0], mine = z.owner === S.faction, col = fcol(z.owner);
+    return `<g class="mzf ${z.owner || 'none'} ${mine ? 'mine' : ''} ${zAsh(z.id) ? 'ash' : ''}"><rect x="${x0}" y="0" width="${x1 - x0}" height="1080" fill="${col}" fill-opacity="${z.owner ? .16 : 0}"/>${zAsh(z.id) ? `<rect x="${x0}" y="0" width="${x1 - x0}" height="1080" fill="#1a1612" fill-opacity=".55"/>` : ''}<rect x="${x0 + 6}" y="1046" width="${x1 - x0 - 12}" height="22" rx="6" fill="${col}" fill-opacity="${z.owner ? .9 : .35}"/>${mine ? `<rect x="${x0 + 6}" y="6" width="${x1 - x0 - 12}" height="1068" rx="14" fill="none" stroke="#f2cf6a" stroke-width="7" stroke-dasharray="26 14"/>` : ''}</g>`; }).join('');
+  const labels = zs.map(z => { const [, , lx, ly] = BAND[z.id] || [0, 0, 0, 0], w = Math.max(56, z.name.length * 6.6);
+    return `<g transform="translate(${lx} ${ly}) scale(${k})">${RIBBON(0, 0, esc(z.name), w)}<g class="mo-own">${z.owner ? SIGN_SVG[z.owner](-30, 22) : ''}<text x="${z.owner ? 6 : 0}" y="26" class="mo">${z.owner ? fname(z.owner) : 'Sahipsiz'}</text></g></g>`; }).join('');
+  return `<svg class="dmap fancy img" viewBox="0 0 2340 1080" role="img" aria-label="Diyar Haritası"><image href="${DIYAR_IMG}" x="0" y="0" width="2340" height="1080" preserveAspectRatio="none"/>${lands}${labels}</svg>`;
+}
 function mapSvg(zs) {
   const hub = [198, 172];
   const defs = zs.map(z => `<clipPath id="mc${z.id}"><path d="${MAP_SHAPE[z.id].d}"/></clipPath>`).join('');
@@ -275,7 +287,7 @@ function mapHtml(M) {
   };
   const mineN = M.zones.filter(z => z.owner === S.faction).length;
   return `<div class="dm-sum" style="--fc:${fcol(S.faction)}"><span class="dm-big"><b>${mineN}</b>/${M.zones.length}</span><span><b>bölge ${fname(S.faction)} hâkimiyetinde</b><br><span class="mut">Hafta ${left(M.endsAt - now())} sonra biter; puanı yüksek ırk gelecek hafta bölgeyi alır.</span></span></div>
-    <div class="dmw"><div class="dml">${mapSvg(M.zones)}</div>
+    <div class="dmw"><div class="dml">${DIYAR_IMG ? mapImg(M.zones) : mapSvg(M.zones)}</div>
     <div class="dmr zcards">${M.zones.map(card).join('')}</div></div>
     <p>Bu haftaki zaferin: <b>${fmt(M.mine.wins)}</b>${M.mine.active ? ' · ırkının etkin oyuncularından sayılıyorsun' : ` · ${TERR.activeWins} zaferde etkin oyuncu sayılırsın`}. Etkin oyuncu: <span style="color:${FACTIONS.ocak.color}"><b>${fmt(M.act.ocak)}</b> ${FACTIONS.ocak.name}</span> · <span style="color:${FACTIONS.sancak.color}"><b>${fmt(M.act.sancak)}</b> ${FACTIONS.sancak.name}</span>.</p>
     <div class="hint"><b>Bölge puanı</b> = 1000 × ırkın o bölgedeki zafer puanı ÷ ırkın etkin oyuncu sayısı (en az ${TERR.minPop}). Yaratık stage’i ${TERR.pts.mob}, kapı ${TERR.pts.gate}, günlük boss ${TERR.pts.boss} puandır. Böylece kalabalık ırk sırf kalabalık olduğu için kazanmaz: kişi başına daha çok zafer kazanan alır.
