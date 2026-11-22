@@ -13,3 +13,9 @@ html.short .gem-art.gem-png { width:84px; height:90px; }
 
 /* 22 Kas cila: uzun etki yazısı (ör. "Zehir: isabette hasarın %1") kartın dışına taşmasın */
 #win .cf { white-space:normal; max-width:100%; overflow-wrap:anywhere; }
+
+/* 22 Kas (kullanıcı isteği): 2B haritalarda bina etiketi yalnız beyaz ad; üstteki [tür] yazısı ve mavi/kırmızı levha kutusu yok */
+html[data-hub2d][data-faction] #game #hud #blabels .blabel:not(.me) { border:0 !important; border-image:none !important; background:none !important; box-shadow:none !important; padding:4px 8px !important; min-width:0 !important; }
+html[data-hub2d][data-faction] #game #hud #blabels .blabel:not(.me)::before, html[data-hub2d][data-faction] #game #hud #blabels .blabel:not(.me)::after { display:none !important; }
+html[data-hub2d][data-faction] #game #hud #blabels .blabel .rl { display:none !important; }
+html[data-hub2d][data-faction] #game #hud #blabels .blabel:not(.me) > b { color:#fff !important; text-shadow:0 1px 2px #000, 0 0 4px #000, 0 0 8px #000c !important; }
