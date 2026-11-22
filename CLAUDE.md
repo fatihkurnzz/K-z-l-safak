@@ -2,7 +2,12 @@
 
 Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı** (sayfa başlığı "Korant Online"), tarayıcıda çalışan, YALNIZCA YATAY çizilen 3B mobil RPG (vanilla ES modülleri + three.js r160 gömülü, sıra tabanlı belirlenimci savaş). Hikâye: **Vahran: Tarihin Külleri**.
 
-## SON DURUM (22.11 akşam) — clear sonrası buradan devam
+## SON DURUM (22.11 gece) — clear sonrası buradan devam
+- **Sürüm 22 YAYINDA** (510 dosya; sonraki yayında `git diff --name-status <bu notun önceki commit'i> HEAD -- oyun-son`).
+- GPT "Karakter Kararlı Devir v2" ZIP → kayıt `_tasarim/gelen/karakter-v2/` (tamboy 16, yuz 20, arayuz 7, QA). Oyuna giren: başlık levhası (Karakter oluştur, ırka göre) + 4 sınıf simgesi (oluşturma düğmeleri/bilgi, seçme plakası; `data-c` özniteliği) — `v33-sablon.css` sonu, `v33-gom.py` YOL'a eklendi. Girmeyen: dugme-birincil-ocak (Elentha düğmesiyle aynı şekil değil), tamboy (4'ü başsız: mage-sancak-m, priest-sancak-f, warrior-sancak-m, warrior-ocak-f; 3 suikastçide ayak kırıntısı; ork büyücü≈şaman), yuz (ork kadın 5'i aynı kişi, erkekler sakallı). QA görselleri `CLAUDE_QA_tamboy.jpg`, `CLAUDE_once-sonra-*.jpg`; GPT notu `_tasarim/gpt-paket/GPT_ISTEK_KARAKTER_v3_22KASIM.md`.
+- Kullanıcıya soruldu: 12 sağlam tam boy seçme ekranında (3B geçici model yerine) vitrin olarak kullanılsın mı? Cevap bekleniyor.
+
+## ÖNCEKİ DURUM (22.11 akşam)
 - **Sürüm 21 YAYINDA** (510 dosya; sınır 511! son yayın commit'i = bu notun önceki commit'i; sonraki yayında `git diff --name-status <o> HEAD -- oyun-son`).
 - Savaş arka planları: GPT'nin 10 boyalı resmi (`_tasarim/gelen/savas-arka/*.png`, ikişer üst üste WebP `webp/arka-1..5`) → `js/savas-arka-png.js` (OTOMATİK: `_tasarim/araclar/savas-arka-gom.py <webp> .`). `js/savas-arka.js`: ortam→resim (`BY_KIND`, seed ile), ışık takımları `LIGHT`, projeksiyon (taban kameradan zemin + kavisli perde, ACES tersi). `models.js buildEnv(kind,'foto:<ad>')` yalnız ışık kurar (eski çizilmiş savaş alanı savaşta yok; ana üs aynı).
 - Dinamik kamera `js/savas-kamera.js` (GPT "Dinamik Sinematik Kamera" paketi, rapor `_tasarim/teslim-kamera/TESLIM_RAPORU.md` + once-sonra.jpg): durumlar ESTABLISH/IDLE/FOCUS_ATTACK/FOCUS_SKILL/FOCUS_BOSS/RECOMPOSE/RECOVER, sınır tabanlı kadraj (DOM'dan HUD güvenli alanı), yay ile geçiş. `VIEW {yaw .30, pitch .20}`. combat.js'te sabit CAM/moveCam kaldırıldı; `spot()` konum. Test `window.DD_CAM`. Test betikleri scratchpad `t/kam.js` (ENV N P BOSS AUTO SH FPS W H PORT), `t/dokun.js` (dokunma→motor hamlesi).
