@@ -1,0 +1,26 @@
+{
+"aciklama": "GPT G8 Korant Online logosu ve halk amblemleri",
+"ogeler": [
+{
+"k": "logo",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G8/logo-korant-online.png",
+"w": 1024,
+"h": 220,
+"q": 84
+},
+{
+"k": "amblem-sancak",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G8/amblem-elentha.png",
+"w": 256,
+"h": 256,
+"q": 84
+},
+{
+"k": "amblem-ocak",
+"src": "/tmp/claude-0/-home-user-K-z-l-safak/12c01fda-76d8-4188-a3f4-7cf8c8504cc6/scratchpad/gelen/paket/G8/amblem-kragmir.png",
+"w": 256,
+"h": 256,
+"q": 84
+}
+]
+}

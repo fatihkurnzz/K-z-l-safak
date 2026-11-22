@@ -223,3 +223,9 @@ html.sahneli #modal .box .mdz-c, html.sahneli .mdz-c { background:linear-gradien
 html.sahneli .mdz-c.lock { filter:grayscale(.75) brightness(.7); }
 html.sahneli .mdz-layer .mdz-stage { background:var(--mk) 50% 50% / cover no-repeat; }
 html.sahneli .mdz-layer .mdz-ph { background:#0d0b0e99; }
+
+/* ---- Amblem ve logo (GPT G8) · 23 Kas: js/amblem.js yüklenince --amb-sancak, --amb-ocak, --logo-korant ---- */
+html.amblemli .vz .vz-ban[data-v="sancak"] .vz-emb { background:var(--amb-sancak) 50% 58% / auto 86% no-repeat !important; filter:drop-shadow(0 4px 8px #000c); }
+html.amblemli .vz .vz-ban[data-v="ocak"] .vz-emb { background:var(--amb-ocak) 50% 58% / 84% auto no-repeat !important; filter:drop-shadow(0 4px 8px #000c); }
+html.amblemli .ks-top .ks-brand > span > b { font-size:0 !important; color:transparent !important; text-shadow:none !important; display:block; width:190px; height:41px; background:var(--logo-korant) 0 50% / contain no-repeat; }
+html.amblemli #giris .gr-logo b { font-size:0 !important; color:transparent; text-shadow:none; height:60px; margin:4px auto 0; width:280px; background:var(--logo-korant) 50% 50% / contain no-repeat; }

@@ -8,6 +8,7 @@
 // oyundaki 3B kahramana (gorunus.js) uygulanır; portre yalnızca seçilen yüz seçeneğinin simgesidir.
 // Arka plan ırkın boyalı sahnesidir (karakter-sahne.js stageRace; 3B kahraman kurulmaz). Kalıcılık: CR (oturum içi) +
 // char.create kaydı. Ad zarı: ad-zar.js üretir, char.nameFree depoda boş olanı seçer.
+import './amblem.js'; // 23 Kas: G8 logo ve halk amblemleri (CSS değişkeni)
 import { ACC, act, LOCAL, nufusInfo } from './api.js';
 import { ACT, $, esc, toast, closeModal, closeWin, hud, hooks } from './ui-core.js';
 import { CLASSES, CLASS_KEYS, FACTIONS, applyFactionNames } from '../shared/content.js';
