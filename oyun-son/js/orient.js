@@ -60,6 +60,7 @@ function measure() {
   root.classList.toggle('rot', rot);
   if (rot !== cssRot) fixCss(rot);
   root.classList.toggle('short', view.h <= 480); // telefon yüksekliği: sıkı yerleşim kuralları (.short)
+  root.classList.toggle('narrow', view.w < 760); // dar telefon (667×375 sınıfı): ana ekran alt şeridi ve üst sayaçlar yeniden dizilir (v27-duzen.css, denetim G6)
   root.style.setProperty('--lw', view.w + 'px');
   root.style.setProperty('--lh', view.h + 'px');
   root.style.setProperty('--s', Math.min(view.h / 1080, 1).toFixed(4)); // KD tasarım ölçeği: 1080 dp referans yükseklik (css --dp)

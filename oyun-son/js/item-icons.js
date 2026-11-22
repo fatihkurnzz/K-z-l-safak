@@ -352,10 +352,12 @@ const nearPng = (t, c) => { const L = PNG_IDX[t]; if (!L) return null; let best 
 export const itemPng = b => {
   const P = String(b).split(':'), k = pngKey(b);
   if (PNG_MAP[k]) return PNG_MAP[k];
+  if (P[0] === 'j' && !PNG_IDX[`j:${P[1]}`]) { const t = P[1].split('_').pop(); return nearPng(`j:${t}`, +P[2]); } // elementli takılar (kor_ear…): aynı türün boyalı simgesi
   if (P[0] === 'w' || P[0] === 'j') return nearPng(`${P[0]}:${P[1]}`, +P[2]);
   if (P[0] === 'a') return nearPng(`a:${P[1]}:${P[3]}`, +P[2]);
   const B = itemBase(b); if (!B || !B.type) return null; // eşsiz / başlangıç: türünün kademesine göre (3B model görseli yerine; görünüm birliği)
   const c = Math.max(0, Math.min(7, (B.tier || 1) - 1));
+  if (B.kind === 'armor') return nearPng(`a:${B.cls?.[0]}:${B.type}`, c); // eşsiz ve set zırhlar (KO Chitin / Full Plate): sınıfın aynı parçası (denetim K5)
   return B.kind === 'jewel' ? nearPng(`j:${B.type}`, c) : nearPng(`w:${B.type}`, c);
 };
 export const itemIcon = b => {

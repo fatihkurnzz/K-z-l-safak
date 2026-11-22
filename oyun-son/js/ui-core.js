@@ -22,10 +22,11 @@ export const $ = s => document.querySelector(s);
 export const hud = $('#hud'), win = $('#win'), modal = $('#modal'), chatbar = $('#chatbar');
 export const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const fmt = n => Math.round(n).toLocaleString('tr-TR');
-export const pct = v => '%' + (v * 100 >= 10 || v === 0 ? Math.round(v * 100) : +(v * 100).toFixed(2));
+// Türkçe ondalık virgülü (denetim D3): bütün yüzde yazıları bu iki biçimleyiciden geçer
+export const pct = v => '%' + String(v * 100 >= 10 || v === 0 ? Math.round(v * 100) : +(v * 100).toFixed(2)).replace('.', ',');
 export const stars = n => (n >= 1 && n <= 3 ? `<span class="kstars k${n}" title="${n}/3 yıldız" aria-label="${n}/3 yıldız"></span>` : `<span><span class="stars off">★★★</span></span>`); // Aşama 2 kit yıldız rozeti
 // Deneyim (TP) yalnızca yüzde olarak gösterilir: kazanç, seviyenin gerektirdiği TP'nin yüzdesidir
-export const pctTxt = v => `%${v >= 10 ? Math.floor(v) : v >= 1 ? v.toFixed(1) : v.toFixed(2)}`;
+export const pctTxt = v => `%${v >= 10 ? Math.floor(v) : (v >= 1 ? v.toFixed(1) : v.toFixed(2)).replace('.', ',')}`;
 export const xpGain = (xp, lvl) => `+${pctTxt(100 * xp / Math.max(1, xpNeed(lvl ?? S.lvl)))} TP`;
 export const clockText = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return s >= 3600 ? `${Math.floor(s / 3600)}sa ${Math.floor(s % 3600 / 60)}dk` : `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 let toastT;

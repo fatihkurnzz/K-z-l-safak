@@ -112,20 +112,42 @@ const stack = document.createElement('div');
 stack.id = 'v13toasts'; stack.setAttribute('aria-live', 'polite');
 (document.getElementById('game') || document.body).appendChild(stack);
 // { icon, c, kicker, title, text, go } · go: dokununca çağrılacak işlem (ACT adı) ya da bildirim yönü (notifGo)
-export function noteToast({ icon = 'mail', c = '#e7c75a', kicker = 'Bildirim', title = '', text = '', go = null, a = null }) {
+// Kuyruk (denetim Y9, 22 Kas): ekranda en çok 1 kart; pencere, diyalog ya da savaş açıkken kart sırada bekler (en çok 5),
+// ekran boşalınca gösterilir. Kart üst ortada ince şerittir (v27-duzen.css sonu), 2,6 sn kalır.
+const NQ = [];
+const busy = () => !document.getElementById('modal')?.hidden || !document.getElementById('win')?.hidden || !!document.querySelector('#battleUI:not([hidden])');
+let nqT = 0;
+function pump() {
+  clearTimeout(nqT); nqT = 0;
+  if (!NQ.length || stack.children.length) return;
+  if (busy()) { nqT = setTimeout(pump, 1000); return; }
+  showNote(NQ.shift());
+}
+export function noteToast(o) {
+  if (NQ.length >= 5) NQ.shift();
+  NQ.push(o); pump();
+  return null;
+}
+function showNote(opt) {
+  const { icon = 'mail', c = '#e7c75a', kicker = 'Bildirim', title = '', text = '', go = null, a = null } = opt;
   const el = document.createElement('button');
+  el._opt = opt;
   el.type = 'button'; el.className = 'v13-toast';
   if (a) { el.dataset.ta = a; if (go) el.dataset.go = go; }
-  el.innerHTML = `${tile(icon, c)}<span class="v13-tb"><small>${esc(kicker)} · şimdi</small><b>${esc(title)}</b>${text ? `<span>${esc(text)}</span>` : ''}</span><i class="v13-tx" aria-hidden="true">✕</i>`; // süre çubuğu kalktı: kart şeffaflaşıp kaybolur
-  while (stack.children.length >= 3) stack.firstChild.remove();
+  el.innerHTML = `${tile(icon, c)}<span class="v13-tb"><small>${esc(kicker)} · şimdi</small><b>${esc(title)}</b>${text ? `<span>${esc(text)}</span>` : ''}</span><i class="v13-tx" aria-hidden="true">✕</i>`; // süre çubuğu kalktı: kart şeffaflaşıp kay
   stack.appendChild(el);
   requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
-  const close = () => { if (!el.isConnected || el.classList.contains('out')) return; el.classList.remove('in'); el.classList.add('out'); setTimeout(() => el.remove(), 360); };
-  const t = setTimeout(close, Math.round(5200 * SHOW_MUL));
+  const close = () => { if (!el.isConnected || el.classList.contains('out')) return; el.classList.remove('in'); el.classList.add('out'); setTimeout(() => { el.remove(); pump(); }, 360); };
+  const t = setTimeout(close, 2600);
   el.addEventListener('click', e => { clearTimeout(t); close(); if (!e.target.closest('.v13-tx') && el.dataset.ta) ACT[el.dataset.ta]?.(el.dataset.go ? { go: el.dataset.go } : {}); });
   try { play('ann.ping', { gain: 0.45 }); } catch { /* sessiz */ }
   return el;
 }
+// Kart görünürken pencere ya da diyalog açılırsa kart kalkar ve sıranın başına döner (içeriğin üstüne binmesin)
+for (const id of ['win', 'modal']) { const el = document.getElementById(id); if (el) new MutationObserver(() => {
+  const k = stack.querySelector('.v13-toast:not(.out)'); if (!k || !busy()) return;
+  k.remove(); if (k._opt) NQ.unshift(k._opt); pump();
+}).observe(el, { attributes: true, attributeFilter: ['hidden'] }); }
 hooks.notifToast = noteToast; // başka paketler de kullanabilir
 
 // Zil sayacı artınca (ui-kalicilik.js #kbell, sunucuya 30 sn'de bir sorulur) en yeni bildirim kart olarak kayar. O modülün düz

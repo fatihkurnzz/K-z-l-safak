@@ -117,3 +117,41 @@ html[data-faction] .rar.g0 { background:#c9d0d8 !important; color:#14181d !impor
 html[data-faction] :is(#win, #modal) .zstrip em { filter:brightness(1.9) saturate(1.2); }
 html[data-faction] :is(#win, #modal) i.elc { background:#2a1a10 !important; color:#ffb07a !important; border-color:#ff8a4a !important; }
 html[data-faction] :is(#win, #modal) p.mut { color:var(--d-mut) !important; }
+
+/* ---- Bildirim kartı: üst orta ince şerit (denetim Y9, 22 Kas) ----
+   En çok 1 kart (ui-duyuru.js kuyruğu); simge koyu zeminde türün renginde (önce sarı zemine sarı simge çiziliyordu). */
+#v13toasts { top:calc(var(--sat, 0px) + 6px) !important; width:min(340px, calc(100% - 24px)) !important; }
+html[data-faction] .v13-toast { padding:6px 28px 6px 8px !important; gap:9px !important; border-radius:10px !important; }
+html[data-faction] .v13-toast .v13-ic { width:26px !important; height:26px !important; border-radius:7px !important; background:#000a !important; box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--kc) 55%, transparent) !important; }
+html[data-faction] .v13-toast .v13-tb span { -webkit-line-clamp:1 !important; }
+/* Karakter seçiminde düz bildirim kahramanın yüzünü örtmesin: altta, "Oyuna gir" düğmesinin üstünde (denetim Y9) */
+body:has(#kshero) #toast { top:auto !important; bottom:calc(var(--sab, 0px) + 22%) !important; }
+
+/* ---- Savaş sonucu başlığı (denetim Y3, 22 Kas): "ZAFER / YENİLGİ" çerçevenin kenarına gömülüp kırpılıyordu ----
+   Modal başlık şeridi kuralı (yukarıda 3.) sonuç penceresine uygulanmaz: tam genişlik, ortalı, büyük Cinzel, kırpma yok. */
+html[data-faction] #modal .box.bres > h2 {
+  width:100% !important; max-width:none !important; margin:0 !important; padding:6px 40px 0 !important;
+  background:none !important; overflow:visible !important; text-overflow:clip !important; white-space:nowrap;
+  font:700 clamp(24px, 7.4vh, 34px)/1.05 Cinzel, Georgia, serif !important; letter-spacing:6px !important; text-align:center !important;
+  display:flex !important; align-items:center; justify-content:center; gap:14px;
+}
+html[data-faction] #modal .box.bres > h2::before, html[data-faction] #modal .box.bres > h2::after {
+  content:"" !important; display:block !important; position:static !important; flex:0 1 90px; height:2px; border:0 !important;
+  background:linear-gradient(90deg, transparent, currentColor) !important; opacity:.7; transform:none !important; width:auto !important; }
+html[data-faction] #modal .box.bres > h2::after { background:linear-gradient(90deg, currentColor, transparent) !important; }
+html[data-faction] #modal .box.bres .bres-stars { font-size:26px !important; line-height:1 !important; letter-spacing:4px !important; margin:2px 0 0 !important; padding:0 !important; background:none !important; border:0 !important; min-height:0 !important; }
+html[data-faction] #modal .box.bres .bres-stars .kstars { width:44px !important; height:44px !important; filter:drop-shadow(0 0 8px rgba(255,200,60,.45)); }
+
+/* ---- Kristal Nöbeti: boss duyurusu ayrı şerit (denetim O6, 22 Kas); önce durum yazısının içinde iki satıra taşıp üstüne biniyordu ---- */
+html[data-faction] .nb-boss { display:flex; align-items:center; justify-content:center; gap:8px; margin:6px 0 2px; padding:4px 12px; min-width:0; max-width:100%; box-sizing:border-box;
+  background:linear-gradient(90deg, transparent, rgba(160,30,10,.55) 18%, rgba(160,30,10,.55) 82%, transparent); border-block:1px solid rgba(255,120,60,.45);
+  white-space:nowrap; overflow:hidden; font-size:12px; line-height:1.3; text-transform:none; letter-spacing:0; }
+html[data-faction] .nb-boss b { color:#ffb07a; font-weight:800; flex:none; }
+html[data-faction] .nb-boss span { color:#f3e3cf; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+html[data-faction] .nb-boss span::before { content:"·"; margin-right:8px; color:#ffb07a; }
+
+/* ---- Dar ekran (mantıksal genişlik < 760, html.narrow; orient.js) · denetim G6, 22 Kas ----
+   667×375'te Görevler izleyicisi Karakter/Çanta düğmelerinin, saat de enerji sayacının üstüne biniyordu.
+   Görevler sohbetin sağında, alt düğmelerin bir satır üstüne; saat oyuncu kartının sağına alınır. */
+html.narrow[data-hub2d] #game #hud .qtrk { left:calc(var(--h17-sl) + 246px) !important; bottom:calc(var(--h17-sab) + 60px) !important; width:200px !important; }
+html.narrow[data-hub2d] #game #hud .wclock { left:calc(var(--h17-sl) + 108px) !important; transform:none !important; }

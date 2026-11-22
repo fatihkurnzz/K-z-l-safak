@@ -5,7 +5,7 @@ import { rescueCard } from './ui-ogretici.js';
 import { placeNow } from './ui-hub.js';
 import { ormanOn, ORMAN } from './orman.js'; // açılış ormanı: öğreticinin ilk görevi ormanda geçer
 import { capitalOf } from '../shared/content.js';
-import { S, act, now, DEV, onState } from './api.js';
+import { S, act, now, devUI, onState } from './api.js';
 import { ACT, $, hud, modal, esc, fmt, toast, run, showModal, closeModal, openWin, redraw, cur, closeWin, heroImg, lootChip, lootToast, lootKind, dropText, med, loading, clockText, achTag, hooks, locked } from './ui-core.js';
 import { dailyQuestsHtml } from './ui-town.js';
 import { questBoard } from './ui-gorev.js';
@@ -158,7 +158,7 @@ function notifSettings() {
     <h3>Cihaz bildirimleri</h3>
     <div class="row">${med('timer', on ? 'green' : '')}<div class="grow"><b>${DV.native ? 'Oyun kapalıyken bildir' : 'Oyunda değilken bildir'}</b><br>${dev}</div>${!DV.supported() || p === 'denied' ? '' : on ? `<button class="btn sm" data-a="devTest">Dene</button>${tgl(true, 'devOff', '', 'Cihaz bildirimleri')}` : tgl(false, 'devAsk', '', 'Cihaz bildirimleri')}</div>
     <p class="mut">Cihaz bildirimleri sunucudan gönderilmez; oyunun bildiği zamanlar (enerjinin dolması, maden deposu, günlük ve haftalık yenilenme) bu cihazda kurulur. ${DV.native ? 'Uygulama kapalıyken de gelir.' : 'Tarayıcıda yalnızca oyun arka planda açık dururken gelir; Android uygulaması (APK) kapalıyken de gönderir.'}</p>
-    ${DEV ? '<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devTut">Öğreticiyi yeniden başlat</button></div></div>' : ''}`;
+    ${devUI() ? '<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devTut">Öğreticiyi yeniden başlat</button></div></div>' : ''}`;
 }
 ACT.notifCat = async d => { if (await run('notif.set', { cat: d.k, on: !!S.notif.off?.[d.k] })) { redraw(); planSoon(); } };
 ACT.devTut = async () => { if (await run('dev.tut')) { closeWin(); TU.card = null; TU.sig = ''; tutTick(); } };

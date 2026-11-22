@@ -6,7 +6,7 @@ import { CAPITALS, capitalOf } from '../shared/content.js';
 import { serverTag, serverEmblem } from './ui-sunucu.js';
 import { rankIdx, rankName, nextRank } from '../shared/rutbe.js';
 import { playFragman } from './ui-fragman.js';
-import { S, now, DEV, LOCAL, resetLocal, onState, logout } from './api.js';
+import { S, now, DEV, devUI, LOCAL, resetLocal, onState, logout } from './api.js';
 import { NUFUS_LINE, FULL_TEXT, blessed } from '../shared/nufus.js'; // nüfus dengesi: Bereket rozeti, dolu ırk kartı
 import { ACT, $, hud, openWin, lockNote, chatbar, esc, fmt, toast, run, showModal, closeModal, confirmBox, closeWin, hooks, heroImg, mobImg, avatarImg, myTier, DEF_W, energyNow, locked, me, titleChip, bonusBox, tName, rkBadge, lootToast } from './ui-core.js';
 import { camRig, project, setShift, setHfov, THREE, RENDER } from './engine3d.js';
@@ -348,7 +348,7 @@ function renderHud() {
     ${expHtml(S.xp, xpNeed(S.lvl))}
     ${starterBtn()}
     ${questBox()}
-    ${DEV ? `<div class="dev">${LOCAL ? 'DENEME SÜRÜMÜ<span> · kayıt bu cihazda</span>' : 'TEST SUNUCUSU'}</div>` : ''}`;
+    ${devUI() ? `<div class="dev">${LOCAL ? 'DENEME SÜRÜMÜ<span> · kayıt bu cihazda</span>' : 'TEST SUNUCUSU'}</div>` : ''}`;
   mmDirty = true;
   renderEnergy();
 }
@@ -419,9 +419,9 @@ ACT.profile = () => {
     <div class="pf-hero">
       <button class="pf-ava" data-a="avatarPick" title="Fotoğrafı değiştir" aria-label="Fotoğrafı değiştir">${avatarImg('lg')}<i class="pf-cam">✎</i><span class="pf-lv"><small>Sv.</small>${S.lvl}</span></button>
       <div class="pf-id">
-        <h2 class="pf-name">${rkBadge(rankIdx(S))}<button class="pf-ttl ${S.ach?.title ? '' : 'none'}" data-a="titlePick" title="Unvan seç">[${esc(achTitle(S.ach?.title) || 'Ünvan')}]</button> ${esc(S.name)}</h2>
+        <h2 class="pf-name">${rkBadge(rankIdx(S))}<button class="pf-ttl ${S.ach?.title ? '' : 'none'}" data-a="titlePick" title="Unvan seç">${S.ach?.title ? `[${esc(achTitle(S.ach.title))}]` : 'Unvan seç'}</button> ${esc(S.name)}</h2>
         <div class="pf-tags"><span class="pf-fac" style="--fc:${F.color}">${F.name}</span>${serverTag()}${titleChip(me.title)}<span class="chip pf-rk" title="Rütbe ömür boyu kazandığın Şan’dan gelir; harcamak düşürmez.">${rankName(rankIdx(S))}${(n => n ? ` · ${rankName(n.i)} için ${fmt(n.need)} Şan` : '')(nextRank(S))}</span></div>
-        <div class="pf-xp"><div class="pbar"><i style="width:${xpPct}%"></i></div><small>TP %${xpPct >= 10 ? Math.floor(xpPct) : xpPct.toFixed(1)}</small></div>
+        <div class="pf-xp"><div class="pbar"><i style="width:${xpPct}%"></i></div><small>TP %${xpPct >= 10 ? Math.floor(xpPct) : xpPct.toFixed(1).replace('.', ',')}</small></div>
       </div>
       <div class="pf-pow"><small>Güç</small><b>${fmt(partyPower(S))}</b>${ilvTag(itemLevel(S), 'Eşya Seviyesi')}</div>
     </div>
@@ -435,7 +435,7 @@ ACT.profile = () => {
       ${tile('bag', 'Çanta', `${S.items.length}/${BAG_LIMIT}`)}
     </div>
     ${S.rk?.fr?.length ? '<div class="mbtns pf-acts"><button class="btn sm" data-a="frameSel">Çerçeve</button></div>' : ''}
-    ${DEV ? `<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm stage'leri aç</button>${LOCAL ? '<button class="btn sm red" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : ''}
+    ${devUI() ? `<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm stage'leri aç</button>${LOCAL ? '<button class="btn sm red" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : ''}
   `, `prof pf-${S.faction}`);
 };
 // Grafik ayarı (ACT.gfx): ui-isik.js, kademeler gfx.js

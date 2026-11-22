@@ -1,6 +1,6 @@
 // Vahran Sınırı binalarının ve alt çubuğun ekranları: Örs, Maden, Usta Odası, Pazar ve Tüccar, Şan Divanı,
 // Kader Çarkı, Kervan, Görevler, Posta, Klan, Ansiklopedi.
-import { S, now, DEV } from './api.js';
+import { S, now, devUI } from './api.js';
 import { url as g5url } from './grafik5-png.js';
 import { MERCHANT_SVG } from './ui-ogretici.js';
 import { TUT_STEPS } from '../shared/meta.js';
@@ -330,7 +330,7 @@ ACT.premium = () => openWin({ title: 'Premium', render: () => {
   return `<div class="hint">${cur2 ? `Etkin üyeliğin: <b>${PREMIUM[cur2].name} Premium</b> · ${days} gün kaldı.` : 'Şu an üyeliğin yok.'} Elinde ${ri('gem')} <b>${fmt(S.yakut)}</b> yakut var.</div>
     <div class="tiers">${PREMIUM.slice(1).map(card).join('')}</div>
     <p class="mut">Bronz yakutla, Gümüş ve Platin yalnızca gerçek parayla alınır. Aynı kademeyi yeniden almak süreyi 30 gün uzatır. Üst kademeye geçince alt kademenin kalan süresi devredilmez. Üyelik eşsiz eşya, boss hakkı ya da örs şansı vermez.</p>
-    ${DEV ? '<div class="mbtns"><button class="btn sm" data-a="devPremium">Test: kademeyi değiştir</button></div>' : ''}`;
+    ${devUI() ? '<div class="mbtns"><button class="btn sm" data-a="devPremium">Test: kademeyi değiştir</button></div>' : ''}`;
 } });
 ACT.premBuy = d => {
   const T = PREMIUM[+d.t], cur2 = myTier();

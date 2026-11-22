@@ -14,6 +14,9 @@ const ls = { get: k => { try { return localStorage.getItem(k); } catch { return 
 export let S = null;      // seçili karakterin kaydı (sunucudan gelen son hâl); karakter seçilmeden null
 export let ACC = null;    // hesap: { chars: [kart], max, cur } (char.list sonucu; karakter seçme ekranı bunu çizer)
 export let DEV = false;   // test komutları açık mı
+// Test araçları ve deneme rozeti yalnız geliştiriciye görünür (denetim Y4): ?dev=1 ya da localStorage dd_dev='1'.
+// Komutlar (ACT.dev*) yine çalışır; denetim betikleri onları doğrudan çağırır.
+export const devUI = () => DEV && (params.get('dev') === '1' || ls.get('dd_dev') === '1');
 let offset = 0;
 export const now = () => Date.now() + offset;
 const subs = new Set();

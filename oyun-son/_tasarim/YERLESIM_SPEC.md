@@ -125,7 +125,7 @@ Oyuncunun eli her zaman nereye gideceğini bilmeli. Yatay telefonda iki başparm
 | **E** Sağ ray | sağ + orta | Menü düğmeleri (ana ekran), filtreler | Genişlik sabit: 160 dp; en fazla 5 düğme |
 | **F** Sol alt | sol + alt | Sohbet şeridi, arkadaş/parti; savaşta iksir yuvaları | Sol başparmak bölgesi |
 | **G** Sağ alt | sağ + alt | **Ekranın tek ana eylemi** (Savaş, Başla, Kuşan, Satın al); savaşta yetenek kümesi | Sağ başparmak bölgesi. **Birincil düğme her zaman burada** |
-| **H** Alt şerit | alt + sol | Dock (alt menü şeridi): Çanta, Karakter, Yetenek, Klan, Mağaza | Yükseklik 152 dp; sola çapalı (8.1) |
+| **H** Alt şerit | alt | Sohbet (sol), Görevler, dock: Karakter, Çanta, Görevler, Klan, Kervan (sağda, SAVAŞ'ın solunda) | 22 Kas: dock sağda (8.1) |
 
 **Ahenk kuralları:**
 1. Her ekranda **tek bir birincil düğme** (altın/kor renkli) olur ve **G bölgesinde** durur.
@@ -225,30 +225,26 @@ Pencere başlık şeridi: **104 dp** yükseklik, başlık 48, sağ üstte kapat.
 Her ekran için koordinatlar **2340 × 1080 dp** maketine göredir. "sol: 162" = güvenli alan (130) + kenar boşluğu (32). Sağ için aynı: ekran genişliği − 162. Alt referans: alt güvenli alan (58) + 32 = **alttan 90**.
 
 ### 8.1 Ana Merkez (Hub)
-```
-┌────────────────────────────────────────────────────────────────────────────┐
-│[Portre136][İsim·Sv·XP]        [Duyuru şeridi 880×72]   [Altın][Elmas][Enerji][⚙]│ üst 136
-│┌Görev izleyici 440×280┐                                          [Harita] │
-││ Ana görev + 2 günlük │                                          [Görev ] │ sağ ray
-│└──────────────────────┘          3B ŞEHİR SAHNESİ                [Arena ] │ en fazla 5 düğme
-│[Etkinlik afişi 440×176]        (karakter merkezde)               [Etkinl] │ 120'lik, aralık 16
-│                                                                  [Sandık] │
-│[Sohbet şeridi 640×180, son 3 mesaj]                      ┌──────────────┐ │
-│                                                          │   S A V A Ş   │ │
-│[Çanta][Karakter][Yetenek][Klan][Mağaza]  ← dock          │   400 × 136   │ │
-│ 5 × 136, aralık 16, SOLA çapalı                          └──────────────┘ │
-└────────────────────────────────────────────────────────────────────────────┘
-```
-Dikey sütunlar (2340 × 1080 maketinde, üstten):
-- **Sol sütun:** üst bar bitişi 136 → görev izleyici 168–448 → etkinlik afişi 464–640 → (boşluk) → sohbet şeridi 658–838 → dock 854–990 (alttan 90).
-- **Sağ sütun:** sağ ray 168–832 (5 × 120 + 4 × 16) → SAVAŞ 854–990.
+> **22 Kasım 2026 güncellemesi (denetim G6):** Bu bölüm oyundaki bugünkü düzeni anlatır. Eski maket (dock solda, sohbetin altında; 3B şehir) kullanıcı kararıyla değişti. Ölçüler oyunun CSS'inden (`css/v29-anaekran.css`, `css/v27-duzen.css` sonu) mantıksal piksel (px) olarak alındı; referans telefon 880×406.
 
-Kurallar:
-- **Dock sola çapalıdır** (soldan 162 başlar, 5 × 136 + 4 × 16 = **744 dp**, 162–906). Sohbet şeridi dockun **hemen üstündedir**. Böylece sol başparmak bölgesi tek blok olur ve dar ekranda SAVAŞ ile çakışmaz.
-- **SAVAŞ:** sağ alt; sağdan 162, alttan 90. Genişlik 2340'ta 400; **ekran 1600 dp'den darsa 320**. (1440'ta SAVAŞ 958–1278, dock 162–906: arada 52 dp kalır.)
-- Sağ ray: **en fazla 5 düğme**; fazlası "Daha fazla" (⋯) altında toplanır.
-- 3B karakter ekranın ortasında, ayakları alttan ~220 dp'de. Arayüz yüzünü kapatmaz.
-- Duyuru şeridi üst ortada; ekran 1600'den darsa 640 dp'ye iner ya da üst barın altına (168) iner.
+```
+┌────────────────────────────────────────────────────────────────────────────────┐
+│[Oyuncu kartı 100 px]   [Saat·Sunucu]      [Enerji][Akçe][Yakut][Premium] [ray]│ üst 6 px
+│ (portre, Sv, ad,                                                          [ray]│ sağ ray: dikey
+│  can/mana)                    2B BOYALI ŞEHİR (hub2d.js)                 [ray]│ (Duyuru, Bildirim,
+│[Menü sütunu]                  resmin tamamı görünür,                     [ray]│  Takvim, Başarım…)
+│                               bina basınca kesit parlar                        │
+│[Sohbet 250 px, sekmeler]  [Görevler]  [Karakter][Çanta][Görevler][Klan][Kervan] [SAVAŞ]│ alt şerit
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+Kurallar (bugünkü):
+- **Sohbet şeridi** sol altta, 250 px; kanal sekmeleri (Genel, Irk, Klan, Özel) üstünde.
+- **Görevler izleyicisi** sohbetin sağında (soldan 293 px), alt şeritte; genişlik `clamp(150px, 100% − 640px, 240px)`.
+- **Dock** (Karakter, Çanta, Görevler, Klan, Kervan) **sağda, SAVAŞ düğmesinin solundadır**; sola çapalı değildir.
+- **SAVAŞ** sağ alt köşe.
+- **Saat ve sunucu durumu** üst ortada. **Kaynaklar** (Enerji, Akçe, Yakut) ve Premium sağ üstte, sağ rayın solunda tek sıra.
+- **Dar ekran** (mantıksal genişlik < 760 px, `html.narrow`, `js/orient.js`): Görevler izleyicisi sohbetin sağına, dock'un **bir satır üstüne** çıkar (alttan 60 px, 200 px geniş); saat oyuncu kartının sağına alınır. 667×375'te dock'un 5 düğmesi ve 3 sayaç tam görünür.
+- Doğrulanan ölçüler: 667×375, 880×406, 915×412, 1180×820'de dock ile Görevler çakışmaz (betik `t/g6.js`).
 
 ### 8.2 Ortak "Panel Ekranı" şablonu
 Envanter, Klan, Görevler, Sıralama, Mağaza, Ayarlar, Rehber, Posta vb. **hepsi bu iskeleti kullanır:**
