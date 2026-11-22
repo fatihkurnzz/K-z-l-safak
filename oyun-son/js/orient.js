@@ -1,7 +1,7 @@
 // Ekran yönü. Oyun yalnızca yatay çizilir:
 //  - Mantıksal ekran boyutu (view.w × view.h) burada ölçülür; bütün çizim ve yerleşim bunu kullanır.
 //  - Dokunmatik cihaz dik tutuluyorsa sayfanın gövdesi (body: #game ve gövdeye eklenen bütün katmanlar) CSS ile 90°
-//    döndürülür (html.rot, css/v10-yon.css). Engel katmanı yok: oyun dik telefonda da hemen yatay açılır.
+//    döndürülür (html.rot, css/v10.css "v10-yon"). Engel katmanı yok: oyun dik telefonda da hemen yatay açılır.
 //  - Döndürülmüş kipte sistem klavyesi dik açılacağı için yazı kutuları oyunun kendi yatay klavyesini açar (ui-klavye.js).
 //  - Telefon gerçekten yatay tutuluyorsa döndürme yok; masaüstünde (ince işaretçi) hiç devreye girmez.
 //  - İlk dokunuşta sessizce tam ekran + yatay kilit denenir (Android Chrome); olmazsa hiçbir şey gösterilmez.
