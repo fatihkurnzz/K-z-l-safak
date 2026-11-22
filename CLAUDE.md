@@ -2,7 +2,12 @@
 
 Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı** (sayfa başlığı "Korant Online"), tarayıcıda çalışan, YALNIZCA YATAY çizilen 3B mobil RPG (vanilla ES modülleri + three.js r160 gömülü, sıra tabanlı belirlenimci savaş). Hikâye: **Vahran: Tarihin Külleri**.
 
-## SON DURUM (22.11 öğle) — clear sonrası buradan devam
+## SON DURUM (22.11 öğleden sonra) — clear sonrası buradan devam
+- **Sürüm 20 YAYINDA** (506 dosya; son yayın commit'i = bu notun önceki commit'i, `git log` ile bul; sonraki yayında `git diff --name-status <o> HEAD -- oyun-son`).
+- Kullanıcı istekleri (2. tur): VS'ye ortak taş çerçeve GERİ (data-scr=vs istisnası kaldırıldı); görev panelinden Destan satırı kaldırıldı (tek satır), panel sohbet ile dock arasında ortalı (v29 left sl+293, 240 px), açıkken yukarı büyür; oyuncu kartı 100 px (v29); sohbet şeridinde Genel/Irk/Klan/Özel sekmeleri tam ekranı açmadan şeridi o kanala çevirir (ui-social `cbTab`, `peekTab`; mesajlara dokununca o sekmede tam sohbet; gönder o kanala); savaş: CAM 1,25 kat (13.125,5.2), menüler %25 büyük (#battleUI --g ×1,25, v31-sablon sonu), yetenek çubuğu sol altta.
+- GPT "Karakter Ekranları Tüm Sınıflar" ZIP: kayıt `_tasarim/gelen/karakter-ekran/`. Oyunda: sahne resimleri `img/kd/karakter/sahne-{sancak,ocak}.webp` → `karakter-sahne.js loadBg` (scene.background, cover; eski dekor gizlenir, ShadowMaterial gölge), `css/v33-karakter.css` (OTOMATİK: `_tasarim/araclar/v33-gom.py .` ← `v33-sablon.css`; SVG'ler Playwright ile PNG'ye çevrildi, kızıl düğme/mavi seçili varyantı Claude üretti). Ekran düzeni ve kayıt akışı aynı. GPT isteği: `_tasarim/gpt-paket/GPT_ISTEK_KARAKTER_22KASIM.md` (+ kökte kopya): 16 tam boy şeffaf görsel, 20 yüz portresi, başlık levhası, sınıf simgeleri, isteğe bağlı Mixamo GLB'ler.
+
+## ÖNCEKİ DURUM (22.11 öğle) — clear sonrası buradan devam
 - **Sürüm 19 YAYINDA** (504 dosya; son yayın commit'i e85a485, sonraki yayında `git diff --name-status e85a485 HEAD -- oyun-son`). Kullanıcı istekleri:
   - Tema müziği: kullanıcının mp4'ünden `oyun-son/audio/kizil-goz.mp3` (157 sn, 112k). `audio.js` döngüde `url` desteği (fetch+decode, `loadBuf`, `preloadMusic`); `sfx.js` `MUSIC_URL`, döngüler `mus.tema` (başkent+pazar, eski sentez `mus.hub.*` artık çalmıyor) ve `mus.fragman`; `ui-ses.js` #fragman varken yer 'fragman'. Savaş/boss ezgileri hâlâ sentez.
   - Fragman: resimler (hikaye-png) ve müzik yüklenmeden başlamaz (en çok 4 sn siyah) → eski çizimli ilk saniye görünmez.
