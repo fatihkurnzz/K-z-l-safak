@@ -84,3 +84,14 @@ Gerçek telefon (fiziksel cihaz), ödeme akışı, canlı PvP, savaş sonu ekran
 3. Klan haritası tek (Elentha renginde); Kragmir klanları için kırmızı sürüm GPT'den istenebilir.
 4. Kader Çarkı ve İksir binası üst arayüzün altında (sahne telefonda tam sığdığı için kaydırılamıyor).
 5. Sefer sekmesinde "Kızıl Bahar Meydanı" kesiliyor; Yetenek sayfasında üst satır kesiliyor (#16, #20).
+
+## Kullanıcının yeniden tasarım istekleri (22 Kas, yapılmadı)
+Yukarıdaki tabloda "doğrulandı" yalnız "ekran açılıyor, bozuk değil" demek. Aşağıdakiler çalışıyor ama kullanıcı yeni tasarım istedi:
+
+| # | Ekran | Bugünkü durum | İstenen |
+|---|---|---|---|
+| T1 | Karakter oluşturma | Eski düzen + 3B model, P1 düğmeleri; P3 maket düzeni uygulanmadı | Yeni tasarım |
+| T2 | Ana ekran oyuncu paneli (sol üst, profil fotoğrafı) | P1 çerçeve + P3 portre (#4) | Yeni tasarım |
+| T3 | Menü kutuları | P1 + 4.9 simgeleri (#12) | Yeni tasarım |
+| T4 | Para / yakut / enerji kutuları | P1 sayaçlar (#5) | Yeni tasarım |
+| T5 | Savaş ekranı (HUD, düğmeler, düzen) | Eski düzen; P4 yalnız efektler bağlandı, P4 HUD maket düzeni uygulanmadı | Değiştirilecek (kullanıcı özellikle istiyor) |
