@@ -111,3 +111,22 @@ html:root body #game #battleUI #bctl #bexit:active { filter:brightness(1.3); }
 html:root body #game #battleUI { --g:calc(1.25 * min(calc(var(--lh, 100vh) / 1080), calc(var(--lw, 100vw) / 2340))); }
 html:root body #game #battleUI #skills { left:calc(36 * var(--g)) !important; }
 html:root body #game #battleUI #bwho { left:calc(628 * var(--g)) !important; }
+
+/* ---- 22 Kas gece (kullanıcı, V16 devri): yetenekler SOLDA TEK DİKEY SÜTUN (altta çubuk yok); ✕ Dalga şeridinin hemen altında;
+   düşman kartı sağ kenara kayar; ipucu sol altta sütunun sağında. Yuva ölçüsü ekran yüksekliğinden: 8 yuva oyuncu kartının altına sığar. ---- */
+html:root body #game #battleUI { --sz:min(calc(60 * var(--g) / .47), calc((var(--lh, 100vh) - 172 * var(--g) - var(--sab, 0px) - 6px) / 8 - 4px)); }
+html:root body #game #battleUI #skills {
+  left:calc(36 * var(--g)) !important; top:calc(172 * var(--g)) !important; bottom:auto !important; right:auto !important; transform:none !important;
+  width:auto !important; height:auto !important; padding:3px !important; border-radius:6px !important;
+  background:linear-gradient(90deg, #120d09d9, #120d09a6) !important; box-shadow:0 0 0 1px #97794e88, 0 2px 8px #0008 !important; }
+html:root body #game #battleUI #skills .yrow, html:root body #game #battleUI #skills .ypots { flex-direction:column !important; align-items:center !important; gap:4px !important; padding:0 !important; height:auto !important; width:auto !important; }
+html:root body #game #battleUI #skills .skill { width:var(--sz) !important; height:var(--sz) !important; min-width:0 !important; min-height:0 !important; }
+html:root body #game #battleUI #skills .skill em { font-size:calc(var(--sz) * .36) !important; }
+html:root body #game #battleUI #skills .skill .mpc { bottom:auto !important; top:50% !important; left:calc(100% + 3px) !important; right:auto !important; transform:translateY(-50%) !important; font-size:calc(var(--sz) * .26) !important; padding:1px 4px 1px calc(var(--sz) * .26 + 2px) !important; white-space:nowrap; }
+html:root body #game #battleUI #skills .skill.pot .pn { right:2px !important; bottom:1px !important; font-size:calc(var(--sz) * .3) !important; }
+html:root body #game #battleUI #bwho { left:calc(36 * var(--g) + var(--sz) + 14px) !important; right:auto !important; transform:none !important; bottom:calc(16 * var(--g) + var(--sab,0px)) !important; max-width:calc(62% - 60px); }
+html:root body #game #battleUI #btgt { right:calc(36 * var(--g)) !important; }
+html:root body #game #battleUI #bctl, html:root body #game #battleUI:has(#bapot:not([hidden])) #bctl { left:50% !important; right:auto !important; transform:translateX(-50%) !important; top:calc(110 * var(--g)) !important; }
+html:root body #game #battleUI #bctl #bexit { width:calc(76 * var(--g)) !important; height:calc(76 * var(--g)) !important; font-size:calc(42 * var(--g)) !important; border-width:calc(2.5 * var(--g)) !important; border-radius:calc(12 * var(--g)) !important; }
+/* boss çubuğu ✕'in altına iner (✕ Dalga'nın hemen altında kalır) */
+html:root body #game #battleUI #bboss { top:calc(192 * var(--g)) !important; }
