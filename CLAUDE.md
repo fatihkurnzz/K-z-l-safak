@@ -20,7 +20,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
   - **G8:** `js/amblem-png.js` (sahne.js yükler) → logo karakter seçme başlığında, amblemler Taraf Seç'te.
   - Tek görsel dosyası `js/gorsel-png.js` = G4 NPC (ad, ad-yuz) + G5 + G6 (`gom.py tarif/gorsel.json js/gorsel-png.js`). Genel gömme aracı `_tasarim/araclar/gom.py`.
   - M2: Kragmir'e Elentha arka planı gelmez (`savas-arka.js pickBg`).
-- **Bekleyen kullanıcı kararları:** M5 Türkçe adlar onayı (C12) · açılış resmi `korant-acilis.jpg` (Horde/Alliance'ı andıran arma + "Powered by BFS Game") değişsin mi · ork ten rengi (G4 Thrak yeşil, G2 gri).
+- **KULLANICI KARARLARI (23.11, kesin):** (1) Açılış resmi `img/korant-acilis.jpg` OLDUĞU GİBİ KALIR, değiştirme. (2) **Dil bütünlüğü:** oyun TR seçiliyken HER ŞEY Türkçe, EN seçiliyken HER ŞEY İngilizce (eşya/yetenek adları dahil; M5 `adlar.csv` önerisi TR adları için onaylı sayılır). Kimlikler değişmez; TR adları dil katmanında (i18n) uygulanmalı, `shared/` mekaniğine dokunma. Karışık dizeler ("Stage'i geç", "Priest Cap", "Holy Attack") TR'de kalmamalı. (3) **Orklar YEŞİL tenli** (G4 Thrak gibi). G2 Kragmir kahramanları ve karakter oluşturmadaki Kragmir tam boyları/yüzleri GRİ → GPT'den yeşil tenle yeniden istenmeli (ya da güvenli renk kaydırma denenebilir); G3 orksu yaratıklar da yeşil.
 - **GPT'ye geri bildirim:** G1 Elentha kadın savaşçı `buyu` pozu başka yüz (şimdilik `zafer`), G2'de 5 sette opak beyaz zemin (kodla temizlendi), G5 Dünya Baskını'nda Karadun silüeti yok.
 - **Sıradaki işler:** M4 maketleri (VS, sonuç, Karakter=C6, ana HUD), M3 glifleri (C9), diyaloğu öbür NPC'lere yay, C13 → C14 → C15, G3+M1 gelince yaratık aileleri/bosslar 2B, C11 en sona.
 
