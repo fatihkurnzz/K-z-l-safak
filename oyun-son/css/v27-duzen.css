@@ -194,3 +194,32 @@ img.yico-png { width:100% !important; height:100% !important; display:block; obj
 .skill.lock img.yico-png, .skill[disabled] img.yico-png { filter:saturate(.55) brightness(.8) !important; }
 img.pt.yuz2b { object-fit:cover; object-position:50% 22%; }
 img.pt.mob2b { object-fit:cover; background:radial-gradient(#5d6b46, #1b2115); }
+
+/* ---- Boyalı sahneler (GPT G5, görev C7) · 23 Kas ----
+   js/sahne.js yüklenince kök öğeye --sc-<anahtar> yazar ve html.sahneli sınıfını ekler; o zamana dek eski çizimler kalır. */
+html.sahneli[data-faction="sancak"] #tut .tscrim { background:linear-gradient(180deg, #05070c66, #05070cb3), var(--sc-koru-sancak) 50% 40% / cover no-repeat !important; }
+html.sahneli[data-faction="ocak"] #tut .tscrim { background:linear-gradient(180deg, #0c050566, #0c0505b3), var(--sc-koru-ocak) 50% 40% / cover no-repeat !important; }
+html.sahneli .zcard .zscene { background-size:cover !important; background-position:50% 55% !important; background-repeat:no-repeat !important; }
+html.sahneli .zcard.z-well .zscene { background-image:linear-gradient(180deg, #0000 45%, #0d0b0ecc), var(--sc-dipsiz-kuyu) !important; }
+html.sahneli .zcard.z-depth .zscene { background-image:linear-gradient(180deg, #0000 45%, #0d0b0ecc), var(--sc-yeralti-ocagi) !important; }
+html.sahneli .zcard.z-well .zscene > svg, html.sahneli .zcard.z-depth .zscene > svg { display:none !important; }
+html.sahneli :has(> svg.nb-art) { background:var(--sc-kristal-nobeti) 50% 45% / cover no-repeat !important; }
+html.sahneli svg.nb-art { visibility:hidden; }
+html.sahneli :has(> svg.bk-boss) { background:var(--sc-dunya-baskini) 50% 40% / cover no-repeat !important; }
+html.sahneli svg.bk-boss { visibility:hidden; }
+html.sahneli #page .row:has([data-m="well"]) { background:linear-gradient(90deg, #0d0b0ef0 0 38%, #0d0b0eb0 68%, #0d0b0e40), var(--sc-dipsiz-kuyu) 70% 55% / cover no-repeat !important; }
+html.sahneli #page .row:has([data-a="depthFloors"]) { background:linear-gradient(90deg, #0d0b0ef0 0 38%, #0d0b0eb0 68%, #0d0b0e40), var(--sc-yeralti-ocagi) 60% 60% / cover no-repeat !important; }
+html.sahneli #page .nb { background:linear-gradient(180deg, #0d0b0e8c, #0d0b0ef2 260px), var(--sc-kristal-nobeti) 50% 0 / 100% auto no-repeat; border-radius:8px; padding:8px; }
+html.sahneli #page .bk-card { background:linear-gradient(180deg, #0d0b0e80, #0d0b0eeb 75%), var(--sc-dunya-baskini) 50% 35% / cover no-repeat !important; }
+html.sahneli .blk-scene { background:var(--sc-balik-tut) 30% 62% / cover no-repeat; }
+html.sahneli .blk-svg > rect, html.sahneli .blk-svg > circle, html.sahneli .blk-svg > path:not(.blk-rod):not(.blk-line) { display:none; }
+html.sahneli .mn-stage.mz2 { background:var(--sc-maden) 50% 60% / cover no-repeat; }
+html.sahneli .mn-stage.mz2 > svg { display:none; }
+.mn-stage .mn-hero { display:none; }
+html.sahneli .mn-stage.mz2 { position:relative; overflow:hidden; }
+html.sahneli .mn-stage.mz2 .mn-hero { display:block; position:absolute; left:50%; bottom:-6%; height:118%; transform:translateX(-50%); filter:drop-shadow(0 6px 8px #000c) brightness(.92) sepia(.12); animation:mnHero 3.2s ease-in-out infinite; transform-origin:50% 100%; }
+@keyframes mnHero { 50% { transform:translateX(-50%) scaleY(1.012); } }
+html.sahneli #modal .box .mdz-c, html.sahneli .mdz-c { background:linear-gradient(180deg, #0000 30%, #0d0b0ee6), var(--mk) 50% 40% / cover no-repeat !important; }
+html.sahneli .mdz-c.lock { filter:grayscale(.75) brightness(.7); }
+html.sahneli .mdz-layer .mdz-stage { background:var(--mk) 50% 50% / cover no-repeat; }
+html.sahneli .mdz-layer .mdz-ph { background:#0d0b0e99; }

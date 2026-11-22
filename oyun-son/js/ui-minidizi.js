@@ -11,7 +11,7 @@ function win() {
   const n = seriesNewCount(S), done = SERIES.filter(e => seriesWatched(S, e.ep)).length;
   const card = e => {
     const w = seriesWatched(S, e.ep), open = seriesOpen(S, e.ep), cls = w ? 'done' : open ? 'new' : 'lock';
-    return `<button class="mdz-c ${cls}" data-a="${open ? 'seriesPlay' : 'seriesLocked'}" data-ep="${e.ep}"><i class="mdz-no">${e.ep}</i><b class="mdz-ad">${esc(e.ad)}</b><span class="mdz-rw">${w ? '' : rewardChips(e.ep)}</span><em class="mdz-st">${w ? '✓ İzlendi' : open ? 'Yeni' : '<span class="mdz-lk">' + svg('lock') + '</span> Kilitli'}</em></button>`;
+    return `<button class="mdz-c ${cls}" style="--mk:var(--sc-minidizi-${String(e.ep).padStart(2, '0')})" data-a="${open ? 'seriesPlay' : 'seriesLocked'}" data-ep="${e.ep}"><i class="mdz-no">${e.ep}</i><b class="mdz-ad">${esc(e.ad)}</b><span class="mdz-rw">${w ? '' : rewardChips(e.ep)}</span><em class="mdz-st">${w ? '✓ İzlendi' : open ? 'Yeni' : '<span class="mdz-lk">' + svg('lock') + '</span> Kilitli'}</em></button>`;
   };
   showModal(`<h2>Mini Dizi</h2><div class="in mdzw"><p class="mut">Korant’ın hikâyesi, 10 bölümde. Her bölümü izleyince küçük bir ödül alırsın. ${done}/10 izlendi${n ? ` · ${n} yeni bölüm var` : ''}.</p><div class="mdz-g">${SERIES.map(card).join('')}</div></div>`, 'mdz');
 }
@@ -25,7 +25,7 @@ ACT.seriesPlay = ({ ep }) => {
   ep = +ep; const e = SERIES.find(x => x.ep === ep); if (!e) return;
   stop();
   const w = seriesWatched(S, ep);
-  layer = document.createElement('div'); layer.className = 'mdz-layer';
+  layer = document.createElement('div'); layer.className = 'mdz-layer'; layer.style.setProperty('--mk', `var(--sc-minidizi-${String(ep).padStart(2, '0')})`); // 23 Kas: G5 kapak (video yokken yer tutucunun arka planı)
   layer.innerHTML = `<div class="mdz-top"><b>${e.ep}. ${esc(e.ad)}</b><button class="btn" data-a="seriesClose">Kapat</button></div>
     <div class="mdz-stage"><video class="mdz-v" src="${e.video}" controls playsinline preload="metadata"></video><div class="mdz-ph" hidden>${svg('film')}<b>Bu bölüm yakında</b><small>Video dosyası henüz eklenmedi.</small></div></div>
     <div class="mdz-bot"><span class="mdz-hint"></span><button class="btn green" data-a="seriesDone" data-ep="${ep}" disabled>${w ? 'İzlendi' : 'Ödülü al'}</button></div>`;

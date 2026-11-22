@@ -8,12 +8,17 @@
 // Görünüm kutusunun üstünde 40 birim pay var: kazma başın üstüne kalkınca kesilmez; arka plan yanlara taşar (svg overflow
 // görünür, .mn-stage keser), geniş ekranda yanlarda boş şerit kalmaz.
 // faction: ten ve kuşak rengi (Kragmir yeşilimsi ten, kızıl kuşak · Elentha buğday ten, mavi kuşak). Stiller css/v9.css (.mz2-*).
+// 23 Kas (C7, G5): boyalı maden resmi yüklendiyse (html.sahneli) SVG sahne gizlenir; ortadaki boşlukta oyuncunun kendi 2B
+// karakteri (karakter-png.js tam boy) durur. Resim yokken eski SVG madenci oynar.
+import { sprUrl } from './karakter-png.js';
+import { S } from './api.js';
+const mineHero = () => { const c = S?.char; if (!c) return ''; const u = sprUrl(c.race || S.faction, c.cls, c.gender); return u ? `<img class="mn-hero" src="${u}" alt="" draggable="false">` : ''; };
 export function mineScene(fill = 0, faction = 'ocak') {
   const ork = faction === 'ocak', skin = ork ? '#7f9258' : '#d29a6c', skinD = ork ? '#5a6a3c' : '#a8744c', sash = ork ? '#a3261a' : '#2f62b8';
   const n = Math.round(Math.max(0, Math.min(1, fill)) * 9);
   const pile = Array.from({ length: 9 }, (_, k) => { const row = k < 4 ? 0 : k < 7 ? 1 : 2, col = k < 4 ? k : k < 7 ? k - 4 : k - 7; return `<circle cx="${68 + col * 13 + row * 6.5}" cy="${112 - row * 9}" r="7" class="${k < n ? '' : 'off'}"/>`; }).join('');
   const chunks = [[0, -34, -30], [1, 26, -40], [2, -12, -48], [3, 38, -22], [4, -40, -14], [5, 14, -56]].map(([k, dx, dy]) => `<path class="c${k}" style="--dx:${dx}px;--dy:${dy}px" d="M276 110 l5 -4 4 3 -2 5 -6 1z"/>`).join('');
-  return `<div class="mn-stage mz2" aria-hidden="true"><svg viewBox="0 -40 400 200" preserveAspectRatio="xMidYMax meet" style="overflow:visible">
+  return `<div class="mn-stage mz2" aria-hidden="true">${mineHero()}<svg viewBox="0 -40 400 200" preserveAspectRatio="xMidYMax meet" style="overflow:visible">
     <defs><linearGradient id="m2sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#140c08"/><stop offset=".55" stop-color="#2a1a10"/><stop offset="1" stop-color="#3a2416"/></linearGradient>
       <linearGradient id="m2soil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5e4026"/><stop offset="1" stop-color="#1e140b"/></linearGradient>
       <linearGradient id="m2wood" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a2212"/><stop offset=".5" stop-color="#6e4624"/><stop offset="1" stop-color="#2e1a0c"/></linearGradient>

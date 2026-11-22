@@ -2,6 +2,7 @@
 //  - meydanın ortasında Kapı (portal), çevresinde dokunulabilir binalar
 //  - sol üstte oyuncu kartı, altında üyelik şeridi, onun altında Menü ve Kapı kısayolu
 //  - sağ üstte kaynaklar, altta kısayol çubuğu (başta Sıralama, sonda Kervan), çubuğun üstünde sohbet şeridi
+import './sahne.js'; // 23 Kas (C7): G5 boyalı sahneler arkada yüklenir (--sc-* CSS değişkenleri)
 import { CAPITALS, capitalOf } from '../shared/content.js';
 import { serverTag, serverEmblem } from './ui-sunucu.js';
 import { rankIdx, rankName, nextRank } from '../shared/rutbe.js';
