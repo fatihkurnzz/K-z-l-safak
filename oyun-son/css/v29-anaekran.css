@@ -1,0 +1,42 @@
+/* 22 Kas — Ana ekran yeni yerleşim (kullanıcı isteği). Yalnız 2B haritada (html[data-hub2d]); 3B kip ve diğer ekranlar değişmez.
+   Harita artık resmin tamamını gösterir; ekranın iki yanındaki şeritlere arayüz oturur, haritanın ortası açık kalır:
+   - Sol şerit: dikey oyuncu kartı (portre, seviye, ad, can/mana) + altında menü düğmeleri
+   - Sağ şerit: sağ üst düğmeler dikey sütun + halk flaması (js/hub2d.js)
+   - Üst sağ: Enerji / Akçe / Yakut / Premium tek sıra
+   - Alt: Sohbet (sol) · Görevler · Karakter…Kervan · Savaş */
+
+/* --- oyuncu kartı: dikey, sol şeride sığar (Kader Çarkı'nı örtmez) --- */
+html[data-hub2d] #game #hud .pcard.uf { width:66px !important; top:6px !important; padding:5px 4px 6px !important; flex-direction:column !important; align-items:center !important; gap:3px !important; border-radius:12px !important; }
+html[data-hub2d] #game #hud .pcard.uf > img, html[data-hub2d] #game #hud .pcard.uf > .ava, html[data-hub2d] #game #hud .pcard.uf > :first-child:not(.uf-info) { width:44px !important; height:44px !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-info { width:100% !important; min-width:0 !important; display:flex !important; flex-direction:column !important; gap:2px !important; padding:0 !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-nm { display:block !important; width:100%; font-size:9px !important; line-height:11px !important; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin:0 !important; letter-spacing:0 !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-nm * { font-size:9px !important; line-height:11px !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-nm em { display:block; font-size:11px !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-nm svg { width:8px !important; height:8px !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-bar { height:5px !important; min-height:0 !important; width:100% !important; margin:0 !important; }
+html[data-hub2d] #game #hud .pcard.uf .uf-bar s { display:none !important; }
+
+/* --- sol menü düğmeleri: kartın altında, şeridin ortasında --- */
+html[data-hub2d] #game #hud .lrail { top:108px !important; left:calc(var(--h17-sl) + 16px) !important; }
+
+/* --- sağ üst düğmeler: sağ şeritte dikey sütun --- */
+html[data-hub2d] #game #hud .krail { top:6px !important; right:var(--h17-sr) !important; left:auto !important; width:auto !important; flex-direction:column !important; flex-wrap:nowrap !important; align-items:center !important; }
+
+/* --- kaynaklar + Premium: üstte, sağ sütunun solunda tek sıra --- */
+html[data-hub2d] #game #hud .res { top:6px !important; left:auto !important; right:calc(var(--h17-sr) + 76px) !important; width:auto !important; flex-wrap:nowrap !important; }
+html[data-hub2d] #game #hud .res .pill { width:auto !important; min-width:0 !important; padding-right:6px !important; }
+html[data-hub2d] #game #hud .premrow { top:6px !important; left:auto !important; right:calc(var(--h17-sr) + 46px) !important; width:76px !important; }
+html[data-hub2d] #game #hud .premrow .prem { width:76px !important; height:21px !important; min-height:0 !important; padding:0 6px !important; gap:4px !important; }
+html[data-hub2d] #game #hud .premrow .prem small { display:none !important; }
+html[data-hub2d] #game #hud .premrow .prem b { font-size:10px !important; }
+html[data-hub2d] #game #hud .premrow .prem i svg { width:13px; height:13px; }
+
+/* --- Görevler: altta, sohbet ile alt düğmelerin arasında --- */
+html[data-hub2d] #chatbar { width:250px !important; }
+html[data-hub2d] #game #hud .qtrk { top:auto !important; right:auto !important; bottom:calc(var(--h17-sab) + 12px) !important; left:calc(var(--h17-sl) + 278px) !important; width:clamp(120px, calc(var(--lw, 100vw) - 650px), 220px) !important; }
+
+/* --- harita kenarları: aynı resmin aynalanmış, koyulaştırılmış devamı (js/hub2d.js .h2-mir) + flama --- */
+#hub2d .h2-mir { position:absolute; top:0; width:100%; height:100%; transform:scaleX(-1); filter:brightness(.5) saturate(.85); pointer-events:none; user-select:none; max-width:none; }
+#hub2d .h2-mir.l { left:-100%; } #hub2d .h2-mir.r { left:100%; }
+#hub2d .h2-img { -webkit-mask-image:none !important; mask-image:none !important; }
+#hub2d .h2-flama { position:absolute; right:calc(var(--h17-sr) - 6px); top:206px; width:62px; pointer-events:none; filter:drop-shadow(0 3px 6px #000c); }

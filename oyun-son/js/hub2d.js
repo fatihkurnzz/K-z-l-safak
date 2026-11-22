@@ -6,6 +6,7 @@
 // Düşük grafik kademesinde ya da "hareketi azalt" açıkken tuval çizilmez. Tercih: localStorage dd_hub2d = '0' eski 3B kasabayı açar.
 import { view, toLocal, toLocalDelta } from './orient.js';
 import { SAHNE, HIT_SCALE } from './hub2d-data.js';
+import { url as g5url } from './grafik5-png.js';
 
 const DIR = 'img/kd/sehir/';
 // Etiket binanın tepesinden biraz içeride durur (üst sıradakiler HUD altına girmesin); ek pay:
@@ -152,7 +153,8 @@ export function show2d(yer) {
     addEventListener('resize', () => requestAnimationFrame(() => { if (active2d()) layout(true); }));
   }
   const [W, H] = D.size;
-  layer.innerHTML = `<div class="h2-bg" style="background-image:url('${DIR}${cur}/sahne.webp')"></div><div class="h2-wrap" style="width:${W}px;height:${H}px"><img class="h2-img" src="${DIR}${cur}/sahne.webp" alt="" decoding="async" draggable="false"><div class="h2-glow" aria-hidden="true"></div></div>${calm() ? '' : '<canvas class="h2-fx" aria-hidden="true"></canvas>'}`;
+  layer.innerHTML = `<div class="h2-bg" style="background-image:url('${DIR}${cur}/sahne.webp')"></div><div class="h2-wrap" style="width:${W}px;height:${H}px"><img class="h2-mir l" src="${DIR}${cur}/sahne.webp" alt="" draggable="false"><img class="h2-mir r" src="${DIR}${cur}/sahne.webp" alt="" draggable="false"><img class="h2-img" src="${DIR}${cur}/sahne.webp" alt="" decoding="async" draggable="false"><div class="h2-glow" aria-hidden="true"></div></div>${calm() ? '' : '<canvas class="h2-fx" aria-hidden="true"></canvas>'}`;
+  { const fu = g5url('flama-' + (document.documentElement.dataset.faction === 'ocak' ? 'ocak' : 'sancak')); if (fu) layer.insertAdjacentHTML('beforeend', `<img class="h2-flama" src="${fu}" alt="" aria-hidden="true">`); } // 22 Kas: sağ şeritte halk flaması
   wrap = layer.querySelector('.h2-wrap'); glowEl = layer.querySelector('.h2-glow'); cvs = layer.querySelector('.h2-fx');
   document.documentElement.dataset.hub2d = cur;
   loadHit(D.hit);
