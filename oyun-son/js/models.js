@@ -8,6 +8,7 @@ import { weaponGlow, armorGlow, GLOW_LEVELS, EVENT_FX } from './fx-table.js';
 import { swingArc, whirlRing, play as fxPlay } from './fx.js';
 import { buildCharHead, applyBody } from './gorunus.js';
 import { GLTFLoader } from '../vendor/three/examples/jsm/loaders/GLTFLoader.js'; // oyuncunun seçtiği görünüş (model.char): kafa, yüz, saç, sakal, vücut, boy
+import { buildBackdrop, LIGHT as PHOTO_LIGHT } from './savas-arka.js'; // 22 Kas: savaş arka plan resimleri
 export { slashArc, whirlRing, projectile, meteorStrike, shockwave, healAura } from './fx.js'; // efektler fx.js'e taşındı (eski içe aktarmalar çalışsın)
 
 // Hazır silah modelleri (glTF): yüklenene dek prosedürel model kullanılır. Uzun Mızrak (kind 'scythe'):
@@ -1041,11 +1042,29 @@ const MOODS = {
     sun: 0xfff3d8, sunI: 2.9, hemi: 0.95, hemiC: [0xcfe4ff, 0x5c6a48], rim: [0xcfe0ff, 0.45], mount: 0x7189ad, motes: 0xfff2c8, torch: 0.3, win: 0.5, leaves: [0x2f6a2c, 0x3d7c36, 0x275824], pollen: true, exposure: 0.84 },
 };
 
+// 22 Kas (kullanıcı): savaş ortamı GPT'nin boyalı resmi. Yalnız ışıklar kurulur (resmin ışığına göre); gök, zemin, çimen,
+// ağaç ve kaya çizilmez. Resim zemine ve perdeye savas-arka.js yansıtır; sis yok (resmin kendi havası var).
+function photoEnv(id) {
+  const L = PHOTO_LIGHT[id] || PHOTO_LIGHT.yemin, g = envGroup = new THREE.Group();
+  scene.background = new THREE.Color(L.sky[2]); scene.fog = null;
+  setExposure(L.exp); wind.k.value = 0.6; setSmokeLight(0.6);
+  const [kc, ki, kd] = L.key, [rc, ri, rd] = L.rim;
+  setSkyEnv({ sky: L.sky, ground: L.sky[2], sun: kc, sunI: Math.min(1.6, ki / 2.2), rim: rc, rimI: ri, torch: 0.3, dir: kd });
+  g.add(new THREE.HemisphereLight(L.hemi[0], L.hemi[1], L.hemi[2]));
+  const sun = new THREE.DirectionalLight(kc, ki); sun.userData.dir = new THREE.Vector3(...kd); g.add(sun);
+  const rim = new THREE.DirectionalLight(rc, ri); rim.position.set(...rd); g.add(rim);
+  buildBackdrop(g, id);
+  scene.add(g);
+  setKeyLight(sun, 0, 0, 12.5);
+  return g;
+}
+
 const L4 = new THREE.Matrix4(), G4 = new THREE.Matrix4(), Q4 = new THREE.Quaternion(), E4 = new THREE.Euler(), P4 = new THREE.Vector3(), S4 = new THREE.Vector3();
 // tod: (E, kind, mood) → E. Günün evresine ve havaya göre parametreleri dönüştürür (daylight.js); verilmezse taban hâli kurulur.
 export function buildEnv(kind, mood, tod) {
   if (envGroup) { scene.remove(envGroup); disposeTree(envGroup); }
   envUpdate?.();
+  if (mood && mood.startsWith('foto:')) return photoEnv(mood.slice(5)); // 22 Kas: savaş = boyalı resim (savas-arka.js)
   const T = gfx.T, hub = kind === 'hub' || kind === 'town';
   const E0 = { ...ENVS[kind], ...(hub && MOODS[mood] || {}) }, E = tod ? tod(E0, kind, mood) : E0;
   const g = envGroup = new THREE.Group(), nat = !hub && (E.nat || kind === 'forest' || kind === 'graveyard'); // doğal arazi: meydan zemini yok

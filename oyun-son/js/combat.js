@@ -18,6 +18,8 @@ import { world, clearScene, ensureEnv, spawn, setUpdater } from './world.js';
 import { svg } from './icons.js';
 import { skillIcon } from './skill-icons.js';
 import { SFX } from './sfx.js';
+import * as KAM from './savas-kamera.js'; // 22 Kas: dinamik savaş kamerası (durum makinesi, sınırlara göre kadraj)
+import { pickBg, setProjector } from './savas-arka.js'; // 22 Kas: boyalı savaş arka planları
 import { heroImg, mobImg } from './ui-core.js'; // 19 Kas: savaş arayüzü portreleri (sıra şeridi, kahraman çerçevesi) // savaş sesleri: olay türü, silah türü ve elemente göre (kural içermez)
 
 const $ = s => document.querySelector(s);
@@ -50,7 +52,7 @@ const lockMsg = () => { const w = $('#bwho'); if (w) w.innerHTML = '<b style="co
 
 // 20 Kas (Kül, oynanışta): Tarikat düşmanı (birim `cult`) sahadayken savaş sahnesinin rengi solar (css .kul, v21 §16)
 const ashScene = on => document.getElementById('stage')?.classList.toggle('kul', !!on);
-export function hideBattleUI() { ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; ui.primary = null; prim(false); BT.on = false; }
+export function hideBattleUI() { KAM.end(); ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; ui.primary = null; prim(false); BT.on = false; }
 
 // Motor birimi → 3D görünüm. Kahraman birimleri tarafını (faction) ve silah modelini (wm) kendi taşır;
 // böylece meydandaki rakip parti de doğru görünür.
@@ -74,9 +76,8 @@ export function unitLook(u) {
   return { look: L, model: {}, mid: u.mob };
 }
 
-// 19 Kas (kullanıcı): kamera %20 daha yüksekten ve uzaktan (eski konum 0, 8.6, 9.0: bakış noktasına uzaklık ×1,2)
-// 22 Kas (kullanıcı): karakter ve düşmanlar %25 geriden görünür (bakış noktasından uzaklık 1,25 kat: 10.5,4.4 → 13.125,5.2)
-const CAM = { pos: new THREE.Vector3(13.125, 5.2, 0), look: new THREE.Vector3(0, 1.2, 0) };
+// 22 Kas (GPT kamera paketi): sabit CAM konumu kaldırıldı; kadrajı savas-kamera.js birimlerin sınırlarından hesaplar
+// (eski: 13.125, 5.2, 0 → 0, 1.2, 0). Geri almak için bu commit'in öncesine bakın.
 // Dizilişler (birim sayısı → [x, z] sıra sırasıyla; sıra 0 = oyuncunun kahramanı, önde). Düşman tarafı z'nin aynası.
 const FORM = {
   1: [[2.18, 3.23]],
@@ -85,11 +86,15 @@ const FORM = {
   4: [[2.76, 3.04], [1.34, 5.51], [0.29, 2.09], [-1.53, 4.84]],
   5: [[2.83, 2.93], [1.59, 5.38], [0.89, 1.88], [-0.74, 4.66], [-3.10, 3.11]],
 }; // 22 Kas: yandan 3/4 (parti solda, düşman sağda)
-const SCALE_HERO = 1.3, SCALE_MOB = 1.15; // savaşta kahramanlar %30, canavarlar %15 büyük (kullanıcı 19 Kas)
-function moveCam(pos, look, dur) {
-  const p0 = camRig.pos.clone(), l0 = camRig.look.clone(), p1 = pos.clone(), l1 = look.clone();
-  return tween(dur, k => { camRig.pos.lerpVectors(p0, p1, k); camRig.look.lerpVectors(l0, l1, k); }, ease.inOut);
+// Birimin sahadaki yeri (yalnız konum; place ve kameranın ilk dalga kestirimi kullanır)
+function spot(u, n, idx = u.slot) {
+  const big = u.boss && u.side !== 'A', mon = !!u.mon;
+  const F = FORM[n], i = Math.min(Math.max(0, idx | 0), n - 1), kz = Math.min(1, view.w / view.h / 2.17);
+  const x = mon ? -4.6 : big ? -5.5 : F ? F[i][0] : ((n - 1) / 2 - i) * 1.4;
+  const z = mon ? 0 : (u.side === 'A' ? 1 : -1) * (big ? 6.2 : F ? F[i][1] : 3.4) * kz;
+  return { x, z };
 }
+const SCALE_HERO = 1.3, SCALE_MOB = 1.15; // savaşta kahramanlar %30, canavarlar %15 büyük (kullanıcı 19 Kas)
 function slowmo(realSec) { clock.scale = ui.speed * 0.25; setTimeout(() => { clock.scale = ui.speed; }, realSec * 1000); }
 function flashScreen() { const f = document.createElement('div'); f.className = 'flash'; document.body.appendChild(f); setTimeout(() => f.remove(), 450); }
 function showBanner(text, small, side = 'A') {
@@ -137,10 +142,8 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   clearScene();
   const token = world.token;
   setHfov(42); // ana üs geniş açıyla bakar; savaş kendi açısına döner
-  setShift(0, 0); // 22 Kas: yandan görünüşte kadraj CAM ile ayarlı
-  ensureEnv(env);
-  camRig.pos.set(12.5, 7.8, 3.5); camRig.look.set(0, 0.6, 1); // 22 Kas açılış: yüksekten, partinin önünden başlar; alçalıp iki hattı birden gösteren yan görünüşe iner
-  moveCam(CAM.pos, CAM.look, 1.6);
+  setShift(0, 0); // 22 Kas: kadraj savas-kamera.js ile
+  ensureEnv(env, 'foto:' + pickBg(env, setup.seed)); // 22 Kas (kullanıcı): eski çizilmiş savaş alanı yerine boyalı resim
   const battle = new Battle(setup);
   battle.noAutoPot = !potPref(); ui.battle = battle; ui.hasPot = battle.units.some(x => x.side === 'A' && x.potHp !== undefined && (x.potHp > 0 || x.potMp > 0)) && !battle.units.some(x => x.side !== 'A' && x.cls && !x.mon); // Oto İksir yalnız PvE
   const actions = [];
@@ -154,9 +157,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     // Sıra (slot 0 = öndeki) kameraya en yakın; birimler önlü arkalı kademeli dizilir, yüzleri biraz kameraya döner.
     // Konumlar 880×406 telefonda ekrandaki hedef ayak noktalarından geri hesaplandı (referans: önde büyük, arkada küçük, kademeli);
     // dar ekranda (tablet, masaüstü) yanal açıklık ekran oranına göre daraltılır ki iki hat da kadrajda kalsın.
-    const F = FORM[n], i = Math.min(Math.max(0, idx | 0), n - 1), kz = Math.min(1, view.w / view.h / 2.17);
-    const x = mon ? -4.6 : big ? -5.5 : F ? F[i][0] : ((n - 1) / 2 - i) * 1.4;
-    const z = mon ? 0 : (u.side === 'A' ? 1 : -1) * (big ? 6.2 : F ? F[i][1] : 3.4) * kz;
+    const { x, z } = spot(u, n, idx);
     const face = u.side === 'A' ? Math.PI - 0.55 : 0.55;
     const lk = mon ? { look: u.look || { kind: 'monument' }, model: {} } : unitLook(u); if (!mon) lk.look = { ...lk.look, scale: (lk.look.scale || 1) * (u.cls ? SCALE_HERO : SCALE_MOB) };
     if (big) lk.look.scale = Math.min(lk.look.scale, 1.9); // 22 Kas: yan görünüşte boss kadraja sığsın (kahramanın ~1.5 katı)
@@ -177,6 +178,14 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   const party = battle.alive('A');
   party.forEach(u => place(u, party.length));
   for (const u of battle.units.filter(x => x.mon)) place(u, 1);
+  // 22 Kas: kamera açılışı. İlk dalganın yerleri önceden kestirilir (düşmanlar henüz sahnede değil); taban kadraj
+  // arka plan resminin projektörü olur (resim bu bakıştan birebir görünür).
+  {
+    const pred = [], w0 = (setup.waves?.[0] || []).filter(u => u.side !== 'A'), rest = w0.filter(u => !u.boss);
+    w0.forEach(u => { const n = u.boss ? 1 : rest.length, { x, z } = spot({ ...u, side: 'B' }, n, u.boss ? 0 : rest.indexOf(u)), M = MOBS[u.mob]?.look || {}, k = (M.scale || 1) * SCALE_MOB * (u.boss ? 1.6 : 1), h = 2.0 * Math.min(u.boss ? 1.9 * 1.6 : 3, k) + 0.5; for (const y of [0, h]) for (const d of [-0.6, 0.6]) pred.push(Object.assign(new THREE.Vector3(x + d * 0.6, y, z + d), { side: "B" })); });
+    const r = KAM.begin(actors, pred);
+    setProjector(r.pos, r.look);
+  }
   // Anıt Savaşı şeridi: iki tarafın puanı, raunt ve anıta verilen hasar payı (battle.bdw; oynatılan olaylarla güncellenir)
   const bdwBar = battle.bdw ? (() => { const el = document.createElement('div'); el.id = 'bdwbar'; battleUI.appendChild(el); return el; })() : null;
   const syncBdw = () => {
@@ -196,6 +205,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
 
   let firstA = null;
   setUpdater(dt => {
+    KAM.step(dt);
     firstA = actors.values().next().value;
     for (const a of actors.values()) {
       const u = a.unit;
@@ -458,6 +468,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     const special = S.cd > 0;
     SFX.skill(ev, A.unit, S, ui.speed);
     const dmgs = ev.fx.filter(f => f.k === 'dmg'), rest = ev.fx.filter(f => f.k !== 'dmg');
+    const hit = [...new Set([...ev.fx.map(f => f.u), ev.target])].map(byId).filter(x => x && x !== A); // kameranın odaklanacağı hedefler
     const first = dmgs[0] && byId(dmgs[0].u), tgt = first || byId(ev.target) || A;
     const side = A.unit.side === 'A' ? 1 : -1;
     // Element: yeteneğin hasar satırından; elementsiz büyü birimin kendi rengini (sınıf / yaratık) taşır
@@ -471,15 +482,11 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       const master = !!(S.master || S.pm); // usta yetenek: daha yakın, daha uzun kamera ve kenar karartması
       showBanner(S.name, master ? `${A.unit.name} · Usta yetenek` : A.unit.name, A.unit.side);
       if (master) { const v = document.createElement('div'); v.className = 'mvig ' + A.unit.side; overlay.appendChild(v); setTimeout(() => v.remove(), 1400); }
-      const k = c.scale * (master ? 0.72 : 1), look = c.chestPos().add(new THREE.Vector3(0, 0.15 * c.scale, 0));
-      // yakın çekim karşı takımın hattını geçmez (iri boss'ta kamera partinin içine girip sırtları kadraja almasın)
-      const keep = v => { v.z = side > 0 ? Math.max(v.z, -1.5) : Math.min(v.z, 1.5); return v; };
-      const near = keep(c.pos.clone().add(new THREE.Vector3(1.4 * k, 1.55 * k, -2.6 * side * k)));
-      camRig.pos.copy(keep(look.clone().add(near.clone().sub(look).multiplyScalar(1.45)))); camRig.look.copy(look);
-      await moveCam(near, look, master ? 0.85 : 0.55);
-      camRig.pos.copy(CAM.pos); camRig.look.copy(CAM.look);
+      // 22 Kas: yakın çekim artık animasyonu beklemez ve kesmez; kamera vuranla hedeflerine birlikte yumuşakça odaklanır
+      KAM.focusSkill(A, hit, master);
+      await wait(master ? 0.35 : 0.2);
       if (dmgs.length) { flashScreen(); slowmo(master ? 0.45 : 0.25); }
-    }
+    } else KAM.focusAttack(A, hit); // normal saldırı: kısa, hafif odak
     const from = c.pos.clone();
     const hitAll = x => dmgs.forEach(f => applyFx(f, from, special, x));
     const foesCenter = new THREE.Vector3(0, 0, A.unit.side === 'A' ? -2.9 : 2.9);
@@ -554,6 +561,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     }
     c.arcTint = 0;
     rest.forEach(f => applyFx(f, from, false, ctx));
+    KAM.settle(); // tabana dön (biri öldüyse taban yeniden hesaplanır)
     await wait(0.3);
   }
 
@@ -563,13 +571,13 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     const c = a.char, k = c.scale, u = a.unit;
     if (!u.boss) { showBanner(u.name, 'Kapı kaptanı', 'B'); fx(EVENT_FX.boss, c); return wait(0.35); }
     bossCard(u);
-    // kamera iki hattın arasına, alçağa iner ve boss'a aşağıdan bakar (parti kameranın arkasında kalır)
-    const look = a.home.clone().setY(1.45 * k), near = new THREE.Vector3(a.home.x + 1.5, 0.9 + 0.35 * k, Math.min(1.2, a.home.z + 2.2 + 1.5 * k));
-    await moveCam(near, look, 0.7);
+    // 22 Kas: genişletilmiş kadraj (boss ve parti birlikte, biraz alçaktan bossa doğru); bitince yumuşak dönüş
+    KAM.focusBoss(a, [...actors.values()].filter(x => x.unit.side === 'A' && !x.gone));
+    await wait(0.7);
     fx(EVENT_FX.boss, c);
     tween(0.35, e => c.root.scale.setScalar(k * (0.88 + 0.12 * e)), ease.back);
     await wait(0.85);
-    await moveCam(CAM.pos, CAM.look, 0.6);
+    KAM.recover(); await wait(0.5);
   }
 
   async function play(events) {
@@ -587,6 +595,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
         const us = ev.ids.map(id => battle.get(id));
         const rest = us.filter(u => !u.boss); // boss ayrı yerde; kalanlar kendi sayılarına göre dizilir
         const fresh = us.map(u => { const a = place(u, u.boss ? 1 : rest.length, u.boss ? 0 : rest.indexOf(u)); const z = a.home.z; a.char.pos.z = z - 4; tween(0.5, k => { a.char.pos.z = z - 4 + 4 * k; }, ease.out).then(() => fx(EVENT_FX.wave, a.char)); return a; });
+        KAM.settle(true); // 22 Kas: yeni dalga → kadraj yeniden kurulur
         setTitle(); renderOrder();
         await wait(ev.n > 0 ? 0.6 : 0.1);
         const lead = fresh.find(a => a.unit.boss) || fresh.find(a => a.unit.captain);
@@ -600,7 +609,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
           a.shown = tk.hp;
           floatText(a.char.headPos(), tk.s === 'regen' ? `+${tk.amt}` : `${STATUS[tk.s].icon} −${tk.amt}`, tk.s === 'regen' ? 'heal' : 'dot ' + tk.s);
           fx(fxOfTick(tk.s), a.char);
-          if (tk.killed) { a.shown = 0; a.char.die(); }
+          if (tk.killed) { a.shown = 0; a.char.die(); KAM.settle(); }
         }
         if (ev.enrage) { floatText(a.char.headPos(), `ÖFKE ×${ev.enrage}`, 'crit'); fx(EVENT_FX.enrage, a.char); }
         if (ev.skip) { floatText(a.char.headPos(), `${STATUS[ev.skip].icon} ${STATUS[ev.skip].name}`, 'st bad'); fx(EVENT_FX.skip, a.char, { s: ev.skip }); }
@@ -612,7 +621,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
         ui.active = null; renderOrder(); syncBdw();
       } else if (ev.t === 'bdw') { // Anıt Savaşı: dirilme, anıt yenilenmesi, raunt
         const a = ev.u ? byId(ev.u) : null;
-        if (ev.k === 'rise' && a) { a.char.revive(a.face, a.home); a.shown = ev.hp; a.hop = -1; fx(EVENT_FX.revive, a.char); floatText(a.char.headPos(), 'Döndü', 'heal'); syncStatus(a); await wait(0.25); }
+        if (ev.k === 'rise' && a) { a.char.revive(a.face, a.home); a.shown = ev.hp; a.hop = -1; fx(EVENT_FX.revive, a.char); floatText(a.char.headPos(), 'Döndü', 'heal'); syncStatus(a); KAM.settle(); await wait(0.25); }
         else if (ev.k === 'mend' && a) { a.shown = ev.hp; floatText(a.char.headPos(), `+${ev.amt}`, 'heal'); fx(EVENT_FX.heal, a.char, { color: 0xffd27a }); }
         else if (ev.k === 'round' && ev.n % 5 === 0 && ev.n < ev.of) showBanner(`Raunt ${ev.n + 1}/${ev.of}`, `Puan ${battle.bdw.pts.A}–${battle.bdw.pts.B}`, 'A');
         syncBdw();
@@ -663,7 +672,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     await wait(1.6);
     if (token !== world.token) return;
     clock.scale = 1;
-    battleUI.hidden = true; BT.on = false; ashScene(false);
+    battleUI.hidden = true; BT.on = false; ashScene(false); KAM.end();
     onDone(r.over === 'A', actions);
   })();
 }
