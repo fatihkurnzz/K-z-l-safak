@@ -78,6 +78,18 @@ def kes(rgb, box):
     full = (full | e).astype(bool)
     return full
 
+# 22 Kas (2340×1080 teslimi): klan toprağının iki halk teması; bölgeler aynı. Kaynak 2340 genişse eski 1672×941 koordinatları
+# x' = 210 + x·1920/1672, y' = y·1080/941 ile taşınır (GPT notu; ölçüyle doğrulandı: orta dikdörtgen 210…2130).
+BOLGE['klan-ocak'] = BOLGE['klan-sancak'] = BOLGE.pop('klan')
+ELLE['klan-ocak'] = ELLE['klan-sancak'] = ELLE.pop('klan')
+EK['klan-ocak'] = EK['klan-sancak'] = EK.pop('klan')
+def tasi(v, W):
+    if W != 2340: return v
+    fx, fy = 1920 / 1672, 1080 / 941
+    if len(v) == 4: return [round(210 + v[0] * fx), round(v[1] * fy), round(210 + v[2] * fx), round(v[3] * fy)]
+    if len(v) == 3: return [round(210 + v[0] * fx), round(v[1] * fy), round(v[2] * fx)]
+    return [round(210 + v[0] * fx), round(v[1] * fy)]
+
 veri = {}
 for yer, bl in BOLGE.items():
     hedef = f'{O}/img/kd/sehir/{yer}'
@@ -86,7 +98,10 @@ for yer, bl in BOLGE.items():
     kay = f'{SRC}/{yer}.webp' if os.path.exists(f'{SRC}/{yer}.webp') else f'{SRC}/{yer}.jpg'
     im = Image.open(kay).convert('RGB'); W, H = im.size
     rgb = np.asarray(im)
-    im.save(f'{hedef}/sahne.webp', 'WEBP', quality=88, method=6)
+    bl = [(oid, tasi(b, W)) for oid, b in bl]
+    elle = {k: [tasi(v, W) for v in vs] for k, vs in (ELLE.get(yer) or {}).items()}
+    ek = {k: tasi(v, W) for k, v in EK[yer].items()}
+    im.save(f'{hedef}/sahne.webp', 'WEBP', quality=84 if W > 2000 else 88, method=6)
     idmap = np.zeros((H, W), np.uint8); bolge = []; kesit = []
     kont = rgb.copy() if KONT else None
     for i, (oid, box) in enumerate(bl):
@@ -118,7 +133,7 @@ for yer, bl in BOLGE.items():
     for j in range(1, len(sm) + 1):
         if j == len(sm) or sm[j] != sm[i0]: rle += [int(sm[i0]), j - i0]; i0 = j
     hit = {'w': W // HIT, 'h': H // HIT, 'rle': rle}
-    isik = dict(ELLE.get(yer) or {})
+    isik = dict(elle)
     if 'ates' not in isik:  # alev tespiti (karanlık sahne)
         A = rgb.astype(np.int16); R, G, B = A[..., 0], A[..., 1], A[..., 2]
         k = ((R > 235) & (G > 140) & (B < 110) & (R - B > 150)).astype(np.uint8)
@@ -127,7 +142,7 @@ for yer, bl in BOLGE.items():
         top = sorted([(st[i, cv2.CC_STAT_AREA], cen[i]) for i in range(1, n) if 14 <= st[i, cv2.CC_STAT_AREA] < 6000], key=lambda t: -t[0])[:40]
         isik['ates'] = [[int(c[0]), int(c[1]), int(min(55, 6 + a ** .5 * 1.5))] for a, c in top]
         isik.setdefault('buz', [])
-    veri[yer] = {'size': [W, H], 'hit': hit, 'r': bolge, 'isik': isik, 'ek': EK[yer]}
+    veri[yer] = {'size': [W, H], 'hit': hit, 'r': bolge, 'isik': isik, 'ek': ek}
     if KONT: Image.fromarray(kont).save(f'{KONT}/maske-{yer}.jpg', quality=80)
 
 js = ('// OTOMATİK ÜRETİLDİ (_tasarim/araclar/sahne.py): tek parça boyanmış GPT şehir sahneleri (21 Kas).\n'

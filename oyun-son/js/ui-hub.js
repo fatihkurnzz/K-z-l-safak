@@ -197,7 +197,7 @@ export function showHub() {
   if (PLACE.cur === 'klan' && !S.clan) { PLACE.cur = 'capital'; document.documentElement.dataset.place = 'capital'; } // klandan çıkınca
   const carsi = PLACE.cur === 'carsi', klan = PLACE.cur === 'klan';
   if (hub2dOn()) { // 22 Kas: klan toprağı da 2B (GPT Klan Otağı haritası) // 20 Kas Aşama 3: 2B başkent (21 Kas: Yemin Pazarı da 2B) — şehir resmi + dokunma alanları; 3B sahne çizilmez (pil)
-    hideTown(); anchors = {}; show2d(carsi ? 'carsi' : klan ? 'klan' : S.faction); RENDER.off = true; nudges = {};
+    hideTown(); anchors = {}; show2d(carsi ? 'carsi' : klan ? 'klan-' + (S.faction === 'ocak' ? 'ocak' : 'sancak') : S.faction); RENDER.off = true; nudges = {};
     let f2 = 0;
     setUpdater(() => {
       if (++f2 > 1 && f2 % 6 === 2) planNudges();

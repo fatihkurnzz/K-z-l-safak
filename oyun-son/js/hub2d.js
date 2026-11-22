@@ -14,7 +14,7 @@ const DIR = 'img/kd/sehir/';
 const TAKMA = {}; // 22 Kas: Tüccar Halvor çarşı meydanında ayrı nokta (hub2d-data ek.merchant)
 const ETIKET_PAY = { king: 30 }; // genel kural: etiket bina yüksekliğinin %22'si kadar içeride
 // İlk açılışta ekranın ortasına gelecek nokta (sahne pikseli)
-const ODAK = { ocak: [836, 450], sancak: [836, 450], carsi: [836, 440], klan: [836, 440] };
+const ODAK = { ocak: [1170, 517], sancak: [1170, 517], carsi: [1170, 505], 'klan-ocak': [1170, 505], 'klan-sancak': [1170, 505] }; // 22 Kas: 2340×1080 haritalar
 // Yakınlaştırma sınırı: 1 = ekranı tam kaplar (en uzak), ZMAX kat yakın
 
 export const hub2dOn = () => { try { return localStorage.getItem('dd_hub2d') !== '0'; } catch { return true; } };
@@ -39,7 +39,7 @@ function layout(keep) {
   const [W, H] = D.size, w = view.w, h = view.h;
   if (!w || !h) { requestAnimationFrame(() => layout(keep)); return; } // ekran ölçüsü henüz yok
   let fx, fy;
-  if (keep && s) { fx = (w / 2 - ox) / s; fy = (h / 2 - oy) / s; } else [fx, fy] = ODAK[cur];
+  if (keep && s) { fx = (w / 2 - ox) / s; fy = (h / 2 - oy) / s; } else [fx, fy] = ODAK[cur] || [D.size[0] / 2, D.size[1] / 2];
   const z = keep && s0 ? s / s0 : 1; s0 = Math.min(w / W, h / H); s = s0 * z; // 22 Kas: resmin TAMAMI görünür (eskiden kaplıyordu; geniş telefonda üst/alt %18 kesiliyordu)
   ox = w / 2 - fx * s; oy = h / 2 - fy * s; clampPan(); apply();
   if (cvs) { const r = Math.min(2, devicePixelRatio || 1); cvs.width = Math.round(w * r); cvs.height = Math.round(h * r); cvs._r = r; }
@@ -145,7 +145,7 @@ function tick(t) {
   }
 }
 
-// Katmanı kurar. yer: 'ocak' | 'sancak' (başkent) | 'carsi' (Yemin Pazarı)
+// Katmanı kurar. yer: 'ocak' | 'sancak' (başkent) | 'carsi' (Yemin Pazarı) | 'klan-ocak' | 'klan-sancak'
 export function show2d(yer) {
   cur = SAHNE[yer] ? yer : 'ocak'; D = SAHNE[cur];
   if (!layer) {
@@ -156,7 +156,7 @@ export function show2d(yer) {
   layer.innerHTML = `<div class="h2-bg" style="background-image:url('${DIR}${cur}/sahne.webp')"></div><div class="h2-wrap" style="width:${W}px;height:${H}px"><img class="h2-mir l" src="${DIR}${cur}/sahne.webp" alt="" draggable="false"><img class="h2-mir r" src="${DIR}${cur}/sahne.webp" alt="" draggable="false"><img class="h2-img" src="${DIR}${cur}/sahne.webp" alt="" decoding="async" draggable="false"><div class="h2-glow" aria-hidden="true"></div></div>${calm() ? '' : '<canvas class="h2-fx" aria-hidden="true"></canvas>'}`;
   { const fu = g5url('flama-' + (document.documentElement.dataset.faction === 'ocak' ? 'ocak' : 'sancak')); if (fu) layer.insertAdjacentHTML('beforeend', `<img class="h2-flama" src="${fu}" alt="" aria-hidden="true">`); } // 22 Kas: sağ şeritte halk flaması
   wrap = layer.querySelector('.h2-wrap'); glowEl = layer.querySelector('.h2-glow'); cvs = layer.querySelector('.h2-fx');
-  document.documentElement.dataset.hub2d = cur;
+  document.documentElement.dataset.hub2d = cur.startsWith('klan') ? 'klan' : cur; // klan-ocak/klan-sancak: iki halk teması (22 Kas)
   loadHit(D.hit);
   s = 0; s0 = 0; layout(false);
   if (cvs) { seed(); if (!raf) raf = requestAnimationFrame(tick); }
