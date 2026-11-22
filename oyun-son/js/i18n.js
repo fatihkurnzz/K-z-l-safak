@@ -293,6 +293,9 @@ export const onLang = fn => { subs.add(fn); return () => subs.delete(fn); };
 const store = () => { try { return globalThis.localStorage || null; } catch { return null; } };
 export const savedLang = () => { try { return store()?.getItem(LANG_KEY) || null; } catch { return null; } };
 let loading = null;
+// Sonradan eklenen içerik (js/adlar-tr.js: eşya/yetenek adlarının asılları): sözlük dosyalarından SONRA eklenir, var olan anahtarı ezmez
+const LATE = {};
+export function addDictLate(l, table) { if (!isLang(l) || l === SOURCE_LANG) return; (LATE[l] ||= []).push(table); if (DICT[l]?.loaded) { addDict(l, table); cache.clear(); } }
 // Sözlük dosyaları yalnızca o dil seçilince indirilir. İçerik sözlüğü (çeviri paketi) yoksa Türkçe adlar kalır.
 export async function loadDict(l) {
   if (l === SOURCE_LANG || DICT[l]?.loaded) return true;
@@ -303,6 +306,7 @@ export async function loadDict(l) {
     addDict(l, ui.default || ui[`${U}_UI`], ui.CODES || ui[`${U}_CODES`]);
     addDict(l, ui[`${U}_EXTRA`]); addContext(l, ui[`${U}_CTX`]);
     try { const c = await import(`./i18n/${l}-content.js`); addDict(l, c.default || c[`${l.toUpperCase()}_CONTENT`]); } catch { /* içerik sözlüğü yok: Türkçe kalır */ }
+    for (const T of LATE[l] || []) addDict(l, T);
     DICT[l].loaded = true;
   })().finally(() => { loading = null; });
   try { await loading; return true; } catch { return false; }

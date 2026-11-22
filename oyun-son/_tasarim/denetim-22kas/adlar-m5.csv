@@ -1,0 +1,902 @@
+kimlik,mevcut_ad,onerilen_ad,gerekce
+w:sword:0,Short Sword,Kısa Kılıç,İngilizce başlangıç kılıcı Türkçeleştirildi
+w:sword:0:1,Short Blade,Kısa Pusa,k0 ikinci kısa kılıç varyantı
+w:axe1:0,Stone Axe,Taş Balta,Başlangıç tek el balta
+w:sword2:0,Bastard Sword,İki Elli Kılıç,k0 çift el kılıç Türkçeleştirildi
+w:sword2:0:1,Training Warrior's Two-Handed Sword,Talim Büyük Kılıç,Uzun İngilizce ad 22 karakter altına kısaltıldı
+w:sword2:0:2,Two-Handed Training Sword,Çırak Büyük Kılıç,Talim kılıcı varyantı kısaltıldı
+w:sword2:0:3,Combined Blade,Birleşik Kılıç,Combined Blade yerine Türkçe ad
+w:axe2:0,Battle Axe,Savaş Baltası,Battle Axe Türkçeleştirildi
+w:spear:0,Spear,Kısa Mızrak,Spear Türkçeleştirildi
+w:spear:0:1,Spike,Sivri Kargı,Spike yerine özgün Türkçe kargı adı
+w:lance:0,Raptor,Demirdiş Kargı,KO 'Raptor' adı Kragmir evrenine uyarlandı
+w:lance:0:1,Spear Axe,Mızrak Balta,Spear Axe Türkçeleştirildi
+w:lance:0:2,Pole Axe,Sırık Balta,Pole Axe Türkçeleştirildi
+w:mace2:0,Great Maul,Büyük Tokmak,Great Maul Türkçeleştirildi
+w:mace2:0:1,Giant Maul,Dev Tokmak,Giant Maul Türkçeleştirildi
+w:dagger:0,Dagger,Kısa Hançer,Dagger Türkçeleştirildi
+w:dagger:0:1,Training Knife,Talim Bıçağı,Training Knife Türkçeleştirildi
+w:dagger:0:2,Practice Dagger,Çırak Hançer,Practice Dagger Türkçeleştirildi
+w:bow:0,Training Bow,Talim Yayı,Training Bow Türkçeleştirildi
+w:mace:0,Maul,Ağaç Topuz,Maul yerine malzeme+tür kalıbı
+w:mace:0:1,Training Mace,Talim Topuzu,Training Mace Türkçeleştirildi
+w:mace:0:2,Morning Star,Dikenli Topuz,Morning Star Türkçeleştirildi
+w:mace:0:3,Priest Maul,Otacı Topuzu,Priest Maul Türkçeleştirildi
+w:staff:0,Wood Staff,Meşe Asa,Wood Staff yerine malzeme+tür
+w:staff:0:1,Training Staff,Talim Asası,Training Staff Türkçeleştirildi
+w:staff:0:2,Orc Staff,Ocak Asası,Orc Staff yerine Kragmir terimi
+w:staff:0:3,Wooden Staff,Tahta Asa,Wooden Staff Türkçeleştirildi
+w:shield:0,Wooden Shield,Ahşap Kalkan,Wooden Shield Türkçeleştirildi
+a:warrior:0:helm,Leather Cap,Meşin Savaşçı Miğfer,Savaşçı k0 başlangıç seti: [Malzeme/Soy] [Tür]
+a:warrior:0:chest,Quilted Pauldron,Meşin Savaşçı Gövdelik,Savaşçı k0 başlangıç seti: [Malzeme/Soy] [Tür]
+a:warrior:0:legs,Leather Pads,Meşin Savaşçı Dizlik,Savaşçı k0 başlangıç seti: [Malzeme/Soy] [Tür]
+a:warrior:0:gloves,Leather Gloves,Meşin Savaşçı Eldiven,Savaşçı k0 başlangıç seti: [Malzeme/Soy] [Tür]
+a:warrior:0:boots,Leather Shoes,Meşin Savaşçı Çizme,Savaşçı k0 başlangıç seti: [Malzeme/Soy] [Tür]
+a:rogue:0:helm,Rogue Cap,Deri Gölge Miğfer,Suikastçı k0 başlangıç seti: 'Rogue' yerine Gölge
+a:rogue:0:chest,Rogue Shirt,Deri Gölge Gövdelik,Suikastçı k0 başlangıç seti: 'Rogue' yerine Gölge
+a:rogue:0:legs,Rogue Pads,Deri Gölge Dizlik,Suikastçı k0 başlangıç seti: 'Rogue' yerine Gölge
+a:rogue:0:gloves,Rogue Gloves,Deri Gölge Eldiven,Suikastçı k0 başlangıç seti: 'Rogue' yerine Gölge
+a:rogue:0:boots,Rogue Shoes,Deri Gölge Çizme,Suikastçı k0 başlangıç seti: 'Rogue' yerine Gölge
+a:priest:0:helm,Priest Cap,Keten Otacı Miğfer,Şifacı k0 başlangıç seti: 'Priest/Fabric' yerine
+a:priest:0:chest,Fabric Coat,Keten Otacı Gövdelik,Şifacı k0 başlangıç seti: 'Priest/Fabric' yerine
+a:priest:0:legs,Fabric Pants,Keten Otacı Dizlik,Şifacı k0 başlangıç seti: 'Priest/Fabric' yerine
+a:priest:0:gloves,Priest Gloves,Keten Otacı Eldiven,Şifacı k0 başlangıç seti: 'Priest/Fabric' yerine
+a:priest:0:boots,Priest Shoes,Keten Otacı Çizme,Şifacı k0 başlangıç seti: 'Priest/Fabric' yerine
+a:mage:0:helm,Mage Hat,Pamuk Kâhin Başlık,Büyücü k0 başlangıç seti: 'Mage Cotton' yerine
+a:mage:0:chest,Mage Cotton Robe,Pamuk Kâhin Cübbe,Büyücü k0 başlangıç seti: 'Mage Cotton' yerine
+a:mage:0:legs,Mage Cloth Pants,Pamuk Kâhin Etek,Büyücü k0 başlangıç seti: 'Mage Cotton' yerine
+a:mage:0:gloves,Mage Cotton Gloves,Pamuk Kâhin Eldiven,Büyücü k0 başlangıç seti: 'Mage Cotton' yerine
+a:mage:0:boots,Mage Shoes,Pamuk Kâhin Çizme,Büyücü k0 başlangıç seti: 'Mage Cotton' yerine
+j:ear:0,Bronze Earring,Tunç Küpe,Bronze Earring Türkçeleştirildi
+j:neck:0,Messenger Pendant,Ulak Kolyesi,Messenger Pendant Türkçeleştirildi
+j:neck:0:1,Cleric Pendant,Otacı Kolyesi,Cleric Pendant Türkçeleştirildi
+j:ring:0,Silver Ring,Gümüş Yüzük,Silver Ring Türkçeleştirildi
+j:ring:0:1,Messenger Ring,Ulak Yüzüğü,Messenger Ring Türkçeleştirildi
+j:belt:0,Linen Belt,Keten Kemer,Linen Belt Türkçeleştirildi
+j:kor_ear:0,Bakır Kor Küpesi,Bakır Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:0,Bakır Kor Kolyesi,Bakır Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:0,Bakır Kor Yüzüğü,Bakır Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:0,Bakır Alaz Küpesi,Bakır Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:0,Bakır Alaz Kolyesi,Bakır Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:0,Bakır Alaz Yüzüğü,Bakır Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:0,Bakır Şimşek Küpesi,Bakır Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:0,Bakır Şimşek Kolyesi,Bakır Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:0,Bakır Şimşek Yüzüğü,Bakır Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:0,Bakır Fırtına Küpesi,Bakır Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:0,Bakır Fırtına Kolyesi,Bakır Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:0,Bakır Fırtına Yüzüğü,Bakır Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+w:sword:1,Long Sword,Uzun Kılıç,Long Sword Türkçeleştirildi
+w:axe1:1,Hand Axe,El Baltası,Hand Axe Türkçeleştirildi
+w:axe1:1:1,Wood Cutter,Oduncu Baltası,Wood Cutter Türkçeleştirildi
+w:sword2:1,Two-Handed Sword,Çift El Kılıç,Two-Handed Sword Türkçeleştirildi
+w:sword2:1:1,Hero Sword,Alperen Kılıcı,Hero Sword yerine evren uyumlu ad
+w:axe2:1,Timber Axe,Kütük Baltası,Timber Axe Türkçeleştirildi
+w:axe2:1:1,Lumber Axe,Bıçkı Baltası,Lumber Axe Türkçeleştirildi
+w:spear:1,Cross Spear,Çatal Mızrak,Cross Spear Türkçeleştirildi
+w:lance:1,Battle Scythe,Savaş Tırpanı,Battle Scythe Türkçeleştirildi
+w:mace2:1,Battle Mace,Savaş Tokmağı,Battle Mace Türkçeleştirildi
+w:dagger:1,Knife,Av Bıçağı,Knife yerine malzeme/rol+tür
+w:dagger:1:1,Dirk,Kama Hançer,Dirk Türkçeleştirildi
+w:jamadar:1,Jamadar,Demir Katar,Jamadar yerine özgün kısa hançer/katar
+w:bow:1,Bow,Av Yayı,Bow yerine tür belirten ad
+w:mace:1,Mace,Demir Topuz,Mace yerine malzeme+tür
+w:mace:1:1,Hero Mace,Yiğit Topuzu,Hero Mace Türkçeleştirildi
+w:mace:1:2,Priest Mace,Rünlü Topuz,Priest Mace Türkçeleştirildi
+w:mace:1:3,Priest Morning Star,Otacı Dikenli,Priest Morning Star kısaltıldı
+w:staff:1,Wizard Staff,Kâhin Asası,Wizard Staff Türkçeleştirildi
+w:shield:1,Small Shield,Küçük Kalkan,Small Shield Türkçeleştirildi
+a:warrior:1:helm,Novice Warrior's Helmet,Çırak Demir Miğfer,Savaşçı k1 seti: İngilizce 'Novice Warrior' kaldırıldı
+a:warrior:1:chest,Novice Warrior's Pauldron,Çırak Demir Gövdelik,Savaşçı k1 seti: İngilizce 'Novice Warrior' kaldırıldı
+a:warrior:1:legs,Novice Warrior's Pants,Çırak Demir Dizlik,Savaşçı k1 seti: İngilizce 'Novice Warrior' kaldırıldı
+a:warrior:1:gloves,Novice Warrior's Gauntlets,Çırak Demir Eldiven,Savaşçı k1 seti: İngilizce 'Novice Warrior' kaldırıldı
+a:warrior:1:boots,Novice Warrior's Boots,Çırak Demir Çizme,Savaşçı k1 seti: İngilizce 'Novice Warrior' kaldırıldı
+a:rogue:1:helm,Novice Rogue's Helmet,Çırak Gölge Miğfer,Suikastçı k1 seti: 'Novice Rogue' kaldırıldı
+a:rogue:1:chest,Novice Rogue's Pauldron,Çırak Gölge Gövdelik,Suikastçı k1 seti: 'Novice Rogue' kaldırıldı
+a:rogue:1:legs,Novice Rogue's Pants,Çırak Gölge Dizlik,Suikastçı k1 seti: 'Novice Rogue' kaldırıldı
+a:rogue:1:gloves,Novice Rogue's Gauntlets,Çırak Gölge Eldiven,Suikastçı k1 seti: 'Novice Rogue' kaldırıldı
+a:rogue:1:boots,Novice Rogue's Boots,Çırak Gölge Çizme,Suikastçı k1 seti: 'Novice Rogue' kaldırıldı
+a:priest:1:helm,Priest Helmet,İpek Otacı Miğfer,Şifacı k1 seti: 'Silk' yerine Türkçe set
+a:priest:1:helm:1,Novice Priest's Helmet,Çırak Otacı Miğfer,Şifacı k1 varyant: 'Novice Priest' yerine
+a:priest:1:chest,Silk Coat,İpek Otacı Gövdelik,Şifacı k1 seti: 'Silk' yerine Türkçe set
+a:priest:1:chest:1,Novice Priest's Pauldron,Çırak Otacı Gövdelik,Şifacı k1 varyant: 'Novice Priest' yerine
+a:priest:1:legs,Silk Pants,İpek Otacı Dizlik,Şifacı k1 seti: 'Silk' yerine Türkçe set
+a:priest:1:legs:1,Novice Priest's Pants,Çırak Otacı Dizlik,Şifacı k1 varyant: 'Novice Priest' yerine
+a:priest:1:gloves,Priest Gauntlet,İpek Otacı Eldiven,Şifacı k1 seti: 'Silk' yerine Türkçe set
+a:priest:1:gloves:1,Novice Priest's Gauntlets,Çırak Otacı Eldiven,Şifacı k1 varyant: 'Novice Priest' yerine
+a:priest:1:boots,Priest Boots,İpek Otacı Çizme,Şifacı k1 seti: 'Silk' yerine Türkçe set
+a:priest:1:boots:1,Novice Priest's Boots,Çırak Otacı Çizme,Şifacı k1 varyant: 'Novice Priest' yerine
+a:mage:1:helm,Mage Hemp Cap,Kenevir Kâhin Başlık,Büyücü k1 seti: 'Mage Hemp' yerine
+a:mage:1:helm:1,Novice Magician's Helmet,Çırak Kâhin Başlık,Büyücü k1 varyant: 'Novice Magician' yerine
+a:mage:1:chest,Mage Hemp Robe,Kenevir Kâhin Cübbe,Büyücü k1 seti: 'Mage Hemp' yerine
+a:mage:1:chest:1,Novice Magician's Robe,Çırak Kâhin Cübbe,Büyücü k1 varyant: 'Novice Magician' yerine
+a:mage:1:legs,Mage Hemp Pants,Kenevir Kâhin Etek,Büyücü k1 seti: 'Mage Hemp' yerine
+a:mage:1:legs:1,Novice Magician's Pants,Çırak Kâhin Etek,Büyücü k1 varyant: 'Novice Magician' yerine
+a:mage:1:gloves,Mage Hemp Gloves,Kenevir Kâhin Eldiven,Büyücü k1 seti: 'Mage Hemp' yerine
+a:mage:1:gloves:1,Novice Magician's Gauntlets,Çırak Kâhin Eldiven,Büyücü k1 varyant: 'Novice Magician' yerine
+a:mage:1:boots,Mage Hemp Boots,Kenevir Kâhin Çizme,Büyücü k1 seti: 'Mage Hemp' yerine
+a:mage:1:boots:1,Novice Magician's Boots,Çırak Kâhin Çizme,Büyücü k1 varyant: 'Novice Magician' yerine
+j:ear:1,Silver Earring,Gümüş Küpe,Silver Earring Türkçeleştirildi
+j:ear:1:1,Mage Earring,Kâhin Küpesi,Mage Earring Türkçeleştirildi
+j:ear:1:2,Mercenary Earring,Paralı Asker Küpe,Mercenary Earring Türkçeleştirildi
+j:neck:1,Mercenary Pendant,Paralı Kolye,Mercenary Pendant Türkçeleştirildi
+j:neck:1:1,Necklace of Life,Can Kolyesi,Necklace of Life Türkçeleştirildi
+j:ring:1,Gold Ring,Altın Yüzük,Gold Ring Türkçeleştirildi
+j:ring:1:1,Mercenary Ring,Paralı Yüzük,Mercenary Ring Türkçeleştirildi
+j:ring:1:2,Assassin Ring,Gölge Yüzüğü,Assassin Ring Türkçeleştirildi
+j:belt:1,Low Fur Belt,Kürk Kemer,Low Fur Belt Türkçeleştirildi
+j:kor_ear:1,Pirinç Kor Küpesi,Pirinç Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:1,Pirinç Kor Kolyesi,Pirinç Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:1,Pirinç Kor Yüzüğü,Pirinç Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:1,Pirinç Alaz Küpesi,Pirinç Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:1,Pirinç Alaz Kolyesi,Pirinç Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:1,Pirinç Alaz Yüzüğü,Pirinç Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:1,Pirinç Şimşek Küpesi,Pirinç Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:1,Pirinç Şimşek Kolyesi,Pirinç Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:1,Pirinç Şimşek Yüzüğü,Pirinç Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:1,Pirinç Fırtına Küpesi,Pirinç Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:1,Pirinç Fırtına Kolyesi,Pirinç Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:1,Pirinç Fırtına Yüzüğü,Pirinç Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+w:sword:2,Scimitar,Eğri Pala,Scimitar Türkçeleştirildi
+w:axe1:2,Double Axe,Çift Ağız Balta,Double Axe Türkçeleştirildi
+w:axe1:2:1,Large Axe,Geniş Balta,Large Axe Türkçeleştirildi
+w:sword2:2,Battle Sword,Cenk Kılıcı,Battle Sword Türkçeleştirildi
+w:sword2:2:1,War Sword,Harp Kılıcı,War Sword Türkçeleştirildi
+w:axe2:2,Twin Axe,İkiz Balta,Twin Axe Türkçeleştirildi
+w:spear:2,Spetum,Kanatlı Mızrak,Spetum Türkçeleştirildi
+w:lance:2,War Scythe,Harp Tırpanı,War Scythe Türkçeleştirildi
+w:mace2:2,War Club,Harp Gürzü,War Club Türkçeleştirildi
+w:dagger:2,Stiletto,İnce Hançer,Stiletto Türkçeleştirildi
+w:jamadar:2,Half moon Jamadar,Hilal Katar,Half moon Jamadar Türkçeleştirildi
+w:bow:2,Short Bow,Kısa Yay,Short Bow Türkçeleştirildi
+w:mace:2,War Hammer,Savaş Çekici,War Hammer Türkçeleştirildi
+w:mace:2:1,Novice Paladin Mace,Çırak Ak Topuz,Novice Paladin Mace yerine Elentha terimi
+w:mace:2:2,Spiked Club,Çivili Gürz,Spiked Club Türkçeleştirildi
+w:mace:2:3,Priest Iron Star,Demir Yıldız,Priest Iron Star Türkçeleştirildi
+w:staff:2,Bone Staff,Kemik Asa,Bone Staff Türkçeleştirildi
+w:staff:2:1,Horned Staff,Boynuzlu Asa,Horned Staff Türkçeleştirildi
+w:shield:2,Round Shield,Yuvarlak Kalkan,Round Shield Türkçeleştirildi
+a:warrior:2:helm,Half Plate Helmet,Yarım Plaka Miğfer,Savaşçı k2 seti: tutarlı Türkçe plaka set adı
+a:warrior:2:helm:1,Training warriors' Helmet,Talim Demir Miğfer,Savaşçı k2 talim seti: özgün Türkçe ad
+a:warrior:2:chest,Half Plate Pauldron,Yarım Plaka Gövdelik,Savaşçı k2 seti: tutarlı Türkçe plaka set adı
+a:warrior:2:chest:1,Training warriors' Pauldron,Talim Demir Gövdelik,Savaşçı k2 talim seti: özgün Türkçe ad
+a:warrior:2:legs,Half Plate Pads,Yarım Plaka Dizlik,Savaşçı k2 seti: tutarlı Türkçe plaka set adı
+a:warrior:2:legs:1,Training warriors' Pants,Talim Demir Dizlik,Savaşçı k2 talim seti: özgün Türkçe ad
+a:warrior:2:gloves,Half Plate Gauntlet,Yarım Plaka Eldiven,Savaşçı k2 seti: tutarlı Türkçe plaka set adı
+a:warrior:2:gloves:1,Training warriors' Gauntlets,Talim Demir Eldiven,Savaşçı k2 talim seti: özgün Türkçe ad
+a:warrior:2:boots,Half Plate Boots,Yarım Plaka Çizme,Savaşçı k2 seti: tutarlı Türkçe plaka set adı
+a:warrior:2:boots:1,Training warriors' Boots,Talim Demir Çizme,Savaşçı k2 talim seti: özgün Türkçe ad
+a:rogue:2:helm,Rogue Helmet,Hafif Gölge Miğfer,Suikastçı k2 seti: hafif zırh kademesi
+a:rogue:2:chest,Rogue Half Plate Pauldron,Hafif Gölge Gövdelik,Suikastçı k2 seti: hafif zırh kademesi
+a:rogue:2:legs,Rogue Half Plate Pads,Hafif Gölge Dizlik,Suikastçı k2 seti: hafif zırh kademesi
+a:rogue:2:gloves,Rogue Gauntlet,Hafif Gölge Eldiven,Suikastçı k2 seti: hafif zırh kademesi
+a:rogue:2:boots,Rogue Boots,Hafif Gölge Çizme,Suikastçı k2 seti: hafif zırh kademesi
+a:priest:2:helm,Priest Plate Helmet,Levha Otacı Miğfer,Şifacı k2 seti: 'Priest Plate' yerine
+a:priest:2:helm:1,Training Priest's Helmet,Talim Otacı Miğfer,Şifacı k2 varyant: 'Training Priest' yerine
+a:priest:2:chest,Priest Plate Pauldron,Levha Otacı Gövdelik,Şifacı k2 seti: 'Priest Plate' yerine
+a:priest:2:chest:1,Training Priest's Pauldron,Talim Otacı Gövdelik,Şifacı k2 varyant: 'Training Priest' yerine
+a:priest:2:legs,Priest Plate Pads,Levha Otacı Dizlik,Şifacı k2 seti: 'Priest Plate' yerine
+a:priest:2:legs:1,Training Priest's Pants,Talim Otacı Dizlik,Şifacı k2 varyant: 'Training Priest' yerine
+a:priest:2:gloves,Priest Plate Gauntlet,Levha Otacı Eldiven,Şifacı k2 seti: 'Priest Plate' yerine
+a:priest:2:gloves:1,Training Priest's Gauntlets,Talim Otacı Eldiven,Şifacı k2 varyant: 'Training Priest' yerine
+a:priest:2:boots,Priest Plate Boots,Levha Otacı Çizme,Şifacı k2 seti: 'Priest Plate' yerine
+a:priest:2:boots:1,Training Priest's Boots,Talim Otacı Çizme,Şifacı k2 varyant: 'Training Priest' yerine
+a:mage:2:helm,Mage Helmet,İpek Kâhin Başlık,Büyücü k2 seti: 'Mage Silk' yerine
+a:mage:2:helm:1,Training Magician's Helmet,Talim Kâhin Başlık,Büyücü k2 varyant: 'Training Magician' yerine
+a:mage:2:chest,Mage Silk Robe,İpek Kâhin Cübbe,Büyücü k2 seti: 'Mage Silk' yerine
+a:mage:2:chest:1,Training Magician's Robe,Talim Kâhin Cübbe,Büyücü k2 varyant: 'Training Magician' yerine
+a:mage:2:legs,Mage Silk Pants,İpek Kâhin Etek,Büyücü k2 seti: 'Mage Silk' yerine
+a:mage:2:legs:1,Training Magician's Pants,Talim Kâhin Etek,Büyücü k2 varyant: 'Training Magician' yerine
+a:mage:2:gloves,Mage Hard Leather Gloves,İpek Kâhin Eldiven,Büyücü k2 seti: 'Mage Silk' yerine
+a:mage:2:gloves:1,Training Magician's Gauntlets,Talim Kâhin Eldiven,Büyücü k2 varyant: 'Training Magician' yerine
+a:mage:2:boots,Mage Hard Leather Boots,İpek Kâhin Çizme,Büyücü k2 seti: 'Mage Silk' yerine
+a:mage:2:boots:1,Training Magician's Boots,Talim Kâhin Çizme,Büyücü k2 varyant: 'Training Magician' yerine
+j:ear:2,Pearl Earring,İnci Küpe,Pearl Earring Türkçeleştirildi
+j:ear:2:1,Assassin Earring,Gölge Küpesi,Assassin Earring Türkçeleştirildi
+j:ear:2:2,Priest Earring,Otacı Küpesi,Priest Earring Türkçeleştirildi
+j:neck:2,Topaz Pendant,Sarıyakut Kolye,Topaz Pendant Türkçeleştirildi
+j:neck:2:1,Elemental Necklace,Öz Kolyesi,Elemental Necklace Türkçeleştirildi
+j:neck:2:2,Strength Necklace,Kuvvet Kolyesi,Strength Necklace Türkçeleştirildi
+j:ring:2,Sapphire Ring,Gök Yakut Yüzük,Sapphire Ring Türkçeleştirildi
+j:ring:2:1,Priest Ring,Otacı Yüzüğü,Priest Ring Türkçeleştirildi
+j:belt:2,Body Belt,Deri Bel Kemeri,Body Belt Türkçeleştirildi
+j:belt:2:1,Mana Belt,Mana Kemeri,Mana Belt Türkçeleştirildi
+j:kor_ear:2,Gümüş Kor Küpesi,Gümüş Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:2,Gümüş Kor Kolyesi,Gümüş Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:2,Gümüş Kor Yüzüğü,Gümüş Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:2,Gümüş Alaz Küpesi,Gümüş Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:2,Gümüş Alaz Kolyesi,Gümüş Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:2,Gümüş Alaz Yüzüğü,Gümüş Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:2,Gümüş Şimşek Küpesi,Gümüş Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:2,Gümüş Şimşek Kolyesi,Gümüş Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:2,Gümüş Şimşek Yüzüğü,Gümüş Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:2,Gümüş Fırtına Küpesi,Gümüş Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:2,Gümüş Fırtına Kolyesi,Gümüş Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:2,Gümüş Fırtına Yüzüğü,Gümüş Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+w:sword:3,Sabre,Süvari Kılıcı,Sabre Türkçeleştirildi
+w:sword:3:1,Sword of Novice Mercenary,Paralı Kılıç,Sword of Novice Mercenary kısaltıldı
+w:axe1:3,Bipennis,Çift Yüz Balta,Bipennis Türkçeleştirildi
+w:axe1:3:1,Warrior Axe,Savaşçı Baltası,Warrior Axe Türkçeleştirildi
+w:sword2:3,Great Sword,Büyük Kılıç,Great Sword Türkçeleştirildi
+w:sword2:3:1,Two-handed Sword of Novice,Acemi Ağır Kılıç,Two-handed Sword of Novice kısaltıldı
+w:sword2:3:2,Giant Sword,Dev Kılıç,Giant Sword Türkçeleştirildi
+w:axe2:3,Great Axe,Büyük Balta,Great Axe Türkçeleştirildi
+w:spear:3,Long Spear,Uzun Mızrak,Long Spear Türkçeleştirildi
+w:lance:3,Grim Scythe,Karanlık Tırpan,Grim Scythe Türkçeleştirildi
+w:mace2:3,Great Mace,Büyük Gürz,Great Mace Türkçeleştirildi
+w:mace2:3:1,Giant Morning Star,Dev Dikenli Gürz,Giant Morning Star Türkçeleştirildi
+w:dagger:3,Assassin Dagger,Gölge Hançeri,Assassin Dagger Türkçeleştirildi
+w:dagger:3:1,Dagger of Novice Assassin,Çırak Gölge Kama,Dagger of Novice Assassin kısaltıldı
+w:jamadar:3,Ripper's Jamadar,Yırtıcı Katar,Ripper's Jamadar Türkçeleştirildi
+w:bow:3,Bamboo Bow,Kamış Yay,Bamboo Bow Türkçeleştirildi
+w:mace:3,Breaker,Kırıcı Topuz,Breaker Türkçeleştirildi
+w:mace:3:1,Priest Breaker,Otacı Kırıcı,Priest Breaker Türkçeleştirildi
+w:mace:3:2,Priest War Hammer,Otacı Çekici,Priest War Hammer Türkçeleştirildi
+w:mace:3:3,Priest Spike Club,Otacı Çivili,Priest Spike Club Türkçeleştirildi
+w:staff:3,Mage Staff,Büyücü Asası,Mage Staff Türkçeleştirildi
+w:staff:3:1,Staff of Novice Rudimentary Magic,Temel Rün Asası,Staff of Novice Rudimentary Magic kısaltıldı
+w:staff:3:2,Novice Evil Sage Staff,Kara Kâhin Asası,Novice Evil Sage Staff Türkçeleştirildi
+w:shield:3,Large Shield,Büyük Kalkan,Large Shield Türkçeleştirildi
+a:warrior:3:helm,Plate Armor Helmet,Levha Zırh Miğfer,Savaşçı k3 seti: tutarlı Türkçe levha seti
+a:warrior:3:helm:1,Skilled Warrior's Helmet,Kıdemli Demir Miğfer,Savaşçı k3 kıdemli seti: 'Skilled' karşılığı
+a:warrior:3:chest,Plate Armor Pauldron,Levha Zırh Gövdelik,Savaşçı k3 seti: tutarlı Türkçe levha seti
+a:warrior:3:chest:1,Skilled Warrior's Pauldron,Kıdemli Demir Gövdelik,Savaşçı k3 kıdemli seti: 'Skilled' karşılığı
+a:warrior:3:legs,Plate Armor Pads,Levha Zırh Dizlik,Savaşçı k3 seti: tutarlı Türkçe levha seti
+a:warrior:3:legs:1,Skilled Warrior's Pants,Kıdemli Demir Dizlik,Savaşçı k3 kıdemli seti: 'Skilled' karşılığı
+a:warrior:3:gloves,Plate Armor Gauntlet,Levha Zırh Eldiven,Savaşçı k3 seti: tutarlı Türkçe levha seti
+a:warrior:3:gloves:1,Skilled Warrior's Gauntlets,Kıdemli Demir Eldiven,Savaşçı k3 kıdemli seti: 'Skilled' karşılığı
+a:warrior:3:boots,Plate Armor Boots,Levha Zırh Çizme,Savaşçı k3 seti: tutarlı Türkçe levha seti
+a:warrior:3:boots:1,Skilled Warrior's Boots,Kıdemli Demir Çizme,Savaşçı k3 kıdemli seti: 'Skilled' karşılığı
+a:rogue:3:helm,Training Rogue's Helmet,Talim Gölge Miğfer,Suikastçı k3 talim seti
+a:rogue:3:helm:1,Helmet of Novice Mercenary,İzci Gölge Miğfer,Suikastçı k3 varyant: 'Novice Mercenary' yerine
+a:rogue:3:chest,Training Rogue's Pauldron,Talim Gölge Gövdelik,Suikastçı k3 talim seti
+a:rogue:3:chest:1,Pauldron of Novice Mercenary,İzci Gölge Gövdelik,Suikastçı k3 varyant: 'Novice Mercenary' yerine
+a:rogue:3:legs,Training Rogue's Pants,Talim Gölge Dizlik,Suikastçı k3 talim seti
+a:rogue:3:legs:1,Pads of Novice Mercenary,İzci Gölge Dizlik,Suikastçı k3 varyant: 'Novice Mercenary' yerine
+a:rogue:3:gloves,Training Rogue's Gauntlets,Talim Gölge Eldiven,Suikastçı k3 talim seti
+a:rogue:3:gloves:1,Gauntlets of Novice Mercenary,İzci Gölge Eldiven,Suikastçı k3 varyant: 'Novice Mercenary' yerine
+a:rogue:3:boots,Training Rogue's Boots,Talim Gölge Çizme,Suikastçı k3 talim seti
+a:rogue:3:boots:1,Boots of Novice Mercenary,İzci Gölge Çizme,Suikastçı k3 varyant: 'Novice Mercenary' yerine
+a:priest:3:helm,Priest Heavy Plate Armor Helmet,Ağır Otacı Miğfer,Şifacı k3 seti: 'Heavy Plate' yerine
+a:priest:3:helm:1,Skilled Priest's Helmet,Kıdemli Otacı Miğfer,Şifacı k3 varyant: 'Skilled Priest' yerine
+a:priest:3:chest,Priest Heavy Plate Armor Pauldron,Ağır Otacı Gövdelik,Şifacı k3 seti: 'Heavy Plate' yerine
+a:priest:3:chest:1,Skilled Priest's Pauldron,Kıdemli Otacı Gövdelik,Şifacı k3 varyant: 'Skilled Priest' yerine
+a:priest:3:legs,Priest Heavy Plate Armor Pads,Ağır Otacı Dizlik,Şifacı k3 seti: 'Heavy Plate' yerine
+a:priest:3:legs:1,Skilled Priest's Pants,Kıdemli Otacı Dizlik,Şifacı k3 varyant: 'Skilled Priest' yerine
+a:priest:3:gloves,Priest Heavy Plate Armor Gauntlet,Ağır Otacı Eldiven,Şifacı k3 seti: 'Heavy Plate' yerine
+a:priest:3:gloves:1,Skilled Priest's Gauntlets,Kıdemli Otacı Eldiven,Şifacı k3 varyant: 'Skilled Priest' yerine
+a:priest:3:boots,Priest Heavy Plate Armor Boots,Ağır Otacı Çizme,Şifacı k3 seti: 'Heavy Plate' yerine
+a:priest:3:boots:1,Skilled Priest's Boots,Kıdemli Otacı Çizme,Şifacı k3 varyant: 'Skilled Priest' yerine
+a:mage:3:helm,Mage Satin Hat,Atlas Kâhin Başlık,Büyücü k3 seti: 'Mage Satin' yerine
+a:mage:3:helm:1,Skilled Magician's Helmet,Kıdemli Kâhin Başlık,Büyücü k3 varyant: 'Skilled Magician' yerine
+a:mage:3:chest,Mage Satin Robe,Atlas Kâhin Cübbe,Büyücü k3 seti: 'Mage Satin' yerine
+a:mage:3:chest:1,Skilled Magician's Robe,Kıdemli Kâhin Cübbe,Büyücü k3 varyant: 'Skilled Magician' yerine
+a:mage:3:legs,Mage Satin Pants,Atlas Kâhin Etek,Büyücü k3 seti: 'Mage Satin' yerine
+a:mage:3:legs:1,Skilled Magician's Pants,Kıdemli Kâhin Etek,Büyücü k3 varyant: 'Skilled Magician' yerine
+a:mage:3:gloves,Mage Satin Gloves,Atlas Kâhin Eldiven,Büyücü k3 seti: 'Mage Satin' yerine
+a:mage:3:gloves:1,Skilled Magician's Gauntlets,Kıdemli Kâhin Eldiven,Büyücü k3 varyant: 'Skilled Magician' yerine
+a:mage:3:boots,Mage Satin Boots,Atlas Kâhin Çizme,Büyücü k3 seti: 'Mage Satin' yerine
+a:mage:3:boots:1,Skilled Magician's Boots,Kıdemli Kâhin Çizme,Büyücü k3 varyant: 'Skilled Magician' yerine
+j:ear:3,Gold Earring,Altın Küpe,Gold Earring Türkçeleştirildi
+j:ear:3:1,White Silver Earring,Ak Gümüş Küpe,White Silver Earring Türkçeleştirildi
+j:neck:3,Golden Pendant,Altın Kolye,Golden Pendant Türkçeleştirildi
+j:neck:3:1,Agility Necklace,Çeviklik Kolyesi,Agility Necklace Türkçeleştirildi
+j:neck:3:2,Health Necklace,Dirilik Kolyesi,Health Necklace Türkçeleştirildi
+j:ring:3,Opal Ring,Opal Yüzük,Opal Ring Türkçeleştirildi
+j:ring:3:1,Ring of Purity,Arı Yüzük,Ring of Purity Türkçeleştirildi
+j:belt:3,Bronze Belt,Tunç Kemer,Bronze Belt Türkçeleştirildi
+j:belt:3:1,Curse Belt,Lanet Kemeri,Curse Belt Türkçeleştirildi
+j:kor_ear:3,Akik Kor Küpesi,Akik Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:3,Akik Kor Kolyesi,Akik Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:3,Akik Kor Yüzüğü,Akik Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:3,Akik Alaz Küpesi,Akik Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:3,Akik Alaz Kolyesi,Akik Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:3,Akik Alaz Yüzüğü,Akik Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:3,Akik Şimşek Küpesi,Akik Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:3,Akik Şimşek Kolyesi,Akik Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:3,Akik Şimşek Yüzüğü,Akik Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:3,Akik Fırtına Küpesi,Akik Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:3,Akik Fırtına Kolyesi,Akik Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:3,Akik Fırtına Yüzüğü,Akik Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+w:sword:4,Rapier,Meç Kılıç,Rapier Türkçeleştirildi
+w:axe1:4,Military Pick,Zırhdelen Balta,Military Pick Türkçeleştirildi
+w:sword2:4,Claymore,Kuzey Büyük Kılıç,Claymore yerine özgün Türkçe ad
+w:axe2:4,Broad Axe,Yassı Balta,Broad Axe Türkçeleştirildi
+w:spear:4,Pike,Süngü Mızrak,Pike Türkçeleştirildi
+w:lance:4,Bill,Çengelli Kargı,Bill Türkçeleştirildi
+w:mace2:4,Weight Hammer,Ağır Çekiç,Weight Hammer Türkçeleştirildi
+w:dagger:4,Sword breaker,Kılıçkıran Kama,Sword breaker Türkçeleştirildi
+w:jamadar:4,Wind storm,Rüzgâr Katarı,Wind storm Türkçeleştirildi
+w:bow:4,Hunter's Bow,Avcı Yayı,Hunter's Bow Türkçeleştirildi
+w:xbow:4,Crossbow,Arbalet,Crossbow Türkçeleştirildi
+w:xbow:4:1,Bow of Novice Assassin,Çırak Arbaleti,Bow of Novice Assassin kısaltıldı
+w:mace:4,Hacker,Yaran Topuz,Hacker Türkçeleştirildi
+w:mace:4:1,Mace of Novice Paladin,Ak Muhafız Topuz,Mace of Novice Paladin yerine Elentha adı
+w:mace:4:2,Bone Breaker,Kemikkıran Topuz,Bone Breaker Türkçeleştirildi
+w:mace:4:3,Priest Hacker,Otacı Yaran,Priest Hacker Türkçeleştirildi
+w:staff:4,Alchemy Staff,Simya Asası,Alchemy Staff Türkçeleştirildi
+w:shield:4,Kite Shield,Badem Kalkan,Kite Shield Türkçeleştirildi
+a:warrior:4:helm,Heavy Plate Armor Helmet,Ağır Levha Miğfer,Savaşçı k4 seti: ağır zırh kademesi
+a:warrior:4:chest,Heavy Plate Armor Pauldron,Ağır Levha Gövdelik,Savaşçı k4 seti: ağır zırh kademesi
+a:warrior:4:legs,Heavy Plate Armor Pads,Ağır Levha Dizlik,Savaşçı k4 seti: ağır zırh kademesi
+a:warrior:4:gloves,Heavy Plate Armor Gauntlet,Ağır Levha Eldiven,Savaşçı k4 seti: ağır zırh kademesi
+a:warrior:4:boots,Heavy Plate Armor Boots,Ağır Levha Çizme,Savaşçı k4 seti: ağır zırh kademesi
+a:rogue:4:helm,Rogue Plate Helmet,Pullu Gölge Miğfer,Suikastçı k4 seti: plaka/pul kademesi
+a:rogue:4:chest,Rogue Plate Armor Pauldron,Pullu Gölge Gövdelik,Suikastçı k4 seti: plaka/pul kademesi
+a:rogue:4:legs,Rogue Plate Armor Pads,Pullu Gölge Dizlik,Suikastçı k4 seti: plaka/pul kademesi
+a:rogue:4:gloves,Rogue Plate Gauntlet,Pullu Gölge Eldiven,Suikastçı k4 seti: plaka/pul kademesi
+a:rogue:4:boots,Rogue Plate Boots,Pullu Gölge Çizme,Suikastçı k4 seti: plaka/pul kademesi
+a:priest:4:helm,Helmet of Destruction,Yıkım Rün Miğfer,Şifacı k4 seti: 'Destruction' yerine özgün ad
+a:priest:4:helm:1,Helmet of Novice Paladin,Yeminli Ak Miğfer,Şifacı k4 varyant: Elentha 'Paladin' yerine
+a:priest:4:chest,Armor of Destruction,Yıkım Rün Gövdelik,Şifacı k4 seti: 'Destruction' yerine özgün ad
+a:priest:4:chest:1,Pauldron of Novice Paladin,Yeminli Ak Gövdelik,Şifacı k4 varyant: Elentha 'Paladin' yerine
+a:priest:4:legs,Pads of Destruction,Yıkım Rün Dizlik,Şifacı k4 seti: 'Destruction' yerine özgün ad
+a:priest:4:legs:1,Pads of Novice Paladin,Yeminli Ak Dizlik,Şifacı k4 varyant: Elentha 'Paladin' yerine
+a:priest:4:gloves,Gauntlet of Destruction,Yıkım Rün Eldiven,Şifacı k4 seti: 'Destruction' yerine özgün ad
+a:priest:4:gloves:1,Gauntlets of Novice Paladin,Yeminli Ak Eldiven,Şifacı k4 varyant: Elentha 'Paladin' yerine
+a:priest:4:boots,Boots of Destruction,Yıkım Rün Çizme,Şifacı k4 seti: 'Destruction' yerine özgün ad
+a:priest:4:boots:1,Boots of Novice Paladin,Yeminli Ak Çizme,Şifacı k4 varyant: Elentha 'Paladin' yerine
+a:mage:4:helm,Mage Velvet Hat,Kadife Kâhin Başlık,Büyücü k4 seti: 'Mage Velvet' yerine
+a:mage:4:helm:1,Helmet of Novice Rudimentary Magic,Temel Rün Başlık,Büyücü k4 varyant: 'Novice Rudimentary' yerine
+a:mage:4:chest,Mage Velvet Robe,Kadife Kâhin Cübbe,Büyücü k4 seti: 'Mage Velvet' yerine
+a:mage:4:chest:1,Robe of Novice Rudimentary Magic,Temel Rün Cübbe,Büyücü k4 varyant: 'Novice Rudimentary' yerine
+a:mage:4:legs,Mage Velvet Pants,Kadife Kâhin Etek,Büyücü k4 seti: 'Mage Velvet' yerine
+a:mage:4:legs:1,Pants of of Novice Rudimentary Magic,Temel Rün Etek,Büyücü k4 varyant: 'Novice Rudimentary' yerine
+a:mage:4:gloves,Mage Velvet Gloves,Kadife Kâhin Eldiven,Büyücü k4 seti: 'Mage Velvet' yerine
+a:mage:4:gloves:1,Gauntlets of Novice Rudimentary,Temel Rün Eldiven,Büyücü k4 varyant: 'Novice Rudimentary' yerine
+a:mage:4:boots,Mage Velvet Boots,Kadife Kâhin Çizme,Büyücü k4 seti: 'Mage Velvet' yerine
+a:mage:4:boots:1,Boots of Novice Rudimentary Magic,Temel Rün Çizme,Büyücü k4 varyant: 'Novice Rudimentary' yerine
+j:ear:4,Ruby Earring,Yakut Küpe,Ruby Earring Türkçeleştirildi
+j:ear:4:1,Grand Mage Earring,Ulu Kâhin Küpesi,Grand Mage Earring Türkçeleştirildi
+j:neck:4,Crystal Necklace,Billur Kolye,Crystal Necklace Türkçeleştirildi
+j:neck:4:1,Intelligence Necklace,Bilgelik Kolyesi,Intelligence Necklace Türkçeleştirildi
+j:neck:4:2,Warrior Pendant,Savaşçı Kolyesi,Warrior Pendant Türkçeleştirildi
+j:ring:4,Emerald Ring,Zümrüt Yüzük,Emerald Ring Türkçeleştirildi
+j:ring:4:1,Crystal Ring,Billur Yüzük,Crystal Ring Türkçeleştirildi
+j:belt:4,Light's Belt,Ak Işık Kemeri,Light's Belt Türkçeleştirildi
+j:kor_ear:4,Altın Kor Küpesi,Altın Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:4,Altın Kor Kolyesi,Altın Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:4,Altın Kor Yüzüğü,Altın Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:4,Altın Alaz Küpesi,Altın Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:4,Altın Alaz Kolyesi,Altın Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:4,Altın Alaz Yüzüğü,Altın Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:4,Altın Şimşek Küpesi,Altın Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:4,Altın Şimşek Kolyesi,Altın Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:4,Altın Şimşek Yüzüğü,Altın Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:4,Altın Fırtına Küpesi,Altın Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:4,Altın Fırtına Kolyesi,Altın Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:4,Altın Fırtına Yüzüğü,Altın Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+w:sword:5,Crescent,Hilal Kılıç,Crescent Türkçeleştirildi
+w:sword:5:1,Skeleton Sword,Kemik Kılıç,Skeleton Sword Türkçeleştirildi
+w:axe1:5,Cleaver Axe,Satır Balta,Cleaver Axe Türkçeleştirildi
+w:sword2:5,Flamberge,Dalgalı Kılıç,Flamberge Türkçeleştirildi
+w:axe2:5,Bone Axe,Kemik Balta,Bone Axe Türkçeleştirildi
+w:spear:5,Trident,Üç Dişli Mızrak,Trident Türkçeleştirildi
+w:lance:5,Halberd,Teber Kargı,Halberd Türkçeleştirildi
+w:mace2:5,Large Breaker,Ağır Kırıcı,Large Breaker Türkçeleştirildi
+w:dagger:5,Kukry,Eğri Hançer,Kukry Türkçeleştirildi
+w:jamadar:5,Abyss Jamadar,Uçurum Katarı,Abyss Jamadar Türkçeleştirildi
+w:bow:5,Composite Bow,Bileşik Yay,Composite Bow Türkçeleştirildi
+w:xbow:5,Cross Bow,Kurmalı Arbalet,Cross Bow varyantı ayrıştırıldı
+w:mace:5,Cracker,Çatlatan Topuz,Cracker Türkçeleştirildi
+w:mace:5:1,Priest Cracker,Otacı Çatlatan,Priest Cracker Türkçeleştirildi
+w:staff:5,Elemental Staff,Öz Asası,Elemental Staff Türkçeleştirildi
+w:staff:5:1,Eerie Skull Cane,Kuru Kafa Asası,Eerie Skull Cane Türkçeleştirildi
+w:shield:5,Octagon Shield,Sekizgen Kalkan,Octagon Shield Türkçeleştirildi
+a:warrior:5:helm,Troll Armor: Helmet,Kaya Dev Miğfer,Savaşçı k5 seti: 'Troll Armor' yerine özgün ad
+a:warrior:5:chest,Troll Armor: Upper Garment,Kaya Dev Gövdelik,Savaşçı k5 seti: 'Troll Armor' yerine özgün ad
+a:warrior:5:legs,Troll Armor: Lower Garment,Kaya Dev Dizlik,Savaşçı k5 seti: 'Troll Armor' yerine özgün ad
+a:warrior:5:gloves,Troll Armor: Gauntlets,Kaya Dev Eldiven,Savaşçı k5 seti: 'Troll Armor' yerine özgün ad
+a:warrior:5:boots,Troll Armor: Boots,Kaya Dev Çizme,Savaşçı k5 seti: 'Troll Armor' yerine özgün ad
+a:rogue:5:helm,Skilled Rogue's Helmet,Usta Gölge Miğfer,Suikastçı k5 seti: 'Skilled Rogue' yerine
+a:rogue:5:chest,Skilled Rogue's Pauldron,Usta Gölge Gövdelik,Suikastçı k5 seti: 'Skilled Rogue' yerine
+a:rogue:5:legs,Skilled Rogue's Pants,Usta Gölge Dizlik,Suikastçı k5 seti: 'Skilled Rogue' yerine
+a:rogue:5:gloves,Skilled Rogue's Gauntlets,Usta Gölge Eldiven,Suikastçı k5 seti: 'Skilled Rogue' yerine
+a:rogue:5:boots,Skilled Rogue's Boots,Usta Gölge Çizme,Suikastçı k5 seti: 'Skilled Rogue' yerine
+a:priest:5:helm,Protection Hat,Siper Otacı Miğfer,Şifacı k5 seti: 'Protection' yerine
+a:priest:5:chest,Protection Fabric Coat,Siper Otacı Gövdelik,Şifacı k5 seti: 'Protection' yerine
+a:priest:5:legs,Protection Fabric Pants,Siper Otacı Dizlik,Şifacı k5 seti: 'Protection' yerine
+a:priest:5:gloves,Protection Gloves,Siper Otacı Eldiven,Şifacı k5 seti: 'Protection' yerine
+a:priest:5:boots,Protection Shoes,Siper Otacı Çizme,Şifacı k5 seti: 'Protection' yerine
+a:mage:5:helm,Complete Helmet,Tam Rün Başlık,Büyücü k5 seti: 'Complete' yerine kısa Türkçe set
+a:mage:5:chest,Complete Robe,Tam Rün Cübbe,Büyücü k5 seti: 'Complete' yerine kısa Türkçe set
+a:mage:5:legs,Complete Pants,Tam Rün Etek,Büyücü k5 seti: 'Complete' yerine kısa Türkçe set
+a:mage:5:gloves,Complete Glove,Tam Rün Eldiven,Büyücü k5 seti: 'Complete' yerine kısa Türkçe set
+a:mage:5:boots,Complete Boots,Tam Rün Çizme,Büyücü k5 seti: 'Complete' yerine kısa Türkçe set
+j:ear:5,Opal Earring,Opal Küpe,Opal Earring Türkçeleştirildi
+j:ear:5:1,Warrior's Earring,Savaşçı Küpesi,Warrior's Earring Türkçeleştirildi
+j:neck:5,Green Dragon Necklace,Yeşil Ejder Kolye,Green Dragon Necklace kısaltıldı
+j:neck:5:1,Curse Necklace,Kara Lanet Kolye,Curse Necklace Türkçeleştirildi
+j:neck:5:2,Elemental Pendant,Rün Özü Kolyesi,Elemental Pendant Türkçeleştirildi
+j:ring:5,Ruby Ring,Yakut Yüzük,Ruby Ring Türkçeleştirildi
+j:ring:5:1,Ring of Life,Dirim Yüzüğü,Ring of Life Türkçeleştirildi
+j:belt:5,Strength Belt,Kuvvet Kemeri,Strength Belt Türkçeleştirildi
+j:belt:5:1,Intelligence Belt,Bilgelik Kemeri,Intelligence Belt Türkçeleştirildi
+j:kor_ear:5,Zümrüt Kor Küpesi,Zümrüt Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:5,Zümrüt Kor Kolyesi,Zümrüt Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:5,Zümrüt Kor Yüzüğü,Zümrüt Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:5,Zümrüt Alaz Küpesi,Zümrüt Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:5,Zümrüt Alaz Kolyesi,Zümrüt Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:5,Zümrüt Alaz Yüzüğü,Zümrüt Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:5,Zümrüt Şimşek Küpesi,Zümrüt Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:5,Zümrüt Şimşek Kolyesi,Zümrüt Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:5,Zümrüt Şimşek Yüzüğü,Zümrüt Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:5,Zümrüt Fırtına Küpesi,Zümrüt Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:5,Zümrüt Fırtına Kolyesi,Zümrüt Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:5,Zümrüt Fırtına Yüzüğü,Zümrüt Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+w:sword:6,Blade,Çelik Kılıç,Blade yerine malzeme+tür
+w:axe1:6,Tomahawk,Fırlatma Baltası,Tomahawk Türkçeleştirildi
+w:axe1:6:1,Wrist Cutter,Bilekkesen Balta,Wrist Cutter Türkçeleştirildi
+w:sword2:6,Double Blade,Çift Ağız Kılıç,Double Blade Türkçeleştirildi
+w:axe2:6,Bone Cleaver,Kemik Satırı,Bone Cleaver Türkçeleştirildi
+w:spear:6,Harpoon,Zıpkın Mızrak,Harpoon Türkçeleştirildi
+w:lance:6,Bardish,Ağır Teber,Bardish Türkçeleştirildi
+w:mace2:6,Large Hacker,Ağır Yaran Gürz,Large Hacker Türkçeleştirildi
+w:dagger:6,Mirage Dagger,Serap Hançeri,KO 'Mirage Dagger' yerine özgün Türkçe ad
+w:jamadar:6,Blood finger,Kankesen Katar,Blood finger yerine özgün ad
+w:bow:6,Horn Bow,Boynuz Yay,Horn Bow Türkçeleştirildi
+w:xbow:6,Horn Crossbow,Boynuz Arbalet,Horn Crossbow Türkçeleştirildi
+w:mace:6,Bone Crasher,Kemik Ezen Topuz,Bone Crasher Türkçeleştirildi
+w:mace:6:1,Priest Bone crasher,Otacı Kemik Ezen,Priest Bone crasher Türkçeleştirildi
+w:staff:6,Salamander Staff,Kor Kertenkele,KO 'Salamander Staff' yerine Kragmir temalı
+w:staff:6:1,Monk's Staff of Destruction,Yıkım Rün Asası,Monk's Staff of Destruction kısaltıldı
+w:staff:6:2,Viper Staff,Engerek Asası,Viper Staff Türkçeleştirildi
+w:shield:6,Large Kite Shield,Büyük Badem Kalkan,Large Kite Shield Türkçeleştirildi
+w:shield:6:1,Sacred Defender,Sancak Muhafızı,Sacred Defender yerine Elentha terimi
+w:shield:6:2,Round Kite Shield,Kubbe Kalkan,Round Kite Shield Türkçeleştirildi
+a:warrior:6:helm,Dragon Scale Helmet,Pul Ejder Miğfer,Savaşçı k6 seti: 'Dragon Scale' yerine kısa Türkçe set
+a:warrior:6:chest,Dragon Scale Armor Top,Pul Ejder Gövdelik,Savaşçı k6 seti: 'Dragon Scale' yerine kısa Türkçe set
+a:warrior:6:legs,Dragon Scale Armor Pants,Pul Ejder Dizlik,Savaşçı k6 seti: 'Dragon Scale' yerine kısa Türkçe set
+a:warrior:6:gloves,Dragon Scale Gauntlet,Pul Ejder Eldiven,Savaşçı k6 seti: 'Dragon Scale' yerine kısa Türkçe set
+a:warrior:6:boots,Dragon Scale Boots,Pul Ejder Çizme,Savaşçı k6 seti: 'Dragon Scale' yerine kısa Türkçe set
+a:rogue:6:helm,Rogue Heavy Plate Armor Helmet,Kuzgun Zırh Miğfer,Suikastçı k6 seti: 'Rogue Heavy Plate' yerine
+a:rogue:6:chest,Rogue Heavy Plate Armor Pauldron,Kuzgun Zırh Gövdelik,Suikastçı k6 seti: 'Rogue Heavy Plate' yerine
+a:rogue:6:legs,Rogue Heavy Plate Armor Pads,Kuzgun Zırh Dizlik,Suikastçı k6 seti: 'Rogue Heavy Plate' yerine
+a:rogue:6:gloves,Rogue Heavy Plate Armor Gauntlet,Kuzgun Zırh Eldiven,Suikastçı k6 seti: 'Rogue Heavy Plate' yerine
+a:rogue:6:boots,Rogue Heavy Plate Armor Boots,Kuzgun Zırh Çizme,Suikastçı k6 seti: 'Rogue Heavy Plate' yerine
+a:priest:6:helm,Helmet of Trial,Sınama Rün Miğfer,Şifacı k6 seti: 'Trial' yerine
+a:priest:6:chest,Pauldron of Trial,Sınama Rün Gövdelik,Şifacı k6 seti: 'Trial' yerine
+a:priest:6:legs,Pads of Trial,Sınama Rün Dizlik,Şifacı k6 seti: 'Trial' yerine
+a:priest:6:gloves,Gauntlet of Trial,Sınama Rün Eldiven,Şifacı k6 seti: 'Trial' yerine
+a:priest:6:boots,Boots of Trial,Sınama Rün Çizme,Şifacı k6 seti: 'Trial' yerine
+a:mage:6:helm,Wisdom's Hat,Hikmet Rün Başlık,Büyücü k6 seti: 'Wisdom' yerine
+a:mage:6:chest,Wisdom's Robe,Hikmet Rün Cübbe,Büyücü k6 seti: 'Wisdom' yerine
+a:mage:6:legs,Wisdom's Cloth Pants,Hikmet Rün Etek,Büyücü k6 seti: 'Wisdom' yerine
+a:mage:6:gloves,Wisdom's Gloves,Hikmet Rün Eldiven,Büyücü k6 seti: 'Wisdom' yerine
+a:mage:6:boots,Wisdom's Shoes,Hikmet Rün Çizme,Büyücü k6 seti: 'Wisdom' yerine
+j:ear:6,Platinum Earring,Platin Küpe,Platinum Earring Türkçeleştirildi
+j:ear:6:1,Rogue's Earring,İzci Küpesi,Rogue's Earring Türkçeleştirildi
+j:neck:6,Blue Dragon Necklace,Gök Ejder Kolye,Blue Dragon Necklace kısaltıldı
+j:neck:6:1,Priest Pendant,Şifa Kolyesi,Priest Pendant varyantı
+j:neck:6:2,Goddess Necklace,Ak Tanrıça Kolye,Goddess Necklace yerine Elentha temalı
+j:ring:6,Platinum Ring,Platin Yüzük,Platinum Ring Türkçeleştirildi
+j:ring:6:1,Grand Flame Ring,Ulu Kor Yüzüğü,Grand Flame Ring yerine Kragmir terimi
+j:belt:6,Agility Belt,Çeviklik Kemeri,Agility Belt Türkçeleştirildi
+j:belt:6:1,Holy Ghost Belt,Ak Ruh Kemeri,Holy Ghost Belt Türkçeleştirildi
+j:kor_ear:6,Safir Kor Küpesi,Safir Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:6,Safir Kor Kolyesi,Safir Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:6,Safir Kor Yüzüğü,Safir Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:6,Safir Alaz Küpesi,Safir Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:6,Safir Alaz Kolyesi,Safir Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:6,Safir Alaz Yüzüğü,Safir Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:6,Safir Şimşek Küpesi,Safir Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:6,Safir Şimşek Kolyesi,Safir Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:6,Safir Şimşek Yüzüğü,Safir Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:6,Safir Fırtına Küpesi,Safir Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:6,Safir Fırtına Kolyesi,Safir Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:6,Safir Fırtına Yüzüğü,Safir Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+w:sword:7,Slayer,Kıyıcı Kılıç,Slayer Türkçeleştirildi
+w:axe1:7,Deep Scar,Derin Yara Balta,KO 'Deep Scar' yerine özgün Türkçe
+w:sword2:7,Destroyer,Yıkıcı Büyük Kılıç,Destroyer Türkçeleştirildi
+w:sword2:7:1,Mirage,Bozkır Kılıcı,KO 'Mirage' yerine özgün Vahran adı
+w:axe2:7,Blade Axe,Yalman Balta,Blade Axe Türkçeleştirildi
+w:spear:7,Totemic Spear,Tuğ Mızrağı,KO 'Totemic Spear' yerine özgün Türkçe
+w:lance:7,Glaive,Yalman Kargı,Glaive Türkçeleştirildi
+w:mace2:7,Iron Impact,Örs Darbesi,KO 'Iron Impact' yerine Kragmir terimi
+w:mace2:7:1,Hell Breaker,Ocak Yaran Gürz,KO 'Hell Breaker' yerine Kragmir adı
+w:dagger:7,Shard,Kıymık Hançer,KO 'Shard' yerine özgün Türkçe ad
+w:jamadar:7,True silver,Saf Gümüş Katar,True silver Türkçeleştirildi
+w:bow:7,Iron Bow,Çelik Yay,KO 'Iron Bow' yerine malzeme+tür
+w:xbow:7,Iron Crossbow,Çelik Arbalet,Iron Crossbow Türkçeleştirildi
+w:mace:7,Impact,Sarsan Topuz,KO 'Impact' yerine özgün Türkçe
+w:mace:7:1,Priest Impact,Otacı Sarsan,KO 'Priest Impact' yerine özgün Türkçe
+w:staff:7,Elixir Staff,İksir Rün Asası,KO 'Elixir Staff' yerine özgün Türkçe
+w:staff:7:1,Oasis Staff,Vaha Asası,Oasis Staff Türkçeleştirildi
+w:shield:7,Plate Shield,Levha Kalkan,Plate Shield Türkçeleştirildi
+w:shield:7:1,Hidden Secret Holy Shield,Gizli Ak Kalkan,Hidden Secret Holy Shield kısaltıldı
+w:shield:7:2,Defender of the Lord,Yüzbaşı Kalkanı,KO 'Defender of the Lord' yerine kural örneği
+w:shield:7:3,Sacred Shield,Ak Sancak Kalkanı,Sacred Shield yerine Elentha terimi
+a:warrior:7:helm,Legendary king's helmet,Hakan Çelik Miğfer,Savaşçı k7 seti: 'Legendary King' yerine evren adı
+a:warrior:7:helm:1,Subjugation Force's Hat,Akıncı Çelik Miğfer,Savaşçı k7 varyant seti: 'Subjugation Force' yerine
+a:warrior:7:chest,Legendary king's steel corset,Hakan Çelik Gövdelik,Savaşçı k7 seti: 'Legendary King' yerine evren adı
+a:warrior:7:chest:1,Subjugation Force's Pauldron,Akıncı Çelik Gövdelik,Savaşçı k7 varyant seti: 'Subjugation Force' yerine
+a:warrior:7:legs,Legendary king's strong armor,Hakan Çelik Dizlik,Savaşçı k7 seti: 'Legendary King' yerine evren adı
+a:warrior:7:legs:1,Subjugation Force's Pants,Akıncı Çelik Dizlik,Savaşçı k7 varyant seti: 'Subjugation Force' yerine
+a:warrior:7:gloves,Legendary king's gauntlet,Hakan Çelik Eldiven,Savaşçı k7 seti: 'Legendary King' yerine evren adı
+a:warrior:7:gloves:1,Subjugation Force's Gloves,Akıncı Çelik Eldiven,Savaşçı k7 varyant seti: 'Subjugation Force' yerine
+a:warrior:7:boots,Legendary king's boots,Hakan Çelik Çizme,Savaşçı k7 seti: 'Legendary King' yerine evren adı
+a:warrior:7:boots:1,Subjugation Force's Shoes,Akıncı Çelik Çizme,Savaşçı k7 varyant seti: 'Subjugation Force' yerine
+a:rogue:7:helm,Cool-headed king's do-rag,Soğukkanlı Miğfer,Suikastçı k7 seti: 'Cool-headed King' yerine
+a:rogue:7:chest,Cool-headed king's chest armor,Soğukkanlı Gövdelik,Suikastçı k7 seti: 'Cool-headed King' yerine
+a:rogue:7:legs,Cool-headed king's leg armor,Soğukkanlı Dizlik,Suikastçı k7 seti: 'Cool-headed King' yerine
+a:rogue:7:gloves,Cool-headed king's glove,Soğukkanlı Eldiven,Suikastçı k7 seti: 'Cool-headed King' yerine
+a:rogue:7:boots,Cool-headed king's boots,Soğukkanlı Çizme,Suikastçı k7 seti: 'Cool-headed King' yerine
+a:priest:7:helm,Wise king's helmet,Bilge Hakan Miğfer,Şifacı k7 seti: 'Wise King' yerine
+a:priest:7:chest,Wise king's steel corset,Bilge Hakan Gövdelik,Şifacı k7 seti: 'Wise King' yerine
+a:priest:7:legs,Wise king's strong armor,Bilge Hakan Dizlik,Şifacı k7 seti: 'Wise King' yerine
+a:priest:7:gloves,Wise king's gauntlet,Bilge Hakan Eldiven,Şifacı k7 seti: 'Wise King' yerine
+a:priest:7:boots,Wise king's boots,Bilge Hakan Çizme,Şifacı k7 seti: 'Wise King' yerine
+a:mage:7:helm,Intelligent king's head armor,Ulu Kâhin Başlık,Büyücü k7 seti: 'Intelligent King' yerine
+a:mage:7:chest,Intelligent king's robe,Ulu Kâhin Cübbe,Büyücü k7 seti: 'Intelligent King' yerine
+a:mage:7:legs,Intelligent king's kilt,Ulu Kâhin Etek,Büyücü k7 seti: 'Intelligent King' yerine
+a:mage:7:gloves,Intelligent king's hands armor,Ulu Kâhin Eldiven,Büyücü k7 seti: 'Intelligent King' yerine
+a:mage:7:boots,Intelligent king's boots,Ulu Kâhin Çizme,Büyücü k7 seti: 'Intelligent King' yerine
+j:ear:7,Crystal Earring,Billur Küpe,Crystal Earring Türkçeleştirildi
+j:ear:7:1,Priest's Earring,Baş Otacı Küpesi,Priest's Earring k7 kademesi
+j:neck:7,Red Dragon Necklace,Kızıl Ejder Kolye,Red Dragon Necklace kısaltıldı
+j:neck:7:1,Necklace of the Lost One,Kayıp Ruh Kolye,Necklace of the Lost One kısaltıldı
+j:ring:7,Diamond Ring,Elmas Yüzük,Diamond Ring Türkçeleştirildi
+j:belt:7,Crystal Belt,Billur Kemer,Crystal Belt Türkçeleştirildi
+j:kor_ear:7,Elmas Kor Küpesi,Elmas Kor Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_neck:7,Elmas Kor Kolyesi,Elmas Kor Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:kor_ring:7,Elmas Kor Yüzüğü,Elmas Kor Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ear:7,Elmas Alaz Küpesi,Elmas Alaz Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_neck:7,Elmas Alaz Kolyesi,Elmas Alaz Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:alaz_ring:7,Elmas Alaz Yüzüğü,Elmas Alaz Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ear:7,Elmas Şimşek Küpesi,Elmas Şimşek Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_neck:7,Elmas Şimşek Kolyesi,Elmas Şimşek Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:simsek_ring:7,Elmas Şimşek Yüzüğü,Elmas Şimşek Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ear:7,Elmas Fırtına Küpesi,Elmas Fırtına Küpesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_neck:7,Elmas Fırtına Kolyesi,Elmas Fırtına Kolyesi,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+j:firtina_ring:7,Elmas Fırtına Yüzüğü,Elmas Fırtına Yüzüğü,"Zaten Türkçe, evren uyumlu ve 22 karakter sınırında; korundu"
+u:sazkiran,Sharp Fang,Sazkıran Hançer,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:camuryaran,War Axe,Çamuryaran Balta,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:ilkkivilcim,Red Eye Staff,İlk Kıvılcım Asası,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:demirhukum,Iron Star,Demirhüküm Topuz,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:beykemeri,Skeleton Belt,Bey Kemeri,KO 'Skeleton Belt' yerine kimlikteki özgün ad
+u:bataklikmuhru,Legionnaire Band,Bataklık Mührü,KO 'Legionnaire Band' yerine özgün ad
+u:kuldilimi,Flame Sword,Kül Dilimi Kılıç,Kimlikteki özgün Kragmir/Vahran adına dönüldü
+u:kulyayi,Hero Bow,Kül Yayı,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:korasa,Scorching Staff,Kor Asası,KO 'Scorching Staff' yerine Kragmir adı
+u:alazyuzugu,Flame Ring,Alaz Yüzüğü,KO 'Flame Ring' yerine kimlikteki özgün ad
+u:curufkusagi,Fire Belt,Cüruf Kuşağı,KO 'Fire Belt' yerine kimlikteki özgün ad
+u:tungakalkani,Hoplon,Tunga Kalkanı,KO 'Hoplon' yerine kimlikteki özgün ad
+u:gecitbekcisi,Falchion,Geçit Bekçisi,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:iskolyesi,Black Dragon Necklace,İs Kolyesi,KO 'Black Dragon Necklace' yerine özgün ad
+u:sirtyaran,Mail breaker,Sırtyaran Hançer,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:kamdegnegi,Chaotic Staff,Kam Değneği,KO 'Chaotic Staff' yerine özgün ad
+u:capulcudisi,Cleaver,Çapulcu Dişi,KO 'Cleaver' yerine kimlikteki özgün ad
+u:sirtlankupesi,Minotaur's Earring,Sırtlan Küpesi,KO 'Minotaur's Earring' yerine özgün ad
+u:kamtokmagi,Smite Hammer,Kam Tokmağı,KO 'Smite Hammer' yerine özgün ad
+u:kamboncugu,Magic Power Necklace,Kam Boncuğu,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:aysarteberi,Tabar,Aysar Teberi,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:bozkirmuhru,Hero's Valor,Bozkır Mührü,KO 'Hero's Valor' yerine kimlikteki özgün ad
+u:tolunyayi,Eagle's Eye,Tolun Yayı,KO 'Eagle's Eye' yerine kimlikteki özgün ad
+u:kartalkupesi,Howling Rooster,Kartal Küpesi,KO 'Howling Rooster' yerine Elentha adı
+u:hankilici,Broad Sword,Han Kılıcı,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:hankusagi,Lightening Belt,Han Kuşağı,KO 'Lightening Belt' yerine özgün ad
+u:kiragitopuzu,Stone Splitter,Kırağı Topuzu,KO 'Stone Splitter' yerine özgün ad
+u:buzkiran,Wolf Slayer,Buzkıran Balta,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:ayazsiperi,Dread Shield,Ayaz Siperi,KO 'Dread Shield' yerine özgün ad
+u:kiragiyuzugu,Red Pearl Ring,Kırağı Yüzüğü,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:buzkahinasasi,Hidden Secret Staff,Buz Kâhin Asası,Kimlikteki özgün Demir Diyarı adına dönüldü
+u:buzkolyesi,White Dragon Necklace,Buz Kolyesi,KO 'White Dragon Necklace' yerine özgün ad
+u:cig,Secret Executor,Çığ Baltası,KO 'Secret Executor' yerine özgün ad
+u:devkusagi,Ice Belt,Dev Kuşağı,KO 'Ice Belt' yerine kimlikteki özgün ad
+u:donukdis,Cold-Hearted Dagger,Donuk Diş Hançer,KO 'Cold-Hearted Dagger' yerine özgün ad
+u:mezarkupesi,Secret Silver Earring,Mezar Küpesi,KO 'Secret Silver Earring' yerine özgün ad
+u:lugias,Lugias,Vahran Mızrağı,KO 'Lugias' kaldırıldı; özgün Vahran mızrağı
+u:hanguk,Hanguk Sword,Sancak Palası,KO 'Hanguk Sword' kaldırıldı; Elentha kılıcı
+u:kutsalasa,Holy Animor,Ak Yemin Topuzu,KO 'Holy Animor' kaldırıldı; Elentha topuzu
+u:helenid,Helenid,Kartal Arbaleti,KO 'Helenid' kaldırıldı; Elentha arbaleti
+u:erenion,Wreath of Erenion,Buzul Taç Asası,KO 'Wreath of Erenion' kaldırıldı; özgün ad
+u:kanasa,Hell Blood,Kızıl Ocak Asası,KO 'Hell Blood' kaldırıldı; Kragmir asası
+u:garp,Garp,Fırtına Asası,KO 'Garp' kaldırıldı; özgün büyücü asası
+u:kurtcekici,Lycaon Hammer,Bozkurt Çekici,KO 'Lycaon Hammer' kaldırıldı; özgün ad
+u:bozkurtcekici,Lupus Hammer,Yaban Kurt Çekici,KO 'Lupus Hammer' kaldırıldı; özgün ad
+u:kitinyayi,Chitin Bow,Kabuk Yayı,KO 'Chitin Bow' yerine kural gereği Kabuk
+u:lobocekici,Lobo Hammer,Gök Kurt Çekici,KO 'Lobo Hammer' kaldırıldı; özgün ad
+u:karakanat,Dark Vane,Karakanat Hançer,KO 'Dark Vane' yerine kimlikteki özgün ad
+u:kitinsiper,Chitin Shield,Kabuk Siper,KO 'Chitin Shield' yerine kural gereği Kabuk
+u:seraptigi,Mirage Sword,Serap Tığı,KO 'Mirage Sword' yerine kimlikteki özgün ad
+u:devcekic,Giga Hammer,Dev Örs Çekici,KO 'Giga Hammer' yerine Kragmir terimi
+u:beylersiperi,Defense of Lords,Beyler Siperi,KO 'Defense of Lords' yerine özgün ad
+u:yaylahukmu,Hidden Secret Bone Crusher,Yayla Hükmü,KO 'Hidden Secret Bone Crusher' yerine özgün
+u:hakanmuhru,Ring of Courage,Hakan Mührü,KO 'Ring of Courage' yerine özgün ad
+u:chitin_w_helm,Chitin Helmet,Kabuk Savaşçı Miğfer,Eşsiz set: 'Chitin' yerine kural gereği Kabuk
+u:chitin_w_chest,Chitin Pauldron,Kabuk Savaşçı Gövdelik,Eşsiz set: 'Chitin' yerine kural gereği Kabuk
+u:chitin_w_legs,Chitin Pads,Kabuk Savaşçı Dizlik,Eşsiz set: 'Chitin' yerine kural gereği Kabuk
+u:chitin_w_gloves,Chitin Gauntlets,Kabuk Savaşçı Eldiven,Eşsiz set: 'Chitin' yerine kural gereği Kabuk
+u:chitin_w_boots,Chitin Boots,Kabuk Savaşçı Çizme,Eşsiz set: 'Chitin' yerine kural gereği Kabuk
+u:fplate_w_helm,Full Plate Helmet,Tam Levha Miğfer,Eşsiz set: 'Full Plate' yerine Tam Levha
+u:fplate_w_chest,Full Plate Pauldron,Tam Levha Gövdelik,Eşsiz set: 'Full Plate' yerine Tam Levha
+u:fplate_w_legs,Full Plate Pads,Tam Levha Dizlik,Eşsiz set: 'Full Plate' yerine Tam Levha
+u:fplate_w_gloves,Full Plate Gauntlets,Tam Levha Eldiven,Eşsiz set: 'Full Plate' yerine Tam Levha
+u:fplate_w_boots,Full Plate Boots,Tam Levha Çizme,Eşsiz set: 'Full Plate' yerine Tam Levha
+u:chitin_r_helm,Rogue Chitin Helmet,Kabuk Gölge Miğfer,Eşsiz set: 'Rogue Chitin' yerine Kabuk Gölge
+u:chitin_r_chest,Rogue Chitin Pauldron,Kabuk Gölge Gövdelik,Eşsiz set: 'Rogue Chitin' yerine Kabuk Gölge
+u:chitin_r_legs,Rogue Chitin Pads,Kabuk Gölge Dizlik,Eşsiz set: 'Rogue Chitin' yerine Kabuk Gölge
+u:chitin_r_gloves,Rogue Chitin Gauntlets,Kabuk Gölge Eldiven,Eşsiz set: 'Rogue Chitin' yerine Kabuk Gölge
+u:chitin_r_boots,Rogue Chitin Boots,Kabuk Gölge Çizme,Eşsiz set: 'Rogue Chitin' yerine Kabuk Gölge
+u:fplate_r_helm,Rogue Full Plate Helmet,Tam Gölge Miğfer,Eşsiz set: 'Rogue Full Plate' yerine
+u:fplate_r_chest,Rogue Full Plate Pauldron,Tam Gölge Gövdelik,Eşsiz set: 'Rogue Full Plate' yerine
+u:fplate_r_legs,Rogue Full Plate Pads,Tam Gölge Dizlik,Eşsiz set: 'Rogue Full Plate' yerine
+u:fplate_r_gloves,Rogue Full Plate Gauntlets,Tam Gölge Eldiven,Eşsiz set: 'Rogue Full Plate' yerine
+u:fplate_r_boots,Rogue Full Plate Boots,Tam Gölge Çizme,Eşsiz set: 'Rogue Full Plate' yerine
+u:chitin_p_helm,Priest Chitin Helmet,Kabuk Otacı Miğfer,Eşsiz set: 'Priest Chitin' yerine Kabuk Otacı
+u:chitin_p_chest,Priest Chitin Pauldron,Kabuk Otacı Gövdelik,Eşsiz set: 'Priest Chitin' yerine Kabuk Otacı
+u:chitin_p_legs,Priest Chitin Pads,Kabuk Otacı Dizlik,Eşsiz set: 'Priest Chitin' yerine Kabuk Otacı
+u:chitin_p_gloves,Priest Chitin Gauntlets,Kabuk Otacı Eldiven,Eşsiz set: 'Priest Chitin' yerine Kabuk Otacı
+u:chitin_p_boots,Priest Chitin Boots,Kabuk Otacı Çizme,Eşsiz set: 'Priest Chitin' yerine Kabuk Otacı
+u:fplate_p_helm,Priest Full Plate Helmet,Tam Otacı Miğfer,Eşsiz set: 'Priest Full Plate' yerine
+u:fplate_p_chest,Priest Full Plate Pauldron,Tam Otacı Gövdelik,Eşsiz set: 'Priest Full Plate' yerine
+u:fplate_p_legs,Priest Full Plate Pads,Tam Otacı Dizlik,Eşsiz set: 'Priest Full Plate' yerine
+u:fplate_p_gloves,Priest Full Plate Gauntlets,Tam Otacı Eldiven,Eşsiz set: 'Priest Full Plate' yerine
+u:fplate_p_boots,Priest Full Plate Boots,Tam Otacı Çizme,Eşsiz set: 'Priest Full Plate' yerine
+u:crimson_m_helm,Crimson Helmet,Kızıl Kor Başlık,Eşsiz set: 'Crimson' yerine Kragmir esintili set
+u:crimson_m_chest,Crimson Robe,Kızıl Kor Cübbe,Eşsiz set: 'Crimson' yerine Kragmir esintili set
+u:crimson_m_legs,Crimson Pants,Kızıl Kor Etek,Eşsiz set: 'Crimson' yerine Kragmir esintili set
+u:crimson_m_gloves,Crimson Gloves,Kızıl Kor Eldiven,Eşsiz set: 'Crimson' yerine Kragmir esintili set
+u:crimson_m_boots,Crimson Boots,Kızıl Kor Çizme,Eşsiz set: 'Crimson' yerine Kragmir esintili set
+u:crystal_m_helm,Crystal Helmet,Buzul Billur Başlık,Eşsiz set: 'Crystal' yerine özgün Türkçe set
+u:crystal_m_chest,Crystal Robe,Buzul Billur Cübbe,Eşsiz set: 'Crystal' yerine özgün Türkçe set
+u:crystal_m_legs,Crystal Pants,Buzul Billur Etek,Eşsiz set: 'Crystal' yerine özgün Türkçe set
+u:crystal_m_gloves,Crystal Gloves,Buzul Billur Eldiven,Eşsiz set: 'Crystal' yerine özgün Türkçe set
+u:crystal_m_boots,Crystal Boots,Buzul Billur Çizme,Eşsiz set: 'Crystal' yerine özgün Türkçe set
+u:linen_hp_helm,Mage Linen Cap (HP),Can Keten Başlık,Eşsiz set: 'Mage Linen (HP)' yerine kısa Türkçe
+u:linen_hp_chest,Mage Linen Robe (HP),Can Keten Cübbe,Eşsiz set: 'Mage Linen (HP)' yerine kısa Türkçe
+u:linen_hp_legs,Mage Linen Pants (HP),Can Keten Etek,Eşsiz set: 'Mage Linen (HP)' yerine kısa Türkçe
+u:linen_hp_gloves,Mage Leather Gloves (HP),Can Keten Eldiven,Eşsiz set: 'Mage Linen (HP)' yerine kısa Türkçe
+u:linen_hp_boots,Mage Leather Boots (HP),Can Keten Çizme,Eşsiz set: 'Mage Linen (HP)' yerine kısa Türkçe
+u:linen_mp_helm,Mage Linen Cap (MP),Mana Keten Başlık,Eşsiz set: 'Mage Linen (MP)' yerine kısa Türkçe
+u:linen_mp_chest,Mage Linen Robe (MP),Mana Keten Cübbe,Eşsiz set: 'Mage Linen (MP)' yerine kısa Türkçe
+u:linen_mp_legs,Mage Linen Pants (MP),Mana Keten Etek,Eşsiz set: 'Mage Linen (MP)' yerine kısa Türkçe
+u:linen_mp_gloves,Mage Leather Gloves (MP),Mana Keten Eldiven,Eşsiz set: 'Mage Linen (MP)' yerine kısa Türkçe
+u:linen_mp_boots,Mage Leather Boots (MP),Mana Keten Çizme,Eşsiz set: 'Mage Linen (MP)' yerine kısa Türkçe
+u:wool_hp_helm,Wizard Hat (HP),Can Yün Başlık,Eşsiz set: 'Wool (HP)' yerine kısa Türkçe
+u:wool_hp_chest,Wool Robe (HP),Can Yün Cübbe,Eşsiz set: 'Wool (HP)' yerine kısa Türkçe
+u:wool_hp_legs,Wool Pants (HP),Can Yün Etek,Eşsiz set: 'Wool (HP)' yerine kısa Türkçe
+u:wool_hp_gloves,Mage Gloves (HP),Can Yün Eldiven,Eşsiz set: 'Wool (HP)' yerine kısa Türkçe
+u:wool_hp_boots,Mage Boots (HP),Can Yün Çizme,Eşsiz set: 'Wool (HP)' yerine kısa Türkçe
+u:wool_mp_helm,Wizard Hat (MP),Mana Yün Başlık,Eşsiz set: 'Wool (MP)' yerine kısa Türkçe
+u:wool_mp_chest,Wool Robe (MP),Mana Yün Cübbe,Eşsiz set: 'Wool (MP)' yerine kısa Türkçe
+u:wool_mp_legs,Wool Pants (MP),Mana Yün Etek,Eşsiz set: 'Wool (MP)' yerine kısa Türkçe
+u:wool_mp_gloves,Mage Gloves (MP),Mana Yün Eldiven,Eşsiz set: 'Wool (MP)' yerine kısa Türkçe
+u:wool_mp_boots,Mage Boots (MP),Mana Yün Çizme,Eşsiz set: 'Wool (MP)' yerine kısa Türkçe
+u:lycaonstaff,Lycaon Staff,Yalvaç Kurt Asası,KO 'Lycaon Staff' kaldırıldı; özgün ad
+u:lupusstaff,Lupus Staff,Kızıl Kurt Asası,KO 'Lupus Staff' kaldırıldı; özgün ad
+u:lobostaff,Lobo Staff,Ak Kurt Asası,KO 'Lobo Staff' kaldırıldı; özgün ad
+u:ironneck,Iron Necklace,Örs Kolyesi,KO 'Iron Necklace' kaldırıldı; Kragmir adı
+u:ironbelt,Iron Belt,Örs Kemeri,KO 'Iron Belt' kaldırıldı; Kragmir adı
+u:glassbelt,Glass Belt,Sırça Kemer,KO 'Glass Belt' kaldırıldı; özgün ad
+u:rol,Ring of Life,Ebedi Can Yüzüğü,KO 'Ring of Life' yerine özgün eşsiz yüzük
+u:rom,Ring of Magic,Ebedi Rün Yüzüğü,KO 'Ring of Magic' yerine özgün eşsiz yüzük
+u:roc,Ring of Courage,Yürek Mührü,KO 'Ring of Courage' yerine özgün eşsiz yüzük
+u:flamering,Flame Ring,Ocak Alevi Yüzük,KO 'Flame Ring' yerine Kragmir eşsiz yüzük
+u:imirring,Imir Ring,Ayaz Mührü,KO 'Imir Ring' kaldırıldı; özgün buz yüzüğü
+u:warear,Warrior Earring,Alperen Küpesi,KO 'Warrior Earring' yerine özgün eşsiz küpe
+u:rogear,Rogue Earring,Gece İzci Küpesi,KO 'Rogue Earring' yerine özgün eşsiz küpe
+u:mageear,Mage Earring,Baş Kâhin Küpesi,KO 'Mage Earring' yerine özgün eşsiz küpe
+u:clericear,Cleric Earring,Ak Otacı Küpesi,KO 'Cleric Earring' yerine Elentha küpesi
+u:aos,Amulet of Strength,Kudret Tılsımı,KO 'Amulet of Strength' yerine özgün ad
+u:aod,Amulet of Dexterity,Atiklik Tılsımı,KO 'Amulet of Dexterity' yerine özgün ad
+u:aoh,Amulet of Health,Dirilik Tılsımı,KO 'Amulet of Health' yerine özgün ad
+u:aomp,Amulet of Magic Power,Rün Gücü Tılsımı,KO 'Amulet of Magic Power' yerine özgün ad
+u:lupuspend,Lupus Pendant,Kızıl Kurt Kolye,KO 'Lupus Pendant' kaldırıldı; özgün ad
+u:lobopend,Lobo Pendant,Ak Kurt Kolyesi,KO 'Lobo Pendant' kaldırıldı; özgün ad
+u:lycaonpend,Lycaon Pendant,Yalvaç Kurt Kolye,KO 'Lycaon Pendant' kaldırıldı; özgün ad
+u:sos,String of Skulls,Kemik Dizisi Kemer,KO 'String of Skulls' kaldırıldı; Kragmir
+u:coc,Cockatrice's Earring,Şahmaran Küpesi,KO 'Cockatrice's Earring' kaldırıldı; özgün
+u:lkp,Lich King's Pride,Ölüler Bey Küpesi,KO 'Lich King's Pride' kaldırıldı; özgün
+u:lillime,Lillime's Enticement,Gece Çağıran Küpe,KO 'Lillime's Enticement' kaldırıldı; özgün
+u:goldear,Golden Earring,Has Altın Küpe,KO 'Golden Earring' eşsiz varyantı
+u:eme,Elf-Metal Earring,Ak Gümüş Küpesi,KO 'Elf-Metal Earring' kaldırıldı; Elentha
+u:agate,Agate Earring,Akik Mührü Küpe,KO 'Agate Earring' yerine özgün ad
+u:foverin,Foverin,Kor Taşı Yüzüğü,KO 'Foverin' kaldırıldı; Kragmir eşsiz yüzük
+u:kekuri,Kekuri Ring,Sazlık Yüzüğü,KO 'Kekuri Ring' kaldırıldı; Vahran yüzüğü
+u:elfring,Elf Ring,Sancak Yüzüğü,KO 'Elf Ring' kaldırıldı; Elentha yüzüğü
+u:elfbelt,Elf Belt,Sancak Kuşağı,KO 'Elf Belt' kaldırıldı; Elentha kuşağı
+u:judbelt,Judicious Belt,Adalet Kuşağı,KO 'Judicious Belt' kaldırıldı; Elentha
+u:lbol,Light Belt of Life,Ak Dirim Kuşağı,KO 'Light Belt of Life' kaldırıldı; Elentha
+skill:w_basic,Kılıç Darbesi,Kılıç Darbesi,Zaten Türkçe ve eylem odaklı; korundu
+skill:r_basic,Hançer Darbesi,Hançer Darbesi,Zaten Türkçe ve eylem odaklı; korundu
+skill:p_basic,Topuz Darbesi,Topuz Darbesi,Zaten Türkçe ve eylem odaklı; korundu
+skill:m_basic,Kıvılcım,Kıvılcım,Zaten Türkçe ve kısa; korundu
+skill:w_k1,Stroke,Vuruş,Stroke yerine kısa eylem adı
+skill:w_k2,Sprint,Atılma,Sprint yerine kısa eylem adı
+skill:w_k3,Slash,Biçme,Slash yerine kısa eylem adı
+skill:w_k4,Crash,Çarpma,Crash yerine kısa eylem adı
+skill:w_k5,Defense,Siper Al,Defense yerine eylem odaklı Türkçe
+skill:w_k6,Piercing,Delici Vuruş,Piercing yerine eylem odaklı Türkçe
+skill:hucum1,Hash,Yarma,Hash yerine kısa savaşçı eylemi
+skill:hucum2,Hoodwink,Şaşırtma,Hoodwink yerine eylem odaklı Türkçe
+skill:hucum3,Shear,Kırpma,Shear yerine kısa eylem adı
+skill:hucum4,Pierce,Zırh Del,Pierce yerine eylem odaklı Türkçe
+skill:hucum5,Leg Cutting,Bacak Biçme,Leg Cutting Türkçeleştirildi
+skill:hucum6,Carving,Derin Kesik,Carving yerine eylem odaklı Türkçe
+skill:hucum7,Sever,Koparma,Sever yerine kısa eylem adı
+skill:hucum8,Prick,Saplama,Prick yerine kısa eylem adı
+skill:hucum9,Multiple Shock,Çoklu Sarsıntı,Multiple Shock Türkçeleştirildi
+skill:hucum10,Cleave,Geniş Yarma,Cleave yerine eylem odaklı Türkçe
+skill:hucum11,Mangling,Parçalama,Mangling Türkçeleştirildi
+skill:hucum12,Thrust,İleri Saplama,Thrust yerine eylem odaklı Türkçe
+skill:hucum13,Sword Aura,Kılıç Halesi,Sword Aura Türkçeleştirildi
+skill:hucum14,Sword Dancing,Kılıç Dansı,Sword Dancing Türkçeleştirildi
+skill:siper1,Hinder,Engelleme,Hinder Türkçeleştirildi
+skill:siper2,Resist,Direnç,Resist Türkçeleştirildi
+skill:siper3,Arrest,Mıhlama,Arrest yerine eylem odaklı Türkçe
+skill:siper4,Endure,Dayanım,Endure Türkçeleştirildi
+skill:siper5,Binding,Bağlama,Binding Türkçeleştirildi
+skill:siper6,Bulwark,Kalkan Duvarı,Bulwark yerine eylem odaklı Türkçe
+skill:siper7,Provoke,Kışkırtma,Provoke Türkçeleştirildi
+skill:siper8,Sacrifice,Feda,Sacrifice Türkçeleştirildi
+skill:ofke1,Gain,Güç Toplama,Gain yerine eylem odaklı Türkçe
+skill:ofke2,Wink,Göz Kırpma,Wink Türkçeleştirildi
+skill:ofke3,Rise,Şahlanış,Rise yerine eylem odaklı Türkçe
+skill:ofke4,Pain Killer,Acı Kesici,Pain Killer Türkçeleştirildi
+skill:ofke5,Outrage,Taşkın Öfke,Outrage Türkçeleştirildi
+skill:ofke6,Shock,Şok Dalgası,Shock Türkçeleştirildi
+skill:yaran_um1,Howling Sword,Uluyan Kılıç,Howling Sword Türkçeleştirildi
+skill:yaran_um2,Blooding,Kanatma,Blooding Türkçeleştirildi
+skill:yaran_um3,Hell Blade,Kor Kılıcı,KO 'Hell Blade' yerine Kragmir esintili
+skill:sur_um1,Iron Skin,Demir Ten,Iron Skin Türkçeleştirildi
+skill:sur_um2,Wall Of Iron,Demir Sur,Wall Of Iron Türkçeleştirildi
+skill:sur_um3,Iron Body,Çelik Beden,Iron Body Türkçeleştirildi
+skill:r_k1,Stab,Ani Saplama,Stab Türkçeleştirildi
+skill:r_k2,Sprint,Hızlı Koşu,Sprint Suikastçı varyantı
+skill:r_k3,Thrust,Derin Saplama,Thrust Suikastçı varyantı
+skill:hancer1,Stab,Hızlı Saplama,Stab hançer ağacı başlangıcı
+skill:hancer2,Stab2,Çift Saplama,Stab2 yerine anlamlı Türkçe eylem
+skill:hancer3,Jab,Seri Dürtme,Jab Türkçeleştirildi
+skill:hancer4,Blood Drain,Kan Emme,Blood Drain Türkçeleştirildi
+skill:hancer5,Pierce,Delip Geçme,Pierce hançer varyantı
+skill:hancer6,Shock,Sersemletme,Shock hançer varyantı
+skill:hancer7,Thrust,Keskin Hamle,Thrust hançer varyantı
+skill:hancer8,Cut,Kesik Atma,Cut Türkçeleştirildi
+skill:hancer9,Vampiric Touch,Can Sökme,Vampiric Touch Türkçeleştirildi
+skill:hancer10,Bloody Beast,Kanlı Pençe,Bloody Beast Türkçeleştirildi
+skill:hancer11,Blinding,Kör Etme,Blinding Türkçeleştirildi
+skill:hancer12,Beast Hiding,Gölge Pusu,Beast Hiding Türkçeleştirildi
+skill:hancer13,Spike,Ölümcül Saplama,KO 'Spike' yerine eylem odaklı Türkçe
+skill:yay1,Archery,Ok Atışı,Archery yerine eylem odaklı Türkçe
+skill:yay2,Arrow Shower,Ok Yağmuru,Arrow Shower Türkçeleştirildi
+skill:yay3,Fire Arrow,Ateş Oku,Fire Arrow Türkçeleştirildi
+skill:yay4,Poison Arrow,Zehirli Ok,Poison Arrow Türkçeleştirildi
+skill:yay5,Multiple Shot,Çoklu Atış,Multiple Shot Türkçeleştirildi
+skill:yay6,Guided Arrow,Güdümlü Ok,Guided Arrow Türkçeleştirildi
+skill:yay7,Perfect Shot,Tam İsabet,Perfect Shot Türkçeleştirildi
+skill:yay8,Ice Arrow,Buz Oku,Ice Arrow Türkçeleştirildi
+skill:yay9,Arc Shot,Kavisli Atış,Arc Shot Türkçeleştirildi
+skill:yay10,Explosive Shot,Patlayıcı Ok,Explosive Shot Türkçeleştirildi
+skill:yay11,Viper,Engerek Oku,Viper Türkçeleştirildi
+skill:yay12,Counter Strike,Karşı Atış,Counter Strike Türkçeleştirildi
+skill:yay13,Shadow Shot,Gölge Oku,Shadow Shot Türkçeleştirildi
+skill:iz1,Hide,Saklanma,Hide Türkçeleştirildi
+skill:iz2,Light Feet,Rüzgâr Adımı,Light Feet Türkçeleştirildi
+skill:iz3,Evade,Sıyrılma,Evade Türkçeleştirildi
+skill:iz4,Safety,Korunma,Safety Türkçeleştirildi
+skill:iz5,Scaled Skin,Pullu Deri,Scaled Skin Türkçeleştirildi
+skill:iz6,Minor Healing,Hafif Merhem,Minor Healing Türkçeleştirildi
+skill:iz7,Lupine Eyes,Kurt Gözü,Lupine Eyes Türkçeleştirildi
+skill:iz8,Taunt,Alay Etme,Taunt Türkçeleştirildi
+skill:iz9,Invisibility,Görünmezlik,Invisibility Türkçeleştirildi
+skill:agu_um1,Critical Point,Can Alıcı Nokta,Critical Point Türkçeleştirildi
+skill:agu_um2,Cold Wave,Ayaz Dalgası,Cold Wave Türkçeleştirildi
+skill:agu_um3,Eskrima,Çift Kesik,Eskrima yerine eylem odaklı Türkçe
+skill:nisanci_um1,Power Shot,Güçlü Atış,Power Shot Türkçeleştirildi
+skill:nisanci_um2,Blinding Strafe,Kör Eden Yaylım,Blinding Strafe Türkçeleştirildi
+skill:nisanci_um3,Super Archer,Usta Nişancı,Super Archer Türkçeleştirildi
+skill:p_k1,Holy Attack,Rün Vuruşu,Holy Attack yerine iki halka uyumlu ad
+skill:p_k2,Sprint,Çabukluk,Sprint Şifacı varyantı
+skill:p_k3,Collision,Çarpışma,Collision Türkçeleştirildi
+skill:kutsama1,Strength,Güç Mührü,Strength yerine Rün Mührü teması
+skill:kutsama2,Armor,Zırh Mührü,Armor yerine Rün Mührü teması
+skill:kutsama3,Grace,Dirilik Mührü,Grace yerine Rün Mührü teması
+skill:kutsama4,Resist,Direnç Mührü,Resist yerine Rün Mührü teması
+skill:kutsama7,Heapness,Can Artışı,Heapness yerine anlaşılır Türkçe
+skill:kutsama9,Superioris,Üstün Zırh,Superioris yerine anlaşılır Türkçe
+skill:kutsama11,Imposingness,Ulu Can Mührü,Imposingness yerine anlaşılır Türkçe
+skill:kutsama12,Undying,Ölümsüz Mühür,Undying Türkçeleştirildi
+skill:kutsama13,Massiveness,Dev Can Mührü,Massiveness yerine anlaşılır Türkçe
+skill:kutsama14,Mace Strike,Topuz Vuruşu,Mace Strike Türkçeleştirildi
+skill:kutsama15,Crushing Blow,Ezici Vuruş,Crushing Blow Türkçeleştirildi
+skill:kutsama16,Shock Wave,Sarsıntı Dalgası,Shock Wave Türkçeleştirildi
+skill:kutsama17,Iron Skin,Demir Kalkan,Iron Skin Şifacı varyantı
+skill:kutsama18,Steel Skin,Çelik Zırh,Steel Skin Türkçeleştirildi
+skill:kutsama19,Holy Bulwark,Kutlu Siper,Holy Bulwark Türkçeleştirildi
+skill:lanet1,Holy Strike,Işık Darbesi,Holy Strike Türkçeleştirildi
+skill:lanet2,Slow,Yavaşlatma,Slow Türkçeleştirildi
+skill:lanet3,Malice,Zırh Kırma,Malice yerine etkiyi anlatan Türkçe
+skill:lanet4,Confusion,Zihin Bulandırma,Confusion Türkçeleştirildi
+skill:lanet5,Parasite,Can Sömürüsü,Parasite Türkçeleştirildi
+skill:lanet6,Weaken,Mana Sökme,Weaken yerine etkiyi anlatan Türkçe
+skill:lanet7,Dispel,Büyü Bozma,Dispel Türkçeleştirildi
+skill:lanet8,Sleep,Uyutma,Sleep Türkçeleştirildi
+skill:lanet10,Helis,Kara Işın,KO 'Helis' yerine Kara Rün eylem adı
+skill:lanet11,Torment,Toplu Zırh Kır,KO 'Torment' yerine etkiyi anlatan ad
+skill:lanet13,Atak Kır,Atak Kır,Zaten Türkçe ve kısa; korundu
+skill:lanet14,Dark Strike,Kara Darbe,Dark Strike Türkçeleştirildi
+skill:lanet15,Shadow Blast,Gölge Patlaması,Shadow Blast Türkçeleştirildi
+skill:lanet16,Curse Wave,Lanet Dalgası,Curse Wave Türkçeleştirildi
+skill:sifa1,Minor Heal,Küçük Şifa,Minor Heal Türkçeleştirildi
+skill:sifa2,Heal,Şifa,Heal Türkçeleştirildi
+skill:sifa3,Cure Curse,Lanet Arındır,Cure Curse Türkçeleştirildi
+skill:sifa4,Greater Heal,Büyük Şifa,Greater Heal Türkçeleştirildi
+skill:sifa5,Restore,Yenileme,Restore Türkçeleştirildi
+skill:sifa6,Group Heal,Toplu Şifa,Group Heal Türkçeleştirildi
+skill:sifa7,Complete Heal,Tam Şifa,Complete Heal Türkçeleştirildi
+skill:sifa8,Group Complete Heal,Toplu Tam Şifa,Group Complete Heal Türkçeleştirildi
+skill:p_um1,Resurrection,Diriltme,Resurrection Türkçeleştirildi
+skill:otaci_um1,Blessing of Light,Işık Kutsaması,Blessing of Light Türkçeleştirildi
+skill:otaci_um2,Divine Guard,Kutlu Koruma,Divine Guard Türkçeleştirildi
+skill:bozan_um1,Curse of Ruin,Yıkım Laneti,Curse of Ruin Türkçeleştirildi
+skill:bozan_um2,Dark Pact,Kara Ant,Dark Pact Türkçeleştirildi
+skill:m_k1,Staff Attack,Asa Vuruşu,Staff Attack Türkçeleştirildi
+skill:m_k2,Sprint,Atik Adım,Sprint Büyücü varyantı
+skill:ates1,Flame Strike,Alev Darbesi,Flame Strike Türkçeleştirildi
+skill:ates2,Fire Ball,Ateş Topu,Fire Ball Türkçeleştirildi
+skill:ates3,Burn,Yakma,Burn Türkçeleştirildi
+skill:ates4,Fire Spear,Ateş Mızrağı,Fire Spear Türkçeleştirildi
+skill:ates5,Fire Blast,Alev Patlaması,Fire Blast Türkçeleştirildi
+skill:ates6,Hell Fire,Kor Yağmuru,Hell Fire yerine kural örneğine uyumlu ad
+skill:ates7,Pillar of Fire,Ateş Sütunu,Pillar of Fire Türkçeleştirildi
+skill:ates8,Fire Thorn,Alev Dikeni,Fire Thorn Türkçeleştirildi
+skill:ates9,Fire Impact,Kor Çarpması,Fire Impact Türkçeleştirildi
+skill:ates10,Flame Nova,Alev Halkası,Flame Nova Türkçeleştirildi
+skill:ates11,Fire Staff,Ateş Asası,Fire Staff Türkçeleştirildi
+skill:ates12,Fire Wall,Ateş Duvarı,Fire Wall Türkçeleştirildi
+skill:ates13,Meteor Fall,Göktaşı Düşüşü,Meteor Fall Türkçeleştirildi
+skill:yildirim1,Lightning,Yıldırım,Lightning Türkçeleştirildi
+skill:yildirim2,Shock,Elektrik Şoku,Shock Büyücü varyantı
+skill:yildirim3,Charge,Yükleme,Charge Türkçeleştirildi
+skill:yildirim4,Lightning Bolt,Şimşek Oku,Lightning Bolt Türkçeleştirildi
+skill:yildirim5,Counter Spell,Karşı Büyü,Counter Spell Türkçeleştirildi
+skill:yildirim6,Static Hemisphere,Şimşek Kubbesi,Static Hemisphere Türkçeleştirildi
+skill:yildirim7,Paralyze,Felç Etme,Paralyze Türkçeleştirildi
+skill:yildirim8,Thunder,Gök Gürültüsü,Thunder Türkçeleştirildi
+skill:yildirim9,Static Thorn,Şimşek Dikeni,Static Thorn Türkçeleştirildi
+skill:yildirim10,Lightning Nova,Yıldırım Halkası,Lightning Nova Türkçeleştirildi
+skill:yildirim11,Chain Lightning,Zincir Yıldırım,Chain Lightning Türkçeleştirildi
+skill:yildirim12,Thunder Blast,Gök Patlaması,Thunder Blast Türkçeleştirildi
+skill:yildirim13,Thunder Impact,Yıldırım Çarpması,Thunder Impact Türkçeleştirildi
+skill:buz1,Freeze,Dondurma,Freeze Türkçeleştirildi
+skill:buz2,Chill,Üşütme,Chill Türkçeleştirildi
+skill:buz3,Solid,Buz Kesme,Solid Türkçeleştirildi
+skill:buz4,Ice Arrow,Ayaz Mızrağı,Ice Arrow Büyücü varyantı (yay ile ayrıştırıldı)
+skill:buz5,Glacier Beam,Buzul Işını,Glacier Beam Türkçeleştirildi
+skill:buz6,Frostbite,Don Isırığı,Frostbite Türkçeleştirildi
+skill:buz7,Ice Comet,Buz Kuyruklusu,Ice Comet Türkçeleştirildi
+skill:buz8,Glacier Nova,Buzul Halkası,Glacier Nova Türkçeleştirildi
+skill:m_um1,Staff Mastery,Asa Ustalığı,Staff Mastery Türkçeleştirildi
+skill:alaz_um1,Inferno,Cehennem Alevi,Inferno Türkçeleştirildi
+skill:alaz_um2,Dragon Tooth,Ejder Dişi,Dragon Tooth Türkçeleştirildi
+skill:boran_um1,Blizzard,Boran Tipisi,Blizzard Türkçeleştirildi
+skill:boran_um2,Arc Lightning,Yay Şimşeği,Arc Lightning Türkçeleştirildi
+skill:x_hit,Saldırı,Saldırı,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_bolt,Kara Kıvılcım,Kara Kıvılcım,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_stab,Pusu,Pusu,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_hex,Bataklık Bedduası,Bataklık Bedduası,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_mend,Çamur Merhemi,Çamur Merhemi,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_smash,Ezici Darbe,Ezici Darbe,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_quake,Yer Sarsıntısı,Yer Sarsıntısı,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_guard,Kemik Siperi,Kemik Siperi,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_howl,Akın Çığlığı,Akın Çığlığı,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_cleave,Geniş Savuruş,Geniş Savuruş,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_curse,Mezar Soğuğu,Mezar Soğuğu,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_mire,Sazlık Fırtınası,Sazlık Fırtınası,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_crush,Bey Yumruğu,Bey Yumruğu,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_shot,Ok,Ok,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_volley,Ok Sağanağı,Ok Sağanağı,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_aim,Nişanlı Atış,Nişanlı Atış,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_fire,Kor Topu,Kor Topu,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_lavanova,Lav Dalgası,Lav Dalgası,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_firestorm,Kül Fırtınası,Kül Fırtınası,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_frost,Ayaz Oku,Ayaz Oku,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_freeze,Buz Kesen,Buz Kesen,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_blizzard,Yayla Tipisi,Yayla Tipisi,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_rage,Kan Öfkesi,Kan Öfkesi,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_drain,Can Sömüren,Can Sömüren,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_ward,Tuğ Gölgesi,Tuğ Gölgesi,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_bigheal,Ata Rünü,Ata Rünü,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_mark,Kem Göz,Kem Göz,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_execute,Kelle Alan,Kelle Alan,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu
+skill:x_roar,Yıldıran Nara,Yıldıran Nara,Zaten Türkçe canavar yeteneği ve 1-3 sözcük; korundu

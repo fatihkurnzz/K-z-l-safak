@@ -7,6 +7,7 @@ import { showLogin } from './ui-giris.js';
 import { showStart, startNote } from './ui-acilis.js'; // açılış: sunucu seçimi ve giriş // kullanıcı adı + şifre (yeni sunucu)
 import { preloadModels } from './skinned.js';
 import { ACT } from './ui-core.js';
+import './adlar-tr.js'; // Türkçe eşya/yetenek adları (dil katmanı, M5)
 import './ui.js';
 import { loadPortraitOverrides } from './portraits.js';
 import { gfx } from './gfx.js';
