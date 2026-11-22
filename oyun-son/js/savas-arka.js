@@ -21,7 +21,7 @@ export function pickBg(kind, seed = 0) {
   const L = BY_KIND[kind] || ['yemin', 'sur'];
   // 23 Kas (Gemini M2: "Kragmir orku Elentha tarzı aydınlık kale önünde savaşıyor"): öbür halkın surları/ocağı oyuncunun halkına göre değişir
   const f = document.documentElement.dataset.faction, b = L[Math.abs(seed | 0) % L.length];
-  return f === 'ocak' && b === 'sur' ? 'guz' : f === 'sancak' && b === 'ocak' ? 'kapi' : b;
+  return f === 'ocak' && (b === 'sur' || b === 'selale') ? 'guz' : f === 'sancak' && b === 'ocak' ? 'kapi' : b;
 }
 // Işık takımları (resmin saatine ve rengine göre): key = gölge düşüren ana ışık (kameranın yanından), rim = resmin ışık
 // kaynağı yönünden kontur ışığı, hemi = gök/yer dolgusu, sky = ortam yansıması için gök renkleri (resimden örneklendi)

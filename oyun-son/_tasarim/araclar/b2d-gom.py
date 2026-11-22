@@ -74,6 +74,10 @@ for t in TURLER:
         f = bul(f'yaratik-{t}-{p}')
         if not f: eksik.append(t + '-' + p); continue
         d[p] = webp(Image.open(f), (384, 384))
+        if p == 'bekleme':  # düşman çerçevesi için baş kırpması (yaratık sola bakar: baş sol yarıda)
+            im = Image.open(f).convert('RGBA'); x0, y0, x1, y1 = im.getchannel('A').point(lambda v: 255 if v > 40 else 0).getbbox()
+            a = int((y1 - y0) * 0.95); cx = x0 + int((x1 - x0) * 0.3); cy = y0 + a // 2
+            d['portre'] = webp(im.crop((cx - a // 2, cy - a // 2, cx + a // 2, cy + a // 2)), (128, 128))
     veri[t] = d
 yaz(os.path.join(OUT, 'js', 'b2d-yaratik.js'), 'yaratıklar, 3 poz, 384x384, zemin alttan 48/1024', veri)
 # Karakter seçme/oluşturma tam boyu için savaşçıların temizlenmiş bekleme pozu (kullanıcı kararı: kılıç + kalkan) → karakter-gom.py okur
