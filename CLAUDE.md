@@ -8,7 +8,18 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 9. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 10. oturum) — clear sonrası buradan devam
+- **Sürüm 32 YAYINDA** (509 dosya; yayın commit'i 3b78239 "C6: Karakter 2B"; sonraki yayında `git diff --name-status 3b78239 HEAD -- oyun-son`, `_tasarim` hariç). Kullanıcı: TEST YAPMA (yalnız kendi düzen kontrolüm için tek ekran görüntüsü aldım).
+- **M4 maketleri** (kaynak ZIP `/root/.claude/uploads/12c01fda-.../bf397601-M4_Arayuz_Maketleri_ve_Olculer.zip`, ölçüler `olcu-*.md`):
+  - **VS BİTTİ:** `ui-battle.js renderVs` → `.vs.vs2` (sol 2B tam boy `sprUrl`, orta VS arması + koşul kartı, sağ ana düşman `vsMain` tam çizim + güç, alt şerit dalga kartları + Oto + Başla). Yıldız koşulları kısaldı ("Can > %25"). CSS `v27-duzen.css` sonu `#win[data-scr="vs"]`.
+  - **Sonuç BİTTİ:** `showResult` kutusuna `rz2` sınıfı, `.rz2-arma` (G8 amblemi `--amb-*`, yenilgide gri/kırık), `.rz2-alt`, `.rz2-yil` (3 büyük yıldız, yalnız stage). Eski `.rz-head`, rapor yan paneli ve döküm şeridi gizli (rapor "Savaş dökümü" düğmesinde).
+  - **Karakter (C6) kısmen:** ortada 2B tam boy (`ui-kahraman.js .kx-2b`; `B2D.on` kapalıysa eski 3B + döndürme). Çanta sütunu işlev olduğu için kaldı. 2B resim kuşanılan eşyayı göstermez.
+  - **Ana HUD:** v29 zaten maket düzenine yakın; dikey oyuncu kartı önceki karar gereği kaldı; dar telefonda çakışma yok. Değişiklik yapılmadı.
+  - Diyalog maketi C8'de uygulanmıştı.
+- BEKLEYEN TESTLER'e ekle: VS (boss, Meydan rakibi kahraman, Taş Yemini sol taraf), sonuç (yenilgi, nöbet, meydan, kule), Karakter 2B iki halk/4 sınıf.
+- İlerleme ~%75. Sırada: C4 (3B malzeme/ışık — 2B yöntem seçildiği için muhtemelen gereksiz, kullanıcıya sor), C0 kalanı (sanat kitabı/referans paketi), C10 kalan VFX (şimşek/kutsal/gölge), C16 regresyon+telefon turu, C11 CSS göçü en sona; "Stage" Türkçesi ve Kragmir yeşil ten GPT'den bekleniyor.
+
+## ÖNCEKİ DURUM (23.11, 9. oturum)
 - YAYIN YOK (sürüm 31 yayında; yayın commit'i bfb64c4 → `git diff --name-status bfb64c4 HEAD -- oyun-son`, `_tasarim` hariç). Kullanıcı: orta/zor işler Opus'ta, TEST YAPMA.
 - **C8 genişledi:** `ui-ogretici.js say()` artık `diyalog()` (Halvor portreli, Bran yedek SVG); `orman.js ormanIzci` Corin/Thrak; `ui-anit.js ACT.yashka` Yashka diyaloğu (son düğmeler Nöbet/Anıt). Pencere başlıkları: `sahne.js npcBas(kim, yedekSvg)` → Tüccar (Halvor) ve İksirci (Maelis) G4 yüzü; CSS `v27-duzen.css` sonu. Tarayıcıda denenmedi.
 - **C13 BİTTİ:** doğrudan parametresiz ACT çağrıları tarandı, hepsi `d?.` korumalı; `ACT.building` kimliksiz/bilinmeyen binada sessiz döner.
