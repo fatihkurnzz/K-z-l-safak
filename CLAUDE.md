@@ -8,7 +8,16 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 10. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 11. oturum) — clear sonrası buradan devam
+- **Sürüm 33 YAYINDA** (509 dosya; yayın commit'i "M1 ek düzeltmeler" commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç). TEST YAPMA kuralı sürüyor (yalnız karakter oluşturmanın tek ekran görüntüsü alındı, hatasız).
+- **Gelen:** Gemini M1 raporu + GPT 4 düzeltme ZIP'i (`/root/.claude/uploads/6a0c4fed-.../`). Birleşik kaynak (eski paket + düzeltmeler) scratchpad `birlesik/` (`G1 G2_* G4 G5 G7 g3/`); tarif dosyaları volgar/dunya-baskini için oraya bakıyor.
+- **Bağlananlar:** 8 Kragmir kahramanı YEŞİL tenli (G2 tam set + G1 ork savaşçı erkek); Elentha kadın savaşçı büyü pozu (YEDEK kalktı), sancak büyücü kadın + savaşçı erkek yeni; `b2d-gom.py` HALE boş. G3: Tepegöz tek gözlü, çamur adam/çöl golemi/kül şövalye/kum adam/titan/sentor okçu (yaylı) yeni; 13 eksik tür yalnız bekleme pozuyla (`b2d-g3-gom.py` PNG de okur; `savas-birim2d set()` eksik pozda bekleme): rabbit→y1, falcon/hornet/gargoyle/leader_of_barbarian→y3, lamia/snake_queen→y4, 6 ejder→yb (red_dragon(+hatchling) fire, blue ice, bone ice:renk, dark shadow, gold lightning:renk; dragon_earth/poison kullanılmadı). G4 Volgar yeni, G5 Dünya Baskını Karadun'lu, G7 şimşek → `zap` şeridi. Karakter oluşturma: Kragmir büyücü/rahip/suikastçı tam boyları + yüzler yeşil (`_tasarim/gelen/kragmir-yesil/`, `karakter-gom.py`); Kragmir yüz yuvaları 0-3 = savaşçı/suikastçı/büyücü/rahip yüzü, 4 = savaşçının aynası.
+- **Kullanılmayan:** `bekleme-alternatif` (balta), `katman-pelerin`, karakter-oluşturma `kragmir_savasci_*` tam boyu (tırpanlı; savaşçı G1/G2 kılıç+kalkandan).
+- GPT'ye kalan: 13 yeni türün saldırı/vurulma pozları; boss evre 2'lerin gerçek dönüşümü; mantikor/megantereon portre kırpımı; Kragmir 5. yüz.
+- BEKLEYEN TESTLER'e ekle: Kragmir savaşı (yeşil pozlar), Tepegöz boss, ejder dünya bossu, Koru'da tavşan, şimşek yetenekleri.
+- İlerleme ~%80. Sırada: C4 (sor), C0 kalanı, C10 kalan VFX (kutsal/gölge), C16 regresyon+telefon turu, C11 CSS göçü en sona; "Stage" Türkçesi GPT/kullanıcıda.
+
+## ÖNCEKİ DURUM (23.11, 10. oturum)
 - **Sürüm 32 YAYINDA** (509 dosya; yayın commit'i 3b78239 "C6: Karakter 2B"; sonraki yayında `git diff --name-status 3b78239 HEAD -- oyun-son`, `_tasarim` hariç). Kullanıcı: TEST YAPMA (yalnız kendi düzen kontrolüm için tek ekran görüntüsü aldım).
 - **M4 maketleri** (kaynak ZIP `/root/.claude/uploads/12c01fda-.../bf397601-M4_Arayuz_Maketleri_ve_Olculer.zip`, ölçüler `olcu-*.md`):
   - **VS BİTTİ:** `ui-battle.js renderVs` → `.vs.vs2` (sol 2B tam boy `sprUrl`, orta VS arması + koşul kartı, sağ ana düşman `vsMain` tam çizim + güç, alt şerit dalga kartları + Oto + Başla). Yıldız koşulları kısaldı ("Can > %25"). CSS `v27-duzen.css` sonu `#win[data-scr="vs"]`.
