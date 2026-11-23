@@ -103,7 +103,7 @@ const local = {
     if (!(await store.query('news', { k1: 'n', limit: 1 })).length) {
       const t = Date.now();
       await store.commit([
-        { t: 'put', coll: 'news', id: 'ornek00001', doc: { title: 'Hoş geldin, yiğit!', body: 'Korant Online deneme sürümüne hoş geldin. Burada ilerlemen yalnızca bu cihazda tutulur.\nYeni bir şey çıktığında duyurular burada görünür.', at: t - 3600000 }, ver: null, k1: 'n', n1: t - 3600000 },
+        { t: 'put', coll: 'news', id: 'ornek00001', doc: { title: 'Hoş geldin, yiğit!', body: 'Korant Online'a hoş geldin. İlerlemen bu cihazda tutulur.\nYeni bir şey çıktığında duyurular burada görünür.', at: t - 3600000 }, ver: null, k1: 'n', n1: t - 3600000 },
         { t: 'put', coll: 'news', id: 'ornek00002', doc: { title: 'Örnek duyuru: bakım notu', body: 'Gerçek sunucuda yöneticiler bu panoya haber ve güncelleme notu yazar. Bu iki yazı yalnızca örnektir.', at: t - 86400000 }, ver: null, k1: 'n', n1: t - 86400000 },
       ]);
     }
@@ -156,7 +156,7 @@ export function resetLocal() { clearTimeout(saveT); ls.del(K_WORLD); ls.del(K_TO
 export function payCall(path, body = {}) {
   const run = async () => {
     if (lock) return never();
-    if (LOCAL) throw new ApiError('pay-off', 'Çevrimdışı deneme sürümünde satın alma yapılamaz.');
+    if (LOCAL) throw new ApiError('pay-off', 'Bu sürümde satın alma yok; mağaza yakında açılıyor.');
     const j = await remote.call('/api/pay/' + path, body);
     if (j.state) setState(j.state, j.time, j.dev);
     return j.result;

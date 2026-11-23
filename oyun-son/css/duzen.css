@@ -490,3 +490,34 @@ body #game #battleUI:has(#bapot:not([hidden])) #bctl { bottom:calc(var(--sab,0px
 
 /* ===== 23.11 (13. oturum): Görevler sekme rozeti "Günlük" yazısının üstüne biniyordu → simgenin sol üst köşesine, kırmızı zeminli ===== */
 html[data-faction] .qx-bd { left:-4px !important; top:-5px !important; min-width:16px; height:16px; line-height:16px; font-size:10px; background:#c0301e !important; border-radius:8px; border:1px solid #ffe2b8aa !important; }
+
+/* ===== 23.11 (14. oturum): kalan M3 glifleri savaş düğmelerinde — Otomatik (otomatik), Oto İksir (iksir-can), hız (hiz).
+   Yuvarlak düğmede glif üstte, yazı altta küçük. Glif yoksa (html.glifli değil) eski yazılı düğme kalır. ===== */
+html.glifli:root body #game #battleUI #bctl2 :is(#bauto, #bapot, #bspeed) { flex-direction:column !important; gap:calc(2 * var(--g)); font-size:calc(17 * var(--g)) !important; }
+html.glifli:root body #game #battleUI #bctl2 #bspeed { font-size:calc(24 * var(--g)) !important; }
+html.glifli:root body #game #battleUI #bctl2 :is(#bauto, #bapot, #bspeed)::before {
+  content:'' !important; display:block; flex:none; width:calc(50 * var(--g)); height:calc(50 * var(--g)); background:currentColor;
+  -webkit-mask:var(--gl) 50% 50% / contain no-repeat; mask:var(--gl) 50% 50% / contain no-repeat; filter:drop-shadow(0 1px 0 #000); pointer-events:none; }
+html.glifli:root body #game #battleUI #bctl2 #bauto { --gl:var(--gl-otomatik); }
+html.glifli:root body #game #battleUI #bctl2 #bapot { --gl:var(--gl-iksir-can); }
+html.glifli:root body #game #battleUI #bctl2 #bspeed { --gl:var(--gl-hiz); }
+html.glifli:root body #game #battleUI #bctl2 #bspeed::before { width:calc(40 * var(--g)); height:calc(40 * var(--g)); }
+
+/* ===== 23.11 (14. oturum, C11): Düğme rolleri (SANAT_KITABI 9). html.roller (sahne.js; kapatma dd_rol='0' / ?rol=0).
+   Oyunda .red tarihsel olarak ANA EYLEM (Saldır, Başla, Gönder, Kaydet) için kullanılıyor → birincil sayılır.
+   Birincil = .green ve .red (halk rengi kit + altın kenar) · İkincil = .btn, .blue (koyu kit, Kül yazı)
+   Tehlike = .tehlike (kırmızı kit; sıfırla, klandan çıkar/ayrıl, arkadaşlıktan çıkar, engelle, parçala)
+   Satın alma = birincil + soldaki para simgesi (premBuy, shopBuy, marketBuy, klBuy, payBuy).
+   Yükseklik: 40 px, küçük 32 px (özel yerleşimlerin kendi ölçüsü önce gelir: yalnız en az yükseklik). ===== */
+html.roller[data-faction] .btn.red:not(.tehlike)::before { border-image-source:var(--u-b1n); }
+html.roller[data-faction] .btn.red:not(.tehlike):not(:disabled):active::before { border-image-source:var(--u-b1p); }
+html.roller[data-faction] .btn.red:not(.tehlike):disabled::before { border-image-source:var(--u-b1x); }
+html.roller[data-faction] .btn.red:not(.tehlike) { --bt:var(--u-t1); color:var(--bt); text-shadow:0 1px 1px #000; }
+html.roller[data-faction] .btn.tehlike::before { border-image-source:var(--u-b3n); }
+html.roller[data-faction] .btn.tehlike:not(:disabled):active::before { border-image-source:var(--u-b3p); }
+html.roller[data-faction] .btn.tehlike:disabled::before { border-image-source:var(--u-b3x); }
+html.roller[data-faction] .btn.tehlike { --bt:#fff; color:#fff; }
+html.roller[data-faction] .btn.tehlike:disabled { --bt:#8d8790; color:#8d8790; }
+html.roller[data-faction] .btn { min-height:40px; }
+html.roller[data-faction] .btn.sm { min-height:32px; }
+html.roller[data-faction] :is(#win, #modal) .btn:is([data-a="premBuy"], [data-a="shopBuy"], [data-a="marketBuy"], [data-a="klBuy"]) svg { flex:none; margin-right:4px; }

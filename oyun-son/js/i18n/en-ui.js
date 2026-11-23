@@ -1674,6 +1674,12 @@ export const EN_UI = {
   '{0} klana davet edildi.': '{0} was invited to the clan.',
   'Bugünkü av {0} olarak başlasın mı? Tepegöz sertleşir, verilen hasarın %{1}\'i klana yazılır. Gün dönümüne kadar geri alınamaz.': 'Start today\'s hunt as {0}? Tepegöz gets tougher and {1}% of the damage dealt counts for the clan. It can\'t be undone until day\'s end.',
   // ---- public/js/ui-odeme.js ----
+  'Mağaza yakında açılıyor.': 'The shop opens soon.',
+  'Bu sürümde gerçek parayla satın alma yok. Yakut görevlerden, meydandan ve ilk geçişlerden kazanılır.': 'There are no real-money purchases in this version. Yakut is earned from quests, the Arena and first clears.',
+  'Yakında': 'Soon',
+  'Karakterler bu cihazda saklanır.': 'Characters are stored on this device.',
+  'Bu sürümde satın alma yok; mağaza yakında açılıyor.': 'No purchases in this version; the shop opens soon.',
+  'Korant Online\'a hoş geldin. İlerlemen bu cihazda tutulur. Yeni bir şey çıktığında duyurular burada görünür.': 'Welcome to Korant Online. Your progress is kept on this device. Announcements appear here when something new comes out.',
   'Deneme sürümü:': 'Demo version:',
   'bu sürüm sunucusuz çalışır, gerçek parayla satın alma yapılamaz. Paketler bilgi içindir; yakut burada görevlerden, meydandan ve test araçlarından gelir.': 'this version runs without a server and can\'t take real-money purchases. The packs are shown for information; here Yakut comes from quests, the Arena and the test tools.',
   'Bu pakette mağaza satın alması henüz açılmadı.': 'Store purchases aren\'t enabled in this package yet.',

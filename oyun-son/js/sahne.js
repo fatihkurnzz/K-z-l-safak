@@ -27,5 +27,8 @@ if (!glifKapali) import('./glif-png.js').then(m => {
   for (const k of m.KEYS) root.style.setProperty('--gl-' + k, `url(${m.url(k)})`);
   root.classList.add('glifli');
 }).catch(() => {});
+// 23 Kas (C11): sanat kitabı düğme rolleri (duzen.css "Düğme rolleri"): birincil / ikincil / tehlike / satın alma.
+// Kapatmak (eski görünüş): dd_rol='0' ya da ?rol=0.
+try { if (!(localStorage.getItem('dd_rol') === '0' || /[?&]rol=0/.test(location.search))) root.classList.add('roller'); } catch { root.classList.add('roller'); }
 // 23 Kas (C8): pencere başlıklarındaki küçük NPC başı — G4 yüzü hazırsa <img>, değilse eski SVG çizimi
 export const npcBas = (k, yedek = '') => { const u = npcYuz(k); return u ? `<img class="npc-yuz" src="${u}" alt="" draggable="false">` : yedek; };

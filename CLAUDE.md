@@ -8,7 +8,13 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 13. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 14. oturum) — clear sonrası buradan devam
+- **KOD NİHAİ SÜRÜMDE.** Kullanıcı: önce kod bitsin; testler, GPT görselleri, yayın altyapısı (Play Store) SONRA. Tek kaynak `oyun-son/_tasarim/EKSIK_LISTESI_SON.md` (1 bitti, 2A GPT, 2B testler, 2C Play Store planı, 2D testten sonra kod).
+- **Kararlar (kesin):** Play Store · ilk sürüm yerel kayıt · ilk sürümde gerçek para YOK (2. yol), sonra önce kozmetik, sunucu gelince avantaj · 2. sezon sonra.
+- Bu oturum: ödeme ekranı "Yakında"; savaş Otomatik/Oto İksir/hız glifleri; C11 düğme rolleri `html.roller` (`.tehlike` sınıfı yeni; kapatma `dd_rol='0'`/`?rol=0`); `!important` temizliği testten sonraya.
+- Yayın: önceki yayın commit'i 3545f7e; bu oturumun yayın commit'i "Nihai kod" commit'i.
+
+## ÖNCEKİ DURUM (23.11, 13. oturum)
 - **Sürüm 36 YAYINDA** (485 dosya; yayın commit'i 3545f7e; sonraki yayında `git diff --name-status 3545f7e HEAD -- .` (oyun-son içinde), `_tasarim/` hariç).
 - **"Stage" → "Aşama" BİTTİ** (kullanıcı kararı): TR metinlerde ekleriyle (aşamayı/aşamasını/aşamalarda…), shared/ yalnız metin+yorum; i18n'de yalnız anahtarlar (EN karşılık "stage" kaldı). Betik scratchpad `asama.py` (silinebilir).
 - Regresyon (ui-denetim, 880×406, iki halk): 68/88 ekran açıldı, 0 JS hatası. Görevler sekme rozeti düzeltildi (`duzen.css` sonu).

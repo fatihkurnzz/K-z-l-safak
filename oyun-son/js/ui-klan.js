@@ -147,7 +147,7 @@ function members(D) {
     <p class="mut">Satırdaki akçe, üyenin bugüne dek yaptığı toplam bağıştır. Reis ${SUCCESSION_DAYS} gün hiç giriş yapmazsa reislik en yüksek rütbeli etkin üyeye kendiliğinden geçer.</p>
     <h3>Yetkiler</h3><div class="board kl-perm">${Object.entries(PERMS).map(([k, P]) => `<div class="${can(me, k) ? 'me' : ''}"><b>${P.name}</b><span>${minRank(k)}${P.min < 3 ? ' ve üstü' : ''}</span></div>`).join('')}</div>
     <p class="mut">Çıkarma ve rütbe verme yalnızca kendinden düşük rütbedeki üyelere uygulanır. En çok ${RANKS.yardimci.max} ${RANKS.yardimci.name}, ${RANKS.kidemli.max} ${RANKS.kidemli.name} olabilir.</p>
-    <div class="mbtns"><button class="btn sm" data-a="clanLeave">Klandan ayrıl</button></div>`;
+    <div class="mbtns"><button class="btn sm tehlike" data-a="clanLeave">Klandan ayrıl</button></div>`;
 }
 ACT.klAccept = async d => { const r = await run('clan.accept', { id: d.id }); if (r) { toast(r.gone ? 'Bu oyuncu başka bir klana katılmış; başvuru silindi.' : 'Başvuru onaylandı.'); reload(); } };
 ACT.klReject = async d => { if (await run('clan.reject', { id: d.id })) reload(); };
@@ -157,7 +157,7 @@ ACT.klMember = d => {
   const me = D.me.rank, opts = can(me, 'rank') ? RANK_KEYS.filter(k => k !== 'reis' && k !== m.rank && RANKS[k].order < RANKS[me].order) : [];
   showModal(`<h2>${tName(m.name, m.ti, m.rk)}</h2><div class="in"><p>${rankChip(m.rank)} Sv. ${m.lvl} · ${fmt(m.power)} güç${m.il ? ` · ${ilvTag(m.il)}` : ''}</p><p class="mut">Klana katılış: ${ago(m.joined)} · son giriş: ${ago(m.seen)} · toplam bağış: ${fmt(m.don)} akçe</p>
     <div class="mbtns">${opts.map(k => `<button class="btn sm" data-a="klRank" data-id="${esc(m.id)}" data-rank="${k}">${RANKS[k].name} yap</button>`).join('')}
-      ${can(me, 'kick') ? `<button class="btn sm red" data-a="klKick" data-id="${esc(m.id)}" data-name="${esc(m.name)}">Klandan çıkar</button>` : ''}
+      ${can(me, 'kick') ? `<button class="btn sm red tehlike" data-a="klKick" data-id="${esc(m.id)}" data-name="${esc(m.name)}">Klandan çıkar</button>` : ''}
       ${can(me, 'transfer') && !m.bot ? `<button class="btn sm blue" data-a="klTransfer" data-id="${esc(m.id)}" data-name="${esc(m.name)}">Reisliği devret</button>` : ''}</div>
     </div>`);
 };

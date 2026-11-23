@@ -143,7 +143,7 @@ function pageAcc() {
     <div class="row">${med('party', '')}<div class="grow"><b>Profil</b><br><span class="mut">Fotoğraf, unvan, istatistikler ve savaş raporları.</span></div><button class="btn sm" data-a="ayProfile">Aç</button></div>
     <div class="row">${med('events', '')}<div class="grow"><b>Fragmanı izle</b><br><span class="mut">Açılış sinematiğini yeniden oynat.</span></div><button class="btn sm" data-a="ayFragman">İzle</button></div>
     <div class="row">${med('crown', '')}<div class="grow"><b>Emeği Geçenler</b><br><span class="mut">Simge yazarları ve lisans (CC BY 3.0).</span></div><button class="btn sm" data-a="ayEmek">Aç</button></div>
-    ${LOCAL ? `<div class="row">${med('lock', '')}<div class="grow"><b>Deneme kaydı</b><br><span class="mut">Bu sürümde ilerleme yalnızca bu cihazda saklanır; oturum kapatma yoktur. Kaydı silersen oyun baştan başlar.</span></div><button class="btn sm red" data-a="devReset">Kaydı sıfırla</button></div>`
+    ${LOCAL ? `<div class="row">${med('lock', '')}<div class="grow"><b>Deneme kaydı</b><br><span class="mut">Bu sürümde ilerleme yalnızca bu cihazda saklanır; oturum kapatma yoktur. Kaydı silersen oyun baştan başlar.</span></div><button class="btn sm red tehlike" data-a="devReset">Kaydı sıfırla</button></div>`
       : '<p class="mut">Hesabın bu cihaza bağlıdır; oturum kapatma ve hesap taşıma henüz yoktur. Tarayıcı verilerini silersen hesaba erişimin kaybolur.</p>'}`;
 }
 ACT.ayCopy = async () => { const id = AY.data?.id; if (!id) return; try { await navigator.clipboard.writeText(id); toast(t('Kimlik kopyalandı.')); } catch { toast(t('Kopyalanamadı. Kimliği elle seç.')); } };

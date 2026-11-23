@@ -35,7 +35,7 @@ const dateText = ms => { const d = new Date(ms + 3 * HOUR); return `${d.getUTCDa
 export function bagFullBox() {
   showModal(`<h2>Çanta dolu</h2><div class="in"><p><b>Çantanda yer yok: ${S.items.length}/${BAG_LIMIT} eşya.</b> Önce eşya sat ya da parçala.</p>
     <p class="mut">Çanta doluyken eşya düşüren savaşlara (bölgeler, Yeraltı Ocağı, Mühürlü Oda) girilmez; eşyalı ödüller toplanmaz. Posta ekleri postada bekler, kaybolmaz.</p>
-    <div class="mbtns"><button class="btn red" data-a="bagBreak">${ri('toz', '#fff')} Parçala ya da sat</button>${locked('market') ? '' : `<button class="btn" data-a="bagMarket">${ri('market')} Pazarda ilana koy</button>`}</div></div>`, 'pv-bag');
+    <div class="mbtns"><button class="btn red tehlike" data-a="bagBreak">${ri('toz', '#fff')} Parçala ya da sat</button>${locked('market') ? '' : `<button class="btn" data-a="bagMarket">${ri('market')} Pazarda ilana koy</button>`}</div></div>`, 'pv-bag');
 }
 hooks.err = e => { if (e?.code !== 'bag-full') return false; bagFullBox(); return true; };
 ACT.bagBreak = () => { closeModal(); locked('anvil') ? ACT.party() : ACT.breakWin(); };

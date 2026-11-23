@@ -439,7 +439,7 @@ ACT.profile = () => {
       ${tile('bag', 'Çanta', `${S.items.length}/${BAG_LIMIT}`)}
     </div>
     ${S.rk?.fr?.length ? '<div class="mbtns pf-acts"><button class="btn sm" data-a="frameSel">Çerçeve</button></div>' : ''}
-    ${devUI() ? `<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm aşamaları aç</button>${LOCAL ? '<button class="btn sm red" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : ''}
+    ${devUI() ? `<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm aşamaları aç</button>${LOCAL ? '<button class="btn sm red tehlike" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : ''}
   `, `prof pf-${S.faction}`);
 };
 // Grafik ayarı (ACT.gfx): ui-isik.js, kademeler gfx.js

@@ -98,7 +98,7 @@ function drawSel() {
     <nav class="ks-list">${slots.map(card).join('')}</nav>
     <section class="ks-plate" id="ksplate">${c ? plate(c) : ''}</section>
     <button class="ks-enter" data-a="tkEnter" id="tkenter" ${c ? '' : 'disabled'}><span>Oyuna gir</span></button>
-    ${LOCAL ? '<p class="ks-local">Deneme sürümü: karakterler yalnızca bu cihazda saklanır.</p>' : ''}
+    ${LOCAL ? '<p class="ks-local">Karakterler bu cihazda saklanır.</p>' : ''}
     <div class="ks-veil" aria-hidden="true"></div>`;
   document.body.appendChild(box);
   offView = onView(() => requestAnimationFrame(() => placeHero()));

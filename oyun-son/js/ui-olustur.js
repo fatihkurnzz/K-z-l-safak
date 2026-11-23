@@ -68,7 +68,7 @@ function open() {
   b.innerHTML = `<div class="vz-shade" aria-hidden="true"></div>
     <div class="vz-hero" id="vzhero" aria-hidden="true"><img alt="" draggable="false"></div>
     <h1 class="vz-title"><span>Karakter Oluştur</span></h1>
-    <div class="vz-meta"><span class="vz-lang" translate="no">${LANG_KEYS.map(k => `<button data-o="lang" data-l="${k}" class="${lang() === k ? 'on' : ''}" lang="${k}">${k.toUpperCase()}</button>`).join('')}</span><span class="vz-slots" title="${LOCAL ? 'Deneme sürümü: karakterler yalnızca bu cihazda saklanır.' : ''}">Hesap ${n}/${ACC?.max || CHAR.slots}</span></div>
+    <div class="vz-meta"><span class="vz-lang" translate="no">${LANG_KEYS.map(k => `<button data-o="lang" data-l="${k}" class="${lang() === k ? 'on' : ''}" lang="${k}">${k.toUpperCase()}</button>`).join('')}</span><span class="vz-slots" title="${LOCAL ? 'Karakterler bu cihazda saklanır.' : ''}">Hesap ${n}/${ACC?.max || CHAR.slots}</span></div>
     <section class="vz-side" aria-label="Taraf seç"><h2 class="vz-h">Taraf Seç</h2><div class="vz-banners" id="olzl" role="radiogroup"></div></section>
     <nav class="vz-faces" id="vzfaces" role="radiogroup" aria-label="Yüz"></nav>
     <section class="vz-right" aria-label="Sınıf ve görünüm"><div id="olzr"></div></section>

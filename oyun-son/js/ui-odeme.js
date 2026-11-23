@@ -43,7 +43,7 @@ const priceOf = (D, P) => (isStore(provOf(D)) && Y.prices[P.storeId]) || priceTe
 
 function banner(D) {
   const prov = provOf(D), nk = nativeKind();
-  if (LOCAL) return `<div class="hint ynote"><b>Deneme sürümü:</b> bu sürüm sunucusuz çalışır, gerçek parayla satın alma yapılamaz. Paketler bilgi içindir; yakut burada görevlerden, meydandan ve test araçlarından gelir.</div>`;
+  if (LOCAL) return `<div class="hint ynote"><b>Mağaza yakında açılıyor.</b> Bu sürümde gerçek parayla satın alma yok. Yakut görevlerden, meydandan ve ilk geçişlerden kazanılır.</div>`;
   if (!prov) return `<div class="hint ynote"><b>Satın alma şu an kapalı.</b> ${nk ? 'Bu pakette mağaza satın alması henüz açılmadı.' : 'Bu sunucuda ödeme yöntemi henüz açılmadı.'} Yakut görevlerden, meydandan ve ilk geçişlerden kazanılmaya devam eder.</div>`;
   if (prov.kind === 'test') return `<div class="hint ynote"><b>Test sunucusu:</b> satın alma para alınmadan anında tamamlanır (yalnızca geliştirme içindir).</div>`;
   if (prov.kind === 'web') return `<div class="hint ynote">Ödeme, güvenli ödeme sayfasında kartla yapılır; tamamlanınca oyuna dönersin ve yakut hesabına yazılır. Makbuz postana gelir.</div>`;
@@ -51,7 +51,7 @@ function banner(D) {
   return `<div class="hint ynote">Ödeme ${prov.kind === 'android' ? 'Google Play' : 'App Store'} üzerinden yapılır; geçerli fiyatı mağaza gösterir. Yakut, satın alma doğrulanınca hesabına yazılır.</div>`;
 }
 const curSwitch = () => ''; // para birimi seçimi kaldırıldı: fiyatlar yalnızca USD
-const buyBtn = (D, P, label) => `<button class="btn red ybuy" data-a="payBuy" data-sku="${esc(P.sku)}" ${canBuy(D) && !Y.busy ? '' : 'disabled'}>${Y.busy === P.sku ? 'Bekle…' : label || esc(priceOf(D, P))}</button>`;
+const buyBtn = (D, P, label) => `<button class="btn red ybuy" data-a="payBuy" data-sku="${esc(P.sku)}" ${canBuy(D) && !Y.busy ? '' : 'disabled'}>${LOCAL ? 'Yakında' : Y.busy === P.sku ? 'Bekle…' : label || esc(priceOf(D, P))}</button>`;
 
 function packsHtml(D) {
   const packs = D.products.filter(P => P.kind === 'yakut');
@@ -291,13 +291,13 @@ ACT.frDecline = async d => { if (await run('friend.decline', { id: d.id })) afte
 ACT.frCancel = async d => { if (await run('friend.cancel', { id: d.id })) after(d, 'İstek geri çekildi.'); };
 ACT.frRemove = async d => { const ok = await run('friend.remove', { id: d.id }); if (!d.card || !ok) closeModal(); if (ok) after(d, 'Arkadaş listenden çıkarıldı.'); };
 ACT.frRemoveAsk = d => showModal(`<h2>Arkadaşlıktan çıkar</h2><div class="in"><p><b>${esc(d.name)}</b> arkadaş listenden çıkarılsın mı? Onun listesinden de silinirsin.</p>
-  <div class="mbtns"><button class="btn red" data-a="frRemove" data-id="${esc(d.id)}" ${d.card ? 'data-card="1"' : ''}>Çıkar</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
+  <div class="mbtns"><button class="btn red tehlike" data-a="frRemove" data-id="${esc(d.id)}" ${d.card ? 'data-card="1"' : ''}>Çıkar</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
 
 // ====================================================================================================================
 // Engel ve şikâyet
 // ====================================================================================================================
 ACT.blockAsk = d => showModal(`<h2>Oyuncuyu engelle</h2><div class="in"><p><b>${esc(d.name)}</b> engellensin mi?</p><p class="mut">Sohbet mesajlarını ve özel mesajlarını görmezsin; sana özel mesaj ve arkadaşlık isteği gönderemez. Arkadaşsanız arkadaşlık biter. Engeli Menü → Arkadaşlar → Engellenenler'den kaldırabilirsin.</p>
-  <div class="mbtns"><button class="btn red" data-a="block" data-id="${esc(d.id)}">Engelle</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
+  <div class="mbtns"><button class="btn red tehlike" data-a="block" data-id="${esc(d.id)}">Engelle</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
 ACT.block = async d => { closeModal(); if (await run('social.block', { id: d.id })) { toast('Oyuncu engellendi. Mesajları artık görünmeyecek.'); if (cur() === FR) reload(); } };
 ACT.unblock = async d => { if (await run('social.unblock', { id: d.id })) after(d, 'Engel kaldırıldı.'); };
 
