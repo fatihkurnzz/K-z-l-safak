@@ -101,7 +101,7 @@ export function rollKill(rand, mob, rank, lvl, opt = {}) {
 
 // ---------- Ansiklopedi: bir eşya nereden, hangi oranla düşer ----------
 // Yukarıdaki tablolardan türetilir (ayrı bir "bilgi" tablosu yoktur; oran değişirse katalog da değişir).
-// Satırlar: { t:'mob', mob, rank, from, to, rate }   yaratık kesimi başına (from–to: o kademede bulunduğu stage'ler)
+// Satırlar: { t:'mob', mob, rank, from, to, rate }   yaratık kesimi başına (from–to: o kademede bulunduğu aşamalar)
 //           { t:'boss', mob, stage, rate, seal }       günlük boss (seal: Mühürlü Oda'daki oran) · { t:'pity', mob, marks }
 //           { t:'wheel', rate } · { t:'depth', rate }  çevirme / kat başına (eşsizin çark satırını codex.item ekler)
 const RARE_ELITE = 5;          // azılı yaratıkta nadir drop çarpanı
@@ -111,7 +111,7 @@ export const wheelUniques = lvl => { const ok = Object.entries(UNIQUES).filter((
 const share = (table, g) => (table.find(x => x[0] === g)?.[1] || 0) / table.reduce((a, x) => a + x[1], 0);
 const TIERS_UP = Array.from({ length: TIER_MAX }, (_, i) => i + 1); // Olağan'ın üstündeki zorluk kademeleri
 const CAL_GEAR = [...CAL7, ...CAL28].flat().filter(d => d.t === 'gear'); // takvimlerdeki eşyalı ödüller
-let UNITS = null; // bütün stage'lerdeki yaratıklar: { mob, rank, lvl, stage }
+let UNITS = null; // bütün aşamalardaki yaratıklar: { mob, rank, lvl, stage }
 function stageUnits() {
   if (UNITS) return UNITS;
   UNITS = [];
@@ -157,8 +157,8 @@ export function itemSources(b, g) {
 // Çarkın eşsiz dilimi oyuncunun seviyesine bağlıdır: katalog satırı oyuncuya göre hesaplanır (uygun değilse 0)
 export const wheelUniqueRate = (b, lvl) => { const pool = wheelUniques(lvl); return pool.includes(b) ? wheelShare('unique') / pool.length : 0; };
 
-// ---------- Nöbet (pvpops.js): bir stage'in tek seferde beklenen ganimeti ----------
-// units: stage'in yaratıkları · tier: zorluk kademesi. Gerçek tablolardan toplanır (rollKill ile aynı oranlar):
+// ---------- Nöbet (pvpops.js): bir aşamanın tek seferde beklenen ganimeti ----------
+// units: aşamanın yaratıkları · tier: zorluk kademesi. Gerçek tablolardan toplanır (rollKill ile aynı oranlar):
 // { gear: kademe eşyası adedi, rare: bunun Nadir olan kısmı, stone0/1/2, dust: toz adedi, seal, ember, unique }
 export function expectedDrops(units, tier = 0) {
   const T = tierDrop(tier), out = { gear: 0, rare: 0, stone0: 0, stone1: 0, stone2: 0, dust: 0, seal: 0, ember: 0, unique: 0 };

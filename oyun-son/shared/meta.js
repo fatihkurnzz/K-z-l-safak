@@ -141,7 +141,7 @@ export const ACH = [
   { id: 'ore',     cat: 'mine',  name: 'Cevher Yükü',      title: 'Cevher Beyi',    stat: 'def', tiers: [2000, 20000, 150000],   text: n => `Madenden ${nf(n)} cevher topla`,                 v: p => C(p, 'ore') },
   // Savaş
   { id: 'wins',    cat: 'battle', name: 'Cenk Meydanı',    title: 'Cenk Eri',       stat: 'atk', tiers: [1, 50, 500, 3000],      text: n => `${nf(n)} savaş kazan`,                           v: p => p.stats.wins },
-  { id: 'stars',   cat: 'battle', name: 'Yıldız Toplayan', title: 'Yıldızlı',       stat: 'hp',  tiers: [30, 150, ZONES.length * STAGES_PER_ZONE * 3], text: n => `Stage’lerden ${nf(n)} yıldız topla`, v: p => sumOf(p.stages) },
+  { id: 'stars',   cat: 'battle', name: 'Yıldız Toplayan', title: 'Yıldızlı',       stat: 'hp',  tiers: [30, 150, ZONES.length * STAGES_PER_ZONE * 3], text: n => `Aşamalardan ${nf(n)} yıldız topla`, v: p => sumOf(p.stages) },
   { id: 'zones',   cat: 'battle', name: 'Diyar Diyar',     title: 'Diyar Fatihi',   stat: 'atk', tiers: ZONES.map((_, i) => i + 1), text: n => `${n} bölgenin son boss’unu yen`,               v: p => ZONES.filter(z => p.stages[`${z.id}-${STAGES_PER_ZONE}`]).length },
   { id: 'level',   cat: 'battle', name: 'Yol Görmüş',      title: 'Yol Görmüş',     stat: 'hp',  tiers: [10, 30, 50, 65],        text: n => `Seviye ${n} ol`,                         v: p => p.lvl },
   { id: 'well',    cat: 'battle', name: 'Dipsiz Yürek',    title: 'Kuyu Bekçisi',   stat: 'def', tiers: [5, 10],                 text: n => `Dipsiz Kuyu’da ${n} dalga temizle`,              v: p => p.wellBest },

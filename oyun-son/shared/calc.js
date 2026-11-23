@@ -9,7 +9,7 @@ import { starsOf, tierKey, farmActive } from './pvp.js';
 import { ZONES } from './zones.js';
 
 const HOUR = 3600000;
-// tier: zorluk kademesi (pvp.js). Üst kademenin ilk stage'i, önceki kademenin son boss'u geçilince açılır.
+// tier: zorluk kademesi (pvp.js). Üst kademenin ilk aşaması, önceki kademenin son boss'u geçilince açılır.
 export const stageOpen = (p, id, tier = 0) => {
   const [z, n] = id.split('-').map(Number), st = starsOf(p, tier);
   if (n > 1) return !!st[stageId(z, n - 1)];
@@ -22,7 +22,7 @@ export const bossAvailable = (p, id, tier = 0) => !starsOf(p, tier)[id] || !p.da
 export const mineRate = (p, now, lvl = p.mine.lvl) => withPct(MINE.perHour(lvl), factionBonus(p.faction).mine + hqPct(p, 'ambar')) * perks(p, now).mine;
 // Yağmurlu saatlerde biriken cevher WEATHER.rain.minePct kadar fazla, poyrazlı saatlerde WEATHER.wind.minePct kadar eksiktir (hava takvimi realm.js'te; herkes için aynıdır)
 export const mineStock = (p, now) => { const h = Math.min(MINE.capHours, (now - p.mine.at) / HOUR); return Math.floor(mineRate(p, now) * (h + (weatherHours('rain', p.mine.at, p.mine.at + h * HOUR) * WEATHER.rain.minePct + weatherHours('wind', p.mine.at, p.mine.at + h * HOUR) * WEATHER.wind.minePct) / 100)); };
-// Çırak: 3 yıldızla geçilmiş en ileri yaratık stage'inin kazancının bir kısmını üretir (eşya üretmez)
+// Çırak: 3 yıldızla geçilmiş en ileri yaratık aşamasının kazancının bir kısmını üretir (eşya üretmez)
 export function idleStage(p) {
   let best = null;
   for (const id in p.stages) if (p.stages[id] === 3) { const d = stageDef(id); if (d && d.kind === 'mob' && (!best || d.zone * 100 + d.n > best.zone * 100 + best.n)) best = d; }

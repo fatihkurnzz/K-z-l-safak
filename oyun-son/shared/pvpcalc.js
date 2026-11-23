@@ -14,9 +14,9 @@ const HOUR = 3600000;
 // ---------- Nöbet ----------
 // Nöbet tutulabilecek bölge: o zorluk kademesinde son boss'u geçilmiş olmalı
 export const farmZoneOpen = (p, z, tier = 0) => Number.isInteger(z) && z >= 1 && z <= ZONES.length && validTier(tier) && !!starsOf(p, tier)[stageId(z, FARM.boss)];
-// Nöbetin "oynadığı" stage: bölgenin son yaratık stage'i
+// Nöbetin "oynadığı" stage: bölgenin son yaratık aşaması
 export const farmRef = (z, tier = 0) => stageDef(stageId(z, FARM.ref), tier);
-// Tick (10 dakika) başına deneyim ve akçe: stage'in tam kazancı × odağın oranı (üst kademede akçe çarpanıyla)
+// Tick (10 dakika) başına deneyim ve akçe: aşamanın tam kazancı × odağın oranı (üst kademede akçe çarpanıyla)
 export function farmRate(z, tier, focus) {
   const d = farmRef(z, tier), F = farmFocus(focus);
   let xp = 0, akce = 0;
@@ -42,7 +42,7 @@ const UNLOCK_INFO = {
   anvil:  ['build', 'forge',   'Örs',             'Eşyaya artı basılır, fazlası parçalanır'],
   mine:   ['build', 'mine',    'Maden',           'Sen yokken cevher biriktirir'],
   arena:  ['mode',  'arena',   'Meydan ve Akın',  'Oyunculara karşı dövüş, lig ve sezon ödülü'],
-  sweep:  ['sys',   'energy',  'Seri savaş',      '3 yıldızlı stage tek dokunuşla ×5 / ×10 oynanır'],
+  sweep:  ['sys',   'energy',  'Seri savaş',      '3 yıldızlı aşama tek dokunuşla ×5 / ×10 oynanır'],
   market: ['build', 'market',  'Pazar ve Tüccar','Oyuncudan oyuncuya eşya alım satımı'],
   clan:   ['build', 'clan',    'Klan Karargâhı',  'Klan kur ya da katıl; Oba Avı'],
   hall:   ['build', 'san',     'CZ - PK',         'Şan Divanı, Meydan ve Meydan Marketi'],

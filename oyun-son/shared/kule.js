@@ -10,7 +10,7 @@ export const KULE = {
   unlock: 65,          // açılış seviyesi (bölgelerin bittiği yer)
   energy: 8,           // kat başına enerji
   bossEvery: 10,       // her 10 katta bir adsız
-  hp0: 0.6, atk0: 0.7, // 1. katın çarpanı (Sisli Çukur'un son stage'lerinden biraz hafif; Sv.65 test botlarıyla ayarlandı)
+  hp0: 0.6, atk0: 0.7, // 1. katın çarpanı (Sisli Çukur'un son aşamalarından biraz hafif; Sv.65 test botlarıyla ayarlandı)
   hpStep: 0.04,        // kat başına yaratık canı artışı
   atkStep: 0.025,      // kat başına yaratık saldırısı artışı
   bossHp: 0.85, bossAtk: 0.9, // adsızın aile bossu (Adsız, Tarikat Lideri) üstündeki payı; kat çarpanı ayrıca uygulanır

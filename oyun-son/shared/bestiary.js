@@ -5,7 +5,7 @@
 // Her blok bir AİLEdir; üyeler rollerine göre kurulur:
 //   b temel (standart saldırı/savunma) · w savaşçı (yüksek can ve savunma, standart saldırı) · m büyücü (yüksek hasar, düşük can
 //   ve savunma) · r çevik (hızlı, kritik) · a okçu (uzaktan) · e seçkin (her yönden güçlü).
-// Stage dizilimi zones.js stageDef'tedir: ör. bir blokun ilk stage'inde her rolden birer canavar gelir (temel + savaşçı + büyücü).
+// Stage dizilimi zones.js stageDef'tedir: ör. bir blokun ilk aşamasında her rolden birer canavar gelir (temel + savaşçı + büyücü).
 // Gövde (look.kind): yoksa insansı (models.js Character); 'worm' (WormCharacter); quad/spider/scorpion/bird/insect/centaur/
 // serpent/dragon (beasts.js BeastCharacter). İnsansı ekler: wings, tail, horns, ghost, bark, snout (models.js decorate).
 

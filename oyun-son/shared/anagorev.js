@@ -40,7 +40,7 @@ export const MQ = [
   N('m01', 1, 'a', 'İlk Kan', 'Kapı’dan bir bölgeye gir; savaş sırayla oynanır.', 1, p => p.stats?.wins || 0, [{ t: 'akce', n: 300 }], 'gate'),
   N('m02', 1, 'b', 'Donan', 'Çanta’dan bir eşya kuşan; eşya gücü artırır.', 1, p => Math.max(C(p, 'equip'), maxSlots(p) >= 3 ? 1 : 0), [{ t: 'energy', n: 20 }], 'party', ['m01']),
   N('m03', 1, 'c', 'Yetenek Puanı', 'Karakter ekranında bir yetenek ağacına puan harca.', 1, spent, [{ t: 'akce', n: 400 }], 'party', ['m01']),
-  N('m04', 1, 'd', 'İlk Kapı', 'Vahran Ovası’nın 5. stage’indeki kapı kaptanını yen.', 1, hasStage('1-5'), [{ t: 'yakut', n: 10 }], 'gate', ['m02', 'm03']),
+  N('m04', 1, 'd', 'İlk Kapı', 'Vahran Ovası’nın 5. aşamasındaki kapı kaptanını yen.', 1, hasStage('1-5'), [{ t: 'yakut', n: 10 }], 'gate', ['m02', 'm03']),
 
   N('m05', 2, 'a', 'Örs’ün Sesi', 'Örs’te 3 kez başarılı artı bas.', 3, p => p.stats?.upOk || 0, [{ t: 'stone', g: 0, n: 2 }], 'anvil', ['m04']),
   N('m06', 2, 'b', 'Hurda Ayıkla', 'Örs’te 5 eşya parçala ya da sat; toz ve akçe kazan.', 5, A('break'), [{ t: 'akce', n: 500 }], 'anvil', ['m05']),
@@ -50,7 +50,7 @@ export const MQ = [
   N('m09', 3, 'a', 'Yol Görmüş', 'Seviyeni 10’a çıkar.', 10, p => p.lvl, [{ t: 'akce', n: 800 }], 'gate', ['m08']),
   N('m10', 3, 'b', 'Sözünü Tut', 'Günlük görevlerden birinin ödülünü al.', 1, p => Math.max(C(p, 'qclaim'), C(p, 'dailyAll'), Object.keys(p.daily?.qdone || {}).length ? 1 : 0), [{ t: 'energy', n: 30 }], 'quests', ['m09']),
   N('m11', 3, 'c', 'Baş Avı', 'Bir boss yen; kapı kaptanları ve boss’lar günde bir kez ödül verir.', 1, A('bosskill'), [{ t: 'stone', g: 0, n: 3 }], 'gate', ['m09']),
-  N('m12', 3, 'd', 'Vahran Fatihi', 'Vahran Ovası’nı bitir: 25. stage’in boss’unu yen.', 1, zoneDone(1), [{ t: 'yakut', n: 20 }], 'gate', ['m10', 'm11']),
+  N('m12', 3, 'd', 'Vahran Fatihi', 'Vahran Ovası’nı bitir: 25. aşamanın boss’unu yen.', 1, zoneDone(1), [{ t: 'yakut', n: 20 }], 'gate', ['m10', 'm11']),
 
   N('m13', 4, 'a', 'Meydana Çık', 'Meydan’da bir dövüş yap (12. seviyede açılır).', 1, p => (p.arena?.wins || 0) + (p.arena?.losses || 0), [{ t: 'san', n: 60 }], 'meydan', ['m12']),
   N('m14', 4, 'b', 'Pazar Gezen', 'Pazar’dan bir eşya satın al.', 1, A('bought'), [{ t: 'akce', n: 1500 }], 'market', ['m13']),
@@ -70,40 +70,40 @@ export const MQ = [
 // 19 Kas: hikâye görevleri (7–16. bölüm). İlerleme gerçek durumdan okunur; ödüller Bağlı (nt) gelir.
 const lvl = p => p.lvl || 0;
 MQ.push(
-  N('m25', 7, 'a', 'Küldeki Ayak İzleri', 'Thrak/Bran sınır karakolunda gri cübbeli gölgeler görmüş. Kül Geçidi’nin 5. stage’ine ulaş.', 1, hasStage('2-5'), [{ t: 'akce', n: 3000 }], 'gate', ['m24']),
+  N('m25', 7, 'a', 'Küldeki Ayak İzleri', 'Thrak/Bran sınır karakolunda gri cübbeli gölgeler görmüş. Kül Geçidi’nin 5. aşamasına ulaş.', 1, hasStage('2-5'), [{ t: 'akce', n: 3000 }], 'gate', ['m24']),
   N('m26', 7, 'b', 'Sessiz Kılıçlar', 'Gölgelerin peşindeki yaratıkları sustur: toplam 500 düşman devir.', 500, A('kills'), [{ t: 'energy', n: 40 }], 'gate', ['m25']),
   N('m27', 7, 'c', 'Demiri Bile', 'Gölgelere karşı silahın keskin olsun: bir eşyayı +6 yap.', 6, A('plus'), [{ t: 'stone', g: 1, n: 2 }], 'anvil', ['m25']),
-  N('m28', 7, 'd', 'Cübbenin Sahibi', 'Kül Geçidi’nin 15. stage’ini geç; cübbelilerin izini sür.', 1, hasStage('2-15'), [{ t: 'yakut', n: 25 }], 'gate', ['m26', 'm27']),
+  N('m28', 7, 'd', 'Cübbenin Sahibi', 'Kül Geçidi’nin 15. aşamasını geç; cübbelilerin izini sür.', 1, hasStage('2-15'), [{ t: 'yakut', n: 25 }], 'gate', ['m26', 'm27']),
 
   N('m29', 8, 'a', 'Şamanın Çağrısı', 'Yashka seni bekliyor: seviyeni 25’e çıkar.', 25, lvl, [{ t: 'akce', n: 4000 }], 'gate', ['m28']),
   N('m30', 8, 'b', 'Kemik Fal', 'Yashka’nın falı için 3 farklı boss türü yen.', 3, A('bosskind'), [{ t: 'stone', g: 1, n: 2 }], 'gate', ['m29']),
   N('m31', 8, 'c', 'Derinden Gelen Ses', 'Dipsiz Kuyu’da 10 dalga temizle; ses aşağıdan geliyor.', 10, A('well'), [{ t: 'energy', n: 50 }], 'dungeons', ['m29']),
   N('m32', 8, 'd', 'Kehanetin Kapısı', 'Kül Geçidi’ni baştan sona geç; kehanet yolu açar.', 1, zoneDone(2), [{ t: 'yakut', n: 40 }], 'gate', ['m30', 'm31']),
 
-  N('m33', 9, 'a', 'Kızıl Bahar’a Adım', 'İki ordunun çarpıştığı meydana gir: Kızıl Bahar Meydanı’nın 1. stage’ini geç.', 1, hasStage('3-1'), [{ t: 'akce', n: 6000 }], 'gate', ['m32']),
+  N('m33', 9, 'a', 'Kızıl Bahar’a Adım', 'İki ordunun çarpıştığı meydana gir: Kızıl Bahar Meydanı’nın 1. aşamasını geç.', 1, hasStage('3-1'), [{ t: 'akce', n: 6000 }], 'gate', ['m32']),
   N('m34', 9, 'b', 'Meydanın Tozu', 'Meydan’da 10 zafer kazan; ordunun gözü sende.', 10, A('awins'), [{ t: 'san', n: 200 }], 'meydan', ['m33']),
   N('m35', 9, 'c', 'Kırık Mızraklar', 'Savaş alanından 20 eşya topla, işe yaramayanı parçala.', 20, A('break'), [{ t: 'akce', n: 5000 }], 'anvil', ['m33']),
-  N('m36', 9, 'd', 'Bahar Komutanı', 'Kızıl Bahar Meydanı’nın 10. stage’ini geç.', 1, hasStage('3-10'), [{ t: 'yakut', n: 40 }], 'gate', ['m34', 'm35']),
+  N('m36', 9, 'd', 'Bahar Komutanı', 'Kızıl Bahar Meydanı’nın 10. aşamasını geç.', 1, hasStage('3-10'), [{ t: 'yakut', n: 40 }], 'gate', ['m34', 'm35']),
 
   N('m37', 10, 'a', 'Çatlak Dikilitaş', 'Taş Yemini çatlıyor: seviyeni 40’a çıkar.', 40, lvl, [{ t: 'akce', n: 8000 }], 'gate', ['m36']),
   N('m38', 10, 'b', 'Yemin Pazarı’nda Fısıltı', 'Pazar’da 5 eşya sat; tüccarlar söylentileri satar.', 5, A('sold'), [{ t: 'energy', n: 50 }], 'market', ['m37']),
   N('m39', 10, 'c', 'Mühürlerin Ardı', 'Mühürlü Oda’yı 3 kez kazan.', 3, A('seal'), [{ t: 'stone', g: 2, n: 1 }], 'dungeons', ['m37']),
-  N('m40', 10, 'd', 'Barışın Bekçisi', 'Kızıl Bahar Meydanı’nın 20. stage’ini geç.', 1, hasStage('3-20'), [{ t: 'yakut', n: 50 }], 'gate', ['m38', 'm39']),
+  N('m40', 10, 'd', 'Barışın Bekçisi', 'Kızıl Bahar Meydanı’nın 20. aşamasını geç.', 1, hasStage('3-20'), [{ t: 'yakut', n: 50 }], 'gate', ['m38', 'm39']),
 
   N('m41', 11, 'a', 'Taht Salonu', 'Kral seni huzuruna çağırıyor: Kızıl Bahar Meydanı’nı bitir.', 1, zoneDone(3), [{ t: 'yakut', n: 60 }], 'gate', ['m40']),
   N('m42', 11, 'b', 'Kralın Kılıcı', 'Krala layık ol: bir eşyayı +7 yap.', 7, A('plus'), [{ t: 'stone', g: 2, n: 1 }], 'anvil', ['m41']),
   N('m43', 11, 'c', 'Oba Sancağı', 'Bir klanda ol; kral klanların gücüne güvenir.', 1, A('clan'), [{ t: 'akce', n: 10000 }], 'clan', ['m41']),
   N('m44', 11, 'd', 'Buyruk', 'Seviyeni 50’ye çıkar; buyruk seni Sisli Çukur’a yollar.', 50, lvl, [{ t: 'yakut', n: 60 }], 'gate', ['m42', 'm43']),
 
-  N('m45', 12, 'a', 'Sisin Eşiği', 'Sisli Çukur’un 1. stage’ini geç.', 1, hasStage('4-1'), [{ t: 'akce', n: 12000 }], 'gate', ['m44']),
+  N('m45', 12, 'a', 'Sisin Eşiği', 'Sisli Çukur’un 1. aşamasını geç.', 1, hasStage('4-1'), [{ t: 'akce', n: 12000 }], 'gate', ['m44']),
   N('m46', 12, 'b', 'Kemik Yığını', 'Toplam 5000 düşman devir; çukur dolu.', 5000, A('kills'), [{ t: 'energy', n: 60 }], 'gate', ['m45']),
   N('m47', 12, 'c', 'Yerin Dibi', 'Kor katlarında 25. kata in.', 25, A('depth'), [{ t: 'stone', g: 2, n: 2 }], 'dungeons', ['m45']),
-  N('m48', 12, 'd', 'Ateşsiz Kazanın Kokusu', 'Sisli Çukur’un 8. stage’ini geç.', 1, hasStage('4-8'), [{ t: 'yakut', n: 70 }], 'gate', ['m46', 'm47']),
+  N('m48', 12, 'd', 'Ateşsiz Kazanın Kokusu', 'Sisli Çukur’un 8. aşamasını geç.', 1, hasStage('4-8'), [{ t: 'yakut', n: 70 }], 'gate', ['m46', 'm47']),
 
   N('m49', 13, 'a', 'Tarikatın Kapısı', 'Seviyeni 58’e çıkar; tarikat güçlüye kapı açar.', 58, lvl, [{ t: 'akce', n: 15000 }], 'gate', ['m48']),
-  N('m50', 13, 'b', 'Gri Cübbeler', 'Sisli Çukur’un 14. stage’ini geç.', 1, hasStage('4-14'), [{ t: 'yakut', n: 70 }], 'gate', ['m49']),
+  N('m50', 13, 'b', 'Gri Cübbeler', 'Sisli Çukur’un 14. aşamasını geç.', 1, hasStage('4-14'), [{ t: 'yakut', n: 70 }], 'gate', ['m49']),
   N('m51', 13, 'c', 'Nadide Sandık', 'Bir eşsiz eşya bul.', 1, A('uniq'), [{ t: 'stone', g: 2, n: 2 }], 'gate', ['m49']),
-  N('m52', 13, 'd', 'Kazanın Bekçisi', 'Sisli Çukur’un 20. stage’ini geç.', 1, hasStage('4-20'), [{ t: 'yakut', n: 80 }], 'gate', ['m50', 'm51']),
+  N('m52', 13, 'd', 'Kazanın Bekçisi', 'Sisli Çukur’un 20. aşamasını geç.', 1, hasStage('4-20'), [{ t: 'yakut', n: 80 }], 'gate', ['m50', 'm51']),
 
   N('m53', 14, 'a', 'Mareşalin Gölgesi', 'Seviyeni 62’ye çıkar.', 62, lvl, [{ t: 'akce', n: 20000 }], 'gate', ['m52']),
   N('m54', 14, 'b', 'Usta Demirci', 'Bir eşyayı +8 yap.', 8, A('plus'), [{ t: 'stone', g: 2, n: 3 }], 'anvil', ['m53']),

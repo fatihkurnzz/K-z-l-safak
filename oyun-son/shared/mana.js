@@ -28,6 +28,6 @@ export const POT = {
   start: { hp: 5, mp: 5 }, // yeni karakterin başlangıç çantası (eski kayda da bir kez verilir)
 };
 export const POT_KEYS = ['hp', 'mp'];
-// Tüccar fiyatı (akçe): seviyeyle büyür; bir iksir, o seviyedeki bir stage'in akçesinin kabaca beşte biri
+// Tüccar fiyatı (akçe): seviyeyle büyür; bir iksir, o seviyedeki bir aşamanın akçesinin kabaca beşte biri
 export const potPrice = (k, L) => Math.max(10, Math.round((10 + 3 * L + 0.18 * L * L) * (k === 'mp' ? 0.9 : 1) / 5) * 5);
 export const potsOf = p => ({ hp: Math.max(0, p?.pots?.hp | 0), mp: Math.max(0, p?.pots?.mp | 0) });

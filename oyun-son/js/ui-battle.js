@@ -57,10 +57,10 @@ function gateZones() {
   // Bölgeler en üstte, tek satırda; seçili bölgenin manzarası sayfanın arka planı olur (index.html: .zbg)
   return `<div class="zbg z${Z.id}"><div class="sub zonerow">${ZONES.map(z => `<button data-a="zone" data-z="${z.id}" class="${z.id === GV.zone ? 'on' : ''}" ${zoneOpen(z.id) ? '' : 'disabled'}>${ri(zoneOpen(z.id) ? 'zone' + z.id : 'lock')}<span>${z.name}</span></button>`).join('')}</div>${tierBar()}${bagNote()}
     <h3>${Z.name}${T ? ` (${STAGE_TIERS[T].name})` : ''} <span class="mut">· Sv. ${T ? STAGE_TIERS[T].lvl : `${Z.lv[0]}-${Z.lv[1]}`} · ${total}/${stages.length * 3} ★</span></h3>${T ? tierNote(T) : `<p class="mut">${Z.desc}</p>`}${hooks.zoneInfo?.(Z.id) || ''}
-    <div class="stg wide">${tiles}</div><p class="mut">Bir stage'e dokun. 5, 10, 15, 20 ve 25 kapı stage'idir; taçlı olanlar günlük boss'tur (eşsiz eşya ve iz verir).</p></div>`;
+    <div class="stg wide">${tiles}</div><p class="mut">Bir aşamaya dokun. 5, 10, 15, 20 ve 25 kapı aşamasıdır; taçlı olanlar günlük boss'tur (eşsiz eşya ve iz verir).</p></div>`;
 }
 ACT.zone = d => { GV.zone = +d.z; redraw(); };
-ACT.stage = d => { if (!d || !d.id) return; const t = +d.t || 0; if (!stageOpen(S, d.id, t)) return toast('Kilitli: önce bir önceki stage geçilmeli.'); openStageVs(d.id, t); };
+ACT.stage = d => { if (!d || !d.id) return; const t = +d.t || 0; if (!stageOpen(S, d.id, t)) return toast('Kilitli: önce bir önceki aşama geçilmeli.'); openStageVs(d.id, t); };
 
 const card = (pic, name, desc, chips, btn, tone = 'violet') => `<div class="row">${med(pic, tone)}<div class="grow"><b>${name}</b><br><span class="mut">${desc}</span><div class="chips">${chips.map(c => `<span class="chip">${c}</span>`).join('')}</div></div>${btn}</div>`;
 const enter = (m, ok, label = 'Gir') => `<button class="btn red" data-a="mode" data-m="${m}" ${ok ? '' : 'disabled'}>${label}</button>`;
@@ -159,8 +159,8 @@ function openStageVs(id, tier = 0) {
   const d = stageDef(id, tier), SS = starsOf(S, tier), boss = d.kind === 'boss', ready = bossAvailable(S, id, tier), marks = boss ? S.marks[d.gate] || 0 : 0;
   const sweep = !boss && SS[id] === 3 && !locked('sweep');
   openVs({ title: `${d.n}. ${d.name}${tier ? ` (${STAGE_TIERS[tier].name})` : ''}`, foe: `Düşman <span class="mut">· Sv. ${d.lvl}</span>`, waves: soloWaves(d.waves, 'stage'), args: tier ? { stage: id, tier } : { stage: id }, energy: d.energy, sweep, can: !boss || ready,
-    rules: [`${stars(1)} Stage'i geç`, `${stars(2)} Can > %25`, `${stars(3)} Can > %50`],
-    desc: d.lvl > S.lvl + 1 ? `<span class="warn">Seviyen (${S.lvl}) bu stage için düşük.</span>` : !boss && SS[id] === 3 && locked('sweep') ? `Seri savaş ${UNLOCK.sweep}. seviyede açılır.` : !boss && SS[id] !== 3 ? '3 yıldızla geçersen seri savaş açılır.' : '',
+    rules: [`${stars(1)} Aşamayı geç`, `${stars(2)} Can > %25`, `${stars(3)} Can > %50`],
+    desc: d.lvl > S.lvl + 1 ? `<span class="warn">Seviyen (${S.lvl}) bu aşama için düşük.</span>` : !boss && SS[id] === 3 && locked('sweep') ? `Seri savaş ${UNLOCK.sweep}. seviyede açılır.` : !boss && SS[id] !== 3 ? '3 yıldızla geçersen seri savaş açılır.' : '',
     extra: boss ? `<div class="hint">${SS[id] ? `Günlük hak: <b class="${ready ? 'up' : 'down'}">${ready ? '1/1' : '0/1 — 00:00’da yenilenir'}</b>` : 'İlk geçişe kadar serbestçe denenir; sonra günde 1 hak.'} · ${ri('mark')} İz: <b>${marks}/${BOSS_PITY}</b> ${marks >= BOSS_PITY ? `<button class="btn sm green" data-a="exchange" data-boss="${d.gate}">Eşsizle takas et</button>` : ''}<br>Eşsizler: ${MOBS[d.gate].uniques.map(u => `<b class="gn g2">${itemBase(u).name}</b>`).join(', ')}</div>` : '' });
 }
 ACT.exchange = d => {

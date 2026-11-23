@@ -108,7 +108,7 @@ function partyEq(hid) {
     ${cands.length ? cands.map(it => {
       const B = itemBase(it.b), low = S.lvl < B.req, o = eqAll.has(it.id) ? owner(it.id) : null;
       return `<div class="row ${low ? 'dim' : ''}">${ico(it)}<div class="grow">${itemLine(it)}${o ? `<br><span class="mut">Şu an ${esc(nameOf(o))} üzerinde</span>` : ''}${cmpLine(it, curIt)}${setSection(S, it, null, [hid])}</div><button class="btn sm green" data-a="equip" data-id="${it.id}" data-s="${s}" ${low ? 'disabled' : ''}>${low ? `Sv. ${B.req}` : 'Kuşan'}</button></div>`;
-    }).join('') : '<p class="mut">Çantanda bu yuvaya uygun başka eşya yok. Eşyalar stage’lerden düşer ya da Pazar’dan alınır.</p>'}`;
+    }).join('') : '<p class="mut">Çantanda bu yuvaya uygun başka eşya yok. Eşyalar aşamalardan düşer ya da Pazar’dan alınır.</p>'}`;
 }
 ACT.slot = d => { PV.sub = 'eq'; PV.slot = PV.slot === d.s ? null : d.s; redraw(); };
 ACT.equip = d => doAct('item.equip', { hero: HID(), id: +d.id, slot: d.s });

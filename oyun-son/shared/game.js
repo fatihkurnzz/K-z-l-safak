@@ -239,13 +239,13 @@ const HANDLERS = {
     return { ...out, report: rec.done() };
   },
   'battle.abandon'(p) { p.battle = null; },
-  // Seri savaş: 3 yıldızla geçilmiş stage'i sunucu n kez kendi oynatır (yapay zekâ), ödüller toplanır
+  // Seri savaş: 3 yıldızla geçilmiş aşaması sunucu n kez kendi oynatır (yapay zekâ), ödüller toplanır
   'battle.sweep'(p, { stage, tier = 0, n = 1 }, env) {
     busy(p);
     if (p.lvl < UNLOCK.sweep) fail('locked', `Seri savaş ${UNLOCK.sweep}. seviyede açılır.`);
     if (!validTier(tier)) fail('bad-tier');
     const def = typeof stage === 'string' ? stageDef(stage, tier) : null;
-    if (!def || def.kind === 'boss' || starsOf(p, tier)[def.id] !== 3) fail('not-3star', 'Seri savaş için stage 3 yıldızla geçilmiş olmalı.');
+    if (!def || def.kind === 'boss' || starsOf(p, tier)[def.id] !== 3) fail('not-3star', 'Seri savaş için aşama 3 yıldızla geçilmiş olmalı.');
     if (!int(n, 1, 10)) fail('bad-count');
     const total = { runs: 0, wins: 0, xp: 0, akce: 0, levels: 0, loot: [] };
     for (let i = 0; i < n; i++) {
@@ -298,7 +298,7 @@ const HANDLERS = {
     if (!M) fail('bad-mob', 'Böyle bir yaratık yok.');
     const rank = M.boss ? 'b' : M.captain ? 'c' : 'n';
     const rows = dropRows(mob, rank).map(([key, rate]) => ({ key, got: c.d[key] || 0, rate }));
-    // sıradan yaratığın stage'lerde "Azılı" hâli de çıkar: onun oranları ayrı listelenir (sayaçlar ortaktır)
+    // sıradan yaratığın aşamalarda "Azılı" hâli de çıkar: onun oranları ayrı listelenir (sayaçlar ortaktır)
     const elite = rank === 'n' ? dropRows(mob, 'e').map(([key, rate]) => ({ key, rate })) : [];
     return { mob, kills: c.k, rows, elite };
   },

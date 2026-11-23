@@ -40,10 +40,10 @@ export const DECREE = { name: 'Ferman', max: 120, gapMs: 30 * 60000, perDay: 6 }
 // Dört bölge her hafta, o hafta orada kazanılan zaferlere göre el değiştirir. Büyük ırk sırf kalabalık olduğu için
 // kazanmasın diye puan etkin nüfusa bölünür:
 //   bölge puanı = 1000 × (ırkın o bölgedeki zafer puanı) / max(minPop, ırkın etkin oyuncu sayısı)
-//   zafer puanı: yaratık stage'i 1, kapı stage'i 2, günlük boss 5 (seri savaş dahil)
+//   zafer puanı: yaratık aşaması 1, kapı aşaması 2, günlük boss 5 (seri savaş dahil)
 //   etkin oyuncu: o hafta bölgelerde en az activeWins zafer kazanmış hesap
 // Puanı yüksek olan ırk ertesi hafta bölgeye hâkim olur; eşitlikte (ya da kimse savaşmadıysa) bölge sahibinde kalır.
-// Hâkim ırkın oyuncuları o bölgenin stage'lerinde bonusPct kadar fazla akçe ya da eşya düşürür (bölgeye göre: zones).
+// Hâkim ırkın oyuncuları o bölgenin aşamalarında bonusPct kadar fazla akçe ya da eşya düşürür (bölgeye göre: zones).
 export const TERR = { bonusPct: 15, minPop: 5, activeWins: 3, flushMs: 5 * 60000, pts: { mob: 1, gate: 2, boss: 5 }, zones: { 1: 'akce', 2: 'drop', 3: 'akce', 4: 'drop' } };
 export const ZONE_IDS = ZONES.map(z => z.id);
 export const zoneBonusKind = z => (Object.hasOwn(TERR.zones, z) ? TERR.zones[z] : null);
@@ -65,7 +65,7 @@ export function terrState(p) {
   T.counted = !!T.counted; if (!Number.isFinite(T.flushAt)) T.flushAt = 0; if (T.own === undefined) T.own = null;
   return T;
 }
-// Bölge stage'inde kazanılan zafer: puan oyuncu kaydında bekler, ırkın haftalık belgesine realmops.js yazar.
+// Bölge aşamasında kazanılan zafer: puan oyuncu kaydında bekler, ırkın haftalık belgesine realmops.js yazar.
 // Dönen değer zaferin puanıdır (yaratık 1, kapı 2, boss 5).
 export function terrWin(p, def, now) {
   const i = ZONE_IDS.indexOf(def.zone), T = terrState(p), W = weekKey(now);
@@ -88,7 +88,7 @@ export const clockOf = now => { const m = Math.floor((now + 3 * HOUR) / 60000); 
 // Bonuslar küçüktür ve sunucuda uygulanır:
 //   rain  Maden üretimi +%minePct (yalnızca yağmurlu saatlerde biriken cevhere)
 //   fog   Örste başarı şansı ×(1 + rel), en çok +cap puan ve %100'ü geçmez (items.js: FOG_UP, upOdds)
-//   wind  Bölge stage'lerinden kazanılan deneyim +%stageXpPct
+//   wind  Bölge aşamalarından kazanılan deneyim +%stageXpPct
 export const WEATHER = {
   clear: { name: 'Açık', w: 40, line: 'Bonus yok, kayıp yok.', bonus: '', cost: '' },
   rain:  { name: 'Yağmur', w: 22, minePct: 10, stageAkcePct: -5 },
@@ -96,9 +96,9 @@ export const WEATHER = {
   wind:  { name: 'Poyraz', w: 19, stageXpPct: 5, minePct: -5 },
 };
 // Her havanın bir bonusu ve bir bedeli vardır (hepsi küçük, hepsi savaş dışı; savaş motoru etkilenmez).
-//   rain  bonus: maden +%10 · bedel: bölge stage'lerinde akçe -%5
-//   fog   bonus: örs şansı · bedel: bölge stage'lerinde deneyim -%5
-//   wind  bonus: bölge stage'lerinde deneyim +%5 · bedel: maden -%5 (yalnızca poyrazlı saatlerde biriken cevhere)
+//   rain  bonus: maden +%10 · bedel: bölge aşamalarında akçe -%5
+//   fog   bonus: örs şansı · bedel: bölge aşamalarında deneyim -%5
+//   wind  bonus: bölge aşamalarında deneyim +%5 · bedel: maden -%5 (yalnızca poyrazlı saatlerde biriken cevhere)
 WEATHER.rain.bonus = `Maden üretimi +%${WEATHER.rain.minePct}`; WEATHER.rain.cost = `Bölge savaşlarında akçe -%${-WEATHER.rain.stageAkcePct}`;
 WEATHER.fog.bonus = `Örste başarı şansı +%${Math.round(FOG_UP.rel * 100)} (oransal; en çok +${Math.round(FOG_UP.cap * 100)} puan)`; WEATHER.fog.cost = `Bölge savaşlarında deneyim -%${-WEATHER.fog.stageXpPct}`;
 WEATHER.wind.bonus = `Bölge savaşlarında deneyim +%${WEATHER.wind.stageXpPct}`; WEATHER.wind.cost = `Maden üretimi -%${-WEATHER.wind.minePct}`;

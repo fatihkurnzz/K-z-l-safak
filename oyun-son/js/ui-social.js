@@ -188,7 +188,7 @@ function raceHtml(D) {
     ${hooks.race?.(D) || ''}
     <div class="hint"><b>${WAR_BONUS.name} bonusu:</b> haftayı kazanan taraf, hafta başından itibaren ${warBonusLine} düşürür. ${D.holder ? `Şu an <b style="color:${FACTIONS[D.holder].color}">${FACTIONS[D.holder].name}</b> tarafında (${left} kaldı).` : D.winner ? 'Bu haftaki süresi doldu; şu an kimsede değil.' : 'Şu an kimsede değil.'}
       Taraf bonusları (yukarıda) kalıcıdır ve haftalık sonuca bağlı değildir.</div>
-    <p class="mut">Kazandığın her savaş tarafına puan yazar: stage 1, boss 5, meydan 2, sancak savaşı raunt başına 3. Puanlar pazartesi sıfırlanır.</p>`;
+    <p class="mut">Kazandığın her savaş tarafına puan yazar: aşama 1, boss 5, meydan 2, sancak savaşı raunt başına 3. Puanlar pazartesi sıfırlanır.</p>`;
 }
 
 // ---------- Sıralama: oyuncular, klanlar, ırk üstünlüğü ----------

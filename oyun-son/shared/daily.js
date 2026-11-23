@@ -167,7 +167,7 @@ export const DAILY_HANDLERS = {
     { const c = clsOf(p); for (const k of Object.keys(KO_ARMOR).filter(k => KO_ARMOR[k][0] === c)) for (const e of ARMOR_SLOTS) give(`u:${k}_${e}`, G_UNIQUE, 7); } // KO zırh setleri (ana kahramanın sınıfı)
     p.stones = p.stones.map(n => n + 200); p.akce += 5000000; p.charms += 10; p.embers = (p.embers || 0) + 10;
   },
-  'dev.unlock'(p, _, env) { // bütün stage'leri 3 yıldızla açar (ekranları denemek için)
+  'dev.unlock'(p, _, env) { // bütün aşamaları 3 yıldızla açar (ekranları denemek için)
     if (!env.dev) fail('forbidden');
     for (let z = 1; z <= 4; z++) for (let n = 1; n <= 25; n++) p.stages[`${z}-${n}`] = 3;
     for (const id in MOBS) p.codex[id] = p.codex[id] || { k: 1, d: {} };

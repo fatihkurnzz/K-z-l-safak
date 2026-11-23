@@ -446,7 +446,7 @@ function guide() {
     if (S.stats.wins >= 1) return { text: result ? 'İlk zafer! Savaşın ganimeti (akçe ve düşen eşyalar) çantana girer; deneyim seviyeni yükseltir.' : 'İlk zaferini kazandın. Savaşlardan akçe, deneyim ve eşya kazanırsın; ganimet çantana girer.', btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
     if (result) return { text: 'Bu kez olmadı. Yeniden dene; zorlanırsan önce iksir iç.', strip: 'modal' };
     if (vis(q1('[data-a="vsStart"]'))) return { text: 'Solda sen, sağda düşmanlar. Hazırsan savaşı başlat.', target: '[data-a="vsStart"]' };
-    if (title === 'Kapı') return vis(q1('[data-a="stage"][data-id="1-1"]')) ? { text: 'İlk stage’e dokun.', target: '[data-a="stage"][data-id="1-1"]' } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
+    if (title === 'Kapı') return vis(q1('[data-a="stage"][data-id="1-1"]')) ? { text: 'İlk aşamaya dokun.', target: '[data-a="stage"][data-id="1-1"]' } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
     if (forest) return hubOr(FOE, 'Yaban sürüsü patikanın ucunda. <b>Yaban sürüsü</b>’ne dokun: ilk savaşın başlasın.', 'Pencereyi kapat ve yaban sürüsüne dokun.');
     return hubOr('.blabel[data-id="gate"]', 'Savaşa Kapı’dan çıkılır. Ortadaki <b>Kapı</b>’ya dokun.', 'Savaşa Kapı’dan çıkılır: ana üsse dön ve Kapı’ya dokun.');
   }
@@ -462,7 +462,7 @@ function guide() {
     if (done) return { text: `Savaş çubuğunu öğrendin: <b>6 yetenek yuvası</b> seviye atladıkça dolar, iksirleri <b>dükkânlardan</b> alırsın.`, btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
     if (result) return { text: 'Sıradaki savaşta alttaki <b>savaş çubuğunu</b> birlikte kullanalım: önce bir <b>iksir</b> iç.', strip: 'modal' };
     if (vis(q1('[data-a="vsStart"]'))) return { text: 'Bu savaşta alttaki çubuğu kendin kullan: <b>önce bir iksir iç</b>, sonra saldır. Hazırsan başlat.', target: '[data-a="vsStart"]' };
-    if (title === 'Kapı') return vis(q1(`[data-a="stage"][data-id="${next}"]`)) ? { text: `Sıradaki stage’e (${next.replace('-', '.')}) dokun.`, target: `[data-a="stage"][data-id="${next}"]` } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
+    if (title === 'Kapı') return vis(q1(`[data-a="stage"][data-id="${next}"]`)) ? { text: `Sıradaki aşamaya (${next.replace('-', '.')}) dokun.`, target: `[data-a="stage"][data-id="${next}"]` } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
     if (forest) return hubOr(FOE, 'Savaşta altta bir <b>savaş çubuğu</b> var: temel saldırı, 6 yetenek yuvası, Can ve Mana iksiri. Denemek için sıradaki <b>Yaban sürüsü</b>’ne dokun.', 'Pencereyi kapat ve yaban sürüsüne dokun: savaş çubuğunu deneyelim.');
     return hubOr('.blabel[data-id="gate"]', 'Savaşta altta bir <b>savaş çubuğu</b> var: temel saldırı, 6 yetenek yuvası, Can ve Mana iksiri. Denemek için <b>Kapı</b>’ya dokun.', 'Ana üsse dön ve Kapı’ya dokun: savaş çubuğunu deneyelim.');
   }
@@ -477,7 +477,7 @@ function guide() {
     if (w >= TUT_HUNT) return { text: forest ? `Patika temiz: ${TUT_HUNT} zafer, cebinde akçe. Seviye de atladın. İlk görevin tamam!` : `Eline ısındın: ${TUT_HUNT} zafer, cebinde akçe. Seviye de atladın.`, btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
     if (result) return { text: `Güzel! Zafer ${w}/${TUT_HUNT}. Sıradaki yaratıklara geçelim.`, strip: 'modal' };
     if (vis(q1('[data-a="vsStart"]'))) return { text: 'Hazırsan savaşı başlat.', target: '[data-a="vsStart"]' };
-    if (title === 'Kapı') return vis(q1(`[data-a="stage"][data-id="${next}"]`)) ? { text: `Sıradaki stage’e (${next.replace('-', '.')}) dokun.`, target: `[data-a="stage"][data-id="${next}"]` } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
+    if (title === 'Kapı') return vis(q1(`[data-a="stage"][data-id="${next}"]`)) ? { text: `Sıradaki aşamaya (${next.replace('-', '.')}) dokun.`, target: `[data-a="stage"][data-id="${next}"]` } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
     if (forest) return hubOr(FOE, `Patikada sürü kaldı (${w}/${TUT_HUNT}): sıradaki <b>Yaban sürüsü</b>’ne dokun.`, 'Pencereyi kapat ve yaban sürüsüne dokun.');
     if (inCarsi) return toCarsi();
     return hubOr('.blabel[data-id="gate"]', `Birkaç yaratık daha kes (${w}/${TUT_HUNT}): ortadaki <b>Kapı</b>’ya dokun.`, 'Ana üsse dön ve Kapı’ya dokun.');
@@ -576,7 +576,7 @@ function tutTick() {
   if (TU.card || TUT_STEPS[S.tut.s] === 'story') {
     const F = FACTIONS[S.faction];
     return setCard(`card:${TU.card ? 'done' : 'story'}:${TU.confirm}`, TU.card
-      ? `<div class="tscrim"></div><div class="tcard tdone"><h2>Tebrikler</h2><div class="tin"><p><b>Tebrikler, öğreticiyi tamamladın.</b></p><p>${capitalOf(S.faction)} ve Yemin Pazarı artık senin. Hediyen çantanda:</p><div class="chips">${TU.card.loot.map(lootChip).join('')}</div><p class="tnext"><b>Sıradaki görevin:</b> Kapı’dan çıkıp ${Z1} bölgesinin stage’lerini geç ve boss’una ulaş. Görevler ekranı her gün yeni ödüller verir.</p><div class="tb"><button class="btn red" data-t="close">Maceraya devam</button></div></div></div>`
+      ? `<div class="tscrim"></div><div class="tcard tdone"><h2>Tebrikler</h2><div class="tin"><p><b>Tebrikler, öğreticiyi tamamladın.</b></p><p>${capitalOf(S.faction)} ve Yemin Pazarı artık senin. Hediyen çantanda:</p><div class="chips">${TU.card.loot.map(lootChip).join('')}</div><p class="tnext"><b>Sıradaki görevin:</b> Kapı’dan çıkıp ${Z1} bölgesinin aşamalarını geç ve boss’una ulaş. Görevler ekranı her gün yeni ödüller verir.</p><div class="tb"><button class="btn red" data-t="close">Maceraya devam</button></div></div></div>`
       : `<div class="tscrim"></div><div class="tcard tstory"><h2 style="--fc:${F.color}">${F.name}</h2><div class="tin">${narr()}${STORY[S.faction].map(p => `<p>${p}</p>`).join('')}
           ${TU.confirm ? skipRow() : `<div class="tb"><button class="btn red" data-t="next">Başlayalım</button><button class="tskip" data-t="skip">Öğreticiyi atla</button></div><small class="tnote">Kısa bir tur: ormanda ilk görevin, Yemin Pazarı ve tüccar, ilk silahın, Dev Solucan görevi, yetenekler, görevler ve sohbet. Atlasan da bitirsen de hediye var: ${TUT_GIFT.map(dropText).join(', ')}.</small>`}</div></div>`);
   }

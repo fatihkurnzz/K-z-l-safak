@@ -1,4 +1,4 @@
-// Bölgeler, yaratıklar ve stage üretimi. Bir bölge 5 bloktur: 4 yaratık stage'i + 1 kapı stage'i (5, 10, 15, 20, 25).
+// Bölgeler, yaratıklar ve stage üretimi. Bir bölge 5 bloktur: 4 yaratık aşaması + 1 kapı aşaması (5, 10, 15, 20, 25).
 // Son kapı günlük boss'tur (günde 1 hak). Bütün adlar bu oyuna özgüdür.
 import { SKILLS } from './skills.js';
 import { buildBestiary, FOREST_MOBS } from './bestiary.js';
@@ -139,7 +139,7 @@ export function stageDef(id, tier = 0) {
   const bi = Math.floor((n - 1) / 5), B = Z.blocks[bi], pos = (n - 1) % 5;
   const lvl = T ? T.lvl : Math.round(Z.lv[0] + (n - 1) * (Z.lv[1] - Z.lv[0]) / (STAGES_PER_ZONE - 1));
   const prog = ((z - 1) * STAGES_PER_ZONE + n - 1) / (ZONES.length * STAGES_PER_ZONE - 1);
-  // Aile dizilimi (bestiary.js): b temel · w savaşçı · mg büyücü · x/x2 ek üyeler (stage'e göre sırayla)
+  // Aile dizilimi (bestiary.js): b temel · w savaşçı · mg büyücü · x/x2 ek üyeler (aşamaya göre sırayla)
   const F = B.fam, m = F.b, w = F.w, mg = F.m, xs = F.x.length ? F.x : [m], x = xs[(n - 1) % xs.length], x2 = xs[n % xs.length];
   const G = MOBS[B.gate];
   let kind = 'mob', waves, energy = 6, env = B.env === 'graveyard' || B.env === 'forest' ? B.env : biomeOf(z, bi, n), name = MOBS[m].name; // 19 Kas: doğal arazi (meydan değil)
@@ -167,7 +167,7 @@ export function stageDef(id, tier = 0) {
 export const zoneStages = (z, tier = 0) => Array.from({ length: STAGES_PER_ZONE }, (_, i) => stageDef(stageId(z, i + 1), tier));
 // Bir bölgedeki yaratıkların ansiklopedi sırası
 export const zoneMobs = z => Object.entries(MOBS).filter(([, m]) => m.zone === z && !m.event).map(([id]) => id);
-// Yaratığın bulunduğu stage'ler
+// Yaratığın bulunduğu aşamalar
 export function mobStages(mob) {
   const out = [];
   for (const Z of ZONES) if (Z.open) for (const s of zoneStages(Z.id)) if (s.waves.some(w => w.some(u => u.mob === mob))) out.push(s.id);

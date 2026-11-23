@@ -97,7 +97,7 @@ function activeBonuses() {
   const t = now(), out = [], w = weatherAt(t), P = myPerks();
   out.push({ icon: svg('clan'), src: `${FACTION_BONUS[S.faction].name} (ırk bonusu)`, text: bonusLines(S.faction).join(' · '), tone: 'f' });
   if (w !== 'clear') { out.push({ icon: WX_ICON[w], src: `Hava bonusu: ${WEATHER[w].name}`, text: WEATHER[w].bonus, tone: 'w' }); out.push({ icon: WX_ICON[w], src: `Hava bedeli: ${WEATHER[w].name}`, text: WEATHER[w].cost, tone: 'c' }); }
-  for (const z of ZONES) if (zoneBonusFor(S, z.id, t)) out.push({ icon: svg('zone' + z.id), src: `Bölge hâkimiyeti: ${z.name}`, text: `${zoneBonusText(z.id)} (o bölgenin stage’lerinde)`, tone: 't' });
+  for (const z of ZONES) if (zoneBonusFor(S, z.id, t)) out.push({ icon: svg('zone' + z.id), src: `Bölge hâkimiyeti: ${z.name}`, text: `${zoneBonusText(z.id)} (o bölgenin aşamalarında)`, tone: 't' });
   if (S.war?.buffUntil > t) out.push({ icon: svg('crown'), src: WAR_BONUS.name, text: `Eşya düşme oranı +%${WAR_BONUS.drop} (${left(S.war.buffUntil - t)} kaldı)`, tone: 'g' });
   if (myTier()) out.push({ icon: svg('san'), src: `${PREMIUM[myTier()].name} Premium`, text: `Savaşta deneyim +%${Math.round(P.xp * 100)}, akçe +%${Math.round(P.akce * 100)}, eşya +%${Math.round(P.drop * 100)}`, tone: 'p' });
   // Öbür paketlerin süreli etkileri de aynı listede: Bakım (Örs) ve haftanın zindan düzeni
@@ -290,7 +290,7 @@ function mapHtml(M) {
     <div class="dmw"><div class="dml">${DIYAR_IMG ? mapImg(M.zones) : mapSvg(M.zones)}</div>
     <div class="dmr zcards">${M.zones.map(card).join('')}</div></div>
     <p>Bu haftaki zaferin: <b>${fmt(M.mine.wins)}</b>${M.mine.active ? ' · ırkının etkin oyuncularından sayılıyorsun' : ` · ${TERR.activeWins} zaferde etkin oyuncu sayılırsın`}. Etkin oyuncu: <span style="color:${FACTIONS.ocak.color}"><b>${fmt(M.act.ocak)}</b> ${FACTIONS.ocak.name}</span> · <span style="color:${FACTIONS.sancak.color}"><b>${fmt(M.act.sancak)}</b> ${FACTIONS.sancak.name}</span>.</p>
-    <div class="hint"><b>Bölge puanı</b> = 1000 × ırkın o bölgedeki zafer puanı ÷ ırkın etkin oyuncu sayısı (en az ${TERR.minPop}). Yaratık stage’i ${TERR.pts.mob}, kapı ${TERR.pts.gate}, günlük boss ${TERR.pts.boss} puandır. Böylece kalabalık ırk sırf kalabalık olduğu için kazanmaz: kişi başına daha çok zafer kazanan alır.
+    <div class="hint"><b>Bölge puanı</b> = 1000 × ırkın o bölgedeki zafer puanı ÷ ırkın etkin oyuncu sayısı (en az ${TERR.minPop}). Yaratık aşaması ${TERR.pts.mob}, kapı ${TERR.pts.gate}, günlük boss ${TERR.pts.boss} puandır. Böylece kalabalık ırk sırf kalabalık olduğu için kazanmaz: kişi başına daha çok zafer kazanan alır.
       Puanı yüksek olan ırk gelecek hafta bölgeye hâkim olur ve orada <b>+%${TERR.bonusPct}</b> akçe ya da eşya düşürür. Eşitlikte bölge sahibinde kalır.</div>`;
 }
 

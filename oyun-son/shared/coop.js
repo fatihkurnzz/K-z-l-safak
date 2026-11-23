@@ -33,7 +33,7 @@ function partyUnits(room, g, docReg, buffs) {
     return buff({ ...u, name: x.nm, ai: true }, buffs);
   });
 }
-// Dalgalar: nöbet bölgesinin stage'lerinden, parti büyüklüğüne göre güçlenmiş; muhafız ve Lav Yürek nöbetin dakikasına göre
+// Dalgalar: nöbet bölgesinin aşamalarından, parti büyüklüğüne göre güçlenmiş; muhafız ve Lav Yürek nöbetin dakikasına göre
 function wavesFor(room, n, S, lvl) {
   const z = room.br === 'high' ? 4 : 3, k = Math.max(1, n / 2.2), i = room.seq || 1;
   const pick = j => { let s = (z === 3 ? 10 : 1) + ((i * 3 + j) % (z === 3 ? 15 : 24)); if (s % 5 === 0) s++; return stageDef(`${z}-${s}`).waves; };

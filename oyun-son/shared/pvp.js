@@ -131,12 +131,12 @@ export function markTitles(mark, now) {
   return out;
 }
 
-// ---------- 3a. Zorluk kademeleri (100 stage'in ikinci ve üçüncü turu) ----------
+// ---------- 3a. Zorluk kademeleri (100 aşamanın ikinci ve üçüncü turu) ----------
 // Bir kademe, önceki kademenin son boss'u (4-25) geçilince açılır; kendi yıldızları ayrı tutulur. Yaratıklar lvl
 // seviyesinde kurulur ve stage ilerledikçe (ilk stage → son stage) hp/atk/def çarpanları [baştan, sona] büyür.
 // bossHp: boss'un can çarpanı (boss'lar 110. turda öfkelendiği için canları yaratıklardan yavaş büyür).
 // res: yaratığın kendi silah türüne ve zayıf olmadığı elementlere eklenen direnç · pen: yaratığın savunma delmesi.
-// energy: yaratık / kapı stage'inin bedeli · akce: kesim akçesi çarpanı · first: ilk geçiş yakutu (kapı / boss).
+// energy: yaratık / kapı aşamasının bedeli · akce: kesim akçesi çarpanı · first: ilk geçiş yakutu (kapı / boss).
 // drop: düşme çarpanları (gear: kademe eşyası oranı · rare: Nadir çıkma payı [sıradan, azılı, kaptan] · stone1/stone2/ember:
 // taş ve köz oranı · unique: boss ve yaratık eşsizleri · marks: boss izi adedi).
 export const STAGE_TIERS = [
@@ -241,7 +241,7 @@ export function modBonusLines(M) {
 }
 
 // ---------- 4. Nöbet: Çırak'ın uzun oto-farm görevi ----------
-// Parti, son boss'u geçilmiş bir bölgeye (o kademede) nöbete dikilir. Her tickMs'de bölgenin son yaratık stage'i (ref)
+// Parti, son boss'u geçilmiş bir bölgeye (o kademede) nöbete dikilir. Her tickMs'de bölgenin son yaratık aşaması (ref)
 // bir kez "oynanmış" sayılır: deneyimin xp, akçenin akce oranı yazılır; her yaratık drop oranında gerçek drop tablosundan
 // zar atar. Süre tavanı Çırak'la aynıdır (premium kademesinin idleHours'u). Nöbet sürerken Çırak'ın olağan birikimi durur.
 export const FARM = { tickMs: 10 * 60 * 1000, ref: 24, boss: 25,

@@ -62,10 +62,10 @@ ACT.tierInfo = d => {
   const T = STAGE_TIERS[+d.t]; if (!T?.drop) return;
   const D = T.drop;
   showModal(`<h2>${T.name} kademe</h2><div class="in" style="text-align:left">
-    <p>Aynı 100 stage, aynı dizilimle; ama bütün yaratıklar <b>Sv. ${T.lvl}</b> ve bölgeden bölgeye sertleşir.</p>
+    <p>Aynı 100 aşama, aynı dizilimle; ama bütün yaratıklar <b>Sv. ${T.lvl}</b> ve bölgeden bölgeye sertleşir.</p>
     <p class="warn">Zorluk</p><p>Her yaratık kendi silah türüne ve zayıf olmadığı elementlere <b>+${pc(T.res)}</b> dirençlidir, vuruşları savunmanın <b>${pc(T.pen)}</b>’sini deler. Zayıf olduğu elemente direnç eklenmez: doğru elementle vurmak daha da önemlidir.</p>
     <p class="up"><b>Karşılığı</b></p><p>Eşya düşme oranı <b>${mul(D.gear)}</b>; sıradan yaratıktan düşen eşyanın <b>${pc(D.rare[0])}</b>’i, azılıdan düşenin <b>${pc(D.rare[1])}</b>’i Nadir. İnce taş <b>${mul(D.stone1)}</b>, Usta taş <b>${mul(D.stone2)}</b>, Tav Közü <b>${mul(D.ember)}</b>, eşsiz şansı <b>${mul(D.unique)}</b>, boss izi <b>${mul(D.marks)}</b>, kesim akçesi <b>${mul(T.akce)}</b>. İlk geçiş: kapı ${T.first.gate}, boss ${T.first.boss} yakut.</p>
-    <p class="mut">Yaratık stage’i ${T.energy.mob}, kapı ${T.energy.gate} enerji; boss’lar enerjisizdir. Yıldızlar, seri savaş ve günlük boss hakkı bu kademeye özeldir. Bir sonraki kademe, bu kademede ${ZONES.at(-1).name} son boss’u geçilince açılır.</p>
+    <p class="mut">Yaratık aşaması ${T.energy.mob}, kapı ${T.energy.gate} enerji; boss’lar enerjisizdir. Yıldızlar, seri savaş ve günlük boss hakkı bu kademeye özeldir. Bir sonraki kademe, bu kademede ${ZONES.at(-1).name} son boss’u geçilince açılır.</p>
     </div>`, 'pv-wide');
 };
 export function tierBar() {

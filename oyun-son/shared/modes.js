@@ -129,13 +129,13 @@ const botTeam = (env, lvl, q, faction, classes) => classes.map(c => { let s = se
 const bossFor = (rand, lvl) => { const ok = allBosses().filter(b => ZONES[MOBS[b].zone - 1].lv[0] <= lvl && !MOBS[b].event); return pickFrom(rand, ok.length ? ok : [allBosses()[0]]); };
 
 export const MODES = {
-  // ---------- Bölge stage'i ----------
+  // ---------- Bölge aşaması ----------
   stage: {
     build(p, { stage, tier = 0 }, env) {
       if (!validTier(tier)) fail('bad-tier');
       const def = typeof stage === 'string' ? stageDef(stage, tier) : null;
       if (!def) fail('bad-stage');
-      if (!stageOpen(p, def.id, tier)) fail('stage-locked', tier && def.id === '1-1' ? `${STAGE_TIERS[tier].name} kademe, ${STAGE_TIERS[tier - 1].name} kademenin son boss’u geçilince açılır.` : 'Önce bir önceki stage geçilmeli.');
+      if (!stageOpen(p, def.id, tier)) fail('stage-locked', tier && def.id === '1-1' ? `${STAGE_TIERS[tier].name} kademe, ${STAGE_TIERS[tier - 1].name} kademenin son boss’u geçilince açılır.` : 'Önce bir önceki aşama geçilmeli.');
       const key = tierKey(def.id, tier), st = starsOf(p, tier);
       // Günlük boss: ilk geçişe kadar serbest denenir; geçildikten sonra günde 1 hak, hak girişte düşer
       if (def.kind === 'boss') {

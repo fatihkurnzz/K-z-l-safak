@@ -47,7 +47,7 @@ const DEFAULTS = now => ({
   settings: newSettings(), // "ayarlar" paketi (settings.js): hesapta saklanan ayarlar (dil)
   pots: { ...POT.start }, // savaş iksirleri (mana.js): Can ve Mana iksiri sayacı; eski kayda da başlangıç çantası bir kez verilir
 });
-// Kapı kaptanı ve boss stage'lerinin ilk geçişi birer Yoldaş Beratı verir (modes.js); eski kayıt, geçtiği kadarını bir kez alır
+// Kapı kaptanı ve boss aşamalarının ilk geçişi birer Yoldaş Beratı verir (modes.js); eski kayıt, geçtiği kadarını bir kez alır
 const beratEarned = p => Object.keys(p.stages || {}).filter(id => { const d = stageDef(id); return d && d.kind !== 'mob' && p.stages[id] > 0; }).length;
 
 export function upgradeState(p, now) {

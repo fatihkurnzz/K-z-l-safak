@@ -366,7 +366,7 @@ ACT.czArena = () => { closeModal(); ACT.gate({ tab: 'pvp' }); };
 ACT.czMarket = () => { closeModal(); ACT.shop(); };
 ACT.building = d => { const b = d?.id && blds().find(x => x.id === d.id); if (!b || !ACT[b.act]) return; LAST_BLD = d.id; // C13: kimliksiz/bilinmeyen bina sessiz döner
   if (b.key && locked(b.key)) return toast(`${b.name}, seviye ${UNLOCK[b.key]} olunca açılır.`); ACT[b.act](); };
-// Sıradaki (geçilmemiş ilk açık) stage'in savaş öncesi ekranı — "5 savaş kazan" görevinin Git düğmesi kullanır
+// Sıradaki (geçilmemiş ilk açık) aşamanın savaş öncesi ekranı — "5 savaş kazan" görevinin Git düğmesi kullanır
 ACT.quick = () => {
   for (const Z of ZONES) for (const s of zoneStages(Z.id)) if (!S.stages[s.id] && stageOpen(S, s.id)) return ACT.stage({ id: s.id });
   ACT.stage({ id: S.lastStage });
@@ -439,7 +439,7 @@ ACT.profile = () => {
       ${tile('bag', 'Çanta', `${S.items.length}/${BAG_LIMIT}`)}
     </div>
     ${S.rk?.fr?.length ? '<div class="mbtns pf-acts"><button class="btn sm" data-a="frameSel">Çerçeve</button></div>' : ''}
-    ${devUI() ? `<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm stage'leri aç</button>${LOCAL ? '<button class="btn sm red" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : ''}
+    ${devUI() ? `<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm aşamaları aç</button>${LOCAL ? '<button class="btn sm red" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : ''}
   `, `prof pf-${S.faction}`);
 };
 // Grafik ayarı (ACT.gfx): ui-isik.js, kademeler gfx.js
@@ -458,5 +458,5 @@ ACT.devLevel = async () => { if (await run('dev.level', { lvl: Math.min(GAME.max
 ACT.devMastery = async () => { if (await run('dev.mastery')) { renderHud(); toast('Ustalık +10 seviye.'); } };
 ACT.devGive = async () => { if (await run('dev.give')) { renderHud(); toast('Test kaynakları eklendi.'); } };
 ACT.devGear = async () => { if (await run('dev.gear')) { renderHud(); toast('Test eşyaları çantaya eklendi (artılı Nadirler ve bir Eşsiz).'); } };
-ACT.devUnlock = async () => { if (await run('dev.unlock')) { renderHud(); toast('Bütün stage’ler 3 yıldızla açıldı.'); } };
+ACT.devUnlock = async () => { if (await run('dev.unlock')) { renderHud(); toast('Bütün aşamalar 3 yıldızla açıldı.'); } };
 ACT.devReset = () => confirmBox('Kaydı sıfırla', 'Bu cihazdaki deneme kaydı silinecek.', resetLocal, 'Sil');
