@@ -3,7 +3,7 @@
 209 takı (yüzük, küpe, kolye, kemer) için ayrı, özgün boyalı simgeler. Oyundaki eşyalar, mekanikler ve adlar DEĞİŞMEZ; yalnız görünüş yenilenir. Silah paketiyle (G9) aynı tarz ve aynı sohbet düzeni.
 
 ## Kullanım
-1. Yeni Gemini sohbeti aç; `TAKI_REFERANS.zip` içindeki görselleri ekle (onaylı tarz + mevcut takılar + beğendiğin silah/zırh sayfası varsa onu da).
+1. Yeni Gemini sohbeti aç; `TAKI_REFERANS.zip` içindeki görselleri ekle (onaylı tarz + beğendiğin silah/zırh sayfası varsa onu da).
 2. Aşağıdaki **1. MESAJ**'ı yapıştır, "Hazırım" cevabını bekle.
 3. **PİLOT: yalnız T01.** Sonucu bana gönder, birlikte onaylayalım. Sonra T02 … T30 (her mesajda bir sayfa).
 4. Bitenleri `T01.png` … adıyla ZIP'le bana gönder. Kesme/temizleme/bağlama bende.
@@ -19,7 +19,7 @@ Görevin: oyundaki her takı için ENVANTER SİMGESİ çizmek. Türler: yüzük,
 
 TARZ (kesin):
 1. Yarı gerçekçi, elle boyanmış dijital resim. Fotoğraf gerçekliği, çizgi film, düz vektör, kalın kontur, 3B render görünümü YASAK.
-2. Ekteki 01_TARZ_ONAYLI görselleri tarz ölçüsüdür. 02_MEVCUT_TAKILAR şu anki simgeler: çok az çeşit var, jenerik; BUNLARI KOPYALAMA, her takıyı ayrı ve tanınır tasarla.
+2. Ekteki 01_TARZ_ONAYLI görselleri tarz ölçüsüdür. Oyunda henüz hiçbir takı tasarımı YOK; her takıyı sıfırdan, ayrı ve tanınır tasarla.
 3. Işık: sol üstten sıcak anahtar ışık, sağdan zayıf soğuk dolgu; metalde net parlama, taşta iç ışık.
 4. Sade, gerçekçi, AZ ALTIN (altın yalnız kademesi altın olanlarda ve eşsizlerde küçük vurgu). Abartılı diken, kafatası yığını, neon parlama YOK. Taşlar gerçekçi, parlak ama dışına ışık saçmaz.
 5. Kademe malzemesi: Bakır → Pirinç → Gümüş → Akik → Altın → Zümrüt → Safir → Elmas. Kademe yükseldikçe daha değerli, daha işçilikli.
