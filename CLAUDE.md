@@ -8,7 +8,12 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 6. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 7. oturum) — clear sonrası buradan devam
+- **Sürüm 31 YAYINDA** (509 dosya; yayın commit'i bfb64c4 "C5: G3 yaratık çizimleri arayüzde"; sonraki yayında `git diff --name-status bfb64c4 HEAD -- oyun-son`, `_tasarim` hariç). 2 boş yer.
+- **Ansiklopedi/VS/rapor/heykel G3 çizimli:** yaratık eşlemesi (`YARATIK`, `B2D` bayrağı, paket yükleyici) three'siz yeni `js/yaratik2d.js`'e taşındı; `savas-birim2d.js` oradan alır. `ui-core mobImg` → `mobResim(id, full)`: hazırsa G3 portresi (128 px boyalı; `full` = boydan bekleme pozu, `.m2df`), değilse eski 3B portre + `data-m2d` (paket inince yerinde değişir). Renk çarpanlı türler tuvalde boyanır (Blob URL); savaş çerçevesi (`combat.js mob2b`) da aynısını kullanır. CSS `v27-duzen.css` sonu. Tarayıcıda denendi: Ansiklopedi 4 bölge, ayrıntı (Trol Kamı, Liç, Karadun), VS 1-1, savaş 1-1 hatasız.
+- Sıradaki: M4 maketleri (VS, sonuç, Karakter=C6, ana HUD), diyaloğu öbür NPC'lere yay, C13 → C14 → C15, C11 en sona. Bekleyen testler listesi aşağıda (6. oturum) geçerli.
+
+## ÖNCEKİ DURUM (23.11, 6. oturum)
 - **Sürüm 30 YAYINDA** (508 dosya; yayın commit'i "C5/G3" commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç). 3 boş yer.
 - **G3 GELDİ ve BAĞLANDI (C5 yaratık/boss kısmı):** 5 ZIP (370 WebP, 102 tür: 4 bölge + ana bosslar), kaynak scratchpad `g3/` (silinebilir; ZIP'ler `/root/.claude/uploads/.../*DD_G3_*.zip`). Araç `_tasarim/araclar/b2d-g3-gom.py <açılmış klasör> .` → `js/b2d-y1..y4.js`, `js/b2d-yb.js` (OTOMATİK; bölge başına tembel yüklenir). Eşleme `savas-birim2d.js YARATIK` ([paket, tür, renk çarpanı]): 146 yaratığın 133'ü 2B; çizimsiz kalan 13 (falcon, hornet, gargoyle, leader_of_barbarian, lamia, snake_queen, 6 ejder, rabbit) 3B. Bosslar 448 px, `OLCU.boss` (1.4×), canı yarıya inince / evre / öfkede 2. evre çizimi (`spec.canli` = canlı birim, yalnız okunur). Düşman çerçevesi portresi `savas-birim2d portre(u)`; combat.js'teki eski `yb/YB` kaldırıldı.
 - **M1 testi kullanıcıda** (kendisi yaptıracak). Kullanıcı 23.11: "biraz hızlanalım, testleri işler bitince not et" → TEST YAPMADAN ilerle, aşağıdaki listeye ekle.
