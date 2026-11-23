@@ -22,3 +22,12 @@ Bu paket bir sonraki Claude oturumuna (Opus 5.5 / Sonnet 5.5) verilir. İki iş 
 1. Giriş ekranı (G1–G6, `CLAUDE_GIRIS_EKRANI.md`) — GPT görseli beklemeden, CSS ile ve mevcut `img/korant-acilis.jpg` üstünde bitir.
 2. GPT görselleri geldikçe `CLAUDE_GPT_SONRASI_EKSIKLER.md` tablosundaki sırayla bağla.
 3. Yayın (sürüm 39) ve kullanıcıya bağlantı + eksik test listesi.
+
+## Ek: P23 bölünmüş görevler (`P23_BOLUNMUS_GOREVLER/`)
+Önceki proje paketi (11 telefon ekranı, istekler U1–U14, bulgular E1–E11) bu klasörde:
+- `00_PROJE_VE_SIRA.md` — istekler ve sıra
+- `CLAUDE_OPUS_GOREVLERI.md` — K1–K12 (kod)
+- `GEMINI_NEON_GOREVLERI.md` — N1–N9 (maket/denetim)
+- `GPT_ASTRA_GOREVLERI.md` — A1–A8 (görsel); `GPT_TEK_ZIP_GOREVI.md`
+- `REFERANS_EKRAN/` — döndürülmüş 11 ekran
+Sıra: önce K1–K12 (Opus), giriş ekranı bunlarla birlikte ya da hemen sonra; GPT/Gemini teslimleri geldikçe bağlanır.
