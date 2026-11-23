@@ -10,7 +10,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 
 ## SON DURUM (23.11, 15. oturum) — P23 PROJE PAKETİ
 - Kullanıcı 11 telefon ekranıyla yeni istekler verdi; **bu oturumda kod DEĞİŞMEDİ**. Kullanıcı işleri başka bir Claude Opus 5.5, Gemini Neon 4 ve GPT Astra 6.2'ye yaptıracak.
-- Paket: `oyun-son/_tasarim/proje-23kas/` (00_PROJE_VE_SIRA.md = istekler U1–U14 + eklenen bulgular E1–E11 + sıra; CLAUDE_OPUS_GOREVLERI.md K1–K12; GEMINI_NEON_GOREVLERI.md N1–N9; GPT_ASTRA_GOREVLERI.md A1–A8; REFERANS_EKRAN/ döndürülmüş ekranlar). ZIP: depo kökünde `P23_PROJE_PAKETI.zip` (commit'lenmedi).
+- Paket: `oyun-son/_tasarim/proje-23kas/` (00_PROJE_VE_SIRA.md = istekler U1–U14 + eklenen bulgular E1–E11 + sıra; CLAUDE_OPUS_GOREVLERI.md K1–K12; GEMINI_NEON_GOREVLERI.md N1–N9; GPT_ASTRA_GOREVLERI.md A1–A8; REFERANS_EKRAN/ döndürülmüş ekranlar). ZIP kullanıcıya gönderildi (depoya konmadı; içerik proje-23kas klasöründe).
 - Sonraki Claude: `CLAUDE_OPUS_GOREVLERI.md`'den başla; kodda sürüm 38 durumu geçerli.
 
 ## ÖNCEKİ DURUM (23.11, 14. oturum) — clear sonrası buradan devam
