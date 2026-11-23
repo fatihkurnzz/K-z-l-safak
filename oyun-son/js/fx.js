@@ -136,7 +136,6 @@ function rebuildStrips() {
     const mesh = new THREE.Mesh(GEO, mat); mesh.visible = false; mesh.frustumCulled = false; mesh.renderOrder = 10;
     strips.push({ mesh, u: mat.uniforms, on: false, t: 0, dur: 0.5, loop: false, s: 1, sy: 1, bill: 1, rot: 0, follow: null, fadeIn: 0 });
   }
-  if (n) setTimeout(vfxLoad, 2500); // savaştan önce indirilmiş olsun
 }
 // name: Paket 4 kod anahtarı (spark, burst, blast, shatter, arc, orb, fireball, shard, zap, dome, flame, drip, orbit, crystal,
 // mote, critHit, dissolve, heal, bossEntrance). o: { size, sy, dur (döngüde toplam süre), loop, bill (1 kameraya dönük, 0 serbest),
@@ -170,6 +169,9 @@ onUpdate(dt => {
 const sa = new THREE.Vector3(), sb = new THREE.Vector3();
 const screenAngle = (a, b) => { sa.copy(a).project(camera); sb.copy(b).project(camera); return Math.atan2(sb.y - sa.y, (sb.x - sa.x) * (camera.aspect || 1)); };
 export const vfxOn = () => strips.length > 0;
+// C14 (23 Kas): şerit paketi (~2 MB) açılışta değil, savaşa gidilirken (Kapı / VS ekranı) önden iner; savaş doğrudan
+// başlarsa ilk strip() çağrısı indirir (o ana dek efekt eski çizimle çıkar). Grafik kademesi şeritsizse hiç inmez.
+export const vfxOnYukle = () => { if (strips.length) vfxLoad(); };
 // Şeritlerin çizildiği renk: efsun (mor) ve ateş kendi rengindedir; buz ve yıldırım şeritleri elementin rengine boyanır,
 // silahın özel rengi (artı parıltısı vb.) verilmişse efsun da o renge döner
 const STRIP_TINT = (el, E) => (el === 'ice' || el === 'bolt' || (el === 'arcane' && E.color !== ELEMENT_FX.arcane.color) ? E.color : 0);

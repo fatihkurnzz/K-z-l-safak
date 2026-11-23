@@ -144,5 +144,7 @@ export function buildBackdrop(group, id) {
   tex(B[0], t => { if (!mats.has(mat)) return; U.map.value = t; const t0 = performance.now(); const f = () => { if (!mats.has(mat)) return; U.ready.value = Math.min(1, (performance.now() - t0) / 350); if (U.ready.value < 1) requestAnimationFrame(f); }; f(); });
   return root;
 }
-// Resim paketi (~4 MB) oyun açıldıktan biraz sonra boşta önden indirilir: ilk savaşta arka plan beklemeden gelir
-if (typeof window !== 'undefined') setTimeout(() => (window.requestIdleCallback || setTimeout)(() => import('./savas-arka-png.js').catch(() => { })), 8000);
+// C14 (23 Kas): resim paketi (~4 MB) açılışta değil, savaşa gidilirken (Kapı / VS ekranı, combat.js savasOnYukle) boşta
+// önden indirilir. Savaş doğrudan başlarsa tex() kendisi indirir; arka plan hazır olunca yumuşakça belirir.
+let ON = null;
+export const arkaOnYukle = () => (ON ||= new Promise(r => (window.requestIdleCallback || setTimeout)(() => r(import('./savas-arka-png.js').catch(() => { ON = null; })))));

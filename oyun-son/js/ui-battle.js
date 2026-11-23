@@ -3,7 +3,7 @@ import { A as A11Y } from './a11y.js';
 import { capitalOf } from '../shared/content.js';
 import { S, act } from './api.js';
 import { ACT, hud, esc, fmt, xpGain, pct, stars, toast, run, showModal, closeModal, confirmBox, openWin, redraw, closeWin, reload, cur, mobImg, heroImg, unitImg, lootBox, locked, lockNote, loading, ico, itemLine, myPerks, med, hooks } from './ui-core.js';
-import { runBattle, otoPref } from './combat.js';
+import { runBattle, otoPref, savasOnYukle } from './combat.js';
 import { hisarOpen } from '../shared/hisar.js';
 import { HISAR } from '../shared/content.js';
 import { hideTown } from './town.js';
@@ -32,7 +32,7 @@ const used = k => S.daily[k] || 0;
 const zoneOpen = z => stageOpen(S, `${z}-1`, PV.tier); // PV.tier: seçili zorluk kademesi (ui-pvp.js)
 
 // ---------- Kapı ----------
-ACT.gate = d => {
+ACT.gate = d => { savasOnYukle();
   GV.tab = d?.tab || GV.tab;
   if (d?.zone) GV.zone = +d.zone; else if (!d?.tab) GV.zone = Math.max(...ZONES.filter(z => zoneOpen(z.id)).map(z => z.id));
   openWin({ title: 'Kapı', tab: GV.tab, tabs: [{ id: 'zones', label: 'Bölgeler', small: 'Sefer', icon: 'zones' }, { id: 'dungeons', label: 'Zindanlar', small: 'Günlük', icon: 'dungeon' }, { id: 'events', label: 'Etkinlikler', small: 'Sefer, akın', icon: 'events' }],
@@ -109,7 +109,7 @@ ACT.arenaRefresh = async () => { const r = await run('arena.list', { refresh: tr
 // Sol taraf: karakterin tek kahramanı (sürüm 12: parti ve dizilim yok)
 let VS = null;
 const vsLeft = () => VS.left || partyUnits(S);
-function openVs(cfg) { VS = { auto: otoPref() && !['arena', 'live', 'banner', 'anit'].includes(cfg.args?.mode), ...cfg }; openWin({ title: cfg.title, back: 'vsBack', scr: 'vs', render: renderVs }); } // 20 Kas: son OTO tercihi hatırlanır (PvP'de kapalı başlar)
+function openVs(cfg) { savasOnYukle(); VS = { auto: otoPref() && !['arena', 'live', 'banner', 'anit'].includes(cfg.args?.mode), ...cfg }; openWin({ title: cfg.title, back: 'vsBack', scr: 'vs', render: renderVs }); } // 20 Kas: son OTO tercihi hatırlanır (PvP'de kapalı başlar)
 // Öğretici: Dev Solucan'a karşı (ui-ogretici.js çocuğun diyaloğundan açar)
 ACT.wormGo = () => openVs({ title: 'Dev Solucan', foe: 'Dev Solucan <span class="mut">· Nessa’yı yuttu</span>', waves: soloWaves([[mobUnit('devsolucan', Math.max(2, S.lvl))]], 'worm'), args: { mode: 'worm' }, rules: ['Ateş onu yakar (zayıflığı)', 'Yarı canında topraktan yeniden fırlar', 'Zafer: Nessa kurtulur, 600 akçe ve bileği taşları'] });
 ACT.vsBack = () => (['arena', 'live', 'banner'].includes(VS?.args?.mode) ? ACT.meydan({ tab: 'fight' }) : ACT.gate({ tab: GV.tab === 'pvp' ? 'zones' : GV.tab, zone: GV.zone }));
@@ -177,7 +177,7 @@ ACT.liveFind = async () => { const r = await run('live.find'); if (!r) return; c
 // ---------- Savaşı başlat ve sonucu göster ----------
 // 2x/3x hız yalnız PvE ve tek oyunculu savaşta (kullanıcı 19 Kas): oyuncuya karşı modlarda kapalı (ortak savaş combat.js'te coop ile kapanır)
 const FAST_OFF = new Set(['arena', 'live', 'banner', 'siege', 'feud', 'duel', 'pk', 'anit']);
-export async function startBattle(args, auto = false) {
+export async function startBattle(args, auto = false) { savasOnYukle();
   const r = await run('battle.start', args);
   if (!r) return;
   const b = r.battle;

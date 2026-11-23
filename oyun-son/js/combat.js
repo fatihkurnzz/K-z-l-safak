@@ -5,7 +5,9 @@ import { WEAPON_FX as WFX } from '../shared/items.js';
 import { A as A11Y } from './a11y.js';
 import { THREE, camRig, clock, projectTo, floatText, pick, wait, tween, ease, burst, setHfov, setShift } from './engine3d.js';
 import { view } from './orient.js';
-import { play as fx, projectile, skyStrike, shockwave, elementImpact, statusHold } from './fx.js';
+import { play as fx, projectile, skyStrike, shockwave, elementImpact, statusHold, vfxOnYukle } from './fx.js';
+// C14: savaşa gidilirken (Kapı, VS ekranı) arka plan ve efekt paketlerini önden indir (ui-battle.js çağırır)
+export const savasOnYukle = () => { try { arkaOnYukle(); vfxOnYukle(); } catch { } };
 import { EVENT_FX, ELEMENT_FX, ANIM_FX, skillElement, fxOfTick } from './fx-table.js';
 import { Battle } from '../shared/battle.js';
 import { SKILLS, describe, baseActives, skillName } from '../shared/skills.js';
@@ -19,7 +21,7 @@ import { svg } from './icons.js';
 import { skillIcon } from './skill-icons.js';
 import { SFX } from './sfx.js';
 import * as KAM from './savas-kamera.js'; // 22 Kas: dinamik savaş kamerası (durum makinesi, sınırlara göre kadraj)
-import { pickBg, setProjector } from './savas-arka.js'; // 22 Kas: boyalı savaş arka planları
+import { pickBg, setProjector, arkaOnYukle } from './savas-arka.js'; // 22 Kas: boyalı savaş arka planları
 import { cozum as b2dOf, onYukle as b2dYukle, portre as b2dPortre } from './savas-birim2d.js'; // 23 Kas (C3/C5): boyalı 2B savaş birimleri (yalnız çizim)
 import { heroImg, mobImg } from './ui-core.js';
 import { mobResim } from './yaratik2d.js';
