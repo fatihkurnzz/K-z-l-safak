@@ -487,3 +487,6 @@ body #game #battleUI #border { display:none !important; }
 body #game #battleUI:has(#bapot:not([hidden])) #bctl { bottom:calc(var(--sab,0px) + 20px + 68px * var(--b18-s)) !important; }
 /* 22 Kas: yan görünüşte boss sağ arkada; başının üstündeki küçük gösterge sağ üst çerçeveyle çakışır (can zaten çerçevede ve üst çubukta) */
 #overlay .hud.B.big { visibility:hidden !important; }
+
+/* ===== 23.11 (13. oturum): Görevler sekme rozeti "Günlük" yazısının üstüne biniyordu → simgenin sol üst köşesine, kırmızı zeminli ===== */
+html[data-faction] .qx-bd { left:-4px !important; top:-5px !important; min-width:16px; height:16px; line-height:16px; font-size:10px; background:#c0301e !important; border-radius:8px; border:1px solid #ffe2b8aa !important; }
