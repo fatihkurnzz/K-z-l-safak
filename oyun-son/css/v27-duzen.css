@@ -229,3 +229,33 @@ html.amblemli .vz .vz-ban[data-v="sancak"] .vz-emb { background:var(--amb-sancak
 html.amblemli .vz .vz-ban[data-v="ocak"] .vz-emb { background:var(--amb-ocak) 50% 58% / 84% auto no-repeat !important; filter:drop-shadow(0 4px 8px #000c); }
 html.amblemli .ks-top .ks-brand > span > b { font-size:0 !important; color:transparent !important; text-shadow:none !important; display:block; width:190px; height:41px; background:var(--logo-korant) 0 50% / contain no-repeat; }
 html.amblemli #giris .gr-logo b { font-size:0 !important; color:transparent; text-shadow:none; height:60px; margin:4px auto 0; width:280px; background:var(--logo-korant) 50% 50% / contain no-repeat; }
+
+/* ---- M3 glifleri (Gemini C sınıfı, C9) · 23 Kas: sahne.js --gl-<ad> yazar, html.glifli. simge3 boyalı madalyonların yerine
+   tek renk glif; halk rengine boyanır (Kragmir köz, Elentha çelik mavisi). Eşlemesi olmayan düğme eski simgesiyle kalır. ---- */
+html.glifli { --glc:#f3d2ae; --glg:#ff8a3c55; }
+html.glifli[data-faction="sancak"] { --glc:#cfe0f7; --glg:#6fa8ff55; }
+html.glifli #game #hud [data-a="party"]    { --gl:var(--gl-karakter); }
+html.glifli #game #hud [data-a="bag"]      { --gl:var(--gl-canta); }
+html.glifli #game #hud [data-a="quests"]   { --gl:var(--gl-gorevler); }
+html.glifli #game #hud [data-a="clan"]     { --gl:var(--gl-klan); }
+html.glifli #game #hud [data-a="shop"]     { --gl:var(--gl-kervan); }
+html.glifli #game #hud [data-a="savas"]    { --gl:var(--gl-savas); }
+html.glifli #game #hud [data-a="mail"]     { --gl:var(--gl-posta); }
+html.glifli #game #hud [data-a="codex"]    { --gl:var(--gl-ansiklopedi); }
+html.glifli #game #hud [data-a="drawer"]   { --gl:var(--gl-menu); }
+html.glifli #game #hud [data-a="notifs"]   { --gl:var(--gl-bildirim); }
+html.glifli #game #hud [data-a="calendar"] { --gl:var(--gl-takvim); }
+html.glifli #game #hud [data-a="achs"]     { --gl:var(--gl-basarim); }
+html.glifli #game #hud [data-a="news"]     { --gl:var(--gl-duyuru); }
+html.glifli #game #hud [data-a="diyarMap"] { --gl:var(--gl-harita); }
+html.glifli #game #hud [data-a="onlineOpen"] { --gl:var(--gl-arkadas); }
+html.glifli #game #hud :is(.dock .dbtn, .lrail .lbtn, .krail .lbtn, .rrail .lbtn, .savas2d):is([data-a="party"],[data-a="bag"],[data-a="quests"],[data-a="clan"],[data-a="shop"],[data-a="savas"],[data-a="mail"],[data-a="codex"],[data-a="drawer"],[data-a="notifs"],[data-a="calendar"],[data-a="achs"],[data-a="news"],[data-a="diyarMap"],[data-a="onlineOpen"]) > i {
+  position:relative; background:none !important; filter:none; }
+html.glifli #game #hud :is(.dock .dbtn, .lrail .lbtn, .krail .lbtn, .rrail .lbtn, .savas2d):is([data-a="party"],[data-a="bag"],[data-a="quests"],[data-a="clan"],[data-a="shop"],[data-a="savas"],[data-a="mail"],[data-a="codex"],[data-a="drawer"],[data-a="notifs"],[data-a="calendar"],[data-a="achs"],[data-a="news"],[data-a="diyarMap"],[data-a="onlineOpen"]) > i > svg { visibility:hidden; }
+html.glifli #game #hud :is(.dock .dbtn, .lrail .lbtn, .krail .lbtn, .rrail .lbtn, .savas2d):is([data-a="party"],[data-a="bag"],[data-a="quests"],[data-a="clan"],[data-a="shop"],[data-a="savas"],[data-a="mail"],[data-a="codex"],[data-a="drawer"],[data-a="notifs"],[data-a="calendar"],[data-a="achs"],[data-a="news"],[data-a="diyarMap"],[data-a="onlineOpen"]) > i::after {
+  content:'' !important; position:absolute !important; inset:0 !important; width:auto !important; height:auto !important; margin:0 !important; border:0 !important; border-radius:0 !important; transform:none !important; box-shadow:none !important; opacity:1 !important; background:var(--glc) !important;
+  -webkit-mask:var(--gl) 50% 50% / 112% no-repeat; mask:var(--gl) 50% 50% / 112% no-repeat;
+  filter:drop-shadow(0 1px 0 #000) drop-shadow(0 0 3px var(--glg)); pointer-events:none; }
+html.glifli #game #hud .savas2d > i::after { background:#fff3d6; }
+html.glifli #game #hud .mm-ft span { background:none !important; position:relative; }
+html.glifli #game #hud .mm-ft span::after { content:''; position:absolute; inset:0; background:var(--glc); -webkit-mask:var(--gl-harita) 50% 50% / 112% no-repeat; mask:var(--gl-harita) 50% 50% / 112% no-repeat; }

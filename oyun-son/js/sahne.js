@@ -20,3 +20,10 @@ import('./amblem-png.js').then(m => {
   root.style.setProperty('--amb-sancak', `url(${m.url('amblem-sancak')})`); root.style.setProperty('--amb-ocak', `url(${m.url('amblem-ocak')})`); root.style.setProperty('--logo-korant', `url(${m.url('logo')})`);
   root.classList.add('amblemli');
 }).catch(() => {});
+// 23 Kas (C9/M3): Gemini C sınıfı arayüz glifleri (js/glif-png.js, 91 KB) → --gl-<ad>; html.glifli. Ana ekran rayları,
+// alt menü ve Savaş düğmesi bunları CSS maskesiyle halk rengine boyar (v27-duzen.css "M3 glifleri"). Kapatmak: dd_glif='0' ya da ?glif=0.
+const glifKapali = (() => { try { return localStorage.getItem('dd_glif') === '0' || /[?&]glif=0/.test(location.search); } catch { return false; } })();
+if (!glifKapali) import('./glif-png.js').then(m => {
+  for (const k of m.KEYS) root.style.setProperty('--gl-' + k, `url(${m.url(k)})`);
+  root.classList.add('glifli');
+}).catch(() => {});

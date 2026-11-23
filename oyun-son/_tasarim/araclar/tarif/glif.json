@@ -1,0 +1,206 @@
+{
+"aciklama": "Gemini M3 C sınıfı arayüz glifleri (96×96 tek renk; CSS maskesiyle boyanır)",
+"q": 90,
+"ogeler": [
+{
+"k": "ansiklopedi",
+"src": "_tasarim/gelen/m3-glif/glif-ansiklopedi.png",
+"q": 90
+},
+{
+"k": "arkadas",
+"src": "_tasarim/gelen/m3-glif/glif-arkadas.png",
+"q": 90
+},
+{
+"k": "ayarlar",
+"src": "_tasarim/gelen/m3-glif/glif-ayarlar.png",
+"q": 90
+},
+{
+"k": "basarim",
+"src": "_tasarim/gelen/m3-glif/glif-basarim.png",
+"q": 90
+},
+{
+"k": "baskin",
+"src": "_tasarim/gelen/m3-glif/glif-baskin.png",
+"q": 90
+},
+{
+"k": "bildirim",
+"src": "_tasarim/gelen/m3-glif/glif-bildirim.png",
+"q": 90
+},
+{
+"k": "bilgi",
+"src": "_tasarim/gelen/m3-glif/glif-bilgi.png",
+"q": 90
+},
+{
+"k": "canta",
+"src": "_tasarim/gelen/m3-glif/glif-canta.png",
+"q": 90
+},
+{
+"k": "duyuru",
+"src": "_tasarim/gelen/m3-glif/glif-duyuru.png",
+"q": 90
+},
+{
+"k": "ekle",
+"src": "_tasarim/gelen/m3-glif/glif-ekle.png",
+"q": 90
+},
+{
+"k": "geri",
+"src": "_tasarim/gelen/m3-glif/glif-geri.png",
+"q": 90
+},
+{
+"k": "gorevler",
+"src": "_tasarim/gelen/m3-glif/glif-gorevler.png",
+"q": 90
+},
+{
+"k": "harita",
+"src": "_tasarim/gelen/m3-glif/glif-harita.png",
+"q": 90
+},
+{
+"k": "hiz",
+"src": "_tasarim/gelen/m3-glif/glif-hiz.png",
+"q": 90
+},
+{
+"k": "iksir-can",
+"src": "_tasarim/gelen/m3-glif/glif-iksir-can.png",
+"q": 90
+},
+{
+"k": "iksir-mana",
+"src": "_tasarim/gelen/m3-glif/glif-iksir-mana.png",
+"q": 90
+},
+{
+"k": "kapat",
+"src": "_tasarim/gelen/m3-glif/glif-kapat.png",
+"q": 90
+},
+{
+"k": "kapi",
+"src": "_tasarim/gelen/m3-glif/glif-kapi.png",
+"q": 90
+},
+{
+"k": "karakter",
+"src": "_tasarim/gelen/m3-glif/glif-karakter.png",
+"q": 90
+},
+{
+"k": "kervan",
+"src": "_tasarim/gelen/m3-glif/glif-kervan.png",
+"q": 90
+},
+{
+"k": "kilit",
+"src": "_tasarim/gelen/m3-glif/glif-kilit.png",
+"q": 90
+},
+{
+"k": "klan",
+"src": "_tasarim/gelen/m3-glif/glif-klan.png",
+"q": 90
+},
+{
+"k": "maden",
+"src": "_tasarim/gelen/m3-glif/glif-maden.png",
+"q": 90
+},
+{
+"k": "menu",
+"src": "_tasarim/gelen/m3-glif/glif-menu.png",
+"q": 90
+},
+{
+"k": "meydan",
+"src": "_tasarim/gelen/m3-glif/glif-meydan.png",
+"q": 90
+},
+{
+"k": "onay",
+"src": "_tasarim/gelen/m3-glif/glif-onay.png",
+"q": 90
+},
+{
+"k": "ors",
+"src": "_tasarim/gelen/m3-glif/glif-ors.png",
+"q": 90
+},
+{
+"k": "otomatik",
+"src": "_tasarim/gelen/m3-glif/glif-otomatik.png",
+"q": 90
+},
+{
+"k": "pazar",
+"src": "_tasarim/gelen/m3-glif/glif-pazar.png",
+"q": 90
+},
+{
+"k": "portal",
+"src": "_tasarim/gelen/m3-glif/glif-portal.png",
+"q": 90
+},
+{
+"k": "posta",
+"src": "_tasarim/gelen/m3-glif/glif-posta.png",
+"q": 90
+},
+{
+"k": "savas",
+"src": "_tasarim/gelen/m3-glif/glif-savas.png",
+"q": 90
+},
+{
+"k": "siralama",
+"src": "_tasarim/gelen/m3-glif/glif-siralama.png",
+"q": 90
+},
+{
+"k": "sohbet",
+"src": "_tasarim/gelen/m3-glif/glif-sohbet.png",
+"q": 90
+},
+{
+"k": "tac",
+"src": "_tasarim/gelen/m3-glif/glif-tac.png",
+"q": 90
+},
+{
+"k": "takvim",
+"src": "_tasarim/gelen/m3-glif/glif-takvim.png",
+"q": 90
+},
+{
+"k": "uyari",
+"src": "_tasarim/gelen/m3-glif/glif-uyari.png",
+"q": 90
+},
+{
+"k": "yenile",
+"src": "_tasarim/gelen/m3-glif/glif-yenile.png",
+"q": 90
+},
+{
+"k": "yildiz",
+"src": "_tasarim/gelen/m3-glif/glif-yildiz.png",
+"q": 90
+},
+{
+"k": "zindan",
+"src": "_tasarim/gelen/m3-glif/glif-zindan.png",
+"q": 90
+}
+]
+}
