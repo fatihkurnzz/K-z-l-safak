@@ -259,3 +259,7 @@ html.glifli #game #hud :is(.dock .dbtn, .lrail .lbtn, .krail .lbtn, .rrail .lbtn
 html.glifli #game #hud .savas2d > i::after { background:#fff3d6; }
 html.glifli #game #hud .mm-ft span { background:none !important; position:relative; }
 html.glifli #game #hud .mm-ft span::after { content:''; position:absolute; inset:0; background:var(--glc); -webkit-mask:var(--gl-harita) 50% 50% / 112% no-repeat; mask:var(--gl-harita) 50% 50% / 112% no-repeat; }
+
+/* 23 Kas: G3 boyalı yaratık portreleri arayüzde (ui-core mobImg; yaratik2d.js) */
+img.pt.m2d { object-fit:cover; object-position:50% 30%; }
+img.pt.m2df { object-fit:cover; object-position:50% 85%; background:radial-gradient(ellipse at 50% 70%, #3a3a3a, #141210 75%); }

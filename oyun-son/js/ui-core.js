@@ -15,6 +15,7 @@ import { capeOf } from '../shared/clan.js';
 import { svg, ri, RES_COLOR } from './icons.js';
 import { itemIcon } from './item-icons.js';
 import { portraitAttrs } from './portraits.js';
+import { mobResim, mobCizim } from './yaratik2d.js'; // G3 boyalı yaratık portreleri (Ansiklopedi, VS, rapor…)
 import { unitLook } from './combat.js';
 import { plusCls } from './kaplama-parts.js'; // artı seviyesinin ışıma sınıfları (+7 ve üstü)
 
@@ -101,8 +102,10 @@ export const DEF_W = { warrior: { weapon: 'none', shield: false, plus: 0 }, // S
    rogue: { weapon: 'dagger', shield: false, plus: 0 }, priest: { weapon: 'mace', shield: true, plus: 0 }, mage: { weapon: 'staff', shield: false, plus: 0 } };
 export const mobRank = M => M.boss ? 'boss' : M.captain ? 'captain' : 'mob';
 export function mobImg(id, full = false, cls = '') {
-  const M = MOBS[id], bg = mobRank(M);
-  return `<img class="pt ${bg} ${cls}" alt="${esc(M.name)}" ${portraitAttrs(`m:${id}:${full ? 'f' : 'b'}`, id, { look: M.look, model: {}, bg, full, mid: id })}>`;
+  const M = MOBS[id], bg = mobRank(M), u = mobResim(id, full);
+  if (u) return `<img class="pt ${bg} ${cls} m2d${full ? ' m2df' : ''}" alt="${esc(M.name)}" src="${u}">`; // G3 çizimi hazır
+  const bek = mobCizim(id) ? ` data-m2d="${id}:${full ? 1 : 0}"` : ''; // paket inince yerinde değişir (yaratik2d.js)
+  return `<img class="pt ${bg} ${cls}"${bek} alt="${esc(M.name)}" ${portraitAttrs(`m:${id}:${full ? 'f' : 'b'}`, id, { look: M.look, model: {}, bg, full, mid: id })}>`;
 }
 // cape: klan pelerini ({ c, a, s, l }). Kendi kahramanın için (taraf ve silah verilmeden) çağrılınca kendi pelerinin kullanılır.
 // v: görünüm tonu (kadro: aynı sınıftan ikinci kahraman renk tonuyla ayrışır; 0 = sınıfın özgün renkleri)

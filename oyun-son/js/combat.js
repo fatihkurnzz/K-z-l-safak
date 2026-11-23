@@ -22,6 +22,7 @@ import * as KAM from './savas-kamera.js'; // 22 Kas: dinamik savaş kamerası (d
 import { pickBg, setProjector } from './savas-arka.js'; // 22 Kas: boyalı savaş arka planları
 import { cozum as b2dOf, onYukle as b2dYukle, portre as b2dPortre } from './savas-birim2d.js'; // 23 Kas (C3/C5): boyalı 2B savaş birimleri (yalnız çizim)
 import { heroImg, mobImg } from './ui-core.js';
+import { mobResim } from './yaratik2d.js';
 import { charLookFor } from './gorunus.js';
 let KP = null; import('./karakter-png.js').then(m => { KP = m; }).catch(() => {}); // boyalı yüz portreleri
 // 19 Kas: savaş arayüzü portreleri (sıra şeridi, kahraman çerçevesi) // savaş sesleri: olay türü, silah türü ve elemente göre (kural içermez)
@@ -252,7 +253,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   const portOf = u => { let v = PORT.get(u.id); if (!v) { v = portraitOf(u); if (v && !v.includes('data:image/gif')) PORT.set(u.id, v); } return v || ''; }; // boş portre saklanmaz (22 Kas: düşman çerçevesi boş kalıyordu)
   // 23 Kas: oyuncunun kahramanı oluşturmada seçtiği boyalı yüzle görünür (karakter-png.js; yoksa eski sınıf portresi)
   const yuzOf = u => { if (!u.cls || !KP) return ''; const L = charLookFor({ ...u, model: { hero: true } }); const s = L && KP.yuzUrl(L.race, L.gender, L.face); return s ? `<img class="pt hero yuz2b" src="${s}" alt="">` : ''; };
-  const mob2b = u => { const d = !u.cls && b2dPortre(u); return d ? `<img class="pt mob2b" src="data:image/webp;base64,${d}" alt="">` : ''; };
+  const mob2b = u => { const d = !u.cls && b2dPortre(u); return d ? `<img class="pt mob2b" src="${mobResim(u.mob) || 'data:image/webp;base64,' + d}" alt="">` : ''; }; // renk çarpanlı türler arayüzdekiyle aynı (yaratik2d.js)
   const portraitOf = u => { try { const y = yuzOf(u) || mob2b(u); if (y) return y; return u.side === 'A' || u.cls ? heroImg(u.cls, false, '', u.faction, u.wm) : u.mob ? mobImg(u.mob) : ''; } catch { return ''; } };
   function renderOrder() {
     const el = $('#border'); if (!el) return;
