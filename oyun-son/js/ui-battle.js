@@ -2,7 +2,7 @@
 import { A as A11Y } from './a11y.js';
 import { capitalOf } from '../shared/content.js';
 import { S, act } from './api.js';
-import { ACT, hud, esc, fmt, xpGain, pct, stars, toast, run, showModal, closeModal, confirmBox, openWin, redraw, closeWin, reload, cur, mobImg, heroImg, unitImg, lootBox, locked, lockNote, loading, ico, itemLine, myPerks, med, hooks } from './ui-core.js';
+import { ACT, hud, esc, fmt, xpGain, pct, stars, toast, run, showModal, closeModal, confirmBox, openWin, redraw, closeWin, reload, cur, mobImg, heroImg, unitImg, DEF_W, lootBox, locked, lockNote, loading, ico, itemLine, myPerks, med, hooks } from './ui-core.js';
 import { runBattle, otoPref, savasOnYukle } from './combat.js';
 import { hisarOpen } from '../shared/hisar.js';
 import { HISAR } from '../shared/content.js';
@@ -17,6 +17,7 @@ import { itemBase } from '../shared/items.js';
 import { HUNT_DIFF, huntDiffOf } from '../shared/clan.js';
 import { now, DEV } from './api.js';
 import { svg, ri } from './icons.js';
+import { sprUrl } from './karakter-png.js'; // 2B tam boy (VS sol paneli)
 import { vsCoefs, vsCoefTable, ilvTag } from './esya-parts.js';
 import { PV, tierBar, tierNote, bagNote, modBanner, modVsNote, modResultLine, depthRow, depthVs, seasonHead, oppTags, oppRule, dimResult, levelUpNote } from './ui-pvp.js'; // sezon, zorluk kademeleri, zindan düzeni
 import { STAGE_TIERS, starsOf, CLIMB, ARENA_PTS } from '../shared/pvp.js';
@@ -116,20 +117,31 @@ ACT.vsBack = () => (['arena', 'live', 'banner'].includes(VS?.args?.mode) ? ACT.m
 // 20 Kas: VS ekranında yaratığın zayıf (▲, +%RULES.weak hasar alır) ve dirençli (▼) elementleri; yalnız yaratıklarda (PvE)
 const EL_TXT = { fire: 'Ateş', ice: 'Buz', bolt: 'Yıldırım' };
 const elChips = u => { if (u.cls) return ''; const w = u.weak && EL_TXT[u.weak] ? `<i class="elc w el-${u.weak}" title="Zayıflığı: ${EL_TXT[u.weak]} (+%${RULES.weak} hasar alır)">▲ ${EL_TXT[u.weak]}</i>` : '', r = Object.keys(EL_TXT).filter(k => (u.res?.[k] || 0) > 0 && k !== u.weak).map(k => `<i class="elc r el-${k}" title="${EL_TXT[k]} direnci %${Math.round(u.res[k] * 100)}">▼ ${EL_TXT[k]}</i>`).join(''); return w || r ? `<span class="elcs">${w}${r}</span>` : ''; };
-const unitCard = (u, big) => `<div class="uc">${unitImg(u, big ? 'lg' : '')}<small>${u.lvl ? 'Sv. ' + u.lvl : ''}</small></div>`;
 // Sağ taraf: yaratıklar türe göre gruplanır; kahraman birimleri tek tek gösterilir (aynı sınıftan iki kahraman olabilir)
+// 23 Kas (M4 maketi, olcu-vs.md): sol tam boy kahraman, orta VS arması + koşul kartı, sağ ana düşman çizimi, altta dalga kartları ve eylem şeridi
+const vsMain = units => units.reduce((m, u) => !m ? u : (u.boss && !m.boss) || (u.captain && !m.boss && !m.captain) || ((!!u.boss === !!m.boss && !!u.captain === !!m.captain) && power(u) > power(m)) ? u : m, null);
+const vsArt = (u, mine) => { if (!u) return ''; if (mine && S.char) { const s = sprUrl(S.char.race || S.faction, S.char.cls, S.char.gender); if (s) return `<img class="vs2-img hero2b" src="${s}" alt="" draggable="false">`; }
+  return u.cls ? heroImg(u.cls, true, 'vs2-img', u.faction || S.faction, u.wm || DEF_W[u.cls], u.cape || null, u.v || 0) : mobImg(u.mob, true, 'vs2-img'); };
+const rankTxt = u => u.boss ? 'Boss' : u.captain ? 'Dalga Lideri' : u.elite ? 'Seçkin' : u.cls ? (CLASSES[u.cls]?.name || '') : 'Yaratık';
+const waveCard = (w, i) => { const g = {}; w.forEach((u, j) => { const k = u.cls ? 'h' + j : u.mob + (u.elite ? ':e' : ''); (g[k] || (g[k] = { u, n: 0 })).n++; }); const m = vsMain(w), lead = m.boss || m.captain;
+  const txt = Object.values(g).map(x => x.u === m && lead ? 'Lider' : `×${x.n} ${esc(x.u.name)}`).join(' + ');
+  return `<div class="vs2-wv${lead ? ' lead' : ''}">${unitImg(m, 'vs2-wp')}<span><b>${i + 1}. Dalga</b><small>${txt}</small></span></div>`; };
 function renderVs() {
-  const c = VS, left = vsLeft();
+  const c = VS, left = vsLeft(), me = left[0];
   const pw = left.reduce((a, u) => a + power(u), 0);
-  const right = c.waves ? c.waves.map((w, i) => { const g = {}; w.forEach((u, j) => { const k = u.cls ? 'h' + j : u.mob + (u.elite ? ':e' : ''); (g[k] || (g[k] = { u, n: 0 })).n++; }); return `<div class="vwave">${c.waves.length > 1 ? `<small>${i + 1}. dalga</small>` : ''}<div class="vrow">${Object.values(g).map(x => `<div class="uc">${unitImg(x.u)}<small>${x.u.boss || x.u.captain || x.u.cls ? esc(x.u.name) : (x.n > 1 ? '×' + x.n + ' ' : '') + esc(x.u.name)}</small>${elChips(x.u)}</div>`).join('')}</div></div>`; }).join('') : `<div class="hint">${c.unknown || 'Düşmanlar savaş başlayınca belli olur.'}</div>`;
-  const can = c.can !== false;
-  return `<div class="vs"><div class="vside a"><h4>${c.left ? 'Senin tarafın' : esc(S.name)} <span class="mut">· Güç ${fmt(pw)}</span></h4><div class="vrow">${left.map(u => unitCard(u, false)).join('')}</div>${c.left ? '' : '<div class="vsform"><button class="btn sm" data-a="vsForm">Karakter</button></div>'}</div>
-    <div class="vmid"><b class="vsx">VS</b>${c.rules ? `<div class="vrules">${c.rules.map(r => `<div>${r}</div>`).join('')}</div>` : ''}${c.desc ? `<p class="mut" style="text-align:center;max-width:190px">${c.desc}</p>` : ''}${vsCoefs(left, c.waves)}</div>
-    <div class="vside b"><h4>${c.foe || 'Düşman'}</h4>${right}</div></div>
-    ${c.extra || ''}
-    <div class="vbtns">${c.sweep ? `<button class="btn blue" data-a="sweep" data-n="5">Seri ×5</button><button class="btn blue" data-a="sweep" data-n="10">×10</button>` : ''}
-      <button class="btn ${VS.auto ? 'green' : ''}" data-a="vsAuto">Oto: ${VS.auto ? 'açık' : 'kapalı'}</button>
-      <button class="btn red big" data-a="vsStart" ${can ? '' : 'disabled'}>${c.startLabel || 'Başla'}${c.energy ? ` ${ri('energy', '#fff')} ${c.energy}` : ''}</button></div>`;
+  const all = c.waves ? c.waves.flat() : [], foe = all.length ? vsMain(all) : null, fpw = c.waves ? Math.max(...c.waves.map(w => w.reduce((a, u) => a + power(u), 0))) : 0;
+  const can = c.can !== false, mine = !c.left;
+  const meName = mine ? esc(S.name) : esc(me?.name || 'Senin tarafın'), meSub = me ? [me.lvl ? `Sv. ${me.lvl}` : '', FACTIONS[me.faction || S.faction]?.name, me.cls ? CLASSES[me.cls]?.name : ''].filter(Boolean).join(' · ') : '';
+  const others = left.length > 1 ? `<div class="vs2-ek">${left.slice(1).map(u => unitImg(u)).join('')}</div>` : '';
+  const foeName = foe ? esc(foe.name) : (c.foe || 'Düşman'), foeSub = foe ? [foe.lvl ? `Sv. ${foe.lvl}` : '', rankTxt(foe)].filter(Boolean).join(' · ') : '';
+  return `<div class="vs vs2"><div class="vside a">${vsArt(me, mine)}${others}<div class="vs2-pl"><span><b>${meName}</b><small>${meSub}</small></span><em>Güç ${fmt(pw)}</em></div>${mine ? '<button class="vs2-kr" data-a="vsForm">Karakter</button>' : ''}</div>
+    <div class="vmid"><b class="vsx">VS</b>${c.rules ? `<div class="vrules">${c.rules.map(r => `<div>${r}</div>`).join('')}</div>` : ''}${c.desc ? `<p class="vs2-not">${c.desc}</p>` : ''}${vsCoefs(left, c.waves)}</div>
+    <div class="vside b">${foe ? vsArt(foe) : `<div class="hint vs2-bilinmez">${c.unknown || 'Düşmanlar savaş başlayınca belli olur.'}</div>`}<div class="vs2-pl"><span><b>${foeName}</b><small>${foeSub}${foe ? elChips(foe) : ''}</small></span>${fpw ? `<em>Güç ${fmt(fpw)}</em>` : ''}</div></div></div>
+    ${c.extra ? `<div class="vs2-extra">${c.extra}</div>` : ''}
+    <div class="vbtns vs2-alt">${c.waves ? `<span class="vs2-dl">${c.waves.length > 1 ? 'Dalgalar' : 'Düşman'}</span><div class="vs2-wvs">${c.waves.map(waveCard).join('')}</div>` : '<span class="sp"></span>'}
+      ${c.sweep ? `<button class="btn vs2-b2" data-a="sweep" data-n="5">Seri ×5</button><button class="btn vs2-b2" data-a="sweep" data-n="10">×10</button>` : ''}
+      <button class="btn vs2-b2 ${VS.auto ? 'on' : ''}" data-a="vsAuto" aria-pressed="${VS.auto}">Oto${VS.auto ? ' ✓' : ''}</button>
+      <button class="btn red big vs2-b1" data-a="vsStart" ${can ? '' : 'disabled'}>${c.startLabel || 'Başla'}${c.energy ? ` ${ri('energy', '#fff')} ${c.energy}` : ''}</button></div>`;
 }
 ACT.vsAuto = () => { VS.auto = !VS.auto; try { localStorage.setItem('dd_oto', VS.auto ? '1' : '0'); } catch { } redraw(); };
 ACT.vsCoef = () => showModal(`<h2>Saldırı Türleri</h2><div class="in" style="text-align:left">${vsCoefTable(vsLeft(), VS.waves)}</div>`, 'cxbox');
@@ -147,7 +159,7 @@ function openStageVs(id, tier = 0) {
   const d = stageDef(id, tier), SS = starsOf(S, tier), boss = d.kind === 'boss', ready = bossAvailable(S, id, tier), marks = boss ? S.marks[d.gate] || 0 : 0;
   const sweep = !boss && SS[id] === 3 && !locked('sweep');
   openVs({ title: `${d.n}. ${d.name}${tier ? ` (${STAGE_TIERS[tier].name})` : ''}`, foe: `Düşman <span class="mut">· Sv. ${d.lvl}</span>`, waves: soloWaves(d.waves, 'stage'), args: tier ? { stage: id, tier } : { stage: id }, energy: d.energy, sweep, can: !boss || ready,
-    rules: [`${stars(1)} Stage'i geç`, `${stars(2)} Canın %25'in üstündeyken geç`, `${stars(3)} Canın %50'nin üstündeyken geç`],
+    rules: [`${stars(1)} Stage'i geç`, `${stars(2)} Can > %25`, `${stars(3)} Can > %50`],
     desc: d.lvl > S.lvl + 1 ? `<span class="warn">Seviyen (${S.lvl}) bu stage için düşük.</span>` : !boss && SS[id] === 3 && locked('sweep') ? `Seri savaş ${UNLOCK.sweep}. seviyede açılır.` : !boss && SS[id] !== 3 ? '3 yıldızla geçersen seri savaş açılır.' : '',
     extra: boss ? `<div class="hint">${SS[id] ? `Günlük hak: <b class="${ready ? 'up' : 'down'}">${ready ? '1/1' : '0/1 — 00:00’da yenilenir'}</b>` : 'İlk geçişe kadar serbestçe denenir; sonra günde 1 hak.'} · ${ri('mark')} İz: <b>${marks}/${BOSS_PITY}</b> ${marks >= BOSS_PITY ? `<button class="btn sm green" data-a="exchange" data-boss="${d.gate}">Eşsizle takas et</button>` : ''}<br>Eşsizler: ${MOBS[d.gate].uniques.map(u => `<b class="gn g2">${itemBase(u).name}</b>`).join(', ')}</div>` : '' });
 }

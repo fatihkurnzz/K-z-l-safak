@@ -268,3 +268,65 @@ img.pt.m2df { object-fit:cover; object-position:50% 85%; background:radial-gradi
 .npc-por.sm img.npc-yuz, .ik-head .ik-por img.npc-yuz { width:64px; height:64px; }
 .ik-head .ik-por img.npc-yuz { width:100%; height:100%; border:0; border-radius:0; }
 .pz-bigpor img.npc-yuz { width:66px; height:66px; }
+
+/* 23 Kas (M4 maketi · olcu-vs.md): VS ekranı — sol tam boy kahraman, orta VS arması + koşul kartı, sağ ana düşman, alt dalga/eylem şeridi.
+   Ölçüler 880×406 mantıksal: paneller 348×246, orta 128, alt şerit 68. Halk vurgusu: Elentha #4d8cc9/#1f2c40, Kragmir #c2552b/#2b211b. */
+#win[data-scr="vs"] { --vsv:#4d8cc9; --vsd:#1f2c40; }
+html[data-faction="ocak"] #win[data-scr="vs"] { --vsv:#c2552b; --vsd:#2b211b; }
+#win[data-scr="vs"] #page { display:flex !important; flex-direction:column !important; gap:10px !important; padding:10px 16px 12px !important;
+  background:radial-gradient(ellipse at 50% 40%, #2a2328 0%, #141016 70%) !important; color:#e9e1d3 !important; }
+#win[data-scr="vs"] .vs2 { display:grid !important; grid-template-columns:minmax(0,1fr) 128px minmax(0,1fr) !important; gap:12px !important; align-items:stretch !important; grid-template-rows:minmax(0,1fr) !important;
+  flex:1 1 auto; min-height:190px; margin:0 !important; }
+#win[data-scr="vs"] .vs2 .vside { position:relative !important; display:block !important; min-height:0 !important; padding:0 !important; overflow:hidden !important;
+  clip-path:none !important; border-radius:8px !important; background:radial-gradient(ellipse at 50% 30%, #2a2328 0%, #0e0b10 80%) !important; box-shadow:none !important; }
+#win[data-scr="vs"] .vs2 .vside.a { border:2px solid var(--vsv) !important; }
+#win[data-scr="vs"] .vs2 .vside.b { border:2px solid #b8322c !important; }
+#win[data-scr="vs"] .vs2 .vs2-img { position:absolute !important; left:0; right:0; top:6px; bottom:56px; width:100% !important; height:calc(100% - 62px) !important; max-width:none !important;
+  margin:0 !important; padding:0 !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; background:none !important;
+  object-fit:contain !important; object-position:50% 100% !important; filter:drop-shadow(0 6px 10px #000c); }
+#win[data-scr="vs"] .vs2 .vs2-bilinmez { position:absolute; inset:30% 16px auto; text-align:center; font-size:12px; color:#8d8790; background:none; border:0; }
+#win[data-scr="vs"] .vs2-pl { position:absolute; left:10px; right:10px; bottom:8px; z-index:2; display:flex; align-items:center; gap:8px; padding:6px 12px; min-height:42px;
+  background:#0e0b10e6; border:1px solid #c9a45c88; border-radius:4px; }
+#win[data-scr="vs"] .vside.b .vs2-pl { border-color:#b8322caa; }
+#win[data-scr="vs"] .vs2-pl > span { flex:1 1 auto; min-width:0; display:grid; gap:1px; }
+#win[data-scr="vs"] .vs2-pl b { font:700 15px/1.15 Cinzel, serif; letter-spacing:.8px; text-transform:uppercase; color:#e9e1d3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#win[data-scr="vs"] .vs2-pl small { font:400 11px/1.25 Inter, sans-serif; color:#b8b0a6; display:flex; flex-wrap:wrap; gap:4px; align-items:center; }
+#win[data-scr="vs"] .vs2-pl .elcs { margin:0; justify-content:flex-start; }
+#win[data-scr="vs"] .vs2-pl em { font:800 14px/1 Inter, sans-serif; font-style:normal; text-transform:uppercase; color:#c9a45c; white-space:nowrap; }
+#win[data-scr="vs"] .vside.b .vs2-pl em { color:#e0443a; }
+#win[data-scr="vs"] .vs2-kr { position:absolute; top:8px; left:8px; z-index:2; padding:4px 10px; font:600 11px/1.3 Inter, sans-serif; color:#e9e1d3;
+  background:#1a1519e6; border:1px solid #8d8790; border-radius:4px; }
+#win[data-scr="vs"] .vs2-ek { position:absolute; top:8px; right:8px; z-index:2; display:flex; gap:4px; }
+#win[data-scr="vs"] .vs2-ek img.pt { width:36px !important; height:36px !important; border-radius:4px; }
+#win[data-scr="vs"] .vs2 .vmid { position:relative; display:flex !important; flex-direction:column; align-items:center; justify-content:flex-start; gap:10px !important; min-width:0 !important; min-height:0; padding-top:18px; overflow:hidden; }
+#win[data-scr="vs"] .vs2 .vmid::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; margin-left:-1px; background:linear-gradient(#c9a45c00, #c9a45c88 20%, #c9a45c88 80%, #c9a45c00); z-index:0; }
+#win[data-scr="vs"] .vs2 .vsx { position:relative; z-index:1; display:grid; place-items:center; width:54px; height:54px; padding:0 !important; clip-path:none !important;
+  border-radius:50%; background:#1a1519 !important; border:2px solid #c9a45c; box-shadow:0 0 0 4px #0e0b10, 0 4px 12px #000a !important;
+  font:700 22px/1 Cinzel, serif !important; color:#e9e1d3 !important; text-shadow:none !important; }
+#win[data-scr="vs"] .vs2 .vrules { position:relative; z-index:1; width:124px; display:grid; gap:4px !important; padding:8px 8px; background:#1a1519; border:1px solid #c9a45c55; border-radius:4px;
+  font:400 11px/1.3 Inter, sans-serif !important; color:#e9e1d3; }
+#win[data-scr="vs"] .vs2 .vrules > div { padding:0 !important; background:none !important; box-shadow:none !important; gap:5px !important; align-items:flex-start !important; }
+#win[data-scr="vs"] .vs2 .vrules .kstars { flex:0 0 auto; transform:scale(.8); transform-origin:left center; }
+#win[data-scr="vs"] .vs2 .vs2-not { position:relative; z-index:1; margin:0; width:124px; font:400 10px/1.3 Inter, sans-serif; color:#b8b0a6; text-align:center; background:#0e0b10cc; padding:3px; border-radius:3px; }
+#win[data-scr="vs"] .vs2 .vmid > :not(.vsx):not(.vrules):not(.vs2-not) { position:relative; z-index:1; max-width:124px; font-size:10px; }
+#win[data-scr="vs"] .vs2-extra .hint { margin:0; font-size:11px; background:#1a1519; border:1px solid #c9a45c55; color:#e9e1d3; border-radius:4px; }
+#win[data-scr="vs"] .vbtns.vs2-alt { position:relative !important; bottom:auto !important; flex:0 0 auto; display:flex !important; flex-wrap:nowrap !important; align-items:center !important; justify-content:flex-start !important;
+  gap:10px !important; min-height:68px; margin:0 !important; padding:8px 12px !important; background:#1a1519 !important; border:1px solid #c9a45c88; border-radius:6px; }
+#win[data-scr="vs"] .vs2-dl { flex:0 0 auto; font:600 11px/1 Inter, sans-serif; letter-spacing:.6px; text-transform:uppercase; color:#8d8790; }
+#win[data-scr="vs"] .vs2-alt .sp { flex:1 1 auto; }
+#win[data-scr="vs"] .vs2-wvs { flex:1 1 auto; min-width:0; display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; }
+#win[data-scr="vs"] .vs2-wv { flex:0 1 146px; min-width:104px; height:48px; display:flex; align-items:center; gap:7px; padding:3px 7px 3px 3px; background:#2a2328; border:1px solid #8d879066; border-radius:4px; }
+#win[data-scr="vs"] .vs2-wv.lead { border-color:#b8322c; }
+#win[data-scr="vs"] .vs2-wv img.pt { flex:0 0 auto; width:38px !important; height:38px !important; margin:0 !important; border-radius:3px !important; border:1px solid #8d879055 !important; }
+#win[data-scr="vs"] .vs2-wv > span { min-width:0; display:grid; }
+#win[data-scr="vs"] .vs2-wv b { font:800 11px/1.2 Inter, sans-serif; color:#e9e1d3; }
+#win[data-scr="vs"] .vs2-wv small { font:400 10px/1.25 Inter, sans-serif; color:#b8b0a6; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#win[data-scr="vs"] .vs2-alt .btn { flex:0 0 auto; height:40px; margin:0 !important; clip-path:none !important; border-radius:4px !important; font:600 13px/1 Inter, sans-serif !important; text-transform:none !important; letter-spacing:0 !important; }
+#win[data-scr="vs"] .vs2-alt .vs2-b2 { min-width:70px; padding:0 14px !important; background:#1a1519 !important; color:#e9e1d3 !important; border:1px solid #8d8790 !important; box-shadow:none !important; }
+#win[data-scr="vs"] .vs2-alt .vs2-b2.on { border-color:#c9a45c !important; color:#f3d98f !important; }
+#win[data-scr="vs"] .vs2-alt .vs2-b1 { min-width:144px; padding:0 18px !important; font-weight:800 !important; color:#fff !important; background:var(--vsd) !important; border:2px solid #c9a45c !important; box-shadow:inset 0 0 0 1px #0006, 0 2px 8px #0008 !important; }
+#win[data-scr="vs"] .vs2-alt .btn::before, #win[data-scr="vs"] .vs2-alt .btn::after { display:none !important; }
+#win[data-scr="vs"] .vs2-alt .vs2-b1[disabled] { opacity:.5; }
+html.narrow #win[data-scr="vs"] .vs2 { grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr) !important; gap:8px !important; }
+html.narrow #win[data-scr="vs"] .vs2-dl { display:none; }
+#win[data-scr="vs"] .vs2 .vs2-img.hero2b { transform:scale(1.25); transform-origin:50% 100%; }
