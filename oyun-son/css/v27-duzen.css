@@ -263,3 +263,8 @@ html.glifli #game #hud .mm-ft span::after { content:''; position:absolute; inset
 /* 23 Kas: G3 boyalı yaratık portreleri arayüzde (ui-core mobImg; yaratik2d.js) */
 img.pt.m2d { object-fit:cover; object-position:50% 30%; }
 img.pt.m2df { object-fit:cover; object-position:50% 85%; background:radial-gradient(ellipse at 50% 70%, #3a3a3a, #141210 75%); }
+/* 23 Kas (C8): pencere başlıklarında G4 NPC yüzleri (sahne.js npcBas) — Halvor, Maelis */
+.npc-por.sm img.npc-yuz, .ik-por img.npc-yuz, .pz-bigpor img.npc-yuz { display:block; object-fit:cover; object-position:50% 20%; border-radius:10px; border:3px solid #8a6430; box-shadow:0 3px 8px #0006; background:#1a1612; }
+.npc-por.sm img.npc-yuz, .ik-head .ik-por img.npc-yuz { width:64px; height:64px; }
+.ik-head .ik-por img.npc-yuz { width:100%; height:100%; border:0; border-radius:0; }
+.pz-bigpor img.npc-yuz { width:66px; height:66px; }

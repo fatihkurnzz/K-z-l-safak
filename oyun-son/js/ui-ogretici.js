@@ -9,6 +9,7 @@ import { NPC, merchantStock } from '../shared/npc.js';
 import { itemBase, minPlus } from '../shared/items.js';
 import { clsOf } from '../shared/roster.js';
 import { ri } from './icons.js';
+import { npcBas } from './sahne.js';
 
 const step = () => (S?.tut && !S.tut.end ? TUT_STEPS[S.tut.s] : null);
 // Çocuk ancak öğreticinin hikâye adımlarında meydanda durur; sonrasında kardeşiyle birlikte görünür
@@ -17,31 +18,36 @@ export const childHere = () => ['child', 'worm', 'rescue'].includes(step());
 // ---- Portreler (özgün, sade çizimler) ----
 export const MERCHANT_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#3a2a14"/><path d="M8 64c3-14 12-19 24-19s21 5 24 19z" fill="#7a2a4a"/><path d="M20 52h24" stroke="#e7c75a" stroke-width="3"/><ellipse cx="32" cy="30" rx="12" ry="13" fill="#d8a878"/><path d="M18 24c2-10 8-14 14-14s12 4 14 14c-4-3-9-4-14-4s-10 1-14 4z" fill="#e8dcc0"/><path d="M18 22h28" stroke="#c9a23a" stroke-width="3"/><circle cx="27" cy="30" r="1.6" fill="#2a1a08"/><circle cx="37" cy="30" r="1.6" fill="#2a1a08"/><path d="M24 37q8 7 16 0" fill="#5a3a20"/><path d="M27 40q5 2 10 0" stroke="#fff" stroke-width="1.2" fill="none"/></svg>';
 export const CHILD_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#20304a"/><path d="M12 64c2-11 9-15 20-15s18 4 20 15z" fill="#4a7a3a"/><ellipse cx="32" cy="32" rx="12" ry="13" fill="#e8b88a"/><path d="M19 30c0-11 6-16 13-16s13 5 13 16c-3-5-8-8-13-8s-10 3-13 8z" fill="#6a3a1a"/><circle cx="27" cy="33" r="1.8" fill="#1a1008"/><circle cx="37" cy="33" r="1.8" fill="#1a1008"/><path d="M27 41q5-3 10 0" stroke="#7a3a2a" stroke-width="1.6" fill="none"/><path d="M25 36l-1 4M39 36l1 4" stroke="#7fc8ff" stroke-width="1.6" stroke-linecap="round"/><circle cx="26" cy="37" r="2.2" fill="#ff9a8a" opacity=".5"/><circle cx="38" cy="37" r="2.2" fill="#ff9a8a" opacity=".5"/></svg>';
-const say = (svg, name, lines, btns) => showModal(`<div class="npc-talk"><div class="npc-por">${svg}<b>${esc(name)}</b></div><div class="npc-txt">${lines.map(l => `<p>${l}</p>`).join('')}<div class="mbtns">${btns}</div></div></div>`, 'npcbox');
+// 23 Kas (C8): görsel roman diyaloğu (ui-diyalog.js). kim = G4 portre anahtarı; portresi olmayan (Bran) yedek SVG ile çıkar.
+// son: [{ t, a, ana }] — eski düğme HTML'i yerine. Satırlarda <b> olabildiği için html: true.
+const say = async (svg, name, lines, son, kim = '', unvan = '') => {
+  const { diyalog } = await import('./ui-diyalog.js');
+  diyalog({ kim, ad: name, unvan, halk: S?.faction === 'ocak' ? 'ocak' : 'sancak', satirlar: lines, son, svg, html: true });
+};
 
 // ---- Tüccar ----
 ACT.npcMerchant = () => openWin({ title: NPC.merchant.name, render: () => {
   const first = step() === 'merchant' && !S.tut.f.buy;
   const rows = merchantStock(S).filter(x => x.cls === clsOf(S)).map(x => { const B = itemBase(x.b), it = { b: x.b, g: 0, p: minPlus(x.b) }; return `<div class="row npc-ware">${ico(it)}<div class="grow">${itemLine(it)}<br><span class="mut">${CLASSES[x.cls].name} için</span></div><button class="btn ${S.akce >= x.price ? 'green' : ''}" data-a="npcBuy" data-id="${x.id}" ${S.akce >= x.price ? '' : 'disabled'}>${ri('akce')} ${fmt(x.price)}</button></div>`; }).join('');
-  return `<div class="npc-head"><div class="npc-por sm">${MERCHANT_SVG}</div><div><b>${NPC.merchant.name}</b><p>${first ? 'Hoş geldin yolcu! Kestiğin yaratıklardan akçe topladın, değil mi? İlk silahını benden al; sınıfına uygun olanı ayırdım.' : 'Yemin Pazarı’nın en dürüst tezgâhı! Kademene göre sağlam silahlar.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>${rows}
+  return `<div class="npc-head"><div class="npc-por sm">${npcBas('halvor', MERCHANT_SVG)}</div><div><b>${NPC.merchant.name}</b><p>${first ? 'Hoş geldin yolcu! Kestiğin yaratıklardan akçe topladın, değil mi? İlk silahını benden al; sınıfına uygun olanı ayırdım.' : 'Yemin Pazarı’nın en dürüst tezgâhı! Kademene göre sağlam silahlar.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>${rows}
     <p class="mut">Tüccar Standart silah satar. Daha iyisi Kapı’nın ardındaki yaratıklardan ve boss’lardan düşer.</p>`;
 } });
 ACT.npcBuy = async d => {
   const r = await run('npc.buy', { id: d.id });
   if (!r) return;
   toast(`${itemBase(r.b).name} çantana girdi.`);
-  if (step() === 'merchant') { ACT.closeWin?.(); setTimeout(() => say(MERCHANT_SVG, NPC.merchant.name, ['Hayırlı olsun! Şimdi onu kahramanına kuşan; çantada duran silah kimseyi korumaz.'], '<button class="btn green" data-a="closeModal">Tamam</button>'), 150); }
+  if (step() === 'merchant') { ACT.closeWin?.(); setTimeout(() => say(MERCHANT_SVG, NPC.merchant.name, ['Hayırlı olsun! Şimdi onu kahramanına kuşan; çantada duran silah kimseyi korumaz.'], [{ t: 'Tamam', a: 'closeModal', ana: true }], 'halvor', 'Yemin Pazarı tüccarı'), 150); }
   else redraw();
 };
 
 // ---- Küçük Bran ve Dev Solucan ----
 ACT.npcChild = () => {
   const s = step();
-  if (s === 'rescue') return say(CHILD_SVG, NPC.child.name, [`Usta! ${NPC.sibling} burada, yanımda! Solucanın karnından nasıl çıktı hâlâ inanamıyorum.`, 'Yemin Pazarı herkese anlatıyor seni. Al, babamın sakladığı bu keseyi de sen kullan.'], '<button class="btn green" data-a="closeModal">Rica ederim</button>');
+  if (s === 'rescue') return say(CHILD_SVG, NPC.child.name, [`Usta! ${NPC.sibling} burada, yanımda! Solucanın karnından nasıl çıktı hâlâ inanamıyorum.`, 'Yemin Pazarı herkese anlatıyor seni. Al, babamın sakladığı bu keseyi de sen kullan.'], [{ t: 'Rica ederim', a: 'closeModal', ana: true }]);
   if (s === 'child' || s === 'worm') return say(CHILD_SVG, NPC.child.name, ['Usta! Usta, bekle! Yeni silahını gördüm… Yeni silahınla yeni keşiflere gitmen lazım, ama önce bana yardım et!',
     `Kardeşim ${NPC.sibling} değirmenin arkasındaki sazlıkta oynuyordu. Topraktan <b>Dev Solucan</b> çıktı ve onu bir lokmada yuttu!`, 'Hâlâ yaşıyor, biliyorum! Solucanın karnını yararsan kurtulur. Lütfen…'],
-    '<button class="btn red" data-a="npcWorm">Göreve çık</button><button class="btn" data-a="closeModal">Birazdan</button>');
-  return say(CHILD_SVG, NPC.child.name, [`Kardeşim ${NPC.sibling} seni hiç unutmayacak, usta!`], '<button class="btn" data-a="closeModal">Kendine iyi bak</button>');
+    [{ t: 'Birazdan', a: 'closeModal' }, { t: 'Göreve çık', a: 'npcWorm', ana: true }]);
+  return say(CHILD_SVG, NPC.child.name, [`Kardeşim ${NPC.sibling} seni hiç unutmayacak, usta!`], [{ t: 'Kendine iyi bak', a: 'closeModal', ana: true }]);
 };
 ACT.npcWorm = async () => {
   closeModal();

@@ -325,6 +325,8 @@ ACT.ormanIzci = () => {
   const lines = done
     ? ['Patika temiz, yiğit! Sürü dağıldı; yol yeniden açık.', 'Hayvanların postunda bir şey dikkatimi çekti: ince, gri bir kül. Ne ocaktan ne kamp ateşinden… Neyse, yolda konuşuruz.', 'Ormanın öbür ucunda <b>Yemin Pazarı</b> var: Taş Yemini’nin dibinde iki ırkın buluştuğu tarafsız pazar. Tüccarlar orada, senden yardım bekleyenler de. Hazırsan seni götüreyim.']
     : ['Gece kampı bastılar. Biri bacağımı ısırdı; yaşarım, ama yürüyemem.', `Kuduz bir yaban sürüsü patikanın ucunu tutmuş (${TUT_HUNT - wins()} küme). Onları kes, yol açılsın; ben ateşi beklerim.`];
-  showModal(`<div class="npc-talk"><div class="npc-por">${SCOUT_SVG}<b>${esc(ORMAN.scout)}</b></div><div class="npc-txt">${lines.map(l => `<p>${l}</p>`).join('')}<div class="mbtns">${done ? '' : '<button class="btn red" data-a="ormanFightM">Sürüye git</button>'}<button class="btn" data-a="closeModal">Tamam</button></div></div></div>`, 'npcbox');
+  // 23 Kas (C8): görsel roman diyaloğu, G4 Corin/Thrak portresi (yoksa eski SVG)
+  import('./ui-diyalog.js').then(({ diyalog }) => diyalog({ kim: S?.faction === 'sancak' ? 'corin' : 'thrak', ad: ORMAN.scout, unvan: 'İzci', halk: S?.faction === 'ocak' ? 'ocak' : 'sancak', satirlar: lines, svg: SCOUT_SVG, html: true,
+    son: done ? [{ t: 'Tamam', a: 'closeModal', ana: true }] : [{ t: 'Tamam', a: 'closeModal' }, { t: 'Sürüye git', a: 'ormanFightM', ana: true }] }));
 };
 ACT.ormanFightM = () => { closeModal(); ACT.ormanFight(); };

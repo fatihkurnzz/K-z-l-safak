@@ -7,9 +7,12 @@ import { NOBET } from '../shared/nobet.js';
 import { FACTIONS } from '../shared/content.js';
 import { startBattle } from './ui-battle.js';
 
-ACT.yashka = () => showModal(`<h2>Şaman Yashka</h2><div class="in anit-pick"><p class="mut">Kemiklerim iki yol gösteriyor, yiğit. Hangisine yürürsün?</p>
-  <div class="sv-grid"><button class="sv-opt" data-a="yashkaNobet"><span><b>${NOBET.name}</b><small>Partilerle dalgalara karşı nöbet</small></span></button>
-  <button class="sv-opt" data-a="anit"><span><b>${ANIT.name}</b><small>İki ırkın partisi · Sınır Anıtı · Sv. ${ANIT.minLevel}+</small></span></button></div></div>`, 'anit-box');
+// 23 Kas (C8): görsel roman diyaloğu, G4 Yashka portresi; iki yol son sayfanın düğmeleri
+ACT.yashka = async () => { const { diyalog } = await import('./ui-diyalog.js');
+  diyalog({ kim: 'yashka', ad: 'Şaman Yashka', unvan: 'Kemik okuyucu', halk: S?.faction === 'ocak' ? 'ocak' : 'sancak',
+    satirlar: ['Kemiklerim iki yol gösteriyor, yiğit. Hangisine yürürsün?',
+      `${NOBET.name}: partilerle dalgalara karşı nöbet. ${ANIT.name}: iki ırkın partisi Sınır Anıtı'nda karşılaşır (Sv. ${ANIT.minLevel}+).`],
+    son: [{ t: NOBET.name, a: 'yashkaNobet' }, { t: ANIT.name, a: 'anit', ana: true }] }); };
 ACT.yashkaNobet = () => { closeModal(); ACT.nobet(); };
 ACT.anit = () => {
   const br = bracketOf(S.lvl), left = Math.max(0, ANIT.daily - (S.daily?.anit || 0)), foe = S.faction === 'ocak' ? 'sancak' : 'ocak';

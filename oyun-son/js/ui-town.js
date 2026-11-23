@@ -3,6 +3,7 @@
 import { S, now, devUI } from './api.js';
 import { url as g5url } from './grafik5-png.js';
 import { MERCHANT_SVG } from './ui-ogretici.js';
+import { npcBas } from './sahne.js';
 import { TUT_STEPS } from '../shared/meta.js';
 import { merchantShelves, NPC, NPC_DAILY, npcLeft, POT_PACKS, npcPots, npcScrolls } from '../shared/npc.js';
 import { POT } from '../shared/mana.js';
@@ -167,7 +168,7 @@ function pazarPage() {
 const nextDay = () => (dayKey(now()) + 1) * 86400000 - 3 * 3600000;
 function tuccarPage() {
   const first = tutorialBuy(), SH = merchantShelves(S, now()), subs = pzSub(TV.sub, [['weapons', 'Silahlar', 'atk'], ['armors', 'Zırhlar', 'armor'], ['mats', 'Erzak', 'toz'], ['sell', 'Tüccara sat', 'akce']], 'tcSub');
-  const head = `<div class="pz-head"><div class="pz-bigpor">${TC_SVG}</div><div class="grow"><b>${NPC.merchant.name}</b><p>${first ? 'Hoş geldin yolcu! İlk silahını benden al; sınıfına uygun olanı ayırdım.' : TV.sub === 'sell' ? 'Çantandaki fazlalığı peşin akçeyle alırım. İlan kadar vermem ama beklemezsin.' : 'Yemin Pazarı’nın en dürüst tezgâhı! Kademene göre sağlam mal; raflar her gün yenilenir.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>`;
+  const head = `<div class="pz-head"><div class="pz-bigpor">${npcBas('halvor', TC_SVG)}</div><div class="grow"><b>${NPC.merchant.name}</b><p>${first ? 'Hoş geldin yolcu! İlk silahını benden al; sınıfına uygun olanı ayırdım.' : TV.sub === 'sell' ? 'Çantandaki fazlalığı peşin akçeyle alırım. İlan kadar vermem ama beklemezsin.' : 'Yemin Pazarı’nın en dürüst tezgâhı! Kademene göre sağlam mal; raflar her gün yenilenir.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>`;
   const ware = x => { const it = { b: x.b, g: 0, p: 0 }, B = itemBase(x.b), left = npcLeft(S, x.id), ok = S.akce >= x.price && left > 0;
     return `<div class="pz-card g0"><div class="pz-top">${ico(it, 'lg')}<div class="pz-nm">${itemLine(it)}</div></div><div class="pz-bd">${B.cls ? `<span class="pz-b">${B.cls.map(c => CLASSES[c].name).join(' · ')}</span>` : ''}${B.set ? `<span class="pz-b pz-st">Set: ${esc(B.set)}</span>` : ''}</div><div class="pz-bot"><span class="mut">Stok ${left}</span><b class="price">${ri('akce')} ${fmt(x.price)}</b><button class="btn sm ${ok ? 'green' : ''}" data-a="${first && CLASSES[x.id] ? 'npcBuy' : 'tcBuy'}" data-id="${x.id}" ${ok ? '' : 'disabled'}>Al</button></div></div>`; };
   if (TV.sub === 'weapons') return `${head}${subs}<div class="pz-grid">${SH.weapons.map(ware).join('')}</div><p class="mut">Tüccar Standart nadirlikte satar; her üründen günde ${NPC_DAILY} tane. Daha iyisi yaratıklardan, boss’lardan ve pazardan gelir. İksirler başkentteki <b>İksir ve Parşömen</b> dükkânında satılır.</p>`;
@@ -206,7 +207,7 @@ const IKSIRCI_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64
 export const scrollSvg = (k = 'energy') => { const c = k === 'arena' ? ['#ff8a5a', '#a8341a'] : ['#7fe08a', '#2f8a3a'];
   return `<svg viewBox="0 0 32 32" class="potsvg" aria-hidden="true"><rect x="7" y="6" width="18" height="20" fill="#f1e2bc" stroke="#6a4a24" stroke-width="1.3"/><rect x="4" y="3.5" width="24" height="4.5" rx="2.2" fill="#d9bf86" stroke="#6a4a24" stroke-width="1.3"/><rect x="4" y="24" width="24" height="4.5" rx="2.2" fill="#d9bf86" stroke="#6a4a24" stroke-width="1.3"/><path d="M10.5 11h11M10.5 14.5h9M10.5 18h7" stroke="#a88a52" stroke-width="1.4" stroke-linecap="round"/><circle cx="22" cy="20" r="3.6" fill="${c[0]}" stroke="${c[1]}" stroke-width="1.2"/><path d="M22 18.3v3.4M20.3 20h3.4" stroke="#fff" stroke-width="1" opacity=".85"/></svg>`; };
 const IK_TITLE = `<span class="pz-tt"><span class="pz-por">${IKSIRCI_SVG}</span><span>İksir ve Parşömen</span></span>`;
-const ikHead = t => `<div class="pz-head ik-head"><div class="ik-por">${IKSIRCI_SVG}</div><div class="grow"><b>${NPC.apothecary.name}</b><p>${t === 'pots' ? 'Kazanda yeni kaynadı! Savaşta bir yudum, turunu bile bitirmez.' : 'Mühürlü parşömenler: açtığın an etkisi başlar. Her gün yenileri yazılır.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>`;
+const ikHead = t => `<div class="pz-head ik-head"><div class="ik-por">${npcBas('maelis', IKSIRCI_SVG)}</div><div class="grow"><b>${NPC.apothecary.name}</b><p>${t === 'pots' ? 'Kazanda yeni kaynadı! Savaşta bir yudum, turunu bile bitirmez.' : 'Mühürlü parşömenler: açtığın an etkisi başlar. Her gün yenileri yazılır.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>`;
 function iksirPage(t) {
   if (t === 'scrolls') return `${ikHead(t)}<div class="pz-grid ik-grid">${npcScrolls(S).map(x => { const ok = !x.lock && x.left > 0 && S.akce >= x.price;
     return `<div class="pz-card g0 potcard ik-card ${x.lock ? 'dim' : ''}"><div class="pz-top"><span class="potico">${scrollSvg(x.icon)}</span><div class="pz-nm"><b>${x.name}</b><br><span class="mut">${x.desc}</span></div></div>
