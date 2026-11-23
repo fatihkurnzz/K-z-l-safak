@@ -12,6 +12,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - **Sürüm 36 YAYINDA** (485 dosya; yayın commit'i 3545f7e; sonraki yayında `git diff --name-status 3545f7e HEAD -- .` (oyun-son içinde), `_tasarim/` hariç).
 - **"Stage" → "Aşama" BİTTİ** (kullanıcı kararı): TR metinlerde ekleriyle (aşamayı/aşamasını/aşamalarda…), shared/ yalnız metin+yorum; i18n'de yalnız anahtarlar (EN karşılık "stage" kaldı). Betik scratchpad `asama.py` (silinebilir).
 - Regresyon (ui-denetim, 880×406, iki halk): 68/88 ekran açıldı, 0 JS hatası. Görevler sekme rozeti düzeltildi (`duzen.css` sonu).
+- **KULLANICI (23.11, kesin): TEST YAPMA.** Ne otomatik tur ne ekran görüntüsü; her denenmesi gereken şeyi `EKSIK_LISTESI_SON.md` C bölümüne yaz, testler en sonda topluca yapılacak.
 - **Kod ~%90 bitti. EKSİK LİSTESİ: `oyun-son/_tasarim/EKSIK_LISTESI_SON.md`** (A GPT görselleri, B kodda kalan C11 görsel vb., C kullanıcı testleri, D kararlar). Eski `EKSIK_LISTESI.md` artık geçersiz.
 
 ## ÖNCEKİ DURUM (23.11, 12. oturum)

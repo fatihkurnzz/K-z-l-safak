@@ -27,6 +27,10 @@ Otomatik denetim (880×406, iki halk): 88 ekrandan 68'i açıldı, **0 JS hatas�
 5. Diyaloglar: Halvor (satın alma sonrası), Bran (3 durum), izci (iki halk), Yashka.
 6. EN ↔ TR geçişi: eşya ve yetenek adları, yeni "Aşama" metinleri.
 7. Hiç denenemeyenler: PvP, ödeme, klan içi ekranlar, İz Takası.
+8. Otomatik turda açılamayan 20 ekran (meydan, hall, czArena, czHall, gatePvp, exchange, tp, spin, gift, charSwitchMenu, skill, sandikOpen, haftalık/aylık bonus, tierInfo, calInfo, emoOpen, arenaRefresh, yashka): elle açılıp bakılacak.
+9. Görevler sekmesindeki rozetin yeni yeri (simgenin sol üst köşesi) iki halkta.
+
+> Kural (23.11): testler en sona bırakıldı. Bundan sonraki her değişikliğin denemesi buraya eklenecek.
 
 ## D. Senin kararın
 1. Play Store mu, tarayıcı mı?
