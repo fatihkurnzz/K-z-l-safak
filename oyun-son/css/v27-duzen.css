@@ -330,3 +330,50 @@ html[data-faction="ocak"] #win[data-scr="vs"] { --vsv:#c2552b; --vsd:#2b211b; }
 html.narrow #win[data-scr="vs"] .vs2 { grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr) !important; gap:8px !important; }
 html.narrow #win[data-scr="vs"] .vs2-dl { display:none; }
 #win[data-scr="vs"] .vs2 .vs2-img.hero2b { transform:scale(1.25); transform-origin:50% 100%; }
+
+/* 23 Kas (M4 maketi · olcu-sonuc.md): savaş sonucu — sade koyu pencere 660 px, üstte halk arması (yenilgide gri/kırık), büyük ZAFER/YENİLGİ,
+   alt başlık, 3 büyük yıldız, 3 ödül kartı (192×106), düğmeler Tekrar · Devam (birincil) · Şehre Dön. Savaş raporu "Savaş dökümü" düğmesinde. */
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 { --rzv:#c9a45c; width:min(660px, 94vw) !important; max-width:none !important; padding:10px 28px 16px !important;
+  background:#1a1519 !important; border:2px solid var(--rzv) !important; border-image:none !important; border-radius:6px !important; clip-path:none !important;
+  box-shadow:0 20px 60px #000c !important; color:#e9e1d3 !important; overflow:visible !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2.lose { --rzv:#8d8790; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2::before, html[data-faction][data-faction][data-faction] #modal .box.bres.rz2::after { display:none !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 > .mx { top:8px !important; right:8px !important; width:36px !important; height:36px !important; background:#1a1519 !important; border:1px solid #8d8790 !important; border-radius:4px !important;
+  color:#e9e1d3 !important; font:400 18px/1 Inter, sans-serif !important; display:grid !important; place-items:center !important; background-image:none !important; }
+#modal .box.rz2 .rz2-arma { display:block; width:48px; height:48px; margin:4px auto 0; background:var(--amb-sancak) 50% 50% / contain no-repeat; filter:drop-shadow(0 2px 4px #000a); }
+html[data-faction="ocak"] #modal .box.rz2 .rz2-arma { background-image:var(--amb-ocak); }
+html:not(.amblemli) #modal .box.rz2 .rz2-arma { display:none; }
+#modal .box.rz2 .rz2-arma.kirik { filter:grayscale(1) brightness(.75) drop-shadow(0 2px 4px #000a); transform:rotate(-8deg); clip-path:polygon(0 0, 100% 0, 100% 100%, 62% 100%, 48% 70%, 38% 100%, 0 100%); }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 > h2 { padding:2px 40px 0 !important; font:700 36px/1.05 Cinzel, Georgia, serif !important; letter-spacing:4px !important; color:#c9a45c !important;
+  text-shadow:0 2px 0 #000 !important; -webkit-text-stroke:0 !important; animation:none; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2.lose > h2 { color:#b9c0c8 !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 > h2::before, html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 > h2::after { display:none !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 > .in { padding:0 !important; border:0 !important; border-image:none !important; box-shadow:none !important; background:none !important; outline:0 !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 > .in::before,
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-head,
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-strip,
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .in > aside,
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rside { display:none !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz2-alt { display:block !important; margin:2px 0 4px !important; text-align:center !important; font:400 13px/1.3 Inter, sans-serif !important; color:#8d8790 !important; }
+#modal .box.rz2 .rz2-yil { display:flex; justify-content:center; gap:20px; margin:2px 0 10px; }
+#modal .box.rz2 .rz2-yil i { font-style:normal; font-size:36px; line-height:1; color:#3a3238; text-shadow:0 1px 0 #000; }
+#modal .box.rz2 .rz2-yil i::before { content:'★'; }
+#modal .box.rz2 .rz2-yil i.on { color:#c9a45c; text-shadow:0 2px 0 #5a4520, 0 0 10px #c9a45c55; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-cards { gap:14px !important; margin:0 0 10px !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card { min-height:96px; padding:10px 12px !important; border-radius:4px !important; background:#2a2328 !important; box-shadow:none !important; border:1px solid #c9a45c55 !important; display:flex; flex-direction:column; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card small { font:800 11px/1.2 Inter, sans-serif !important; letter-spacing:1px; color:#8d8790 !important; text-align:left; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card > b { margin:8px 0 auto; font:800 22px/1.1 Inter, sans-serif !important; color:#c9a45c !important; justify-content:flex-start; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card.xp > b { color:#5fbf78 !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card > b .ri, html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card > b svg { display:none !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card em { margin-top:6px; font:400 11px/1.25 Inter, sans-serif !important; color:#8d8790 !important; text-align:left; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .rz-card .rz-none { font-size:13px !important; color:#8d8790 !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .in > p:not(.rz2-alt) { font-size:11px !important; text-align:center; margin:3px 0 !important; color:#b8b0a6; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns { display:flex !important; justify-content:center !important; gap:10px !important; margin-top:12px !important; flex-wrap:wrap; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn { min-width:118px; height:40px; padding:0 18px !important; clip-path:none !important; border-radius:4px !important; border-image:none !important;
+  font:600 13px/1 Inter, sans-serif !important; text-transform:none !important; letter-spacing:0 !important; color:#e9e1d3 !important; background:#1a1519 !important; border:1px solid #8d8790 !important; box-shadow:none !important; text-shadow:none !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn::before, html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn::after { display:none !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn[data-a="next"],
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2:not(:has([data-a="next"])) .mbtns .btn[data-a="hub"] { font-weight:800 !important; color:#fff !important; background:#1f2c40 !important; border:2px solid #c9a45c !important; }
+html[data-faction="ocak"][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn[data-a="next"],
+html[data-faction="ocak"][data-faction][data-faction] #modal .box.bres.rz2:not(:has([data-a="next"])) .mbtns .btn[data-a="hub"] { background:#2b211b !important; }
+html[data-faction][data-faction][data-faction] #modal .box.bres.rz2.lose .mbtns .btn[data-a] { font-weight:600 !important; background:#1a1519 !important; border:1px solid #8d8790 !important; }

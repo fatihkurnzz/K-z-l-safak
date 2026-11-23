@@ -242,8 +242,9 @@ export function showResult(b, r, args, auto) {
   const won = r.win || m === 'clanboss' || m === 'baskin';
   const EMB = won ? '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 33l10 10 21-24" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 20l24 24M44 20L20 44" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>';
   const loot = lootBox(r.loot);
-  showModal(`<h2>${title}</h2><div class="in">${reportAside(r)}
+  showModal(`<i class="rz2-arma ${won ? '' : 'kirik'}" aria-hidden="true"></i><h2>${title}</h2><div class="in">${reportAside(r)}
     <div class="rz-head"><i class="rz-emb">${EMB}</i><div><p class="rz-sub">${won ? 'Savaş tamamlandı' : 'Bu savaş burada sona erdi'}</p><p class="rz-name"><b>${esc(r.title || b.title)}</b></p>${r.stars ? `<p class="bres-stars">${stars(r.stars)}</p>` : ''}</div></div>
+    <p class="rz2-alt">${esc(r.title || b.title)}${r.stars ? ` · ${r.stars} Yıldızla Tamamlandı` : won ? ' · Savaş tamamlandı' : ' · Bu savaş burada sona erdi'}</p>${m === 'stage' ? `<div class="rz2-yil" aria-label="${r.stars || 0}/3 yıldız">${[1, 2, 3].map(k => `<i class="${(r.stars || 0) >= k ? 'on' : ''}"></i>`).join('')}</div>` : ''}
     <div class="rz-cards"><div class="rz-card ak"><small>Akçe</small><b>${ri('akce')} +${fmt(r.akce || 0)}</b>${r.first ? '<em>ilk geçiş ödülü dahil</em>' : ''}</div><div class="rz-card xp"><small>Deneyim</small><b>${ri('xp')} ${r.xp ? xpGain(r.xp, S.lvl - (r.levels || 0)) : '—'}</b>${r.premium ? `<em>${PREMIUM[r.premium].name} Premium +%${Math.round(PREMIUM[r.premium].xp * 100)}</em>` : ''}</div><div class="rz-card es"><small>Eşya</small>${loot || `<b class="rz-none">${r.win && m === 'stage' ? 'Bu sefer düşmedi' : '—'}</b>`}</div></div>
     ${extra.map(x => `<p>${x}</p>`).join('')}
     ${r.levels ? levelUpNote(S.lvl - r.levels, S.lvl, `+${r.levels * ENERGY.levelUpBonus} enerji, +${r.levels * 3} nitelik puanı`) : ''}
@@ -252,7 +253,7 @@ export function showResult(b, r, args, auto) {
     ${reportStrip(r)}
     <div class="mbtns">${again ? `<button class="btn" data-a="again">${m === 'depth' || m === 'kule' ? 'Sonraki kat' : m === 'nobet' ? 'Sonraki dalga' : 'Tekrar'}</button>` : ''}${r.win && next && stageOpen(S, next.id, tier) ? '<button class="btn green" data-a="next">Devam</button>' : ''}
       ${m === 'arena' || m === 'live' || m === 'banner' ? '<button class="btn" data-a="backPvp">Meydan</button>' : ''}${m === 'clanboss' || m === 'siege' ? '<button class="btn" data-a="backClan">Klan</button>' : ''}
-      ${reportBtn(r)}<button class="btn ${won ? 'blue' : 'red'}" data-a="hub">${home}</button></div></div>`, (r.win ? 'bres win' : 'lose bres') + reportClass(r)); // bres: savaş sonucu görünümü (css/v15-savas.css, v23-ekranlar.css)
+      ${reportBtn(r)}<button class="btn ${won ? 'blue' : 'red'}" data-a="hub">${home}</button></div></div>`, (r.win ? 'bres win' : 'lose bres') + ' rz2' + reportClass(r)); // bres: savaş sonucu görünümü (css/v15-savas.css, v23-ekranlar.css)
   // Sonuç penceresi arenada açılır: kapatılırsa (✕, dışarı dokunma, geri tuşu) oyuncu düğmesiz bir sahnede kalırdı. Kapatma
   // düğmesi ana üsse döner; dışarı dokunma ve geri tuşu pencereyi kapatmaz (core: closeModal düğmesi olmayan modal kapanmaz).
   const x = document.querySelector('#modal .mx[data-a="closeModal"]');
