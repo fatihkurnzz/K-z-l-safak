@@ -8,7 +8,12 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 14. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 15. oturum) — P23 PROJE PAKETİ
+- Kullanıcı 11 telefon ekranıyla yeni istekler verdi; **bu oturumda kod DEĞİŞMEDİ**. Kullanıcı işleri başka bir Claude Opus 5.5, Gemini Neon 4 ve GPT Astra 6.2'ye yaptıracak.
+- Paket: `oyun-son/_tasarim/proje-23kas/` (00_PROJE_VE_SIRA.md = istekler U1–U14 + eklenen bulgular E1–E11 + sıra; CLAUDE_OPUS_GOREVLERI.md K1–K12; GEMINI_NEON_GOREVLERI.md N1–N9; GPT_ASTRA_GOREVLERI.md A1–A8; REFERANS_EKRAN/ döndürülmüş ekranlar). ZIP: depo kökünde `P23_PROJE_PAKETI.zip` (commit'lenmedi).
+- Sonraki Claude: `CLAUDE_OPUS_GOREVLERI.md`'den başla; kodda sürüm 38 durumu geçerli.
+
+## ÖNCEKİ DURUM (23.11, 14. oturum) — clear sonrası buradan devam
 - **KOD NİHAİ SÜRÜMDE.** Kullanıcı: önce kod bitsin; testler, GPT görselleri, yayın altyapısı (Play Store) SONRA. Tek kaynak `oyun-son/_tasarim/EKSIK_LISTESI_SON.md` (1 bitti, 2A GPT, 2B testler, 2C Play Store planı, 2D testten sonra kod).
 - **Kararlar (kesin):** Play Store · ilk sürüm yerel kayıt · ilk sürümde gerçek para YOK (2. yol), sonra önce kozmetik, sunucu gelince avantaj · 2. sezon sonra.
 - Bu oturum: ödeme ekranı "Yakında"; savaş Otomatik/Oto İksir/hız glifleri; C11 düğme rolleri `html.roller` (`.tehlike` sınıfı yeni; kapatma `dd_rol='0'`/`?rol=0`); `!important` temizliği testten sonraya.
