@@ -149,6 +149,7 @@ const rsLabel = k => (rsFree(k) ? `Ücretsiz sıfırla (${rsFree(k)} hak)` : `S�
 const rsCost = k => (rsFree(k) ? `Ücretsiz (kalan hak ${rsFree(k)})` : `${fmt(RESET_COST(S.lvl))} akçe karşılığında`);
 ACT.skillReset = () => confirmBox('Yetenekleri sıfırla', `${rsCost('skill')} ağaç puanların geri verilir.`, () => doAct('skill.reset', { hero: HID() }));
 ACT.skill = d => {
+  if (!d || !SKILLS[d.id]) return;
   const hid = HID(), h = S.heroes[hid], S2 = SKILLS[d.id];
   if (!unlockedSkills(S, hid).includes(d.id)) return toast(S2.master || S2.pm ? `${MASTERY.unlock}. seviyede, ustalık ağacına ${S2.mreq} puan verince açılır.` : S2.path ? pathLockNote(hid, S2) : S2.lvl ? `${S2.lvl}. seviyede açılır.` : !specTrees(clsOf(S, hid), S.lvl >= PATH.level ? pathOf(S.heroes[hid]) : null).includes(S2.tree) ? 'Bu ağaç seçtiğin uzmanlığa ait değil.' : `Bu ağaca ${S2.req} puan gerekli.`);
   let act2 = [...h.act], pas = h.pas, ppas = h.ppas ?? null;

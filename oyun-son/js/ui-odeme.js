@@ -302,7 +302,7 @@ ACT.block = async d => { closeModal(); if (await run('social.block', { id: d.id 
 ACT.unblock = async d => { if (await run('social.unblock', { id: d.id })) after(d, 'Engel kaldırıldı.'); };
 
 // Sohbet satırındaki "⋯": mesaj için şikâyet, gönderen için engel ve kart
-ACT.msgMenu = d => showModal(`<h2>${esc(d.name)}</h2><div class="in"><p class="mquote">“${esc(d.text || '')}”</p>
+ACT.msgMenu = d => !d ? undefined : showModal(`<h2>${esc(d.name)}</h2><div class="in"><p class="mquote">“${esc(d.text || '')}”</p>
   <div class="mgrid"><button class="btn" data-a="quoteMsg" data-name="${esc(d.name)}" data-text="${esc(d.text || '')}">Alıntı yap</button><button class="btn red" data-a="reportAsk" data-id="${esc(d.id)}" data-name="${esc(d.name)}" data-msg="${esc(d.msg)}" data-ch="${esc(d.ch)}" data-to="${esc(d.to || '')}" data-text="${esc(d.text || '')}">Mesajı şikâyet et</button>
     <button class="btn" data-a="blockAsk" data-id="${esc(d.id)}" data-name="${esc(d.name)}">Engelle</button><button class="btn" data-a="pcard" data-id="${esc(d.id)}">Kartını aç</button></div></div>`);
 // Alıntı (19 Kas): mesajın kısaltılmış hâli yazı kutusunun başına eklenir; sohbet penceresi açıksa onun kutusuna, değilse alt sohbet çubuğuna

@@ -59,7 +59,7 @@ function gateZones() {
     <div class="stg wide">${tiles}</div><p class="mut">Bir stage'e dokun. 5, 10, 15, 20 ve 25 kapı stage'idir; taçlı olanlar günlük boss'tur (eşsiz eşya ve iz verir).</p></div>`;
 }
 ACT.zone = d => { GV.zone = +d.z; redraw(); };
-ACT.stage = d => { const t = +d.t || 0; if (!stageOpen(S, d.id, t)) return toast('Kilitli: önce bir önceki stage geçilmeli.'); openStageVs(d.id, t); };
+ACT.stage = d => { if (!d || !d.id) return; const t = +d.t || 0; if (!stageOpen(S, d.id, t)) return toast('Kilitli: önce bir önceki stage geçilmeli.'); openStageVs(d.id, t); };
 
 const card = (pic, name, desc, chips, btn, tone = 'violet') => `<div class="row">${med(pic, tone)}<div class="grow"><b>${name}</b><br><span class="mut">${desc}</span><div class="chips">${chips.map(c => `<span class="chip">${c}</span>`).join('')}</div></div>${btn}</div>`;
 const enter = (m, ok, label = 'Gir') => `<button class="btn red" data-a="mode" data-m="${m}" ${ok ? '' : 'disabled'}>${label}</button>`;
@@ -152,6 +152,7 @@ function openStageVs(id, tier = 0) {
     extra: boss ? `<div class="hint">${SS[id] ? `Günlük hak: <b class="${ready ? 'up' : 'down'}">${ready ? '1/1' : '0/1 — 00:00’da yenilenir'}</b>` : 'İlk geçişe kadar serbestçe denenir; sonra günde 1 hak.'} · ${ri('mark')} İz: <b>${marks}/${BOSS_PITY}</b> ${marks >= BOSS_PITY ? `<button class="btn sm green" data-a="exchange" data-boss="${d.gate}">Eşsizle takas et</button>` : ''}<br>Eşsizler: ${MOBS[d.gate].uniques.map(u => `<b class="gn g2">${itemBase(u).name}</b>`).join(', ')}</div>` : '' });
 }
 ACT.exchange = d => {
+  if (!d || !MOBS[d.boss]) return;
   const M = MOBS[d.boss];
   showModal(`<h2>İz Takası</h2><div class="in"><p>${BOSS_PITY} iz karşılığında birini seç:</p>${M.uniques.map(b => { const it = { b, g: 2, p: 0 }; return `<button class="ibtn" data-a="exchangeDo" data-boss="${d.boss}" data-b="${b}">${ico(it)}<span>${itemLine(it)}</span></button>`; }).join('')}<div class="mbtns"><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
 };
