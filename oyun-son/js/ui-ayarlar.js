@@ -2,7 +2,7 @@
 // Kural içermez. Grafik kademesi gfx.js'ten, ses audio.js'ten, bildirim kategorileri kalıcılık paketinden (notif.set)
 // sürülür; burası yalnızca düğmeleri ve kaydırıcıları çizer. Dil: i18n.js (cihazda dd_lang, hesapta settings.lang).
 import { S, act, onState, LOCAL, DEV, now } from './api.js';
-import { ACT, $, win, modal, hud, openWin, redraw, cur, run, toast, med, esc, closeModal, confirmBox, avatarImg, hooks } from './ui-core.js';
+import { ACT, $, win, modal, hud, openWin, redraw, cur, run, toast, med, esc, closeModal, showModal, confirmBox, avatarImg, hooks } from './ui-core.js';
 import { FACTIONS } from '../shared/content.js';
 import { NOTIF_CATS } from '../shared/meta.js';
 import { SETTING_LANGS } from '../shared/settings.js';
@@ -10,6 +10,8 @@ import { TIER_KEYS, TIER_NAMES, TIER_NOTES, TIERS, getGfx, setGfx } from './gfx.
 import { BUSES, BUS_KEYS, getAudio, setVolume, mute, isMuted, play, hasSound, onAudio } from './audio.js';
 import { svg } from './icons.js';
 import { replayFragman } from './ui-fragman.js';
+import { ICON_AUTHORS } from './item-icons.js';
+import { SKILL_ICON_AUTHORS } from './skill-icons.js';
 import { pageErisim } from './ui-erisim.js';
 import { LANGS, LANG_KEYS, lang, setLang, savedLang, onLang, t, fmtDate, protectName, errText } from './i18n.js';
 // Dil düğmelerindeki bayraklar (emoji bayraklar her cihazda görünmediği için çizim): Türkçe → Türkiye, English → Birleşik Krallık
@@ -140,10 +142,15 @@ function pageAcc() {
     <div class="row">${med('key', '')}<div class="grow"><b>Oyuncu kimliği</b><br><span class="mut">Destek isterken bu kimliği yaz.</span><br><code class="ayid" translate="no">${D.id ? esc(D.id) : '…'}</code></div><button class="btn sm" data-a="ayCopy" ${D.id ? '' : 'disabled'}>Kopyala</button></div>
     <div class="row">${med('party', '')}<div class="grow"><b>Profil</b><br><span class="mut">Fotoğraf, unvan, istatistikler ve savaş raporları.</span></div><button class="btn sm" data-a="ayProfile">Aç</button></div>
     <div class="row">${med('events', '')}<div class="grow"><b>Fragmanı izle</b><br><span class="mut">Açılış sinematiğini yeniden oynat.</span></div><button class="btn sm" data-a="ayFragman">İzle</button></div>
+    <div class="row">${med('crown', '')}<div class="grow"><b>Emeği Geçenler</b><br><span class="mut">Simge yazarları ve lisans (CC BY 3.0).</span></div><button class="btn sm" data-a="ayEmek">Aç</button></div>
     ${LOCAL ? `<div class="row">${med('lock', '')}<div class="grow"><b>Deneme kaydı</b><br><span class="mut">Bu sürümde ilerleme yalnızca bu cihazda saklanır; oturum kapatma yoktur. Kaydı silersen oyun baştan başlar.</span></div><button class="btn sm red" data-a="devReset">Kaydı sıfırla</button></div>`
       : '<p class="mut">Hesabın bu cihaza bağlıdır; oturum kapatma ve hesap taşıma henüz yoktur. Tarayıcı verilerini silersen hesaba erişimin kaybolur.</p>'}`;
 }
 ACT.ayCopy = async () => { const id = AY.data?.id; if (!id) return; try { await navigator.clipboard.writeText(id); toast(t('Kimlik kopyalandı.')); } catch { toast(t('Kopyalanamadı. Kimliği elle seç.')); } };
+ACT.ayEmek = () => {
+  const ad = [...new Set([...ICON_AUTHORS, ...SKILL_ICON_AUTHORS])].sort((a, b) => a.localeCompare(b));
+  showModal(`<h3>Emeği Geçenler</h3><p class="mut">Oyundaki bazı simgeler game-icons.net katkıcılarına aittir ve CC BY 3.0 lisansıyla kullanılmıştır (<span translate="no">creativecommons.org/licenses/by/3.0</span>).</p><p translate="no"><b>${ad.map(esc).join(' · ')}</b></p><p class="mut">Eşya, yetenek, sahne, karakter ve efekt görselleri oyuna özel boyanmıştır.</p>`);
+};
 ACT.ayProfile = () => { ACT.closeWin(); ACT.profile(); };
 ACT.ayFragman = () => { ACT.closeWin?.(); replayFragman(); };
 

@@ -8,7 +8,14 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 7. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 8. oturum) — clear sonrası buradan devam
+- Sürüm 31 yayında; bu oturumda YAYIN YOK (yerel commit'ler, push 403). Sonraki yayında `git diff --name-status bfb64c4 HEAD -- oyun-son`, `_tasarim` hariç. Kullanıcı: basit işleri Sonnet ajanına yaptır, TEST YAPMA.
+- **C13 kısmen:** `ACT.stage/exchange/skill` (ui-battle, ui-party) ve `msgMenu` (ui-odeme) parametresiz çağrıda sessiz döner. Kalan ~120 `ACT.x = d =>` taranmadı; `ui-hub.js:367 ACT[b.act]()` parametresiz çağırıyor.
+- **C15 BİTTİ:** Ayarlar → Hesap → "Emeği Geçenler" (`ui-ayarlar.js ACT.ayEmek`; yazarlar `ICON_AUTHORS`+`SKILL_ICON_AUTHORS`, CC BY 3.0). Tarayıcıda denenmedi.
+- **Belge:** `_tasarim/denetim-22kas/paket/M1_VE_GPT_DUZELTME_MESAJLARI.md` = Gemini M1 mesajı + GPT düzeltme mesajı (kullanıcı kopyalayıp gönderecek). GPT bekleyenler: Kragmir yeşil ten, G1 kadın savaşçı büyü yüzü, G2 5 set gerçek alfa, G5 Karadun, G3 13 çizimsiz yaratık, G7 şimşek. Gemini bekleyen: yalnız M1 (G1–G8 teslimleri).
+- İlerleme tahmini ~%65-70. Sırada: M4 maketleri (VS, sonuç, Karakter=C6, ana HUD), diyaloğu öbür NPC'lere yay, C14, C4, C0 kalanı, C11 en sona, C16; "Stage" Türkçesi kullanıcıda.
+
+## ÖNCEKİ DURUM (23.11, 7. oturum)
 - **Sürüm 31 YAYINDA** (509 dosya; yayın commit'i bfb64c4 "C5: G3 yaratık çizimleri arayüzde"; sonraki yayında `git diff --name-status bfb64c4 HEAD -- oyun-son`, `_tasarim` hariç). 2 boş yer.
 - **Ansiklopedi/VS/rapor/heykel G3 çizimli:** yaratık eşlemesi (`YARATIK`, `B2D` bayrağı, paket yükleyici) three'siz yeni `js/yaratik2d.js`'e taşındı; `savas-birim2d.js` oradan alır. `ui-core mobImg` → `mobResim(id, full)`: hazırsa G3 portresi (128 px boyalı; `full` = boydan bekleme pozu, `.m2df`), değilse eski 3B portre + `data-m2d` (paket inince yerinde değişir). Renk çarpanlı türler tuvalde boyanır (Blob URL); savaş çerçevesi (`combat.js mob2b`) da aynısını kullanır. CSS `v27-duzen.css` sonu. Tarayıcıda denendi: Ansiklopedi 4 bölge, ayrıntı (Trol Kamı, Liç, Karadun), VS 1-1, savaş 1-1 hatasız.
 - Sıradaki: M4 maketleri (VS, sonuç, Karakter=C6, ana HUD), diyaloğu öbür NPC'lere yay, C13 → C14 → C15, C11 en sona. Bekleyen testler listesi aşağıda (6. oturum) geçerli.
