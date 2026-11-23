@@ -8,7 +8,15 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 8. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 9. oturum) — clear sonrası buradan devam
+- YAYIN YOK (sürüm 31 yayında; yayın commit'i bfb64c4 → `git diff --name-status bfb64c4 HEAD -- oyun-son`, `_tasarim` hariç). Kullanıcı: orta/zor işler Opus'ta, TEST YAPMA.
+- **C8 genişledi:** `ui-ogretici.js say()` artık `diyalog()` (Halvor portreli, Bran yedek SVG); `orman.js ormanIzci` Corin/Thrak; `ui-anit.js ACT.yashka` Yashka diyaloğu (son düğmeler Nöbet/Anıt). Pencere başlıkları: `sahne.js npcBas(kim, yedekSvg)` → Tüccar (Halvor) ve İksirci (Maelis) G4 yüzü; CSS `v27-duzen.css` sonu. Tarayıcıda denenmedi.
+- **C13 BİTTİ:** doğrudan parametresiz ACT çağrıları tarandı, hepsi `d?.` korumalı; `ACT.building` kimliksiz/bilinmeyen binada sessiz döner.
+- **C14 BİTTİ:** savaş arka planı ve VFX paketleri açılışta inmiyor; `combat.js savasOnYukle()` ← `ui-battle.js` (ACT.gate, openVs, startBattle). Doğrudan savaşta tex()/strip() kendisi indirir.
+- BEKLEYEN TESTLER'e ekle: diyaloglar (Halvor satın alma sonrası, Bran 3 durum, izci iki halk, Yashka), ilk savaşta arka plan/efekt gecikmesi.
+- Sırada: M4 maketleri (VS, sonuç, Karakter=C6, ana HUD), C4, C0 kalanı, C16, C11 en sona; "Stage" Türkçesi kullanıcıda.
+
+## ÖNCEKİ DURUM (23.11, 8. oturum)
 - Sürüm 31 yayında; bu oturumda YAYIN YOK (yerel commit'ler, push 403). Sonraki yayında `git diff --name-status bfb64c4 HEAD -- oyun-son`, `_tasarim` hariç. Kullanıcı: basit işleri Sonnet ajanına yaptır, TEST YAPMA.
 - **C13 kısmen:** `ACT.stage/exchange/skill` (ui-battle, ui-party) ve `msgMenu` (ui-odeme) parametresiz çağrıda sessiz döner. Kalan ~120 `ACT.x = d =>` taranmadı; `ui-hub.js:367 ACT[b.act]()` parametresiz çağırıyor.
 - **C15 BİTTİ:** Ayarlar → Hesap → "Emeği Geçenler" (`ui-ayarlar.js ACT.ayEmek`; yazarlar `ICON_AUTHORS`+`SKILL_ICON_AUTHORS`, CC BY 3.0). Tarayıcıda denenmedi.
