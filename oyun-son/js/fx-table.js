@@ -13,12 +13,25 @@ export const ELEMENT_FX = {
   fire:   { name: 'Ateş',     color: 0xff6a1a, core: 0xffe08a, cast: 'flare',  proj: 'fireball', impact: 'blast',   linger: 'embers', light: 0xff7a2a },
   ice:    { name: 'Buz',      color: 0x6fd0ff, core: 0xeafaff, cast: 'frost',  proj: 'shard',    impact: 'shatter', linger: 'frost',  light: 0x7fd8ff },
   bolt:   { name: 'Yıldırım', color: 0xffe45a, core: 0xffffff, cast: 'charge', proj: 'zap',      impact: 'arc',     linger: 'static', light: 0xfff2a0 },
+  // C10 son (23 Kas): yalnız görünüş. Mekanikte bu iki element yok; elementsiz büyü rahipte "kutsal", karanlık ailedeki
+  // yaratıkta "gölge" çizilir (fxElement). G7 şeritleri: holy = kutsal ışın, shadow = gölge çöküşü.
+  holy:   { name: 'Kutsal',   color: 0xffe2a0, core: 0xfffbea, cast: 'orb',    proj: 'orb',      impact: 'holy',    linger: 'none',   light: 0xfff0c0 },
+  dark:   { name: 'Gölge',    color: 0x9a5aff, core: 0xe8d8ff, cast: 'orb',    proj: 'orb',      impact: 'shadow',  linger: 'none',   light: 0x7a3aff },
 };
 // Yeteneğin elementi: hasar satırındaki element; yoksa büyü gücüyle vuran yetenek "efsun", silahla vuran "çelik" sayılır
 export function skillElement(S) {
   const el = S?.fx?.find?.(f => f.k === 'dmg' && f.el)?.el;
   if (el && Object.hasOwn(ELEMENT_FX, el)) return el;
   return S?.sc === 'mag' && S.fx?.some?.(f => f.k === 'dmg') ? 'arcane' : 'phys';
+}
+// Çizilecek element: efsun (elementsiz büyü) rahipte kutsal, karanlık ailedeki yaratıkta gölge görünür. Hasar hesabı değişmez.
+const KARANLIK = new Set(FAMILIES.filter(F => F.el === 'dark').flatMap(F => [F.id, ...(F.m || []).map(m => m[0]), F.gate?.[0]]).filter(Boolean));
+export function fxElement(S, u) {
+  const el = skillElement(S);
+  if (el !== 'arcane' || !u) return el;
+  if (u.cls === 'priest') return 'holy';
+  if (!u.cls && u.mob && KARANLIK.has(u.mob)) return 'dark';
+  return el;
 }
 
 // ---------- Silahlar (3B model türü) ----------
@@ -134,6 +147,7 @@ export const GLOW_LEVELS = {
 export const RACE_GLOW = { ocak: 0xff3a1e, sancak: 0x3aa6ff };
 // Silah efekti (VAHRAN, shared/items.js WEAPON_FX): efektli silahın parıltısı ve ucundaki ışıma efektin rengindedir
 import { WEAPON_FX as WFX } from '../shared/items.js';
+import { FAMILIES } from '../shared/bestiary.js'; // karanlık aileler (fxElement)
 const EMBER = 0xff7a2a;
 const mix = (a, b, t) => { const c = k => Math.round(((a >> k) & 255) * (1 - t) + ((b >> k) & 255) * t); return (c(16) << 16) | (c(8) << 8) | c(0); };
 // { color, level, shimmer, plus } ya da null (parlamaz). g: nadirlik (0-2), plus: artı (0-10), faction: +10'da aura rengi

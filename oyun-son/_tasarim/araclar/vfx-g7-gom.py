@@ -7,7 +7,7 @@ import sys, io, re, base64
 from PIL import Image
 G7, R = sys.argv[1], sys.argv[2]
 ESLE = {'fireball': 'ates-topu', 'flame': 'alev', 'shatter': 'buz-kirilma', 'drip': 'zehir', 'spark': 'vurus', 'critHit': 'kritik-vurus',
-        'heal': 'sifa', 'dome': 'kalkan-kubbe', 'bossEntrance': 'boss-giris', 'dissolve': 'parcalanma', 'zap': 'simsek'}  # 23 Kas: şimşek yatay yeniden çizildi (M1 ek)
+        'heal': 'sifa', 'dome': 'kalkan-kubbe', 'bossEntrance': 'boss-giris', 'dissolve': 'parcalanma', 'zap': 'simsek', 'holy': 'kutsal-isin', 'shadow': 'golge-cokus'}  # C10 son: rahip büyüsü / karanlık yaratık  # 23 Kas: şimşek yatay yeniden çizildi (M1 ek)
 F = 160
 yol = R + '/js/vfx-png.js'; s = open(yol).read()
 for k, ad in ESLE.items():
@@ -18,6 +18,8 @@ for k, ad in ESLE.items():
     b = io.BytesIO(); out.save(b, 'WEBP', quality=80, method=6, alpha_quality=90)
     v = base64.b64encode(b.getvalue()).decode()
     s, c = re.subn(r'^"' + k + r'":"[^"]*"', f'"{k}":"{v}"', s, flags=re.M)
+    if c == 0: s = s.replace('const D = {\n', 'const D = {\n"' + k + '":"' + v + '",\n', 1); c = 1  # yeni anahtar
     assert c == 1, k
 s = s.replace('GPT Paket 4 savaş efekt şeritleri (12 kare × 24 fps).', 'GPT Paket 4 savaş efekt şeritleri (12 kare × 24 fps); 23 Kas: 10 şerit GPT G7 (vfx-g7-gom.py).', 1)
+s = re.sub(r'^// \d+ görsel', '// ' + str(len(re.findall(r'^"[a-zA-Z]+":', s, flags=re.M))) + ' görsel', s, count=1, flags=re.M)
 open(yol, 'w').write(s); print('tamam', len(s) // 1024, 'KB')

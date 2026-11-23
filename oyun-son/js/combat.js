@@ -8,7 +8,7 @@ import { view } from './orient.js';
 import { play as fx, projectile, skyStrike, shockwave, elementImpact, statusHold, vfxOnYukle } from './fx.js';
 // C14: savaşa gidilirken (Kapı, VS ekranı) arka plan ve efekt paketlerini önden indir (ui-battle.js çağırır)
 export const savasOnYukle = () => { try { arkaOnYukle(); vfxOnYukle(); } catch { } };
-import { EVENT_FX, ELEMENT_FX, ANIM_FX, skillElement, fxOfTick } from './fx-table.js';
+import { EVENT_FX, ELEMENT_FX, ANIM_FX, skillElement, fxElement, fxOfTick } from './fx-table.js';
 import { Battle } from '../shared/battle.js';
 import { SKILLS, describe, baseActives, skillName } from '../shared/skills.js';
 import { POT } from '../shared/mana.js';
@@ -484,7 +484,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     const first = dmgs[0] && byId(dmgs[0].u), tgt = first || byId(ev.target) || A;
     const side = A.unit.side === 'A' ? 1 : -1;
     // Element: yeteneğin hasar satırından; elementsiz büyü birimin kendi rengini (sınıf / yaratık) taşır
-    const el = skillElement(S), EL = ELEMENT_FX[el], tint = el === 'fire' || el === 'ice' || el === 'bolt';
+    const el = fxElement(S, A.unit), EL = ELEMENT_FX[el], tint = el === 'fire' || el === 'ice' || el === 'bolt' || el === 'holy' || el === 'dark'; // holy/dark: yalnız görünüş (C10)
     const color = tint ? EL.color : c.fx || (S.sc === 'mag' ? 0x9a6aff : 0xff6a1a);
     const ctx = { kind: c.weaponKind, wt: A.unit.wt, el, color: tint ? 0 : c.fx || 0, self: ev.u, heal: S.anim === 'heal' ? c.fx || 0x6dff8a : 0x6dff8a };
     const spell = { ...ctx, spark: false };

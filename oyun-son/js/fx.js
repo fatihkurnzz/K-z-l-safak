@@ -174,7 +174,7 @@ export const vfxOn = () => strips.length > 0;
 export const vfxOnYukle = () => { if (strips.length) vfxLoad(); };
 // Şeritlerin çizildiği renk: efsun (mor) ve ateş kendi rengindedir; buz ve yıldırım şeritleri elementin rengine boyanır,
 // silahın özel rengi (artı parıltısı vb.) verilmişse efsun da o renge döner
-const STRIP_TINT = (el, E) => (el === 'ice' || el === 'bolt' || (el === 'arcane' && E.color !== ELEMENT_FX.arcane.color) ? E.color : 0);
+const STRIP_TINT = (el, E) => (el === 'ice' || el === 'bolt' || el === 'holy' || el === 'dark' || (el === 'arcane' && E.color !== ELEMENT_FX.arcane.color) ? E.color : 0);
 
 // ---------- Efekt ışıkları ----------
 // Sahnedeki ışık sayısı sabit kalmalıdır (değişirse bütün gölgelendiriciler yeniden derlenir): ışıklar hep sahnededir,
@@ -274,6 +274,9 @@ export function elementImpact(pos, el, color, big = true) {
   if (!slots.length) { burst(pos, { color: E.color, count: 6, speed: 2.6, size: 0.06, life: 0.4 }); return; }
   flashLight(pos.x, pos.y + 0.3, pos.z, E.light, big ? 12 : 6, 0.35);
   const drawn = ['burst', 'blast', 'shatter', 'arc'].includes(E.impact) && strip(E.impact, pos.x, pos.y, pos.z, { size: 2.6 * k, gain: E.impact === 'blast' ? 1.0 : 1.25, rot: E.impact === 'arc' ? rnd(-0.5, 0.5) : 0, tint: STRIP_TINT(el, E) });
+  // C10 son: kutsal ışın hedefin üstünden iner (şeridin alt kenarı göğüse oturur), gölge çöküşü hedefin önünde döner
+  const drawn2 = E.impact === 'holy' ? strip('holy', pos.x, pos.y + 0.55 * k, pos.z, { size: 3.0 * k, sy: 1.25, gain: 1.15 })
+    : E.impact === 'shadow' ? strip('shadow', pos.x, pos.y, pos.z, { size: 2.8 * k, gain: 1.2, rot: rnd(0, 6.28) }) : null;
   sprite(K.glow, pos.x, pos.y, pos.z, { color: E.color, core: E.core, s0: 0.6 * k, s1: (drawn ? 1.6 : 2.6) * k, dur: 0.22, alpha: drawn ? 0.6 : 1 });
   if (E.impact === 'blast') {
     burst(pos, { color: E.color, count: N(22 * k), speed: 4.2, size: 0.09, life: 0.55, gravity: -2, drag: 1.2 });
@@ -288,6 +291,13 @@ export function elementImpact(pos, el, color, big = true) {
     sprite(K.zap, pos.x, pos.y + 2.6, pos.z, { color: E.color, core: E.core, s0: 6.4, sy: 0.32, dur: 0.2, alpha: 1, rot: Math.PI / 2, flick: true });
     for (let i = 0; i < 3; i++) sprite(K.zap, pos.x, pos.y, pos.z, { color: E.color, core: E.core, s0: rnd(1.4, 2.4) * k, sy: 0.5, dur: 0.18, alpha: 0.9, rot: rnd(0, 6.28), flick: true, delay: i * 0.03 });
     burst(pos, { color: E.core, count: N(12 * k), speed: 5, size: 0.05, life: 0.22, gravity: 0 });
+  } else if (E.impact === 'holy') {
+    burst(pos, { color: E.core, count: N(14 * k), speed: 1.6, size: 0.06, life: 0.7, gravity: -1.5, up: 0.6 });
+    if (!drawn2) sprite(K.beam, pos.x, pos.y + 0.8, pos.z, { color: E.color, core: E.core, s0: 1.4 * k, s1: 0.5 * k, sy: 3.0, dur: 0.35, alpha: 0.8 });
+  } else if (E.impact === 'shadow') {
+    burst(pos, { color: E.color, count: N(14 * k), speed: 2.2, size: 0.07, life: 0.55, gravity: 0, drag: 2 });
+    burst(pos, { color: 0x1a0e2a, count: N(5 * k), speed: 0.8, size: 0.24, life: 0.8, gravity: 0.3, smoke: true, grow: 1.6, drag: 1 });
+    if (!drawn2) sprite(K.ring, pos.x, pos.y, pos.z, { color: E.color, core: E.core, s0: 2.4 * k, s1: 0.4 * k, dur: 0.4, alpha: 0.8, q: 0.03 });
   } else if (E.impact === 'burst') {
     burst(pos, { color: E.color, count: N(16 * k), speed: 3, size: 0.07, life: 0.5, gravity: 1, drag: 1.5 });
     sprite(K.ring, pos.x, pos.y, pos.z, { color: E.color, core: E.core, s0: 0.5 * k, s1: 2.4 * k, dur: 0.3, alpha: 0.7, q: 0.03 });

@@ -5,14 +5,23 @@
   --kd-blood:#9e1b1b; --kd-heal:#5fcb7a; --kd-mana:#3e8ef0; --kd-gold:#e2b44e;
   --kd-panel-radius:12px; --kd-card-radius:10px; --kd-focus:#f4d78d;
   --kd-hit-min:44px; --kd-transition-fast:80ms; --kd-transition-panel:220ms;
+  /* C11 (23 Kas): sanat kitabı tokenleri (_tasarim/denetim-22kas/paket/SANAT_KITABI.md). Henüz hiçbir kural kullanmıyor;
+     yeni ve elden geçen bileşenler bunlara bağlanır. Var olan --kd-* değerleri görünüm değişmesin diye korunur. */
+  --kd-old-gold:#c9a45c; --kd-hp:#b8322c; --kd-mana-ui:#3e7fd6; --kd-heal-ui:#5fbf78; --kd-warn:#e0a030;
+  --kd-r-std:#b9c0c8; --kd-r-rare:#4aa3ff; --kd-r-uniq:#ffb52e;
+  --kd-f-title:'Cinzel', serif; --kd-f-body:'Inter', system-ui, sans-serif;
+  --kd-t1:11px; --kd-t2:13px; --kd-t3:15px; --kd-t4:18px; --kd-t5:22px; --kd-t6:28px; --kd-t7:36px;
+  --kd-btn-h:40px; --kd-btn-h-sm:32px; --kd-close:40px;
 }
 html[data-faction="ocak"] {
+  --kd-halk-1:#2b211b; --kd-halk-2:#a66a39; --kd-halk-3:#c2552b; --kd-halk-4:#d9c9a3; /* sanat kitabı Kragmir */
   --kd-faction-1:#2b2622; --kd-faction-2:#4a423b; --kd-accent:#ff7a1a;
   --kd-accent-soft:#ffb347; --kd-edge:#8a3b1e; --kd-rune:#d9c9a3;
   --kd-panel-top:#2b211b; --kd-panel-bottom:#110e0c; --kd-frame:#a66a39;
   --kd-button-top:#74401f; --kd-button-bottom:#211510; --kd-glow:rgba(255,122,26,.22);
 }
 html[data-faction="sancak"] {
+  --kd-halk-1:#1f2c40; --kd-halk-2:#4d8cc9; --kd-halk-3:#c9d3dc; --kd-halk-4:#e8ddc5; /* sanat kitabı Elentha */
   --kd-faction-1:#253142; --kd-faction-2:#53677e; --kd-accent:#4d8cc9;
   --kd-accent-soft:#b9d9ef; --kd-edge:#c0a56a; --kd-rune:#e8ddc5;
   --kd-panel-top:#202b3b; --kd-panel-bottom:#0d121b; --kd-frame:#b7a16f;
