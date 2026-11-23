@@ -364,7 +364,8 @@ ACT.czpk = () => showModal(`<h2>CZ - PK</h2><div class="in"><div class="mbtns" s
 ACT.czHall = () => { closeModal(); ACT.hall(); };
 ACT.czArena = () => { closeModal(); ACT.gate({ tab: 'pvp' }); };
 ACT.czMarket = () => { closeModal(); ACT.shop(); };
-ACT.building = d => { const b = blds().find(x => x.id === d.id); LAST_BLD = d.id; if (b.key && locked(b.key)) return toast(`${b.name}, seviye ${UNLOCK[b.key]} olunca açılır.`); ACT[b.act](); };
+ACT.building = d => { const b = d?.id && blds().find(x => x.id === d.id); if (!b || !ACT[b.act]) return; LAST_BLD = d.id; // C13: kimliksiz/bilinmeyen bina sessiz döner
+  if (b.key && locked(b.key)) return toast(`${b.name}, seviye ${UNLOCK[b.key]} olunca açılır.`); ACT[b.act](); };
 // Sıradaki (geçilmemiş ilk açık) stage'in savaş öncesi ekranı — "5 savaş kazan" görevinin Git düğmesi kullanır
 ACT.quick = () => {
   for (const Z of ZONES) for (const s of zoneStages(Z.id)) if (!S.stages[s.id] && stageOpen(S, s.id)) return ACT.stage({ id: s.id });
