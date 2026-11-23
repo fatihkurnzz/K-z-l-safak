@@ -377,3 +377,10 @@ html[data-faction][data-faction][data-faction] #modal .box.bres.rz2:not(:has([da
 html[data-faction="ocak"][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn[data-a="next"],
 html[data-faction="ocak"][data-faction][data-faction] #modal .box.bres.rz2:not(:has([data-a="next"])) .mbtns .btn[data-a="hub"] { background:#2b211b !important; }
 html[data-faction][data-faction][data-faction] #modal .box.bres.rz2.lose .mbtns .btn[data-a] { font-weight:600 !important; background:#1a1519 !important; border:1px solid #8d8790 !important; }
+
+/* 23 Kas (C6 · M4 maketi): Karakter penceresinde ortada boyalı 2B tam boy kahraman (ui-kahraman.js .kx-2b); kömür zemin, altta hafif ışık */
+#win .kx-model.kx-2b { position:relative; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;
+  background:radial-gradient(ellipse at 50% 78%, color-mix(in srgb, var(--fc, #c9a45c) 22%, #2a2328) 0%, #0e0b10 72%) !important; }
+#win .kx-model.kx-2b .kx-hero2b { display:block; width:100%; height:calc(100% - 18px); margin-bottom:16px; object-fit:contain; object-position:50% 100%;
+  filter:drop-shadow(0 6px 10px #000c); pointer-events:none; user-select:none; }
+#win .kx-model.kx-2b .kx-ilv { z-index:1; }

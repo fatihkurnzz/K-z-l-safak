@@ -8,6 +8,8 @@
 import { S } from './api.js';
 import { ACT, esc, fmt, pct, toast, confirmBox, doAct, redraw, showModal, closeModal, ico, slotIco, heroView, avatarImg } from './ui-core.js';
 import { ri } from './icons.js';
+import { sprUrl } from './karakter-png.js'; // 2B tam boy (C6)
+import { B2D } from './yaratik2d.js';
 import { invGrid, itemCard, sortItems, cmpWith } from './ui-envanter.js';
 import { CLASSES, STATS, STAT_KEYS, BAG_LIMIT, FACTIONS } from '../shared/content.js';
 import { SLOTS, itemBase, itemName, sellPrice, dustYield, GRADES, gradeOf } from '../shared/items.js';
@@ -36,7 +38,10 @@ export function kxView(hid, tabsHtml = '') {
   const h = S.heroes[hid], cls = clsOf(S, hid), C = CLASSES[cls], st = heroStats(S, hid), u = partyUnits(S)[0] || {};
   const F = FACTIONS[S.faction] || {}, P = pathOf(h), free = statPointsFree(S, hid), T = statTotals(S, hid), eq = equippedIds(S);
   const head = `<div class="kx-head">${avatarImg('kx-ava')}<div><b><em>Sv.${S.lvl}</em> ${esc(S.name)}</b><span class="kx-fac" style="--fc:${F.color || '#c9a24a'}"><i></i>${esc(F.name || '')} · ${esc(C.name)}${P && PATHS[P] ? ` · ${esc(PATHS[P].role)}` : ''}</span></div></div>`;
-  const model = `<div class="kx-model"><button class="kx-rot l" data-a="kxRot" data-d="-1" title="Sola döndür">‹</button>${heroView(hid, KV.rot)}<button class="kx-rot r" data-a="kxRot" data-d="1" title="Sağa döndür">›</button><span class="kx-ilv" title="Eşya seviyesi">Eşya Sv. ${heroItemLevel(S, hid)}</span></div>`;
+  // 23 Kas (C6 · M4 maketi): ortada boyalı 2B tam boy kahraman (karakter-png); döndürme yalnız eski 3B görünümde (dd_b2d='0')
+  const c2 = B2D.on && S.char && sprUrl(S.char.race || S.faction, S.char.cls || cls, S.char.gender);
+  const model = c2 ? `<div class="kx-model kx-2b"><img class="kx-hero2b" src="${c2}" alt="${esc(C.name)}" draggable="false"><span class="kx-ilv" title="Eşya seviyesi">Eşya Sv. ${heroItemLevel(S, hid)}</span></div>`
+    : `<div class="kx-model"><button class="kx-rot l" data-a="kxRot" data-d="-1" title="Sola döndür">‹</button>${heroView(hid, KV.rot)}<button class="kx-rot r" data-a="kxRot" data-d="1" title="Sağa döndür">›</button><span class="kx-ilv" title="Eşya seviyesi">Eşya Sv. ${heroItemLevel(S, hid)}</span></div>`;
   const trees = treeOf(cls).map(t => `<span class="${P && PATHS[P]?.tree === t.key ? 'on' : ''}">${esc(t.name)}</span>`).join('');
   const hero = `<div class="kx-hero">${head}<div class="kx-doll"><div class="kx-col">${SL.map(s => slotBtn(h, s)).join('')}</div>${model}<div class="kx-col">${SR.map(s => slotBtn(h, s)).join('')}</div></div>
     <div class="kx-cls"><b>${esc(C.name)}${P && PATHS[P] ? ` · ${esc(PATHS[P].role)}` : ''}</b><span class="kx-trees">${trees}</span></div></div>`;
