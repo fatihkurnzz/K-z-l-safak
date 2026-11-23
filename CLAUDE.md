@@ -8,7 +8,13 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 12. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 13. oturum) — clear sonrası buradan devam
+- **Sürüm 36 YAYINDA** (485 dosya; yayın commit'i 3545f7e; sonraki yayında `git diff --name-status 3545f7e HEAD -- .` (oyun-son içinde), `_tasarim/` hariç).
+- **"Stage" → "Aşama" BİTTİ** (kullanıcı kararı): TR metinlerde ekleriyle (aşamayı/aşamasını/aşamalarda…), shared/ yalnız metin+yorum; i18n'de yalnız anahtarlar (EN karşılık "stage" kaldı). Betik scratchpad `asama.py` (silinebilir).
+- Regresyon (ui-denetim, 880×406, iki halk): 68/88 ekran açıldı, 0 JS hatası. Görevler sekme rozeti düzeltildi (`duzen.css` sonu).
+- **Kod ~%90 bitti. EKSİK LİSTESİ: `oyun-son/_tasarim/EKSIK_LISTESI_SON.md`** (A GPT görselleri, B kodda kalan C11 görsel vb., C kullanıcı testleri, D kararlar). Eski `EKSIK_LISTESI.md` artık geçersiz.
+
+## ÖNCEKİ DURUM (23.11, 12. oturum)
 - **Sürüm 34 YAYINDA** (509−24 = 485 dosya; yayın commit'i 3c577ae; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç). Kullanıcı: REGRESYON YAPMA, kalanları bitir, sonra eksik listesi çıkarılacak.
 - **CSS BİRLEŞTİ (C11 yapısal adım):** 34 → 10 dosya, içerik birebir (CSSOM kural sayısı/özeti eski-yeni aynı doğrulandı). `css/temel.css` = v8…v16, `css/arayuz.css` = v13-hub, v17–v20, `css/kul-demir.css` = v21–v25, `css/duzen.css` = v27–v30 (bölüm başlıkları `/* ===== eski vNN.css ===== */`). OTOMATİK olanlar ayrı kaldı: v26-gpt4, v31, v32, v33. **Yeni CSS artık `css/duzen.css` SONUNA** (eski notlardaki "v27-duzen.css sonu" = duzen.css). `kd-tokens.css`'e sanat kitabı tokenleri eklendi (--kd-old-gold, --kd-hp, --kd-t1..t7, --kd-btn-h, --kd-halk-1..4; henüz kullanılmıyor). C11'in görsel kısmı (4 düğme rolü, tek amblem, ≤3 sayaç, !important temizliği) görsel karşılaştırma ister → eksik listesinde.
 - **C10 BİTTİ:** G7 `kutsal-isin` → şerit `holy`, `golge-cokus` → `shadow` (`vfx-g7-gom.py` yeni anahtar da ekler). `fx-table.js fxElement(S, u)`: elementsiz büyü rahipte `holy`, karanlık ailedeki (bestiary `el:'dark'`) yaratıkta `dark` çizilir; yalnız görünüş, hasar değişmez. `combat.js` bunu kullanır.
