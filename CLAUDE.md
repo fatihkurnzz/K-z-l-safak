@@ -13,6 +13,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - **"Stage" → "Aşama" BİTTİ** (kullanıcı kararı): TR metinlerde ekleriyle (aşamayı/aşamasını/aşamalarda…), shared/ yalnız metin+yorum; i18n'de yalnız anahtarlar (EN karşılık "stage" kaldı). Betik scratchpad `asama.py` (silinebilir).
 - Regresyon (ui-denetim, 880×406, iki halk): 68/88 ekran açıldı, 0 JS hatası. Görevler sekme rozeti düzeltildi (`duzen.css` sonu).
 - **KULLANICI (23.11, kesin): TEST YAPMA.** Ne otomatik tur ne ekran görüntüsü; her denenmesi gereken şeyi `EKSIK_LISTESI_SON.md` C bölümüne yaz, testler en sonda topluca yapılacak.
+- **KARARLAR (23.11, kesin):** Play Store · ilk sürüm yerel kayıt (sunucu sonra) · gerçek para + avantaj · 2. sezon ilk sürümden sonra. Çelişki (avantaj satışı + yerel kayıt) kullanıcıya bildirildi; ayrıntı EKSIK_LISTESI_SON.md D.
 - **Kod ~%90 bitti. EKSİK LİSTESİ: `oyun-son/_tasarim/EKSIK_LISTESI_SON.md`** (A GPT görselleri, B kodda kalan C11 görsel vb., C kullanıcı testleri, D kararlar). Eski `EKSIK_LISTESI.md` artık geçersiz.
 
 ## ÖNCEKİ DURUM (23.11, 12. oturum)
@@ -147,5 +148,4 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Heredoc python bazen güvenlik denetimine takılır: betiği dosyaya yazıp çalıştır.
 - PDF: reportlab + DejaVu yazı tipleri (Türkçe karakter).
 - Silah/yetenek adlarının çoğu İngilizce/Knight Online kaynaklı (Mirage Dagger, Iron Impact…); Türkçeleştirme önerilebilir.
-- Kullanıcıya sorulmuş, cevap bekleyen: Play Store mu tarayıcı mı; sunucu ne zaman; gerçek para/kozmetik mi; 2. sezon yazılacak mı.
 - Paylaşım hatası ("…JPEG, PNG, GIF veya WebP…") çıkarsa sebep gömülü AVIF olabilir (GLTFLoader/FBXLoader içi dizgeler).

@@ -32,11 +32,16 @@ Otomatik denetim (880×406, iki halk): 88 ekrandan 68'i açıldı, **0 JS hatas�
 
 > Kural (23.11): testler en sona bırakıldı. Bundan sonraki her değişikliğin denemesi buraya eklenecek.
 
-## D. Senin kararın
-1. Play Store mu, tarayıcı mı?
-2. Sunucu ne zaman? (Oyun şimdi yerel kayıtla çalışıyor.)
-3. Gerçek para mı, yalnız kozmetik mi?
-4. 2. sezon yazılacak mı?
+## D. Kararlar (23.11, kullanıcı verdi)
+1. **Platform: Play Store** (Android uygulaması olarak paketlenecek).
+2. **İlk sürüm yerel kayıtla**; sunucu (PvP, klan, ortak sıralama) sonra.
+3. **Gerçek para + avantaj** satılacak.
+4. **2. sezon yazılacak**, ama ilk sürümden sonra.
+
+Bu kararların getirdiği işler:
+- Android paketleme (Capacitor ya da TWA), imzalama, simge/ekran görüntüleri, mağaza sayfası, gizlilik politikası, yaş derecelendirmesi.
+- Play Store'da uygulama içi satış yalnız **Google Play Billing** ile olur; `ui-odeme` buna bağlanmalı.
+- **Çelişki:** avantaj satışı + yerel kayıt → kayıt cihazda düzenlenebilir, satın alınan avantaj bedavaya alınabilir ve satın alma doğrulanamaz. Öneri: ilk sürümde en azından satın alma doğrulaması ve hesap/bulut kaydı için küçük bir sunucu, ya da ilk sürümde yalnız kozmetik satış.
 
 ## E. Teknik not
 - Git push hâlâ 403 (GitHub uygulaması depoda kurulu değil); commit'ler yerelde duruyor.
