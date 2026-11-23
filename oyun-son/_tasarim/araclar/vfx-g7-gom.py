@@ -7,7 +7,7 @@ import sys, io, re, base64
 from PIL import Image
 G7, R = sys.argv[1], sys.argv[2]
 ESLE = {'fireball': 'ates-topu', 'flame': 'alev', 'shatter': 'buz-kirilma', 'drip': 'zehir', 'spark': 'vurus', 'critHit': 'kritik-vurus',
-        'heal': 'sifa', 'dome': 'kalkan-kubbe', 'bossEntrance': 'boss-giris', 'dissolve': 'parcalanma'}
+        'heal': 'sifa', 'dome': 'kalkan-kubbe', 'bossEntrance': 'boss-giris', 'dissolve': 'parcalanma', 'zap': 'simsek'}  # 23 Kas: şimşek yatay yeniden çizildi (M1 ek)
 F = 160
 yol = R + '/js/vfx-png.js'; s = open(yol).read()
 for k, ad in ESLE.items():

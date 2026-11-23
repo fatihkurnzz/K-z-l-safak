@@ -13,8 +13,9 @@ from scipy import ndimage as nd
 SRC, OUT = sys.argv[1], sys.argv[2]
 POZ = ['bekleme', 'saldiri-hazirlik', 'saldiri-vurus', 'buyu', 'vurulma', 'yere-dusus', 'zafer']
 MPOZ = ['bekleme', 'saldiri', 'vurulma']
-HALE = {'sancak-buyucu-kadin', 'sancak-savasci-erkek', 'ocak-savasci-kadin', 'ocak-sifaci-erkek', 'ocak-suikastci-kadin'}
-YEDEK = {('sancak-savasci-kadin', 'buyu'): 'zafer'}  # teslimdeki büyü pozu başka yüz/saç (sarışın): GPT'den yeniden istendi
+# 23 Kas (M1 ek düzeltmeler): beyaz artıklı 5 set GPT'den temiz geldi → temizlemeye gerek kalmadı (beyaz giysiyi silmesin)
+HALE = set()
+YEDEK = {}  # 23 Kas: Elentha kadın savaşçı büyü pozu düzeltilmiş geldi
 TURLER = ['bandikut', 'kucuk-bandikut', 'kuduz-bandikut', 'yaman-bandikut']
 
 

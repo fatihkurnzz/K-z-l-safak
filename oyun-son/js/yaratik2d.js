@@ -5,7 +5,8 @@ export const B2D = { on: !off };
 
 // Yaratık → çizim: [paket, tür, renk çarpanı]. Paketler: 'halk' (oyuncunun halk dosyası; G2 bandikutları), G3 bölgeleri
 // y1 Vahran, y2 Kül Geçidi, y3 Kızıl Bahar, y4 Sisli Çukur, yb ana bosslar (_tasarim/araclar/b2d-g3-gom.py).
-// Kendi çizimi olmayan türler yakın türün çizimini renk çarpanıyla kullanır; listede olmayanlar (ejderler, tavşan, lamia…) 3B kalır.
+// Kendi çizimi olmayan türler yakın türün çizimini renk çarpanıyla kullanır. 23 Kas (M1 ek): son 13 tür (6 ejder, tavşan, doğan,
+// eşek arısı, gargoyl, barbar önderi, lamia, yılan kraliçe) yalnız bekleme pozuyla geldi; saldırı/vurulmada bekleme pozu kullanılır.
 const Y = (pk, s) => Object.fromEntries(s.trim().split(/\s+/).map(x => { const [m, t, c] = x.split(':'); return [m, [pk, t, c ? parseInt(c, 16) : 0xffffff]]; }));
 export const YARATIK = {
   ...Y('halk', 'small_bandicoot:kucuk-bandikut bandicoot:bandikut wild_bandicoot:yaman-bandikut rabid_bandicoot:kuduz-bandikut'),
@@ -13,7 +14,7 @@ export const YARATIK = {
     cave_leech:magara-sulugu wood_leech:orman-sulugu snatcher:kapkacci goblin:goblin goblin_bouncer:goblin-fedai goblin_necromancer:goblin-olucu
     kobold:kobold goblin_juggler:goblin-hokkabaz bugbear:ocu hobgoblin:hobgoblin skeleton:iskelet skeleton_warrior:iskelet-savasci
     burning_skeleton:yanan-iskelet skeleton_knight:iskelet-sovalye skeleton_champion:iskelet-er-basi dire_wolf:azman-kurt wolfhound:kurt-tazisi
-    gloom_hound:kasvet-tazisi hell_hound:cehennem-tazisi werewolf:kurtadam lycan:kurtadam loup_garou:kurtadam:d8ccc0`),
+    gloom_hound:kasvet-tazisi hell_hound:cehennem-tazisi werewolf:kurtadam lycan:kurtadam loup_garou:kurtadam:d8ccc0 rabbit:rabbit`),
   ...Y('y2', `tarantula:tarantula man_eating_tarantula:tarantula:ffb4a4 pincers_scorpion:kiskacli-akrep black_widow:karadul scorpion:akrep
     paralyzer:uyusturan stinger:igneli zombie:zombi undying:olmeyen rotten_eyes:curuk-goz decayed_zombie:curumus-zombi ash_knight:kul-sovalye
     lizardman:kertenkele-adam lizardman_warrior:kertenkele-savasci mudman:camur-adam sand_man:kum-adam lizardman_captain:kertenkele-yuzbasi
@@ -24,7 +25,7 @@ export const YARATIK = {
     troll_captain:kaya-trolu:ffc8b0 half_troll_captain:trol-savasci:ffc8b0 troll_king:trol-krali centaur:sentor centaur_ranger:sentor-mizrakci
     centaur_archer:sentor-okcu centaur_sniper:sentor-okcu:d0d8e8 centaur_captain:sentor-yuzbasi crimson_wing:kizil-harpi harpy:harpi
     raven_harpy:firtina-harpisi harpy_queen:harpi-kralicesi ape:maymun twin_ape:maymun:ffd8c0 glyptodont:gliptodon mastodon:mastodon
-    stegodon:mastodon:e8d8c8 minotaur:minotor manticore:mantikor`),
+    stegodon:mastodon:e8d8c8 minotaur:minotor manticore:mantikor falcon:falcon hornet:hornet gargoyle:gargoyle leader_of_barbarian:leader_of_barbarian`),
   ...Y('y4', `ghost:hayalet ghost_warrior:sis-hayaleti specter:sis-hayaleti:d0d8ff wraith:yas-ruhu phantom:hayalet:c8d0e0 shadow:yas-ruhu:9898a8
     red_ghost:hayalet:ffa8a0 wandering_spectre:sis-hayaleti:e8e4d0 shadow_spectre:yas-ruhu:a8a8b8 mana_spectre:yas-ruhu:b0c8ff
     mage_ghost:olu-buyucu:c8d8ff wandering_knight_ghost:lanetli-sovalye:c0d0e8 mana_predator:mana-avcisi dark_soldier:kul-muhafizi:b8b8b8
@@ -32,8 +33,10 @@ export const YARATIK = {
     dread_knight:lanetli-sovalye:ffc8c0 doom_knight:kara-sovalye:ffb8a8 revenge_knight:lanetli-sovalye:d8d0ff death_knight:olum-sovalyesi
     evil_wizard:tarikat-kahini skeleton_lord:kemik-buyucusu death_wizard:olu-buyucu reaper:pul-fanatigi screamer:yas-ruhu:ffd0d0 lamentation:yas-ruhu
     lich:lic dark_mare:kara-kisrak shade_mare:gece-kisragi death_mare:kabus-ati:c0c0c0 dread_mare:gece-kisragi:ffc0c0 nightmare:kabus-ati
-    dragon_servant:ejder-kulu dragon_knight:kul-ejder-kulu erlik:maresal-marven bozdag:adsiz`),
-  ...Y('yb', 'devsolucan:dev-solucan tepegoz:tepegoz kristalbekci:kristal-muhafizi lavyurek:lav-yurek karaduman:kul-agasi-karadun'),
+    dragon_servant:ejder-kulu dragon_knight:kul-ejder-kulu erlik:maresal-marven bozdag:adsiz lamia:lamia snake_queen:snake_queen`),
+  ...Y('yb', `devsolucan:dev-solucan tepegoz:tepegoz kristalbekci:kristal-muhafizi lavyurek:lav-yurek karaduman:kul-agasi-karadun
+    red_dragon_hatchling:dragon_fire:ffd8c8 red_dragon:dragon_fire blue_dragon:dragon_ice bone_dragon:dragon_ice:f0e4d0
+    dark_dragon:dragon_shadow gold_dragon:dragon_lightning:ffe6a0`),
 };
 export const halkAd = () => document.documentElement.dataset.faction === 'sancak' ? 'sancak' : 'ocak';
 

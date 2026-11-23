@@ -76,6 +76,7 @@ export class Birim2D {
     this.poz = poz;
     const d = this.d; if (!d) return;
     let p = d[poz] ? poz : this.hero ? 'bekleme' : ({ 'saldiri-hazirlik': 'bekleme', 'saldiri-vurus': 'saldiri', buyu: 'saldiri', 'yere-dusus': 'vurulma', zafer: 'saldiri' }[poz] || 'bekleme');
+    if (!d[p]) p = 'bekleme'; // 23 Kas: yalnız bekleme pozu olan türler
     if (this.evre2 && d[p + '2']) p += '2'; // G3 bosslar: canı yarıya inince (ya da evre/öfke) 2. evre çizimi
     const m = doku(this.spec.ad, this.spec.anahtar, p, d[p]);
     if (this.mat.map !== m) { this.mat.map = m; this.mat.needsUpdate = true; }

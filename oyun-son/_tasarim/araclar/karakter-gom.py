@@ -23,6 +23,9 @@ for s in M['sprites']:
     # 23 Kas (kullanıcı kararı: savaşçı kılıç + kalkan): savaşçılar GPT G1/G2 bekleme pozundan (b2d-gom.py hazırlar)
     gs = f"{R}/_tasarim/gelen/g1g2-savasci/{FR[s['faction']]}-savasci-{s['gender']}.png"
     if s['class'] == 'savasci' and os.path.exists(gs): im = Image.open(gs).convert('RGBA')
+    # 23 Kas (M1 ek): Kragmir yeşil tenle yeniden çizildi (_tasarim/gelen/kragmir-yesil/, 720×1080 → 512×768); savaşçı yine G1/G2'den
+    ky = f"{R}/_tasarim/gelen/kragmir-yesil/{s['id']}.webp"
+    if s['faction'] == 'kragmir' and s['class'] != 'savasci' and os.path.exists(ky): im = Image.open(ky).convert('RGBA').resize((512, 768), Image.LANCZOS)
     bb = im.getchannel('A').point(lambda v: 255 if v > 24 else 0).getbbox()
     D[key] = webp(im, 84); BOX[key] = list(bb)
 assert len(D) == 16, len(D)
@@ -30,6 +33,12 @@ for f in ('elentha', 'kragmir'):
     for g in ('erkek', 'kadin'):
         for i in range(1, 6):
             im = Image.open(f'{K}/02_YUZLER/{f}_{g}_yuz_{i:02d}.png').convert('RGB').resize((176, 176), Image.LANCZOS)
+            if f == 'kragmir':  # 23 Kas: yeşil tenli sınıf yüzleri (yuva 0-3 savaşçı, suikastçı, büyücü, rahip; 4 = savaşçının aynası)
+                c = ['savasci', 'suikastci', 'buyucu', 'rahip', 'savasci'][i - 1]
+                y = Image.open(f'{R}/_tasarim/gelen/kragmir-yesil/kragmir_{c}_{g}_yuz.png').convert('RGBA')
+                z = Image.new('RGBA', y.size, (36, 22, 14, 255)); z.alpha_composite(y)
+                im = z.convert('RGB').resize((176, 176), Image.LANCZOS)
+                if i == 5: im = im.transpose(Image.FLIP_LEFT_RIGHT)
             D[f'yuz.{FR[f]}.{GE[g]}.{i - 1}'] = webp(im, 82)
 out = ['// OTOMATİK ÜRETİLİR (_tasarim/araclar/karakter-gom.py) — elle düzenleme. GPT "VAHRAN Claude Devir" karakter paketi:',
        '// 16 tam boy 2B seçim görseli (512×768; anahtar ırk.sınıf.cinsiyet) + 20 yüz portresi (yuz.ırk.cinsiyet.yüz). SANAT ONAYI BEKLİYOR.',

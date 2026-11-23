@@ -26,8 +26,8 @@ for kl, ad in KLASOR.items():
     dd = glob.glob(os.path.join(SRC, '*', kl))
     if not dd: print('YOK', kl); continue
     d0 = dd[0]; veri = {}
-    for f in sorted(glob.glob(os.path.join(d0, '*.webp'))):
-        n = os.path.basename(f)[:-5]
+    for f in sorted(glob.glob(os.path.join(d0, '*.webp')) + glob.glob(os.path.join(d0, '*.png'))):  # 23 Kas: M1 ek teslim 13 tür PNG, yalnız bekleme
+        n = os.path.splitext(os.path.basename(f))[0]
         if n.startswith('yaratik-'):
             t, p = n[8:].rsplit('-', 1)
             e = veri.setdefault(t, {}); e[p] = webp(Image.open(f), (384, 384))
