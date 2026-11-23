@@ -11,7 +11,8 @@ Paketi hazırlayan Claude hiçbir şeyi uygulamadı; yalnız bu paketi hazırlad
 | `00_PROJE_VE_SIRA.md` | Herkes (bu dosya: istek listesi, sıra, kurallar) |
 | `CLAUDE_OPUS_GOREVLERI.md` | Claude Opus 5.5 (depoda çalışır; koda yalnız o dokunur) |
 | `GEMINI_NEON_GOREVLERI.md` | Gemini Neon 4 (maket, ölçü, glif, kabul denetimi) |
-| `GPT_ASTRA_GOREVLERI.md` | GPT Astra 6.2 (boyalı görseller) |
+| `GPT_TEK_ZIP_GOREVI.md` | GPT Astra 6.2: **tek mesaj, tek ZIP** (P23 A1–A8 + eski bekleyenler: yaratık pozları, boss 2. evre, portre/yüz, Play Store, kozmetik). Kullanılacak dosya bu |
+| `GPT_ASTRA_GOREVLERI.md` | Yalnız A1–A8 ayrı ayrı istemek istersen (yedek) |
 | `REFERANS_EKRAN/01..11_*.jpg` | Bugünkü oyun ekranları (telefon, 2340×1080, yatay) |
 
 Önceki paketteki `SANAT_KITABI.md` ve `REFERANS/` klasörü (`_tasarim/denetim-22kas/paket/`) geçerli; GPT ve Gemini'ye onları da ekle.
