@@ -8,7 +8,14 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 5. oturum) — clear sonrası buradan devam
+## SON DURUM (23.11, 6. oturum) — clear sonrası buradan devam
+- **Sürüm 30 YAYINDA** (508 dosya; yayın commit'i "C5/G3" commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç). 3 boş yer.
+- **G3 GELDİ ve BAĞLANDI (C5 yaratık/boss kısmı):** 5 ZIP (370 WebP, 102 tür: 4 bölge + ana bosslar), kaynak scratchpad `g3/` (silinebilir; ZIP'ler `/root/.claude/uploads/.../*DD_G3_*.zip`). Araç `_tasarim/araclar/b2d-g3-gom.py <açılmış klasör> .` → `js/b2d-y1..y4.js`, `js/b2d-yb.js` (OTOMATİK; bölge başına tembel yüklenir). Eşleme `savas-birim2d.js YARATIK` ([paket, tür, renk çarpanı]): 146 yaratığın 133'ü 2B; çizimsiz kalan 13 (falcon, hornet, gargoyle, leader_of_barbarian, lamia, snake_queen, 6 ejder, rabbit) 3B. Bosslar 448 px, `OLCU.boss` (1.4×), canı yarıya inince / evre / öfkede 2. evre çizimi (`spec.canli` = canlı birim, yalnız okunur). Düşman çerçevesi portresi `savas-birim2d portre(u)`; combat.js'teki eski `yb/YB` kaldırıldı.
+- **M1 testi kullanıcıda** (kendisi yaptıracak). Kullanıcı 23.11: "biraz hızlanalım, testleri işler bitince not et" → TEST YAPMADAN ilerle, aşağıdaki listeye ekle.
+- **BEKLEYEN TESTLER (işler bitince topluca):** (1) G3: her bölgeden bir savaş (y1–y4) + ana boss savaşı; yaratık boyu/zemin oturması, sola bakış, renk çarpanlı türler, boss 2. evre geçişi, düşman çerçevesi portresi ilk karede boş gelebilir (paket inince dolar). (2) C12 Türkçe adlar tarayıcıda (EN/TR geçişi). (3) M3 glifleri iki halkta. (4) 880×406 telefon turu, C16 regresyon.
+- **Sıradaki (görsel G3 ile açılan):** Ansiklopedi/Bestiary ve VS ekranında `mobImg` hâlâ 3B portre → G3 çizimlerini kullan (ui-core'a doğrudan import döngü riski: tembel import ile). Sonra M4 maketleri, diyaloğu öbür NPC'lere yay, C13 → C14 → C15, C11 en sona.
+
+## ÖNCEKİ DURUM (23.11, 5. oturum)
 - **Sürüm 29 YAYINDA** (503 dosya; yayın commit'i "C9/M3" commit'i 3c0fb73; sonraki yayında `git diff --name-status 3c0fb73 HEAD -- oyun-son`, `_tasarim` hariç). 8 boş yer.
 - **M3 (C9 glif kısmı) BİTTİ:** 40 Gemini glifi `js/glif-png.js` (OTOMATİK: `python3 -I _tasarim/araclar/gom.py _tasarim/araclar/tarif/glif.json js/glif-png.js`, cwd oyun-son; kaynak `_tasarim/gelen/m3-glif/`). `sahne.js` → `--gl-<ad>` + `html.glifli` (kapatma `dd_glif='0'`/`?glif=0`). `v27-duzen.css` "M3 glifleri": ana ekran sol/sağ rayları, alt dock, Savaş düğmesi, mini harita simgesi simge3 yerine maskeyle halk rengine boyalı (ocak #f3d2ae, sancak #cfe0f7). Pencere sekmeleri/satır simgeleri (game-icons dolgulu) DEĞİŞMEDİ — karışık görünmesin diye; kapat/geri düğmeleri boyalı PNG olarak kaldı. Kalan glifler (kilit, onay, uyarı, yenile, otomatik, hız, iksir…) savaş HUD/M4 maketleri sırasında kullanılabilir.
 
