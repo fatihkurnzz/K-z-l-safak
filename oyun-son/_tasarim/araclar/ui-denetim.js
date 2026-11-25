@@ -11,7 +11,7 @@ fs.mkdirSync(out, { recursive: true });
   const err = []; p.on('pageerror', e => err.push(e.message.slice(0, 160)));
   const tk = async (sel, ms = 6000) => { try { await p.waitForSelector(sel, { timeout: ms }); await p.evaluate(s => document.querySelector(s).click(), sel); } catch { } };
   await p.goto('http://localhost:8765/?gfx=low'); await p.waitForTimeout(3000);
-  await tk('.ld-go', 10000); await p.waitForTimeout(1200); await p.waitForSelector('[data-o="race"]', { timeout: 15000 });
+  await tk('.ld-go', 3000); await tk('.sv-go', 15000); await p.waitForTimeout(1200); await p.waitForSelector('[data-o="race"]', { timeout: 15000 });
   await p.evaluate(r => [...document.querySelectorAll('[data-o="race"]')][r === 'ocak' ? 1 : 0].click(), race); await p.fill('#olzname', 'Denetci'); await tk('#olzgo'); await p.waitForTimeout(2500);
   await tk('#tkenter', 10000); await p.waitForTimeout(2500); await p.evaluate(() => [...document.querySelectorAll('button')].find(b => b.textContent.trim() === 'Geç')?.click()); await p.waitForTimeout(2000);
   await p.evaluate(() => document.querySelector('.tskip')?.click()); await p.waitForTimeout(1500);
