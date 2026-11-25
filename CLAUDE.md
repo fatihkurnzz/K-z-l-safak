@@ -12,7 +12,8 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcı başka modellerle (P23–P32) ilerletilmiş son hali verdi: https://claude.ai/artifact/Xgt9b5UzmwMEXw6U9TVL21 (kuruluş dışı, okunur, YAYIMLANAMAZ; sürüm 1795639850-dc98, 443 dosya). **Bundan devam ediliyor.**
 - `oyun-son/` bu sürümle birebir eşitlendi: 84 değişen + 140 yeni dosya (css/p23…p32, d23-*, js/p2x-*-png.js, ic-mekan.js, ui-ahir/han/zafer, shared/ahir/han/zafer/config/storePrices, interiors/, sahneler/, img/p27–p28, audio/arka-plan|boss|intro). shared/ de değişti (dış sürümün mekaniği geçerli). Artık başvurulmayan 192 `img/kd/*` dosyası silindi (kd-png.js'e gömülü). Yerelde kalan yayın dışı: img/items3d, img/icons/*-512, models/test, video/README.
 - Tüm JS `node --check` (.mjs) geçti. Tarayıcıda denenmedi. Önceki notlardaki dosya/CSS düzeni (v26–v33, duzen.css sonu kuralı) bu sürümde p2x CSS'leriyle genişledi; yeni CSS'i nereye ekleyeceğine index.html sırasına bakarak karar ver.
-- Kendi yayınımız (GwNoLLWnf5Wjc1PUJep2yi) henüz bu sürüme güncellenmedi.
+- **Sürüm 40 YAYINDA** (kendi yayınımız, 443 dosya; iki parti: 39 = silmeler+ilk 70, 40 = kalan 149). Yayın commit'i bu notun commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç.
+- Ekran görüntüleri: iki Sonnet ajanı (Elentha/Kragmir) scratchpad `ekran/sancak|ocak/` altına çekiyor (ui-denetim.js parçalı + yeni ekranlar).
 
 ## ÖNCEKİ DURUM (23.11, 15. oturum) — P23 PROJE PAKETİ
 - Kullanıcı 11 telefon ekranıyla yeni istekler verdi; **bu oturumda kod DEĞİŞMEDİ**. Kullanıcı işleri başka bir Claude Opus 5.5, Gemini Neon 4 ve GPT Astra 6.2'ye yaptıracak.
