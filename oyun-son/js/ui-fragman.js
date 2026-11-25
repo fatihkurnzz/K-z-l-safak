@@ -3,7 +3,7 @@
 // Kural içermez. Sesler mevcut sentezlenmiş yamalarla (sfx.js) çalınır. Kayıt: localStorage "dd_fragman:<hesap adı>".
 import { S } from './api.js';
 import { getGfx } from './gfx.js';
-import { play, unlock, audioContext, loadBuf } from './audio.js';
+import { play, unlock, primeMusic } from './audio.js';
 import { SFX, MUSIC_URL } from './sfx.js';
 import { t } from './i18n.js';
 
@@ -115,7 +115,7 @@ const IMG = {};
 function loadPics() {
   return import('./hikaye-png.js').then(H => Promise.all([1, 2, 3, 4].map(i => IMG[i] ? 0 : new Promise(r => { const im = new Image(); im.onload = () => { IMG[i] = im; r(); }; im.onerror = r; im.src = H.url('yemin-' + i); im.decode?.().then(() => { IMG[i] = im; r(); }, () => { }); })))).catch(() => { });
 }
-const waitMusic = () => { const ac = audioContext(); return ac ? loadBuf(ac, MUSIC_URL).catch(() => { }) : Promise.resolve(); };
+const waitMusic = () => primeMusic(MUSIC_URL); // P28 yuk-2: akış başlayıp çalınabilir olunca (dosyanın tamamı beklenmez)
 function drawPic(c, w, h, name, p) {
   const P = PIC[name], im = P && IMG[P[0]]; if (!im) return false;
   const e = p * p * (3 - 2 * p), z = P[3] + (P[4] - P[3]) * e, cx = P[1] + (P[2] - P[1]) * e;

@@ -14,6 +14,7 @@ import { sprUrl } from './karakter-png.js';
 import { S } from './api.js';
 const mineHero = () => { const c = S?.char; if (!c) return ''; const u = sprUrl(c.race || S.faction, c.cls, c.gender); return u ? `<img class="mn-hero" src="${u}" alt="" draggable="false">` : ''; };
 export function mineScene(fill = 0, faction = 'ocak') {
+  if (p23On()) return p23Mine(fill, faction);
   const ork = faction === 'ocak', skin = ork ? '#7f9258' : '#d29a6c', skinD = ork ? '#5a6a3c' : '#a8744c', sash = ork ? '#a3261a' : '#2f62b8';
   const n = Math.round(Math.max(0, Math.min(1, fill)) * 9);
   const pile = Array.from({ length: 9 }, (_, k) => { const row = k < 4 ? 0 : k < 7 ? 1 : 2, col = k < 4 ? k : k < 7 ? k - 4 : k - 7; return `<circle cx="${68 + col * 13 + row * 6.5}" cy="${112 - row * 9}" r="7" class="${k < n ? '' : 'off'}"/>`; }).join('');
@@ -91,6 +92,72 @@ export function mineScene(fill = 0, faction = 'ocak') {
     <rect x="-400" y="-40" width="1200" height="200" fill="url(#m2vig)" pointer-events="none"/>
   </svg></div>`;
 }
+
+// ---------- P23 K6: maden sahnesi (GPT A5 kareleri; yalnız görünüş) ----------
+// html.p23 açıkken SVG sahne yerine: arka plan + kristal kaya + araba + madenci kareleri. Durum makinesi:
+//  kaz (vuruş karesi 4: kıvılcım, kaya aşaması) → araba dolum karesi stock/cap → Topla: git → boşalt → dön → kaz. Depo doluyken bekle.
+// Kareler js/p23-maden-png.js (tembel). "Hareketi azalt" / düşük grafikte tek kare. Pencere her yenilendiğinde DOM yeniden kurulur;
+// bu yüzden durum modül düzeyinde (MS) tutulur ve döngü her karede güncel .mn-p23 öğesini bulur.
+function p23On() { try { return document.documentElement.classList.contains('p23'); } catch { return false; } }
+const calmMn = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches || /gfx=(min|low)/.test(location.search) || ['min', 'low'].includes(localStorage.getItem('dd_gfx')); } catch { return false; } };
+let MB = null, MBL = null; const MU = {};
+const madenYukle = () => (MBL ||= import('./p23-maden-png.js').then(m => { MB = m.default; return MB; }).catch(() => null));
+const mUrl = k => { if (!MB || !MB[k]) return ''; if (!MU[k]) { const b = atob(MB[k]), a = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); MU[k] = URL.createObjectURL(new Blob([a], { type: 'image/webp' })); } return MU[k]; };
+const MS = { phase: 'kaz', t0: 0, fillNow: 0, fillHold: 0, collecting: false, unloaded: false, onUnload: null, onEnd: null, hits: 0, lastF: -1, sparkT: -1e9, raf: 0 };
+const KAZ_X = 41, BOS_X = 58, ROCK_X = 17, CART_X = 76; // sahne genişliğinin %'si
+const FPS = { kaz: 8, yuru: 10, bosalt: 8, bekle: 4 }, NF = { kaz: 6, yuru: 6, bosalt: 5, bekle: 4 };
+const cartKey = (h, f) => `araba-${h}_${[0, 25, 50, 75, 100][Math.round(Math.max(0, Math.min(1, f)) * 4)]}`;
+const setImg = (el, k) => { if (el && el._k !== k) { el._k = k; const u = mUrl(k); if (u) el.src = u; } };
+function p23Mine(fill, faction) {
+  const h = faction === 'ocak' ? 'kragmir' : 'elentha';
+  MS.fillNow = Math.max(0, Math.min(1, fill || 0));
+  madenYukle().then(() => { if (!MS.raf) MS.raf = requestAnimationFrame(mTick); });
+  if (!MS.raf && MB) MS.raf = requestAnimationFrame(mTick);
+  return `<div class="mn-stage mn-p23" data-h="${h}" aria-hidden="true"><img class="p23m-bg" alt="" draggable="false"><img class="p23m-rock" alt="" draggable="false"><img class="p23m-shm" alt="" draggable="false"><img class="p23m-cart" alt="" draggable="false"><img class="p23m-man" alt="" draggable="false"><i class="p23m-spark"></i><b class="p23m-fly"></b></div>`;
+}
+function mTick(t) {
+  MS.raf = 0;
+  const el = document.querySelector('.mn-p23');
+  if (!el || !MB) return; // pencere kapandı; sonraki mineScene çağrısı döngüyü yeniden başlatır
+  MS.raf = requestAnimationFrame(mTick);
+  if (document.hidden) return;
+  const h = el.dataset.h, q = c => el.querySelector(c), man = q('.p23m-man'), calm = calmMn();
+  const shown = MS.collecting && !MS.unloaded ? MS.fillHold : MS.fillNow, full = shown >= 0.999;
+  if (!MS.t0) MS.t0 = t;
+  if (!el._bg) { el._bg = 1; setImg(q('.p23m-bg'), 'maden-' + h); }
+  // durum geçişleri
+  if (MS.collecting) { /* git/bosalt/don zaten MS.phase içinde */ }
+  else if (calm) MS.phase = 'kaz';
+  else if (full && MS.phase !== 'bekle') { MS.phase = 'bekle'; MS.t0 = t; }
+  else if (!full && MS.phase === 'bekle') { MS.phase = 'kaz'; MS.t0 = t; }
+  const T = t - MS.t0; let st = 'kaz', x = KAZ_X, fi = 0, flip = false;
+  if (calm) { st = full ? 'bekle' : 'kaz'; fi = 0; x = full ? BOS_X : KAZ_X; }
+  else if (MS.phase === 'bekle') { st = 'bekle'; x = KAZ_X; fi = Math.floor(T / 250) % 4; }
+  else if (MS.phase === 'git') { st = 'yuru'; fi = Math.floor(T / 100) % 6; x = KAZ_X + (BOS_X - KAZ_X) * Math.min(1, T / 1100); if (T >= 1100) { MS.phase = 'bosalt'; MS.t0 = t; } }
+  else if (MS.phase === 'bosalt') { st = 'bosalt'; x = BOS_X; fi = Math.min(4, Math.floor(T / 140)); if (fi >= 2 && !MS.unloaded) { MS.unloaded = true; MS.onUnload?.(); } if (T >= 5 * 140 + 200) { MS.phase = 'don'; MS.t0 = t; } }
+  else if (MS.phase === 'don') { st = 'yuru'; flip = true; fi = Math.floor(T / 100) % 6; x = BOS_X + (KAZ_X - BOS_X) * Math.min(1, T / 1100); if (T >= 1100) { MS.phase = 'kaz'; MS.t0 = t; MS.collecting = false; MS.onEnd?.(); } }
+  else { // kaz döngüsü
+    fi = Math.floor(T / 125) % 6; if (fi === 3 && MS.lastF !== 3) { MS.hits++; MS.sparkT = t; } MS.lastF = fi;
+  }
+  setImg(man, `madenci-${h}_${st}_${String(fi + 1).padStart(2, '0')}`);
+  man.classList.toggle('fl', flip);
+  el.style.setProperty('--mx', x + '%');
+  setImg(q('.p23m-shm'), `madenci-${h}_golge`);
+  setImg(q('.p23m-cart'), cartKey(h, shown));
+  setImg(q('.p23m-rock'), `kaya-${h === 'kragmir' ? 'kirmizi' : 'mavi'}_${1 + (MS.hits % 3)}`);
+  const sp = q('.p23m-spark'), si = Math.floor((t - MS.sparkT) / 70);
+  if (!calm && st === 'kaz' && si >= 0 && si < 6) { sp.style.backgroundImage = `url(${mUrl('kivilcim-' + (h === 'kragmir' ? 'kirmizi' : 'mavi'))})`; sp.style.backgroundPosition = `${si * 20}% 0`; sp.style.opacity = 1; } else sp.style.opacity = 0;
+}
+/** Topla animasyonu: madenci arabaya yürür, boşaltır, kayaya döner. Boşaltma anında onUnload çağrılır (sunucuya toplama isteği);
+ *  dönüş bitince çözülür. Animasyon yoksa (kareler inmedi / düşük grafik / hareketi azalt) hemen onUnload çağırıp çözülür. */
+export function p23MineCollect(onUnload) {
+  if (!p23On() || calmMn() || !MB || !document.querySelector('.mn-p23')) { onUnload(); return Promise.resolve(); }
+  if (MS.collecting && performance.now() - MS.cs < 6000) return Promise.resolve(); // 6 sn'den eski takılmış durumu sıfırla
+  return new Promise(res => { MS.cs = performance.now(); MS.collecting = true; MS.unloaded = false; MS.fillHold = MS.fillNow; MS.phase = 'git'; MS.t0 = performance.now();
+    MS.onUnload = onUnload; MS.onEnd = res; if (!MS.raf) MS.raf = requestAnimationFrame(mTick); });
+}
+/** Boşaltmada uçan "+N cevher" yazısı (güncel sahne öğesinde). */
+export function p23MineFly(txt) { const f = document.querySelector('.mn-p23 .p23m-fly'); if (!f) return; f.textContent = txt; f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); }
 
 const WH_COL = ['#8a5a2a', '#5a3a7a', '#2f6a4a', '#7a2a2a', '#2a4a7a', '#9a7a1a'];
 let angle = 0;

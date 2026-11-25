@@ -88,12 +88,11 @@ onState(s => {
 document.getElementById('battleUI')?.addEventListener('click', e => { if (e.target.closest?.('button')) ui('ui.tap', 0); });
 
 // ---------- Ses çıkmaması gereken anlar ----------
-// Yükleme ekranı
+// Yükleme ekranı: intro müziği çalar; ekran kalkınca ana ekran müziğine geçilir
 {
   const L = document.getElementById('loading');
   if (L?.parentNode) {
-    hold('loading', true);
-    const mo = new MutationObserver(() => { if (!L.isConnected) { mo.disconnect(); hold('loading', false); refresh(); } });
+    const mo = new MutationObserver(() => { if (!L.isConnected) { mo.disconnect(); refresh(); } });
     mo.observe(L.parentNode, { childList: true });
   }
 }
@@ -113,7 +112,7 @@ onLock(() => hold('kilit', true));
 const battleUI = document.getElementById('battleUI'), root = document.documentElement;
 let wasBattle = false, sceneKey = '', scenePlace = '';
 function scene() {
-  if (document.getElementById('loading')) return { place: 'none' };
+  if (document.getElementById('loading')) return { place: 'loading' };
   if (document.getElementById('fragman')) return { place: 'fragman' }; // 22 Kas: fragmanda tema müziği çalar
   const wx = { phase: phaseNow(), weather: weatherNow() };
   if (battleUI && !battleUI.hidden) { wasBattle = true; return { place: SFX.over ? 'result' : SFX.boss ? 'boss' : 'battle', ...wx }; }

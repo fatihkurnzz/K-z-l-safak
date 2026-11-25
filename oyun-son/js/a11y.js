@@ -4,7 +4,7 @@ const KEY = 'dd_a11y';
 // Erişilebilirlik simgesi (Ayarlar sekmesi ve ana ekrandaki düğme)
 export const A11Y_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.2" r="2.2"/><path d="M4 7.5l8 1.6 8-1.6.5 1.8-6 1.6v4.2l2.4 6.3-1.9.7L12 16l-3 6.1-1.9-.7 2.4-6.3v-4.2l-6-1.6z"/></svg>';
 export const A11Y_DEFAULT = {
-  scale: 0.95,        // arayüz ölçeği (pencereler, kartlar, düğmeler); 3B sahne değişmez
+  scale: 1,           // arayüz ölçeği (P28: varsayılan %95 → %100) (pencereler, kartlar, düğmeler); 3B sahne değişmez
   text: 'n',          // yazı boyutu: n normal · l büyük · xl çok büyük
   cb: false,          // renk körü modu: nadirlik ve olumlu/olumsuz etkiler biçimle de ayrılır
   hc: false,          // yüksek kontrast
@@ -20,8 +20,14 @@ export const A11Y_DEFAULT = {
   bigTurn: false,     // büyütülmüş sıra çubuğu
   noChat: false,      // ana ekran sohbet şeridini gizle
   noTicker: false,    // duyuru şeridini gizle (sohbetteki sabit duyuru kalır)
+  sc100: 1,           // P28 ölçek geçişi yapıldı (yeni kayıtlar geçişe girmez; bilerek seçilen %95 korunur)
 };
-const load = () => { try { return { ...A11Y_DEFAULT, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch { return { ...A11Y_DEFAULT }; } };
+/** Kayıtlı ayarı okur. P28 tek seferlik geçiş: eski varsayılan ölçek 0.95 kayıtlıysa 1'e çekilir (sc100 bayrağı tekrarını önler); başka değerlere dokunulmaz. */
+const load = () => { try {
+  const raw = JSON.parse(localStorage.getItem(KEY) || '{}');
+  if (!raw.sc100) { if (raw.scale === 0.95) raw.scale = 1; raw.sc100 = 1; if (localStorage.getItem(KEY)) localStorage.setItem(KEY, JSON.stringify(raw)); }
+  return { ...A11Y_DEFAULT, ...raw };
+} catch { return { ...A11Y_DEFAULT }; } };
 export const A = load();
 export function applyA11y() {
   const r = document.documentElement, c = r.classList;

@@ -16,7 +16,12 @@ export let ACC = null;    // hesap: { chars: [kart], max, cur } (char.list sonuc
 export let DEV = false;   // test komutları açık mı
 // Test araçları ve deneme rozeti yalnız geliştiriciye görünür (denetim Y4): ?dev=1 ya da localStorage dd_dev='1'.
 // Komutlar (ACT.dev*) yine çalışır; denetim betikleri onları doğrudan çağırır.
-export const devUI = () => DEV && (params.get('dev') === '1' || ls.get('dd_dev') === '1');
+// 24 Kas (P26 Y4/N10): varsayılan derlemede GİZLİ; yalnız ?dev=1 ya da localStorage dd_dev='1' açar. Play Store (?store=1 / DD_STORE) her durumda gizli.
+/** Mağaza (Play Store) derlemesi mi: window.DD_STORE = true ya da ?store=1. */
+export const storeBuild = () => window.DD_STORE === true || params.get('store') === '1';
+/** Tek kapı: test araçları ve DENEME rozeti görünsün mü (yalnız ?dev=1 / dd_dev='1', mağaza derlemesinde asla). Yalnız GÖRÜNÜR arayüzü yönetir; dev.* eylemleri yerel kipte çalışmaya devam eder. */
+// 24 Kas gece (kullanıcı): test paneli GERİ GELDİ — varsayılanda görünür; ?dev=0 ya da dd_dev='0' gizler. Mağaza derlemesinde asla.
+export const devUI = () => !storeBuild() && params.get('dev') !== '0' && ls.get('dd_dev') !== '0';
 let offset = 0;
 export const now = () => Date.now() + offset;
 const subs = new Set();

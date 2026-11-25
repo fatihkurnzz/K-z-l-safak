@@ -4,8 +4,8 @@
 //  - pencere ve bölüm başlıklarına ikon (başlık sözcüğüne göre; kaplama-parts.js: headIcon)
 //  - ana üste akçe ve yakut değişince kısa sayı sayımı; son değer her zaman ana üssün yazdığı (sunucudan gelen) sayıdır
 // Hepsi olay geldiğinde çalışır; kare başına iş yalnızca yarım saniyelik sayı sayımı sırasında yapılır.
-import { ACT, hud, win, modal } from './ui-core.js';
-import { svg } from './icons.js';
+import { ACT, hud, win, modal, esc, fmt } from './ui-core.js';
+import { svg, ri } from './icons.js';
 import { phaseNow } from './daylight.js';
 import { gfx, onTier } from './gfx.js';
 import { headIcon, parseNum, tweenNum, fmtNum } from './kaplama-parts.js';
@@ -71,3 +71,72 @@ function scan() {
   }
 }
 new MutationObserver(scan).observe(hud, { childList: true, subtree: true, characterData: true });
+
+// ---- Kül ve Demir görsel paketi (24 Kas): css/kul-demir.css görselleri tek modülde (kd-png.js; tools/kd-paketle.py) ----
+let kdProm = null;
+/**
+ * Kül ve Demir arayüz görsellerini (kd-png.js, WebP base64) bir kez yükler ve `<style id="kd-gorsel">` içine
+ * `:root{--kdg-<anahtar>:url(data:image/webp;base64,…)}` yazar; kul-demir.css bu değişkenleri `var(--kdg-…)` ile kullanır.
+ * main.js karakter seçimi/oluşturmadan önce bekler (P26 O15; sunucu seçimi kullanmaz). Hata olursa sessizce geçer (oyun görselsiz kabukla açılır).
+ * @returns {Promise<number>} yazılan görsel sayısı (hata/boş: 0)
+ */
+export const kdGorsel = () => (kdProm ||= (async () => {
+  try {
+    const d = (await import('./kd-png.js')).default || {};
+    const st = document.getElementById('kd-gorsel') || Object.assign(document.createElement('style'), { id: 'kd-gorsel' });
+    st.textContent = ':root{' + Object.entries(d).map(([k, v]) => `--kdg-${k}:url(data:image/webp;base64,${v})`).join(';') + '}';
+    if (!st.isConnected) document.head.appendChild(st);
+    return Object.keys(d).length;
+  } catch (e) { console.warn('kd-gorsel yüklenemedi', e); return 0; }
+})());
+// P26 O15: açılışta kendiliğinden inmez; main.js karakter ekranından önce yükletir (sunucu seçimi bu görselleri kullanmaz).
+
+// ---- P24 ekran kiti (24 Kas): iki halk için ortak pencere kabuğu görselleri + ekranların kullandığı görsel yardımcıları ----
+// Görseller tek modülde (p24-ekran-png.js, WebP base64; tools/p24-ekran-paketle.py) tembel yüklenir. Kabuk renkleri CSS değişkenleri
+// (--k-*) olarak <style id="p24-kit">'e yazılır, ardından html.k24 sınıfı eklenir (css/p24-ekranlar.css yalnız o zaman kitle boyar).
+// ?k24=0 kiti kapatır. Ayrıntı: docs/p24-ekran-rehberi.md
+let p24Mod = null, p24Prom = null;
+/** Paket yüklendiyse anahtarın data URL'si, değilse ''. Ekranlar önce p24Img(...) ile yükletip sonra bunu çağırabilir. */
+export const p24ImgSync = key => (p24Mod && p24Mod[key] ? 'data:image/webp;base64,' + p24Mod[key] : '');
+/** Paketi (bir kez) yükler; anahtarın data URL'sine çözülür (yoksa ''). Örn: `const u = await p24Img('map_carsi')`. */
+export const p24Img = key => (p24Prom ||= import('./p24-ekran-png.js').then(m => (p24Mod = m.default), () => { p24Prom = null; return null; })).then(() => p24ImgSync(key));
+const P24_ALIAS = { enerji: 'energy', yakut: 'gem', cevher: 'ore', muhur: 'seal', kor: 'shard_kor', ayaz: 'shard_ayaz', simsek: 'shard_simsek', nisan: 'nisan' };
+/**
+ * Üst sağ kaynak bandı (pencere başlığında X'in solunda). items: [{ic:'enerji'|'akce'|'yakut'|'cevher'|'san'|'kor'|…, v:değer, t?:başlık}].
+ * Dönen HTML `.wres` kabına konur (ui-core pencere başlığı bunu kendisi yazar); stil css/p24-ekranlar.css `.wres > span`, `.p24band > span`.
+ */
+export const p24Band = items => `<div class="p24band">${(items || []).map(it => `<span class="wx" title="${esc(it.t || '')}">${ri(P24_ALIAS[it.ic] || it.ic)} ${typeof it.v === 'number' ? fmt(it.v) : esc(it.v ?? '')}</span>`).join('')}</div>`;
+const K24_OFF = (() => { try { return new URLSearchParams(location.search).get('k24') === '0'; } catch { return false; } })();
+const K24_MAP = { frame: 'modal_frame', title: 'title_banner', close: 'btn_close', 'tab-on': 'tab_active', 'tab-off': 'tab_inactive', btn1: 'btn_primary', btn2: 'btn_secondary', 'btn-ok': 'btn_confirm', ring: 'anvil_ring', pill: 'resource_pill', 'crown-b': 'crown_bronze', 'crown-s': 'crown_silver', 'crown-p': 'crown_platinum' };
+async function p24Kit() {
+  if (K24_OFF) return;
+  try {
+    await p24Img('k_ocak_modal_frame'); if (!p24Mod) return;
+    const u = k => p24ImgSync(k) ? `url(${p24ImgSync(k)})` : 'none';
+    const set = (h, tag, card, card2) => `html[data-faction="${h}"]{${Object.entries(K24_MAP).map(([v, n]) => `--k-${v}:${u(`k_${tag}_${n}`)}`).join(';')};--k-card:${u(`k_${tag}_${card}`)};--k-card2:${u(`k_${tag}_${card2}`)}}`;
+    const st = document.getElementById('p24-kit') || Object.assign(document.createElement('style'), { id: 'p24-kit' });
+    st.textContent = set('ocak', 'ocak', 'card_frame_1', 'card_frame_2') + set('sancak', 'sancak', 'card_frame', 'card_frame');
+    if (!st.isConnected) document.head.appendChild(st);
+    root.classList.add('k24');
+  } catch { /* kit yüklenemedi: eski kabuk kalır */ }
+}
+// P26 O15: kit (p24-ekran-png.js, 1,9 MB) açılışta değil; ilk pencere/modal/savaş açılınca hemen, başkent ilk kez göründüğünde
+// ise ilk kare çizildikten 2 sn sonra (arkada) yüklenir.
+{
+  const bui = document.getElementById('battleUI');
+  let bir = false; const kur = () => { if (!bir) { bir = true; p24Kit(); } };
+  const acik = () => !win.hidden || !modal.hidden || (bui && !bui.hidden);
+  if (acik()) kur();
+  else {
+    const mo = new MutationObserver(() => {
+      if (acik()) { mo.disconnect(); kur(); } else if (root.dataset.hub2d) setTimeout(() => (window.requestIdleCallback || setTimeout)(kur, { timeout: 4000 }), 6000); // P28 yuk: başkentte ≥6 sn sonra boşta (ilk açılış ölçümüne girmez)
+    });
+    mo.observe(root, { attributes: true, attributeFilter: ['data-hub2d'] });
+    for (const e of [win, modal, bui]) if (e) mo.observe(e, { attributes: true, attributeFilter: ['hidden'] });
+  }
+}
+// Sohbet penceresi açıkken mini sohbet barı gizlenir (css: html.k24-sohbet #chatbar)
+{
+  const chk = () => root.classList.toggle('k24-sohbet', !win.hidden && /^Sohbet/.test(win.querySelector('.frame > header > h2')?.textContent?.trim() || ''));
+  new MutationObserver(chk).observe(win, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
+}

@@ -46,38 +46,50 @@ function oddsHtml(it, f) {
 // yuvaları (bileği taşı, Uğur Muskası, Tav Közü). Basma sürerken halka hızlanır ve yuva nabız gibi atar; sonuçta yuva altın
 // ışınla patlar (başarı), dumanla söner (başarısız), kızıl çatlakla sarsılır (kırılma) ya da kalkanla korunur (muska).
 // Görsel tamamen özgün CSS'tir (css/v9.css: .up2-*); ad, simge ve görünüş başka bir oyundan alınmadı.
-function forgeStage(it, g, need, f, max) {
-  const rays = Array.from({ length: 12 }, (_, i) => `<i style="--a:${i * 30}deg"></i>`).join('');
-  const slot = (cls, icon, name, n, on) => `<div class="up2-mat ${cls} ${on ? 'on' : ''}" title="${name}">${ri(icon)}<small>${n}</small></div>`;
-  return `<div class="up2" aria-hidden="true"><div class="up2-bg"></div>
-    <div class="up2-core"><div class="up2-ring"></div><div class="up2-ring r2"></div><div class="up2-rays">${rays}</div>
-      <div class="up2-slot">${ico(it, 'lg')}<b class="up2-plus">+${it.p}</b></div><div class="up2-smoke"><i></i><i></i><i></i></div><div class="up2-crack"></div><div class="up2-shield"></div></div>
-    ${max ? '<div class="up2-mats"><span class="mut">En yüksek seviye</span></div>' : `<div class="up2-mats">${slot('m1', 'stone' + g, 'Bileği taşı', need + '×', true)}${slot('m2', 'charm', 'Uğur Muskası', f.charm ? '1×' : '—', f.charm)}${slot('m3', 'ember', 'Tav Közü', f.ember ? '1×' : '—', f.ember)}</div>`}</div>`;
-}
+// P24 Örs düzeni: sol üstte hedef eşya, ortada 3x3 malzeme ızgarası (halka çerçeveli), sağ üstte "+N" önizleme; altta başarı
+// oranı + Onayla / İptal / Önizleme; sağda Çanta / Basılacak Eşyalar ızgarası. Basma kuralları ve oranlar değişmedi.
+const upCalc = it => { const g = stoneGrade(it), max = it.p >= maxPlusOf(it), c = itemStats(it), nxt = max ? c : itemStats({ ...it, p: it.p + 1 }), f = flags(it);
+  const need = max ? 0 : UP_STONES[it.p], fee = max ? 0 : upFee(it, S); return { g, max, c, nxt, f, need, fee, ok: !max && S.stones[g] >= need && S.akce >= fee, risky: it.p > SAFE_PLUS, sure: !max && UP_CHANCE[it.p] >= 1 }; };
 export function anvilUp() {
-  const eq = equippedIds(S), items = sorted();
+  const items = sorted();
   if (!itemOf(S, UP.id)) UP.id = items[0]?.id ?? null;
   const it = itemOf(S, UP.id);
-  const list = invGrid(items, { act: 'pickUp', sel: UP.id, empty: 'Çantanda eşya yok.' });
+  const list = invGrid(items, { act: 'pickUp', sel: UP.id, empty: 'Çantanda eşya yok.', fill: Math.max(25, Math.ceil(items.length / 5) * 5) });
   let panel = '<p class="mut">Basılacak eşya yok.</p>';
   if (it) {
-    const g = stoneGrade(it), max = it.p >= maxPlusOf(it), c = itemStats(it), nxt = max ? c : itemStats({ ...it, p: it.p + 1 }), f = flags(it);
-    const need = max ? 0 : UP_STONES[it.p], fee = max ? 0 : upFee(it, S), ok = !max && S.stones[g] >= need && S.akce >= fee, L = UP.last;
-    const risky = it.p > SAFE_PLUS, sure = !max && UP_CHANCE[it.p] >= 1;
-    const tg = (k, on, off, icon, name, note, n) => `<button class="tg ${on ? 'on' : ''}" data-a="upOpt" data-k="${k}" ${off || UP.busy ? 'disabled' : ''}>${ri(icon)}<span><b>${name} <i>×${n}</i></b><small>${note}</small></span></button>`;
-    panel = `<div class="anvil ${L ? 'o-' + L.out : ''}" id="anv">
-      ${forgeStage(it, g, need, f, max)}
-      <div class="ahead">${ico(it)}<div><span class="gn g${it.g}${plusCls(it.p)}">${esc(itemName(it))}</span> ${rarTag(it.g)}${max ? '<br><b>En yüksek seviye</b>' : `<br><b class="anext">+${it.p} → +${it.p + 1}</b>`}</div></div>
-      ${max ? '' : `${oddsHtml(it, f)}
-      <div class="tgs">${tg('charm', f.charm, !risky || S.charms < 1, 'charm', 'Uğur Muskası', !risky ? `+${SAFE_PLUS + 1} ve üstünde gerekir` : S.charms < 1 ? 'Elinde yok' : 'Kayıp ve kırılma yok', S.charms)}
-        ${tg('ember', f.ember, sure || !(S.embers > 0), 'ember', 'Tav Közü', sure ? 'Başarı zaten kesin' : !(S.embers > 0) ? 'Elinde yok' : `Başarı şansı ×${String(EMBER_MULT).replace('.', ',')}`, S.embers || 0)}</div>
-      <div class="abar"><p class="acost"><span class="nw">${ri('stone' + g)} ${need}× ${STONES[g].name.replace(' Bileği Taşı', ' Taş')} <span class="${S.stones[g] >= need ? 'mut' : 'warn'}">(elinde ${S.stones[g]})</span></span><i> · </i><span class="nw">${ri('akce')} ${fmt(fee)} <span class="${S.akce >= fee ? 'mut' : 'warn'}">akçe</span></span></p>
-      <button class="btn red abtn" data-a="upgrade" ${ok && !UP.busy ? '' : 'disabled'}>BAS</button></div><div class="tens"><i></i></div>
-      ${L ? `<p class="ares ${L.out}">${ri(OUT_ICON[L.out])}<b>${OUT[L.out](L)}</b></p>` : `<p class="mut arisk">${!risky ? 'Bu denemede eşyan seviye kaybetmez: başarısız olursa yalnızca taş ve akçe gider.' : f.charm ? 'Uğur Muskası bu denemede harcanır; başarısız olursa eşyan aynı kalır.' : `+${SAFE_PLUS + 1} ve üstünde başarısız deneme eşyayı bir artı düşürür${it.p >= 8 ? ', kırılma +5\'e döndürür' : ''}. Eşya asla yok olmaz.`}</p>`}`}
-      <div class="kv">${Object.keys(c).filter(k => !isCoef(k)).map(k => `<div><small>${STAT_LABEL[k]}</small>${fmtStat(k, c[k])}${nxt[k] !== c[k] ? ` <span class="up">→ ${fmtStat(k, nxt[k])}</span>` : ''}</div>`).join('')}</div>${coefChips(c)}${subSection(it)}${setSection(S, it, ownerOf(S, it.id), ownIds(S))}</div>`;
+    const { g, max, nxt, f, need, fee, ok, risky, sure } = upCalc(it), L = UP.last;
+    const rays = Array.from({ length: 12 }, (_, i) => `<i style="--a:${i * 30}deg"></i>`).join('');
+    // Izgara yuvaları: orta = bileği taşı; sol = Uğur Muskası, sağ = Tav Közü (dokununca açılır/kapanır); kalanlar boş yuva
+    const mat = (cls, icon, name, n, on, k, off, note) => `<${k ? 'button' : 'div'} class="up2-mat ors-c ${cls} ${on ? 'on' : ''}" ${k ? `data-a="upOpt" data-k="${k}" ${off || UP.busy ? 'disabled' : ''}` : ''} title="${name}${note ? ': ' + note : ''}">${ri(icon)}<small>${n}</small></${k ? 'button' : 'div'}>`;
+    const cells = Array.from({ length: 9 }, () => '<span class="ors-c nil"></span>');
+    if (!max) {
+      cells[4] = mat('m1', 'stone' + g, 'Bileği taşı', need + '×', true);
+      cells[3] = mat('m2', 'charm', 'Uğur Muskası', f.charm ? '1×' : S.charms, f.charm, 'charm', !risky || S.charms < 1, !risky ? `+${SAFE_PLUS + 1} ve üstünde gerekir` : S.charms < 1 ? 'Elinde yok' : 'Kayıp ve kırılma yok');
+      cells[5] = mat('m3', 'ember', 'Tav Közü', f.ember ? '1×' : (S.embers || 0), f.ember, 'ember', sure || !(S.embers > 0), sure ? 'Başarı zaten kesin' : !(S.embers > 0) ? 'Elinde yok' : `Başarı şansı ×${String(EMBER_MULT).replace('.', ',')}`);
+    }
+    const okPct = max ? 0 : upOdds(it, { ...f, fog: fogNow(now()) }).ok;
+    panel = `<div class="anvil ors ${L ? 'o-' + L.out : ''}" id="anv">
+      <div class="ors-top">
+        <div class="ors-tgt"><div class="up2-core"><div class="up2-rays">${rays}</div><div class="up2-slot">${ico(it, 'lg')}</div><div class="up2-smoke"><i></i><i></i><i></i></div><div class="up2-crack"></div><div class="up2-shield"></div></div></div>
+        <div class="ors-grid k-ring">${cells.join('')}</div>
+        <div class="ors-prv ${max ? 'off' : ''}">${max ? '<small>En yüksek</small>' : `${ico({ ...it, p: it.p + 1 }, 'lg')}`}</div>
+      </div>
+      <p class="ors-line"><span class="gn g${it.g}${plusCls(it.p)}">${esc(itemName(it))}</span>${max ? ' · <b>En yüksek seviye</b>' : ` → <b class="up">+${it.p + 1}</b> · <b class="orsok">%${Math.round(okPct * 1000) / 10} Başarı</b>`}</p>
+      ${max ? '' : `<p class="ors-cost"><span class="nw">${ri('stone' + g)} ${need}× ${STONES[g].name.replace(' Bileği Taşı', ' Taş')} <span class="${S.stones[g] >= need ? 'mut' : 'warn'}">(elinde ${S.stones[g]})</span></span><i> · </i><span class="nw">${ri('akce')} ${fmt(fee)} <span class="${S.akce >= fee ? 'mut' : 'warn'}">akçe</span></span></p>`}
+      ${L ? `<p class="ares ${L.out}">${ri(OUT_ICON[L.out])}<b>${OUT[L.out](L)}</b></p>` : max ? '' : `<p class="mut arisk">${!risky ? 'Başarısız olursa yalnızca taş ve akçe gider.' : f.charm ? 'Uğur Muskası harcanır; başarısız olursa eşya aynı kalır.' : `+${SAFE_PLUS + 1} ve üstünde başarısız deneme bir artı düşürür${it.p >= 8 ? ', kırılma +5\'e döndürür' : ''}. Eşya asla yok olmaz.`}</p>`}
+      <div class="ors-btns"><button class="btn green abtn" data-a="upgrade" ${ok && !UP.busy ? '' : 'disabled'}>Onayla</button><div class="ors-pair"><button class="btn" data-a="upClear" ${UP.busy ? 'disabled' : ''}>İptal</button><button class="btn" data-a="upPrev" ${max || UP.busy ? 'disabled' : ''}>Önizleme</button></div></div><div class="tens"><i></i></div></div>`;
   }
-  return `<div class="forge up"><div>${panel}</div><div class="ivpick"><p class="mut ivhint">Basılacak eşyayı seç</p>${list}</div></div>`;
+  return `<div class="forge up ors-wrap"><div class="ors-l">${panel}</div><div class="ivpick ors-r"><h3 class="ors-rt">Çanta / Basılacak Eşyalar</h3>${list}</div></div>`;
 }
+// İptal: seçili sarf malzemelerini ve son sonucu temizler
+ACT.upClear = () => { if (UP.busy) return; UP.charm = false; UP.ember = false; UP.last = null; redraw(); };
+// Önizleme: seçili malzemelerle olasılık tablosu ve bir üst seviyenin nitelikleri
+ACT.upPrev = () => {
+  const it = itemOf(S, UP.id); if (!it) return;
+  const { max, c, nxt, f } = upCalc(it); if (max) return;
+  showModal(`<h2>Önizleme</h2><div class="in" style="text-align:left"><p><span class="gn g${it.g}${plusCls(it.p)}">${esc(itemName(it))}</span> → <b class="anext">+${it.p + 1}</b></p>${oddsHtml(it, f)}
+    <div class="kv">${Object.keys(c).filter(k => !isCoef(k)).map(k => `<div><small>${STAT_LABEL[k]}</small>${fmtStat(k, c[k])}${nxt[k] !== c[k] ? ` <span class="up">→ ${fmtStat(k, nxt[k])}</span>` : ''}</div>`).join('')}</div>${coefChips(nxt)}${subSection(it)}${setSection(S, it, ownerOf(S, it.id), ownIds(S))}</div>`);
+};
 ACT.pickUp = d => { if (UP.busy) return; UP.id = +d.id; UP.last = null; redraw(); };
 ACT.upOpt = d => { if (UP.busy) return; UP[d.k] = !UP[d.k]; UP.last = null; redraw(); };
 const TENSION_MS = 2400; // yükseltme halkası hızlanır, yuva nabız gibi atar (css/v9.css: .anvil.forging .up2-*)
@@ -87,7 +99,7 @@ ACT.upgrade = async () => {
   const f = flags(it);
   UP.busy = true; UP.last = null;
   const el = $('#anv');
-  if (el) { el.className = 'anvil forging'; el.querySelectorAll('button').forEach(b => { b.disabled = true; }); const res = el.querySelector('.ares'); if (res) res.style.visibility = 'hidden'; }
+  if (el) { el.className = 'anvil ors forging'; el.querySelectorAll('button').forEach(b => { b.disabled = true; }); const res = el.querySelector('.ares'); if (res) res.style.visibility = 'hidden'; }
   const [r] = await Promise.all([run('anvil.upgrade', { id: UP.id, charm: f.charm, ember: f.ember }), new Promise(res => setTimeout(res, TENSION_MS))]);
   UP.busy = false; UP.last = r;
   if (S.charms < 1) UP.charm = false;
@@ -111,7 +123,7 @@ function entries(type) {
   return BY_TYPE[type] || [];
 }
 const ENTRY_COUNT = () => allBases().reduce((a, b) => a + (itemBase(b).unique ? 1 : 2), 0);
-const mobKind = M => M.boss ? (M.event ? 'Klan avı yaratığı' : 'Günlük boss') : M.captain ? 'Kapı kaptanı' : 'Yaratık';
+const mobKind = M => M.boss ? (M.event ? 'Klan avı yaratığı' : 'Günlük Boss') : M.captain ? 'Kapı kaptanı' : 'Yaratık';
 ACT.codex = d => openWin({ title: 'Ansiklopedi', top: true, tab: d?.tab || 'mobs', tabs: [{ id: 'mobs', label: 'Yaratıklar', small: `${Object.keys(MOBS).length} yaratık`, icon: 'boss' }, { id: 'items', label: 'Eşyalar', small: `${ENTRY_COUNT()} eşya`, icon: 'gear' }], render: t => t === 'items' ? cxItems() : cxMobs() });
 function cxMobs() {
   const mobs = [...zoneMobs(CX.zone), ...Object.keys(MOBS).filter(id => MOBS[id].event && !MOBS[id].tut && MOBS[id].zone === CX.zone)];
@@ -152,8 +164,8 @@ const RANK_NAME = { n: '', e: 'Azılı ', c: '', b: '' };
 const stageSpan = (a, b) => a === b ? a.replace('-', '.') : `${a.replace('-', '.')} – ${b.replace('-', '.')}`;
 function sourceRow(x, B) {
   const rate = (r, note = '') => `<span class="tag rate">${fmtRate(r)}<small>${note || oneIn(r)}</small></span>`;
-  if (x.t === 'mob') return `<div class="row">${mobImg(x.mob, false, 'sm')}<div class="grow"><b>${RANK_NAME[x.rank]}${esc(MOBS[x.mob].name)}</b><br><span class="mut">${x.rank === 'b' ? 'Günlük boss' : x.rank === 'c' ? 'Kapı kaptanı' : x.rank === 'e' ? 'Azılı yaratık' : 'Yaratık'} · aşama ${stageSpan(x.from, x.to)}</span></div>${rate(x.rate)}</div>`;
-  if (x.t === 'boss') return `<div class="row">${mobImg(x.mob, false, 'sm')}<div class="grow"><b>${esc(MOBS[x.mob].name)}</b><br><span class="mut">Günlük boss · aşama ${x.stage.replace('-', '.')} · Mühürlü Oda'da ${fmtRate(x.seal)}</span></div>${rate(x.rate)}</div>`;
+  if (x.t === 'mob') return `<div class="row">${mobImg(x.mob, false, 'sm')}<div class="grow"><b>${RANK_NAME[x.rank]}${esc(MOBS[x.mob].name)}</b><br><span class="mut">${x.rank === 'b' ? 'Günlük Boss' : x.rank === 'c' ? 'Kapı kaptanı' : x.rank === 'e' ? 'Azılı yaratık' : 'Yaratık'} · aşama ${stageSpan(x.from, x.to)}</span></div>${rate(x.rate)}</div>`;
+  if (x.t === 'boss') return `<div class="row">${mobImg(x.mob, false, 'sm')}<div class="grow"><b>${esc(MOBS[x.mob].name)}</b><br><span class="mut">Günlük Boss · aşama ${x.stage.replace('-', '.')} · Mühürlü Oda'da ${fmtRate(x.seal)}</span></div>${rate(x.rate)}</div>`;
   if (x.t === 'pity') return `<div class="row">${resTile('mark', 'sm')}<div class="grow"><b>İz takası</b><br><span class="mut">${esc(MOBS[x.mob].name)} izinden ${x.marks} tane biriktir; eşsizlerinden birini seç.</span></div><span class="tag rate">Kesin</span></div>`;
   if (x.t === 'depth') return `<div class="row">${resTile('key', 'sm')}<div class="grow"><b>Yeraltı Ocağı</b><br><span class="mut">Her kat bir Nadir eşya verir; kademesi seviyene göredir (bu eşya için Sv. ${B.req}–${(TIERS[B.tier + 1]?.req || 81) - 1}).</span></div>${rate(x.rate, 'kat başına')}</div>`;
   if (x.t === 'cal') return `<div class="row">${resTile('quest', 'sm')}<div class="grow"><b>Giriş takvimi</b><br><span class="mut">Yedi Gün takviminin 7. günü ve aylık takvimin 28. günü bir Nadir eşya verir; kademesi seviyene göredir (bu eşya için Sv. ${B.req}–${(TIERS[B.tier + 1]?.req || 81) - 1}).</span></div>${rate(x.rate, 'eşyalı ödül başına')}</div>`;

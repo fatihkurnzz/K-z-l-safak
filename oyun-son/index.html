@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="img/icons/icon-192.png">
@@ -2247,6 +2248,38 @@ html.gfx-low .ico.uq .ig::after { display:none; }
 <link rel="stylesheet" href="css/v31-savas-hud.css">
 <link rel="stylesheet" href="css/v32-p2340.css">
 <link rel="stylesheet" href="css/v33-karakter.css">
+<link rel="stylesheet" href="css/d23-pencere.css">
+<link rel="stylesheet" href="css/d23-yazi.css">
+<link rel="stylesheet" href="css/p23-giris.css">
+<link rel="stylesheet" href="css/p23-savas.css">
+<link rel="stylesheet" href="css/p23-sehir.css">
+<link rel="stylesheet" href="css/p23-anaekran.css">
+<link rel="stylesheet" href="css/p23-sehir2.css">
+<link rel="stylesheet" href="css/p24-ekranlar.css">
+<link rel="stylesheet" href="css/p25-a.css">
+<link rel="stylesheet" href="css/p25-b.css">
+<link rel="stylesheet" href="css/p25-c.css">
+<link rel="stylesheet" href="css/p25-d.css">
+<link rel="stylesheet" href="css/p26-orman.css">
+<link rel="stylesheet" href="css/p26-savas.css">
+<link rel="stylesheet" href="css/p26-duzelt.css">
+<link rel="stylesheet" href="css/p27-sehir.css">
+<link rel="stylesheet" href="css/p27-acilis.css">
+<link rel="stylesheet" href="css/p27-kabuk.css">
+<link rel="stylesheet" href="css/p27-magaza.css">
+<link rel="stylesheet" href="css/p27-savas.css">
+<link rel="stylesheet" href="css/korant-theme-tokens.css">
+<link rel="stylesheet" href="css/p28-anaekran.css">
+<link rel="stylesheet" href="css/p28-binalar.css">
+<link rel="stylesheet" href="css/p28-arka.css">
+<link rel="stylesheet" href="css/p28-tema.css">
+<link rel="stylesheet" href="css/p28-dokunma.css">
+<link rel="stylesheet" href="css/p29-mekan.css">
+<link rel="stylesheet" href="css/p29-savas.css">
+<link rel="stylesheet" href="css/p30-icmekan.css">
+<link rel="stylesheet" href="css/p31-atmosfer.css">
+<link rel="stylesheet" href="css/p32-etkinlik.css">
+<script>(function(){var q=new URLSearchParams(location.search),h=document.documentElement,g=function(k){try{return localStorage.getItem(k)}catch(e){return null}};if(q.get("p23")!=="0"&&g("dd_p23")!=="0")h.classList.add("p23");if(q.get("giris")!=="0"&&g("dd_giris")!=="0")h.classList.add("giris2");})();</script>
 <div id="game">
   <div id="stage"></div>
   <div id="overlay"></div>
@@ -2275,6 +2308,8 @@ html.gfx-low .ico.uq .ig::after { display:none; }
     (function () {
       var el = function (q) { var L = document.getElementById('loading'); return L && L.querySelector(q); };
       var pct = 0, lastAt = Date.now();
+      // P27 1.2: yükleme ekranının ilk boyandığı an (en az 3 sn kuralı bu andan sayılır; ui-acilis.js MIN_LOADING_MS)
+      var shownAt = performance.now(); requestAnimationFrame(function () { shownAt = performance.now(); });
       var retry = function () {
         var go = function () { location.reload(); };
         try { if (window.caches) caches.keys().then(function (k) { return Promise.all(k.map(function (x) { return caches.delete(x); })); }).then(go, go); else go(); } catch (e) { go(); }
@@ -2290,7 +2325,7 @@ html.gfx-low .ico.uq .ig::after { display:none; }
           var i = el('.ld-bar i'), b = el('.ld-bar b'), t = el('.ld-txt');
           if (i) i.style.width = p + '%'; if (b) b.textContent = p + '%'; if (t && text) t.textContent = text;
         },
-        fail: fail, retry: retry, get pct() { return pct; }
+        fail: fail, retry: retry, get pct() { return pct; }, get shownAt() { return shownAt; }
       };
       window.DDLoad.set(3);
       window.addEventListener('error', function (e) { if (document.getElementById('loading')) fail('Yükleme hatası: ' + (e.message || 'bilinmeyen hata') + (e.filename ? ' (' + e.filename.split('/').pop() + ':' + e.lineno + ')' : '')); });
@@ -2332,3 +2367,5 @@ html.gfx-low .ico.uq .ig::after { display:none; }
     import './js/main.js';
   </script>
 
+
+</body></html>

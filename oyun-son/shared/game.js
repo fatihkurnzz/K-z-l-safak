@@ -5,7 +5,8 @@
 import { CLASSES, CLASS_KEYS, TREES, STAT_KEYS, TREE_MAX, BAG_LIMIT, RESET_COST, UNLOCK, dayKey, BOSS_PITY, TURN_CAP } from './content.js';
 import { SKILLS } from './skills.js';
 import { starterBases, itemBase, equipSlots, rqOf, meetsRq, RQ_LABEL, MAX_PLUS, maxPlusOf, SAFE_PLUS, UP_CHANCE, UP_STONES, STONES, GRADES, G_UNIQUE, stoneGrade, upOdds, upFee, dustYield, sellPrice, gradeOf, allBases } from './items.js';
-import { stageDef, MOBS } from './zones.js';
+import { stageDef, MOBS, TUT_FIGHT, tutWaves } from './zones.js';
+import { soloMob } from './solo.js';
 import { statPointsFree, skillPointsFree, unlockedSkills, fixLoadout, itemOf, equippedIds, LOADOUT_ACTIVES, statTotals } from './hero.js';
 import { replay, autoPlay } from './battle.js';
 import { recorder } from './report.js';
@@ -212,7 +213,10 @@ const HANDLERS = {
   },
 
   // ---- Savaş (bütün modlar) ----
-  'battle.start'(p, args, env) { const b = startBattle(p, args, env); armPots(p, b); if (env.rules) b.rules = env.rules; return { battle: b }; }, // b.rules: savaşın başladığı motor sürümü
+  'battle.start'(p, args, env) { const b = startBattle(p, args, env);
+    // P28 M5: öğretici ilk dövüşü (orman.js args.tut = 1): yalnız öğreticinin 'battle' adımında ve 1-1 Olağan'da; tek dalga, tek Kül Kurdu (zones.js TUT_FIGHT)
+    if (args.tut === 1 && b.mode === 'stage' && b.ref === TUT_FIGHT.stage && !b.opts.tier && p.tut && !p.tut.end && TUT_STEPS[p.tut.s] === 'battle') b.waves = tutWaves(soloMob);
+    armPots(p, b); if (env.rules) b.rules = env.rules; return { battle: b }; }, // b.rules: savaşın başladığı motor sürümü
   'battle.finish'(p, { id, actions }, env) {
     const b = p.battle;
     if (!b || b.id !== id) {

@@ -1,0 +1,56 @@
+/* P23 sehir — eski görünüşe dönüş: ?p23=0 ya da localStorage dd_p23=0 (giriş için ?giris=0). Kurallar html.p23 / html.giris2 altında. */
+
+/* ===== P23 K6 maden sahnesi (js/ui-sahne.js p23Mine) ===== */
+html.p23 .mn-stage.mn-p23 { position:relative; height:178px; margin:0 0 6px; border-radius:8px; overflow:hidden; background:#1a1208; }
+html.p23 .mn-p23 img { position:absolute; display:block; pointer-events:none; user-select:none; }
+html.p23 .mn-p23 .p23m-bg { inset:0; width:100%; height:100%; object-fit:cover; object-position:center 65%; }
+html.p23 .mn-p23 .p23m-rock { left:17%; bottom:8px; height:96px; width:auto; transform:translateX(-50%); }
+html.p23 .mn-p23 .p23m-cart { left:78%; bottom:6px; height:104px; width:auto; transform:translateX(-50%); }
+html.p23 .mn-p23 .p23m-man, html.p23 .mn-p23 .p23m-shm { left:var(--mx,41%); bottom:-30px; width:156px; height:156px; transform:translateX(-50%); }
+html.p23 .mn-p23 .p23m-man.fl { transform:translateX(-50%) scaleX(-1); }
+html.p23 .mn-p23 .p23m-spark { position:absolute; left:calc(var(--mx,41%) - 52px); bottom:34px; width:56px; height:56px; background-size:600% 100%; background-repeat:no-repeat; opacity:0; pointer-events:none; mix-blend-mode:screen; }
+html.p23 .mn-p23 .p23m-fly { position:absolute; left:78%; bottom:84px; font:800 15px/1 Inter,system-ui,sans-serif; color:#ffe9b8; text-shadow:0 1px 3px #000, 0 0 8px rgba(255,200,90,.6); opacity:0; pointer-events:none; transform:translateX(-50%); }
+html.p23 .mn-p23 .p23m-fly.go { animation:p23fly 1.3s ease-out forwards; }
+@keyframes p23fly { 0% { opacity:0; transform:translate(-50%,10px); } 15% { opacity:1; } 100% { opacity:0; transform:translate(-50%,-70px); } }
+@media (prefers-reduced-motion:reduce) { html.p23 .mn-p23 .p23m-fly.go { animation:none; opacity:1; } }
+/* pencereye sığsın: büyüt satırı ve 500 akçe düğmesi kaydırmasız görünsün */
+html.p23 .win[data-scr] .page .mn-p23 ~ .row { padding-top:5px; padding-bottom:5px; margin-bottom:5px; }
+
+/* ===== P23 K7 otağ tahtı (js/ui-dunya.js tahtHtml) ===== */
+html.p23 .p23-taht { position:relative; flex:0 0 auto; width:116px; height:128px; }
+html.p23 .p23-taht .th-art, html.p23 .p23-taht .th-golge { position:absolute; inset:0; background:center bottom / contain no-repeat; }
+html.p23 .p23-taht[data-t="elentha"] .th-art { background-image:var(--p23-taht-elentha); } html.p23 .p23-taht[data-t="elentha"] .th-golge { background-image:var(--p23-taht-elentha-golge); }
+html.p23 .p23-taht[data-t="kragmir"] .th-art { background-image:var(--p23-taht-kragmir); } html.p23 .p23-taht[data-t="kragmir"] .th-golge { background-image:var(--p23-taht-kragmir-golge); }
+html.p23 .p23-taht .oface { position:absolute; left:50%; top:30%; transform:translateX(-50%); width:48px; height:48px; padding:0; border-radius:50%; overflow:hidden; border:2px solid #c9a45c; background:#000; box-shadow:0 2px 8px #000a; }
+html.p23 .p23-taht .oface * { max-width:100%; max-height:100%; }
+html.p23 .okart.p23-okart { display:flex; gap:12px; align-items:center; }
+html.p23 .rcol .p23-taht { margin:2px auto 4px; width:96px; height:106px; }
+html.p23 .rcol .p23-taht .oface { width:40px; height:40px; }
+/* oy çubukları ince, "0 oy" adın yanında */
+html.p23 .row.cand .pbar { height:3px; margin-top:3px; }
+html.p23 .row.cand .tag { display:none; }
+html.p23 .row.cand .p23-oy { font-size:10px; padding:0 6px; vertical-align:1px; }
+
+/* ===== P23 K8 haritalarda NPC'ler (js/hub2d.js npcKur) ===== */
+html.p23 #hub2d .h2-npc { position:absolute; pointer-events:auto; cursor:pointer; }
+html.p23 #hub2d .h2-npc img { position:absolute; left:50%; bottom:calc(var(--sz) * -.027); width:var(--sz); height:var(--sz); transform:translateX(-50%); pointer-events:none; user-select:none; max-width:none; }
+html.p23 #hub2d .h2-npc.fl img { transform:translateX(-50%) scaleX(-1); }
+html.p23 #hub2d .h2-npc img.b { opacity:0; animation:p23nefes 2.8s ease-in-out infinite; animation-delay:var(--dl); }
+@keyframes p23nefes { 0%, 100% { opacity:0; } 50% { opacity:1; } }
+html.p23 #hub2d .h2-npcs.calm .h2-npc img.b { animation:none; }
+@media (prefers-reduced-motion:reduce) { html.p23 #hub2d .h2-npc img.b { animation:none; } }
+
+/* ===== P23 K9 iksir ve parşömen tek sayfa (js/ui-town.js iksirPage23) ===== */
+html.p23 .ik-grp { margin:10px 0 6px; font:700 11px/16px Cinzel,Georgia,serif; letter-spacing:.12em; text-transform:uppercase; color:#c9a45c; }
+html.p23 .ik-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media (max-width:640px) { html.p23 .ik-grid { grid-template-columns:1fr; } }
+html.p23 .ik-card { position:relative; padding:8px 10px; border-radius:6px; }
+html.p23 .ik-card .pz-top { padding-right:78px; }
+html.p23 .ik-card .ik-stok { position:absolute; top:8px; right:10px; font-size:11px; color:#8d8790; }
+html.p23 .ik-card .potbuy { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:6px; }
+html.p23 .ik-card .potbuy.one { grid-template-columns:1fr; }
+html.p23 .ik-card .potbuy .btn { display:flex; align-items:center; justify-content:center; gap:6px; min-height:32px; border-radius:4px; font-size:11px; }
+html.p23 .ik-card .potbuy .btn:active { transform:scale(.97); border-color:#e8c468; }
+html.p23 .ik-card .potbuy .btn:disabled { opacity:.42; }
+html.p23 .ik-card .potbuy .btn .ri, html.p23 .ik-card .potbuy .btn svg, html.p23 .ik-card .potbuy .btn img { width:12px; height:12px; }
+html.p23 .ik-card .potbuy { gap:4px; } html.p23 .ik-card .potbuy .btn { padding:0 4px; gap:3px; font-size:10.5px; white-space:nowrap; min-width:0; }

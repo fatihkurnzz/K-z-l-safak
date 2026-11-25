@@ -5,6 +5,8 @@ import { ACT, esc, fmt, toast, run, showModal, closeModal, confirmBox, reload, c
 import { FACTIONS, HISAR } from '../shared/content.js';
 import { ri } from './icons.js';
 import { bannerSvg } from './banner.js';
+// P29: Karakaya Hisarı afişi düz dosya (iki halk aynı; p24 ban_hisar_* kalktı)
+export const HISAR_BAN = 'sahneler/banner_karakaya_hisari.webp';
 
 const DAYS = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
 const hm = t => { const d = new Date(t + 3 * 3600000); return `${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`; };
@@ -13,6 +15,8 @@ const bn = b => (b ? bannerSvg(b, 'sm') : `<span class="ico">${ri('clan')}</span
 
 // Hisar çizimi: ırk rengiyle sur ve burçlar; sahibi varsa burçta onun sancağı dalgalanır
 function castle(f, owner) {
+  const art = HISAR_BAN; // P29: iki halk aynı Karakaya Hisarı görseli (eski SVG kale yedek olarak kaldı)
+  if (art) return `<div class="hs-art" role="img" aria-label="Hisar" style="background-image:url(${art})"></div>`;
   const c = FACTIONS[f]?.color || '#8a7a66';
   return `<svg class="hs-castle" viewBox="0 0 160 96" aria-hidden="true">
     <path d="M0 88h160v8H0z" fill="#2a1d12"/>
@@ -28,19 +32,20 @@ export function hisarTab(D) {
   const H = D.hs;
   if (!H) return `<p class="mut">Hisar bilgisi alınamadı.</p>`;
   const O = H.owner, w = H.win, t = now(), settling = !w.open && t >= w.end && t < w.resolveAt;
-  const head = `<div class="hs-head">${castle(H.f, O)}<div class="grow"><b class="hs-name">${esc(H.name)}</b>
-      <div class="hs-own">${O ? `${bn(O.banner)}<span>Sahibi: <b>${esc(O.name)}</b>${O.mine ? ' <span class="chip up">Senin klanın</span>' : O.ally ? ' <span class="chip">Müttefikin</span>' : ''}</span>` : '<span class="mut">Hisar sahipsiz: vergi Irk Hazinesi’ne gider.</span>'}</div>
-      <div class="hs-when">${w.open ? `<span class="chip hs-live">Kuşatma sürüyor</span> Bitişe <b data-hsend="${w.end}">${clockText(w.end - t)}</b>`
+  // P25-c (referans 07): tam genişlik banner — hisar görseli arkada, ad / sahip / sonraki kuşatma sağda
+  const head = `<div class="p25c-ban p25c-hs">${castle(H.f, O)}<div class="p25c-bt"><b class="p25c-name">${esc(H.name)}</b>
+      <div class="p25c-sub">${O ? `${bn(O.banner)}<span>Sahibi: <b>${esc(O.name)}</b>${O.mine ? ' <span class="chip up">Senin klanın</span>' : O.ally ? ' <span class="chip">Müttefikin</span>' : ''}</span>` : '<span class="mut">Hisar sahipsiz: vergi Irk Hazinesi’ne gider.</span>'}</div>
+      <div class="p25c-when">${w.open ? `<span class="chip hs-live">Kuşatma sürüyor</span> Bitişe <b data-hsend="${w.end}">${clockText(w.end - t)}</b>`
         : settling ? `<span class="chip">Sonuç hesaplanıyor</span> <b data-hsend="${w.resolveAt}">${clockText(w.resolveAt - t)}</b>`
-        : `Sonraki kuşatma: <b>${slot}</b> · <b data-hsend="${w.start}">${clockText(w.start - t)}</b>`}</div></div>
-    ${w.open ? `<button class="btn red" data-a="mode" data-m="siege" ${H.tries.used < H.tries.max ? '' : 'disabled'}>Kuşat · ${H.tries.used}/${H.tries.max}</button>` : ''}</div>`;
-  const board = H.live ? `<h3>Kuşatma puanları <span class="mut">· bu hafta, canlı</span></h3>${table(H.live, 'Henüz puan yazan klan yok.')}<p class="mut">Klanının puanı: <b>${fmt(H.myScore)}</b> · senin katkın: <b>${fmt(H.myPart)}</b></p>`
-    : `<h3>Son kuşatma <span class="mut">· ${H.last ? `${H.last.week}. hafta` : 'henüz yok'}</span></h3>${table(H.last?.top, 'Henüz sonuçlanmış kuşatma yok.')}`;
+        : `Sonraki kuşatma: <b>${slot}</b> · <b data-hsend="${w.start}">${clockText(w.start - t)}</b>`}</div>
+    ${w.open ? `<button class="btn red" data-a="mode" data-m="siege" ${H.tries.used < H.tries.max ? '' : 'disabled'}>Kuşat · ${H.tries.used}/${H.tries.max}</button>` : ''}</div></div>`;
+  const board = H.live ? `<div class="p25c-box"><h4>Kuşatma puanları · canlı</h4>${table(H.live, 'Henüz puan yazan klan yok.')}<p class="mut">Klanın: <b>${fmt(H.myScore)}</b> · katkın: <b>${fmt(H.myPart)}</b></p></div>`
+    : `<div class="p25c-box"><h4>Son kuşatma${H.last ? ` · ${H.last.week}. hafta` : ''}</h4>${table(H.last?.top, 'Henüz sonuçlanmış kuşatma yok.')}</div>`;
   const inc = H.inc || { own: 0, ally: 0, pool: 0 };
-  const part = (cls, icon, title, who, n) => `<div class="hs-part ${cls}"><span class="ico">${ri(icon)}</span><b>1/3</b><span>${title}</span><small>${who}</small><em>${ri('akce')} ${fmt(n)}</em></div>`;
-  const split = `<h3>Vergi dağılımı <span class="mut">· bu hafta</span></h3>
-    <div class="hs-split">${part('own', 'gate', 'Hisar sahibi', O ? esc(O.name) : 'sahipsiz', inc.own)}${part('ally', 'clan', 'İttifak ortakları', O ? (H.ownerAllies ? `${H.ownerAllies} klan, eşit` : 'ortak yok: sahibe') : '—', inc.ally)}${part('pool', 'chest', 'Irklar arası havuz', 'Büyük Sefer galibine', inc.pool)}</div>
-    <p class="mut">Irkın pazar vergisi ve ilan ücretleri hisarın sahibi varsa üçe bölünür: klan payları klan hazinesine geçer (klan ekranı açılınca), yuvarlama küsuratı havuza gider. Hisar sahipsizken vergi eskisi gibi Irk Hazinesi’ne akar.</p>`;
+  const part = (cls, icon, title, who, n) => `<div class="p25c-tx ${cls}"><b>1/3 · ${title}</b><small>${who}</small><em>${ri('akce')} ${fmt(n)}</em></div>`;
+  const split = `<h3 class="p25c-h">Vergi dağılımı · bu hafta</h3>
+    <div class="p25c-txs">${part('own', 'gate', 'Hisar sahibi', O ? esc(O.name) : 'sahipsiz', inc.own)}${part('ally', 'clan', 'İttifak ortakları', O ? (H.ownerAllies ? `${H.ownerAllies} klan, eşit` : 'ortak yok: sahibe') : '—', inc.ally)}${part('pool', 'chest', 'Irklar arası havuz', 'Büyük Sefer galibine', inc.pool)}</div>`;
+  const splitNote = `<p class="mut">Irkın pazar vergisi ve ilan ücretleri hisarın sahibi varsa üçe bölünür: klan payları klan hazinesine geçer (klan ekranı açılınca), yuvarlama küsuratı havuza gider. Hisar sahipsizken vergi eskisi gibi Irk Hazinesi’ne akar.</p>`;
   const L = H.pool.last;
   const pool = `<div class="row hs-pool">${med('chest')}<div class="grow"><b>Irklar Arası Vergi Havuzu: ${ri('akce')} ${fmt(H.pool.now)} akçe</b><br>
     <span class="mut">Her hafta sonunda Büyük Sefer’i kazanan ırkın o hafta savaşa katılan üyelerine eşit bölünür, posta ile gelir.</span><br>
@@ -60,7 +65,9 @@ export function hisarTab(D) {
       <button class="btn sm ${r.done || r.self || r.cut >= r.max ? '' : 'green'}" data-a="hsHelp" data-id="${esc(r.cid)}" ${r.done || r.self || r.cut >= r.max ? 'disabled' : ''}>${r.done ? 'Yardım ettin' : r.self ? 'Senin isteğin' : r.cut >= r.max ? 'En kısa sürede' : 'Yardım et'}</button></div>`).join('') : '<p class="mut">Şu an yardım bekleyen iş yok.</p>'}
     <p class="mut">Süreli işler (Karargâh tesis yükseltmesi) için yardım istenebilir. Klanındaki ve müttefik klanlardaki her oyuncu bir işe bir kez yardım eder; her yardım özgün sürenin %${HISAR.helpPct}’u kadar kısaltır, toplam kısaltma en çok üçte ikidir (süre en az üçte birine iner). Yardım edene ${fmt(HISAR.helpAkce)} akçe (günde ${HISAR.helpDaily} kez).</p>`;
   const rules = `<p class="mut">Hisar Kuşatması her hafta ${slot} (UTC+3) arasında yapılır. Bu pencerede Hisar Kuşatması savaşları ayrı ${HISAR.tries} hak verir ve puanı klanının hisar puanına yazılır; pencere bitince en yüksek puanlı klan bir sonraki kuşatmaya kadar hisarın sahibi olur.</p>`;
-  return `${head}${board}${rules}${split}${pool}${ally}${help}`;
+  const sum = `<div class="p25c-box"><h4>İttifak ve yardım</h4>${A.inv.length ? `<p class="p25c-c">${esc(A.inv[0].name)} ittifak teklif etti${A.inv.length > 1 ? ` (+${A.inv.length - 1})` : ''}</p>` : ''}
+    <p class="p25c-c">${A.id ? `İttifak: ${A.clans.length} klan` : 'Klanın bir ittifakta değil'}</p><p class="p25c-c">Yardım: Bugünkü ödül ${H.helpToday}/${H.helpMax}</p>${J ? `<p class="p25c-c">Klanının işi: <b data-hsend="${J.end}">${clockText(J.end - t)}</b></p>` : ''}</div>`;
+  return `${head}${split}<div class="p25c-two">${board}${sum}</div>${splitNote}${rules}${pool}${ally}${help}`;
 }
 
 ACT.hsInvite = async () => {

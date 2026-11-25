@@ -14,23 +14,8 @@ const FK = Object.keys(FACTIONS);
 const gName = g => (g.t === 'akce' ? `${fmt(g.n)} akçe` : g.t === 'stone' ? `${g.n} ${STONES[g.g]?.name || 'taş'}` : g.t === 'seal' ? `${g.n} Mühür Taşı` : g.t === 'ember' ? `${g.n} Tav Közü` : `${g.n}`);
 const bossName = () => MOBS[BASKIN.boss]?.name || 'Kül Ağası';
 
-// Özgün boss çizimi: kül ve kor; boynuzlu miğfer, kor çatlaklı zırh, topuz. Dini/ritüel simge yok.
-const BOSS_SVG = `<svg class="bk-boss" viewBox="0 0 200 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-  <defs><radialGradient id="bkG" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#ff7a1a" stop-opacity=".55"/><stop offset=".6" stop-color="#5a1a08" stop-opacity=".35"/><stop offset="1" stop-color="#120a08" stop-opacity="0"/></radialGradient>
-  <linearGradient id="bkA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e2420"/><stop offset="1" stop-color="#120c0a"/></linearGradient></defs>
-  <rect width="200" height="120" fill="#140e0c"/><rect width="200" height="120" fill="url(#bkG)"/>
-  <path d="M0 104 Q30 92 60 100 T120 98 T200 102 V120 H0Z" fill="#241a16"/><path d="M0 112 Q50 104 100 110 T200 108 V120 H0Z" fill="#1a1210"/>
-  <g class="bk-ash" fill="#bfb3a8" opacity=".55"><circle cx="30" cy="30" r="1.2"/><circle cx="168" cy="22" r="1"/><circle cx="150" cy="56" r="1.4"/><circle cx="46" cy="64" r=".9"/><circle cx="120" cy="14" r="1"/></g>
-  <g transform="translate(100 64)">
-    <path d="M-34 44 L-40 6 Q-40 -12 -22 -18 L22 -18 Q40 -12 40 6 L34 44Z" fill="url(#bkA)" stroke="#0a0605" stroke-width="2"/>
-    <path d="M-22 -18 L-30 -6 L-24 10 M22 -18 L30 -6 L24 10 M-10 4 L-4 18 L-12 30 M12 0 L6 16 L14 26" stroke="#ff7a1a" stroke-width="1.6" fill="none" class="bk-crack"/>
-    <path d="M-40 4 Q-56 0 -60 16 L-50 22 Q-46 12 -38 14Z M40 4 Q56 0 60 16 L50 22 Q46 12 38 14Z" fill="#2a1e1a" stroke="#0a0605" stroke-width="1.5"/>
-    <path d="M-14 -20 Q-16 -42 0 -46 Q16 -42 14 -20Z" fill="#1c1512" stroke="#0a0605" stroke-width="2"/>
-    <path d="M-12 -38 Q-30 -46 -34 -66 Q-22 -52 -8 -46Z M12 -38 Q30 -46 34 -66 Q22 -52 8 -46Z" fill="#3a2e28" stroke="#0a0605" stroke-width="1.5"/>
-    <path d="M-9 -32 L-3 -30 M9 -32 L3 -30" stroke="#ffb347" stroke-width="2.6" stroke-linecap="round" class="bk-eye"/>
-    <path d="M58 20 L76 -22" stroke="#4a3426" stroke-width="5" stroke-linecap="round"/><circle cx="77" cy="-25" r="9" fill="#2a1e1a" stroke="#ff7a1a" stroke-width="1.5"/>
-  </g>
-  <g class="bk-ember" fill="#ffb347"><circle cx="70" cy="96" r="1.6"/><circle cx="132" cy="92" r="1.3"/><circle cx="96" cy="100" r="1.1"/><circle cx="150" cy="98" r="1.5"/></g></svg>`;
+// P29: üst afiş düz dosya (sahneler/banner_dunya_baskini.webp; kart açılınca iner). img olduğu için duzen.css'in :has(> svg.bk-boss) kuralı eşleşmez.
+const BOSS_SVG = '<img class="p29-ban bk-ban" src="sahneler/banner_dunya_baskini.webp" alt="" decoding="async" draggable="false">';
 
 function poolBar(D) {
   const p = Math.min(100, 100 * D.total / Math.max(1, D.target));

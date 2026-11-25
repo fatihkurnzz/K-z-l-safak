@@ -26,7 +26,7 @@ const TM_FULL = 1000;     // sıra çubuğu dolunca birim oynar
 // Büyücü büyü vuruşunda yok sayılan savunma payı (1 = tamamı; testle ayarlanır)
 export let MAGE_AC_IGNORE = 0.8; // 19 Kas testi: 1 → Büyücü %64–96 (fazla), 0,8 → oyun sonu %50–64
 export const setMageAcIgnore = v => { MAGE_AC_IGNORE = v; };
-export const ENGINE_V = 9;
+export const ENGINE_V = 10; // 10: P28 Ahır yoldaşı destek hamlesi (birimde `pet`; petMove)
 // v8 (kullanıcı 20 Kas): element zayıflığı yalnız PvE — yaratığa vuran kahraman vuruşunun elementi, yetenekte `el` yoksa yeteneğin
 // ağacından (Ateş/Alaz → ateş, Yıldırım/Boran → yıldırım, Buz → buz) ya da fiziksel vuruşta silah efektinden (alev/buz/yıldırım) gelir.
 // Hedefin zayıflığına denk gelirse ×WEAK_MULT. Kahramanların zayıflığı yok (weak: null): PvP'de hiç işlemez.
@@ -39,7 +39,8 @@ const STRIP_MAX_T = 90;   // bundan uzun süreli güçlendirme (boss evresinin k
 export class BattleError extends Error { constructor(code) { super(code); this.code = code; } }
 
 const has = (u, s) => u.st.some(x => x.s === s);
-const atkMod = u => (has(u, 'atkUp') ? 1.3 : 1) * (has(u, 'atkDown') ? 0.7 : 1);
+// pAtk / pWeak (v10, yoldaş): sahibinin 1 tur +%v saldırısı / düşmanın 1 tur −%v saldırısı (yalnız yoldaşlı savaşta yazılır)
+const atkMod = u => (has(u, 'atkUp') ? 1.3 : 1) * (has(u, 'atkDown') ? 0.7 : 1) * (u.pAtk ? 1 + u.pAtk.v : 1) * (u.pWeak ? 1 - u.pWeak.v : 1);
 // Büyücü element gücü: uzmanlık ağacının (ve o yolun usta) yetenekleri büyü gücüne kendi element hasarını ekler
 const ELEM_OF = { ates: 'fire', yildirim: 'bolt', alaz: 'fire', boran: 'bolt' };
 export const elemOf = S => ELEM_OF[S.tree] || (S.pm ? ELEM_OF[S.path] : null) || null;
@@ -252,6 +253,8 @@ export class Battle {
     }
     if (!u.alive) { this.settle(); return false; }
     if (this.turns >= this.turnCap) { this.finish('B'); return false; }
+    // v10 Ahır yoldaşı: sahibinin her `every`. turunda (kendi tur sayısı) destek hamlesi; sersemlemiş olsa da işler
+    if (u.pet && this.v >= 10) { u.pt = (u.pt || 0) + 1; if (u.pt % u.pet.every === 0) { this.petMove(u); if (this.over || !u.alive) return false; } }
     if (u.boss && this.enrageTurn && this.turns > this.enrageTurn) { u.enrage++; ev.enrage = u.enrage; }
     const cc = u.st.find(x => STATUS[x.s].cc);
     if (cc) { ev.skip = cc.s; return false; }
@@ -261,6 +264,7 @@ export class Battle {
   endTurn(u) {
     for (const x of u.st) { if (x.fresh) x.fresh = false; else x.t--; }
     u.st = u.st.filter(x => x.t > 0);
+    for (const k of ['pAtk', 'pWeak']) if (u[k]) { if (u[k].t > 1) u[k] = { ...u[k], t: u[k].t - 1 }; else delete u[k]; } // kopya savaşla (fork) paylaşılmasın diye yeni nesne
     this.syncHp(u);
   }
 
@@ -435,6 +439,37 @@ export class Battle {
       if (s > bs + 1e-9) { bs = s; best = [id, t]; }
     }
     return best;
+  }
+
+  // ---- Ahır yoldaşı (v10) ----
+  // Olay: { t: 'pet', u: sahibi, pet, name, tag: '[Ad]', kind, fx: [...] } (fx biçimi 'skill' olayıyla aynı). Hedef: canı en düşük
+  // düşman (zar yok). Güç: sahibinin saldırı ya da büyü gücünün büyüğü × atkMod. Hasar olağan hasar yolundan (hurt) geçer.
+  petMove(u) {
+    const P = u.pet, ev = { t: 'pet', u: u.id, pet: P.id, name: P.name, tag: `[${P.name}]`, kind: P.kind, fx: [] };
+    this.events.push(ev);
+    const pw = Math.max(u.atk || 0, u.mag || 0) * atkMod(u);
+    if (P.kind === 'shield') {
+      const v = Math.max(1, Math.round(u.maxHp * P.pct / 100));
+      this.setStatus(u, { s: 'shield', t: P.t, v, fresh: true });
+      ev.fx.push({ k: 'st', u: u.id, s: 'shield', t: P.t, v });
+    } else if (P.kind === 'rally') {
+      const amt = Math.min(u.maxHp - u.hp, Math.round(u.maxHp * P.healPct / 100));
+      if (amt > 0) { u.hp += amt; ev.fx.push({ k: 'heal', u: u.id, amt, hp: u.hp }); }
+      u.pAtk = { v: P.atkPct / 100, t: P.t };
+      ev.fx.push({ k: 'pet', u: u.id, s: 'atkUp', v: P.atkPct, t: P.t });
+    } else {
+      const foes = this.foes(u);
+      if (!foes.length) return;
+      const t = foes.reduce((a, b) => (b.hp < a.hp ? b : a));
+      if (P.kind === 'bleed') {
+        this.setStatus(t, { s: 'bleed', t: P.t, v: Math.max(1, Math.round(pw * P.pct / 100)), fresh: false });
+        ev.fx.push({ k: 'st', u: t.id, s: 'bleed', t: P.t });
+      } else {
+        this.damage(u, t, pw, { k: 'dmg', m: P.pct / 100, ...(P.magic ? { magic: 1 } : {}) }, ev);
+        if (P.weakPct && t.alive) { t.pWeak = { v: P.weakPct / 100, t: P.t }; ev.fx.push({ k: 'pet', u: t.id, s: 'atkDown', v: P.weakPct, t: P.t }); }
+      }
+    }
+    this.settle();
   }
 
   // ---- Hamle ----

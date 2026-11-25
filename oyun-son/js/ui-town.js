@@ -10,11 +10,14 @@ import { POT } from '../shared/mana.js';
 import { potSvg } from './iksir.js'; // iksir rafı (sürüm 12)
 import { fishBagValue } from '../shared/balik.js'; // Tüccar balık da alır (ui-balik.js: ACT.balikSat)
 import { priceBounds, fairValue } from '../shared/guard.js';
+import { PREMIUM_SKU, storePrice, tl } from '../shared/config/storePrices.js'; // P28 O9: Premium TL fiyatı tek kaynaktan
 import { ACT, $, esc, fmt, pct, toast, run, showModal, closeModal, confirmBox, openWin, redraw, reload, doAct, cur, mobImg, ico, itemLine, lootBox, lootToast, dropText, dropLabel, locked, lockNote, loading, clockText, ELEMENT, myTier, med, resTile, lootChip, lootKind, dropIco } from './ui-core.js';
 import { sico } from './ui-party.js';
+import { p24Img, p24ImgSync } from './ui-kaplama.js'; // P24: Kader Çarkı kristalleri, NPC portreleri
 import { invGrid, itemCard } from './ui-envanter.js'; // eşya ızgarası (Örs › Parçala, Pazar › Sat)
 import { anvilUp, resetUp } from './ui-esya.js';
-import { mineScene } from './ui-sahne.js';
+import { mineScene, p23MineCollect, p23MineFly } from './ui-sahne.js';
+import { icmMaden } from './ic-mekan.js';
 import { questBoard } from './ui-gorev.js'; // Maden ve Kader Çarkı sahneleri // Örs'ün "Bas" sayfası ve Ansiklopedi orada
 import { bakimPage, taxText, netLine, reportsTab, unreadReports, repSeen, repReset } from './ui-rapor.js'; // Örs'ün "Bakım" sayfası, pazarın dilimli vergi metni
 import { CLASSES, CLASS_KEYS, dayKey, UNLOCK, MINE, IDLE, QUESTS, QUEST_ALL, SHOP, HALL, WHEEL, SHARDS, MARKET, CLAN, FACTIONS, BAG_LIMIT, PREMIUM, ARENA } from '../shared/content.js';
@@ -70,14 +73,18 @@ ACT.craft = d => doAct('anvil.craft', { g: +d.g, n: +d.n });
 ACT.mine = () => openWin({ title: 'Maden', render: () => {
   if (locked('mine')) return lockPage('mine');
   const M = S.mine, stock = mineStock(S, now()), rate = mineRate(S, now()), cap = rate * MINE.capHours, cost = MINE.upCost(M.lvl);
-  return `${mineScene(stock / cap, S.faction)}<div class="row">${med('mine')}<div class="grow"><b>Maden seviyesi ${M.lvl}/${MINE.max}</b><br><span class="mut">Saatte ${fmt(rate)} cevher · depo ${MINE.capHours} saatte dolar${weatherAt(now()) === 'rain' ? ` · <b class="up">yağmur: +%${WEATHER.rain.minePct}</b>` : ''}</span><div class="pbar" style="margin-top:4px"><i style="width:${Math.min(100, 100 * stock / cap)}%"></i></div></div><button class="btn green" data-a="mineCollect" ${stock >= 1 ? '' : 'disabled'}>${ri('ore')} Topla (${fmt(stock)})</button></div>
-    ${M.lvl < MINE.max ? `<div class="row">${med('grow', 'green')}<div class="grow"><b>Madeni büyüt</b><br><span class="mut">Seviye ${M.lvl + 1}: saatte ${fmt(mineRate(S, now(), M.lvl + 1))} cevher · seviye ${M.lvl * 6} gerekli</span></div><button class="btn" data-a="mineUp" ${S.akce >= cost && S.lvl >= M.lvl * 6 ? '' : 'disabled'}>${ri('akce')} ${fmt(cost)} akçe</button></div>` : ''}
+  const sahne = mineScene(stock / cap, S.faction); // P30: iç mekân açıksa madenci katmanı sahnenin üstünde çalışır, sayfada şerit çizilmez
+  return `<div class="g2-maden">${icmMaden(sahne) ? '' : sahne}<div class="row k-card2">${med('mine')}<div class="grow"><b>Maden seviyesi ${M.lvl}/${MINE.max}</b><br><span class="mut">Saatte ${fmt(rate)} cevher · depo ${MINE.capHours} saatte dolar${weatherAt(now()) === 'rain' ? ` · <b class="up">yağmur: +%${WEATHER.rain.minePct}</b>` : ''}</span><div class="pbar" style="margin-top:4px"><i style="width:${Math.min(100, 100 * stock / cap)}%"></i></div></div><button class="btn green k-btn-ok" data-a="mineCollect" ${stock >= 1 ? '' : 'disabled'}>${ri('ore')} Topla (${fmt(stock)})</button></div>
+    ${M.lvl < MINE.max ? `<div class="row k-card2">${med('grow', 'green')}<div class="grow"><b>Madeni büyüt</b><br><span class="mut">Seviye ${M.lvl + 1}: saatte ${fmt(mineRate(S, now(), M.lvl + 1))} cevher · seviye ${M.lvl * 6} gerekli</span></div><button class="btn" data-a="mineUp" ${S.akce >= cost && S.lvl >= M.lvl * 6 ? '' : 'disabled'}>${ri('akce')} ${fmt(cost)} akçe</button></div>` : ''}
     <h3>Madenci takası <span class="mut">· elinde ${ri('ore')} ${fmt(S.ore)} cevher</span></h3>
-    <div class="row">${resTile('akce')}<div class="grow"><b>Akçe</b><br><span class="mut">${ri('ore')} ${MINE.trade.akce.ore} cevher → ${ri('akce')} ${MINE.trade.akce.give.n} akçe</span></div><button class="btn sm" data-a="mineTrade" data-k="akce" data-n="100" ${S.ore >= 100 ? '' : 'disabled'}>100 cevher</button><button class="btn sm" data-a="mineTrade" data-k="akce" data-n="${S.ore}" ${S.ore >= 1 ? '' : 'disabled'}>Hepsi</button></div>
-    <div class="row">${resTile('stone0')}<div class="grow"><b>${STONES[0].name}</b><br><span class="mut">${ri('ore')} ${MINE.trade.stone0.ore} cevher</span></div><button class="btn sm" data-a="mineTrade" data-k="stone0" data-n="1" ${S.ore >= MINE.trade.stone0.ore ? '' : 'disabled'}>Al</button></div>
-    <div class="row">${resTile('stone1')}<div class="grow"><b>${STONES[1].name}</b><br><span class="mut">${ri('ore')} ${MINE.trade.stone1.ore} cevher</span></div><button class="btn sm" data-a="mineTrade" data-k="stone1" data-n="1" ${S.ore >= MINE.trade.stone1.ore ? '' : 'disabled'}>Al</button></div>`;
+    <div class="row k-card2">${resTile('akce')}<div class="grow"><b>Akçe</b><br><span class="mut">${ri('ore')} ${MINE.trade.akce.ore} cevher → ${ri('akce')} ${MINE.trade.akce.give.n} akçe</span></div><button class="btn sm" data-a="mineTrade" data-k="akce" data-n="100" ${S.ore >= 100 ? '' : 'disabled'}>100 cevher</button><button class="btn sm" data-a="mineTrade" data-k="akce" data-n="${S.ore}" ${S.ore >= 1 ? '' : 'disabled'}>Hepsi</button></div>
+    <div class="row k-card2">${resTile('stone0')}<div class="grow"><b>${STONES[0].name}</b><br><span class="mut">${ri('ore')} ${MINE.trade.stone0.ore} cevher</span></div><button class="btn sm" data-a="mineTrade" data-k="stone0" data-n="1" ${S.ore >= MINE.trade.stone0.ore ? '' : 'disabled'}>Al</button></div>
+    <div class="row k-card2">${resTile('stone1')}<div class="grow"><b>${STONES[1].name}</b><br><span class="mut">${ri('ore')} ${MINE.trade.stone1.ore} cevher</span></div><button class="btn sm" data-a="mineTrade" data-k="stone1" data-n="1" ${S.ore >= MINE.trade.stone1.ore ? '' : 'disabled'}>Al</button></div></div>`;
 } });
-ACT.mineCollect = async () => { const r = await doAct('mine.collect'); if (r) toast(`+${fmt(r.ore)} cevher`); };
+const p23On = () => document.documentElement.classList.contains('p23');
+ACT.mineCollect = async () => { // P23 K6: madenci arabaya yürür, boşaltır; boşaltma anında toplama isteği gider
+  const topla = async () => { const r = await doAct('mine.collect'); if (r) { toast(`+${fmt(r.ore)} cevher`); if (p23On()) p23MineFly(`+${fmt(r.ore)}`); } };
+  if (p23On()) await p23MineCollect(topla); else await topla(); };
 ACT.mineUp = () => doAct('mine.upgrade');
 ACT.mineTrade = async d => { const r = await doAct('mine.trade', { k: d.k, n: +d.n }); if (r) lootToast(r.loot); };
 
@@ -86,7 +93,28 @@ ACT.mineTrade = async d => { const r = await doAct('mine.trade', { k: d.k, n: +d
 // Sürüm 13: Yemin Pazarı'nda iki ayrı yer ve iki ayrı pencere. Pazar: oyuncudan oyuncuya ilanlar (market.list / sell / mine / cancel / buy).
 // Tüccar: NPC dükkânı (npc.buy / npc.sell; shared/npc.js). İksirler başkentteki İksir ve Parşömen dükkânına taşındı (aşağıda).
 const MV = { sub: 'buy', kind: 'all', rar: 'all', cls: 'all', sort: 'new', q: '', sel: null };
-const TV = { sub: 'weapons', cls: 'all', pick: new Set(), last: null };
+const TV = { sub: 'weapons', shop: 'halvor', cls: 'all', pick: new Set(), last: null };
+// P24: Çarşı'da dört ayrı tezgâh. Raf verisi (merchantShelves) ve alış/satış (npc.buy / npc.sell) aynı; yalnız süzülür.
+/** P25-b: referanstan kırpılmış görselleri (p25-b-png.js) bir kez tembel yükler ve :root'a --p25b-<anahtar> CSS değişkenleri yazar. */
+export function p25bImg() {
+  if (document.getElementById('p25b-img')) return;
+  const st = document.createElement('style'); st.id = 'p25b-img'; document.head.appendChild(st);
+  import('./p25-b-png.js').then(m => { st.textContent = `:root{${Object.entries(m.default).map(([k, v]) => `--p25b-${k}:url("data:image/webp;base64,${v}")`).join(';')}}`; }).catch(() => st.remove());
+}
+// P25-b: sekme simgesi (kabartmalı altın; p25-b-png.js anahtarı)
+const p25Tab = k => `<span class="tico p25b-ic" style="--ic:var(--p25b-${k})" aria-hidden="true"></span>`;
+const SHOPS = {
+  halvor: { title: 'Tüccar', name: NPC.merchant.name, face: 'halvor', tabs: [['mats', 'Erzak ve Örs Malzemeleri', 'toz'], ['sell', 'Genel satış', 'akce']], say: 'Yemin Pazarı’nın en dürüst tezgâhı! Erzak, Örs malzemesi; raflar her gün yenilenir.', sellSay: 'Çantandaki fazlalığı peşin akçeyle alırım. İlan kadar vermem ama beklemezsin.' },
+  silah: { title: 'Silah ve Kalkan', name: 'Silah Ustası Demirhan', face: 'npc_silahci', tabs: [['weapons', 'Silahlar', 'atk'], ['shields', 'Kalkanlar', 'armor'], ['sell', 'Tüccara sat', 'akce']], say: 'Çeliğin hakkını veren savaşçıya en keskin bıçaklar burada.', sellSay: 'Fazla silahını getir, peşin akçeyle alırım.' },
+  zirh: { title: 'Zırh', name: 'Zırhçı Korhan', face: 'npc_zirhci', tabs: [['armors', 'Zırhlar', 'armor'], ['sell', 'Tüccara sat', 'akce']], say: 'Baştan ayağa sağlam zırh; raf her gün değişir.', sellSay: 'Eskiyen zırhını bırak, akçeni al.' },
+  taki: { title: 'Takı', name: 'Mücevherci Selin', face: 'npc_takici', tabs: [['jewels', 'Takılar', 'jewel'], ['sell', 'Tüccara sat', 'akce']], say: 'Yüzük, kolye, kemer, tılsım… Parlayan her şeyin bir hikâyesi var.', sellSay: 'Fazla takını göster, adil fiyat veririm.' },
+};
+const SHOP_KINDS = { silah: ['weapon', 'shield'], zirh: ['armor'], taki: ['jewel'] }; // Tüccara sat: dükkânın ilgi alanı (Halvor hepsini alır)
+const shopSellable = () => { const eq = equippedIds(S), K = SHOP_KINDS[TV.shop]; return sortedItems().filter(x => !eq.has(x.id) && (!K || K.includes(itemBase(x.b).kind))); };
+const shopOf = () => SHOPS[TV.shop] || SHOPS.halvor;
+// P27 3.4: pz-tt-<dükkân> sınıfı; Halvor başlık simgesi p27-magaza.css'te saydam icon_tuccar.webp ile değişir
+const shopTitle = k => { const c = SHOPS[k]; return `<span class="pz-tt pz-tt-${k}"><span class="pz-por">${MERCHANT_SVG}</span><span>${c.title}</span></span>`; };
+const shopFace = c => { const u = c.face.startsWith('npc_') ? p24ImgSync(c.face) : ''; return u ? `<img class="npc-yuz" src="${u}" alt="" draggable="false">` : npcBas(c.face, TC_SVG); };
 // Tüccar tezgâhı (özgün çizim): iki renkli çizgili tente, tezgâh arkasında sarıklı tüccar, terazi, kılıç ve kalkan
 const TC_SVG = '<svg viewBox="0 0 120 66" aria-hidden="true"><rect width="120" height="66" fill="#2a1d10"/><rect y="44" width="120" height="22" fill="#5a3a1c"/>'
   + [0, 1, 2, 3, 4, 5, 6, 7].map(i => `<path d="M${i * 15} 4h15l-2 14h-11z" fill="${i % 2 ? '#2f62b8' : '#c2321e'}"/>`).join('')
@@ -99,7 +127,7 @@ const TC_SVG = '<svg viewBox="0 0 120 66" aria-hidden="true"><rect width="120" h
 // Pazar tezgâhı simgesi (özgün): mavi-beyaz tente, tezgâhta kumaş, küp ve testi
 const PAZAR_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#1f3352"/>' + [0, 1, 2, 3, 4, 5].map(i => `<path d="M${4 + i * 9.33} 10h9.33l-1.5 12h-6.33z" fill="${i % 2 ? '#e8dcc0' : '#3d6fb6'}"/>`).join('') + '<rect x="8" y="22" width="3" height="26" fill="#6a4526"/><rect x="53" y="22" width="3" height="26" fill="#6a4526"/><rect x="6" y="40" width="52" height="16" rx="2" fill="#8a5f34"/><rect x="6" y="40" width="52" height="3" fill="#b07a44"/><path d="M14 40v-9h12v9z" fill="#c2321e"/><path d="M14 31h12l-2 3H16z" fill="#e7c75a"/><circle cx="36" cy="35" r="5" fill="#3f9a4a"/><path d="M45 40c-3 0-4-3-4-6s2-4 2-6h4c0 2 2 3 2 6s-1 6-4 6z" fill="#c9a87c"/></svg>';
 const PZ_TITLE = `<span class="pz-tt"><span class="pz-por">${PAZAR_SVG}</span><span>Pazar</span></span>`;
-const TC_TITLE = `<span class="pz-tt"><span class="pz-por">${MERCHANT_SVG}</span><span>Tüccar</span></span>`;
+const TC_TITLE0 = `<span class="pz-tt"><span class="pz-por">${MERCHANT_SVG}</span><span>Tüccar</span></span>`;
 const pzSub = (cur, list, act) => `<div class="sub pz-sub">${list.map(([k, n, ic]) => `<button data-a="${act}" data-k="${k}" class="${cur === k ? 'on' : ''}">${ic ? ri(ic) : ''}${n}</button>`).join('')}</div>`;
 const tutorialBuy = () => !!(S.tut && !S.tut.end && TUT_STEPS[S.tut.s] === 'merchant' && !S.tut.f.buy);
 // Pazar penceresi (yalnız oyuncu ilanları). Eski çağrı ACT.market({ tab: 'tuccar' }) Tüccar'ı açar.
@@ -110,12 +138,24 @@ ACT.market = d => {
 };
 ACT.pazar = () => ACT.market({ tab: 'pazar' });
 // Tüccar penceresi: Silahlar · Zırhlar · Erzak · Tüccara sat. Öğreticideki ilk alım Tüccar Halvor penceresinde (ui-ogretici.js)
+function openShop(k, sub) {
+  TV.shop = k; const c = SHOPS[k]; TV.sub = sub && c.tabs.some(t => t[0] === sub) ? sub : c.tabs[0][0];
+  if (k === 'taki') { MV.kind = 'jewel'; MV.rar = 'all'; MV.cls = 'all'; MV.q = ''; }
+  if (c.face.startsWith('npc_')) p24Img(c.face).then(u => { if (u && TV.shop === k && cur()?.title === shopTitle(k)) redraw(); });
+  if (k !== 'halvor') p25bImg();
+  openWin({ title: shopTitle(k), scr: k === 'halvor' ? '' : 'dukkan', load: async () => k === 'taki' && TV.sub === 'jewels' && !locked('market') ? run('market.list') : null, render: tuccarPage });
+}
+// Tüccar Halvor: yalnız Erzak / Örs Malzemeleri / Genel satış. Öğreticideki ilk alım Halvor penceresinde (ui-ogretici.js)
 ACT.tuccar = () => {
   if (tutorialBuy() && ACT.npcMerchant) return ACT.npcMerchant();
-  if (tutorialBuy() || TV.sub === 'pots') TV.sub = 'weapons';
-  openWin({ title: TC_TITLE, render: tuccarPage });
+  openShop('halvor');
 };
-ACT.tuccarSub = k => { TV.sub = k; ACT.tuccar(); }; // 22 Kas: çarşı tezgâhından rafı seçili aç
+// Çarşı'daki üç ayrı dükkân (P24): etiket tıklaması bunları çağırır
+ACT.npcSilah = d => openShop('silah', d?.sub);
+ACT.npcZirh = d => openShop('zirh', d?.sub);
+ACT.npcTaki = d => openShop('taki', d?.sub);
+// Eski çarşı tezgâhı çağrısı (ACT.tcWeapons / tcArmors / tcMats) yeni dükkânlara yönlenir; öğretici sırasında ilk alım Halvor'da kalır
+ACT.tuccarSub = k => { if (tutorialBuy()) return ACT.tuccar(); if (k === 'weapons') return ACT.npcSilah(); if (k === 'armors') return ACT.npcZirh(); if (k === 'jewels') return ACT.npcTaki(); openShop('halvor', k); };
 ACT.marketKindOpen = k => { MV.kind = k; MV.sub = 'buy'; ACT.market({}); };
 ACT.marketSub = d => { MV.sub = d.k; const w = cur(); w.data = null; redraw(); reload(); };
 ACT.marketKind = d => { MV.kind = d.k; redraw(); };
@@ -143,7 +183,7 @@ function pzListHtml(all) {
   if (!rows.length) return '<p class="mut pz-empty">Bu süzgeçte ilan yok.</p>';
   return `<div class="pz-grid">${rows.map(l => `<div class="pz-card g${gradeOf(l.item.b, l.item.g)} ${l.mine ? 'dim' : ''}"><div class="pz-top">${ico(l.item, 'lg')}<div class="pz-nm">${itemLine(l.item)}</div></div>
     <div class="pz-bd">${pzBadges(l.item)}</div>
-    <div class="pz-bot"><span class="mut">${esc(l.name)}${l.mine ? ' (sen)' : ''}</span><b class="price">${ri('akce')} ${fmt(l.price)}</b><button class="btn sm green" data-a="marketBuy" data-id="${l.id}" ${!l.mine && S.akce >= l.price ? '' : 'disabled'}>Al</button></div></div>`).join('')}</div>`;
+    <div class="pz-bot"><span class="mut">${esc(l.name)}${l.mine ? ' (sen)' : ''}</span><b class="price">${ri('akce')} ${Number.isFinite(l.price) ? fmt(l.price) : '—'}</b><button class="btn sm green" data-a="marketBuy" data-id="${l.id}" ${!l.mine && S.akce >= l.price ? '' : 'disabled'}>Al</button></div></div>`).join('')}</div>`;
 }
 function pazarPage() {
   if (locked('market')) return `<div class="pz-note">Oyuncu pazarı seviye ${UNLOCK.market} olunca açılır. O zamana dek fazla eşyanı yandaki tezgâhta <b>${NPC.merchant.name}</b>’a satabilir, ondan silah ve zırh alabilirsin.</div><div class="mbtns"><button class="btn green" data-a="tuccar">${ri('cart')} Tüccar’a git</button></div>`;
@@ -167,30 +207,37 @@ function pazarPage() {
 // ---- Tüccar ----
 const nextDay = () => (dayKey(now()) + 1) * 86400000 - 3 * 3600000;
 function tuccarPage() {
-  const first = tutorialBuy(), SH = merchantShelves(S, now()), subs = pzSub(TV.sub, [['weapons', 'Silahlar', 'atk'], ['armors', 'Zırhlar', 'armor'], ['mats', 'Erzak', 'toz'], ['sell', 'Tüccara sat', 'akce']], 'tcSub');
-  const head = `<div class="pz-head"><div class="pz-bigpor">${npcBas('halvor', TC_SVG)}</div><div class="grow"><b>${NPC.merchant.name}</b><p>${first ? 'Hoş geldin yolcu! İlk silahını benden al; sınıfına uygun olanı ayırdım.' : TV.sub === 'sell' ? 'Çantandaki fazlalığı peşin akçeyle alırım. İlan kadar vermem ama beklemezsin.' : 'Yemin Pazarı’nın en dürüst tezgâhı! Kademene göre sağlam mal; raflar her gün yenilenir.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>`;
+  const first = tutorialBuy(), SH = merchantShelves(S, now()), C = shopOf(), subs = pzSub(TV.sub, C.tabs, 'tcSub');
+  const head = `<div class="pz-head k-card2"><div class="pz-bigpor">${shopFace(C)}</div><div class="grow"><b>${C.name}</b><p>${TV.sub === 'sell' ? C.sellSay : C.say}</p></div>${TV.shop === 'silah' || TV.shop === 'zirh' ? '<i class="dk-ocak" aria-hidden="true"></i>' : ''}</div>`;
   const ware = x => { const it = { b: x.b, g: 0, p: 0 }, B = itemBase(x.b), left = npcLeft(S, x.id), ok = S.akce >= x.price && left > 0;
-    return `<div class="pz-card g0"><div class="pz-top">${ico(it, 'lg')}<div class="pz-nm">${itemLine(it)}</div></div><div class="pz-bd">${B.cls ? `<span class="pz-b">${B.cls.map(c => CLASSES[c].name).join(' · ')}</span>` : ''}${B.set ? `<span class="pz-b pz-st">Set: ${esc(B.set)}</span>` : ''}</div><div class="pz-bot"><span class="mut">Stok ${left}</span><b class="price">${ri('akce')} ${fmt(x.price)}</b><button class="btn sm ${ok ? 'green' : ''}" data-a="${first && CLASSES[x.id] ? 'npcBuy' : 'tcBuy'}" data-id="${x.id}" ${ok ? '' : 'disabled'}>Al</button></div></div>`; };
-  if (TV.sub === 'weapons') return `${head}${subs}<div class="pz-grid">${SH.weapons.map(ware).join('')}</div><p class="mut">Tüccar Standart nadirlikte satar; her üründen günde ${NPC_DAILY} tane. Daha iyisi yaratıklardan, boss’lardan ve pazardan gelir. İksirler başkentteki <b>İksir ve Parşömen</b> dükkânında satılır.</p>`;
+    // P25-b: 2'li ızgarada perçinli kart; solda büyük simge kuyusu, sağda ad / nitelik · stok / fiyat + Al
+    return `<div class="pz-card dk-card g0"><div class="dk-well">${ico(it, 'lg')}</div><div class="dk-body"><div class="pz-nm">${itemLine(it)}</div><div class="pz-bd">${B.cls ? `<span class="pz-b">${B.cls.map(c => CLASSES[c].name).join(' · ')}</span>` : ''}${B.set ? `<span class="pz-b pz-st">Set: ${esc(B.set)}</span>` : ''}<span class="dk-stok">Stok: ${left}</span></div><div class="pz-bot"><b class="price">${ri('akce')} ${fmt(x.price)} <small>Akçe</small></b><button class="btn sm ${ok ? 'red' : ''}" data-a="${first && CLASSES[x.id] ? 'npcBuy' : 'tcBuy'}" data-id="${x.id}" ${ok ? '' : 'disabled'}>Al</button></div></div></div>`; };
+  const nt = `<p class="mut">Her üründen günde ${NPC_DAILY} tane; hepsi Standart nadirliktedir. Daha iyisi yaratıklardan, Boss’lardan ve pazardan gelir.</p>`;
+  if (TV.sub === 'weapons' || TV.sub === 'shields') { const sh = TV.sub === 'shields', rows = SH.weapons.filter(x => (itemBase(x.b).kind === 'shield') === sh); return `${head}${subs}<div class="dk-grid">${rows.map(ware).join('')}</div>${nt}`; }
+  if (TV.sub === 'jewels') {
+    if (locked('market')) return `${head}${subs}<div class="pz-note">Takı tezgâhı seviye ${UNLOCK.market} olunca açılır.</div>`;
+    const D = cur().data; if (!D) return `${head}${subs}${loading}`;
+    return `${head}${subs}<div class="hint">Mücevherci Selin’in vitrininde oyuncuların koyduğu takı ilanları durur (Yüzük, Kolye, Kemer, Tılsım). Alım Pazar kurallarıyla yapılır.</div><div id="pzlist">${pzListHtml(D.listings)}</div>`;
+  }
   if (TV.sub === 'armors') {
     const c = TV.cls, rows = SH.armors.filter(x => c === 'all' || x.cls === c);
-    return `${head}${subs}${pzSub(c, [['all', 'Hepsi'], ...CLASS_KEYS.map(k => [k, CLASSES[k].name])], 'tcCls')}<div class="pz-grid">${rows.length ? rows.map(ware).join('') : '<p class="mut">Bu sınıfın bugünkü rafı boş; yarın yenilenir.</p>'}</div><p class="mut">Zırh rafı her gün farklı 12 parçaya döner. Yenilenmeye ${clockText(nextDay() - now())} var.</p>`;
+    return `${head}${subs}${pzSub(c, [['all', 'Hepsi'], ...CLASS_KEYS.map(k => [k, CLASSES[k].name])], 'tcCls')}<div class="dk-grid">${rows.length ? rows.map(ware).join('') : '<p class="mut">Bu sınıfın bugünkü rafı boş; yarın yenilenir.</p>'}</div><p class="mut">Zırh rafı her gün farklı 12 parçaya döner. Yenilenmeye ${clockText(nextDay() - now())} var.</p>`;
   }
   if (TV.sub === 'mats') return `${head}${subs}<div class="pz-grid">${SH.mats.map(x => { const left = npcLeft(S, x.id, x.max), ok = S.akce >= x.price && left > 0; return `<div class="pz-card g0"><div class="pz-top">${resTile(x.icon, 'lg')}<div class="pz-nm"><b>${x.name}</b><br><span class="mut">${x.desc}</span></div></div><div class="pz-bot"><span class="mut">Stok ${left}</span><b class="price">${ri('akce')} ${fmt(x.price)}</b><button class="btn sm ${ok ? 'green' : ''}" data-a="tcBuy" data-id="${x.id}" ${ok ? '' : 'disabled'}>Al</button></div></div>`; }).join('')}</div><p class="mut">Örs malzemeleri burada pahalıdır: ucuzu Maden takasında ve parçalamadadır. Her üründen günde ${SH.mats[0].max} tane.</p>`;
-  const eq = equippedIds(S), items = sortedItems().filter(x => !eq.has(x.id));
+  const items = shopSellable();
   for (const id of [...TV.pick]) if (!items.some(x => x.id === id)) TV.pick.delete(id);
   const sel = items.filter(x => TV.pick.has(x.id)), total = sel.reduce((a, x) => a + sellPrice(x), 0), plain = items.filter(x => x.g === 0 && !x.p && !x.r);
   return `${head}${subs}<div class="sub"><button data-a="tcPlain" ${plain.length ? '' : 'disabled'}>Sıradanları sat (${plain.length})</button><button data-a="tcPickG" data-g="0">Standartları seç</button><button data-a="tcPickG" data-g="-1">Temizle</button>${fishBagValue(S) ? `<button data-a="balikSat">Balıkları sat (+${fmt(fishBagValue(S))})</button>` : ''}<span class="sp"></span><button data-a="tcSell" class="on" ${sel.length ? '' : 'disabled'}>${ri('akce')} ${sel.length} eşyayı sat (+${fmt(total)})</button></div>
     ${itemCard(items.find(x => x.id === TV.last))}${invGrid(items, { act: 'tcPick', sel: TV.pick, note: x => `${fmt(sellPrice(x))}`, empty: 'Satılabilecek (kuşanılmamış) eşyan yok.' })}`;
 }
-ACT.tcSub = d => { TV.sub = d.k; redraw(); };
+ACT.tcSub = d => { TV.sub = d.k; if (TV.shop === 'taki' && d.k === 'jewels') { const w = cur(); if (w) w.data = null; redraw(); reload(); } else redraw(); };
 ACT.tcCls = d => { TV.cls = d.k; redraw(); };
 ACT.tcBuy = async d => { const r = await run('npc.buy', { id: d.id }); if (!r) return; toast(r.mat ? 'Satın alındı.' : `${itemBase(r.b).name} çantana girdi.`); redraw(); };
 ACT.tcPot = async d => { const r = await run('npc.pot', { k: d.k, n: +d.n }); if (!r) return; toast(`${POT[r.k].name} ×${r.n} alındı (elinde ${r.have}).`); redraw(); };
 ACT.tcPick = d => { const id = +d.id; TV.pick.has(id) ? TV.pick.delete(id) : TV.pick.add(id); TV.last = id; redraw(); };
-ACT.tcPickG = d => { const eq = equippedIds(S), g = +d.g; TV.pick = new Set(g < 0 ? [] : S.items.filter(x => !eq.has(x.id) && x.g <= g && !x.p && !x.r).map(x => x.id)); redraw(); };
+ACT.tcPickG = d => { const g = +d.g; TV.pick = new Set(g < 0 ? [] : shopSellable().filter(x => x.g <= g && !x.p && !x.r).map(x => x.id)); redraw(); };
 ACT.tcSell = async () => { const r = await run('npc.sell', { ids: [...TV.pick] }); if (r) { TV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } };
-ACT.tcPlain = () => { const eq = equippedIds(S), ids = S.items.filter(x => !eq.has(x.id) && x.g === 0 && !x.p && !x.r).map(x => x.id), total = ids.reduce((a, id) => a + sellPrice(itemOf(S, id)), 0);
+ACT.tcPlain = () => { const ids = shopSellable().filter(x => x.g === 0 && !x.p && !x.r).map(x => x.id), total = ids.reduce((a, id) => a + sellPrice(itemOf(S, id)), 0);
   confirmBox('Sıradanları sat', `${ids.length} Standart, artısız eşya tüccara ${fmt(total)} akçeye satılacak.`, async () => { const r = await run('npc.sell', { ids }); if (r) { TV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } }, 'Sat'); };
 
 // ---------- Posta ----------
@@ -207,7 +254,19 @@ const IKSIRCI_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64
 export const scrollSvg = (k = 'energy') => { const c = k === 'arena' ? ['#ff8a5a', '#a8341a'] : ['#7fe08a', '#2f8a3a'];
   return `<svg viewBox="0 0 32 32" class="potsvg" aria-hidden="true"><rect x="7" y="6" width="18" height="20" fill="#f1e2bc" stroke="#6a4a24" stroke-width="1.3"/><rect x="4" y="3.5" width="24" height="4.5" rx="2.2" fill="#d9bf86" stroke="#6a4a24" stroke-width="1.3"/><rect x="4" y="24" width="24" height="4.5" rx="2.2" fill="#d9bf86" stroke="#6a4a24" stroke-width="1.3"/><path d="M10.5 11h11M10.5 14.5h9M10.5 18h7" stroke="#a88a52" stroke-width="1.4" stroke-linecap="round"/><circle cx="22" cy="20" r="3.6" fill="${c[0]}" stroke="${c[1]}" stroke-width="1.2"/><path d="M22 18.3v3.4M20.3 20h3.4" stroke="#fff" stroke-width="1" opacity=".85"/></svg>`; };
 const IK_TITLE = `<span class="pz-tt"><span class="pz-por">${IKSIRCI_SVG}</span><span>İksir ve Parşömen</span></span>`;
-const ikHead = t => `<div class="pz-head ik-head"><div class="ik-por">${npcBas('maelis', IKSIRCI_SVG)}</div><div class="grow"><b>${NPC.apothecary.name}</b><p>${t === 'pots' ? 'Kazanda yeni kaynadı! Savaşta bir yudum, turunu bile bitirmez.' : 'Mühürlü parşömenler: açtığın an etkisi başlar. Her gün yenileri yazılır.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>`;
+const ikHead = t => `<div class="pz-head ik-head k-card2"><div class="ik-por">${npcBas('maelis', IKSIRCI_SVG)}</div><div class="grow"><b>${NPC.apothecary.name}</b><p>${t === 'pots' ? 'Kazanda yeni kaynadı! Savaşta bir yudum, turunu bile bitirmez.' : 'Mühürlü parşömenler: açtığın an etkisi başlar. Her gün yenileri yazılır.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>`;
+// P23 K9: tek kaydırılabilir sayfa: Maelis şeridi + İKSİRLER + PARŞÖMENLER (Gemini N7). Sekme menüsü yok.
+function iksirPage23() {
+  const pots = npcPots(S).map(x => `<div class="pz-card potcard ik-card k-card"><div class="pz-top"><span class="potico">${potSvg(x.k)}</span><div class="pz-nm"><b>${x.name}</b><br><span class="mut">${x.k === 'hp' ? 'Azami canının' : 'Azami mananın'} %${Math.round(x.pct * 100)}’ini hemen yeniler.</span></div><span class="ik-stok">Elinde ${x.have}/${POT.max}</span></div>
+    <div class="potbuy">${POT_PACKS.map(n => { const ok = S.akce >= x.price * n && x.have + n <= POT.max; return `<button class="btn sm ${ok ? 'green' : ''}" data-a="tcPot" data-k="${x.k}" data-n="${n}" ${ok ? '' : 'disabled'}>${ri('akce')}<span>×${n} · ${fmt(x.price * n)}</span></button>`; }).join('')}</div></div>`).join('');
+  const scr = npcScrolls(S).map(x => { const ok = !x.lock && x.left > 0 && S.akce >= x.price;
+    return `<div class="pz-card potcard ik-card k-card ${x.lock ? 'dim' : ''}"><div class="pz-top"><span class="potico">${scrollSvg(x.icon)}</span><div class="pz-nm"><b>${x.name}</b><br><span class="mut">${x.desc}</span></div><span class="ik-stok">${x.lock ? `${ri('lock')} Sv. ${x.lock}` : `Bugün ${x.left}/${x.max}`}</span></div>
+      <div class="potbuy one"><button class="btn sm ${ok ? 'green' : ''}" data-a="ikScroll" data-id="${x.id}" ${ok ? '' : 'disabled'}>${ri('akce')}<span>Al · ${fmt(x.price)}</span></button></div></div>`; }).join('');
+  return `<div class="g2-iksir">${ikHead('pots')}<h3 class="ik-grp">İksirler</h3><div class="pz-grid ik-grid">${pots}</div>
+    <p class="mut">İksirler çantada yer kaplamaz, satılamaz ve takas edilemez. Savaşta çubuğun sağındaki iki yuvadan içilir: içmek turunu bitirmez; savaş başına her türden en çok ${POT.cap} tane, aynı türü içtikten sonra ${POT.cd} tur bekleme. Meydan ve kuşatmada iksir yoktur. Fiyat seviyenle artar.</p>
+    <h3 class="ik-grp" id="ik-scrolls">Parşömenler</h3><div class="pz-grid ik-grid">${scr}</div>
+    <p class="mut">Parşömenler alındığı anda açılır, çantada yer kaplamaz. Günlük stok 00:00’da yenilenir; fiyat seviyenle artar.</p></div>`;
+}
 function iksirPage(t) {
   if (t === 'scrolls') return `${ikHead(t)}<div class="pz-grid ik-grid">${npcScrolls(S).map(x => { const ok = !x.lock && x.left > 0 && S.akce >= x.price;
     return `<div class="pz-card g0 potcard ik-card ${x.lock ? 'dim' : ''}"><div class="pz-top"><span class="potico">${scrollSvg(x.icon)}</span><div class="pz-nm"><b>${x.name}</b><br><span class="mut">${x.desc}</span></div></div>
@@ -219,6 +278,7 @@ function iksirPage(t) {
 const SCROLL_TAB = '<span class="tico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12a2 2 0 0 1 0 4h-1v10a2 2 0 0 1-2 2H5a2 2 0 0 1 0-4h1z" /><path d="M9 9h5M9 12h5" stroke="#0007" stroke-width="1.4"/></svg></span>';
 const POT_TAB = '<span class="tico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2h-1v3.5c3 1.1 5 3.9 5 7.2C19 19 15.9 22 12 22s-7-3-7-7.3c0-3.3 2-6.1 5-7.2V4H9z"/></svg></span>';
 ACT.iksir = d => { if (d?.tab) IV.tab = d.tab === 'scrolls' ? 'scrolls' : 'pots';
+  if (document.documentElement.classList.contains('p23')) { openWin({ title: IK_TITLE, render: iksirPage23 }); if (d?.tab === 'scrolls') setTimeout(() => document.getElementById('ik-scrolls')?.scrollIntoView(), 60); return; }
   openWin({ title: IK_TITLE, tab: IV.tab, tabs: [{ id: 'pots', label: 'İksirler', small: 'Can · Mana', pre: POT_TAB }, { id: 'scrolls', label: 'Parşömenler', small: 'Enerji · Meydan', pre: SCROLL_TAB }], onTab: t => { IV.tab = t; }, render: iksirPage }); };
 ACT.ikScroll = async d => { const r = await run('npc.scroll', { id: d.id }); if (!r) return; const x = npcScrolls(S).find(s => s.id === r.id); toast(`${x ? x.name : 'Parşömen'} açıldı${r.loot?.length ? '' : ': bugün +1 meydan hakkı'}.`); if (r.loot?.length) lootToast(r.loot); redraw(); };
 
@@ -229,7 +289,7 @@ function mailBadges(D) {
   const sys = D.mail.length, rep = unreadReports(D.rep, D.rseen);
   for (const [id, n] of [['sys', sys], ['rep', rep]]) { const sp = nav.querySelector(`[data-id="${id}"] > span:not(.tico)`); if (sp) sp.innerHTML = `${MAILTAB[id]}<small>${n ? `${n} ${id === 'rep' ? 'yeni' : 'posta'}` : id === 'rep' ? 'Savaş kayıtları' : 'Sistem postaları'}</small>`; }
 }
-ACT.mail = d => { repReset(null, true); MAILV.open = null; MAILV.who = null; if (d?.tab !== 'yaz') MAILV.to = null; let first = true; openWin({ title: 'Posta', top: true, tab: d?.tab === 'rep' || d?.tab === 'yaz' ? d.tab : 'sys', tabs: [{ id: 'sys', label: 'Gelen', small: 'Postaların', icon: 'mail' }, { id: 'yaz', label: 'Posta Yaz', small: 'Oyuncu, klan, ulus', icon: 'quest' }, { id: 'rep', label: 'Raporlar', small: 'Savaş kayıtları', icon: 'arena' }],
+ACT.mail = d => { repReset(null, true); MAILV.open = null; MAILV.who = null; if (d?.tab !== 'yaz') MAILV.to = null; let first = true; p25bImg(); openWin({ title: 'Posta', scr: 'posta', top: true, tab: d?.tab === 'rep' || d?.tab === 'yaz' ? d.tab : 'sys', tabs: [{ id: 'sys', label: 'Gelen', small: 'Postaların', pre: p25Tab('ic_gelen') }, { id: 'yaz', label: 'Posta Yaz', small: 'Oyuncu, klan, ulus', pre: p25Tab('ic_yaz') }, { id: 'rep', label: 'Raporlar', small: 'Savaş kayıtları', pre: p25Tab('ic_rapor') }],
   onTab: () => repReset(null),
   load: async () => { if (first) { first = false; repReset(d?.sub); } const [m, r] = await Promise.all([run('mail.list'), run('report.list')]); if (!m) return null; return { mail: m.mail, rseen: m.rseen, rep: r || { mine: [], def: [] } }; },
   render: tab => {
@@ -245,9 +305,9 @@ ACT.mail = d => { repReset(null, true); MAILV.open = null; MAILV.who = null; if 
     const when = m => (m.at ? new Date(m.at).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' }) : '');
     if (open) return `<article class="mlx-open"><header><button class="btn sm" data-a="mailBack">‹ Geri</button><span class="mlx-when">${open.from ? `${esc(fromLine(open))} · ` : ''}${esc(when(open))}</span></header>
       <div class="mlx-paper"><div class="mlx-seal">${med('mail', 'blue')}</div><p>${esc(open.text)}</p>
-      ${gift(open) ? `<div class="mlx-att"><small>Ekler</small><div class="chips">${open.give.map(lootChip).join('')}${open.item ? `${ico(open.item)}<span class="chip rw gn g${open.item.g}">${esc(itemName(open.item))}</span>` : ''}</div></div>` : ''}</div>
-      <div class="mbtns">${open.kind === 'p' && open.fid ? `<button class="btn" data-a="mailTo" data-id="${esc(open.fid)}" data-name="${esc(open.from)}">Yanıtla</button>` : ''}<button class="btn ${gift(open) ? 'green' : 'red'}" data-a="mailClaim" data-id="${open.id}">${gift(open) ? 'Ekleri al' : 'Postayı sil'}</button></div></article>`;
-    return `<div class="mlx-list">${D.mail.map(m => `<button class="mlx-item${gift(m) ? ' gift' : ''}" data-a="mailOpen" data-id="${m.id}">${m.item ? ico(m.item) : med('mail', gift(m) ? 'green' : 'blue')}<span class="grow"><b>${esc(subj(m))}</b><small>${m.from ? `${esc(fromLine(m))} · ` : ''}${esc(when(m))}${gift(m) ? ' · eki var' : ''}</small></span><i class="mlx-go" aria-hidden="true">›</i></button>`).join('')}</div>`;
+      ${gift(open) ? `<div class="mlx-att"><small class="pst-ekler">Ekler</small><div class="chips">${open.give.map(lootChip).join('')}${open.item ? `${ico(open.item)}<span class="chip rw gn g${open.item.g}">${esc(itemName(open.item))}</span>` : ''}</div></div>` : ''}</div>
+      <div class="mbtns">${open.kind === 'p' && open.fid ? `<button class="btn" data-a="mailTo" data-id="${esc(open.fid)}" data-name="${esc(open.from)}">Yanıtla</button>` : ''}<button class="btn ${gift(open) ? 'red pst-claim' : ''}" data-a="mailClaim" data-id="${open.id}">${gift(open) ? 'Ekleri al' : 'Postayı sil'}</button></div></article>`;
+    return `<div class="mlx-list">${D.mail.map(m => `<button class="pst-row${gift(m) ? ' gift' : ''}" data-a="mailOpen" data-id="${m.id}">${m.item ? ico(m.item) : med('mail', gift(m) ? 'green' : 'blue')}<span class="grow"><b>${esc(subj(m))}</b><small>${m.from ? `${esc(fromLine(m))} · ` : ''}${esc(when(m))}${gift(m) ? ' · eki var' : ''}</small></span><i class="mlx-go" aria-hidden="true">›</i></button>`).join('')}</div>`;
   } }); };
 const MAILV = { open: null, to: null, who: null, friends: null };
 // 19 Kas: posta yazma. Alıcı: arkadaş listesi ya da oyuncu kartındaki "Posta yaz"; klan lideri bütün klana, kral bütün ulusa yazabilir
@@ -257,12 +317,12 @@ function writeTab() {
   const opts = [...(MAILV.who.ruler ? [['nation', 'Bütün ulus (kral postası)']] : []), ...(MAILV.who.clanLeader ? [['clan', 'Bütün klan (lider postası)']] : []),
     ...(MAILV.to ? [[`p:${MAILV.to.id}`, MAILV.to.name]] : []), ...(MAILV.friends || []).filter(f => !MAILV.to || String(f.id) !== String(MAILV.to.id)).map(f => [`p:${f.id}`, f.name])];
   const sel = MAILV.to ? `p:${MAILV.to.id}` : opts[0]?.[0] || '';
-  return `<div class="mlx-write"><label><small>Alıcı</small><select id="mwTo">${opts.length ? opts.map(([v, t]) => `<option value="${esc(v)}" ${v === sel ? 'selected' : ''}>${esc(t)}</option>`).join('') : '<option value="">Arkadaş yok: oyuncu kartından "Posta yaz"</option>'}</select></label>
+  return `<div class="pst-write"><label><small>Alıcı</small><select id="mwTo">${opts.length ? opts.map(([v, t]) => `<option value="${esc(v)}" ${v === sel ? 'selected' : ''}>${esc(t)}</option>`).join('') : '<option value="">Arkadaş yok: oyuncu kartından "Posta yaz"</option>'}</select></label>
     <label><small>Mesaj</small><textarea id="mwText" maxlength="400" rows="5" placeholder="Postanı yaz…"></textarea></label>
     <p class="mut">Günde 20 oyuncu postası; klan lideri günde 3 klan postası, kral günde 1 ulus postası gönderebilir. İletişim bilgisi ve küfür gizlenir.</p>
     <div class="mbtns"><button class="btn red" data-a="mailSend">Gönder</button></div></div>`;
 }
-ACT.mailTo = d => { closeModal(); MAILV.to = { id: d.id, name: d.name }; if (!$('#win').hidden && cur()?.title === 'Posta') ACT.tab({ id: 'yaz' }); else ACT.mail({ tab: 'yaz' }); };
+ACT.mailTo = d => { if (!d?.name) return; closeModal(); MAILV.to = { id: d.id, name: d.name }; if (!$('#win').hidden && cur()?.title === 'Posta') ACT.tab({ id: 'yaz' }); else ACT.mail({ tab: 'yaz' }); };
 ACT.mailSend = async () => {
   const to = $('#mwTo')?.value || '', text = $('#mwText')?.value || '';
   if (!to) return toast('Alıcı seç.');
@@ -276,7 +336,7 @@ ACT.mailBack = () => { MAILV.open = null; redraw(); };
 ACT.mailClaim = async d => { const r = await run('mail.claim', { id: d.id }); if (r) { lootToast(r.loot); MAILV.open = null; } reload(); };
 
 // ---------- Şan Divanı ----------
-ACT.hall = () => openWin({ title: 'Şan Divanı', render: () => locked('hall') ? lockPage('hall') : `<div class="hint">Meydanda ve seferlerde kazandığın <b>Şan</b> ile karakterine kalıcı bonus alırsın. Her seviye +%${HALL.pct * 100}. (Elinde ${ri('san')} ${fmt(S.san)} şan)</div>
+ACT.hall = () => openWin({ title: 'Şan Divanı', render: () => locked('hall') ? lockPage('hall') : `<div class="hint">Meydanda ve seferlerde kazandığın <b>Şan</b> ile karakterine kalıcı Bonus alırsın. Her seviye +%${HALL.pct * 100}. (Elinde ${ri('san')} ${fmt(S.san)} şan)</div>
   ${Object.entries(HALL.stats).map(([k, n]) => { const l = S.hall[k], cost = HALL.cost(l); return `<div class="row">${med(k, k === 'hp' ? 'red' : k === 'atk' ? '' : 'blue')}<span class="tag">${l}/${HALL.max}</span><div class="grow"><b>${n}</b><br><span class="mut">Şu an +%${Math.round(l * HALL.pct * 100)}${l < HALL.max ? ` → +%${Math.round((l + 1) * HALL.pct * 100)}` : ''}</span></div>${l < HALL.max ? `<button class="btn" data-a="hallUp" data-k="${k}" ${S.san >= cost ? '' : 'disabled'}>${ri('san')} ${fmt(cost)} şan</button>` : '<span class="chip">En yüksek</span>'}</div>`; }).join('')}` });
 ACT.hallUp = d => doAct('hall.up', { stat: d.k });
 
@@ -293,18 +353,19 @@ const crystal = k => { const [c, l, d] = SHARD_COL[k] || SHARD_COL.kor;
 // Kader Çarkı: üç mücevher türü (Kor, Ayaz, Şimşek parçası) çarkın yerinde büyük görüntüleriyle durur. Birine dokununca
 // o mücevher ortaya gelir ve kırılır; içinden çıkan ödül gösterilir. Oranlar aşağıdaki havuzda açıktır (WHEEL.pool).
 const gemArt = (k, big) => { const [c, l, d] = SHARD_COL[k] || SHARD_COL.kor, u = g5url('parca-' + k);
+  const p = p24ImgSync('gem_' + k); if (p && !wheelAnim) return `<span class="gem-art gem-p24 ${big ? 'big' : ''}" style="--c:${c}"><img src="${p}" alt="" aria-hidden="true"></span>`; // P24: hazır kristal görseli
   if (u) return `<span class="gem-art gem-png ${big ? 'big' : ''}" style="--c:${c}"><img src="${u}" alt="" aria-hidden="true"></span>`; // GPT Paket 5 çizimi
   return `<svg class="gem-art ${big ? 'big' : ''}" viewBox="0 0 100 120" aria-hidden="true"><defs><radialGradient id="gg${k}" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="${l}" stop-opacity=".9"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient></defs>
     <circle cx="50" cy="58" r="48" fill="url(#gg${k})"/><polygon points="50,6 82,40 70,104 30,104 18,40" fill="${c}" stroke="${d}" stroke-width="3"/><polygon points="50,6 64,40 50,104 36,40" fill="${l}" opacity=".55"/>
     <polygon points="18,40 82,40 64,40 50,6 36,40" fill="#fff" opacity=".18"/><path d="M28 30 L34 22" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/></svg>`; };
-ACT.wheel = () => { wheelLast = null; openWin({ title: 'Kader Çarkı', render: () => {
+ACT.wheel = () => { wheelLast = null; Promise.all(['gem_kor', 'gem_ayaz', 'gem_simsek'].map(p24Img)).then(() => { if (cur()?.title === 'Kader Çarkı' && !wheelAnim) redraw(); }); openWin({ title: 'Kader Çarkı', render: () => {
   if (locked('wheel')) return lockPage('wheel');
   const has = k => (S.shards[k] || 0) >= WHEEL.cost && !wheelAnim;
   const stage = wheelAnim ? crystal(wheelAnim)
     : wheelLast ? `<div class="hint up wrev"><b>Çıkan: ${WHEEL.pool[wheelLast.index].name}</b>${lootBox(wheelLast.loot)}<button class="btn sm" data-a="wheelBack">Mücevherlere dön</button></div>`
-    : `<div class="gem-row">${Object.entries(SHARDS).map(([k, n]) => `<button class="gem-card ${has(k) ? '' : 'off'}" data-a="spin" data-k="${k}" ${has(k) ? '' : 'disabled'}>${gemArt(k, true)}<b>${n}</b><small>${ri('shard_' + k)} ${S.shards[k] || 0}/${WHEEL.cost}</small><em>${has(k) ? 'Dokun: kır' : 'Parça yetmiyor'}</em></button>`).join('')}</div>`;
-  return `<div class="hint">Gök Yarığı'ndan gelen parçalar burada mücevhere dönüşür. Bir mücevhere dokun: kırılır ve içinden bir ödül çıkar. Her kırma ${WHEEL.cost} parça ister.</div>
-  <div class="gem-stage">${stage}</div>${wheelAnim ? '' : `<div class="ad-wheel">${S.daily.adSpin > 0 ? `<button class="btn green" data-a="spin" data-k="ad">${ri('star')} Ücretsiz çevir</button>` : ''}</div>`}
+    : `<div class="gem-row">${Object.entries(SHARDS).map(([k, n]) => `<button class="gem-card k-card ${has(k) ? '' : 'off'}" data-a="spin" data-k="${k}" ${has(k) ? '' : 'disabled'}>${gemArt(k, true)}<b>${n}</b><small>${ri('shard_' + k)} ${S.shards[k] || 0}/${WHEEL.cost}</small><em>${has(k) ? 'Dokun: kır' : 'Parça yetmiyor'}</em></button>`).join('')}</div>`;
+  return `<div class="g2-cark"><div class="hint">Gök Yarığı'ndan gelen parçalar burada mücevhere dönüşür. Bir mücevhere dokun: kırılır ve içinden bir ödül çıkar. Her kırma ${WHEEL.cost} parça ister.</div>
+  <div class="gem-stage">${stage}</div>${wheelAnim ? '' : `<div class="ad-wheel">${S.daily.adSpin > 0 ? `<button class="btn green" data-a="spin" data-k="ad">${ri('star')} Ücretsiz çevir</button>` : ''}</div>`}</div>
 `; } }); };
 ACT.wheelBack = () => { wheelLast = null; redraw(); };
 ACT.spin = async d => {
@@ -323,14 +384,14 @@ ACT.premium = () => openWin({ title: 'Premium', render: () => {
   const cur2 = myTier(), days = cur2 ? Math.max(1, Math.ceil((S.premium.until - now()) / 86400000)) : 0;
   const card = T => {
     const label = cur2 === T.id ? 'Uzat (+30 gün)' : cur2 > T.id ? 'Üst kademedesin' : cur2 ? 'Yükselt' : 'Al';
-    return `<div class="tier t${T.id} ${cur2 === T.id ? 'on' : ''}"><h4>${svg('crown')}${T.name}</h4><b class="price">${T.yakut ? `${ri('gem')} ${fmt(T.cost)} yakut` : 'Gerçek parayla'}</b> <span class="mut">/ ${T.days} gün</span>
+    return `<div class="tier t${T.id} ${cur2 === T.id ? 'on' : ''}"><h4>${svg('crown')}${T.name}</h4><b class="price">${T.yakut ? `${ri('gem')} ${fmt(T.cost)} yakut` : PREMIUM_SKU[T.id] ? tl(storePrice(PREMIUM_SKU[T.id])) : 'Gerçek parayla'}</b> <span class="mut">/ ${T.days} gün</span>
       <ul><li>Savaşta <b>+%${T.xp * 100}</b> deneyim ve akçe</li><li>Eşya düşme oranı <b>+%${T.drop * 100}</b></li><li>Maden <b>×${String(T.mine).replace('.', ',')}</b> cevher</li><li><b>+${T.slots}</b> pazar ilan yuvası</li><li><b>+${T.tickets}</b> günlük meydan hakkı <span class="mut">(normal ${ARENA.tickets})</span></li></ul>
       ${T.yakut ? `<button class="btn ${cur2 > T.id ? '' : 'red'}" data-a="premBuy" data-t="${T.id}" ${cur2 > T.id || S.yakut < T.cost ? 'disabled' : ''}>${label}</button>${cur2 <= T.id && S.yakut < T.cost ? `<br><span class="warn" style="font-size:11px">${fmt(T.cost - S.yakut)} yakut eksik</span>` : ''}`
         : `<button class="btn ${cur2 > T.id ? '' : 'red'}" data-a="shop" data-tab="money" ${cur2 > T.id ? 'disabled' : ''}>${cur2 > T.id ? label : 'Kervan\'da gör'}</button>`}</div>`;
   };
   return `<div class="hint">${cur2 ? `Etkin üyeliğin: <b>${PREMIUM[cur2].name} Premium</b> · ${days} gün kaldı.` : 'Şu an üyeliğin yok.'} Elinde ${ri('gem')} <b>${fmt(S.yakut)}</b> yakut var.</div>
     <div class="tiers">${PREMIUM.slice(1).map(card).join('')}</div>
-    <p class="mut">Bronz yakutla, Gümüş ve Platin yalnızca gerçek parayla alınır. Aynı kademeyi yeniden almak süreyi 30 gün uzatır. Üst kademeye geçince alt kademenin kalan süresi devredilmez. Üyelik eşsiz eşya, boss hakkı ya da örs şansı vermez.</p>
+    <p class="mut">Bronz yakutla, Gümüş ve Platin yalnızca gerçek parayla alınır. Aynı kademeyi yeniden almak süreyi 30 gün uzatır. Üst kademeye geçince alt kademenin kalan süresi devredilmez. Üyelik eşsiz eşya, Boss hakkı ya da örs şansı vermez.</p>
     ${devUI() ? '<div class="mbtns"><button class="btn sm" data-a="devPremium">Test: kademeyi değiştir</button></div>' : ''}`;
 } });
 ACT.premBuy = d => {
@@ -359,7 +420,7 @@ const QUEST_GO = {
   break: () => locked('anvil') ? toast(`Örs: ${lockNote('anvil')}`) : ACT.breakWin(),
   boss: () => {
     for (const Z of ZONES) for (const s of zoneStages(Z.id)) if (s.kind === 'boss' && stageOpen(S, s.id) && bossAvailable(S, s.id)) return ACT.stage({ id: s.id });
-    toast('Şu an girebileceğin bir boss yok: önce boss kapısına kadar ilerle.'); ACT.gate({ tab: 'zones' });
+    toast('Şu an girebileceğin bir Boss yok: önce Boss kapısına kadar ilerle.'); ACT.gate({ tab: 'zones' });
   },
   arena: () => locked('arena') ? toast(`Meydan: ${lockNote('arena')}`) : ACT.gate({ tab: 'pvp' }),
   collect: () => {

@@ -27,6 +27,14 @@ import { stageRace, stageHero, stageClose } from './karakter-sahne.js';
 import { IC } from './karakter-simge.js';
 import { sprUrl, sprBox, yuzUrl } from './karakter-png.js'; // 22 Kas gece: GPT 'VAHRAN Claude Devir' 2B tam boy + yüz portreleri
 import { onView } from './orient.js';
+import P23 from './p23-giris-png.js'; // 23 Kas P23: A1 işaret, A2 zemin mührü, A3 başlık levhası (tools/p23-giris-paketle.py; ~93 KB, bu yüzden statik)
+
+/** P23 karakter ekranı bayrağı (html.p23; ?p23=0 ya da localStorage dd_p23=0 ile kapanır, eski görünüş döner). */
+export const p23On = () => document.documentElement.classList.contains('p23');
+/** P23 paket görseli (data: URL). Anahtarlar: isaret, levha-sancak|ocak, muhur-sancak|ocak. */
+export const p23Img = k => (P23[k] ? 'data:image/webp;base64,' + P23[k] : '');
+/** Ayak çizgisi/boy (N1 ölçü §3, 880×406 tuvalinde): ayak y=313 (%77,1), boy 256 (%63); dar ekranda (≤760) boy %58. */
+export const p23Fit = (H, W) => ({ foot: H * 0.771, top: H * 0.771 - H * (W <= 760 ? 0.58 : 0.63) });
 
 setLookSource(() => (S?.char ? { ...S.char, name: S.char.name || S.name } : null)); // oyundaki kahraman: seçili karakterin görünüşü
 
@@ -47,13 +55,15 @@ function stage(c, first) {
   stageRace(c.race); stageHero(null);
   const im = box?.querySelector('#kshero img'), u = sprUrl(c.race, c.cls, gOf(c));
   if (im && im.getAttribute('src') !== u) { im.classList.remove('swap'); void im.offsetWidth; im.src = u || ''; im.classList.add('swap'); }
+  const sl = box?.querySelector('.p23-seal img'), su = p23Img('muhur-' + c.race); if (sl && sl.getAttribute('src') !== su) sl.src = su;
   placeHero(c);
 }
 // Ayak hizası: görünür alt sınır ortak ayak çizgisinde, görünür yükseklik eşit (oluşturma ekranıyla aynı kural)
 function placeHero(c = cards().find(x => x.id === SEL)) {
   const h = box?.querySelector('#kshero'); if (!h || !c || !box.offsetWidth) return;
   const W = box.offsetWidth, H = box.offsetHeight, bx = sprBox(c.race, c.cls, gOf(c)) || [0, 0, 512, 768];
-  const u = Math.min(H / 406, W / 880), foot = H * 0.86, top = H * 0.1;
+  const u = Math.min(H / 406, W / 880);
+  let { foot, top } = p23On() ? p23Fit(H, W) : { foot: H * 0.86, top: H * 0.1 };
   let s = (foot - top) / (bx[3] - bx[1]); s = Math.min(s, Math.max(120, W - 2 * 255 * u) / (bx[2] - bx[0]));
   h.style.cssText = `width:${512 * s}px;height:${768 * s}px;left:${W * 0.5 - ((bx[0] + bx[2]) / 2) * s}px;top:${foot - bx[3] * s}px`;
 }
@@ -92,8 +102,8 @@ function drawSel() {
   box.addEventListener('click', e => { const b = e.target.closest('[data-a]'); if (b && box?.contains(b) && !b.disabled) { ACT[b.dataset.a]?.(b.dataset, b); hooks.sfx?.('tap', b.dataset.a); } }); // ui-core yalnızca hud/win/modal/chatbar'ı dinler
   const list = cards(), c = list.find(x => x.id === SEL), slots = Array.from({ length: max() }, (_, i) => list[i] || null);
   box.dataset.race = c?.race || 'sancak';
-  box.innerHTML = `<div class="ks-shade" aria-hidden="true"></div><div class="ks-hero" id="kshero" aria-hidden="true"><img alt="" draggable="false"></div>
-    <header class="ks-top"><span class="ks-brand">${serverEmblem('srv-emb ks-crest')}<span><b>${GAME.name}</b><small>${serverTag()}</small></span></span><span class="ks-sp"></span>
+  box.innerHTML = `<div class="ks-shade" aria-hidden="true"></div>${p23On() ? '<div class="p23-seal" aria-hidden="true"><i></i><img alt="" draggable="false"></div>' : ''}<div class="ks-hero" id="kshero" aria-hidden="true"><img alt="" draggable="false"></div>
+    <header class="ks-top"><span class="ks-brand">${p23On() ? `<img class="ks-crest ks-mark" src="${p23Img('isaret')}" alt="" draggable="false">` : serverEmblem('srv-emb ks-crest')}<span><b>${GAME.name}</b><small>${serverTag()}</small></span></span><span class="ks-sp"></span>
       <span class="ks-count">Karakterler <em>${list.length}/${max()}</em></span></header>
     <nav class="ks-list">${slots.map(card).join('')}</nav>
     <section class="ks-plate" id="ksplate">${c ? plate(c) : ''}</section>
@@ -127,7 +137,7 @@ ACT.tkEnter = async () => {
   if (fresh) playFragman(go); else go();
 };
 // Oyundan seçme ekranına: açık pencere ve ana üs kapanır (kayıt sunucudadır; bir şey kaybolmaz)
-ACT.charSwitch = () => { SEL = S?.char?.id || ACC?.cur || SEL; ACT.charSelect(); };
+ACT.charSwitch = async () => { SEL = S?.char?.id || ACC?.cur || SEL; await act('char.list').catch(() => {}); ACT.charSelect(); }; // P26 D8: liste tazelenir (seviye güncel)
 export function charCreated(id) { SEL = String(id); ACT.charSelect(); }
 
 // ---------- Karakter oluşturma: ui-olustur.js (ACT.charCreate) ----------

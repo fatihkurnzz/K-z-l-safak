@@ -1,0 +1,21 @@
+/* P32 — Hedefli görsel düzeltmeler, başlık 3: etkinlik ekranları (kullanıcı talimatı 25 Kas gece). important bildirimi YOK.
+   Yeni özellik ya da dekorasyon eklenmez; yalnız boşluk, okunabilirlik ve mevcut çevre görselinin kullanımı düzeltilir. */
+
+/* Kristal Nöbeti: afiş alçaktı, altında boş alan kalıyordu → afiş ekran yüksekliğine göre büyür */
+html[data-faction] #win .nb-head .nb-ban { height: clamp(110px, 40vh, 176px); object-position: 50% 38%; }
+
+/* Balık Tutma: gölet sahnesi dar bir şeritti → mevcut görsel daha büyük gösterilir */
+html[data-faction] #modal .box .blk-scene { height: clamp(110px, 34vh, 170px); }
+
+/* Mini Dizi: 74 px genişlikte kartlarda yazılar okunmuyordu → pencere genişler, beş kart eşit paylaşır, yazılar büyür */
+html[data-faction] #modal .box.mdz { width: min(760px, calc(100% - 24px)); }
+html[data-faction] #modal .box.mdz .mdz-g { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+html[data-faction] #modal .box.mdz .mdz-ad { font-size: 14px; line-height: 1.2; }
+html[data-faction] #modal .box.mdz .mdz-rw, html[data-faction] #modal .box.mdz .mdz-rw .chip { font-size: 12.5px; }
+html[data-faction] #modal .box.mdz .mdz-st { font-size: 12.5px; }
+
+/* Çevrimiçi Ödülleri: sandık görselleri aynı; süre ve ödül satırları daha okunur */
+html[data-faction] #modal .box .onlw .onx-row .onx-c .onx-t { font: 700 17px/1.1 Cinzel, Georgia, serif; letter-spacing: 0.04em; color: #ffe2a8; }
+html[data-faction] #modal .onlw .onx-loot .chip { font-size: 13px; }
+html[data-faction] #modal .onlw .onx-st { font-size: 13px; font-weight: 700; }
+html[data-faction] #modal .onlw .onx-st.run .onl-left { font-size: 15px; color: #ffe2a8; }

@@ -1,0 +1,103 @@
+/* P28 — dokunma (G2/M6/O10): mobil dokunma hedefleri en az 44x44 px.
+   Kurallar ekran/duruma kapsamli; important bildirimi YOK.
+   Yontem: (a) gorseli buyutmeden saydam ::after/::before ile alan genisletme (oge konumlu ve sozde oge bossa);
+   (b) sozde ogesi eski kurallarla kapatilmis (display:none important) ya da bitisik siradaki ogelerde min-height + ortali icerik.
+   Olcum: tools/dokunma-olcum.mjs */
+
+/* ---------- (a) Kapatma (x) dugmeleri: pencere 34 px, modal 30 px -> 44+ ---------- */
+html[data-faction] #win .frame > header > .x::after,
+html[data-faction] #modal .box > .x.mx::after {
+  content: ''; position: absolute; border-radius: 50%;
+  inset: min(-7px, calc((100% - 44px) / 2)); /* 2. tur: dolgu kutusuna gore ortali 44 px (kenarlikli x'lerde -7 yetmiyordu) */
+}
+html[data-faction] #win .frame > header > .x.bk::after { inset: -3px; }
+
+/* ---------- (a) Baskent / Carsi HUD ---------- */
+html[data-faction] #game .s2-lr > .s2-rb::after { content: ''; position: absolute; inset: -9px; }
+html[data-faction] #game .s2-caps > .s2-cap::after { content: ''; position: absolute; inset: -14px 0; }
+html[data-faction] #game .s2-dock > .s2-m::after { content: ''; position: absolute; inset: -3px; }
+html[data-faction] #game .s2hud > .s2-prem::after { content: ''; position: absolute; inset: -11px 0; }
+html[data-faction] #game .s2hud > .s2-savas::after { content: ''; position: absolute; inset: -3px 0; }
+html[data-faction] #game .srail > .lbtn::after { content: ''; position: absolute; inset: -4px; }
+html[data-faction] #game .s2-hv > .ph-main { position: relative; }
+html[data-faction] #game .s2-hv > .ph-main::after { content: ''; position: absolute; inset: -13px 0 -6px; }
+html[data-faction] #game .s2-hv > .ph-srv { position: relative; }
+html[data-faction] #game .s2-hv > .ph-srv::after { content: ''; position: absolute; inset: -6px 0 -16px; }
+/* 2. tur: alttaki sohbet satirlari (.cl) alt yariyi ortuyordu -> alan yalniz yukari uzar */
+html[data-faction] #chatbar .cb-tabs > button::before { content: ''; position: absolute; inset: -27px 0 0; }
+
+/* ---------- (b) Sekme basliklari ---------- */
+html[data-faction] #win .frame nav.tabs button { min-height: 44px; }
+html[data-faction] #win :is(.sub, .rk-seg, .kx-ftabs, .pa-cats) > button { min-height: 44px; }
+
+/* ---------- (b) Aksiyon dugmeleri (eski kural .btn sozde ogelerini kapatir) ---------- */
+html[data-faction] :is(#win, #modal) .btn.sm,
+html[data-faction] :is(#win, #modal) .btn { min-height: 44px; }
+html[data-faction] #win :is(.kx-reset, .kx-bulk, .pv-tiers > button, .zinfo, .kc, .yrow, .board.faces > button) { min-height: 44px; }
+html[data-faction] #win .rh-nav > button { min-height: 44px; }
+html[data-faction] #modal .box.p23m :is(.p23m-alt, .mc, .p23m-srv) { min-height: 44px; }
+
+/* Karakter: nitelik +, kusanim yuvalari */
+html[data-faction] #win .kx-a > .kx-plus { position: relative; }
+/* 2. tur: + dugmeleri 18 px aralikla ust uste; -13px komsunun alanina biniyordu -> dikeyde yalniz aralik payi */
+html[data-faction] #win .kx-a > .kx-plus::after { content: ''; position: absolute; inset: -0.5px -13px; }
+
+/* =====================================================================================
+   2. TUR (dokunma-2). Bulgular (CDP getMatchedStylesForNode ile):
+   - .btn / .sub sekmeleri 11-14 px saydam kenarlikli (border-image). Mutlak sozde oge DOLGU kutusuna gore yerlesir;
+     eski `inset:-4px 0` kenarligin icinde kaliyordu. Cozum: dolgu kutusuna gore ortali 44 px:
+     inset = min(0px, (100% - 44px) / 2)  (yuzde, eksen boyuna gore cozulur; buyuk ogede 0).
+   - p28 ilk tur `min-height:44px` kurallari onemli-bildirime degil OZGULLUGE yeniliyordu (p24 :is(#modal .box:not(...)) = 1,6,1).
+     Gorunumu degistirmemek icin min-height yerine saydam alan kullanildi.
+   ===================================================================================== */
+
+/* (a) Pencere/modal aksiyon dugmeleri (.btn, .btn.sm): p24-ekranlar.css:67 ::after kapatmasi daraltildi */
+html[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn::after {
+  content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)); background: none; border: 0; box-shadow: none;
+}
+
+/* (a) Alt sekmeler (.sub > button; pazar/dukkan pz-sub dahil): mevcut ::after (-4px 0) kenarligin icinde kaliyordu.
+   Iki satir arasi 11 px: her iki yana 3,5 px -> komsu satirlar ust uste binmez. */
+html[data-faction] #win .sub > button::after { inset: min(0px, calc((100% - 44px) / 2)) 0; }
+
+/* (a) Karakter penceresi */
+html[data-faction] #win[data-scr="karakter"] :is(.kx-bulk, .kx-reset) { position: relative; }
+html[data-faction] #win[data-scr="karakter"] :is(.kx-bulk, .kx-reset)::after { content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)) 0; }
+/* Esya suzgec sekmeleri (22 px): ustte bos sayfa dolgusu, altta izgaraya 11 px -> yukari 14, asagi 8 */
+html[data-faction] #win[data-scr="karakter"] .kx-ftabs > button { position: relative; }
+html[data-faction] #win[data-scr="karakter"] .kx-ftabs > button::after { content: ''; position: absolute; inset: -14px 0 -8px; }
+/* Izgaralar: yalniz hucre araligini paylas (3 px -> 1,5 px) */
+html[data-faction] #win[data-scr="karakter"] .kx-col > .kx-slot::after,
+html[data-faction] #win .ivg > .ivc::after { content: ''; position: absolute; inset: -1.5px; }
+
+/* (a) Basarimlar kategori sekmeleri (42,6 px genislik, 5 px aralik) */
+html[data-faction] #win .pa-cats > button { position: relative; }
+html[data-faction] #win .pa-cats > button::after { content: ''; position: absolute; inset: 0 min(0px, calc((100% - 44px) / 2)); }
+
+/* (a) VS: Kadro dugmesi (24 px; uste 8 px bos, alt kahraman gorseli) */
+html[data-faction] #win[data-scr="vs"] .vside > .vs2-kr::after { content: ''; position: absolute; inset: -8px 0 -12px; }
+
+/* (a) Savas: Cekil (x) dugmesi 32 px; v31/p23 ::after content:none kaldirildi */
+html[data-faction] body #game #battleUI #bctl #bexit { position: relative; }
+html[data-faction] body #game #battleUI #bctl #bexit::after { content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)); background: none; border: 0; }
+
+/* (a) Karakter olusturma (v33-karakter.css; olcu --U ile olceklenir, bu yuzden yuzde formulu) */
+html[data-faction] .vz .vz-cls > button,
+html[data-faction] .vz .vz-gen > button,
+html[data-faction] .vz .vz-lang > button { position: relative; }
+/* Sinif 2x2 izgara, 4 px aralik -> 2 px pay */
+html[data-faction] .vz .vz-cls > button::after { content: ''; position: absolute; inset: -2px; }
+/* Cinsiyet: ust/alt komsu yalniz baslik (h2, dokunulmaz) */
+html[data-faction] .vz .vz-gen > button::after { content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)) 0; }
+/* Dil TR|EN: bitisik; dis yanlara ve asagi/yukari uzar (ust ekran kenari) */
+html[data-faction] .vz .vz-lang > button::after { content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)) 0; }
+html[data-faction] .vz .vz-lang > button:first-child::after { left: min(0px, calc(100% - 44px)); }
+html[data-faction] .vz .vz-lang > button:last-child::after { right: min(0px, calc(100% - 44px)); }
+/* Zar (24 px): solda ad kutusu 4 px -> sola 2, saga/yukari/asagi bos */
+html[data-faction] .vz .vz-name > .vz-dice { position: relative; }
+html[data-faction] .vz .vz-name > .vz-dice::after { content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)) min(0px, calc(100% - 42px)) min(0px, calc((100% - 44px) / 2)) -2px; }
+/* Geri / Baslat (mutlak konumlu) */
+html[data-faction] .vz > :is(.vz-back, .vz-go)::after { content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)) 0; }
+/* Yuz secimi: 4 px aralikli dikey sutun; dugme overflow:hidden sozde ogeyi kirpiyordu -> clip + 4 px pay */
+html[data-faction] .vz #vzfaces > .vz-face { position: relative; overflow: clip; overflow-clip-margin: 6px; }
+html[data-faction] .vz #vzfaces > .vz-face::after { content: ''; position: absolute; inset: min(0px, calc((100% - 44px) / 2)); }

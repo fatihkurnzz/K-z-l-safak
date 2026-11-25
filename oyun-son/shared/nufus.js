@@ -14,7 +14,7 @@ import { rng } from './rng.js';
 import { hashStr } from './meta.js';
 
 export const NUFUS = { name: 'Bereket', xp: 15, akce: 10, minorRatio: 0.95, capPct: 120, minTotal: 50, refreshMs: 10 * 60000 };
-export const NUFUS_LINE = `+%${NUFUS.xp} XP · +%${NUFUS.akce} Akçe`;
+export const NUFUS_LINE = `+%${NUFUS.xp} EXP · +%${NUFUS.akce} Akçe`;
 export const FULL_TEXT = 'Bu ırk şu an dolu — denge sağlanınca açılır.';
 const FK = Object.keys(FACTIONS);
 

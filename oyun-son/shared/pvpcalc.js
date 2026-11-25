@@ -67,11 +67,11 @@ export function milestones() {
   // Eşya kademeleri: kuşanma seviyesi
   TIERS.forEach((T, i) => { if (i) add(T.req, 'gear', 'chest', `${i + 1}. kademe silah, zırh ve takı`, `${i + 1}. kademe eşya kuşanılır${i === COEF.minTier ? '; savunma katsayıları ve dirençler bu kademede başlar' : ''}`); });
   // Bölgeler (önerilen seviye; bölge, önceki bölgenin son boss'u geçilince açılır)
-  for (const Z of ZONES) if (Z.id > 1) add(Z.lv[0], 'zone', 'zone' + Z.id, Z.name, `Sv. ${Z.lv[0]}-${Z.lv[1]} bölgesi; önceki bölgenin son boss’u geçilince açılır`);
+  for (const Z of ZONES) if (Z.id > 1) add(Z.lv[0], 'zone', 'zone' + Z.id, Z.name, `Sv. ${Z.lv[0]}-${Z.lv[1]} bölgesi; önceki bölgenin son Boss’u geçilince açılır`);
   // Irk ve diyar (realm.js): seçimde oy, ulufe alma ve adaylık eşikleri
   add(KINGDOM.voteLvl, 'sys', 'crown', `${KINGDOM.title} seçiminde oy`, KINGDOM.voteLvl === GRANT.minLvl ? `Irkının haftalık seçiminde oy verilir; ${GRANT.name.toLocaleLowerCase('tr-TR')} alınabilir` : 'Irkının haftalık seçiminde oy verilir', { key: 'vote' });
   add(KINGDOM.candLvl, 'sys', 'crown', `${KINGDOM.title} adaylığı`, `${KINGDOM.candSan.toLocaleString('tr-TR')} Şan ve ${KINGDOM.deposit.toLocaleString('tr-TR')} akçe depozitoyla aday olunur`, { key: 'cand' });
-  add(GAME.maxLevel, 'sys', 'crown', 'En yüksek seviye', `Bölgelerin ${STAGE_TIERS.slice(1).map(t => t.name).join(' ve ')} kademeleri son boss’tan sonra açılır`);
+  add(GAME.maxLevel, 'sys', 'crown', 'En yüksek seviye', `Bölgelerin ${STAGE_TIERS.slice(1).map(t => t.name).join(' ve ')} kademeleri son Boss’tan sonra açılır`);
   out.sort((a, b) => a.lvl - b.lvl);
   return (MILES = out);
 }

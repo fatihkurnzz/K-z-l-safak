@@ -13,8 +13,11 @@
 // DÖNGÜ: { b, g, rv, fade, beds: sürekli katmanlar (süzgeç: [frekans, Q]; lfo: [hız, oran] kazancı, flfo: [hız, Hz] süzgeci oynatır),
 //   ev: seyrek rastgele sesler [{ s: yama, every: [en az, en çok] sn, g: [..], pan, pj: perde oynaması }],
 //   seq: ezgi { bpm, beats: ölçüdeki vuruş, bar(i) → [{ t: vuruş, L: katmanlar, g }] } }
-import { register, play, stop, hasSound, hasLoop, preloadMusic } from './audio.js';
+import { register, play, stop, hasSound, hasLoop } from './audio.js';
 export const MUSIC_URL = 'audio/kizil-goz.mp3'; // 22 Kas: tema müziği (şehir, pazar, fragman)
+export const INTRO_URL = 'audio/intro.mp3'; // yükleme ekranı müziği
+export const HUB_URL = 'audio/arka-plan.mp3'; // ana ekran (başkent, pazar) arka plan müziği
+export const BOSS_URL = 'audio/boss.mp3'; // patron savaşı müziği
 // Bu modül shared/ tablolarını içe aktarmaz (yetenek ve birim kayıtları çağıranlardan gelir): böylece Node denemeleri de yükleyebilir.
 
 const O = (o, f, a, h, d, g, x) => ({ o, f, a, h, d, g, ...x });
@@ -333,13 +336,14 @@ export const LOOPS = {
   'mus.hub.ocak': { b: 'amb', g: 1, rv: 0.3, fade: 2.5, seq: seq('mus.hub.ocak') },
   'mus.hub.sancak': { b: 'amb', g: 0.9, rv: 0.3, fade: 2.5, seq: seq('mus.hub.sancak') },
   // 22 Kas: kullanıcının verdiği parça ("Under the Crimson Eye"): şehir/pazar ezgisi ve fragman müziği (dosyadan, döngüde)
-  'mus.tema': { b: 'amb', g: 0.62, rv: 0, fade: 2.5, url: MUSIC_URL },
+  'mus.intro': { b: 'amb', g: 0.7, rv: 0, fade: 1, url: INTRO_URL }, // yükleme ekranı; ana ekrana geçince çapraz solar
+  'mus.tema': { b: 'amb', g: 0.62, rv: 0, fade: 2.5, url: HUB_URL },
   'mus.fragman': { b: 'amb', g: 0.8, rv: 0, fade: 0.4, url: MUSIC_URL },
   'mus.battle': { b: 'amb', g: 1.15, rv: 0.2, fade: 0.8, seq: seq('mus.battle') },
-  'mus.boss': { b: 'amb', g: 1, rv: 0.25, fade: 0.8, seq: seq('mus.boss') },
+  'mus.boss': { b: 'amb', g: 0.8, rv: 0, fade: 0.8, url: BOSS_URL }, // dosyadan; seq('mus.boss') üreteci artık kullanılmıyor
 };
 register({ patches: PATCHES, loops: LOOPS });
-preloadMusic(MUSIC_URL);
+// P28 yuk-2: müzik önden indirilmez; çalınacağı an audio.js akışla (HTMLAudioElement, Range) çalar, yalnız o parça iner.
 
 // ======================= Eşlemeler (saf) =======================
 export const WEAPON_KEYS = ['sword', 'axe', 'dagger', 'bow', 'mace', 'staff'];
@@ -449,10 +453,11 @@ export function actionSounds(type, r, payload) {
   if (type !== 'item.dismantle' && type !== 'item.sell') { const g = lootGrade(r); if (g >= 0) out.push([`rar.${g}`, { delay: !name ? 0 : type === 'battle.finish' ? 0.9 : name === 'ui.chest' ? 0.5 : 0.3 }]); } // ganimette eşya varsa nadirliği duyulur
   return out;
 }
-// Yer → çalacak döngüler. place: 'title' | 'hub' | 'battle' | 'boss' | 'result' | 'none'
+// Yer → çalacak döngüler. place: 'loading' | 'title' | 'hub' | 'battle' | 'boss' | 'result' | 'none'
 export function sceneLoops({ place, faction, phase, weather } = {}) {
   const f = faction === 'sancak' ? 'sancak' : 'ocak', night = phase === 'night' || phase === 'dusk', wx = ['rain', 'wind', 'fog'].includes(weather) ? [`amb.wx.${weather}`] : [];
   switch (place) {
+    case 'loading': return ['mus.intro'];
     case 'title': return ['amb.title'];
     case 'fragman': return ['mus.fragman'];
     case 'hub': return [`amb.${f}.${night ? 'night' : 'day'}`, 'amb.portal', ...wx, 'mus.tema'];

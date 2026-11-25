@@ -1,0 +1,54 @@
+/* P28 — tema. Kurallar ekran/duruma kapsamli; important bildirimi YOK.
+   Global menu/modal tema kalibrasyonu (docs/referans/p28-tema-denetim/TALIMAT.md §2).
+   Kabuk duzeyinde tek kural seti: #win .frame ve basliki #modal .box. Kit cerceve/baslik/dugme gorselleri kalir;
+   degisen GOVDE + KART dolgusu ve metin renkleri. Halk kimligi yalniz vurgu (--korant-accent: ince serit, aktif oge).
+   Eski kurallar cogunlukla important oldugu icin: (1) zemin degiskenleri pencere kapsaminda yeniden tanimlanir
+   (ozel ozellikler miras alir; html duzeyindeki important tanim #win altinda etkisizdir), (2) cerceve dolgusu ve
+   #page zemini ust kaplamayla (::before / inset box-shadow) ortulur. Kapsam disi: .korant-modal-*, savas sonucu, profil. */
+
+/* -- 1. Pencere kapsaminda zemin/metin degiskenleri (kul-demir --a5-*, --kd-mat, --k19-*, index --kp-i*) -- */
+html.k24[data-faction] #win,
+html.k24[data-faction] #modal {
+  --korant-accent: var(--korant-accent-kragmir);
+  --a5-bg: linear-gradient(180deg, var(--korant-surface-elevated), var(--korant-surface-card));
+  --a5-card: linear-gradient(180deg, rgba(30, 28, 35, .9), var(--korant-surface-card));
+  --a5-cardh: linear-gradient(180deg, rgba(42, 39, 48, .94), var(--korant-surface-elevated));
+  --a5-line: var(--korant-border-gold);
+  --a5-line2: var(--korant-border-gold-strong);
+  --a5-ink: var(--korant-text-primary);
+  --a5-mut: var(--korant-text-muted);
+  --a5-bone: var(--korant-text-primary);
+  --a5-ember: linear-gradient(transparent, transparent);
+  --a5-glow: rgba(214, 180, 114, .14);
+  --kd-mat: linear-gradient(transparent, transparent), linear-gradient(transparent, transparent), linear-gradient(transparent, transparent);
+  --k19-bg: linear-gradient(180deg, var(--korant-surface-elevated), var(--korant-surface-card));
+  --k19-bd: var(--korant-border-gold);
+  --kp-i0: #0c0b0f; --kp-i1: #121116; --kp-i2: #1a181f; --kp-i3: #26232c; --kp-i4: #3a3540; --kp-hi: #c4a468;
+  --kp-tod: rgba(0, 0, 0, 0);
+  --u-t2: var(--korant-text-primary);
+  --d-mut: var(--korant-text-muted);
+}
+html.k24[data-faction="sancak"] #win,
+html.k24[data-faction="sancak"] #modal { --korant-accent: var(--korant-accent-elentha); }
+
+/* -- 2. Govde: kit cercevesinin "fill" orta dilimi (halk rengi) arduvaz kaplamayla ortulur; ustte ince halk seridi -- */
+html.k24[data-faction] #win .frame,
+html.k24[data-faction] #modal .box:not([class*="bres"]):not(.prof):not(.dlgbox):not(.p25r):not([class*="korant-modal"]):is(:has(> h2), .p23m, .gatemenu) {
+  isolation: isolate;
+}
+html.k24[data-faction] #win .frame::before,
+html.k24[data-faction] #modal .box:not([class*="bres"]):not(.prof):not(.dlgbox):not(.p25r):not([class*="korant-modal"]):is(:has(> h2), .p23m, .gatemenu)::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, var(--korant-accent) 18%, var(--korant-accent) 82%, transparent) top / 100% 2px no-repeat,
+    linear-gradient(180deg, var(--korant-surface-elevated), var(--korant-surface-card)),
+    #0d0c10;
+  box-shadow: inset 0 0 0 1px var(--korant-border-gold);
+}
+
+/* -- 3. Sayfa zemini (#page; arayuz/kul-demir'de ekran basina important hex gradyanlar) -> mat kart kaplamasi -- */
+html.k24[data-faction] #win .frame #page {
+  box-shadow: inset 0 0 0 100vmax var(--korant-surface-card);
+  border-color: var(--korant-border-gold);
+  color: var(--korant-text-primary);
+}

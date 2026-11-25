@@ -1,0 +1,198 @@
+/* P25-b — düzeltme ve ek ekranlar (docs/referans/p25-ek-ekranlar/TALIMAT.md). Her kural ekran kapsamlı olmalı. */
+
+/* ================= Ortak (P25-b): koyu dövme metal satır/kart, sekme simgeleri ================= */
+/* Sekme simgesi: referanstan kırpılmış kabartmalı altın simge (--ic = var(--p25b-ic_*)); kutu yok */
+html.k24[data-faction] #win:is([data-scr="posta"], [data-scr="arkadas"]) nav.tabs button .tico.p25b-ic {
+  width: 30px; height: 28px; flex: none; background: var(--ic) center / contain no-repeat; border: 0; box-shadow: none; border-radius: 0;
+  filter: drop-shadow(0 2px 2px #000c);
+}
+html.k24[data-faction] #win:is([data-scr="posta"], [data-scr="arkadas"]) nav.tabs button > span:not(.tico) { font-family: Georgia, 'Times New Roman', serif; font-size: 14px; overflow-wrap: normal; word-break: normal; hyphens: none; min-width: 0; }
+html.k24[data-faction] #win:is([data-scr="posta"], [data-scr="arkadas"]) nav.tabs button > span:not(.tico) small { font-family: Georgia, serif; font-size: 11px; }
+/* metal satır (posta listesi, arkadaş satırları): koyu dövme yüzey + köşe perçinleri + bronz kenar */
+html.k24[data-faction] #win[data-scr="posta"] .pst-row,
+html.k24[data-faction] #win[data-scr="arkadas"] .row.frow {
+  --rv: radial-gradient(circle, #d8b56a 0 1.6px, #5a4220 2.4px, transparent 3px);
+  background: var(--rv) 5px 5px / 7px 7px no-repeat, var(--rv) calc(100% - 5px) 5px / 7px 7px no-repeat, var(--rv) 5px calc(100% - 5px) / 7px 7px no-repeat, var(--rv) calc(100% - 5px) calc(100% - 5px) / 7px 7px no-repeat,
+    repeating-linear-gradient(115deg, #ffffff05 0 2px, transparent 2px 5px), linear-gradient(#2b2f37, #15181d);
+  border: 1px solid #6f5a32; border-radius: 3px; box-shadow: inset 0 1px 0 #ffffff17, inset 0 0 0 1px #000, inset 0 0 14px #0009, 0 2px 5px #000b;
+  color: #eadcbc;
+}
+html.k24[data-faction="ocak"] #win[data-scr="posta"] .pst-row, html.k24[data-faction="ocak"] #win[data-scr="arkadas"] .row.frow {
+  background-image: var(--rv), var(--rv), var(--rv), var(--rv), repeating-linear-gradient(115deg, #ffffff05 0 2px, transparent 2px 5px), linear-gradient(#302b29, #161312);
+}
+html.k24[data-faction="sancak"] #win[data-scr="posta"] .pst-row, html.k24[data-faction="sancak"] #win[data-scr="arkadas"] .row.frow { border-color: #8a7444; }
+
+/* ================= 1) Silah / Zırh / Takı dükkânı (scr=dukkan) ================= */
+html.k24[data-faction] #win[data-scr="dukkan"] header h2 .pz-por { display: none; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head { position: relative; display: flex; align-items: center; gap: 12px; min-height: 60px; overflow: hidden; margin-bottom: 2px; padding-top: 0; padding-bottom: 0; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .pz-bigpor { position: relative; z-index: 1; flex: none; width: 60px; height: 60px; padding: 0; border: 2px solid #b8903f; outline: 1px solid #000; box-shadow: 0 0 0 3px #3a2a12, 0 3px 8px #000c; background: #111; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .pz-bigpor img { width: 100%; height: 100%; display: block; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .grow { position: relative; z-index: 1; max-width: 58%; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .grow b { font-family: Georgia, 'Times New Roman', serif; font-size: 18px; font-weight: 400; color: #f3e6c4; text-shadow: 0 1px 2px #000; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .grow p { margin: 3px 0 0; font-family: Georgia, serif; font-style: italic; font-size: 13.5px; line-height: 1.3; color: #eadfc6; text-shadow: 0 1px 2px #000; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .grow p::before { content: '“'; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .grow p::after { content: '”'; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .chip.rw { display: none; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .dk-ocak {
+  position: absolute; z-index: 0; top: 0; right: 0; bottom: 0; width: 48%; pointer-events: none;
+  background: var(--p25b-dk_ocak) right center / cover no-repeat; -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); opacity: .95;
+}
+html.k24[data-faction] #win[data-scr="dukkan"] .sub.pz-sub { justify-content: center; margin: 2px 0 6px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .sub.pz-sub > button { min-width: 118px; min-height: 30px; font-family: Georgia, serif; font-weight: 400; font-size: 14px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .sub.pz-sub > button .ri { display: none; }
+/* Zırh: ikinci (sınıf süzgeci) satırı daha ince */
+html.k24[data-faction] #win[data-scr="dukkan"] .sub.pz-sub + .sub.pz-sub { margin-top: -2px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .sub.pz-sub + .sub.pz-sub > button { min-width: 0; min-height: 24px; font-size: 12.5px; padding: 0 6px; }
+/* Mücevherci: ocak görseli yok; bant sağı koyu kalır */
+/* 2x2 ürün kartları */
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px; margin-bottom: 6px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .pz-card.dk-card { display: flex; align-items: center; gap: 12px; min-height: 84px; min-width: 0; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-well {
+  flex: none; width: 72px; height: 72px; display: grid; place-items: center; border: 1px solid #6d5a36; border-radius: 2px;
+  background: radial-gradient(circle at 50% 45%, #1d2533, #07090d 75%); box-shadow: inset 0 0 14px #000, 0 0 0 1px #000, 0 0 0 3px #2b2f37, 0 0 0 4px #6d5a3699;
+}
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-well .ico.lg { width: 66px; height: 66px; background: transparent; border: 0; box-shadow: none; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-nm { font-size: 12px; line-height: 1.3; overflow: hidden; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-nm .gn { font-family: Georgia, 'Times New Roman', serif; font-size: 16px; font-weight: 400; color: #f3e6c4; text-shadow: 0 1px 2px #000; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-nm .rar { display: none; } /* dükkânda hepsi Standart (alt not söyler) */
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-nm > .mut { font-size: 12.5px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-bd { align-items: center; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-stok { font-size: 12px; font-weight: 700; color: #d9cba8; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-bot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 2px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-bot .price { font-family: Georgia, serif; font-size: 17px; font-weight: 400; display: inline-flex; align-items: center; gap: 4px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-bot .price small { font-size: 15px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-body .pz-bot .btn.sm { min-width: 76px; font-family: Georgia, serif; font-weight: 400; font-size: 15px; }
+html.k24[data-faction] #win[data-scr="dukkan"] .dk-grid + .mut { font-size: 11px; text-align: center; }
+
+/* ================= 2) Posta (scr=posta) ================= */
+html.k24[data-faction] #win[data-scr="posta"] .mlx-list { display: grid; gap: 6px; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-row { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 9px 14px; cursor: pointer; font: inherit; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-row.gift { border-color: #c9a24f; box-shadow: inset 0 1px 0 #ffffff17, inset 0 0 0 1px #000, inset 0 0 14px #0009, 0 0 8px #e2b54a55, 0 2px 5px #000b; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-row b { display: block; font-family: Georgia, 'Times New Roman', serif; font-size: 15px; font-weight: 400; color: #f3e6c4; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-row small { display: block; margin-top: 2px; font: 600 11px/1.2 Inter, sans-serif; color: #b9a888; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-row .mlx-go { font-style: normal; font-size: 24px; color: #d8b56a; }
+html.k24[data-faction] #win[data-scr="posta"] .page > .mut:only-child { text-align: center; margin-top: 30px; font-family: Georgia, serif; font-size: 15px; color: #d6c8a8; }
+/* açık posta: Geri + tarih; parşömen mektup; Ekler; büyük Ekleri al */
+html.k24[data-faction] #win[data-scr="posta"] .mlx-open header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-when { font-family: Georgia, serif; font-size: 14px; font-weight: 400; color: #a89c86; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-paper {
+  position: relative; padding: 26px 36px 18px; min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 2px; border: 0;
+  background: radial-gradient(ellipse at 50% 45%, #ecdcb4 0%, #dfc694 55%, #c09a5e 100%);
+  box-shadow: inset 0 0 26px #7a4f1e99, inset 0 0 3px #4a2f10, 0 0 0 2px #1d1408, 0 0 0 4px #9c7b3e, 0 0 0 5px #000, 0 8px 18px #000b;
+}
+/* köşe süsleri (altın köşebent + safir/yakut taş) */
+html.k24[data-faction] #win[data-scr="posta"] .mlx-paper::before,
+html.k24[data-faction] #win[data-scr="posta"] .mlx-paper::after {
+  content: ''; position: absolute; inset: -5px; pointer-events: none;
+  --cg: radial-gradient(circle, #fff6 0 1px, var(--gem, #3d6fd0) 1.6px 4px, #e2c27a 4.6px 6.6px, #5a4220 7.2px, transparent 8px);
+  background: var(--cg) 0 0 / 18px 18px no-repeat, var(--cg) 100% 0 / 18px 18px no-repeat, var(--cg) 0 100% / 18px 18px no-repeat, var(--cg) 100% 100% / 18px 18px no-repeat;
+}
+html.k24[data-faction="ocak"] #win[data-scr="posta"] .mlx-paper { --gem: #c0392b; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-paper::after { display: none; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-seal { display: none; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-paper p { margin: 0 0 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.55; color: #2c1d0e; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-att { border-top: 0; padding-top: 0; text-align: center; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-att > .pst-ekler {
+  display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 0 6px; font-family: Cinzel, Georgia, serif; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: #5a3d1c;
+}
+html.k24[data-faction] #win[data-scr="posta"] .mlx-att > .pst-ekler::before,
+html.k24[data-faction] #win[data-scr="posta"] .mlx-att > .pst-ekler::after { content: ''; width: 34%; height: 2px; background: linear-gradient(90deg, transparent, #7a5626, transparent); }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-att .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-att .chip {
+  display: inline-flex; align-items: center; gap: 5px; padding: 5px 14px; border-radius: 3px; font-family: Georgia, serif; font-size: 13.5px; font-weight: 400;
+  background: linear-gradient(#3b3f47, #1c1f24); color: #f3e6c4; border: 1px solid #8a6d3b; box-shadow: inset 0 1px 0 #ffffff1c, 0 0 0 1px #000, 0 2px 4px #0008;
+}
+html.k24[data-faction] #win[data-scr="posta"] .mlx-open .mbtns { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-open .mbtns .btn { min-width: 150px; font-family: Georgia, serif; font-weight: 400; font-size: 16px; }
+html.k24[data-faction] #win[data-scr="posta"] .mlx-open .mbtns .btn.pst-claim { min-width: 200px; min-height: 42px; font-size: 18px; filter: drop-shadow(0 0 8px var(--pst-glow, #4a8cff88)); }
+html.k24[data-faction="ocak"] #win[data-scr="posta"] .mlx-open .mbtns .btn.pst-claim { --pst-glow: #ff7a3a88; }
+/* Posta Yaz: koyu metal form */
+html.k24[data-faction] #win[data-scr="posta"] .pst-write { display: grid; gap: 8px; max-width: 600px; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-write label { display: grid; gap: 3px; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-write label small { font-family: Cinzel, Georgia, serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #d8b56a; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-write :is(select, textarea) {
+  width: 100%; box-sizing: border-box; padding: 8px 10px; border-radius: 3px; border: 1px solid #6f5a32; font: 500 14px Georgia, serif;
+  background: linear-gradient(#0f1217, #191d24); color: #eadcbc; box-shadow: inset 0 2px 6px #000c;
+}
+html.k24[data-faction] #win[data-scr="posta"] .pst-write textarea { resize: vertical; min-height: 84px; }
+html.k24[data-faction] #win[data-scr="posta"] .pst-write .mut { font-size: 11.5px; color: #b9a888; }
+
+/* ================= 3) Arkadaşlar (scr=arkadas) ================= */
+html.k24[data-faction] #win[data-scr="arkadas"] .fr-top { margin: 2px 0 8px; font-family: Georgia, 'Times New Roman', serif; font-size: 16px; color: #eadfc6; }
+html.k24[data-faction] #win[data-scr="arkadas"] .fr-top b { font-weight: 400; color: #eadfc6; }
+html.k24[data-faction] #win[data-scr="arkadas"] .fr-empty { width: 240px; margin: 4px auto 0; padding: 4px 6px 6px; text-align: center; display: grid; justify-items: center; gap: 4px; }
+html.k24[data-faction] #win[data-scr="arkadas"] .fr-empty > .fr-med { display: block; width: 92px; height: 92px; background: var(--p25b-fr_madalyon) center / contain no-repeat; filter: drop-shadow(0 3px 4px #000c); }
+html.k24[data-faction] #win[data-scr="arkadas"] .fr-empty > b { font-family: Georgia, serif; font-size: 18px; font-weight: 400; color: #f3e6c4; margin-top: 4px; }
+html.k24[data-faction] #win[data-scr="arkadas"] .fr-empty > p { margin: 0; font-family: Georgia, serif; font-size: 13.5px; line-height: 1.35; color: #e2d6bc; }
+html.k24[data-faction] #win[data-scr="arkadas"] .row.frow { display: flex; align-items: center; gap: 10px; padding: 7px 12px; margin-bottom: 6px; }
+html.k24[data-faction] #win[data-scr="arkadas"] .row.frow .fwho b { font-family: Georgia, serif; font-size: 15px; font-weight: 400; }
+html.k24[data-faction] #win[data-scr="arkadas"] .row.frow .fwho .mut { color: #b9a888; }
+html.k24[data-faction] #win[data-scr="arkadas"] .page > h3 { font-family: Cinzel, Georgia, serif; font-size: 14px; color: #d8b56a; letter-spacing: 1px; }
+html.k24[data-faction] #win[data-scr="arkadas"] .page > .mut:not(.fr-top) { font-family: Georgia, serif; font-size: 14px; color: #c9bc9f; }
+
+/* ================= 4) Çevrimiçi ödülleri (#modal .box.onl.p25b) ================= */
+html.k24[data-faction] #modal .box.onl.p25b { width: min(860px, calc(100vw - 24px)); position: relative; }
+html.k24[data-faction] #modal .box.onl.p25b > .p24band { position: absolute; top: -2px; right: 40px; z-index: 2; }
+html.k24[data-faction] #modal .box.onl.p25b > h2 { margin-right: 300px; }
+html.k24[data-faction] #modal .box.onl.p25b > .in { padding: 6px 10px 8px; }
+html.k24[data-faction] #modal .box.onl.p25b .onl-tip { margin: 0 0 8px; text-align: center; font-family: Georgia, serif; font-size: 14px; font-weight: 400; color: #eadfc6; }
+html.k24[data-faction] #modal .box.onl.p25b .onl-tip .mut { color: #eadfc6; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-row { display: flex; gap: 10px; align-items: stretch; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-c {
+  --rv: radial-gradient(circle, #8e96a4 0 1.4px, #2a2d33 2.2px, transparent 2.8px);
+  position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 6px 6px;
+  background: var(--rv) 4px 4px / 7px 7px no-repeat, var(--rv) calc(100% - 4px) 4px / 7px 7px no-repeat, var(--rv) 4px calc(100% - 4px) / 7px 7px no-repeat, var(--rv) calc(100% - 4px) calc(100% - 4px) / 7px 7px no-repeat,
+    repeating-linear-gradient(115deg, #ffffff05 0 2px, transparent 2px 5px), linear-gradient(#2a2f38, #13161b);
+  border: 2px solid #4c525e; border-radius: 3px; box-shadow: inset 0 0 0 1px #000, inset 0 1px 0 #ffffff1a, inset 0 0 22px #000a, 0 4px 10px #000b; color: #eadfc6;
+}
+html.k24[data-faction="ocak"] #modal .box.onl.p25b .onx-c:not(.ok) { background-color: #1b1816; background-image: var(--rv), var(--rv), var(--rv), var(--rv), repeating-linear-gradient(115deg, #ffffff05 0 2px, transparent 2px 5px), linear-gradient(#302b29, #161312); border-color: #55493f; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-c.ok {
+  border-color: #e9bf55; background: radial-gradient(ellipse at 50% 30%, #4a3a1a, transparent 70%), linear-gradient(#2e2a22, #15130f);
+  box-shadow: inset 0 0 0 1px #000, inset 0 0 18px #000a, 0 0 0 1px #7a5a1c, 0 0 16px #ffc94a99;
+}
+html.k24[data-faction] #modal .box.onl.p25b .onx-c.run { border-color: #a5844a; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-c.got { opacity: .6; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-no {
+  position: absolute; top: -2px; left: 6px; width: 26px; height: 34px; display: grid; place-items: center; padding-bottom: 6px; box-sizing: border-box;
+  font-family: Cinzel, Georgia, serif; font-size: 16px; font-weight: 700; color: #f3e6c4; text-shadow: 0 1px 2px #000;
+  background: linear-gradient(#41454e, #1c1e23); clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%); box-shadow: inset 0 0 0 1px #a8843f;
+}
+html.k24[data-faction] #modal .box.onl.p25b .onx-c.ok .onx-no { background: linear-gradient(#6a5220, #2e230c); }
+html.k24[data-faction] #modal .box.onl.p25b .onx-t { padding-left: 18px; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; font-weight: 400; color: #f3e6c4; white-space: nowrap; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-ch { width: 100%; height: 82px; background: var(--ch) center / contain no-repeat; filter: drop-shadow(0 4px 4px #000b); }
+html.k24[data-faction] #modal .box.onl.p25b .onx-c.ok .onx-ch { filter: drop-shadow(0 0 10px #ffd36a99) drop-shadow(0 4px 4px #000b); }
+html.k24[data-faction] #modal .box.onl.p25b .onx-ch > svg { visibility: hidden; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-c:not(.run) .pbar { display: none; }
+html.k24[data-faction] #modal .box.onl.p25b .pbar { width: 86%; height: 4px; margin: 0; border-radius: 2px; background: #0009; box-shadow: inset 0 0 0 1px #000; overflow: hidden; }
+html.k24[data-faction] #modal .box.onl.p25b .pbar > i { display: block; height: 100%; background: linear-gradient(90deg, #a8843f, #ffd36a); }
+html.k24[data-faction] #modal .box.onl.p25b .onx-loot { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 1px; padding-top: 5px; border-top: 1px solid #6d5a3666; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-loot .chip {
+  display: block; padding: 0; margin: 0; background: none; border: 0; box-shadow: none; text-align: center;
+  font-family: Georgia, serif; font-size: 13.5px; font-weight: 400; line-height: 1.25; color: #eadfc6; white-space: normal;
+}
+html.k24[data-faction] #modal .box.onl.p25b .onx-loot .chip .ri { display: none; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-foot { width: 100%; min-height: 40px; display: flex; align-items: center; justify-content: center; border-top: 1px solid #ffffff12; padding-top: 4px; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-foot .onx-al { width: 100%; min-height: 34px; font-family: Georgia, serif; font-weight: 400; font-size: 16px; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-st { display: flex; flex-direction: column; align-items: center; gap: 1px; font-family: Georgia, serif; font-size: 14px; color: #c9bc9f; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-st svg { width: 17px; height: 17px; fill: #c9a45a; filter: drop-shadow(0 1px 1px #000); }
+html.k24[data-faction] #modal .box.onl.p25b .onx-st.run { color: #ffe6a0; font-variant-numeric: tabular-nums; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-st.got { flex-direction: row; gap: 4px; color: #9fd08a; }
+html.k24[data-faction] #modal .box.onl.p25b .onx-st.got svg { fill: #9fd08a; }
+
+/* ================= Alçak yatay ekran (≤380px yükseklik) sıkılaştırma ================= */
+@media (max-height: 380px) {
+  html.k24[data-faction] #win[data-scr="dukkan"] .pz-head { min-height: 48px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .pz-bigpor { width: 48px; height: 48px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .grow b { font-size: 16px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] .pz-head > .grow p { font-size: 12.5px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] .sub.pz-sub { margin: 0 0 4px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] .pz-card.dk-card { min-height: 76px; gap: 10px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] .dk-well { width: 60px; height: 60px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] .dk-well .ico.lg { width: 56px; height: 56px; }
+  html.k24[data-faction] #win[data-scr="posta"] .mlx-paper { min-height: 0; padding: 16px 28px 12px; }
+  html.k24[data-faction] #win[data-scr="posta"] .mlx-paper p { font-size: 15.5px; margin-bottom: 6px; }
+  html.k24[data-faction] #win[data-scr="posta"] .mlx-open .mbtns { margin-top: 8px; }
+  html.k24[data-faction] #win[data-scr="posta"] .mlx-open .mbtns .btn.pst-claim { min-height: 36px; font-size: 16px; }
+  html.k24[data-faction] #modal .box.onl.p25b .onx-ch { height: 70px; }
+}

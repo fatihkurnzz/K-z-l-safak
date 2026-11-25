@@ -48,7 +48,7 @@ function fightPage() {
       <button class="btn red mz-go" data-a="arenaVs" data-i="${i}" ${left > 0 ? '' : 'disabled'}>Savaş</button></div>`;
   }).join('') || '<p class="mut" style="text-align:center">Rakip kalmadı. Listeyi yenile.</p>';
   return `<div class="mz-head">${leagueCrest(l)}
-      <div class="mz-rate"><b>${A.rating}</b><small>Meydan puanı</small><div class="pbar"><i style="width:${prog * 100}%"></i></div><span class="mut">${next ? `${next.name} ligine ${next.min - A.rating} puan` : 'En üst lig'} · ${A.wins} G / ${A.losses} M</span></div>
+      <div class="mz-rate"><b>${LEAGUES[l].name} · ${A.rating} <small>Meydan puanı</small></b><div class="pbar"><i style="width:${prog * 100}%"></i></div><span class="mut">${next ? `${next.name} ligine ${next.min - A.rating} puan` : 'En üst lig'} · ${A.wins} G / ${A.losses} M</span></div>
       <div class="mz-tok"><small>Meydan hakkı</small><div class="mz-tk">${tok}</div><b>${left}/${max}</b></div>
       <div class="mz-hbtn"><button class="btn sm" data-a="season">${ri('gift')} Sezon</button><button class="btn sm" data-a="rank">${ri('rank')} Sıralama</button></div></div>
     ${raceBar(D.race, D.defGain)}

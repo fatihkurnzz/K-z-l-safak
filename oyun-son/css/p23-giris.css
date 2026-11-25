@@ -1,0 +1,86 @@
+/* P23 giris — eski görünüşe dönüş: ?p23=0 ya da localStorage dd_p23=0 (giriş için ?giris=0 / dd_giris=0). Kurallar html.p23 / html.giris2 altında. */
+
+/* ===== Giriş ekranı 2 (html.giris2): hazır PNG katmanları (js/p23-sunucu-png.js → --sv-* değişkenleri) ===== */
+/* boyutlar: genişlik yüzdesi ile yükseklik bütçesinin küçüğü (kısa telefonda sığsın) */
+html.giris2 #loading { --W:var(--lw, 100vw); --H:var(--lh, 100vh); --gold:#c9a45c; --gold2:#e8c468;
+  --lgw:min(calc(var(--W) * .44), calc(var(--H) * .61)); --pw:min(calc(var(--W) * .31), calc(var(--H) * .445)); --bw:min(calc(var(--W) * .36), calc(var(--H) * .46)); }
+/* ilk yükleme ekranı: arka plan kenarlıksız kaplar (siyah yan şerit yok) */
+html.giris2 #loading .ld-art { inset:0; background:linear-gradient(transparent 72%, rgba(5,3,6,.75)), url(../img/korant-acilis.jpg) center 22% / cover no-repeat; -webkit-mask-image:none; mask-image:none; }
+html.giris2 #loading .ld-blur { display:none; }
+/* sunucu ekranı: orijinal ölçek (tüm görsel görünür, şövalye/ork kesilmez); kalan boşluk aynı görselin bulanık-karartılmış uzantısıyla dolar */
+html.giris2 #loading.ready .ld-blur { display:block; inset:-4%; background:var(--sv-bg) center / cover no-repeat; filter:blur(26px) brightness(.62) saturate(1.1); transform:none; }
+html.giris2 #loading.ready .ld-art { background:var(--sv-bg) center / contain no-repeat; filter:none; transform-origin:50% 50%; }
+/* görsel kenarı bulanık dolguya yumuşak geçer (1376x768: yarım genişlik 89.58vh, yarım yükseklik 27.91vw) */
+html.giris2 #loading.ready .ld-art { --ex:max(0px, calc(50vw - 89.58vh)); --ey:max(0px, calc(50vh - 27.91vw));
+  -webkit-mask-image:linear-gradient(to right, transparent var(--ex), #000 calc(var(--ex) + 7vh), #000 calc(100vw - var(--ex) - 7vh), transparent calc(100vw - var(--ex))), linear-gradient(to bottom, transparent var(--ey), #000 calc(var(--ey) + 4vw), #000 calc(100vh - var(--ey) - 4vw), transparent calc(100vh - var(--ey)));
+  mask-image:linear-gradient(to right, transparent var(--ex), #000 calc(var(--ex) + 7vh), #000 calc(100vw - var(--ex) - 7vh), transparent calc(100vw - var(--ex))), linear-gradient(to bottom, transparent var(--ey), #000 calc(var(--ey) + 4vw), #000 calc(100vh - var(--ey) - 4vw), transparent calc(100vh - var(--ey)));
+  -webkit-mask-composite:source-in; mask-composite:intersect; }
+/* atmosferik parlama: sol serin mavi-altın, sağ sıcak kor (yalnız opaklık); görselle birlikte nefes alır */
+html.giris2 #loading.ready .ld-art::before, html.giris2 #loading.ready .ld-art::after { content:''; position:absolute; inset:0; pointer-events:none; }
+html.giris2 #loading.ready .ld-art::before { background:radial-gradient(ellipse 36% 46% at 16% 20%, rgba(150,190,255,.20), transparent 70%), radial-gradient(ellipse 22% 30% at 20% 18%, rgba(255,226,150,.14), transparent 70%); }
+html.giris2 #loading.ready .ld-art::after { background:radial-gradient(ellipse 36% 46% at 86% 24%, rgba(255,110,40,.22), transparent 70%), radial-gradient(ellipse 40% 22% at 80% 94%, rgba(255,70,20,.16), transparent 70%); }
+html.giris2:not(.gfx-low) #loading.ready .ld-art { animation:svZoom 26s ease-in-out infinite alternate; }
+html.giris2:not(.gfx-low) #loading.ready .ld-art::before { animation:svGlowA 9s ease-in-out infinite alternate; }
+html.giris2:not(.gfx-low) #loading.ready .ld-art::after { animation:svGlowB 7s ease-in-out infinite alternate; }
+@keyframes svZoom { from { transform:scale(1); } to { transform:scale(1.025); } }
+@keyframes svGlowA { from { opacity:.55; } to { opacity:1; } }
+@keyframes svGlowB { from { opacity:.6; } to { opacity:1; } }
+@media (prefers-reduced-motion:reduce) { html.giris2 #loading.ready .ld-art, html.giris2 #loading.ready .ld-art::before, html.giris2 #loading.ready .ld-art::after { animation:none !important; } }
+html.giris2 #loading.ready .ld-foot { inset:0; left:0; bottom:0; transform:none; width:auto; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:calc(var(--H) * .012);
+  padding:calc(var(--H) * .01) 0 calc(var(--sab, 0px) + var(--H) * .01); box-sizing:border-box; }
+@media (prefers-reduced-motion:no-preference) { html.giris2 #loading.ready .ld-foot > * { animation:svIn .25s ease-out both; } @keyframes svIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } } }
+html.giris2 #loading .sv-logo { flex:none; width:var(--lgw); aspect-ratio:2.682; background:var(--sv-logo) center / 100% 100% no-repeat; filter:drop-shadow(0 2px 6px #000a); }
+html.giris2 #loading .sv-panel { position:relative; flex:none; width:var(--pw); aspect-ratio:.8035; background:var(--sv-panel) center / 100% 100% no-repeat; container-type:inline-size; filter:drop-shadow(0 4px 10px #000b); }
+html.giris2 #loading .sv-head { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); margin:0; }
+/* panel: başlıklar/ikonlar/ayırıcı PNG içinde hazır; ayırıcı ~%28 yükseklikte. Satır plakası ayırıcının hemen altında, ortalı */
+html.giris2 #loading .sv-in { position:absolute; left:0; right:0; top:0; bottom:0; }
+html.giris2 #loading .sv-list { position:absolute; left:6.5%; width:87%; top:30.2%; display:flex; flex-direction:column; gap:1.6cqw; }
+html.giris2 #loading .sv-row { position:relative; display:block; width:100%; aspect-ratio:8.318; padding:0; border:0; background:var(--sv-row) center / 100% 100% no-repeat; font:700 max(8px, 4.4cqw) / 1 Cinzel, Georgia, serif; color:#eadfc6; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+html.giris2 #loading .sv-row.off { background-image:var(--sv-row2); }
+html.giris2 #loading .sv-row > * { position:absolute; top:50%; transform:translate(-50%,-50%); white-space:nowrap; text-shadow:0 1px 2px #000, 0 0 6px #0008; }
+html.giris2 #loading .sv-row b { left:22.4%; display:flex; align-items:center; gap:2.4cqw; font-weight:700; color:#f4e6c3; letter-spacing:.03em; }
+html.giris2 #loading .sv-st { left:55.7%; } html.giris2 #loading .sv-pop { left:83.3%; }
+/* 3B yeşil durum küresi: ışık lekesi + gövde gradyanı + yumuşak parıltı */
+html.giris2 #loading .sv-dot { flex:none; width:3.6cqw; height:3.6cqw; border-radius:50%; background:radial-gradient(circle at 35% 30%, #eaffe0 0 12%, #7cf06a 34%, #1f9a2c 70%, #0b4a14); box-shadow:0 0 2.2cqw #4cff4acc, 0 0 .8cqw #8fff80aa, inset -.4cqw -.5cqw .8cqw #04300a99; }
+html.giris2 #loading .sv-row.aktif .sv-st { color:#62e65e; }
+html.giris2 #loading .sv-pop.yuksek { color:#ff4b3e; } html.giris2 #loading .sv-pop.orta { color:#f2cb3d; } html.giris2 #loading .sv-pop.dusuk { color:#8fd27a; }
+html.giris2 #loading .sv-row.on { filter:drop-shadow(0 0 1.6cqw #f0b04066); }
+html.giris2 #loading .sv-row.kapali { opacity:.6; filter:saturate(.3); cursor:not-allowed; }
+html.giris2 #loading .sv-row.kapali .sv-dot { background:radial-gradient(circle at 35% 30%, #eee, #8d8790 50%, #444); box-shadow:none; } html.giris2 #loading .sv-row.kapali .sv-st, html.giris2 #loading .sv-row.kapali .sv-pop { color:#9a948e; }
+html.giris2 #loading .sv-note { position:absolute; left:8%; right:8%; bottom:7%; margin:0; text-align:center; font:500 3.6cqw / 1.1 Inter, system-ui, sans-serif; color:#ffd98a; text-shadow:0 1px 2px #000; }
+html.giris2 #loading .sv-go { position:relative; flex:none; width:var(--bw); aspect-ratio:3.859; padding:0; border:0; background:var(--sv-btn) center / 100% 100% no-repeat; display:flex; align-items:center; justify-content:center; gap:calc(var(--bw) * .02);
+  filter:drop-shadow(0 3px 6px #000b); cursor:pointer; -webkit-tap-highlight-color:transparent; container-type:inline-size; }
+html.giris2 #loading .sv-go span { font:800 6.5cqw / 1 Cinzel, Georgia, serif; letter-spacing:.1em; text-transform:uppercase; color:#fbe9b8; text-shadow:0 1px 2px #000, 0 0 8px #e8c46888; }
+html.giris2 #loading .sv-go:active:not(:disabled), html.giris2 #loading .sv-row:active { transform:translateY(1px); filter:brightness(.92); }
+html.giris2 #loading .sv-go:disabled { cursor:default; filter:drop-shadow(0 3px 6px #000b) saturate(.8); }
+html.giris2 #loading .sv-spin { flex:none; width:7.6cqw; height:7.6cqw; border-radius:50%; border:1.3cqw solid #fbe9b899; border-top-color:#fff3cf; filter:drop-shadow(0 0 2px #000); animation:svSpin .9s linear infinite; }
+@keyframes svSpin { to { transform:rotate(360deg); } }
+html.giris2 #loading .sv-row:focus-visible { outline:none; filter:drop-shadow(0 0 2.4cqw #ffd98a); }
+html.giris2 #loading .sv-go:focus-visible { outline:2px solid var(--gold2); outline-offset:2px; }
+html.giris2 #loading.ready .ld-note { position:absolute; left:0; right:0; bottom:calc(var(--sab, 0px) + 2px); min-height:0; text-align:center; font-size:max(10px, calc(var(--H) * .026)); color:#ffd98a; text-shadow:0 1px 3px #000; z-index:3; }
+html.giris2 #loading.ready .ld-note:empty { display:none; }
+/* giriş formu: aynı altın çerçeve dili (G4) */
+html.giris2 #giris .gr-box { border:1px solid var(--kd-old-gold, #c9a45c); border-radius:10px; background:linear-gradient(180deg, #17120f, #0c0809); box-shadow:0 0 0 3px #0a0709, 0 0 0 4px #c9a45c80, 0 10px 30px #000d; }
+html.giris2 #giris .gr-logo small { color:var(--kd-old-gold, #c9a45c); }
+
+/* ===== Karakter ekranları (html.p23): K1 ===== */
+html.p23 .ks { --U:calc(min(var(--lh, 100vh), var(--lw, 100vw) * .46136) / 406); }
+/* A1 işaret: "Korant Online" başlığının önünde */
+html.p23 .ks .ks-mark { flex:none; width:calc(28 * var(--U)); height:calc(28 * var(--U)); object-fit:contain; filter:drop-shadow(0 2px 3px #000c); }
+/* A2 zemin mührü: daire merkezi (440,311) → elips 338×62, temas gölgesi 112×20 (N1 ölçü §3) */
+html.p23 .p23-seal { position:absolute; left:50%; top:calc(280 * var(--U)); width:calc(338 * var(--U)); height:calc(62 * var(--U)); transform:translateX(-50%); pointer-events:none; z-index:0; }
+html.p23 .p23-seal img { position:absolute; inset:0; width:100%; height:100%; display:block; opacity:.96; filter:drop-shadow(0 calc(2 * var(--U)) calc(5 * var(--U)) #000a); }
+html.p23 .p23-seal i { position:absolute; left:50%; top:calc(24 * var(--U)); width:calc(112 * var(--U)); height:calc(20 * var(--U)); transform:translateX(-50%); z-index:1; background:radial-gradient(ellipse at 50% 50%, #000b 0%, #0000 70%); }
+/* A3 başlık levhası: görsel JS'ten (ırka göre), yazı kodla */
+html.p23 .vz[data-race] .vz-title { top:calc(8 * var(--U)); width:calc(280 * var(--U)); height:calc(36 * var(--U)); box-sizing:border-box; display:flex; align-items:center; justify-content:center; border:0; border-image:none; background:no-repeat center / 100% 100%;
+  font:700 calc(15 * var(--U)) / 1 Cinzel, Georgia, serif; letter-spacing:.14em; color:#e9e1d3; text-shadow:0 1px 2px #000, 0 0 6px #000; }
+@media (max-width:760px) {
+  html.p23 .vz[data-race] .vz-title { width:calc(224 * var(--U)); font-size:calc(13 * var(--U)); }
+  html.p23 .p23-seal { width:calc(270 * var(--U)); height:calc(50 * var(--U)); top:calc(286 * var(--U)); } html.p23 .p23-seal i { top:calc(18 * var(--U)); }
+}
+/* bağlanıyor hâli: simge + yazı mavi plakanın içine sığsın */
+html.giris2 #loading .sv-go[aria-busy] { gap:2cqw; }
+html.giris2 #loading .sv-go[aria-busy] span { font-size:5.2cqw; letter-spacing:.05em; }
+html.giris2 #loading .sv-go[aria-busy] .sv-spin { width:5.4cqw; height:5.4cqw; border-width:1cqw; }
+html.giris2 #loading .sv-go[aria-busy] .sv-spin { position:absolute; left:21.5%; top:50%; margin-top:-2.7cqw; }
+html.giris2 #loading .sv-go[aria-busy] span { margin-left:5cqw; font-size:4.8cqw; }

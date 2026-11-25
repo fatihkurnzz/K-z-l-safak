@@ -9,6 +9,12 @@ import { CLIMB, seasonEndAt } from '../shared/pvp.js';
 import { RULES } from '../shared/rules.js';
 import { ri } from './icons.js';
 import { modBanner } from './ui-pvp.js';
+import { KULE, isBossFloor, adsizName } from '../shared/kule.js';
+
+// P31 (G2): kart önizlemesi = o zindanın savaş sahnesi (savas-arka.js ZINDAN_BG ile aynı dosyalar; düz dosya, tembel).
+// Eski SVG çizimleri (SCENE) yalnız görsel inmezse görünen yedektir.
+const ZSAHNE = { well: 'zindan_dipsiz_kuyu', depth: 'zindan_yeralti_ocagi', rift: 'zindan_gok_yarigi', seal: 'zindan_muhurlu_oda', kule: 'zindan_kul_kulesi' };
+const zimg = id => (ZSAHNE[id] ? `<img class="p31-zs" src="sahneler/${ZSAHNE[id]}.webp" alt="" loading="lazy" decoding="async" draggable="false" onerror="this.remove()">` : '');
 
 const used = k => S.daily[k] || 0;
 const DAY = 86400000, HOUR = 3600000;
@@ -50,12 +56,13 @@ const riftTrack = () => { const wd = weekDay(now()); return `<div class="zt days
 
 function card(id, name, desc, scene, track, chips, btn, lockKey) {
   const lk = lockKey && locked(lockKey);
-  return `<div class="zcard z-${id} ${lk ? 'lock' : ''}"><div class="zscene">${scene}${lk ? `<span class="zlock">${ri('lock')} Sv. ${UNLOCK[lockKey]}</span>` : ''}<b class="zname">${name}</b></div>
+  return `<div class="zcard z-${id} ${lk ? 'lock' : ''}"><div class="zscene">${scene}${zimg(id)}${lk ? `<span class="zlock">${ri('lock')} Sv. ${UNLOCK[lockKey]}</span>` : ''}<b class="zname">${name}</b></div>
     <div class="zbody"><p class="mut">${desc}</p>${track}<div class="chips">${chips.map(c => `<span class="chip">${c}</span>`).join('')}</div><div class="zbtns">${btn}</div></div></div>`;
 }
 const enter = (m, ok, label = 'Gir') => `<button class="btn red" data-a="mode" data-m="${m}" ${ok ? '' : 'disabled'}>${label}</button>`;
 
 hooks.dungeons = () => {
+  const kf = (S.kule || 0) + 1; // Kül Kulesi: sıradaki kat
   const weekend = weekDay(now()) >= 5 || DEV, W = RULES.well, dDone = S.depth >= CLIMB.floors, canSweep = !locked('depth') && S.depth < (S.depthPrev || 0);
   return `${modBanner()}<div class="hint">Zindanlar enerji yerine günlük hak ya da anahtar ister. Düşmanlar seviyene göre kurulur. Yolu ilerlettikçe ödüller büyür.</div>
   <div class="zgrid">
@@ -65,10 +72,13 @@ hooks.dungeons = () => {
     ${card('depth', 'Yeraltı Ocağı', 'Kat kat in; her kat ilk geçişte taş ve Nadir eşya verir. Beş katta bir boss.', SCENE.depth, depthTrack(),
       [dDone ? `Dönem tamam ${CLIMB.floors}/${CLIMB.floors}` : `Sıradaki kat ${S.depth + 1}/${CLIMB.floors}`, `${CLIMB.energy} enerji`, `Sıfırlanma ${left(seasonEndAt(now()) - now())}`],
       `${enter('depth', !locked('depth') && !dDone, 'İn')}${canSweep ? '<button class="btn sm blue" data-a="depthSweep">Seri iniş</button>' : ''}<button class="btn sm" data-a="depthFloors">Katlar</button>`, 'depth')}
+    ${card('kule', 'Kül Kulesi', `Bölgelerin bittiği yerde başlar. Sonsuz kat; her ${KULE.bossEvery} katta Küllerin Tarikatı’nın bir adsızı bekler. Katlar sıfırlanmaz.`, '', '',
+      [...(S.lvl < KULE.unlock ? [`Kilitli · Sv. ${KULE.unlock}`] : []), `Sıradaki kat ${kf}`, `${KULE.energy} enerji`, ...(isBossFloor(kf) ? [adsizName(kf)] : [])],
+      enter('kule', S.lvl >= KULE.unlock, 'Tırman'))}
     ${card('rift', 'Gök Yarığı', 'Yalnızca cumartesi ve pazar açılır; Kader Çarkı için parça verir.', SCENE.rift, riftTrack(),
       [weekend ? 'Açık' : 'Hafta sonu açılır', `Bugün ${used('rift')}/${RULES.rift.daily}`, `${RULES.rift.waves} dalga`],
       enter('rift', !locked('rift') && weekend && used('rift') < RULES.rift.daily), 'rift')}
-    ${card('seal', 'Mühürlü Oda', `Bir Mühür Taşı harcar; rastgele bir boss çıkar. Eşsiz şansı ${RULES.seal.unique} kat.`, SCENE.seal,
+    ${card('seal', 'Mühürlü Oda', `Bir Mühür Taşı harcar; rastgele bir Boss çıkar. Eşsiz şansı ${RULES.seal.unique} kat.`, SCENE.seal,
       `<div class="zt seals">${Array.from({ length: Math.min(8, Math.max(S.seals, 1)) }, (_, i) => `<i class="${i < S.seals ? 'on' : ''}">${ri('seal')}</i>`).join('')}${S.seals > 8 ? `<em>+${fmt(S.seals - 8)}</em>` : ''}</div>`,
       [`${S.seals} Mühür Taşı`, 'Günlük sınır yok'], enter('seal', !locked('seal') && S.seals > 0, 'Mührü kır'), 'seal')}
   </div>`;

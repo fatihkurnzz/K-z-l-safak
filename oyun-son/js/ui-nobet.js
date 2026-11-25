@@ -17,16 +17,9 @@ const MIN = 60000;
 const clock = t => new Date(t).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Istanbul' });
 const mmss = ms => { ms = Math.max(0, ms); const s = Math.floor(ms / 1000); return s >= 3600 ? `${Math.floor(s / 3600)}sa ${Math.floor(s % 3600 / 60)}dk` : `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
 const gName = g => (g.t === 'akce' ? `${fmt(g.n)} akçe` : g.t === 'yakut' ? `${g.n} Yakut` : g.t === 'stone' ? `${g.n} ${STONES[g.g]?.name || 'taş'}` : g.t === 'seal' ? `${g.n} Mühür Taşı` : g.t === 'ember' ? `${g.n} Tav Közü` : `${g.n}`);
-// Özgün çizim: Sönmüş Mabet'in ortasında mavi Kül Kristali, iki yanda sütun kırıkları (dini simge yok)
-const ART = `<svg class="nb-art" viewBox="0 0 320 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-  <defs><radialGradient id="nbG" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#6ab8ff" stop-opacity=".55"/><stop offset=".55" stop-color="#1a2a5a" stop-opacity=".35"/><stop offset="1" stop-color="#07080f"/></radialGradient>
-  <linearGradient id="nbC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f6ff"/><stop offset=".5" stop-color="#6ab8ff"/><stop offset="1" stop-color="#1c4a9a"/></linearGradient></defs>
-  <rect width="320" height="120" fill="#07080f"/><rect width="320" height="120" fill="url(#nbG)"/>
-  <path d="M0 100 H320 V120 H0Z" fill="#141826"/><ellipse cx="160" cy="100" rx="90" ry="9" fill="#1e2a48"/>
-  <g fill="#232a3e" stroke="#0a0c14" stroke-width="1.5"><path d="M40 100 V40 h16 V100Z"/><path d="M36 40 h24 v-6 h-24Z"/><path d="M264 100 V52 l8 -6 l8 4 V100Z"/><path d="M90 100 V70 h12 V100Z"/><path d="M218 100 V64 h12 V100Z"/></g>
-  <g class="nb-cr"><path d="M160 22 L180 60 L160 98 L140 60Z" fill="url(#nbC)" stroke="#cfeaff" stroke-width="1.5"/><path d="M160 22 L166 60 L160 98" fill="#ffffff" opacity=".35"/></g>
-  <g fill="#cfeaff" opacity=".7"><circle cx="120" cy="40" r="1.4"/><circle cx="204" cy="30" r="1.1"/><circle cx="188" cy="76" r="1.6"/><circle cx="132" cy="80" r="1"/><circle cx="150" cy="18" r="1"/></g>
-</svg>`;
+// P29: üst afiş düz dosya (sahneler/banner_kristal_nobeti.webp; pencere açılınca iner). Eski SVG çizim kalktı; img olduğu için duzen.css'in
+// html.sahneli :has(> svg.nb-art) kuralı (eski --sc-kristal-nobeti) artık eşleşmez.
+const ART = '<img class="p29-ban nb-ban" src="sahneler/banner_kristal_nobeti.webp" alt="" decoding="async" draggable="false">';
 
 function html(D) {
   if (!D) return '<p class="mut">Yükleniyor…</p>';
@@ -87,7 +80,7 @@ ACT.nbGo = async () => {
   const getAct = async i => { while (acts.length <= i) { await sleep(800); const r = await act('coop.view', { id, from: acts.length }).catch(() => null); if (r?.acts?.length && r.from === acts.length) acts.push(...r.acts); } return acts[i]; };
   const putAct = async (i, c) => { try { await act('coop.act', { id, i, c }); if (acts.length === i) acts.push(c); return true; } catch { return false; } };
   hud.hidden = true; hideTown(); hideChatBar();
-  runBattle({ setup: v.setup, env: 'shrine', title: v.title, timer: 25, coop: { me: v.me, getAct, putAct },
+  runBattle({ setup: v.setup, env: 'shrine', mode: 'nobet', faction: S.faction, title: v.title, timer: 25, coop: { me: v.me, getAct, putAct },
     onDone: async () => { let res = null; for (let k = 0; k < 6 && !res; k++) { res = await act('coop.done', { id }).catch(e => (e.code === 'done' ? null : (k === 5 ? toast(e.message) : null))); if (!res) await sleep(700); } if (!res) return ACT.hub(); showResult({ id: 0, title: res.title }, res, { mode: 'nobet' }, false); },
     onExit: () => confirmBox('Parti savaşından çık', 'Kahramanın savaşta kalır; sıran gelince yapay zekâ oynar.', () => { closeModal(); ACT.hub(); }, 'Çık') });
 };

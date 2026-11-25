@@ -286,7 +286,10 @@ export function stageRace(race) {
 // 22 Kas (GPT karakter ekranları paketi): boyalı sahne resmi (Elentha / Kragmir) ekranı kaplayan arka plan olur; yüklenince
 // koddan çizilen dekor (silindir, zemin, kürsü, sancak, mangal) gizlenir, ışıklar ve zerreler kalır; karakterin gölgesi
 // görünmez bir gölge düzlemine düşer. Resim gelmezse eski dekor olduğu gibi kalır.
-const BG = { sancak: 'img/kd/karakter/sahne-sancak.webp', ocak: 'img/kd/karakter/sahne-ocak.webp' };
+// P29: Elentha/Kragmir karakter seçim + oluşturma zemini = sahneler/karakter_secim_*.webp (kaide alt-ortada; yalnız bu ekranda iner)
+const BG = { sancak: 'sahneler/karakter_secim_elentha.webp', ocak: 'sahneler/karakter_secim_kragmir.webp' };
+/** P28/P29: geniş ekranda resmin dikey kırpma odağı (0 = alt kenar, 1 = üst kenar); kaide kadrajın altında kalsın diye halk başına. */
+export const BG_ODAK = { sancak: 0, ocak: 0 }; // P29: yeni sahnede kaide alt-ortada (resim yüksekliğinin %64–88i): en alt kenar görünür, figür kaideye oturur
 function loadBg(race) {
   new THREE.TextureLoader().load(BG[race], t => {
     if (!ST.on || ST.race !== race || !ST.g) { t.dispose(); return; }
@@ -304,7 +307,7 @@ function loadBg(race) {
 function fitBg() {
   const t = ST.bgTex, im = t?.image; if (!im) return;
   const a = camera.aspect || 2, I = im.width / im.height;
-  if (a > I) { t.repeat.set(1, I / a); t.offset.set(0, (1 - I / a) * 0.35); } else { t.repeat.set(a / I, 1); t.offset.set((1 - a / I) / 2, 0); }
+  if (a > I) { t.repeat.set(1, I / a); t.offset.set(0, (1 - I / a) * (BG_ODAK[ST.race] ?? 0.35)); } else { t.repeat.set(a / I, 1); t.offset.set((1 - a / I) / 2, 0); }
 }
 // Sahnedeki kahramanı değiştir (eskisi bırakılır). Girişte kısa bir yükselme ve halka parlaması olur.
 export function stageHero(unit, yaw = 0) {

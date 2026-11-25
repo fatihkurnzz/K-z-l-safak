@@ -14,6 +14,9 @@ import { pickGear, tierForLevel } from './items.js';
 import { rollKill, REWARD_GRADE, SEAL_UNIQUE } from './drops.js';
 import { fail, int, grant, bump, used, useDaily, count } from './util.js';
 import { zoneBonusFor, zoneMult, stageXpPct, stageAkcePct, terrWin } from './realm.js';
+import { p28Bonus, p28AfterBattle, tavernUnits } from './han.js';
+// P28: PvE savaş sonucu işlenirken etkin Han/Zafer kazanç çarpanı (yalnız settle sırasında dolu; aşağıdaki sarmalayıcı kurar)
+let P28 = null;
 import { pickFrom, weighted } from './rng.js';
 import { botParty, isBot } from './bots.js';
 import { SEASON, ARENA_PTS, sameRace, raceMark, STAGE_TIERS, validTier, starsOf, tierKey, CLIMB, climbLevel, climbScale, climbRewards, modNow, modById, modUnit } from './pvp.js';
@@ -85,6 +88,7 @@ function modBonus(p, b, out) {
 }
 
 export function addXp(p, xp, out) {
+  if (P28?.xpPct) xp = Math.round(xp * (100 + P28.xpPct) / 100); // P28: Han Baharatlı Dem + Zafer buff'ı (yalnız PvE)
   xp = blessXp(p, xp); // nüfus Bereketi (nufus.js): azınlık ırkın bütün deneyim kazancına, öteki çarpanlardan sonra
   const ml = addMasteryXp(p, xp); if (ml) out.mastery = (out.mastery || 0) + ml; // 60. seviyeden sonra ustalık deneyimi (mastery.js)
   p.xp += xp; out.xp = (out.xp || 0) + xp;
@@ -116,7 +120,7 @@ const buffed = (p, n) => (n > 0 ? partyUnits(p).map(u => ({ ...u, atk: Math.roun
 const base = (sum, extra) => ({ win: sum.winner === 'A', turns: sum.turns, deaths: sum.deaths, stars: 0, xp: 0, akce: 0, loot: [], levels: 0, ...extra });
 // Taraf bonusu: savaştan kazanılan akçe (her modun toplam akçesine, oyuncuya yazılmadan hemen önce uygulanır)
 const battleAkce = (p, n) => Math.round(withPct(n, factionBonus(p.faction).battleAkce + blessAkcePct(p))); // + nüfus Bereketi (nufus.js; ırk bonusuyla toplanır)
-const finish = (p, out) => { out.akce = battleAkce(p, out.akce); p.akce += out.akce; if (out.win) { p.stats.wins++; bump(p, 'win'); } return out; };
+const finish = (p, out) => { out.akce = battleAkce(p, out.akce); if (P28?.akcePct) out.akce = Math.round(out.akce * (100 + P28.akcePct) / 100); p.akce += out.akce; if (out.win) { p.stats.wins++; bump(p, 'win'); } return out; };
 
 // Seviyeye göre karışık yaratık dalgası (zindanlar)
 function wave(rand, lvl, n, elite = 1) {
@@ -135,11 +139,11 @@ export const MODES = {
       if (!validTier(tier)) fail('bad-tier');
       const def = typeof stage === 'string' ? stageDef(stage, tier) : null;
       if (!def) fail('bad-stage');
-      if (!stageOpen(p, def.id, tier)) fail('stage-locked', tier && def.id === '1-1' ? `${STAGE_TIERS[tier].name} kademe, ${STAGE_TIERS[tier - 1].name} kademenin son boss’u geçilince açılır.` : 'Önce bir önceki aşama geçilmeli.');
+      if (!stageOpen(p, def.id, tier)) fail('stage-locked', tier && def.id === '1-1' ? `${STAGE_TIERS[tier].name} kademe, ${STAGE_TIERS[tier - 1].name} kademenin son Boss’u geçilince açılır.` : 'Önce bir önceki aşama geçilmeli.');
       const key = tierKey(def.id, tier), st = starsOf(p, tier);
       // Günlük boss: ilk geçişe kadar serbest denenir; geçildikten sonra günde 1 hak, hak girişte düşer
       if (def.kind === 'boss') {
-        if (st[def.id]) { if (p.daily.boss[key]) fail('boss-done', 'Bu boss için bugünkü hakkın bitti.'); p.daily.boss[key] = true; }
+        if (st[def.id]) { if (p.daily.boss[key]) fail('boss-done', 'Bu Boss için bugünkü hakkın bitti.'); p.daily.boss[key] = true; }
         bump(p, 'boss');
       }
       if (p.energy < def.energy) fail('no-energy', 'Yeterli enerji yok.');
@@ -581,6 +585,11 @@ export const MODES = {
 // Oyuncuya (ya da kahraman sınıflarından kurulu rakip partiye) karşı modlar: sırayı hız çubuğu belirler. Diğer bütün modlar
 // yaratıklara karşıdır ve açılış turu partinindir (battle.js: lead).
 const PVP = new Set(['arena', 'live', 'banner', 'siege', 'anit']);
+// P28: PvE modlarının sonucu Han/Zafer kazanç çarpanıyla işlenir; ardından Han buff'ının kalan savaş hakkı 1 azalır
+for (const [k, M] of Object.entries(MODES)) if (!PVP.has(k)) {
+  const settle = M.settle;
+  M.settle = function (p, b, sum, env) { const prev = P28; P28 = p28Bonus(p, env.now); try { return settle.call(this, p, b, sum, env); } finally { P28 = prev; p28AfterBattle(p, env.now); } };
+}
 // Klan Karargâhı Talim Meydanı: yaratıklara karşı (PvP olmayan) savaşlarda kahramanların saldırı ve büyü gücü +%; savaş kaydına işlendiği için sunucu tekrarı aynı sayıyı oynar
 const talim = (p, mode, party) => { const k = PVP.has(mode) ? 0 : hqPct(p, 'talim'); return k > 0 ? party.map(u => (u.cls ? { ...u, atk: Math.round(u.atk * (100 + k) / 100), mag: Math.round(u.mag * (100 + k) / 100) } : u)) : party; };
 // Savaşı başlatır (kayıt p.battle'a yazılır) — game.js 'battle.start' buradan geçer.
@@ -592,7 +601,7 @@ export function startBattle(p, args, env) {
   const s = M.build(p, args, env);
   p.stats.battles++;
   const waves = s.solo === false ? s.waves : soloWaves(s.waves, mode, s.solo); // tek kahramana göre dalga (solo.js)
-  p.battle = { id: p.nextBattle++, mode: args.mode || 'stage', ref: s.ref, seed: seedOf(env), party: talim(p, mode, (s.party || partyUnits(p)).map(u => (u.ai ? u : soloHero(u, mode, p.heroes?.[u.key]?.path)))), lead: PVP.has(mode) ? 0 : 1, eng: ENGINE_V, waves, enrageTurn: s.enrageTurn || 0, turnCap: s.turnCap || TURN_CAP, opts: s.opts || {}, title: s.title, env: s.env, at: env.now };
+  p.battle = { id: p.nextBattle++, mode: args.mode || 'stage', ref: s.ref, seed: seedOf(env), party: (PVP.has(mode) ? x => x : x => tavernUnits(p, env.now, x))(talim(p, mode, (s.party || partyUnits(p)).map(u => (u.ai ? u : soloHero(u, mode, p.heroes?.[u.key]?.path))))), lead: PVP.has(mode) ? 0 : 1, eng: ENGINE_V, waves, enrageTurn: s.enrageTurn || 0, turnCap: s.turnCap || TURN_CAP, opts: s.opts || {}, title: s.title, env: s.env, at: env.now };
   return p.battle;
 }
 export const setupOf = b => ({ party: b.party, waves: b.waves, seed: b.seed, enrageTurn: b.enrageTurn, turnCap: b.turnCap, restoreOnWave: !!b.opts.restoreOnWave, lead: !!b.lead, v: b.eng || 1, bdw: b.opts.bdw || null }); // eng: savaşın başladığı motor sürümü (eski kayıt: 1)

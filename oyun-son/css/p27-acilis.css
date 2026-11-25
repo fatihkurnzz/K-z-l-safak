@@ -1,0 +1,87 @@
+/* P27 A+ görsel yenileme — acilis (docs/referans/p27-a-plus/TALIMAT.md). Kurallar ekran/duruma kapsamlı; !important yok. */
+
+/* ===== 1.2 İlk yükleme ekranı (html.giris2 #loading:not(.ready)) =====
+   Görsel (img/korant-acilis.jpg, 1672x941) dikeyde tam sığar (contain): üstte daire amblem, altta "Powered by" kesilmez.
+   Geniş ekranda yanlarda kalan dar boşluk bulanık şerit değil, koyu zemine yumuşak geçiş (maske) ile dolar.
+   Görselin "Powered by" yazısı yüksekliğin ≈%88'inde biter; durum metni + çubuk en alttaki ≈28 px'lik şeritte (çakışma yok). */
+html.giris2 #loading:not(.ready) { background: radial-gradient(ellipse 60% 80% at 50% 45%, #0d0a0c, #050306 70%); }
+html.giris2 #loading:not(.ready) .ld-blur { display: none; }
+html.giris2 #loading:not(.ready) .ld-art { inset: 0; filter: none; background: url(../img/korant-acilis.jpg) center / contain no-repeat;
+  --ex: max(0px, calc((var(--W) - var(--H) * 1.7768) / 2)); --fd: calc(var(--H) * .09);
+  -webkit-mask-image: linear-gradient(to right, transparent var(--ex), #000 calc(var(--ex) + var(--fd)), #000 calc(100% - var(--ex) - var(--fd)), transparent calc(100% - var(--ex)));
+  mask-image: linear-gradient(to right, transparent var(--ex), #000 calc(var(--ex) + var(--fd)), #000 calc(100% - var(--ex) - var(--fd)), transparent calc(100% - var(--ex))); }
+html.giris2 #loading:not(.ready) .ld-foot { bottom: calc(var(--sab, 0px) + 3px); width: min(440px, 50vw); gap: 2px; }
+html.giris2 #loading:not(.ready) .ld-txt { font-size: 10.5px; letter-spacing: 2.5px; line-height: 12px; }
+html.giris2 #loading:not(.ready) .ld-bar { height: 11px; padding: 1.5px; }
+html.giris2 #loading:not(.ready) .ld-bar b { font-size: 8.5px; }
+
+/* ===== 1.3 Sunucu seçimi (html.giris2 #loading.ready) ===== */
+/* bulanık yan şeritler yok: arka plan tam ekran kaplar (cover), maske kalkar; 15 sn'lik döngüde %100 → %104,5 nefes */
+html.giris2 #loading.ready .ld-blur { display: none; }
+html.giris2 #loading.ready .ld-art { background: var(--sv-bg) center / cover no-repeat; -webkit-mask-image: none; mask-image: none; transform-origin: 50% 55%; }
+html.giris2:not(.gfx-low) #loading.ready .ld-art { animation: p27Nefes 7.5s ease-in-out infinite alternate; }
+@keyframes p27Nefes { from { transform: scale(1); } to { transform: scale(1.045); } }
+
+/* parçacık katmanı (ui-acilis.js p27Fx): UI'nin arkasında, görselin önünde */
+html.giris2 #loading .p27-fx { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+html.giris2 #loading .p27-fx i { position: absolute; bottom: -2%; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%; opacity: 0; will-change: transform, opacity;
+  animation: p27Kor var(--d) linear var(--dl) infinite; }
+/* sağ: turuncu-kızıl kor kıvılcımı */
+html.giris2 #loading .p27-fx i.k { background: radial-gradient(circle, #fff4c8 0 18%, #ffb347 38%, #ff5a1a 70%, transparent 72%); box-shadow: 0 0 6px 1px #ff6a1ecc, 0 0 12px #ff3a0a77; }
+/* sol: mavi-altın ışık tozu (daha yavaş, daha soluk) */
+html.giris2 #loading .p27-fx i.t { background: radial-gradient(circle, #ffffff 0 20%, var(--c) 60%, transparent 72%); box-shadow: 0 0 6px var(--c); animation-name: p27Toz; }
+@keyframes p27Kor { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 10% { opacity: var(--a); } 70% { opacity: calc(var(--a) * .8); }
+  100% { opacity: 0; transform: translate(var(--dx), calc(var(--lh, 100vh) * -.78)) scale(.45); } }
+@keyframes p27Toz { 0% { opacity: 0; transform: translate(0, 0); } 20% { opacity: var(--a); } 50% { transform: translate(calc(var(--dx) * -1), calc(var(--lh, 100vh) * -.3)); }
+  80% { opacity: calc(var(--a) * .7); } 100% { opacity: 0; transform: translate(var(--dx), calc(var(--lh, 100vh) * -.6)); } }
+/* lav bölgesi (sağ üst volkan + sağ alt lav) yavaş ışık nabzı; sol alt hafif sis */
+html.giris2 #loading .p27-fx .lav { position: absolute; inset: 0; mix-blend-mode: screen; opacity: .35;
+  background: radial-gradient(ellipse 20% 26% at 84% 18%, #ff5a1a88, transparent 70%), radial-gradient(ellipse 30% 16% at 80% 92%, #ff4a1066, transparent 70%), radial-gradient(ellipse 10% 22% at 72% 30%, #ff6a2255, transparent 70%);
+  animation: p27Lav 6s ease-in-out infinite alternate; }
+@keyframes p27Lav { from { opacity: .25; } to { opacity: .85; } }
+html.giris2 #loading .p27-fx .sis { position: absolute; left: -10%; width: 70%; bottom: -4%; height: 34%; opacity: .5;
+  background: radial-gradient(ellipse 50% 60% at 40% 80%, #b8c8e655, transparent 70%), radial-gradient(ellipse 40% 45% at 70% 90%, #8fa4c844, transparent 70%);
+  animation: p27Sis 18s ease-in-out infinite alternate; }
+@keyframes p27Sis { from { transform: translateX(-3%); opacity: .35; } to { transform: translateX(6%); opacity: .6; } }
+
+/* Ares satırı: paketteki satır görseli (row) zemin; içi 3 eşit sütun, yazılar başlıkların (panelde %26,0 / %55,1 / %78,8) tam altında.
+   Satır panelde %6,5–%93,5 (87%) aralığında; sütunlar panelin %13,7–%92,9'unu üçe böler, metinler cqw kaydırmasıyla başlık merkezine oturur. */
+html.giris2 #loading .sv-row { display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; padding: 0 .9% 0 8.3%; box-sizing: border-box; background-image: var(--sv-row); }
+html.giris2 #loading .sv-row > * { position: static; transform: none; justify-self: center; min-width: 0; }
+html.giris2 #loading .sv-row b { left: auto; translate: -.9cqw 0; font: 700 max(13px, 6.4cqw) / 1 Georgia, 'Times New Roman', serif; text-transform: none; letter-spacing: .02em; }
+html.giris2 #loading .sv-row .sv-st { left: auto; translate: 1.8cqw 0; }
+html.giris2 #loading .sv-row .sv-pop { left: auto; translate: -.9cqw 0; }
+/* Ares yeşil küresi nefes alır */
+html.giris2:not(.gfx-low) #loading .sv-row.aktif .sv-dot { animation: p27Kure 3.2s ease-in-out infinite; }
+@keyframes p27Kure { 0%, 100% { box-shadow: 0 0 1.2cqw #4cff4a88, 0 0 .5cqw #8fff8088, inset -.4cqw -.5cqw .8cqw #04300a99; filter: brightness(.92); }
+  50% { box-shadow: 0 0 3.6cqw 0.6cqw #4cff4acc, 0 0 1.2cqw #b6ffaacc, inset -.4cqw -.5cqw .8cqw #04300a66; filter: brightness(1.18); } }
+
+/* OYUNA GİR: 4,5 sn'de bir çapraz ince altın parlama (düğme görseli maske), basınca scale(.97) */
+html.giris2 #loading .sv-go { transition: transform .09s ease-out; }
+html.giris2 #loading .sv-go::after { content: ''; position: absolute; inset: 0; pointer-events: none; -webkit-mask: var(--sv-btn) center / 100% 100% no-repeat; mask: var(--sv-btn) center / 100% 100% no-repeat;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 236, 176, .0) 44%, rgba(255, 240, 190, .75) 50%, rgba(255, 236, 176, 0) 56%, transparent 58%) no-repeat; background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: screen; }
+html.giris2:not(.gfx-low) #loading .sv-go:not(:disabled)::after { animation: p27Parla 4.5s ease-in-out 1s infinite; }
+@keyframes p27Parla { 0% { background-position: 150% 0; } 26%, 100% { background-position: -50% 0; } }
+html.giris2 #loading .sv-go:active:not(:disabled) { transform: scale(.97); filter: brightness(.95); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.giris2:not(.gfx-low) #loading.ready .ld-art, html.giris2:not(.gfx-low) #loading .sv-row.aktif .sv-dot, html.giris2:not(.gfx-low) #loading .sv-go:not(:disabled)::after { animation: none; }
+  html.giris2 #loading .p27-fx { display: none; }
+}
+html.giris2.gfx-low #loading .p27-fx { display: none; }
+
+/* ===== 4.6 Karakter Oluştur: halk adı (Elentha/Kragmir) armanın üstüne binmesin — arma kartın üst yarısında küçülür,
+   ad + alt yazı alttaki koyu şerit içinde (bonus rozeti varsa onunla birlikte) ===== */
+#olz.vz .vz-ban .vz-emb { top: 1%; height: 50%; background-size: contain; background-position: center; background-repeat: no-repeat; }
+#olz.vz .vz-ban { padding-bottom: calc(5 * var(--U)); }
+#olz.vz .vz-ban > b { display: block; width: 100%; box-sizing: border-box; padding: calc(3 * var(--U)) 0 calc(2 * var(--U)); text-align: center;
+  background: linear-gradient(90deg, transparent, rgba(4, 4, 8, .78) 14%, rgba(4, 4, 8, .78) 86%, transparent); }
+#olz.vz .vz-ban > small:not(.vz-bl):not(.vz-nf) { margin-top: 0; }
+#olz.vz .vz-ban:has(> small.vz-bl), #olz.vz .vz-ban:has(> small.vz-nf) { padding-bottom: calc(4 * var(--U)); }
+#olz.vz .vz-ban > small.vz-bl, #olz.vz .vz-ban > small.vz-nf { margin-top: calc(2 * var(--U)); }
+
+/* ===== 4.6 Karakter Seçimi: sol üst "KORANT ONLINE" ve sağ üst "KARAKTERLER 1/3" belirgin koyu altlık + gölge ===== */
+#tksel.ks .ks-top .ks-brand { padding: 2px 12px 2px 4px; border-radius: 6px; background: linear-gradient(90deg, rgba(5, 6, 12, .74), rgba(5, 6, 12, .58) 80%, rgba(5, 6, 12, .2));
+  box-shadow: 0 0 0 1px rgba(240, 212, 136, .2), 0 2px 10px rgba(0, 0, 0, .6); }
+#tksel.ks .ks-top .ks-brand b, #tksel.ks .ks-top .ks-brand small { text-shadow: 0 1px 2px #000, 0 0 6px #000, 0 0 12px #000c; }
+#tksel.ks .ks-top .ks-count { background: rgba(5, 6, 12, .74); box-shadow: 0 0 0 1px rgba(240, 212, 136, .3), 0 2px 10px rgba(0, 0, 0, .6); text-shadow: 0 1px 2px #000, 0 0 6px #000; }

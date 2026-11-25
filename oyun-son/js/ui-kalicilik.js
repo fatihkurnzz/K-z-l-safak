@@ -4,7 +4,7 @@
 import { npcYuz } from './sahne.js'; // 23 Kas: anlatıcı yüz portresi (G4)
 import { rescueCard } from './ui-ogretici.js';
 import { placeNow } from './ui-hub.js';
-import { ormanOn, ORMAN } from './orman.js'; // açılış ormanı: öğreticinin ilk görevi ormanda geçer
+import { ormanOn, ormanSahne } from './orman.js'; // P26 K4: açılış ormanı 2B; hikâye ve ilk savaş ormanda geçer
 import { capitalOf } from '../shared/content.js';
 import { S, act, now, devUI, onState } from './api.js';
 import { ACT, $, hud, modal, esc, fmt, toast, run, showModal, closeModal, openWin, redraw, cur, closeWin, heroImg, lootChip, lootToast, lootKind, dropText, med, loading, clockText, achTag, hooks, locked } from './ui-core.js';
@@ -23,6 +23,7 @@ function otoIntro() {
   showModal(`<h2>OTO savaş</h2><p>Savaşta sağ alttaki <b>Otomatik</b> düğmesine dokunursan kahramanın yetenekleri ve iksirleri senin yerine kullanır.</p><p>Savaşa girmeden önceki ekranda <b>Oto: açık</b> seçersen savaş baştan otomatik başlar. İstediğin an Otomatik’e yeniden dokunup kontrolü geri alırsın.</p><div class="mbtns"><button class="btn green" data-a="closeModal">Anladım</button></div>`, 'oto-intro');
 }
 setInterval(() => { if (S && !hud.hidden) otoIntro(); }, 1500);
+TUTLOCK.hold = () => !!(S?.tut && !S.tut.end && ['battle', 'bar'].includes(TUT_STEPS[S.tut.s])); // K2: ilk iki öğretici savaşında OTO kapalı başlar
 TUTLOCK.pot = () => !!(S?.tut && !S.tut.end && TUT_STEPS[S.tut.s] === 'bar' && !S.tut.f?.pot && !BT.pot); // iksir içilmeden savaş sürmez (19 Kas) // savaşta oyuncunun yetenek ve iksir kullandığı (öğretici 'bar' adımı)
 import { POT } from '../shared/mana.js';
 import { svg, ri } from './icons.js';
@@ -65,7 +66,7 @@ function dressHud() {
   if (!S || hud.hidden || !hud.querySelector('.dock') || hud.querySelector('.krail')) return;
   hud.insertAdjacentHTML('beforeend', railHtml());
   const nb = hud.querySelector('.lrail [data-a="news"]'); if (nb) hud.querySelector('.krail').prepend(nb); // 19 Kas: Duyuru, Bildirim'in solunda
-  const wk = weeklyReady(S) + monthlyReady(S), q = hud.querySelector('.dock [data-a="quests"]'); // haftalık ödüller Görevler rozetine eklenir
+  const wk = weeklyReady(S) + monthlyReady(S), q = hud.querySelector('.s2-dock [data-a="quests"], .dock [data-a="quests"]'); // haftalık ödüller Görevler rozetine eklenir
   if (wk && q) { let b = q.querySelector('.badge'); if (!b) { b = document.createElement('span'); b.className = 'badge'; b.textContent = '0'; q.appendChild(b); } b.textContent = (+b.textContent || 0) + wk; }
 }
 new MutationObserver(dressHud).observe(hud, { childList: true, attributes: true, attributeFilter: ['hidden'] });
@@ -126,7 +127,7 @@ function jump(go) {
 }
 ACT.notifGo = d => jump(d.go);
 ACT.notifs = d => openWin({
-  title: 'Bildirimler', tab: d?.tab || 'list', tabs: [{ id: 'list', label: 'Bildirimler', small: 'Son olaylar', pre: tico(BELL) }, { id: 'set', label: 'Ayarlar', small: 'Kategori ve cihaz', pre: tico(SLID) }],
+  title: 'Bildirimler', scr: 'bildirim', tab: d?.tab || 'list', tabs: [{ id: 'list', label: 'Bildirimler', small: 'Son olaylar', pre: tico(BELL) }, { id: 'set', label: 'Ayarlar', small: 'Kategori ve cihaz', pre: tico(SLID) }],
   load: async t => {
     await DV.refresh();
     if (t !== 'list') return {};
@@ -257,23 +258,26 @@ ACT.achs = d => openWin({
   render: t => (t === 'titles' ? titlesHtml() : achListHtml()),
 });
 ACT.titles = () => ACT.achs({ tab: 'titles' });
+// P25-a (referans 02_basarimlar): satır = dairesel madalyon (boyalı örs/maden ya da boş altın halka + simge) · ad · unvan ·
+// ilerleme çubuğu (sayı çubuğun içinde) · sağda kurdeleli kademe rozeti (held/max). Rozet madalyona binmez (css/p25-a.css .pa-ach).
+const ACH_ART = { anvil: 'ors', mine: 'maden' };
 function achRow(A) {
   const held = achHeld(S, A.id), max = A.tiers.length, v = achValue(S, A), full = held >= max, goal = A.tiers[Math.min(held, max - 1)];
-  return `<div class="row arow ${full ? 'full' : ''}">${med(ACH_ICON[A.cat], held ? 'gold' : '', `${held}/${max}`)}
-    <div class="grow"><b>${A.name}</b> <em class="atag ${held ? '' : 'off'}">${A.title}</em><br><span class="mut">${full ? 'Bütün kademeler tamamlandı' : A.text(goal)}</span>
-      <div class="pbar" style="margin-top:3px"><i style="width:${Math.min(100, 100 * v / goal)}%"></i></div></div>
-    <div class="aside"><b>${fmt(Math.min(v, goal))}/${fmt(goal)}</b><small>Kademe başına<br>${ACH_STAT[A.stat]} +${stepPct(1)}</small></div></div>`;
+  return `<div class="pa-ach ${full ? 'full' : ''} ${held ? 'got' : ''}"><span class="pa-md ${ACH_ART[A.cat] ? `art-${ACH_ART[A.cat]}` : ''}" aria-hidden="true">${ACH_ART[A.cat] ? '' : svg(ACH_ICON[A.cat])}</span>
+    <div class="pa-ab"><b>${A.name} · <em class="${held ? '' : 'off'}">${A.title}</em></b><small>${full ? 'Bütün kademeler tamamlandı' : A.text(goal)} · kademe başına ${ACH_STAT[A.stat]} +${stepPct(1)}</small>
+      <div class="pa-bar"><i style="width:${Math.min(100, 100 * v / goal)}%"></i><span>${fmt(Math.min(v, goal))}/${fmt(goal)}</span></div></div>
+    <span class="pa-roz" title="Kademe ${held}/${max}"><b>${held}/${max}</b></span></div>`;
 }
 function achListHtml() {
   const list = ACH.filter(A => AC.cat === 'all' || A.cat === AC.cat);
-  return `<div class="hint"><b>Kalıcı bonus:</b> ${bonusLine()} <span class="mut">(sınır: nitelik başına +${stepPct(ACH_CAP_STEPS)})</span></div>
-    <div class="sub">${[['all', 'Tümü'], ...Object.entries(ACH_CATS)].map(([k, n]) => `<button data-a="achCat" data-k="${k}" class="${AC.cat === k ? 'on' : ''}">${n}</button>`).join('')}</div>
-    ${list.map(achRow).join('')}`;
+  return `<p class="pa-bonus"><b>Kalıcı bonus:</b> ${bonusLine()} <span>(sınır: nitelik başına +${stepPct(ACH_CAP_STEPS)})</span></p>
+    <div class="pa-cats">${[['all', 'Tümü'], ...Object.entries(ACH_CATS)].map(([k, n]) => `<button data-a="achCat" data-k="${k}" class="${AC.cat === k ? 'on' : ''}">${n}</button>`).join('')}</div>
+    <div class="pa-achs">${list.map(achRow).join('')}</div>`;
 }
 ACT.achCat = d => { AC.cat = d.k === 'all' || Object.hasOwn(ACH_CATS, d.k) ? d.k : 'all'; redraw(); };
 function titlesHtml() {
   const b = achBonus(S), cur0 = S.ach.title, own = ACH.filter(A => achHeld(S, A.id) > 0), rest = ACH.filter(A => achHeld(S, A.id) < 1);
-  return `<div class="hint">Kazandığın her başarım kademesi bir niteliğe <b>+${stepPct(1)}</b> ekler. Toplam bonus her nitelikte <b>en çok +${stepPct(ACH_CAP_STEPS)}</b> olur: sınır dolunca yeni kademeler yalnızca unvan ve ilerleme kazandırır. Bonus bütün partine, bütün savaşlarda uygulanır.</div>
+  return `<div class="hint">Kazandığın her başarım kademesi bir niteliğe <b>+${stepPct(1)}</b> ekler. Toplam Bonus her nitelikte <b>en çok +${stepPct(ACH_CAP_STEPS)}</b> olur: sınır dolunca yeni kademeler yalnızca unvan ve ilerleme kazandırır. Bonus bütün partine, bütün savaşlarda uygulanır.</div>
     <div class="kbon">${Object.keys(ACH_STAT).map(k => { const n = Math.min(ACH_CAP_STEPS, b.steps[k]); return `<div><small>${ACH_STAT[k]}</small><b>+${stepPct(n)}</b><span class="mut">sınır +${stepPct(ACH_CAP_STEPS)} · ${b.steps[k]} kademe</span><div class="pbar"><i style="width:${100 * n / ACH_CAP_STEPS}%"></i></div></div>`; }).join('')}</div>
     <h3>Unvanın</h3>
     <p class="mut">Seçtiğin unvan profilinde, oyuncu kartında, sohbette ve sıralamada adının yanında görünür.</p>
@@ -406,8 +410,9 @@ const TUT_OFF = new URLSearchParams(location.search).get('tut') === '0';
 const layer = document.createElement('div');
 layer.id = 'tut'; layer.hidden = true;
 document.getElementById('game').appendChild(layer);
-const TU = { sig: '', busy: false, confirm: false, card: null, mode: '', g: null, el: null, typed: '', tyT: 0, scrolled: '', st: 0, lr: '' };
-const q1 = s => document.querySelector(s);
+const TU = { sig: '', busy: false, card: null, mode: '', g: null, el: null, typed: '', tyT: 0, scrolled: '', st: 0, lr: '' };
+// Görünür ilk eşleşme (sehir2'de eski .dock gizli, yerine .s2-dock düğmeleri görünür); yoksa ilk eşleşme
+const q1 = s => { const l = document.querySelectorAll(s); for (const e of l) if (e.getClientRects().length) return e; return l[0] || null; };
 const vis = el => !!el && el.getClientRects().length > 0;
 // Hedef kaydırılan bir kabın (ör. Parti'nin sağ sütunu) kenarından taşıyorsa ekranda olsa da dokunuş kaba düşer: önce görünür alana kaydırılır
 const clipped = el => { const r = el.getBoundingClientRect(); for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { if (!/(auto|scroll|hidden)/.test(getComputedStyle(a).overflowY)) continue; const b = a.getBoundingClientRect(); if (r.top < b.top - 1 || r.bottom > b.bottom + 1) return true; } return false; };
@@ -419,43 +424,53 @@ const NARR = {
   ocak: { k: 'yashka', name: 'Şaman Yashka', svg: '<svg viewBox="0 0 48 48"><rect width="48" height="48" rx="6" fill="#3a0f10"/><path d="M5 48c2-12 10-16 19-16s17 4 19 16z" fill="#3a3436"/><path d="M8 36l4-5 2 6M40 36l-4-5-2 6" fill="#e8dcc0"/><path d="M12 20c0-9 5-15 12-15s12 6 12 15c0 4-2 10-4 13H16c-2-3-4-9-4-13z" fill="#1c1416"/><ellipse cx="24" cy="23" rx="8.5" ry="10" fill="#6f8f58"/><path d="M15 21l-4-6M33 21l4-6" stroke="#e8dcc0" stroke-width="2.4" stroke-linecap="round"/><path d="M16.5 22h5M26.5 22h5" stroke="#c0281c" stroke-width="2.6"/><circle cx="19" cy="22.5" r="1.1" fill="#ffd45a"/><circle cx="29" cy="22.5" r="1.1" fill="#ffd45a"/><path d="M20 30l1 3 1.5-3M26 30l1.5 3 1-3" fill="#f4ecd8"/><path d="M18 27h12" stroke="#e8dcc0" stroke-width="1.6" stroke-dasharray="2 2"/><path d="M12 12l-3-6M36 12l3-6" stroke="#e8dcc0" stroke-width="3" stroke-linecap="round"/></svg>' },
 };
 const nPor = n => { const u = npcYuz(n.k); return u ? `<img class="npc-yuz" src="${u}" alt="" draggable="false">` : n.svg; }; // 23 Kas: GPT G4 boyalı yüz (yüklenmediyse eski çizim)
-const narr = () => { const n = NARR[S.faction] || NARR.sancak; return `<div class="tnar"><div class="tport">${nPor(n)}</div><b>${n.name}</b></div>`; };
-// Açılış hikâyesi (sürüm 13): oyun ormanda başlar (orman.js); ilk görev orman yolunu temizlemektir, sonra Yemin Pazarı
-const STORY = {
-  ocak: [`${capitalOf('ocak')}’na giden yol, ${Z1}’nın kıyısındaki ${ORMAN.name}’dan geçer. Üç yüz yıldır kanla sulanan bu ovada gece kampını kuduz bir yaban sürüsü bastı; izcin Thrak yaralı yatıyor.`,
-    'Ateş hâlâ yanıyor, Kragmir örslerinde dövülmüş silahın elinde. Sisin içinde sürünün gözleri parlıyor.',
-    'İlk görevin burada: yolu temizle. Yol açılınca Thrak seni Yemin Pazarı’na götürecek. Toprak, çekice boyun eğer; gerisini ocak başında konuşuruz.'],
-  sancak: [`${capitalOf('sancak')}’ne giden yol, ${Z1}’nın kıyısındaki ${ORMAN.name}’dan geçer. Üç yüz yıldır kanla sulanan bu ovada gece kampını kuduz bir yaban sürüsü bastı; izcin Corin yaralı yatıyor.`,
-    'Ateş hâlâ yanıyor, Elentha çeliğinden kılıcın elinde. Sisin içinde sürünün gözleri parlıyor.',
-    'İlk görevin burada: yolu temizle. Yol açılınca Corin seni Yemin Pazarı’na götürecek. Çelik bile bir gün paslanır, ama bugün değil; gerisini Ak Kuleler’de konuşuruz.'],
-};
 const onHub = () => !hud.hidden && $('#win').hidden && $('#modal').hidden;
 // Ana üsteki hedef bir pencerenin arkasında kalıyorsa önce pencerenin kapatma düğmesi gösterilir
 const CLOSE_WIN = '#win header [data-a="closeWin"]';
 const hubOr = (sel, text, away) => (onHub() && vis(q1(sel)) ? { text, target: sel } : $('#modal').hidden && !$('#win').hidden && vis(q1(CLOSE_WIN)) ? { text: away, target: CLOSE_WIN } : { text: away });
 const withBtn = (g, btn) => (g.target === CLOSE_WIN ? g : { ...g, btn }); // pencere kapanınca Devam/Bitir gelir
+// P28: sehir2 başkentinde Kapı/Meydan etiketi yok; savaşa sağ alttaki SAVAŞ düğmesi (.s2-savas) → Sefer götürür. Savaş seçim
+// modalı açıkken Sefer kartı gösterilir. Eski HUD/3B başkentte (?sehir=0) Kapı etiketi yedek kalır.
+const SV_GO = '#modal [data-a="svGo"]', PT_CARSI = '#modal [data-a="gateCarsi"]';
+/** Savaşa çıkış ipucu: pre = adıma özgü giriş ("… sağ alttaki " ile biter); text/away = eski Kapı etiketi metinleri. */
+const toGate = (pre, text, away) => (vis(q1(SV_GO)) ? { text: '<b>Sefer</b>’i seç: bölgeler ve aşamalar orada.', target: SV_GO }
+  : !vis(q1('.blabel[data-id="gate"]')) && q1('.s2-savas') ? hubOr('.s2-savas', `${pre}<b>SAVAŞ</b> düğmesine dokun, <b>Sefer</b>’i seç.`, 'Ana ekrana dön: sağ alttaki SAVAŞ düğmesine dokun, Sefer’i seç.')
+  : hubOr('.blabel[data-id="gate"]', text, away));
 // Bulunulan adım ve ekrana göre gösterilecek ipucu: { text, target?, btn?, top?, strip? }
 // strip: ince şerit — 'battle' savaşta altta (düğmelerle yetenekler arasında), 'modal' açık pencerenin dışında
 function guide() {
   const step = TUT_STEPS[S.tut.s], title = cur()?.title, inBattle = !$('#battleUI').hidden, result = vis(q1('#modal [data-a="hub"]'));
   // Savaş çubuğundaki ilk kullanılabilir yetenek ve iksir (sıra oyuncuda değilken düğmeler kapalıdır, hedef görünmez)
   const SK = '#skills .skill.act:not([disabled])', POTB = '#skills .skill.pot:not([disabled])';
-  const forest = ormanOn(), FOE = '.blabel[data-id="yol"]'; // açılış ormanı: savaşa Kapı'dan değil, patikadaki yağmacılardan girilir
+  const forest = ormanOn(); // P26 K4: açılış ormanı (2B, orman.js) yalnız hikâye ve ilk savaş; savaş Yashka'nın sahnesinden açılır
   if (step === 'battle') {
+    if (inBattle && BT.auto) return { text: 'Otomatik açık: kendin oynamak için sağ alttaki <b>OTO</b>’yu kapat.', target: '#bauto', strip: 'battle' };
+    if (!inBattle) TU.fTur = 0;
+    if (inBattle && forest) { // P28 M5: tek Kül Kurdu, tek dalga; tur = oyuncunun sırasının kaçıncı kez geldiği (temel saldırı, ilk yetenek, bitiriş)
+      const BAS = '#skills .skill.basic:not([disabled])', sira = vis(q1(BAS));
+      if (sira && !TU.fOn) TU.fTur = (TU.fTur | 0) + 1;
+      TU.fOn = sira; const tur = Math.max(1, TU.fTur | 0);
+      if (tur <= 1) return vis(q1(BAS)) ? { text: '<b>1. tur · Temel saldırı</b>: soldaki ilk yuvaya dokun, sonra Kül Kurdu’na.', target: BAS, strip: 'battle' } : { text: '<b>1. tur · Temel saldırı</b>: sıran gelince temel saldırıyı seç.', target: '#skills', strip: 'battle' };
+      if (tur === 2) return vis(q1(SK)) ? { text: '<b>2. tur · İlk yetenek</b>: yanındaki yetenek yuvasına dokun, sonra hedefe. Mavi rozet mana bedelidir.', target: SK, strip: 'battle' }
+        : vis(q1(POTB)) ? { text: '<b>2. tur · İlk yetenek</b>: yetenek yuvaların seviye atladıkça dolar. Bu turda sağdaki <b>iksiri</b> dene; içmek turunu bitirmez.', target: POTB, strip: 'battle' } : { text: '<b>2. tur</b>: sıran gelince temel saldırıyla devam et.', target: '#skills', strip: 'battle' };
+      return { text: '<b>3. tur · Bitiriş</b>: Kül Kurdu’nu yere ser!', target: '#skills', strip: 'battle' };
+    }
     if (inBattle) return vis(q1(SK)) ? { text: 'Alttaki <b>savaş çubuğu</b>: solda temel saldırı, yanında yetenek yuvaların. Bir yeteneğe dokun, sonra bir düşmana.', target: SK, strip: 'battle' } : { text: 'Sıra sendeyken alttaki çubuktan bir yetenek seç, sonra bir düşmana dokun.', target: '#skills', strip: 'battle' };
-    if (S.stats.wins >= 1) return { text: result ? 'İlk zafer! Savaşın ganimeti (akçe ve düşen eşyalar) çantana girer; deneyim seviyeni yükseltir.' : 'İlk zaferini kazandın. Savaşlardan akçe, deneyim ve eşya kazanırsın; ganimet çantana girer.', btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
+    if (S.stats.wins >= 1 && forest && result) return { text: 'İlk zafer! Ganimetin çantana girdi. <b>Kemikli Koru’ya dön</b>: Yashka seni bekliyor.', strip: 'modal' }; // Sahne 3 ormanda (adımı orman.js ilerletir)
+    if (S.stats.wins >= 1 && !forest) return { text: result ? 'İlk zafer! Savaşın ganimeti (akçe ve düşen eşyalar) çantana girer; deneyim seviyeni yükseltir.' : 'İlk zaferini kazandın. Savaşlardan akçe, deneyim ve eşya kazanırsın; ganimet çantana girer.', btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
     if (result) return { text: 'Bu kez olmadı. Yeniden dene; zorlanırsan önce iksir iç.', strip: 'modal' };
-    if (vis(q1('[data-a="vsStart"]'))) return { text: 'Solda sen, sağda düşmanlar. Hazırsan savaşı başlat.', target: '[data-a="vsStart"]' };
+    if (vis(q1('[data-a="vsStart"]'))) return { text: 'Solda sen, sağda düşmanlar. Hazırsan savaşı başlat.', target: '[data-a="vsStart"]', side: 'left' }; // N3: balon düşman kartını örtmez (düğmenin solunda, dalga satırında)
     if (title === 'Kapı') return vis(q1('[data-a="stage"][data-id="1-1"]')) ? { text: 'İlk aşamaya dokun.', target: '[data-a="stage"][data-id="1-1"]' } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
-    if (forest) return hubOr(FOE, 'Yaban sürüsü patikanın ucunda. <b>Yaban sürüsü</b>’ne dokun: ilk savaşın başlasın.', 'Pencereyi kapat ve yaban sürüsüne dokun.');
-    return hubOr('.blabel[data-id="gate"]', 'Savaşa Kapı’dan çıkılır. Ortadaki <b>Kapı</b>’ya dokun.', 'Savaşa Kapı’dan çıkılır: ana üsse dön ve Kapı’ya dokun.');
+    return toGate('Savaşa çıkmak için sağ alttaki ', 'Savaşa Kapı’dan çıkılır. Ortadaki <b>Kapı</b>’ya dokun.', 'Savaşa Kapı’dan çıkılır: ana üsse dön ve Kapı’ya dokun.');
   }
   if (step === 'bar') { // savaş çubuğu: 6 yetenek yuvası, mana, iksirler; bir savaşta yetenek ve iksir kullanılır
     const f = S.tut.f || {}, potsLeft = (S.pots?.hp | 0) + (S.pots?.mp | 0), done = !!(f.pot || !potsLeft), next = `1-${Math.min(TUT_HUNT, S.stats.wins + 1)}`;
     if (inBattle) {
       const left = !(BT.pot || f.pot) && potsLeft;
-      if (BT.auto && left) return { text: 'Bu savaşı kendin oyna: <b>OTO</b>’yu kapat, çubuğu birlikte kullanalım.', target: '#bauto', strip: 'battle' };
+      if (BT.auto && (left || !BT.sk)) return { text: 'Bu savaşı kendin oyna: <b>OTO</b>’yu kapat, çubuğu birlikte kullanalım.', target: '#bauto', strip: 'battle' };
       if (!BT.pot && !f.pot && potsLeft) return { text: vis(q1(POTB)) ? `<b>Önce iksir!</b> Sağdaki yanıp sönen Can ya da Mana iksirine dokun; iksir içmeden saldıramaz, savaştan çıkamazsın. İçmek turunu bitirmez; savaş başına her türden en çok ${POT.cap} tane.` : 'Sıran gelince önce sağdaki <b>iksirlerden</b> birine dokun: iksir içmeden saldıramazsın.', target: vis(q1(POTB)) ? POTB : undefined, strip: 'battle' };
+      // P28 doğrulama: düşük seviyede hiç açık yetenek yuvası yoksa (#skills .skill.act yok) "yeteneğe dokun" istenemez; temel saldırıya yönlendir
+      if (!BT.sk && !f.sk && !q1('#skills .skill.act')) return { text: 'Yetenek yuvaların seviye atladıkça açılır. Şimdilik soldaki <b>temel saldırıyla</b> savaşı bitir.', target: vis(q1('#skills .skill.basic:not([disabled])')) ? '#skills .skill.basic:not([disabled])' : undefined, strip: 'battle' };
       if (!BT.sk && !f.sk) return { text: vis(q1(SK)) ? '<b>Yetenek</b>: yuvalardan birine dokun, sonra hedefine (düşmana; şifa ve güçlendirmede kendine ya da yuvaya yeniden). Mavi rozet <b>mana</b> bedelidir; mana (mavi çubuk) her turunun başında biraz dolar.' : 'Sıranı bekle; sonra bir <b>yetenek</b> yuvasına dokun.', target: vis(q1(SK)) ? SK : undefined, strip: 'battle' };
       return { text: 'Harika! Kilitli yuvalar seviye atladıkça açılır. Şimdi savaşı bitir.', strip: 'battle' };
     }
@@ -463,26 +478,26 @@ function guide() {
     if (result) return { text: 'Sıradaki savaşta alttaki <b>savaş çubuğunu</b> birlikte kullanalım: önce bir <b>iksir</b> iç.', strip: 'modal' };
     if (vis(q1('[data-a="vsStart"]'))) return { text: 'Bu savaşta alttaki çubuğu kendin kullan: <b>önce bir iksir iç</b>, sonra saldır. Hazırsan başlat.', target: '[data-a="vsStart"]' };
     if (title === 'Kapı') return vis(q1(`[data-a="stage"][data-id="${next}"]`)) ? { text: `Sıradaki aşamaya (${next.replace('-', '.')}) dokun.`, target: `[data-a="stage"][data-id="${next}"]` } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
-    if (forest) return hubOr(FOE, 'Savaşta altta bir <b>savaş çubuğu</b> var: temel saldırı, 6 yetenek yuvası, Can ve Mana iksiri. Denemek için sıradaki <b>Yaban sürüsü</b>’ne dokun.', 'Pencereyi kapat ve yaban sürüsüne dokun: savaş çubuğunu deneyelim.');
-    return hubOr('.blabel[data-id="gate"]', 'Savaşta altta bir <b>savaş çubuğu</b> var: temel saldırı, 6 yetenek yuvası, Can ve Mana iksiri. Denemek için <b>Kapı</b>’ya dokun.', 'Ana üsse dön ve Kapı’ya dokun: savaş çubuğunu deneyelim.');
+    return toGate('Savaşta altta bir <b>savaş çubuğu</b> var: temel saldırı, 6 yetenek yuvası, Can ve Mana iksiri. Denemek için sağ alttaki ', 'Savaşta altta bir <b>savaş çubuğu</b> var: temel saldırı, 6 yetenek yuvası, Can ve Mana iksiri. Denemek için <b>Kapı</b>’ya dokun.', 'Ana üsse dön ve Kapı’ya dokun: savaş çubuğunu deneyelim.');
   }
   // Hedefler çalışırken aranır (sürüm 13: ana üste Yemin Pazarı'na Kapı'nın yanındaki Çarşı geçidi götürür; eski kayıtta sol sütun düğmesi)
   const pick = (...sels) => sels.find(x => vis(q1(x))) || sels[0];
-  const inCarsi = placeNow() === 'carsi', toCarsi = () => (vis(q1('.blabel[data-id="carsi"]')) || !q1('.lrail .travel')
+  // P28: Çarşı etiketi kalktı; Yemin Pazarı'na Işınlanma Kapısı (portal etiketi → kart) götürür. Eski başkentte Çarşı geçidi/sol düğme yedek.
+  const inCarsi = placeNow() === 'carsi', toCarsi = () => (vis(q1(PT_CARSI)) ? { text: '<b>Yemin Pazarı</b>’nı seç.', target: PT_CARSI }
+    : !vis(q1('.blabel[data-id="carsi"]')) && q1('.blabel[data-id="portal"]') ? hubOr('.blabel[data-id="portal"]', '<b>Işınlanma Kapısı</b>’na dokun, <b>Yemin Pazarı</b>’nı seç.', 'Ana ekrana dön: Işınlanma Kapısı’na dokun, Yemin Pazarı’nı seç.')
+    : vis(q1('.blabel[data-id="carsi"]')) || !q1('.lrail .travel')
     ? hubOr('.blabel[data-id="carsi"]', '<b>Yemin Pazarı</b>’na geç: Kapı’nın yanındaki <b>Çarşı</b> geçidine dokun.', 'Ana ekrana dön ve Çarşı geçidinden Yemin Pazarı’na geç.')
     : hubOr('.lrail .travel', '<b>Yemin Pazarı</b>’na geç: soldaki düğmeye dokun.', 'Ana ekrana dön ve Yemin Pazarı’na geç.'));
   if (step === 'hunt') {
     const w = S.stats.wins, next = `1-${Math.min(TUT_HUNT, w + 1)}`;
     if (inBattle) return { text: `Kes onları! Zafer ${w}/${TUT_HUNT}. Her savaş akçe ve deneyim getirir.`, target: '#skills', strip: 'battle' };
-    if (w >= TUT_HUNT) return { text: forest ? `Patika temiz: ${TUT_HUNT} zafer, cebinde akçe. Seviye de atladın. İlk görevin tamam!` : `Eline ısındın: ${TUT_HUNT} zafer, cebinde akçe. Seviye de atladın.`, btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
+    if (w >= TUT_HUNT) return { text: `Eline ısındın: ${TUT_HUNT} zafer, cebinde akçe. Seviye de atladın.`, btn: 'Devam', ...(result ? { strip: 'modal' } : { top: true }) };
     if (result) return { text: `Güzel! Zafer ${w}/${TUT_HUNT}. Sıradaki yaratıklara geçelim.`, strip: 'modal' };
     if (vis(q1('[data-a="vsStart"]'))) return { text: 'Hazırsan savaşı başlat.', target: '[data-a="vsStart"]' };
     if (title === 'Kapı') return vis(q1(`[data-a="stage"][data-id="${next}"]`)) ? { text: `Sıradaki aşamaya (${next.replace('-', '.')}) dokun.`, target: `[data-a="stage"][data-id="${next}"]` } : { text: 'Bölgeler sekmesine geç.', target: '.tabs [data-id="zones"]' };
-    if (forest) return hubOr(FOE, `Patikada sürü kaldı (${w}/${TUT_HUNT}): sıradaki <b>Yaban sürüsü</b>’ne dokun.`, 'Pencereyi kapat ve yaban sürüsüne dokun.');
-    if (inCarsi) return toCarsi();
-    return hubOr('.blabel[data-id="gate"]', `Birkaç yaratık daha kes (${w}/${TUT_HUNT}): ortadaki <b>Kapı</b>’ya dokun.`, 'Ana üsse dön ve Kapı’ya dokun.');
+    if (inCarsi && !q1('.s2-savas')) return toCarsi();
+    return toGate(`Birkaç yaratık daha kes (${w}/${TUT_HUNT}): sağ alttaki `, `Birkaç yaratık daha kes (${w}/${TUT_HUNT}): ortadaki <b>Kapı</b>’ya dokun.`, 'Ana üsse dön ve Kapı’ya dokun.');
   }
-  if (step === 'carsi' && forest) return { text: `Orman yolu temiz! ${ORMAN.scout} yolu biliyor: ormandan çıkıp iki ırkın buluştuğu tarafsız pazar kasabası <b>Yemin Pazarı</b>’na gidiyoruz. Tüccarlar, gezginler ve yardım bekleyenler orada.`, btn: 'Yemin Pazarı’na git', top: true };
   if (step === 'carsi') return { text: 'Seni şimdi iki ırkın buluştuğu tarafsız pazar kasabası <b>Yemin Pazarı</b>’na bırakıyorum. Tüccarlar, gezginler ve yardım bekleyenler orada.', btn: 'Yemin Pazarı’na git', top: true };
   if (step === 'merchant') {
     if (S.tut.f?.buy) return { text: 'İlk alışverişin tamam! Kestiğin yaratıkların akçesi işe yaradı.', btn: 'Devam', top: true };
@@ -499,7 +514,7 @@ function guide() {
       if (!vis(q1('.ds[data-s="wr"]'))) return { text: 'Ekipman sekmesine geç.', target: '.tabs [data-id="eq"]' };
       return { text: 'Karakterin <b>Sağ El</b> yuvasına dokun.', target: '.ds[data-s="wr"]' };
     }
-    return hubOr('.dock [data-a="party"]', `<b>${name}</b> çantanda. Kuşanmak için <b>Karakter</b>’i aç.`, `Ana ekranda Karakter’i açıp ${name} kuşan.`);
+    return hubOr('.s2-dock [data-a="party"], .dock [data-a="party"]', `<b>${name}</b> çantanda. Kuşanmak için <b>Karakter</b>’i aç.`, `Ana ekranda Karakter’i açıp ${name} kuşan.`);
   }
   const goWorm = vis(q1('#modal [data-a="npcWorm"]')) ? { text: 'Bran kardeşi için yalvarıyor. <b>Göreve çık</b>’a dokun.', target: '#modal [data-a="npcWorm"]', strip: 'modal' } : null; // Bran'ın sözü açık: şerit, sözü örtmesin
   if (step === 'child') {
@@ -517,22 +532,21 @@ function guide() {
   }
   if (step === 'rescue') {
     if (!inCarsi) return toCarsi();
-    return withBtn(hubOr('.blabel[data-id="child"]', `Bran ve Nessa sana teşekkür ediyor; Bran’a dokunup konuşabilirsin. <b>Sıradaki görevin:</b> Kapı’dan çıkıp ${Z1} bölgesinde yaratık kesmeye devam et. Önce yeteneklerine bir bakalım.`, 'Bran ve Nessa sana teşekkür ediyor.'), 'Devam');
+    return withBtn(hubOr('.blabel[data-id="child"]', `Bran ve Nessa sana teşekkür ediyor; Bran’a dokunup konuşabilirsin. <b>Sıradaki görevin:</b> SAVAŞ düğmesinden Sefer’e çıkıp ${Z1} bölgesinde yaratık kesmeye devam et. Önce yeteneklerine bir bakalım.`, 'Bran ve Nessa sana teşekkür ediyor.'), 'Devam');
   }
   if (step === 'skills') {
     if (title === 'Karakter' && vis(q1('.tabs [data-id="skill"].on'))) return { text: 'Karakterin savaşa temel saldırı, <b>6 aktif</b> ve 1 pasif yetenekle girer; altı temel yetenek 1, 2, 4, 6, 9 ve 12. seviyede açılır. 10. seviyeden sonra gelen puanları ağaçlara dağıtır, güçlü yetenekleri yuvalara koyarsın.', btn: 'Devam', top: true };
     if (title === 'Karakter') return { text: 'Şimdi <b>Yetenek</b> sekmesine dokun.', target: '.tabs [data-id="skill"]' };
-    return hubOr('.dock [data-a="party"]', 'Yeteneklere bakalım: <b>Karakter</b>’i aç.', 'Yetenekler Karakter ekranındadır.');
+    return hubOr('.s2-dock [data-a="party"], .dock [data-a="party"]', 'Yeteneklere bakalım: <b>Karakter</b>’i aç.', 'Yetenekler Karakter ekranındadır.');
   }
   if (step === 'anvil') return { ...hubOr('.blabel[data-id="anvil"]', `<b>Örs</b> ${UNLOCK.anvil}. seviyede açılır. Eşyana artı basarsın: eşyan asla yanmaz; yüksek artılarda başarısızlık bir artı düşürebilir.`, `Örs ${UNLOCK.anvil}. seviyede açılır: eşyana artı basarsın, eşya asla yanmaz.`), btn: 'Devam' };
   if (step === 'quests') {
     if (S.tut.f?.q) return { text: 'Görevler her gün 00:00’da, haftalık görevler pazartesi yenilenir. Sağ üstteki Takvim de her gün bir ödül verir.', btn: 'Devam', top: true };
     if (title === 'Görevler') return vis(q1('#page [data-a="gift"]')) ? { text: 'Günlük giriş ödülünü al.', target: '#page [data-a="gift"]' } : { text: 'Günlük sekmesine geç.', target: '.tabs [data-id="daily"]' };
-    return hubOr('.dock [data-a="quests"]', '<b>Görevler</b>’i aç: bugünün giriş ödülü seni bekliyor.', 'Ana üste Görevler’i aç ve giriş ödülünü al.');
+    return hubOr('.s2-dock [data-a="quests"], .dock [data-a="quests"]', '<b>Görevler</b>’i aç: bugünün giriş ödülü seni bekliyor.', 'Ana üste Görevler’i aç ve giriş ödülünü al.');
   }
   return withBtn(hubOr('#chatbar', 'Burası <b>sohbet</b>: genel kanala yaz, klan kur, oyunculara özel mesaj at. Artık hazırsın.', 'Ana üsteki sohbet şeridinden diğer oyunculara yazabilirsin. Artık hazırsın.'), 'Bitir');
 }
-const skipRow = () => '<p class="tq">Atlarsan öğretici bir daha açılmaz; bitirme hediyesi yine de çantana eklenir.</p><div class="tb"><button class="btn sm" data-t="skipYes">Evet, atla</button><button class="btn sm green" data-t="skipNo">Devam et</button></div>';
 // ---- Anlatıcı paneli: harf harf yazılır, dokununca tamamlanır ----
 // Görünen metin (.ttxt) sözlük katmanınca çevrilir ve yerini tutar (kutu yazılırken büyüyüp kaymaz); üstündeki
 // kopya (.ttype, translate="no") harf harf doldurulur, bitince kaldırılır.
@@ -567,19 +581,13 @@ function skel() {
 function setCard(sig, html) { if (TU.sig === sig) return; typeStop(); TU.mode = 'card'; TU.sig = sig; layer.innerHTML = html; }
 function tutTick() {
   const story = !!S && tutActive(S) && TUT_STEPS[S.tut.s] === 'story' && !TU.card;
-  // Açılış hikâyesi yalnızca ana üs boşken gösterilir (arkası karartılır; açık bir pencerenin üstüne binmez)
-  const on = !!S && !TUT_OFF && !document.getElementById('loading') && (tutActive(S) || !!TU.card) && !(story && !onHub());
+  // P26 K4: açılış hikâyesi ve ilk savaşın ganimeti 2B orman sahnesinde (orman.js) anlatılır; sahne en üstteyken katman gizli
+  const on = !!S && !TUT_OFF && !document.getElementById('loading') && (tutActive(S) || !!TU.card) && !story && !ormanSahne();
   if (!on) { if (!layer.hidden) { typeStop(); layer.hidden = true; layer.innerHTML = ''; TU.sig = ''; TU.mode = ''; TU.g = null; } return; }
   layer.hidden = false;
-  // Kart: açılış hikâyesi, kurtarma illüstrasyonu ve bitiş kutlaması (ortada, arkası karartılmış)
+  // Kart: kurtarma illüstrasyonu ve bitiş kutlaması (ortada, arkası karartılmış)
   if (TUT_STEPS[S.tut.s] === 'worm' && S.tut.f?.worm && onHub()) return setCard('card:rescue', rescueCard()); // Dev Solucan yenildi
-  if (TU.card || TUT_STEPS[S.tut.s] === 'story') {
-    const F = FACTIONS[S.faction];
-    return setCard(`card:${TU.card ? 'done' : 'story'}:${TU.confirm}`, TU.card
-      ? `<div class="tscrim"></div><div class="tcard tdone"><h2>Tebrikler</h2><div class="tin"><p><b>Tebrikler, öğreticiyi tamamladın.</b></p><p>${capitalOf(S.faction)} ve Yemin Pazarı artık senin. Hediyen çantanda:</p><div class="chips">${TU.card.loot.map(lootChip).join('')}</div><p class="tnext"><b>Sıradaki görevin:</b> Kapı’dan çıkıp ${Z1} bölgesinin aşamalarını geç ve boss’una ulaş. Görevler ekranı her gün yeni ödüller verir.</p><div class="tb"><button class="btn red" data-t="close">Maceraya devam</button></div></div></div>`
-      : `<div class="tscrim"></div><div class="tcard tstory"><h2 style="--fc:${F.color}">${F.name}</h2><div class="tin">${narr()}${STORY[S.faction].map(p => `<p>${p}</p>`).join('')}
-          ${TU.confirm ? skipRow() : `<div class="tb"><button class="btn red" data-t="next">Başlayalım</button><button class="tskip" data-t="skip">Öğreticiyi atla</button></div><small class="tnote">Kısa bir tur: ormanda ilk görevin, Yemin Pazarı ve tüccar, ilk silahın, Dev Solucan görevi, yetenekler, görevler ve sohbet. Atlasan da bitirsen de hediye var: ${TUT_GIFT.map(dropText).join(', ')}.</small>`}</div></div>`);
-  }
+  if (TU.card) return setCard('card:done', `<div class="tscrim"></div><div class="tcard tdone"><h2>Tebrikler</h2><div class="tin"><p><b>Tebrikler, öğreticiyi tamamladın.</b></p><p>${capitalOf(S.faction)} ve Yemin Pazarı artık senin. Hediyen çantanda:</p><div class="chips">${TU.card.loot.map(lootChip).join('')}</div><p class="tnext"><b>Sıradaki görevin:</b> SAVAŞ düğmesinden Sefer’e çıkıp ${Z1} bölgesinin aşamalarını geç ve Boss’una ulaş. Görevler ekranı her gün yeni ödüller verir.</p><div class="tb"><button class="btn red" data-t="close">Maceraya devam</button></div></div></div>`);
   // Rehber: anlatıcı paneli + hedefin çevresi delikli karartma, parlak çerçeve, nabız halkası ve hedefe dönük ok.
   // "Başla"dan sonra atla düğmesi yoktur (kullanıcı kararı).
   skel();
@@ -590,7 +598,7 @@ function tutTick() {
   const sig = `${S.tut.s}|${g.text}|${g.btn || ''}|${g.strip || ''}`;
   if (sig !== TU.sig) {
     TU.sig = sig; TU.el = null; TU.scrolled = '';
-    const n = NARR[S.faction] || NARR.sancak, bub = layer.querySelector('.tbub'), total = TUT_STEPS.length - 1;
+    const n = ormanOn() ? NARR.ocak : NARR[S.faction] || NARR.sancak, bub = layer.querySelector('.tbub'), total = TUT_STEPS.length - 1; // P26 K4: ormanda rehber Şaman Yashka
     bub.className = `tbub ${g.strip ? 'strip' : ''}`;
     bub.innerHTML = `<div class="tpor">${nPor(n)}</div><div class="tbody"><div class="thead"><b class="tname">${n.name}</b><span class="tprog"><small>Adım ${S.tut.s}/${total}</small><i><b style="width:${Math.round(S.tut.s / total * 100)}%"></b></i></span></div><div class="tline"><p class="ttxt">${g.text}</p></div>${g.btn ? `<div class="tb"><button class="tgo" data-t="next"><span>${g.btn}</span><i aria-hidden="true">›</i></button></div>` : ''}</div>`;
     bub.classList.remove('tin-anim'); void bub.offsetWidth; bub.classList.add('tin-anim');
@@ -604,7 +612,7 @@ function tutTick() {
 function place() {
   const g = TU.g, bub = layer.querySelector('.tbub');
   if (TU.mode !== 'guide' || !g || !bub) return;
-  if (g.target && !(TU.el && TU.el.isConnected && TU.el.matches(g.target))) { TU.el = q1(g.target); TU.st = 0; TU.lr = ''; }
+  if (g.target && !(TU.el && TU.el.isConnected && TU.el.matches(g.target) && vis(TU.el))) { TU.el = q1(g.target); TU.st = 0; TU.lr = ''; }
   const el = g.target ? TU.el : null;
   const W = view.w, H = view.h, pad = 6;
   let R = vis(el) ? lrect(el) : null;
@@ -642,9 +650,10 @@ function place() {
       const gap = 42, cx = F.x + F.w / 2, cy = F.y + F.h / 2, cl = (v, a, b) => Math.max(a, Math.min(b, v));
       const opts = [[cl(cx - bw / 2, pad, W - bw - pad), F.y + F.h + gap], [cl(cx - bw / 2, pad, W - bw - pad), F.y - bh - gap],
         [F.x + F.w + gap, cl(cy - bh / 2, pad, H - bh - pad)], [F.x - bw - gap, cl(cy - bh / 2, pad, H - bh - pad)]];
+      if (g.side === 'left') opts.unshift(opts.pop()); // P26 N3: önce hedefin solu (VS'de düşman kartı üstte-sağda kalır)
       const fit = opts.find(([a, b]) => a >= pad && b >= pad && a + bw <= W - pad && b + bh <= H - pad);
-      [x, y] = fit || [cx > W / 2 ? pad : W - bw - pad, cy > H / 2 ? pad : H - bh - pad];
-    } else { x = (W - bw) / 2; y = !F && g.btn ? (H - bh) / 2 - 16 : pad; } // bilgi adımı ortada; hedefsiz yön tarifi üstte
+      const WB = rbox('#win:not([hidden]) .page'); [x, y] = fit || [cx > W / 2 ? pad : W - bw - pad, cy > H / 2 ? (WB && WB.y > pad ? WB.y + 4 : pad) : H - bh - pad];
+    } else { x = (W - bw) / 2; const WB = rbox('#win:not([hidden]) .page'); y = !F && g.btn ? (H - bh) / 2 - 16 : WB && WB.y > pad ? WB.y + 4 : pad; } // pencere açıkken başlığı örtme (23 Kas) // bilgi adımı ortada; hedefsiz yön tarifi üstte
   }
   x = Math.max(pad, Math.min(W - bw - pad, x)); y = Math.max(pad, Math.min(H - bh - pad, y));
   css(bub, `left:${Math.round(x)}px;top:${Math.round(y)}px${bub.style.maxWidth ? `;max-width:${bub.style.maxWidth}` : ''}${bub.style.left ? '' : ';transition:none'}`); // ilk yerleşim kaymadan
@@ -666,24 +675,33 @@ layer.addEventListener('click', async e => {
   if (TU.busy) return;
   const t = b.dataset.t;
   if (t === 'next' && TU.mode === 'guide' && typing()) return typeStop(); // ilk dokunuş yazıyı tamamlar
-  if (t === 'skip') { TU.confirm = true; return tutTick(); }
-  if (t === 'skipNo') { TU.confirm = false; return tutTick(); }
   if (t === 'close') { TU.card = null; tutTick(); return askAfterTutorial(); }
   TU.busy = true; if (b.tagName === 'BUTTON') b.disabled = true;
   try {
-    if (t === 'skipYes') { const sr = await act('tut.skip'); const gift = sr?.loot?.length ? `Hediye: ${sr.loot.map(dropText).join(', ')} çantana eklendi.` : ''; TU.confirm = false; if (!(await askAfterTutorial())) toast(`Öğretici kapatıldı. ${gift || 'İyi seferler.'}`); else if (gift) toast(gift); } // izin penceresi açılıyorsa ileti üstüne binmesin
-    else if (t === 'rescue') { await act('tut.next', { s: S.tut.s + 1 }); ACT.goCarsi?.(); }
-    else if (t === 'next') {
-      const from = TUT_STEPS[S.tut.s];
-      const r = await act('tut.next', { s: S.tut.s + 1 });
-      if (from === 'carsi') ACT.goCarsi?.(); // öğretici seni Yemin Pazarı'na bırakır
-      if (r.done) TU.card = { loot: r.loot };
-      else if (r.loot.length) toast(`Hediye: ${r.loot.map(dropText).join(', ')} çantana eklendi.`);
-      if (cur()) redraw();
-    }
+    if (t === 'rescue') { await act('tut.next', { s: S.tut.s + 1 }); ACT.goCarsi?.(); }
+    else if (t === 'next') await tutNextStep();
   } catch (err) { toast(err.message); }
   TU.busy = false; tutTick();
 });
+// Sıradaki öğretici adımı (sunucu tut.next karar verir); bitişte kutlama kartı, ara hediyeler ileti olarak
+async function tutNextStep() {
+  const from = TUT_STEPS[S.tut.s];
+  const r = await act('tut.next', { s: S.tut.s + 1 });
+  if (from === 'carsi') ACT.goCarsi?.(); // öğretici seni Yemin Pazarı'na bırakır
+  if (r.done) TU.card = { loot: r.loot };
+  else if (r.loot.length) toast(`Hediye: ${r.loot.map(dropText).join(', ')} çantana eklendi.`);
+  if (cur()) redraw();
+}
+/** P26 K4 (orman.js sahneleri): öğreticiyi bir adım ilerletir. Başarılıysa true, hata iletisi gösterilirse false. */
+hooks.tutNext = async () => { if (TU.busy) return false; TU.busy = true; try { await tutNextStep(); return true; } catch (err) { toast(err.message); return false; } finally { TU.busy = false; tutTick(); } };
+/** P26 K4 (orman.js sağ üst X → "Evet, atla"): öğreticiyi atlar; hediye çantaya eklenir, gerekirse bildirim izni sorulur. */
+hooks.tutSkip = async () => {
+  try {
+    const sr = await act('tut.skip'); const gift = sr?.loot?.length ? `Hediye: ${sr.loot.map(dropText).join(', ')} çantana eklendi.` : '';
+    if (!(await askAfterTutorial())) toast(`Öğretici kapatıldı. ${gift || 'İyi seferler.'}`); else if (gift) toast(gift); // izin penceresi açılıyorsa ileti üstüne binmesin
+  } catch (err) { toast(err.message); }
+  tutTick();
+};
 setInterval(() => { tutTick(); kick(); }, 300);
 onState(() => setTimeout(() => { tutTick(); kick(); }, 0));
 window.addEventListener('resize', () => setTimeout(() => { if (TU.mode === 'guide') place(); }, 50));

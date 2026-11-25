@@ -9,6 +9,7 @@ import { weekKey } from '../shared/content.js';
 import { modNow } from '../shared/pvp.js';
 import { NUFUS, NUFUS_LINE } from '../shared/nufus.js'; // nüfus dengesi (Bereket, dolu ırk)
 import { ACT, esc, fmt, run, showModal } from './ui-core.js';
+import { p24Img, p24ImgSync } from './ui-kaplama.js';
 
 const LEFT = ms => { const m = Math.max(0, Math.floor(ms / 60000)); return m >= 1440 ? `${Math.floor(m / 1440)} gün ${Math.floor(m % 1440 / 60)} sa` : m >= 60 ? `${Math.floor(m / 60)} sa ${m % 60} dk` : `${m} dk`; };
 const row = (k, v) => (v === null || v === undefined || v === '' ? '' : `<div class="srv-row"><span>${k}</span><b>${v}</b></div>`);
@@ -24,8 +25,10 @@ const SWORDS = '<svg viewBox="0 0 48 48"><g fill="none" stroke-linecap="round"><
 const body = (m, map, rv, sv, wv) => {
   const t = now(), day = Math.max(1, Math.floor((t - SERVER.openAt) / DAY) + 1);
   const W = weekKey(t), weekEnd = weekStartAt(W + 1), M = modNow(t);
-  const head = `<div class="srv-head">${serverEmblem()}<div><small class="srv-kick">Sunucu</small><h2>${SERVER.name}</h2><small>Korant Online · ${esc(SERVER.tz)}</small></div></div>
-    <div class="srv-stat"><span class="${LOCAL ? 'off' : 'on'}">${LOCAL ? 'Yerel deneme kipi' : 'Çevrimiçi'}</span><span>Sunucu saati ${clockOf(t)}</span><span>Açılıştan beri ${day}. gün</span></div>`;
+  const ban = p24ImgSync('ban_sunucu_vs'); // P24: üst banner (Elentha vs Kragmir) + ortada SUNUCU · ARES rozeti
+  const head = ban ? `<div class="srv-head srv-ban" style="background-image:url(${ban})"><div class="srv-badge"><small class="srv-kick">Sunucu</small><h2>${SERVER.name}</h2><small>Korant Online · ${esc(SERVER.tz)}</small></div></div>`
+    : `<div class="srv-head">${serverEmblem()}<div><small class="srv-kick">Sunucu</small><h2>${SERVER.name}</h2><small>Korant Online · ${esc(SERVER.tz)}</small></div></div>`;
+  const stat = `    <div class="srv-stat"><span class="${LOCAL ? 'off' : 'on'}">${LOCAL ? 'Yerel deneme kipi' : 'Çevrimiçi'}</span><span>Sunucu saati ${clockOf(t)}</span><span>Açılıştan beri ${day}. gün</span></div>`;
   // Irklar
   const rulers = m?.rulers || {}, zones = map?.zones || m?.war?.terr || [];
   const races = ['sancak', 'ocak'].map(f => {
@@ -36,7 +39,7 @@ const body = (m, map, rv, sv, wv) => {
       + (N ? row('Kayıtlı oyuncu', fmt(N.reg[f])) + row('Son 7 günde giren', fmt(N.act[f]))
         + row('Nüfus durumu', N.closed === f ? '<span class="nf-off">Yeni hesaba kapalı</span>' : N.minor === f ? `<span class="nf-on">Bereket ${NUFUS_LINE}</span>` : 'Dengede') : '')
       + row('Irk hazinesi', tre ? `${fmt(tre.gold)} akçe` : null) + (m?.war?.holder === f ? row('Büyük Sefer', 'Üstün ırk') : '');
-    return `<div class="srv-card" style="--fc:${F.color}"><h4>${F.name}</h4>${rows || '<span class="mut">Veri yok</span>'}</div>`;
+    return `<div class="srv-card f-${f}" style="--fc:${F.color}"><h4>${F.name}</h4>${rows || '<span class="mut">Veri yok</span>'}</div>`;
   }).join('');
   // Dönem ve takvim
   const sea = sv ? row('PvP sezonu', `Sezon ${sv.no}`) + row('Sezon sonuna', LEFT(sv.end - t)) + (sv.rank ? row('Senin sıran', `${sv.rank}.`) : '') : '';
@@ -47,7 +50,7 @@ const body = (m, map, rv, sv, wv) => {
     m?.clan ? row('En güçlü klan', `${esc(m.clan.name)}${m.clan.faction && FACTIONS[m.clan.faction] ? ` · ${FACTIONS[m.clan.faction].name}` : ''}`) : '',
     m?.clan?.power ? row('Klan gücü', fmt(m.clan.power)) : ''].join('');
   const N = map?.nufus, nf = N ? `<p class="mut srv-nf"><span>${N.by === 'act' ? 'Nüfus dengesi son 7 günde giren oyuncu sayısına bakar.' : 'Nüfus dengesi kayıtlı oyuncu sayısına bakar.'}</span> <span>Nüfus farkı %5'i aşarsa azınlıktaki ırk Bereket alır; bir ırk ötekinin %${NUFUS.capPct}'sini geçerse ona yeni hesap açılmaz.</span>${N.small ? ` <span>Sunucu küçük (toplam ${fmt(N.total)} < ${NUFUS.minTotal}): giriş kapama uygulanmıyor.</span>` : ''}</p>` : '';
-  return `${head}<div class="srv-grid srv-vs">${races.replace('</div><div class="srv-card"', `</div><div class="srv-x" aria-hidden="true">${SWORDS}</div><div class="srv-card"`)}</div>${nf}
+  return `${head}${stat}<div class="srv-grid srv-vs">${races.replace('</div><div class="srv-card f-ocak"', `</div><div class="srv-x" aria-hidden="true">${SWORDS}</div><div class="srv-card f-ocak"`)}</div>${nf}
     ${sea || cal ? `<div class="srv-sec"><h3>Dönem ve takvim</h3>${sea}${cal}</div>` : ''}
     ${lead ? `<div class="srv-sec"><h3>Sıralama</h3>${lead}</div>` : ''}
     <div class="srv-sec"><h3>Sunucu kuralları</h3><ul class="srv-rules">${SERVER.rules.map(x => `<li>${x}</li>`).join('')}</ul></div>
@@ -56,6 +59,7 @@ const body = (m, map, rv, sv, wv) => {
 
 ACT.server = async () => {
   showModal(`<h2>${SERVER.name}</h2><div class="in"><p class="mut">Sunucu bilgileri yükleniyor…</p></div>`, 'wide');
+  await p24Img('ban_sunucu_vs').catch(() => ''); // P24 banner
   const g = n => run(n).catch(() => null);
   const [m, map, rv, sv] = await Promise.all([g('monument.view'), g('realm.map'), S ? g('realm.view') : null, g('season.view')]);
   showModal(`<div class="in srv">${body(m, map, rv, sv)}</div>`, 'wide');

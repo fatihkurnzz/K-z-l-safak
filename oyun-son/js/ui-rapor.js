@@ -5,7 +5,7 @@ import { S, now } from './api.js';
 import { ACT, modal, esc, fmt, run, showModal, closeModal, openWin, redraw, cur, heroImg, mobImg, DEF_W, loading, toast, resTile } from './ui-core.js';
 import { ri } from './icons.js';
 import { UPKEEP, upkeepOf, upkeepCost, taxRates, saleTax, saleNet, listFee } from '../shared/sinks.js';
-import { describe, sideStats, REPORT_KEEP, DEF_KEEP, REPORT_DAYS, F_CRIT } from '../shared/report.js';
+import { describe, sideStats, moveName, REPORT_KEEP, DEF_KEEP, REPORT_DAYS, F_CRIT } from '../shared/report.js';
 import { SKILLS } from '../shared/skills.js';
 import { CLASSES, FACTIONS } from '../shared/content.js';
 import { MOBS } from '../shared/zones.js';
@@ -47,8 +47,9 @@ function digest(rep, view) {
     }
   }
   const sum = sideStats(rep, view, view).sum, kills = rep.units.filter(u => u.s === view).reduce((a, u) => a + (u.k || 0), 0);
-  const nm = id => SKILLS[id]?.name || id;
+  const nm = id => (SKILLS[id] ? SKILLS[id].name : moveName(id)); // yoldaş satırı '[Ad]'
   const tiles = [['Süre', `${rep.turns} tur${waves > 1 ? ` · ${waves} dalga` : ''}`], ['Verilen hasar', fmt(sum.d)], ['Alınan hasar', fmt(sum.t)], ['İyileştirme', fmt(sum.h)],
+    ...(sum.pd || sum.ph ? [['Yoldaş payı', `${fmt(sum.pd)} hasar${sum.ph ? ` · ${fmt(sum.ph)} şifa` : ''}`]] : []),
     ['Kritik vuruş', `${crit}${hits ? ` / ${hits}` : ''}`], ['Öldürme', fmt(kills)], ...(best ? [['En büyük vuruş', `${fmt(best.v)} · ${esc(nm(best.id))}`]] : [])];
   const used = [...sk.entries()].sort((a, b) => b[1].d + b[1].h - a[1].d - a[1].h);
   return `<div class="dk-tiles">${tiles.map(([k, v]) => `<div class="dk-t"><small>${k}</small><b>${v}</b></div>`).join('')}</div>

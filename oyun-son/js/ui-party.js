@@ -27,8 +27,12 @@ const subTabs = hid => { const sp = statPointsFree(S, hid), kp = skillPointsFree
 ACT.party = d => {
   const tab = SUBS.includes(d?.tab) ? d.tab : PV.sub;
   PV.sub = tab;
-  openWin({ title: 'Karakter', tab: tab === 'stat' ? 'eq' : tab, tabs: subTabs(HID()), tabsFn: () => subTabs(HID()), back: (typeof d?.back === 'string' && d.back) || undefined, render: renderParty, onTab: t => { PV.slot = null; PV.sub = t; } });
+  openWin({ title: 'Karakter', tab: tab === 'stat' ? 'eq' : tab, tabs: subTabs(HID()), tabsFn: () => subTabs(HID()), back: (typeof d?.back === 'string' && d.back) || undefined, render: renderParty, onTab: t => { PV.slot = null; PV.sub = t; winTitle(t); } });
+  winTitle(tab);
 };
+// Pencere başlığı sekmeye göre: Karakter / Yetenek / Ustalık / Unvan (pencere kimliği ve sekme çubuğu 'Karakter' olarak kalır)
+const SUB_TITLE = { eq: 'Karakter', stat: 'Karakter', skill: 'Yetenek', mst: 'Ustalık', unvan: 'Unvan' };
+const winTitle = t => { const h = document.querySelector('#win header h2'); if (h) h.textContent = SUB_TITLE[t] || 'Karakter'; };
 ACT.karakter = ACT.party;
 ACT.sub = d => ACT.party({ tab: d.id });
 // Bildirimden: Yetenek bölümü, uzmanlık yolu görünümüyle
@@ -93,7 +97,7 @@ function setPanel(hid) {
   const items = gearItems(S, hid), sets = setsOf(items), { tot, n } = subTotals(items);
   const act = sets.reduce((a, x) => a + x.on.length, 0);
   const subs = `<div class="setp sbtot"><b>Yan Stat Katkısı</b> <span class="mut">${n ? `${n} yan stat` : 'yok'}</span>${n ? `<div class="subs">${Object.keys(tot).map(k => `<span class="sb">${esc(fmtSubTot(k, tot[k]))}</span>`).join('')}</div>` : `<div class="mut">${SUB_TIP}</div>`}</div>`;
-  const head = `<h4 class="setH">Setler <small class="${act ? 'on' : ''}">${act ? `${act} bonus etkin` : 'etkin bonus yok'}</small></h4>`;
+  const head = `<h4 class="setH">Setler <small class="${act ? 'on' : ''}">${act ? `${act} Bonus etkin` : 'etkin Bonus yok'}</small></h4>`;
   if (!sets.length) return `${subs}${head}<div class="setp mut">Aynı setten 2, 4 ve 5 parça giyersen set bonusu açılır. Her parçanın bilgi kartında hangi sete ait olduğu yazar.</div>`;
   return subs + head + sets.map(s => `<div class="setp ${s.on.length ? 'act' : ''}"><b>${esc(s.set)} seti</b> <span class="mut">${s.n}/5 parça · ${s.on.length}/3 bonus</span>${SET_PIECES.map(x => `<div class="setr ${s.n >= x ? 'on' : ''}"><i>${x}</i>${s.bonus[x].map(fmtSetFx).join(' · ')}${s.n >= x ? ' <em>etkin</em>' : ''}</div>`).join('')}</div>`).join('');
 }

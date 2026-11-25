@@ -46,6 +46,8 @@ const DEFAULTS = now => ({
   sess: null, fin: null,
   settings: newSettings(), // "ayarlar" paketi (settings.js): hesapta saklanan ayarlar (dil)
   pots: { ...POT.start }, // savaş iksirleri (mana.js): Can ve Mana iksiri sayacı; eski kayda da başlangıç çantası bir kez verilir
+  // P28 (ahir.js, han.js, zafer.js): yoldaşlar, Han buff'ı ve çorba sayacı, Zafer Anıtı günlük ödülü. Eski kayda boş eklenir (sürüm artmaz).
+  ahir: { own: {}, active: null, feedDay: 0, feeds: 0 }, han: { buff: null, soupDay: 0, soups: 0 }, zafer: { claimDay: 0, buffUntil: 0 },
 });
 // Kapı kaptanı ve boss aşamalarının ilk geçişi birer Yoldaş Beratı verir (modes.js); eski kayıt, geçtiği kadarını bir kez alır
 const beratEarned = p => Object.keys(p.stages || {}).filter(id => { const d = stageDef(id); return d && d.kind !== 'mob' && p.stages[id] > 0; }).length;

@@ -182,7 +182,7 @@ function raceHtml(D) {
   const side = (k, F) => `<div class="race ${lead === k ? 'lead' : ''}" style="--fc:${F.color}">${D.holder === k ? `<span class="rcrown">${titleChip('champ', WAR_BONUS.name)}</span>` : ''}<h3>${F.name}</h3><b>${fmt(D.now[k])}</b><small>puan${S.faction === k ? ' · senin tarafın' : ''}</small>
     ${bonusBox(k)}</div>`;
   const ms = D.buffUntil - now(), left = ms >= 86400000 ? `${Math.floor(ms / 86400000)} gün ${Math.floor(ms % 86400000 / 3600000)} sa` : clockText(ms);
-  return `<div class="racevs">${side('ocak', O)}<div class="vsx">VS</div>${side('sancak', G)}</div>
+  return `<div class="racevs">${side('ocak', O)}<div class="p27-vsa"><img src="img/p27/vs_amblem.webp" alt="VS" draggable="false"></div>${side('sancak', G)}</div>
     <div class="warbar"><i style="width:${100 * D.now.ocak / total}%;background:${O.color}"></i><i style="width:${100 * D.now.sancak / total}%;background:${G.color}"></i></div>
     <p>${D.mine != null ? `Bu haftaki katkın: <b>${fmt(D.mine)}</b> puan. ` : ''}${D.winner ? `Geçen haftanın galibi: <b style="color:${FACTIONS[D.winner].color}">${FACTIONS[D.winner].name}</b> (${fmt(D.last[D.winner])} – ${fmt(D.last[D.winner === 'ocak' ? 'sancak' : 'ocak'])}).` : 'Geçen hafta berabere bitti.'} ${D.buff ? '<b class="up">Galibiyet bonusun etkin.</b>' : ''}</p>
     ${hooks.race?.(D) || ''}
@@ -266,7 +266,7 @@ function champHtml(c) {
 function topClanHtml(c) {
   if (!c) return `<div class="hint"><b>Henüz klan yok.</b> En güçlü klan burada anılır; klanlar seviye 20'de açılır.</div>`;
   const F = FACTIONS[c.faction];
-  return `<div class="mon"><div class="crest" style="--fc:${F.color}">${c.banner ? bannerSvg(c.banner, 'xl') : `<i>${svg('clan')}</i><b>${esc(c.name.trim()[0].toLocaleUpperCase('tr-TR'))}</b>`}<small>${TITLES.clan.name}</small></div>
+  return `<div class="mon"><div class="crest p27-crest" style="--fc:${F.color}"><img src="img/p27/lider_klan_sancak.webp" alt="" draggable="false"><small>${TITLES.clan.name}</small></div>
     <div class="minfo"><h3><span style="color:${F.color}">${esc(c.name)}</span> ${titleChip('clan')}${c.mine ? ' <span class="chip up">Senin klanın</span>' : ''}</h3>
       <div class="kv"><div><small>Taraf</small><span style="color:${F.color}">${F.name}</span></div><div><small>Lider</small>${c.leader ? esc(c.leader) : '—'}</div><div><small>Üye</small>${c.members}/${c.max}</div><div><small>Klan seviyesi</small>${c.lvl}</div><div><small>Klan gücü</small>${fmt(c.power)}</div></div>
       <p class="mut">Klan gücü en yüksek klanın bütün üyeleri ${TITLES.clan.name} unvanını ve çerçevesini taşır. Unvan en geç 10 dakikada bir güncellenir.</p>

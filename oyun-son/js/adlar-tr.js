@@ -5,7 +5,7 @@ const SKILL_TR = {"w_k1":"Vuruş","w_k2":"Atılma","w_k3":"Biçme","w_k4":"Çarp
 // Dil katmanı (kullanıcı kararı 23.11): kimlikler ve mekanik değişmez; yalnız görünen ad alanları Türkçeye çevrilir.
 // Oyunun kaynak dili Türkçedir: İngilizce seçiliyken eski (İngilizce) adlar i18n sözlüğünden geri gelir.
 // Sıra önemli: itemBase önce asıl adla kurulur (ITEM_GLB ada bakar), sonra ad değiştirilir.
-import { itemBase, WEAPON_NAMES, JEWEL_NAMES, ARMOR_SETS } from '../shared/items.js';
+import { itemBase, WEAPON_NAMES, JEWEL_NAMES, ARMOR_SETS, STARTER_WEAPONS } from '../shared/items.js';
 import { SKILLS } from '../shared/skills.js';
 import { addDictLate } from './i18n.js';
 
@@ -40,3 +40,14 @@ for (const [k, r] of sets) {
 for (const [id, tr] of Object.entries(SKILL_TR)) { const S = SKILLS[id]; if (S) { put(tr, S.name); S.name = tr; nS++; } }
 addDictLate('en', EN);
 if (typeof window !== 'undefined') window.DD_ADLAR = { EN, esya: nI, yetenek: nS, set: sets.size, en: Object.keys(EN).length };
+// 23 Kas K-16: İlk Alım Paketi silahları (kimlik "s:<anahtar>", shared/items.js STARTER_WEAPONS). Yukarıdaki tablo otomatik üretilir; bunlar elle eklendi.
+{
+  const STARTER_TR = { asa: 'Kahraman Asası', hancer: 'Kahraman Bıçağı', kalkan: 'Yüzbaşı Muhafız Kalkanı', tirpan: 'Sert Tırpan' };
+  const EN2 = {};
+  for (const [k, tr] of Object.entries(STARTER_TR)) {
+    const W = STARTER_WEAPONS[k], B = itemBase('s:' + k);
+    if (W) { EN2[tr] = W.name; W.name = tr; }
+    if (B) B.name = tr;
+  }
+  addDictLate('en', EN2);
+}

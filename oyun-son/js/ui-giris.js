@@ -3,6 +3,7 @@
 // showLogin() başarılı giriş/kayıt olunca çözülür; ardından açılış (main.js) karakter listesini alır.
 import './sahne.js'; // 23 Kas: G8 logo/amblem hemen, G4–G6 görselleri arkada (CSS değişkenleri)
 import { authCall } from './api.js';
+import { serverName } from './ui-acilis.js'; // P23 G4: seçilen sunucu adı
 
 const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 export function showLogin(note = '') {
@@ -12,7 +13,7 @@ export function showLogin(note = '') {
     let mode = 'login', busy = false;
     const draw = (msg = note, err = false) => {
       el.innerHTML = `<div class="gr-bg" aria-hidden="true"></div><form class="gr-box" autocomplete="on">
-        <div class="gr-logo"><small>Sunucu: Ares</small><b>Korant Online</b></div>
+        <div class="gr-logo"><small>Sunucu: ${serverName()}</small><b>Korant Online</b></div>
         <div class="gr-tabs"><button type="button" data-m="login" class="${mode === 'login' ? 'on' : ''}">Giriş yap</button><button type="button" data-m="register" class="${mode === 'register' ? 'on' : ''}">Hesap aç</button></div>
         <label><span>Kullanıcı adı</span><input name="user" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" required></label>
         <label><span>Şifre</span><input name="pass" type="password" autocomplete="${mode === 'login' ? 'current-password' : 'new-password'}" maxlength="72" required></label>

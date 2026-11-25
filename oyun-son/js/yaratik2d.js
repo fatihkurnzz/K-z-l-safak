@@ -37,13 +37,43 @@ export const YARATIK = {
   ...Y('yb', `devsolucan:dev-solucan tepegoz:tepegoz kristalbekci:kristal-muhafizi lavyurek:lav-yurek karaduman:kul-agasi-karadun
     red_dragon_hatchling:dragon_fire:ffd8c8 red_dragon:dragon_fire blue_dragon:dragon_ice bone_dragon:dragon_ice:f0e4d0
     dark_dragon:dragon_shadow gold_dragon:dragon_lightning:ffe6a0`),
+  // P26 (K3): iki bölge boss'unun yeni çizimi (p26-savas-png.js). Kül Lordu -> Kül Geçidi Dev Golem; Kadim Orman Gölgesi ->
+  // Sisli Çukur'un ilk bölge boss'u Mana Avcısı (bölgede orman/ağaç boss'u yok; mavi ışıklı boynuzlu gölge en yakın eşleşme).
+  ...Y('p26', 'giant_golem:kul-lordu mana_predator:kadim'),
 };
 export const halkAd = () => document.documentElement.dataset.faction === 'sancak' ? 'sancak' : 'ocak';
 
 // ---- Paketler ----
 const PAKET = {};
 export const HAZIR = {}; // yüklenmiş paketler (eşzamanlı okuma)
-export const paket = ad => (PAKET[ad] ||= import(`./b2d-${ad}.js`).then(m => (HAZIR[ad] = m.B)).catch(() => null));
+export const paket = ad => (PAKET[ad] ||= (ad === 'p26' ? p26Paket().then(P => (HAZIR.p26 = P && p26Poz(P))) : import(`./b2d-${ad}.js`).then(m => (HAZIR[ad] = m.B))).catch(() => null));
+// ---- P26 savaş paketi (tools/p26-savas-paketle.py): 4 VFX, 2 boss, 2 yüksek kademe kahraman. Tembel; yalnız savaşta/gerekince iner.
+let P26P = null;
+/** P26 savaş paketinin ham anahtarları ({ vfx_kilic, boss_kadim, t3_ocak, … }: base64 WebP); bir kez indirir. */
+export const p26Paket = () => (P26P ||= import('./p26-savas-png.js').then(m => (P26_HAM = m.default)).catch(() => null));
+/** Paket indiyse ham anahtarlar, inmediyse null (eşzamanlı okuma). */
+export let P26_HAM = null;
+// Birim2D'nin poz biçimi: tek kare (bekleme); saldırı/vurulma pozları yoksa Birim2D beklemeyi kullanır, hareket kanvastan gelir.
+const p26Poz = P => ({
+  'kul-lordu': { bekleme: P.boss_kul_lordu, portre: P.boss_kul_lordu_p },
+  kadim: { bekleme: P.boss_kadim, portre: P.boss_kadim_p },
+  't3-ocak': { bekleme: P.t3_ocak }, 't3-sancak': { bekleme: P.t3_sancak },
+});
+/** G1: yüksek kademe (Sv.45+) görünümünün seviye eşiği ve GERÇEKTEN çizimi olan halk → sınıf → cinsiyet listesi.
+ *  P28 M1: iki halkın t3 çizimi de ERKEK Savaşçı; kadın ya da başka sınıf için çizim gelince buraya eklenir. */
+export const T3 = { cls: 'warrior', lvl: 45, art: { ocak: { warrior: ['m'] }, sancak: { warrior: ['m'] } } };
+/** Saf seçim (DOM'suz, test edilir): bu halk+sınıf+cinsiyet için t3 çizimi var ve seviye eşiği geçildi mi.
+ *  Cinsiyet bilinmiyorsa (undefined) false: asla karşı cinsiyetin çizimine düşülmez, karakter kendi normal görseline kalır. */
+export const t3Uygun = (halk, cls, gender, lvl) => (lvl || 0) >= T3.lvl && !!T3.art[halk === 'sancak' ? 'sancak' : 'ocak']?.[cls]?.includes(gender);
+/** Bu kahraman t3 görünümünde mi (boyalı 2B açık + t3Uygun). gender: 'm' | 'f'; halk: 'ocak' | 'sancak'. */
+export const t3Mi = (cls, lvl, gender, halk) => B2D.on && t3Uygun(halk, cls, gender, lvl);
+/** t3 tam boy resmi (data URL); paket inmediyse indirmeyi başlatır, inince `hazir()` çağrılır ve null döner. */
+export function t3Resim(halk, hazir) {
+  const b = P26_HAM?.[halk === 'sancak' ? 't3_sancak' : 't3_ocak'];
+  if (b) return 'data:image/webp;base64,' + b;
+  p26Paket().then(P => { if (P && hazir) hazir(); });
+  return null;
+}
 
 // ---- Arayüz resimleri ----
 // Yaratığın çizimi var mı: { ad, anahtar, tint } ya da null
@@ -55,8 +85,16 @@ export function mobCizim(id) {
 // full: boydan bekleme pozu (saydam), değilse 128 px boyalı portre. Hazırsa URL, değilse null (indirme başlar, gelince
 // sayfadaki img[data-m2d] resimleri yerinde değişir).
 const URL_ = new Map(), ISLENIYOR = new Map();
+// 23 Kas (P23): iki boss'un (manticore, meganthereon) yeni boyalı portresi (p23-savas-png.js, tools/p23-savas-paketle.py). Yalnız html.p23.
+const P23_ID = new Set(['manticore', 'meganthereon']);
+let P23B = null, P23P = null;
+const p23On = () => { try { return document.documentElement.classList.contains('p23'); } catch { return false; } };
+const p23Yukle = () => (P23P ||= import('./p23-savas-png.js').then(m => (P23B = m.default)).catch(() => null));
+/** Boss'un P23 portresi (base64 WebP) ya da null; paket henüz inmediyse indirmeyi başlatır. */
+export function p23Portre(id) { if (!P23_ID.has(id) || !B2D.on || !p23On()) return null; if (!P23B) { p23Yukle(); return null; } return P23B[id] || null; }
 export function mobResim(id, full = false) {
   const s = mobCizim(id); if (!s) return null;
+  if (!full) { const b = p23Portre(id); if (b) return 'data:image/webp;base64,' + b; }
   const k = `${id}:${full ? 1 : 0}`;
   if (URL_.has(k)) return URL_.get(k);
   hazirla(id, full);
@@ -66,7 +104,8 @@ function hazirla(id, full) {
   const k = `${id}:${full ? 1 : 0}`;
   if (ISLENIYOR.has(k)) return ISLENIYOR.get(k);
   const s = mobCizim(id);
-  const p = paket(s.ad).then(P => {
+  const p = (!full && p23Portre(id) === null && P23_ID.has(id) && B2D.on && p23On() ? p23Yukle() : Promise.resolve()).then(() => paket(s.ad)).then(P => {
+    if (!full) { const b = p23Portre(id); if (b) return 'data:image/webp;base64,' + b; }
     const d = P?.[s.anahtar], b64 = d && (full ? d.bekleme : d.portre || d.bekleme);
     if (!b64) return null;
     const ham = 'data:image/webp;base64,' + b64;
@@ -94,3 +133,5 @@ function boya(src, tint) {
 function yerlestir(k, u) {
   document.querySelectorAll(`img[data-m2d="${k}"]`).forEach(img => { img.removeAttribute('data-pt'); img.removeAttribute('data-m2d'); img.classList.add('m2d'); if (k.endsWith(':1')) img.classList.add('m2df'); img.src = u; });
 }
+/** P26 K4 (orman.js): öğretici savaşına özel çizim paketini kaydeder (b2d-<ad>.js yerine verilen söz) ve bir türün arayüz önbelleğini boşaltır. */
+export function ozelPaket(ad, soz, bosalt = []) { if (soz) PAKET[ad] = soz.then(B => (HAZIR[ad] = B)).catch(() => null); for (const id of bosalt) for (const k of [`${id}:0`, `${id}:1`]) { URL_.delete(k); ISLENIYOR.delete(k); } }

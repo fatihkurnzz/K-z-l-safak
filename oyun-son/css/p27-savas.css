@@ -1,0 +1,78 @@
+/* P27 A+ görsel yenileme — savas (docs/referans/p27-a-plus/TALIMAT.md). Kurallar ekran/duruma kapsamlı; !important yok. */
+
+/* ---------- 3.1 Savaş seçim modalı (ui-hub.js ACT.savas → #modal .box.p27sv .sv-grid .sv-opt.sv-<k>) ---------- */
+html[data-faction] #modal .box.p27sv { --sv-cerceve:#b08a4a; --sv-cerceve2:#6a4a22; }
+html[data-faction="sancak"] #modal .box.p27sv { --sv-cerceve:#c9b07a; --sv-cerceve2:#3e4f6e; }
+html[data-faction] #modal .box.p27sv .sv-grid { gap:10px; }
+html[data-faction] #modal .box.p27sv .sv-opt {
+  position:relative; overflow:hidden; isolation:isolate; min-height:84px; padding:12px 14px; gap:0; align-items:flex-end;
+  border:1px solid var(--sv-cerceve); border-radius:8px;
+  background:#120c08 center / cover no-repeat;
+  box-shadow:inset 0 0 0 1px var(--sv-cerceve2), inset 0 0 0 2px #0008, 0 2px 8px #000a;
+  color:#f4e6c6; text-align:left; transition:filter .15s, box-shadow .15s;
+}
+/* soldan sağa koyu okunabilirlik katmanı */
+html[data-faction] #modal .box.p27sv .sv-opt::before {
+  content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(90deg, #0b0705f2 0%, #0b0705c4 38%, #0b070540 72%, #0b070500 100%), linear-gradient(0deg, #0b0705aa, #0b070500 55%);
+}
+html[data-faction] #modal .box.p27sv .sv-opt.sv-sefer { background-image:url(../img/p27/card_sefer.webp); }
+html[data-faction] #modal .box.p27sv .sv-opt.sv-hizli_av { background-image:url(../img/p27/card_hizli_av.webp); }
+html[data-faction] #modal .box.p27sv .sv-opt.sv-meydan { background-image:url(../img/p27/card_meydan.webp); }
+html[data-faction] #modal .box.p27sv .sv-opt.sv-san_divani { background-image:url(../img/p27/card_san_divani.webp); }
+html[data-faction] #modal .box.p27sv .sv-opt > span { position:relative; z-index:1; max-width:68%; }
+html[data-faction] #modal .box.p27sv .sv-opt b { font:700 16px/1.1 Cinzel, Georgia, serif; color:#ffe3a6; letter-spacing:.02em; text-shadow:0 1px 2px #000, 0 0 8px #000; }
+html[data-faction] #modal .box.p27sv .sv-opt small { margin-top:3px; font-size:11px; line-height:1.3; color:#eadcc0; opacity:1; text-shadow:0 1px 2px #000; }
+html[data-faction] #modal .box.p27sv .sv-opt:not(.off):hover,
+html[data-faction] #modal .box.p27sv .sv-opt:not(.off):focus-visible { filter:brightness(1.12); box-shadow:inset 0 0 0 1px var(--sv-cerceve), inset 0 0 0 2px #0008, 0 0 10px color-mix(in srgb, var(--sv-cerceve) 55%, transparent); }
+html[data-faction] #modal .box.p27sv .sv-opt:not(.off):active { transform:scale(.98); }
+/* kilitli: hafif desatüre (temel.css'teki tam gri + .55 saydamlık yerine), kilit notu okunur */
+html[data-faction] #modal .box.p27sv .sv-opt.off { filter:saturate(.35) brightness(.82); opacity:1; cursor:not-allowed; border-color:#6b6258; }
+html[data-faction] #modal .box.p27sv .sv-opt.off small { color:#f0e2c4; font-weight:600; }
+html[data-faction] #modal .box.p27sv .sv-kilit {
+  position:absolute; top:8px; right:8px; z-index:1; display:grid; place-items:center; width:28px; height:28px; border-radius:50%;
+  background:radial-gradient(circle at 40% 35%, #3a3128, #15110d); border:1px solid #b08a4a; box-shadow:0 1px 4px #000c;
+}
+html[data-faction] #modal .box.p27sv .sv-kilit svg { width:15px; height:15px; fill:#e8cf94; }
+
+/* ---------- 3.3 Savaş Öncesi VS (ui-battle.js renderVs; .vs2) ---------- */
+/* p24 G1 .vside düz lacivert/bordo zemini !important; sahne resmi üstte ::before katmanı olarak serilir (çerçeve ::after z3, figür üstte) */
+html[data-faction] #win[data-scr="vs"] .vs2 .vside::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none; background:#0b0a10 center 62% / cover no-repeat; }
+html[data-faction] #win[data-scr="vs"] .vs2 .vside.a::before { background-image:url(../img/p27/vs_bg_ally.webp); }
+html[data-faction] #win[data-scr="vs"] .vs2 .vside.b::before { background-image:url(../img/p27/vs_bg_enemy.webp); }
+html[data-faction] #win[data-scr="vs"] .vs2 .vside > .vs2-img,
+html[data-faction] #win[data-scr="vs"] .vs2 .vside > .vs2-ek,
+html[data-faction] #win[data-scr="vs"] .vs2 .vside > .vs2-bilinmez { position:relative; z-index:1; }
+/* orta amblem (basit VS dairesi yerine) */
+html[data-faction] #win[data-scr="vs"] .vs2 .vmid .p27-vsa { position:relative; z-index:1; display:block; width:84px; max-width:none; height:84px; margin:-6px auto -4px; pointer-events:none; }
+html[data-faction] #win[data-scr="vs"] .vs2 .vmid .p27-vsa img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 3px 6px #000c); }
+html[data-faction] #win[data-scr="vs"] .page:has(.vs2-extra) .vs2 .vmid .p27-vsa { width:64px; height:64px; }
+
+/* ---------- 3.3 Taş Yemini · Lider Klan (ui-social.js topClanHtml .crest.p27-crest) ---------- */
+html[data-faction] #win .mon .crest.p27-crest { background:none; border:0; box-shadow:none; padding:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:4px; }
+html[data-faction] #win .mon .crest.p27-crest::before, html[data-faction] #win .mon .crest.p27-crest::after { content:none; }
+html[data-faction] #win .mon .crest.p27-crest img { display:block; width:auto; height:200px; max-width:100%; object-fit:contain; filter:drop-shadow(0 4px 8px #000c); }
+html[data-faction] #win .mon .crest.p27-crest small { font:700 12px/1 Cinzel, Georgia, serif; color:#ffe3a6; letter-spacing:.05em; text-shadow:0 1px 2px #000; }
+/* Lider Klan rozeti: açık yeşil yerine koyu zümrüt + ince altın çerçeve */
+html[data-faction] #win .mon .minfo .tchip.clan { background:linear-gradient(180deg, #155442, #0a2c21); border:1px solid #c9a55a; color:#f4e2b0; -webkit-text-fill-color:#f4e2b0; box-shadow:inset 0 1px 0 #ffffff1a, 0 1px 3px #0009; text-shadow:0 1px 1px #000; }
+html[data-faction] #win .mon .minfo .tchip.clan svg { fill:#e8c77a; }
+
+/* ---------- 3.3 Taş Yemini · Üstün Irk (ui-social.js raceHtml .racevs .p27-vsa; ui-dunya.js .zstrip .zc) ---------- */
+html[data-faction] #win .racevs .p27-vsa { flex:none; align-self:center; width:92px; height:92px; margin:0 4px; pointer-events:none; }
+html[data-faction] #win .racevs .p27-vsa img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 3px 6px #000c); }
+html[data-faction] #win .zstrip .zc {
+  background:linear-gradient(180deg, #2a2620e6, #14110de6); border:1px solid #a8844a; border-left:3px solid color-mix(in srgb, var(--fc) 80%, #8a2a1c);
+  border-radius:5px; color:#eadcc0; box-shadow:inset 0 1px 0 #ffffff14, 0 1px 3px #0009; text-shadow:0 1px 1px #000;
+}
+html[data-faction] #win .zstrip .zc em { color:color-mix(in srgb, var(--fc) 70%, #ffe3a6); font-weight:700; filter:none; }
+
+/* ---------- 4.5 Savaş ekranı HUD cilası (v31-savas-hud.css üretilmiş; burada ezilir) ---------- */
+/* "Otomatik açık!" ipucu (combat.js otoHint): p23-savas.css konumu !important (sağ 10px, alt 82px) Otomatik düğmesini örtüyordu;
+   konum özelliği yerine translate ile düğmenin soluna alınır (animasyon transform kullanır, translate ayrı birleşir), ok sağda düğmeyi gösterir */
+html[data-faction]:root body #game #battleUI .oto-tip { translate:calc(-1 * (var(--p27-bauto, 50px) + 8px)) 20px; box-shadow:0 2px 8px #000b; }
+html[data-faction]:root body #game #battleUI .oto-tip::before { top:50%; bottom:auto; left:auto; right:-7px; margin-top:-7px; border:7px solid transparent; border-right:0; border-left-color:#c9a23a; }
+@media (max-width:760px) { html[data-faction]:root body #game #battleUI .oto-tip { translate:calc(-1 * (var(--p27-bauto, 44px) + 8px)) 14px; } }
+/* üst DALGA şeridi, çekil (X) düğmesi, can/mana barları: ince antika metalik altın kenar + hafif koyu gölge */
+html[data-faction]:root body #game #battleUI #bwave { border:1px solid #b8975a; border-radius:4px; box-shadow:inset 0 0 0 1px #2a1d10, inset 0 1px 0 #ffe9b026, 0 2px 6px #000b, 0 0 0 1px #00000080; }
+html[data-faction]:root body #game #battleUI #bctl #bexit { outline:1px solid #b8975a; outline-offset:-1px; box-shadow:inset 0 0 0 2px #2a1d10, 0 2px 6px #000b; }
+html[data-faction]:root body #game #battleUI #ystat .ybars .yb { outline:1px solid #b8975a; outline-offset:0; box-shadow:inset 0 0 0 1px #00000099, 0 1px 4px #000a; border-radius:2px; }

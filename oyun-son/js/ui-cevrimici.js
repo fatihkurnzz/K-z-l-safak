@@ -3,7 +3,9 @@
 // Süreyi sunucu sayar: oyun görünürken dakikada bir "online.tick" gönderilir. Ekrandaki sayaç iki bildirim arasında
 // yerelde ilerler (gösterim içindir; ödülü sunucunun saydığı süre açar).
 import { S, onState } from './api.js';
-import { ACT, hud, modal, run, showModal, lootChip, lootToast, toast } from './ui-core.js';
+import { ACT, hud, modal, run, showModal, lootChip, lootToast, toast, energyNow } from './ui-core.js';
+import { p24Band } from './ui-kaplama.js';
+import { p25bImg } from './ui-town.js'; // P25-b: sandık görselleri (p25-b-png.js)
 import { ONLINE, onlineOf, onlineNext } from '../shared/meta.js';
 import { now } from './api.js';
 
@@ -56,21 +58,25 @@ function html() {
   const cards = ONLINE.steps.map((s, i) => {
     const got = O.got.includes(i), cur = i === n, ok = cur && ms >= need(i);
     const st = got ? 'got' : ok ? 'ok' : cur ? 'run' : 'lock';
-    const foot = got ? `<span class="onl-st got">${CHECK} Alındı</span>`
-      : ok ? `<button class="btn sm green" data-a="onlineClaim" data-i="${i}">Al</button>`
-        : cur ? `<span class="onl-st run"><span class="onl-left">${mmss(need(i) - ms)}</span></span>`
-          : `<span class="onl-st lock">${LOCK} Sırada</span>`;
-    return `<div class="onl-c ${st}" data-onl="${i}"><span class="onl-no">${i + 1}</span><div class="onl-ch">${CHEST}</div><b>${label(s.min)}</b>
+    const foot = got ? `<span class="onx-st got">${CHECK} Alındı</span>`
+      : ok ? `<button class="btn red onx-al" data-a="onlineClaim" data-i="${i}">Al</button>`
+        : cur ? `<span class="onx-st run">${LOCK}<span class="onl-left">${mmss(need(i) - ms)}</span></span>`
+          : `<span class="onx-st lock">${LOCK} Sırada</span>`;
+    // P25-b: dikey sandık kartı (hazır/alınmış altın, bekleyen gümüş, son sandık süslü); görsel referanstan kırpıldı
+    const art = i === ONLINE.steps.length - 1 ? 'onl_suslu' : ok || got ? 'onl_altin' : 'onl_gumus';
+    return `<div class="onx-c ${st}" data-onl="${i}"><span class="onx-no">${i + 1}</span><b class="onx-t">${label(s.min)}</b><div class="onx-ch" style="--ch:var(--p25b-${art})">${CHEST}</div>
       <div class="pbar"><i style="width:${got ? 100 : cur ? Math.min(100, 100 * ms / need(i)) : 0}%"></i></div>
-      <div class="onl-loot">${s.give.map(lootChip).join('')}</div>${foot}</div>`;
-  }).join('<i class="onl-arrow" aria-hidden="true"></i>');
+      <div class="onx-loot">${s.give.map(lootChip).join('')}</div><div class="onx-foot">${foot}</div></div>`;
+  }).join('');
   const tip = n < 0 ? 'Bugünün bütün sandıklarını aldın. Yarın 00:00’da yeniden başlar.'
     : isReady(ms) ? 'Sandık hazır! Aldığın an sıradakinin sayacı başlar.'
       : n === 0 ? 'İlk sandığın sayacı işliyor.' : 'Sayaç, bir önceki sandığı aldığın andan beri işliyor.';
-  return `<h2>Çevrimiçi ödülleri</h2><div class="in onlw"><p class="onl-tip">${tip} <span class="mut">Sandıklar sırayla açılır; her gün 00:00’da yenilenir.</span></p>
-    <div class="onl-row">${cards}</div></div>`;
+  const band = p24Band && ''; // P27 Bölüm 2: kaynak bandı yok; durum etiketi ui-core.js MODAL_CTX'ten (Sunucu Saati)
+  return `<h2>Çevrimiçi ödülleri</h2>${band}<div class="in onlw"><p class="onl-tip">${tip} <span class="mut">Sandıklar sırayla açılır; her gün 00:00’da yenilenir.</span></p>
+    <div class="onx-row">${cards}</div></div>`;
 }
-ACT.onlineOpen = () => { showModal(html(), 'onl'); paint(); };
+/** Çevrimiçi ödülleri penceresi (modal, sınıf 'onl p25b'): beş sıralı sandık. */
+ACT.onlineOpen = () => { p25bImg(); showModal(html(), 'onl p25b'); paint(); };
 ACT.onlineClaim = async d => {
   const r = await run('online.claim', { i: +d.i });
   if (!r) return;

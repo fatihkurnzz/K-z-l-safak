@@ -5,12 +5,15 @@
 import { dayKey, PREMIUM } from './content.js';
 import { fail, addItem, removeItems } from './util.js';
 import { STARTER_WEAPONS } from './items.js';
+import { STORE_CUR, storePrice, tlMinor } from './config/storePrices.js';
+// Fiyat: storePrices.js tam TL → küçük birim (kuruş); sipariş ve sağlayıcı doğrulaması kuruşla çalışır
+const P$ = sku => ({ [STORE_CUR]: storePrice(sku) * 100 });
 
 const DAY = 86400000;
 const premTier = (p, now) => (p.premium && p.premium.until > now ? p.premium.tier : 0); // state.js ile aynı (döngüsel içe aktarma olmasın)
 
 export const PAY = {
-  currencies: ['USD'], // tek para birimi: bütün gerçek para fiyatları dolar
+  currencies: [STORE_CUR], // tek para birimi TL (P28 O9; tutarlar config/storePrices.js)
   firstBonus: 1,        // bir paketin ilk alımında paket yakutunun bu katı kadar ek yakut (1 = iki katı)
   cardMaxDays: 90,      // Yakut Kartı en çok bu kadar gün ileriye biriktirilebilir
   openOrders: 10,       // oyuncu başına 24 saatte açılabilen ödenmemiş sipariş
@@ -25,27 +28,27 @@ export const PAY = {
 // Yakut paketleri ve Yakut Kartı. storeId: Google Play / App Store ürün kimliği (iki mağazada aynı ad kullanılır).
 // yakut: hemen verilen · kart için daily: her gün alınabilen, days: süre
 export const PRODUCTS = [
-  { sku: 'yakut100',  kind: 'yakut', storeId: 'yakut_100',  name: 'Bir Avuç Yakut',  yakut: 100,  price: { USD: 99 } },
-  { sku: 'yakut320',  kind: 'yakut', storeId: 'yakut_320',  name: 'Yakut Kesesi',    yakut: 320,  price: { USD: 299 } },
-  { sku: 'yakut600',  kind: 'yakut', storeId: 'yakut_600',  name: 'Yakut Sandığı',   yakut: 600,  price: { USD: 499 } },
-  { sku: 'yakut1300', kind: 'yakut', storeId: 'yakut_1300', name: 'Yakut Küpü',      yakut: 1300, price: { USD: 999 } },
-  { sku: 'yakut2800', kind: 'yakut', storeId: 'yakut_2800', name: 'Yakut Hazinesi',  yakut: 2800, price: { USD: 1999 } },
-  { sku: 'yakut7500', kind: 'yakut', storeId: 'yakut_7500', name: 'Hakan Hazinesi',  yakut: 7500, price: { USD: 4999 } },
+  { sku: 'yakut100',  kind: 'yakut', storeId: 'yakut_100',  name: 'Bir Avuç Yakut',  yakut: 100,  price: P$('yakut100') },
+  { sku: 'yakut320',  kind: 'yakut', storeId: 'yakut_320',  name: 'Yakut Kesesi',    yakut: 320,  price: P$('yakut320') },
+  { sku: 'yakut600',  kind: 'yakut', storeId: 'yakut_600',  name: 'Yakut Sandığı',   yakut: 600,  price: P$('yakut600') },
+  { sku: 'yakut1300', kind: 'yakut', storeId: 'yakut_1300', name: 'Yakut Küpü',      yakut: 1300, price: P$('yakut1300') },
+  { sku: 'yakut2800', kind: 'yakut', storeId: 'yakut_2800', name: 'Yakut Hazinesi',  yakut: 2800, price: P$('yakut2800') },
+  { sku: 'yakut7500', kind: 'yakut', storeId: 'yakut_7500', name: 'Hakan Hazinesi',  yakut: 7500, price: P$('yakut7500') },
   // Premium: Bronz yakutla alınır (daily.js: premium.buy); Gümüş ve Platin YALNIZCA gerçek parayla (30 gün; tier: PREMIUM indisi)
-  { sku: 'prem2', kind: 'premium', storeId: 'premium_gumus',  name: 'Gümüş Premium', tier: 2, yakut: 0, price: { USD: 599 } },
-  { sku: 'prem3', kind: 'premium', storeId: 'premium_platin', name: 'Platin Premium', tier: 3, yakut: 0, price: { USD: 1199 } },
+  { sku: 'prem2', kind: 'premium', storeId: 'premium_gumus',  name: 'Gümüş Premium', tier: 2, yakut: 0, price: P$('prem2') },
+  { sku: 'prem3', kind: 'premium', storeId: 'premium_platin', name: 'Platin Premium', tier: 3, yakut: 0, price: P$('prem3') },
   // İlk Alım Paketi: dört silahtan biri (tek seferlik, hesap başına). weapon: items.js STARTER_WEAPONS anahtarı
-  ...Object.entries(STARTER_WEAPONS).map(([k, W]) => ({ sku: 'starter_' + k, kind: 'starter', storeId: 'ilk_alim_' + k, name: 'İlk Alım Paketi', weapon: k, yakut: 0, price: { USD: 399 } })),
+  ...Object.entries(STARTER_WEAPONS).map(([k, W]) => ({ sku: 'starter_' + k, kind: 'starter', storeId: 'ilk_alim_' + k, name: 'İlk Alım Paketi', weapon: k, yakut: 0, price: P$('starter_' + k) })),
   // İkinci kopya kahraman yeri: sürüm 12'de satıştan kalktı (tek karakter). Eski siparişlerin iadesi çözülebilsin diye durur.
-  { sku: 'kopya2', kind: 'copy', storeId: 'ikinci_kopya', name: 'İkinci Kopya Yeri', yakut: 0, price: { USD: 499 }, retired: true },
-  { sku: 'kart30',    kind: 'card',  storeId: 'yakut_karti_30', name: 'Yakut Kartı', yakut: 250, daily: 50, days: 30, price: { USD: 499 } },
+  { sku: 'kopya2', kind: 'copy', storeId: 'ikinci_kopya', name: 'İkinci Kopya Yeri', yakut: 0, price: P$('kopya2'), retired: true },
+  { sku: 'kart30',    kind: 'card',  storeId: 'yakut_karti_30', name: 'Yakut Kartı', yakut: 250, daily: 50, days: 30, price: P$('kart30') },
 ];
 const BY_SKU = new Map(PRODUCTS.map(P => [P.sku, P]));
 const BY_STORE = new Map(PRODUCTS.map(P => [P.storeId, P]));
 export const productOf = sku => (typeof sku === 'string' && BY_SKU.has(sku) ? BY_SKU.get(sku) : null);
 export const productByStoreId = id => (typeof id === 'string' && BY_STORE.has(id) ? BY_STORE.get(id) : null);
-// Küçük birimden gösterim metni: 399 → "$3.99" (fiyatlar yalnızca dolar)
-export const priceText = minor => `$${Math.floor(minor / 100).toLocaleString('en-US')}.${String(minor % 100).padStart(2, '0')}`;
+/** Küçük birimden gösterim metni: 119900 → "₺1.199" (P28 O9: tek biçim işlevi storePrices.js tlMinor; küsürat yok). */
+export const priceText = minor => tlMinor(minor);
 
 // ---------- Oyuncu kaydındaki ödeme alanı ----------
 // first: ilk alım bonusu kullanılmış paketler · card: { end: kartın bittiği gün (dayKey, o gün dahil değil),

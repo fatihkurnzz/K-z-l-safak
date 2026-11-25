@@ -56,4 +56,4 @@ export function spawn(unit, x, z, faceAngle) {
   world.actors.push(a);
   return a;
 }
-onUpdate((dt, t) => { for (let i = 0; i < world.actors.length; i++) { const a = world.actors[i]; a.char.update(dt, t); a.blob.visible = !a.char.dead; } });
+onUpdate((dt, t) => { for (let i = 0; i < world.actors.length; i++) { const a = world.actors[i]; a.char.update(dt, t); a.blob.visible = !a.char.dead && !a.char.kendiGolge; } }); // P31-G3: boyalı 2B birim kendi temas gölgesini çizer

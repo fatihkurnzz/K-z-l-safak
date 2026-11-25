@@ -9,7 +9,8 @@ import { play as fxPlay } from './fx.js';
 import { EVENT_FX } from './fx-table.js';
 import { charLookFor } from './gorunus.js';
 
-import { B2D, YARATIK, halkAd, paket, HAZIR } from './yaratik2d.js';
+import { B2D, YARATIK, halkAd, paket, HAZIR, p23Portre, t3Mi } from './yaratik2d.js';
+import { ZEMIN, zeminTon } from './savas-arka.js'; // P31-G3: sahne tonu ve temas gölgesi koyuluğu
 export { B2D };
 
 const SINIF = { warrior: 'savasci', rogue: 'suikastci', mage: 'buyucu', priest: 'sifaci' };
@@ -18,7 +19,7 @@ const SILAH = { savasci: 'sword', suikastci: 'dagger', buyucu: 'staff', sifaci: 
 // ---- Paket ve doku önbelleği ----
 const DOKU = new Map();
 // Düşman çerçevesi için yaratık/boss portresi (base64 WebP) ya da null; paket henüz inmediyse indirmeye başlar
-export function portre(u) { const s = cozum(u); if (!s || s.hero) return null; const P = HAZIR[s.ad]; if (!P) { paket(s.ad); return null; } return P[s.anahtar]?.portre || null; }
+export function portre(u) { const s = cozum(u); if (!s || s.hero) return null; const p23 = u.mob && p23Portre(u.mob); if (p23) return p23; const P = HAZIR[s.ad]; if (!P) { paket(s.ad); return null; } return P[s.anahtar]?.portre || null; }
 const yukleyici = new THREE.TextureLoader();
 function doku(ad, anahtar, poz, b64) {
   const k = `${ad}/${anahtar}/${poz}`;
@@ -35,7 +36,10 @@ export function cozum(u) {
   if (u.cls) {
     const s = SINIF[u.cls]; if (!s) return null;
     const f = u.faction === 'sancak' ? 'sancak' : 'ocak';
+    // P26 (G1): Sv.45+ Savaşçı yüksek kademe görünümüyle çizilir (tek kare; hareket ileri atılma/sarsılmadan gelir)
+    // P28 M1: yalnız o halk+sınıf+cinsiyet için çizim varsa (kadın karakter asla erkek t3 çizimine düşmez)
     const L = charLookFor(u), g = L?.gender || u.gender || cinsTahmin(u);
+    if (t3Mi(u.cls, u.lvl, g, f)) return { ad: 'p26', anahtar: `t3-${f}`, hero: true, sinif: s, t3: true };
     return { ad: f, anahtar: `${s}-${g === 'f' ? 'kadin' : 'erkek'}`, hero: true, sinif: s };
   }
   const Y = YARATIK[u.mob]; if (!Y) return null;
@@ -51,6 +55,18 @@ const OLCU = {
   boss: { w: 4.2, h: 4.2, taban: 48 / 1024, bas: 2.4, gogus: 1.4 }, // G3 bosslar (1536 tuval, zemin aynı oranda); boss birimi kadrajda büyük
 };
 const V0 = new THREE.Vector3();
+// P31-G3: ayak altı temas gölgesi. Ortak doku (kodla çizilen radyal degrade); boyutu birim genişliğiyle orantılı:
+// en = w * en, derinlik = en * der (kamera alçak açıdan baktığı için yerde ~4:1 basık elips görünür).
+const GOLGE = { hero: { en: 0.56, der: 0.85 }, mob: { en: 0.5, der: 0.8 }, boss: { en: 0.52, der: 0.75 } };
+let golgeDoku = null;
+function golgeTex() {
+  if (golgeDoku) return golgeDoku;
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const g = c.getContext('2d'), r = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  r.addColorStop(0, 'rgba(0,0,0,1)'); r.addColorStop(0.35, 'rgba(0,0,0,0.82)'); r.addColorStop(0.7, 'rgba(0,0,0,0.32)'); r.addColorStop(1, 'rgba(0,0,0,0)');
+  g.fillStyle = r; g.fillRect(0, 0, 128, 128);
+  golgeDoku = new THREE.CanvasTexture(c); return golgeDoku;
+}
 
 export class Birim2D {
   constructor(spec, look = {}, sag = true) {
@@ -69,6 +85,12 @@ export class Birim2D {
     this.yon = spec.hero ? (sag ? 1 : -1) : (sag ? -1 : 1);
     this.mesh.scale.x = this.yon;
     this.bb.add(this.mesh);
+    // P31-G3: temas gölgesi (world.js'in ortak lekesi bu birimde gizlenir: kendiGolge)
+    const G = spec.hero ? GOLGE.hero : spec.boss ? GOLGE.boss : GOLGE.mob, gen = O.w * G.en;
+    this.golge = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ map: golgeTex(), color: 0x000000, transparent: true, opacity: 0, depthWrite: false, toneMapped: false }));
+    this.golge.scale.set(gen, 1, gen * G.der); this.golge.position.y = 0.03; this.golge.renderOrder = 1; this.golgeEn = gen; this.kendiGolge = true;
+    this.bb.add(this.golge);
+    this.tint = new THREE.Color(spec.tint ?? 0xffffff).multiplyScalar(0.96); this.tonId = null;
     this.poz = 'bekleme'; this.lunge = 0; this.tilt = 0; this.hop = 0;
     paket(spec.ad).then(P => { const d = P?.[spec.anahtar]; if (!d) return; this.d = d; this.set(this.poz); if (!this.dead) to(this.mat, { opacity: 1 }, 0.25); });
   }
@@ -87,6 +109,14 @@ export class Birim2D {
     // Kameraya dön (yalnız dikey eksende): düzlem her zaman ekrana paralel durur
     const ry = Math.atan2(camera.position.x - this.root.position.x, camera.position.z - this.root.position.z);
     this.bb.rotation.y = ry - this.root.rotation.y;
+    if (this.tonId !== ZEMIN.aktif) { // P31-G3: zemin değişince ortam tonu (renk çarpanı) ve gölge koyuluğu yenilenir
+      this.tonId = ZEMIN.aktif; const Z = zeminTon(); this.golgeK = Z.golge;
+      this.taban.setRGB(this.tint.r * Z.ton[0], this.tint.g * Z.ton[1], this.tint.b * Z.ton[2]); if (!(this.flash > 0)) this.mat.color.copy(this.taban);
+    }
+    { const h = Math.max(0, Math.min(0.4, this.hop * 0.7)); // havadayken gölge küçülür ve açılır; vuruşta figürle kayar
+      this.golge.position.x = this.mesh.position.x;
+      this.golge.material.opacity = (this.golgeK ?? 0.55) * this.mat.opacity * (1 - h);
+      this.golge.scale.x = this.golgeEn * (1 - h * 0.5); }
     const nefes = this.dead ? 0 : Math.sin(t * 2.2 + this.phase);
     this.mesh.scale.y = 1 + nefes * 0.009; this.mesh.scale.x = this.yon * (1 - nefes * 0.004);
     this.mesh.position.set(this.lunge * this.yon * (this.hero ? 1 : -1) * 0.35, this.hop, 0);
@@ -166,5 +196,5 @@ export class Birim2D {
     this.mat.opacity = this.d ? 1 : 0; this.set('bekleme');
   }
   cheer() { if (this.dead) return; this.set(this.hero ? 'zafer' : 'saldiri'); to(this, { hop: 0.12 }, 0.25, ease.out).then(() => to(this, { hop: 0 }, 0.35)); }
-  dispose() { this.root.parent?.remove(this.root); this.mesh.geometry.dispose(); this.mat.dispose(); }
+  dispose() { this.root.parent?.remove(this.root); this.mesh.geometry.dispose(); this.mat.dispose(); this.golge.geometry.dispose(); this.golge.material.dispose(); }
 }

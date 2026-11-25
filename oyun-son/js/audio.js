@@ -1,5 +1,5 @@
-// Ses motoru. Oyunda hiç ses dosyası yoktur: bütün sesler Web Audio API ile (osilatör, gürültü, süzgeç, zarf, küçük bir
-// yankı) üretilir. Bu modül yalnızca motordur; ses tanımları (yamalar, ortam döngüleri, ezgi yatakları) sfx.js'ten
+// Ses motoru. Kısa sesler Web Audio API ile (osilatör, gürültü, süzgeç, zarf, küçük bir yankı) üretilir; müzik parçaları
+// (sfx.js P.url) HTMLAudioElement akışıyla aynı grafiğe bağlanır (P28 yuk-2). Bu modül yalnızca motordur; ses tanımları (yamalar, ortam döngüleri, ezgi yatakları) sfx.js'ten
 // register() ile gelir. Kural içermez, oyunun sonucuna dokunmaz.
 //  - Tek AudioContext, ilk kullanıcı dokunuşunda kurulur ve açılır (mobil otomatik çalma kuralları: iOS Safari, Android
 //    WebView). Dokunuş dinleyicisi takılı kalır: iOS arama ya da arka plan sonrası bağlamı "interrupted" bırakırsa sıradaki
@@ -226,7 +226,7 @@ const lastVar = new Map(), unknown = new Set(), ring = new Array(64).fill(''), s
 // Deneme ve ölçüm için: depolama, AudioContext sınıfı ve sınırlar dışarıdan verilebilir (yalnızca bağlam kurulmadan önce)
 export function configure(o = {}) {
   if (o.reset) { // bağlamı kapatıp baştan başlar (denemeler)
-    clearInterval(timer); timer = null; try { ac?.close?.(); } catch { }
+    clearInterval(timer); timer = null; for (const m of MEDIA) mediaRelease(m); MEDIA.length = 0; try { ac?.close?.(); } catch { }
     ac = null; G = null; opened = false; hiddenPage = false; gate = new Gate(); unlockAt = -1e9;
     holds.clear(); wanted.clear(); loops.clear(); dead.clear(); freeList.length = 0; lastVar.clear(); unknown.clear(); ring.fill('');
     stats.played = stats.dropped = stats.ms = stats.ticks = stats.ring = 0;
@@ -259,7 +259,7 @@ export function unlock() {
       const b = ac.createBufferSource(); b.buffer = ac.createBuffer(1, 1, ac.sampleRate); b.connect(ac.destination); b.start(0); // iOS: dokunuş içinde çalınan sessiz örnek bağlamı açar
     }
     opened = true;
-    for (const u of pending) loadBuf(ac, u).catch(() => { }); pending.clear();
+    mediaUnlock();
     pump();
     return true;
   } catch { return false; }
@@ -281,6 +281,7 @@ export function setHidden(h) {
   hiddenPage = h;
   if (!ac) return;
   try { if (h) { ac.suspend?.(); clearInterval(timer); timer = null; } else if (opened) { ac.resume?.()?.then?.(pump, () => { }); pump(); } } catch { }
+  for (const m of MEDIA) if (m.busy === 'play') try { if (h) m.el.pause(); else if (opened) m.el.play()?.catch?.(() => { }); } catch { } // akış müziği askıdaki bağlama boşuna inmesin
 }
 // Ses çıkmaması gereken anlar (yükleme ekranı, cihazın bildirim izni penceresi): ana çıkış kısılır, yeni ses çalmaz
 export function hold(reason, on) {
@@ -367,25 +368,76 @@ function startLoop(g, name, t, o = NO_OPTS) {
   }
   const st = { name, P, lg, wet, nodes, dest: { dry: lg, wet: null }, evNext: (P.ev || []).map(e => t + e.every[0] * (0.3 + g.rand())), seq: null, dying: 0 };
   if (P.seq) st.seq = { t0: t + (P.seq.lead ?? 0.3), bar: -1, notes: null, ni: 0, barDur: P.seq.beats * 60 / P.seq.bpm };
-  // Dosyadan çalan müzik (22 Kas, kullanıcının verdiği parça): P.url ilk istekte indirilip çözülür, hazır olunca döngüde çalar
-  if (P.url) {
-    const go = buf => { if (st.dying) return; const src = ctx.createBufferSource(); src.buffer = buf; src.loop = true; src.connect(lg); src.start(Math.max(t, ctx.currentTime + 0.02)); nodes.push(src); };
-    const b = BUFS.get(P.url);
-    if (b instanceof AudioBuffer) go(b); else loadBuf(ctx, P.url).then(go, () => { });
+  // Dosyadan çalan müzik (P28 yuk-2): dosya bütünüyle indirilip çözülmez; HTMLAudioElement akışla (Range istekleri) çalar,
+  // createMediaElementSource ile döngünün kazancına (lg → veri yolu → ana çıkış, sıkıştırıcı) bağlanır. Yalnız o an çalan parça iner.
+  if (P.url && ctx.createMediaElementSource) {
+    // Aynı parça sönmekte olan döngüdeyse (yer değişince baştan başlatma) öğe devralınır: dosya ikinci kez inmez
+    const d = [...dead].find(x => x.media?.url === P.url);
+    if (d) { const m = d.media; d.media = null; try { m.src.disconnect(); m.src.connect(lg); m.el.currentTime = 0; m.el.play()?.catch?.(() => { }); st.media = m; } catch { mediaRelease(m); } }
+    else st.media = mediaPlay(ctx, P.url, lg);
   }
   return st;
 }
-const BUFS = new Map();
-export function loadBuf(ctx, url) {
-  const c = BUFS.get(url); if (c) return c instanceof AudioBuffer ? Promise.resolve(c) : c;
-  const p = fetch(url).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
-    .then(a => new Promise((res, rej) => { const q = ctx.decodeAudioData(a, res, rej); q?.then?.(res, rej); }))
-    .then(b => { BUFS.set(url, b); return b; }, e => { BUFS.delete(url); throw e; });
-  BUFS.set(url, p); return p;
+// ---------- Müzik akışı (P28 yuk-2) ----------
+// Küçük öğe havuzu (en çok 4: çapraz solma + fragman önbeklemesi). Her öğenin MediaElementSource düğümü bir kez kurulur
+// (bir öğe yalnız bir kez bağlanabilir) ve parça bitince bağlantısı kesilir, src boşaltılır (tampon bellekte kalmaz).
+const MEDIA = [];
+const MEDIA_CAP = 4;
+let silentUrl = null;
+function silentWav() { // iOS kilidi için 0,05 sn sessiz WAV (dokunuş içinde bir kez çalınır)
+  if (silentUrl) return silentUrl;
+  const n = 2205, b = new ArrayBuffer(44 + n * 2), v = new DataView(b), w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, 44100, true); v.setUint32(28, 88200, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+  try { silentUrl = URL.createObjectURL(new Blob([b], { type: 'audio/wav' })); } catch { silentUrl = ''; }
+  return silentUrl;
 }
-// Müzik dosyasını bağlam açılır açılmaz önden indir (fragman ve şehir müziği beklemeden başlasın)
-export function preloadMusic(url) { if (ac) loadBuf(ac, url).catch(() => { }); else pending.add(url); }
-const pending = new Set();
+function mediaSlot(url) {
+  let m = url ? MEDIA.find(x => x.busy === 'prime' && x.url === url) : null;
+  if (!m) m = MEDIA.find(x => !x.busy);
+  return m || newSlot();
+}
+function newSlot() {
+  if (MEDIA.length >= MEDIA_CAP || typeof Audio !== 'function') return null;
+  const el = new Audio(); el.preload = 'none'; el.crossOrigin = 'anonymous';
+  const m = { el, src: null, url: '', busy: false, tm: 0, blessed: false }; MEDIA.push(m); return m;
+}
+function mediaRelease(m) {
+  if (!m) return;
+  clearTimeout(m.tm); m.busy = false; m.url = '';
+  try { m.src?.disconnect(); } catch { }
+  try { m.el.pause(); m.el.removeAttribute('src'); m.el.load(); } catch { }
+}
+function mediaPlay(ctx, url, lg) {
+  const m = mediaSlot(url); if (!m) return null;
+  clearTimeout(m.tm); m.busy = 'play';
+  try {
+    if (m.url !== url) { m.url = url; m.el.src = url; }
+    m.el.loop = true;
+    if (!m.src) m.src = ctx.createMediaElementSource(m.el);
+    m.src.connect(lg);
+    m.el.play()?.catch?.(() => { }); // otomatik oynatma engeli: sessizce bekler, sıradaki dokunuşta unlock() yeniden dener
+  } catch { mediaRelease(m); return null; }
+  return m;
+}
+// Müziği çalmadan önce akışı başlatır (fragman resimlerle birlikte hazır olsun diye): oynatılabilir olunca ya da hata/en çok
+// "ms" sonra çözülür. Kullanılmazsa 20 sn sonra bırakılır. Döner: Promise<void>
+export function primeMusic(url, ms = 4000) {
+  const m = mediaSlot(url); if (!m) return Promise.resolve();
+  if (m.busy !== 'prime') { m.busy = 'prime'; m.url = url; m.el.preload = 'auto'; m.el.src = url; }
+  clearTimeout(m.tm); m.tm = setTimeout(() => { if (m.busy === 'prime') mediaRelease(m); }, 20000);
+  if (m.el.readyState >= 3) return Promise.resolve();
+  return new Promise(res => { const ok = () => { m.el.removeEventListener('canplay', ok); m.el.removeEventListener('error', ok); res(); }; m.el.addEventListener('canplay', ok); m.el.addEventListener('error', ok); setTimeout(ok, ms); });
+}
+// Dokunuş içinde: boştaki öğeleri sessiz örnekle bir kez çaldırır (iOS her öğe için kullanıcı hareketi ister); çalan ama
+// duraklamış (otomatik oynatma engeline takılmış) müziği yeniden başlatır.
+function mediaUnlock() {
+  while (MEDIA.length < 2 && newSlot());
+  for (const m of MEDIA) {
+    if (m.busy === 'play' && m.el.paused && !hiddenPage) m.el.play()?.catch?.(() => { });
+    else if (!m.busy && !m.blessed && silentWav()) { m.blessed = true; m.el.src = silentWav(); m.el.play()?.then?.(() => { if (!m.busy) { m.el.pause(); m.el.removeAttribute('src'); m.el.load(); } }, () => { }); }
+  }
+}
 // Döngünün "until" anına kadarki olaylarını zamanlar (ortamın seyrek sesleri ve ezginin notaları)
 function fillLoop(g, st, until, cap = 8) {
   const P = st.P, now = g.ctx.currentTime;
@@ -425,8 +477,9 @@ function endLoop(g, st, t, fade = 0.8) {
 function pump() {
   if (!ac) return;
   const now = ac.currentTime, keep = S.on && !S.mute.amb, run = opened && !hiddenPage && ac.state === 'running';
-  for (const [name, st] of loops) if (!keep || !wanted.has(name)) { endLoop(G, st, now); loops.delete(name); dead.add(st); }
-  for (const st of dead) if (st.dying <= now) { try { st.lg.disconnect(); st.wet.disconnect(); } catch { } dead.delete(st); }
+  for (const [name, st] of loops) if (!keep || !wanted.has(name)) { endLoop(G, st, now, st.P.url && keep ? 2.5 : 0.8); // dosya müziği yavaş söner (intro → ana ekran geçişi)
+    loops.delete(name); dead.add(st); }
+  for (const st of dead) if (st.dying <= now) { try { st.lg.disconnect(); st.wet.disconnect(); } catch { } mediaRelease(st.media); dead.delete(st); }
   if (keep && run) for (const [name, o] of wanted) if (!loops.has(name)) { try { loops.set(name, startLoop(G, name, now + 0.02, o)); } catch { wanted.delete(name); } }
   const need = run && (loops.size > 0 || dead.size > 0);
   if (need && !timer) { timer = setInterval(tick, 120); timer.unref?.(); }
@@ -466,7 +519,7 @@ export function mute(on, bus) { return bus === undefined ? setAudio({ on: !on })
 export const isMuted = () => !S.on;
 export function onAudio(fn) { subs.add(fn); return () => subs.delete(fn); }
 // Durum özeti (denemeler ve hata ayıklama): bağlam var mı, kaç ses çaldı/atıldı, tanımsız istenen adlar, ana iş parçacığında harcanan süre
-export const audioState = () => ({ ctx: !!ac, state: ac ? ac.state : 'none', opened, hidden: hiddenPage, holds: [...holds], voices: gate.voices.length, loops: [...loops.keys()], wanted: [...wanted.keys()], played: stats.played, dropped: stats.dropped, ticks: stats.ticks, ms: stats.ms, unknown: [...unknown], recent: ring.filter(Boolean), sampleRate: ac ? ac.sampleRate : 0, baseLatency: ac ? ac.baseLatency || 0 : 0 });
+export const audioState = () => ({ ctx: !!ac, state: ac ? ac.state : 'none', opened, hidden: hiddenPage, holds: [...holds], voices: gate.voices.length, loops: [...loops.keys()], wanted: [...wanted.keys()], played: stats.played, dropped: stats.dropped, ticks: stats.ticks, ms: stats.ms, unknown: [...unknown], recent: ring.filter(Boolean), sampleRate: ac ? ac.sampleRate : 0, baseLatency: ac ? ac.baseLatency || 0 : 0, time: ac ? ac.currentTime : 0, media: MEDIA.map(m => ({ url: m.url, busy: m.busy, paused: m.el.paused, t: m.el.currentTime, ready: m.el.readyState, src: m.el.getAttribute('src') || '' })) });
 export const audioContext = () => ac;
 
 // ---------- Çevrimdışı ölçüm ----------

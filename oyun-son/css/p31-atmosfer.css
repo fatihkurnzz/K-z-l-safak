@@ -1,0 +1,31 @@
+/* P31 — Son harmoni cilası (kullanıcı talimatı 25 Kas): Zafer Anıtı arka planı, zindan kartı önizlemeleri (G2),
+   ortak hafif kenar karartması ve 250 ms yumuşak geçiş (G4 + G5). important bildirimi YOK.
+   Sprite–zemin kaynaştırması (G3) ayrı dosyada: css/p31-zemin.css. */
+:root { --p31-gecis: 250ms; --p31-kenar: radial-gradient(ellipse at 50% 46%, rgba(0, 0, 0, 0) 56%, rgba(0, 0, 0, 0.2) 82%, rgba(0, 0, 0, 0.46) 100%); }
+@keyframes p31-gir { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---- 1. Zafer Anıtı: yeni arka plan (yalnız katman açılınca iner); p28-binalar.css ile aynı özgüllük, sonra yüklenir ---- */
+#p28bina.korant-modal-monument .kb-bg { background-image: linear-gradient(rgba(12, 12, 18, 0.5), rgba(12, 12, 18, 0.5)), url(../sahneler/zafer_aniti.webp); background-size: cover; background-position: center; }
+
+/* ---- 2. Zindan kartları (G2): önizleme = o zindanın savaş sahnesi (js/ui-zindan.js ZSAHNE) ---- */
+.zcard .zscene .p31-zs { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 58%; pointer-events: none; }
+.zcard .zscene:has(> .p31-zs)::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(13, 11, 14, 0.8)); }
+.zcard .zscene > .zname, .zcard .zscene > .zlock { z-index: 1; }
+
+/* ---- 4. Ortak atmosfer: hafif kenar karartması (durağan; animasyon yok) ---- */
+/* Başkent, Yemin Pazarı, Klan Obası fotoğrafı */
+#hub2d .s2-box.s2-foto::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--p31-kenar); }
+/* İç mekânlar (Han, Ahır, Otağ, Karaborsa, Maden, Klan Karargâhı, Örs) */
+.icm > .icm-sahne::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--p31-kenar); }
+/* Zafer Anıtı */
+#p28bina.korant-modal-monument .kb-bg::after { content: ""; position: absolute; inset: 0; background: var(--p31-kenar); }
+/* Savaş, boss ve zindan sahnesi: HUD'un arkasında, tuvalin üstünde */
+#battleUI:not([hidden])::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--p31-kenar); }
+
+/* ---- 4. 250 ms yumuşak geçiş: sahne görselleri solarak gelir ---- */
+#hub2d .s2-box.s2-foto > .s2-bg { animation: p31-gir var(--p31-gecis) ease-out both; }
+#p28bina { animation: p31-gir var(--p31-gecis) ease-out both; }
+.icm { animation-duration: var(--p31-gecis); }
+.icm-hayalet { transition-duration: var(--p31-gecis); }
+#win.icm-var > .frame, #p28bina.icm-var > .kb-top, #p28bina.icm-var > .kb-body, #p28bina.icm-var > .kb-pan { transition-duration: var(--p31-gecis), 0s; }
+@media (prefers-reduced-motion: reduce) { #hub2d .s2-box.s2-foto > .s2-bg, #p28bina { animation: none; } }

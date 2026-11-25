@@ -29,8 +29,8 @@ const say = async (svg, name, lines, son, kim = '', unvan = '') => {
 ACT.npcMerchant = () => openWin({ title: NPC.merchant.name, render: () => {
   const first = step() === 'merchant' && !S.tut.f.buy;
   const rows = merchantStock(S).filter(x => x.cls === clsOf(S)).map(x => { const B = itemBase(x.b), it = { b: x.b, g: 0, p: minPlus(x.b) }; return `<div class="row npc-ware">${ico(it)}<div class="grow">${itemLine(it)}<br><span class="mut">${CLASSES[x.cls].name} için</span></div><button class="btn ${S.akce >= x.price ? 'green' : ''}" data-a="npcBuy" data-id="${x.id}" ${S.akce >= x.price ? '' : 'disabled'}>${ri('akce')} ${fmt(x.price)}</button></div>`; }).join('');
-  return `<div class="npc-head"><div class="npc-por sm">${npcBas('halvor', MERCHANT_SVG)}</div><div><b>${NPC.merchant.name}</b><p>${first ? 'Hoş geldin yolcu! Kestiğin yaratıklardan akçe topladın, değil mi? İlk silahını benden al; sınıfına uygun olanı ayırdım.' : 'Yemin Pazarı’nın en dürüst tezgâhı! Kademene göre sağlam silahlar.'}</p></div><span class="chip rw">${ri('akce')} ${fmt(S.akce)}</span></div>${rows}
-    <p class="mut">Tüccar Standart silah satar. Daha iyisi Kapı’nın ardındaki yaratıklardan ve boss’lardan düşer.</p>`;
+  return `<div class="npc-head"><div class="npc-por sm">${npcBas('halvor', MERCHANT_SVG)}</div><div><b>${NPC.merchant.name}</b><p>${first ? 'Hoş geldin yolcu! Kestiğin yaratıklardan akçe topladın, değil mi? İlk silahını benden al; sınıfına uygun olanı ayırdım.' : 'Yemin Pazarı’nın en dürüst tezgâhı! Kademene göre sağlam silahlar.'}</p></div></div>${rows}
+    <p class="mut">Tüccar Standart silah satar. Daha iyisi Kapı’nın ardındaki yaratıklardan ve Boss’lardan düşer.</p>`;
 } });
 ACT.npcBuy = async d => {
   const r = await run('npc.buy', { id: d.id });

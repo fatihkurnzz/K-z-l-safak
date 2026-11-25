@@ -27,7 +27,7 @@ const stamp = ts => `${fmtDate(ts)} ${fmtTime(ts)}`;
 ACT.news = () => {
   closeModal();
   openWin({
-    title: 'Duyurular', load: async () => {
+    title: 'Duyurular', scr: 'duyuru', load: async () => {
       const d = await run('news.list');
       if (d?.unread) { BADGE.news = 0; run('news.read').then(() => hooks.hud()); }
       return d;
@@ -52,8 +52,6 @@ const CI = {
   other: '<svg viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/><circle cx="9" cy="10" r="1.3" fill="#0006"/><circle cx="12.5" cy="10" r="1.3" fill="#0006"/><circle cx="16" cy="10" r="1.3" fill="#0006"/></svg>',
 };
 const catIco = c => `<span class="dsk-ci c-${c}">${CI[c] || CI.other}</span>`;
-const HERO_ART = '<svg class="dsk-art" viewBox="0 0 120 80" aria-hidden="true"><path d="M18 14h70c6 0 6 8 0 8H26v42c0 6-8 6-8 0z" fill="#e9d6a8" stroke="#8a6a3a" stroke-width="2"/><path d="M26 22h62v40c0 6 8 6 8 0V22" fill="#f4e6c2" stroke="#8a6a3a" stroke-width="2"/><path d="M34 32h44M34 40h40M34 48h30" stroke="#b08a52" stroke-width="2.5" stroke-linecap="round"/><path d="M98 6l14 6-30 46-7 4 1-8z" fill="#fff6dc" stroke="#6a4a24" stroke-width="2"/><path d="M80 52l-6 10" stroke="#3a2412" stroke-width="2"/><circle cx="96" cy="64" r="9" fill="#c0392b" stroke="#7a1a12" stroke-width="2"/><path d="M92 64h8M96 60v8" stroke="#ffd7a0" stroke-width="2"/></svg>';
-const EMPTY_ART = '<svg class="dsk-empty-art" viewBox="0 0 120 80" aria-hidden="true"><rect x="22" y="20" width="76" height="48" rx="4" fill="#f4e6c2" stroke="#8a6a3a" stroke-width="2"/><path d="M22 22l38 28 38-28" fill="none" stroke="#8a6a3a" stroke-width="2"/><circle cx="60" cy="50" r="7" fill="#c0392b"/><path d="M14 14l4 4M106 14l-4 4M60 4v7" stroke="#d2a24a" stroke-width="2.5" stroke-linecap="round"/></svg>';
 const TEAM = '<span class="dsk-av team"><svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke="#fff" stroke-width="2" fill="none"/></svg></span>';
 const ST = s => SUPPORT.status[s] || s;
 function renderSupport() {
@@ -77,11 +75,13 @@ function renderSupport() {
       <div class="mbtns"><button class="btn red" data-a="spSay">Gönder</button><button class="btn" data-a="spClose">Talebi kapat</button></div>`}</div>`;
   }
   if (!d) return loading;
-  return `<div class="dsk"><div class="dsk-hero">${HERO_ART}<div><b>Bir sorun mu var?</b><p class="mut">Hata, hesap ya da ödeme: talebini yaz, yanıt bu pencereye gelir. En çok ${SUPPORT.maxOpen} açık talebin olabilir.</p><button class="btn red" data-a="spNew">Yeni talep aç</button></div></div>
-    ${d.tickets.length ? d.tickets.map(t => `<button class="ibtn dsk-t" data-a="spOpen" data-id="${t.id}">${catIco(t.cat)}<span class="grow"><b>${t.unread ? '<span class="dsk-dot"></span>' : ''}${esc(t.subject)}</b><br><small class="mut">${CAT(t.cat)} · ${stamp(t.upd)}</small></span><span class="dsk-st ${t.status}">${ST(t.status)}</span></button>`).join('')
-      : `<div class="dsk-empty">${EMPTY_ART}<p class="mut">Henüz bir talebin yok. Her şey yolunda görünüyor.</p></div>`}</div>`;
+  // P25-a (referans 16_sorun_teknik_destek): perçinli metal üst kart (parşömen-tüy levhası, metin, sağda "Yeni talep aç"),
+  // altında çerçeveli kutu: mühürlü zarf boş durumu ya da açık talepler listesi (css/p25-a.css .pa-dsk)
+  return `<div class="pa-dsk"><div class="pa-hero"><span class="pa-scroll" aria-hidden="true"></span><div class="pa-ht"><b>Bir sorun mu var?</b><p>Hata, hesap ya da ödeme: talebini yaz, yanıt bu pencereye gelir. En çok ${SUPPORT.maxOpen} açık talebin olabilir.</p></div><button class="btn red" data-a="spNew">Yeni talep aç</button></div>
+    <div class="pa-box ${d.tickets.length ? '' : 'bos'}">${d.tickets.length ? d.tickets.map(t => `<button class="pa-tk" data-a="spOpen" data-id="${t.id}">${catIco(t.cat)}<span class="pa-tkb"><b>${t.unread ? '<span class="dsk-dot"></span>' : ''}${esc(t.subject)}</b><small>${CAT(t.cat)} · ${stamp(t.upd)}</small></span><span class="dsk-st ${t.status}">${ST(t.status)}</span></button>`).join('')
+      : '<span class="pa-zarf" aria-hidden="true"></span><p>Henüz bir talebin yok. Her şey yolunda görünüyor.</p>'}</div></div>`;
 }
-ACT.supportMenu = () => { closeModal(); SP.view = 'list'; SP.t = null; openWin({ title: 'Sorun / Teknik Destek', load: () => run('ticket.list'), render: renderSupport }); };
+ACT.supportMenu = () => { closeModal(); SP.view = 'list'; SP.t = null; openWin({ title: 'Sorun / Teknik Destek', scr: 'destek', load: () => run('ticket.list'), render: renderSupport }); };
 ACT.spList = () => { SP.view = 'list'; SP.t = null; reload(); };
 ACT.spNew = () => { SP.view = 'new'; redraw(); };
 ACT.spCat = d => { const sub = document.getElementById('spsub')?.value, txt = document.getElementById('sptxt')?.value; SP.cat = d.c; redraw(); if (sub !== undefined) document.getElementById('spsub').value = sub; if (txt !== undefined) document.getElementById('sptxt').value = txt; };

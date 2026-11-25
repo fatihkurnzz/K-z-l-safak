@@ -326,7 +326,7 @@ html[data-faction="ocak"] #win[data-scr="vs"] { --vsv:#c2552b; --vsd:#2b211b; }
 #win[data-scr="vs"] .vs2-alt .vs2-b2 { min-width:70px; padding:0 14px !important; background:#1a1519 !important; color:#e9e1d3 !important; border:1px solid #8d8790 !important; box-shadow:none !important; }
 #win[data-scr="vs"] .vs2-alt .vs2-b2.on { border-color:#c9a45c !important; color:#f3d98f !important; }
 #win[data-scr="vs"] .vs2-alt .vs2-b1 { min-width:144px; padding:0 18px !important; font-weight:800 !important; color:#fff !important; background:var(--vsd) !important; border:2px solid #c9a45c !important; box-shadow:inset 0 0 0 1px #0006, 0 2px 8px #0008 !important; }
-#win[data-scr="vs"] .vs2-alt .btn::before, #win[data-scr="vs"] .vs2-alt .btn::after { display:none !important; }
+#win[data-scr="vs"] .vs2-alt .btn::before { display:none !important; } /* P28 dokunma-2: ::after saydam dokunma alani */
 #win[data-scr="vs"] .vs2-alt .vs2-b1[disabled] { opacity:.5; }
 html.narrow #win[data-scr="vs"] .vs2 { grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr) !important; gap:8px !important; }
 html.narrow #win[data-scr="vs"] .vs2-dl { display:none; }

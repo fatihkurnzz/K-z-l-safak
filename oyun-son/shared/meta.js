@@ -19,7 +19,7 @@ export const WEEKLY = [
   { id: 'win',     name: '40 savaş kazan',                           key: 'win',      need: 40, reward: { t: 'energy', n: 60 } },
   { id: 'up',      name: 'Örste 20 deneme yap',                      key: 'up',       need: 20, reward: { t: 'stone', g: 1, n: 3 } },
   { id: 'break',   name: '30 eşya parçala ya da sat',                key: 'break',    need: 30, reward: { t: 'akce', n: 2500 } },
-  { id: 'boss',    name: 'Günlük boss’larla 7 kez savaş',            key: 'boss',     need: 7,  reward: { t: 'yakut', n: 30 } },
+  { id: 'boss',    name: 'Günlük Boss’larla 7 kez savaş',            key: 'boss',     need: 7,  reward: { t: 'yakut', n: 30 } },
   { id: 'arena',   name: 'Meydanda 12 kez dövüş',                    key: 'arena',    need: 12, reward: { t: 'san', n: 250 } },
   { id: 'collect', name: 'Maden kazancını 7 kez topla',  key: 'collect',  need: 7,  reward: { t: 'stone', g: 2, n: 1 } },
   { id: 'daily',   name: 'Günlük görevlerin hepsini 5 gün bitir',    key: 'dailyAll', need: 5,  reward: { t: 'charm', n: 1 } },
@@ -142,14 +142,14 @@ export const ACH = [
   // Savaş
   { id: 'wins',    cat: 'battle', name: 'Cenk Meydanı',    title: 'Cenk Eri',       stat: 'atk', tiers: [1, 50, 500, 3000],      text: n => `${nf(n)} savaş kazan`,                           v: p => p.stats.wins },
   { id: 'stars',   cat: 'battle', name: 'Yıldız Toplayan', title: 'Yıldızlı',       stat: 'hp',  tiers: [30, 150, ZONES.length * STAGES_PER_ZONE * 3], text: n => `Aşamalardan ${nf(n)} yıldız topla`, v: p => sumOf(p.stages) },
-  { id: 'zones',   cat: 'battle', name: 'Diyar Diyar',     title: 'Diyar Fatihi',   stat: 'atk', tiers: ZONES.map((_, i) => i + 1), text: n => `${n} bölgenin son boss’unu yen`,               v: p => ZONES.filter(z => p.stages[`${z.id}-${STAGES_PER_ZONE}`]).length },
+  { id: 'zones',   cat: 'battle', name: 'Diyar Diyar',     title: 'Diyar Fatihi',   stat: 'atk', tiers: ZONES.map((_, i) => i + 1), text: n => `${n} bölgenin son Boss’unu yen`,               v: p => ZONES.filter(z => p.stages[`${z.id}-${STAGES_PER_ZONE}`]).length },
   { id: 'level',   cat: 'battle', name: 'Yol Görmüş',      title: 'Yol Görmüş',     stat: 'hp',  tiers: [10, 30, 50, 65],        text: n => `Seviye ${n} ol`,                         v: p => p.lvl },
   { id: 'well',    cat: 'battle', name: 'Dipsiz Yürek',    title: 'Kuyu Bekçisi',   stat: 'def', tiers: [5, 10],                 text: n => `Dipsiz Kuyu’da ${n} dalga temizle`,              v: p => p.wellBest },
   { id: 'depth',   cat: 'battle', name: 'Yerin Dibi',      title: 'Derin Yürüyen',  stat: 'hp',  tiers: [10, 25, 50],            text: n => `Yeraltı Ocağı’nda ${n}. kata in`,                v: p => Math.max(p.depth, p.depthBest || 0) },
-  { id: 'tiers',   cat: 'battle', name: 'Zorun Zoru',      title: 'Çetin Ceviz',    stat: 'def', tiers: [1, ZONES.length, ZONES.length * TIER_MAX], text: n => `Çetin ve Yaman kademelerde ${n} bölgenin son boss’unu yen`, v: p => { let a = 0; for (let t = 1; t <= TIER_MAX; t++) a += ZONES.filter(z => starsOf(p, t)[`${z.id}-${STAGES_PER_ZONE}`]).length; return a; } },
+  { id: 'tiers',   cat: 'battle', name: 'Zorun Zoru',      title: 'Çetin Ceviz',    stat: 'def', tiers: [1, ZONES.length, ZONES.length * TIER_MAX], text: n => `Çetin ve Yaman kademelerde ${n} bölgenin son Boss’unu yen`, v: p => { let a = 0; for (let t = 1; t <= TIER_MAX; t++) a += ZONES.filter(z => starsOf(p, t)[`${z.id}-${STAGES_PER_ZONE}`]).length; return a; } },
   // Boss
   { id: 'bosskill', cat: 'boss', name: 'Baş Avı',          title: 'Baş Avcısı',     stat: 'atk', tiers: [5, 50, 300],            text: n => `${nf(n)} boss kes`,                              v: bossKills },
-  { id: 'bosskind', cat: 'boss', name: 'Büyük Av',         title: 'Av Beyi',        stat: 'def', tiers: [3, 8, BOSSES.length],   text: n => `${n} farklı boss’u yen`,                         v: p => BOSSES.filter(m => p.codex[m]?.k > 0).length },
+  { id: 'bosskind', cat: 'boss', name: 'Büyük Av',         title: 'Av Beyi',        stat: 'def', tiers: [3, 8, BOSSES.length],   text: n => `${n} farklı Boss’u yen`,                         v: p => BOSSES.filter(m => p.codex[m]?.k > 0).length },
   { id: 'seal',    cat: 'boss',  name: 'Mühür Kıran',      title: 'Mühür Kıran',    stat: 'atk', tiers: [1, 10, 50],             text: n => `Mühürlü Oda’yı ${n} kez kazan`,                  v: p => C(p, 'seal') },
   // Meydan
   { id: 'awins',   cat: 'arena', name: 'Meydan Tozu',      title: 'Meydan Eri',     stat: 'atk', tiers: [1, 50, 300],            text: n => `Meydanda ${nf(n)} zafer kazan`,                  v: p => p.arena.wins },

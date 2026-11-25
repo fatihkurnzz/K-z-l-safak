@@ -3,11 +3,12 @@
 import { rankName } from '../shared/rutbe.js';
 import { url as g5url } from './grafik5-png.js';
 import { S, act, now } from './api.js';
-import { CLASSES, ENERGY, UNLOCK, SHARDS, PREMIUM, TITLES, FACTION_BONUS, bonusLines, xpNeed } from '../shared/content.js';
+import { CLASSES, ENERGY, UNLOCK, SHARDS, PREMIUM, TITLES, FACTION_BONUS, bonusLines, xpNeed, SERVER, FACTIONS, WAR_BONUS } from '../shared/content.js';
+import { KINGDOM } from '../shared/realm.js';
 import { premTier } from '../shared/state.js';
-import { achTitle } from '../shared/meta.js';
+import { achTitle, ACH, achHeld, achBonus } from '../shared/meta.js';
 import { seasonTitle } from '../shared/pvp.js';
-import { weaponFx, WEAPON_FX, WFX_PCT, SLOTS, GRADES, STONES, itemBase, itemStats, mainStats, subsOf, subCount, fmtSub, SUB_UP, itemName, STAT_LABEL, fmtStat, gradeOf, isCoef, rqOf, meetsRq, RQ_LABEL } from '../shared/items.js';
+import { weaponFx, WEAPON_FX, WFX_PCT, SLOTS, GRADES, STONES, itemBase, itemStats, mainStats, subsOf, subCount, fmtSub, SUB_UP, itemName, STAT_LABEL, fmtStat, gradeOf, isCoef, rqOf, meetsRq, RQ_LABEL, allBases } from '../shared/items.js';
 import { MOBS } from '../shared/zones.js';
 import { weaponModel, statTotals, elxTo } from '../shared/hero.js';
 import { clsOf, mainId } from '../shared/roster.js';
@@ -30,13 +31,55 @@ export const stars = n => (n >= 1 && n <= 3 ? `<span class="kstars k${n}" title=
 export const pctTxt = v => `%${v >= 10 ? Math.floor(v) : (v >= 1 ? v.toFixed(1) : v.toFixed(2)).replace('.', ',')}`;
 export const xpGain = (xp, lvl) => `+${pctTxt(100 * xp / Math.max(1, xpNeed(lvl ?? S.lvl)))} TP`;
 export const clockText = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return s >= 3600 ? `${Math.floor(s / 3600)}sa ${Math.floor(s % 3600 / 60)}dk` : `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; };
+// P28 bildirim (25 Kas, kullanıcı: "yukarıda çıkan bildirimleri kaldır"): eylem geri bildirimi artık üstte değil, ALT ortada
+// tek satır (#toastAlt). Ölçüler tek tabloda.
+const TOAST = { ms: 1600, gap: 8, freePct: 0.12 };
 let toastT;
-export function toast(msg) { hooks.sfx?.('toast'); const t = $('#toast'); t.textContent = msg; t.style.opacity = 1; clearTimeout(toastT); toastT = setTimeout(() => { t.style.opacity = 0; }, 2600); }
+// Satırın alttan uzaklığı (px): savaşta yetenek çubuğunun, açık modal/pencerede kutunun alt kenarının içinde, ana ekranda dock'un üstünde
+function toastBottom() {
+  const vh = window.innerHeight, vis = el => el && el.getClientRects().length ? el.getBoundingClientRect() : null;
+  const bt = $('#battleUI:not([hidden])') && vis($('#skills'));
+  if (bt && bt.height) return vh - bt.top + TOAST.gap;
+  const box = (!modal.hidden && vis(modal.querySelector('.box, .frame') || modal.firstElementChild)) || (!win.hidden && vis(win.querySelector('.frame') || win.firstElementChild));
+  if (box && box.height) return Math.max(TOAST.gap, vh - box.bottom + TOAST.gap);
+  const dock = !hud.hidden && [...hud.querySelectorAll('.s2-dock, .dock')].map(vis).find(r => r && r.height);
+  if (dock) return vh - dock.top + TOAST.gap;
+  return Math.round(vh * TOAST.freePct);
+}
+/**
+ * Oyuncunun kendi eylemine kısa geri bildirim ("Yeterli akçe yok", "Satın alındı"). İmza değişmedi.
+ * Ekranın alt ortasında tek satır, TOAST.ms sonra kalkar. Eski #toast'a metin uyumluluk için yazılır (gözlemciler) ama gösterilmez.
+ * @param {string} msg gösterilecek kısa metin
+ */
+export function toast(msg) {
+  hooks.sfx?.('toast');
+  const t = $('#toast'); if (t) t.textContent = msg;
+  let el = document.getElementById('toastAlt');
+  if (!el) { el = document.createElement('div'); el.id = 'toastAlt'; el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite'); (t?.parentNode || document.body).insertBefore(el, t ? t.nextSibling : null); }
+  el.textContent = msg; el.style.bottom = `${toastBottom()}px`; el.classList.add('on');
+  clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), TOAST.ms);
+}
 export const hooks = { hud() {} }; // sfx(tür, ad): ses paketi buraya bağlanır (ui-ses.js) · ana üs kendi çizimini buraya bağlar · err(e): hatayı kendi kutusuyla gösteren modül true döner (ui-pvp.js: çanta dolu)
 export async function run(type, payload) { try { return await act(type, payload); } catch (e) { if (!hooks.err?.(e)) toast(hooks.errText?.(e) ?? e.message); return null; } }
 
 // ---- Tıklama yönlendirme: data-a="işlem" ----
-export const ACT = {};
+// P26 G3: parametresiz çağrı koruması. Her ACT eylemi sarılır: (1) `A.x()` / `A.x(null)` → `A.x({})` (güvenli varsayılan);
+// (2) eylem boş parametreyle ({} ya da hiç) çağrılıp gerekli bir alanı (kimlik vb.) bulamadığı için TypeError atarsa eylem
+// sessizce yok sayılır (yalnız konsol uyarısı). Tıklamadan gelen dataset (DOMStringMap) asla yutulmaz: gerçek hatalar görünür kalır.
+const bosMu = d => d == null || (Object.getPrototypeOf(d) === Object.prototype && !Object.keys(d).length);
+const yut = (k, e) => { if (e instanceof TypeError) { console.warn(`ACT.${String(k)}: parametresiz çağrı yok sayıldı (${e.message})`); return null; } throw e; };
+/** Eylemi parametresiz çağrıya karşı korur (bkz. yukarı). İç yardımcı; ACT tablosuna atanan her işleve uygulanır. */
+function korumali(k, f) {
+  const g = function (d, ...r) {
+    const bos = bosMu(d);
+    if (!bos) return f.call(this, d, ...r);
+    try { const v = f.call(this, d ?? {}, ...r); return v && typeof v.then === 'function' ? v.catch(e => yut(k, e)) : v; } catch (e) { return yut(k, e); }
+  };
+  g.asil = f;
+  return g;
+}
+/** Eylem tablosu: data-a="ad" → ACT.ad(dataset, düğme). Atanan işlevler `korumali` ile sarılır. */
+export const ACT = new Proxy({}, { set(t, k, v) { t[k] = typeof v === 'function' && !v.asil ? korumali(k, v) : v; return true; } });
 for (const root of [hud, win, modal, chatbar]) {
   root.addEventListener('click', e => {
     const b = e.target.closest('[data-a]');
@@ -183,7 +226,7 @@ export const unitImg = (u, cls = 'sm') => u.cls ? heroImg(u.cls, false, cls, u.f
 
 // ---------- Modal ----------
 let modalOpenedAt = 0;
-export function showModal(html, cls = '') { if (modal.hidden) modalOpenedAt = performance.now(); const again = !modal.hidden || performance.now() - modalClosedAt < 120; modal.innerHTML = `<div class="box ${cls}${again ? ' still' : ''}"><button class="x mx" data-a="closeModal" aria-label="Kapat">✕</button>${html}</div>`; modal.hidden = false; hooks.sfx?.('modal', cls); }
+export function showModal(html, cls = '') { if (modal.hidden) modalOpenedAt = performance.now(); const again = !modal.hidden || performance.now() - modalClosedAt < 120; modal.innerHTML = `<div class="box ${cls}${again ? ' still' : ''}"><button class="x mx" data-a="closeModal" aria-label="Kapat">✕</button>${html}</div>`; modal.hidden = false; modalCtx(); hooks.sfx?.('modal', cls); }
 let modalClosedAt = 0; // kapatılıp hemen (aynı dokunuşta) yeniden açılan pencere açılış animasyonunu yeniden oynatmaz
 export function closeModal() { if (!modal.hidden) { hooks.sfx?.('modalClose'); modalClosedAt = performance.now(); } modal.hidden = true; modal.innerHTML = ''; }
 ACT.closeModal = closeModal;
@@ -210,13 +253,14 @@ export function openWin(cfg) { hooks.sfx?.('win'); W = cfg; win.hidden = false; 
 export async function reload() { const w = W; if (!w?.load) return; w.data = await w.load(w.tab); if (W === w) redraw(); }
 const tabsHtml = () => `${W.tabs.map(t => `<button data-a="tab" data-id="${t.id}" class="${t.id === W.tab ? 'on' : ''}" ${t.off ? 'disabled style="opacity:.5"' : ''}>${t.pre || tabPre(t)}<span>${t.label}${t.small ? `<small>${t.small}</small>` : ''}</span>${t.dot ? '<i class="tdot" aria-label="Bekleyen puan"></i>' : ''}</button>`).join('')}`;
 // GPT Paket 5 (21 Kas): pencere başlığında işlevin nesnesi (örs, defter, mektup, fener, makara, pusula)
-const EMB = [['Örs', 'ors'], ['Görev', 'defter'], ['Günlük Görevler', 'defter'], ['Destan', 'defter'], ['Takvim', 'defter'], ['Başarımlar', 'defter'], ['Ansiklopedi', 'defter'],
+// P27 4.4: Takvim ve Ansiklopedi'de kitap simgesi çerçeve köşesine biniyordu → bu iki pencereden kaldırıldı
+const EMB = [['Örs', 'ors'], ['Görev', 'defter'], ['Günlük Görevler', 'defter'], ['Destan', 'defter'], ['Başarımlar', 'defter'],
   ['Posta', 'mektup'], ['Sorun', 'mektup'], ['Sohbet', 'mektup'], ['Duyurular', 'mektup'], ['Bildirimler', 'mektup'],
   ['Yeraltı Ocağı', 'fener'], ['Kül Kulesi', 'fener'], ['Maden', 'fener'], ['Dipsiz Kuyu', 'fener'], ['Mühürlü Oda', 'fener'], ['Zindanlar', 'fener'],
   ['Balık', 'makara'], ['Kapı', 'pusula'], ['Sefer', 'pusula'], ['Diyar', 'pusula'],
   ['Klan', 'flama'], ['Hisar', 'flama'], ['Taş Yemini', 'flama'], ['Sancak Savaşı', 'flama'], ['Otağ', 'flama'], ['Meydan', 'flama'], ['Canlı Meydan', 'flama'], ['Şan Divanı', 'flama'], ['Sıralama', 'flama']];
 const embOf = t => { const e = EMB.find(([p]) => String(t).startsWith(p)); const u = e && g5url(e[1] === 'flama' ? 'flama-' + (S?.faction === 'sancak' ? 'sancak' : 'ocak') : e[1]); return u ? `<img class="wemb" src="${u}" alt="" aria-hidden="true">` : ''; };
-const SCR = { 'Çanta': 'canta', 'Karakter': 'karakter', 'Görevler': 'gorev', 'Görev Defteri': 'gorev', 'Takvim': 'gorev', 'Klan Karargâhı': 'klan' };
+const SCR = { 'Çanta': 'canta', 'Karakter': 'karakter', 'Görevler': 'gorev', 'Görev Defteri': 'gorev', 'Takvim': 'gorev', 'Klan Karargâhı': 'klan', 'Sıralama': 'siralama', 'Meydan': 'siralama', 'Başarımlar': 'basarim' };
 function drawWin() {
   // Aynı pencere açıksa kabuğu yıkma: yalnız sekme çubuğunu yerinde güncelle (titreme olmasın)
   const key = W.title + '|' + (W.back || '') + '|' + (W.tabs ? 1 : 0) + (W.scr || '');
@@ -230,6 +274,7 @@ function drawWin() {
   win.className = 'win full'; // 22 Kas (kullanıcı): bütün pencerelerde sekmeler solda (eski 'top' seçeneği yok sayılır)
   win.innerHTML = `<div class="scrim" data-a="closeWin"></div><div class="frame"><header>${W.back ? `<button class="x bk" data-a="${W.back}">‹</button>` : ''}${embOf(W.title)}<h2>${W.title}</h2><div class="wres"></div><button class="x" data-a="closeWin">✕</button></header>
     <div class="wbody">${W.tabs ? `<nav class="tabs">${tabsHtml()}</nav>` : ''}<section class="page" id="page"></section></div></div>`;
+  hooks.icmWin?.(win, W); // P30: iç mekân sahnesi (js/ic-mekan.js); mekânı olmayan pencerede hiçbir şey yapmaz
   redraw();
 }
 const BLD_WALLET = {
@@ -237,6 +282,7 @@ const BLD_WALLET = {
   'Maden': () => [['ore', S.ore, 'Cevher']],
   'Meydan': () => [['san', S.san, 'Şan']],
   'Kader Çarkı': () => Object.entries(SHARDS).map(([k, n]) => ['shard_' + k, S.shards[k] || 0, n]),
+  'Klan Karargâhı': () => [['nisan', S.nisan || 0, 'Oba Nişanı'], ...(W?.data?.clan?.hq ? [['clan', W.data.clan.hq.tre || 0, 'Klan Hazinesi']] : [])], // P24: Oba Nişanı + Klan Hazinesi (pencere verisinden)
   'Klan': () => [['nisan', S.nisan || 0, 'Oba Nişanı']],
   'Kapı': () => [['seal', S.seals, 'Mühür Taşı']],
 };
@@ -246,14 +292,74 @@ export function redraw() {
   page.innerHTML = W.render(W.tab);
   if (W.tabsFn) { W.tabs = W.tabsFn(); const nav = win.querySelector('nav.tabs'); if (nav) { const h = tabsHtml(); if (nav._h !== h) { nav._h = h; nav.innerHTML = h; } } } // sekme etiketleri durumdan (ör. Karakter: dağıtılmamış puan)
   page.scrollTop = y;
-  // Başlıkta her zaman Enerji, Akçe, Yakut; binaya özgü kaynaklar yalnızca o binanın penceresinde görünür (yeni oyuncu boğulmasın)
+  // P27 Bölüm 2: başlık şeridi bağlamsaldır (CTX tablosu): binaya özgü kaynaklar (BLD_WALLET) + o ekranda harcanan genel kaynak ya da durum etiketi
+  const el = win.querySelector('.wres'), C = ctxOf(W);
   const extra = (BLD_WALLET[W.title]?.() || []).map(([i, v, t]) => `<span class="wx" title="${t}">${ri(i)} ${fmt(v)}</span>`).join('');
-  win.querySelector('.wres').innerHTML = `${extra}<span>${ri('energy')} ${energyNow().e}</span><span>${ri('akce')} ${fmt(S.akce)}</span><span>${ri('gem')} ${fmt(S.yakut)}</span>`;
+  const gen = (C.res || []).map(k => `<span class="wg" title="${RES_PILL[k][1]}">${ri(RES_PILL[k][0])} ${RES_PILL[k][2]()}</span>`).join('');
+  let tag = ''; if (C.tag) { try { tag = C.tag(W) || ''; } catch { tag = ''; } tag ||= serverTag(); }
+  el.classList.toggle('wtag', !!tag && !extra && !gen);
+  el.innerHTML = `${extra}${gen}${tag ? `<span class="wctx">${esc(tag)}</span>` : ''}`;
+  fitRes();
   hooks.hud();
 }
-export function closeWin(silent) { if (!win.hidden) hooks.sfx?.('winClose', silent); W = null; win.hidden = true; win._key = null; win.innerHTML = ''; if (silent !== true) hooks.hud(); }
+// ---- P27 Bölüm 2: bağlamsal üst şerit (TALIMAT.md tablosu) ----
+const RES_PILL = { energy: ['energy', 'Enerji', () => energyNow().e], akce: ['akce', 'Akçe', () => fmt(S.akce)], yakut: ['gem', 'Yakut', () => fmt(S.yakut)] };
+const serverTag = () => `Sunucu: ${SERVER.name}`;
+const plainTitle = t => String(t ?? '').replace(/<[^>]*>/g, '').trim();
+const pad2 = n => String(n).padStart(2, '0');
+/** Sunucu saati (SERVER.tz = UTC+3) "SS:DD". */
+const serverClock = () => { const d = new Date(now() + 3 * 3600000); return `Sunucu Saati ${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}`; };
+const dayLeft = ms => (ms >= 86400000 ? `${Math.floor(ms / 86400000)}g ${Math.floor(ms % 86400000 / 3600000)}s` : `${Math.floor(ms / 3600000)}s ${Math.floor(ms % 3600000 / 60000)}dk`);
+const TAGS = {
+  server: serverTag,
+  clock: serverClock,
+  ach: () => { const held = ACH.reduce((a, A) => a + achHeld(S, A.id), 0), all = ACH.reduce((a, A) => a + A.tiers.length, 0); return `${held}/${all} Kademe · +${pct(achBonus(S).pct.atk)} Güç`; },
+  codex: () => `${Object.keys(MOBS).length} Yaratık · ${fmt(allBases().reduce((a, b) => a + (itemBase(b).unique ? 1 : 2), 0))} Eşya`, // ui-esya.js ENTRY_COUNT ile aynı sayım
+  yemin: w => { const D = w?.data?.war; if (!D?.now) return ''; const h = D.holder ? FACTIONS[D.holder]?.name : null; return `${WAR_BONUS.name}: ${h || 'yok'} · ${fmt(D.now.ocak)} – ${fmt(D.now.sancak)}`; },
+  otag: w => { const e = w?.data?.v?.endsAt; return e ? `${SERVER.name} · Seçime ${dayLeft(Math.max(0, e - now()))}` : ''; },
+  hero: () => `${SERVER.name} · Sv. ${S.lvl}`,
+};
+/** P27 Bölüm 2 bağlam tablosu: [başlık öneki (HTML'siz) | 'scr:<kimlik>', { res: genel kaynaklar, tag: durum etiketi }].
+ *  İlk eşleşen satır geçerlidir; eşleşme yoksa CTX_DEF (yalnız "Sunucu: Ares"). Modallarda MODAL_CTX (h2 metni). */
+const CTX = [
+  ['scr:vs', { res: ['energy'] }],
+  ...['Silah ve Kalkan', 'Zırh', 'Takı', 'Tüccar', 'Pazar', 'İksir ve Parşömen', 'Parçala ya da Sat', 'Örs', 'Maden', 'Çanta'].map(t => [t, { res: ['akce'] }]),
+  ...['Karaborsa', 'Premium', 'Yakut Al', 'Kervan'].map(t => [t, { res: ['yakut'] }]),
+  ...['Kapı', 'Destan', 'Kristal Nöbeti', 'Meydan Sezonu'].map(t => [t, { res: ['energy'] }]),
+  ['Meydan', { res: ['energy'] }],
+  ...['Kader Çarkı', 'Klan', 'Şan Divanı'].map(t => [t, {}]), // yalnız binaya özgü cüzdan
+  ['Ansiklopedi', { tag: TAGS.codex }], ['Başarımlar', { tag: TAGS.ach }], ['Taş Yemini', { tag: TAGS.yemin }], [KINGDOM.court, { tag: TAGS.otag }],
+  ['Takvim', { tag: TAGS.clock }], ['Görev', { tag: TAGS.clock }], ['Görevler', { tag: TAGS.clock }], ['Günlük Görevler', { tag: TAGS.clock }], ['Karakter', { tag: TAGS.hero }],
+];
+const CTX_DEF = { tag: TAGS.server }; // Ayarlar, Sorun / Teknik Destek, Posta, Sohbet, Sıralama, Arkadaşlar, Bildirimler, Duyurular…
+/** Pencerenin bağlam satırını döner ({ res?, tag? }). */
+export function ctxOf(w) {
+  const t = plainTitle(w?.title);
+  const row = CTX.find(([k]) => (k.startsWith('scr:') ? w?.scr === k.slice(4) : t === k || t.startsWith(k + ' ')));
+  return row ? row[1] : CTX_DEF;
+}
+// Modal (showModal) başlıkları: Kaynak kutusu YOK satırları durum etiketi alır; Kapı seçimi yalnız Enerji. Menü kendi "Sunucu: Ares" düğmesini taşır.
+const MODAL_CTX = { 'Kapı': { res: ['energy'] }, 'Işınlanma Kapısı': { tag: TAGS.server }, 'Mini Dizi': { tag: TAGS.server }, 'Çevrimiçi ödülleri': { tag: TAGS.clock }, 'Ödül Sandığı': { tag: TAGS.clock } };
+function modalCtx() {
+  const box = modal.querySelector('.box'), h = box?.querySelector(':scope > h2'), C = h && MODAL_CTX[h.textContent.trim()];
+  if (!C || box.querySelector(':scope > .mctx')) return;
+  const gen = (C.res || []).map(k => `<span class="wg" title="${RES_PILL[k][1]}">${ri(RES_PILL[k][0])} ${RES_PILL[k][2]()}</span>`).join('');
+  h.insertAdjacentHTML('afterend', `<div class="mctx${gen ? '' : ' wtag'}">${gen || `<span class="wctx">${esc(C.tag())}</span>`}</div>`);
+}
+/** Başlık şeridi dar ekranda X düğmesine taşmasın: sığmayan BİNAYA ÖZGÜ kapsüller (.wx, soldakiler) bütün olarak gizlenir;
+ *  genel kaynak (.wg) ve durum etiketi (.wctx) hep kalır. Band sağa yaslıdır (flex-end), soldan gizlemek ötekileri kaydırmaz. */
+export function fitRes() {
+  const el = win.querySelector('.frame > header .wres'); if (!el) return;
+  const sp = [...el.children]; sp.forEach(x => { x.style.display = ''; });
+  const L = el.getBoundingClientRect().left;
+  sp.filter(x => x.classList.contains('wx')).forEach(x => { if (x.getBoundingClientRect().left < L - 1) x.style.display = 'none'; });
+}
+if (typeof window !== 'undefined') window.addEventListener('resize', () => { try { if (W && !win.hidden) fitRes(); } catch { /* pencere yok */ } });
+export function closeWin(silent) { if (!win.hidden) { hooks.sfx?.('winClose', silent); hooks.icmWinKapat?.(win); } W = null; win.hidden = true; win._key = null; win.innerHTML = ''; win.classList.remove('icm-var', 'icm-kapali'); delete win.dataset.icm; if (silent !== true) hooks.hud(); }
 ACT.closeWin = () => closeWin();
 ACT.tab = d => { W.tab = d.id; W.data = null; W.onTab?.(d.id); drawWin(); const pg = $('#page'); if (pg) pg.scrollTop = 0; reload(); };
+// Tembel görsel paketleri yüklendi (P26 O15): eşya simgeleri (item-icons/esya-png), karakter (karakter-png), G4–G6 (sahne.js) → açık pencere yeniden çizilir
+if (typeof window !== 'undefined') for (const ev of ['dd-esya2', 'dd-karakter', 'dd-gorsel']) window.addEventListener(ev, () => { try { if (W && !win.hidden) redraw(); } catch { /* pencere yok */ } });
 export async function doAct(type, payload) { const r = await run(type, payload); if (r) redraw(); return r; }
 export const loading = '<p class="mut" style="text-align:center;padding:20px">Yükleniyor…</p>';
 

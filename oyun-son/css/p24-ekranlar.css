@@ -1,0 +1,590 @@
+/* p24-ekranlar.css — 24 Kas: 23+24 ekran paketi (tek ortak ModalShell, iki halk). EN SON yüklenir.
+   Görseller js/ui-kaplama.js (p24Kit) ile --k-* değişkenleri olarak yazılır ve html.k24 sınıfı eklenir; ?k24=0 kiti kapatır.
+   Her ekran ajanı yalnızca kendi "G#" bölümüne yazar; TEMEL bölümü ve başka bölümler değiştirilmez. Rehber: docs/p24-ekran-rehberi.md */
+
+/* === TEMEL (phase 1) === */
+
+/* -- Katman sırası (kit gerekmez): HUD ve mini sohbet <= 30; pencere ve modal = 50; öğretici 55; bildirim 100 -- */
+html #game #chatbar, #chatbar { z-index: 30 !important; }
+#win, #modal { z-index: 50; }
+#tut { z-index: 55; }
+/* Bildirim (toast): en üst orta, pencere başlığının üstüne binse de tıklamayı engellemez */
+#toast { top: 10px !important; z-index: 100 !important; pointer-events: none !important; }
+/* Sohbet penceresi açıkken mini sohbet barı gizli (html.k24-sohbet: ui-kaplama.js) */
+html.k24-sohbet #chatbar { display: none !important; }
+/* Pencere ya da modal açıkken mini sohbet karartmadan sızıp görünmesin (kit açıkken) */
+html.k24 body:has(#win:not([hidden]), #modal:not([hidden])) #chatbar { visibility: hidden; }
+
+/* -- Pencere kabuğu (#win) -- */
+html.k24[data-faction] #win .frame {
+  border: 18px solid transparent !important; border-image: var(--k-frame) 42 fill / 18px stretch !important;
+  background: none !important; border-radius: 0 !important; box-shadow: 0 14px 44px #000c !important; padding: 0 !important;
+}
+/* Başlık şeridi: uçları sivri kalsın diye yalnız yan dilimler (80px) sabit, orta uzar */
+html.k24[data-faction] #win .frame > header h2 {
+  background: none !important; border: 0 solid transparent !important; border-width: 0 26px !important;
+  border-image: var(--k-title) 0 80 fill / 0 26px stretch !important; border-radius: 0 !important; box-shadow: none !important;
+  padding: 4px 4px !important; margin-left: 2px; font-family: Cinzel, Georgia, serif; font-size: 16px; line-height: 24px; letter-spacing: .5px;
+  color: #ffe2a8 !important; text-shadow: 0 1px 2px #000, 0 0 8px #0008;
+}
+html.k24[data-faction] #win .frame > header h2::before { display: none !important; }
+/* Kapat (X) */
+html.k24[data-faction] #win .frame > header > .x:not(.bk) {
+  background: var(--k-close) center / 100% 100% no-repeat !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  width: 34px !important; height: 34px !important; padding: 0 !important; color: transparent !important; font-size: 0 !important;
+}
+html.k24[data-faction] #win .frame > header > .x:not(.bk):active { filter: brightness(1.25); }
+/* Dikey sekmeler (sol) */
+html.k24[data-faction] #win nav.tabs button {
+  background: none !important; border: 8px solid transparent !important; border-image: var(--k-tab-off) 40 fill / 8px stretch !important;
+  border-radius: 0 !important; box-shadow: none !important; clip-path: none !important; color: #d9cdb8 !important; padding: 2px 3px !important; overflow-wrap: normal; hyphens: none;
+}
+html.k24[data-faction] #win nav.tabs button.on { border-image: var(--k-tab-on) 40 fill / 8px stretch !important; color: #fff6e0 !important; filter: drop-shadow(0 0 5px #ffb04766); }
+html.k24[data-faction] #win nav.tabs button::before, html.k24[data-faction] #win nav.tabs button::after { opacity: 0; }
+html.k24[data-faction] #win nav.tabs button:disabled { filter: grayscale(.7) brightness(.8); }
+
+/* -- Üst sağ kaynak bandı: X'in solunda; her pencerede aynı kapsül (Enerji, Akçe, Yakut; binaya özgü kaynaklar solda) -- */
+html.k24[data-faction] #win .frame > header { padding-right: 46px; }
+html.k24[data-faction] #win .wres, .p24band { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+html.k24[data-faction] #win .wres > span, html.k24 .p24band > span {
+  display: inline-flex; align-items: center; gap: 4px; height: 24px; box-sizing: border-box; padding: 0 12px 0 10px;
+  background: var(--k-pill) center / 100% 100% no-repeat !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  font: 700 12px/1 Inter, system-ui, sans-serif; color: #f3e8d2; text-shadow: 0 1px 1px #000; white-space: nowrap;
+}
+html.k24[data-faction="sancak"] #win .wres > span, html.k24[data-faction="sancak"] .p24band > span { padding-left: 28px; }
+html.k24[data-faction="sancak"] #win .wres > span > .ri:first-child, html.k24[data-faction="sancak"] .p24band > span > .ri:first-child { margin-left: -22px; }
+html.k24[data-faction] #win .wres .ri, html.k24 .p24band .ri { width: 15px; height: 15px; flex: none; }
+
+/* -- Düğmeler (#win ve #modal; savaş sonuç kutusu hariç): .btn=ikincil, .btn.red=birincil, .btn.green=onay -- */
+html.k24[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn, html.k24[data-faction] .k-btn2 {
+  background: none !important; border: 14px solid transparent !important; border-image: var(--k-btn2) 40 fill / 14px stretch !important;
+  border-radius: 0 !important; box-shadow: none !important; clip-path: none !important; color: #f3e8d2 !important; text-shadow: 0 1px 2px #000;
+  font-family: Cinzel, Georgia, serif; font-weight: 800; text-align: center; padding: 0 6px !important; min-height: 34px;
+}
+html.k24[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn.sm { border-width: 11px !important; border-image-width: 11px !important; min-height: 28px; }
+html.k24[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn.red, html.k24[data-faction] .k-btn1 { border-image-source: var(--k-btn1) !important; color: #fff6e0 !important; }
+html.k24[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn.green, html.k24[data-faction] .k-btn-ok { border-image-source: var(--k-btn-ok) !important; color: #f4fff2 !important; }
+html.k24[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn::before { display: none !important; } /* P28 dokunma-2: ::after serbest (saydam dokunma alani, p28-dokunma.css) */
+html.k24[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn:not(:disabled):active { filter: brightness(1.2); transform: translateY(1px); }
+html.k24[data-faction] :is(#win, #modal .box:not([class*="bres"])) .btn:disabled { filter: grayscale(.8) brightness(.7); }
+
+/* -- Yardımcı sınıflar (ekran ajanları kullanır): kart, ikinci kart, halka, başlık şeridi, kapsül -- */
+html.k24[data-faction] .k-card { background: none !important; border: 16px solid transparent !important; border-image: var(--k-card) 48 fill / 16px stretch !important; border-radius: 0 !important; }
+html.k24[data-faction] .k-card2 { background: none !important; border: 16px solid transparent !important; border-image: var(--k-card2) 48 fill / 16px stretch !important; border-radius: 0 !important; }
+html.k24[data-faction] .k-ring { background: var(--k-ring) center / 100% 100% no-repeat; }
+html.k24[data-faction] .k-pill { background: var(--k-pill) center / 100% 100% no-repeat; border: 0; border-radius: 0; }
+html.k24[data-faction] .k-title { background: none; border: 0 solid transparent; border-width: 0 26px; border-image: var(--k-title) 0 80 fill / 0 26px stretch; font-family: Cinzel, Georgia, serif; color: #ffe2a8; text-align: center; }
+
+/* -- Modal kutusu (#modal .box; başlıklı olanlar; savaş sonucu .bres hariç) -- */
+html.k24[data-faction] #modal .box:not([class*="bres"]):has(> h2) {
+  border: 18px solid transparent !important; border-image: var(--k-frame) 42 fill / 18px stretch !important; background: none !important;
+  border-radius: 0 !important; box-shadow: 0 14px 44px #000c !important; padding: 0 !important;
+}
+html.k24[data-faction] #modal .box:not([class*="bres"]):has(> h2) > h2 {
+  background: none !important; border: 0 solid transparent !important; border-width: 0 26px !important; border-image: var(--k-title) 0 80 fill / 0 26px stretch !important;
+  border-radius: 0 !important; box-shadow: none !important; padding: 4px 4px !important; font-family: Cinzel, Georgia, serif; font-size: 16px; line-height: 24px; color: #ffe2a8 !important; text-shadow: 0 1px 2px #000;
+}
+html.k24[data-faction] #modal .box:not([class*="bres"]) > .x.mx {
+  background: var(--k-close) center / 100% 100% no-repeat !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  width: 30px !important; height: 30px !important; padding: 0 !important; color: transparent !important; font-size: 0 !important;
+}
+
+/* === G1 SAVAŞ === */
+/* Yetenek/iksir dok: alt ortada yatay metalik çubuk (referans 01); p23-savas.css sol üst kuralları burada ezilir */
+html.k24.p23[data-faction]:root body #game #battleUI #skills { left:50% !important; top:auto !important; bottom:calc(var(--sab,0px) + 6px) !important; right:auto !important; transform:translateX(-50%) !important; z-index:12;
+  padding:6px 10px !important; border-radius:8px !important; border:1px solid #b9965a !important; box-shadow:inset 0 0 0 2px #1a140f, inset 0 0 0 3px rgba(185,150,90,.45), 0 6px 18px rgba(0,0,0,.7) !important;
+  background:linear-gradient(180deg,#3b3a45 0%,#1f1e27 45%,#15141b 100%) !important; max-width:calc(100vw - 230px); }
+html.k24.p23[data-faction="ocak"]:root body #game #battleUI #skills { border-color:#b4703a !important; background:linear-gradient(180deg,#463128 0%,#27191a 45%,#170f10 100%) !important; box-shadow:inset 0 0 0 2px #1a0f0b, inset 0 0 0 3px rgba(180,112,58,.5), 0 6px 18px rgba(0,0,0,.7) !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #skills .yrow { grid-template-columns:none !important; grid-auto-flow:column; grid-auto-columns:44px; grid-auto-rows:44px; gap:7px !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #skills .skill, html.k24.p23[data-faction]:root body #game #battleUI #skills .skill.empty { width:44px !important; height:44px !important; border-radius:6px !important; border:1px solid rgba(185,150,90,.55) !important; background:#16131a !important; box-shadow:inset 0 0 0 1px #000 !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #skills .skill > span { left:3px; top:3px; width:36px !important; height:36px !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #skills .skill.sel { border:2px solid #ffd77a !important; box-shadow:0 0 9px rgba(255,215,122,.7), inset 0 0 0 1px #000 !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #skills .skill.pot { border-color:rgba(185,150,90,.75) !important; }
+/* ipucu şeridi: dokun üstünde tek satır */
+html.k24.p23[data-faction]:root body #game #battleUI #bwho { left:50% !important; right:auto !important; top:auto !important; bottom:calc(var(--sab,0px) + 68px) !important; transform:translateX(-50%) !important; width:max-content; max-width:min(520px, calc(100vw - 240px)); text-align:center;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:5px 16px !important; border-radius:6px; border:1px solid #6b5534; background:linear-gradient(180deg,#232029,#121016) !important; font:600 12px/1.25 Inter, sans-serif; color:#e9e1d3; z-index:12; }
+html.k24.p23[data-faction]:root body #game #battleUI #bwho b { font-family:Cinzel, Georgia, serif; color:#f3e6c4; }
+html.k24.p23[data-faction]:root body #game #battleUI #bwho span { color:#7fd6b4; }
+html.k24.p23[data-faction]:root body #game #battleUI #bwho i, html.k24.p23[data-faction]:root body #game #battleUI #bwho small { display:none; }
+/* üst orta: DALGA n / m kutusu */
+html.k24.p23[data-faction]:root body #game #battleUI #bwave { background:linear-gradient(180deg,#2c2f4a,#16172a) !important; border:1px solid #b9965a !important; border-radius:3px; box-shadow:inset 0 0 0 1px #0a0a14, 0 3px 8px rgba(0,0,0,.6) !important; }
+html.k24.p23[data-faction="ocak"]:root body #game #battleUI #bwave { background:linear-gradient(180deg,#4a2b22,#25130f) !important; border-color:#b4703a !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #bwave .bw-big { color:#f3e6c4 !important; letter-spacing:.8px; text-shadow:0 1px 2px #000; }
+/* sağ alt: 3 dairesel düğme (Otomatik üstte, Oto İksir + 1x altta) */
+html.k24.p23[data-faction]:root body #game #battleUI #bctl2 { right:max(8px,var(--sar,0px)) !important; bottom:calc(var(--sab,0px) + 8px) !important; display:grid !important; grid-template-columns:repeat(2, 50px); grid-template-areas:"o a" "i h"; gap:6px 8px !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #bctl2 #bauto { grid-area:o; grid-column:2 / 3; grid-row:1; }
+html.k24.p23[data-faction]:root body #game #battleUI #bctl2 #bapot { grid-area:i; position:relative !important; right:auto !important; bottom:auto !important; grid-column:1; grid-row:2; }
+html.k24.p23[data-faction]:root body #game #battleUI #bctl2 #bspeed { grid-area:h; grid-column:2; grid-row:2; }
+html.k24.p23[data-faction]:root body #game #battleUI #bctl2 .rb { width:50px !important; height:50px !important; min-width:0 !important; padding:0 !important; border-radius:50% !important; border:0 !important; background:var(--k-ring) center / 100% 100% no-repeat !important; box-shadow:0 3px 8px rgba(0,0,0,.6) !important; }
+html.k24.p23[data-faction]:root body #game #battleUI #bctl2 .rb.on { filter:drop-shadow(0 0 6px #ffd36a); }
+html.k24.p23[data-faction]:root body #game #battleUI #bctl2 .rb[hidden] { display:none !important; }
+@media (max-width:760px) {
+  html.k24.p23[data-faction]:root body #game #battleUI #skills { bottom:calc(var(--sab,0px) + 4px) !important; padding:5px 8px !important; max-width:calc(100vw - 190px); }
+  html.k24.p23[data-faction]:root body #game #battleUI #skills .yrow { grid-auto-columns:38px; grid-auto-rows:38px; gap:5px !important; }
+  html.k24.p23[data-faction]:root body #game #battleUI #skills .skill, html.k24.p23[data-faction]:root body #game #battleUI #skills .skill.empty { width:38px !important; height:38px !important; }
+  html.k24.p23[data-faction]:root body #game #battleUI #skills .skill > span { width:30px !important; height:30px !important; }
+  html.k24.p23[data-faction]:root body #game #battleUI #bwho { bottom:calc(var(--sab,0px) + 58px) !important; max-width:calc(100vw - 200px); font-size:11px; }
+  html.k24.p23[data-faction]:root body #game #battleUI #bctl2 { grid-template-columns:repeat(2, 42px); gap:4px 6px !important; }
+  html.k24.p23[data-faction]:root body #game #battleUI #bctl2 .rb { width:42px !important; height:42px !important; }
+}
+
+/* --- VS ekranı (referans 02): kit çerçeveli iki kahraman kartı, altın VS madalyası, yıldız şartları, dalga kutuları --- */
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside { border:0 !important; border-radius:6px !important; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside.a { background:linear-gradient(180deg,#14284f,#0b1530 70%) !important; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside.b { background:linear-gradient(180deg,#4a1418,#220a0e 70%) !important; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside::after { content:''; position:absolute; inset:0; z-index:3; pointer-events:none; box-sizing:border-box; border:16px solid transparent; border-image:var(--k-card) 48 fill / 16px stretch; border-image-slice:48; background:none; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside::after { border-image:var(--k-card) 48 / 16px stretch; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside.b::after { border-image:var(--k-card2) 48 / 16px stretch; filter:hue-rotate(-20deg) saturate(1.2); }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside .vs2-pl { z-index:4; background:linear-gradient(180deg,#0e0b1099,#0e0b10cc) !important; border:0 !important; border-top:1px solid rgba(201,164,92,.35) !important; border-radius:0 0 4px 4px; left:14px; right:14px; bottom:14px; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside .vs2-pl em { font:700 15px/1 Cinzel, Georgia, serif; color:#ffd77a; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside.b .vs2-pl em { color:#ff6b5e; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vside .vs2-kr { z-index:4; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vsx { width:58px !important; height:58px !important; border-radius:50% !important; border:2px solid #7a5a22 !important;
+  background:radial-gradient(circle at 35% 30%,#ffe9a8,#d9a843 45%,#8a6420 100%) !important; box-shadow:inset 0 0 0 3px #f6d57c, inset 0 0 0 5px #8a6420, 0 3px 10px rgba(0,0,0,.7) !important; color:#3a2608 !important; font:800 21px/1 Cinzel, Georgia, serif !important; text-shadow:0 1px 0 #ffe9a8; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vrules { width:150px !important; background:linear-gradient(180deg,#26232c,#15131a) !important; border:1px solid rgba(201,164,92,.45) !important; border-radius:4px; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2 .vmid > :not(.vsx):not(.vrules):not(.vs2-not) { max-width:150px; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2-wv { border-radius:4px; border:1px solid rgba(201,164,92,.4); background:linear-gradient(180deg,#26232c,#15131a); }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2-alt .vs2-b2, html.k24[data-faction]:root #win[data-scr="vs"] .vs2-alt .vs2-b1 { height:38px; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2-dl { display:none; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2-wv { min-width:104px; max-width:none; flex:1 1 104px; }
+html.k24[data-faction]:root #win[data-scr="vs"] .vs2-wv b { overflow:visible; }
+
+/* === G2 ŞEHİR BİNALARI === */
+/* Ortak: Çarşı dükkânları (Tüccar, Silah, Zırh, Takı), Pazar, İksir, Maden, Karaborsa, Kader Çarkı, Örs */
+html.k24[data-faction] #win .pz-card, html.k24[data-faction] #win .kb-card {
+  background: none !important; border: 14px solid transparent !important; border-image: var(--k-card) 48 fill / 14px stretch !important;
+  border-radius: 0 !important; box-shadow: none !important; padding: 0 2px 2px !important; filter: drop-shadow(0 0 5px var(--rg, transparent)); position: relative;
+}
+html.k24[data-faction="ocak"] #win .pz-card, html.k24[data-faction="ocak"] #win .kb-card { border-image-source: var(--k-card2) !important; }
+html.k24[data-faction] #win .pz-card.g1 { --rg: #4aa3ffb0; }
+html.k24[data-faction] #win .pz-card.g2 { --rg: #c06bffb0; }
+html.k24[data-faction] #win .pz-card.g3 { --rg: #ffb84ab0; }
+html.k24[data-faction] #win .pz-card.dim { filter: grayscale(.5) brightness(.8); }
+html.k24[data-faction] #win .pz-card .price, html.k24[data-faction] #win .pz-card .pz-bot b { color: #ffe9a8; }
+html.k24[data-faction] #win .pz-head, html.k24[data-faction] #win .ik-head {
+  background: none !important; border: 14px solid transparent !important; border-image: var(--k-card2) 48 fill / 14px stretch !important; border-radius: 0 !important; box-shadow: none !important; margin-bottom: 6px;
+}
+html.k24[data-faction="sancak"] #win .pz-head, html.k24[data-faction="sancak"] #win .ik-head { border-image-source: var(--k-card) !important; }
+html.k24[data-faction] #win .pz-head .npc-yuz, html.k24[data-faction] #win .pz-bigpor img { object-fit: cover; border-radius: 4px; }
+html.k24[data-faction] #win .pz-head .chip.rw { background: var(--k-pill) center / 100% 100% no-repeat !important; border: 0 !important; border-radius: 0 !important; padding: 5px 14px !important; }
+/* süzgeç/sekme çubukları: kit sekmesi (aktif/pasif) */
+html.k24[data-faction] #win .sub.pz-sub { gap: 4px; }
+html.k24[data-faction] #win .sub.pz-sub > button {
+  background: none !important; border: 11px solid transparent !important; border-image: var(--k-tab-off) 40 fill / 11px stretch !important; border-radius: 0 !important; box-shadow: none !important;
+  color: #d9c9a6 !important; font-family: Cinzel, Georgia, serif; font-weight: 800; min-height: 28px; padding: 0 8px !important; text-shadow: 0 1px 2px #000;
+}
+html.k24[data-faction] #win .sub.pz-sub > button.on { border-image-source: var(--k-tab-on) !important; color: #fff3d0 !important; }
+html.k24[data-faction] #win .pz-card .btn.sm { min-height: 26px; }
+
+/* Pazar: tek satır süzgeç (yatay kayar) */
+html.k24[data-faction] #win .pz-filters { display: flex; flex-wrap: nowrap; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+html.k24[data-faction] #win .pz-filters::-webkit-scrollbar { display: none; }
+html.k24[data-faction] #win .pz-filters > * { flex: none; }
+html.k24[data-faction] #win .pz-filters .sub { flex-wrap: nowrap; margin: 0; }
+html.k24[data-faction] #win .pz-filters .pz-find { display: flex; align-items: center; gap: 4px; }
+html.k24[data-faction] #win .pz-filters .pz-find input { width: 110px; }
+html.k24[data-faction] #win .pz-filters .pz-find > .mut { display: none; }
+
+/* Maden: sahne (.mine-scene / mineScene) DOKUNULMAZ; yalnız satırlar */
+html.k24[data-faction] #win .g2-maden > .row { margin-top: 6px; }
+html.k24[data-faction] #win .g2-maden > .row.k-card2 { background: none !important; border: 14px solid transparent !important; border-image: var(--k-card2) 48 fill / 14px stretch !important; border-radius: 0 !important; box-shadow: none !important; padding: 0 !important; }
+html.k24[data-faction="sancak"] #win .g2-maden > .row.k-card2 { border-image-source: var(--k-card) !important; }
+html.k24[data-faction] #win .g2-maden > h3 { font-family: Cinzel, Georgia, serif; letter-spacing: 2px; color: #ffe2a8; text-align: center; margin: 8px 0 2px; border: 0; }
+
+/* Karaborsa: afiş + kırmızı kurdele */
+html.k24[data-faction] #win .kb-head.kb-ban { background: linear-gradient(90deg, #0009, #0000 40%, #000b), var(--ban) center / cover no-repeat !important; }
+html.k24[data-faction] #win .kb-head { border: 12px solid transparent !important; border-image: var(--k-card2) 48 / 12px stretch !important; box-shadow: none !important; border-radius: 0 !important; min-height: 96px; background-clip: padding-box; background-origin: padding-box; }
+html.k24[data-faction="sancak"] #win .kb-head { border-image-source: var(--k-card) !important; }
+html.k24[data-faction] #win .kb-head.kb-ban h3 { text-shadow: 0 2px 0 #000, 0 0 14px #000; }
+html.k24[data-faction] #win .kb-head.kb-ban p { display: none; }
+html.k24[data-faction] #win .kb-head.kb-ban .kb-clock { border-left: 0; background: #0009; padding: 4px 10px; border-radius: 6px; }
+html.k24[data-faction] #win .kb-off { left: auto; right: -30px; top: 10px; transform: rotate(40deg); background: linear-gradient(#e0323f, #8d1020); box-shadow: 0 1px 3px #000a; z-index: 2; }
+html.k24[data-faction] #win .kb-card { overflow: hidden; margin: 0; padding: 4px 4px 2px !important; gap: 2px; }
+html.k24[data-faction] #win .kb-card::before { display: none; }
+html.k24[data-faction] #win .kb-buy {
+  background: none !important; border: 11px solid transparent !important; border-image: var(--k-btn1) 40 fill / 11px stretch !important; border-radius: 0 !important; box-shadow: none !important;
+  color: #fff6e0 !important; font-family: Cinzel, Georgia, serif; font-weight: 800; text-transform: uppercase; min-width: 0; padding: 0 12px !important; text-shadow: 0 1px 2px #000;
+}
+
+/* Kader Çarkı: kristal kartları */
+html.k24[data-faction] #win .g2-cark .gem-stage { background: none; }
+html.k24[data-faction] #win .gem-card.k-card {
+  background: none !important; border: 16px solid transparent !important; border-image: var(--k-card) 48 fill / 16px stretch !important; border-radius: 0 !important; box-shadow: none !important; width: 168px; padding: 0 !important;
+}
+html.k24[data-faction="ocak"] #win .gem-card.k-card { border-image-source: var(--k-card2) !important; }
+html.k24[data-faction] #win .gem-art.gem-p24 { display: block; width: 130px; height: 120px; overflow: hidden; margin: 2px auto; border-radius: 4px; animation: none; filter: none; }
+html.k24[data-faction] #win .gem-art.gem-p24 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+html.k24[data-faction] #win .gem-card.off .gem-art.gem-p24 img { filter: saturate(.7) brightness(.85); }
+html.k24[data-faction] #win .gem-card.off { opacity: .92; filter: none; }
+
+/* İksir ve Parşömen */
+html.k24[data-faction] #win .g2-iksir .ik-grp { font-family: Cinzel, Georgia, serif; letter-spacing: 3px; color: #ffe2a8; text-align: center; border: 0; }
+html.k24[data-faction] #win .potbuy .btn.sm { border-width: 9px !important; border-image-width: 9px !important; min-height: 24px; }
+
+html.k24[data-faction] #win .wres { flex-wrap: nowrap; }
+html.k24[data-faction] #win[data-scr] .wres > span { white-space: nowrap; }
+
+/* --- G8 ÖRS --- */
+/* Düzen (ui-esya.js anvilUp): sol = hedef eşya + 3x3 ızgara (halka) + "+N" önizleme, başarı satırı, Onayla/İptal/Önizleme; sağ = Çanta / Basılacak Eşyalar */
+html.k24[data-faction] #win .ors-wrap { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+html.k24[data-faction] #win .ors-l, html.k24[data-faction] #win .ors-r { border: 14px solid transparent; border-image: var(--k-card) 48 fill / 14px stretch; padding: 0 2px 2px; min-width: 0; }
+html.k24[data-faction] #win .ors-l .anvil { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+html.k24[data-faction] #win .ors-rt { margin: 0 0 6px; text-align: center; font: 700 12px Cinzel, Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; color: #ffe2a8; }
+html.k24[data-faction] #win .ors-r .ivg { display: grid !important; grid-template-columns: repeat(5, 1fr) !important; gap: 4px !important; }
+html.k24[data-faction] #win .ors-r .ivc { aspect-ratio: 1; width: auto !important; height: auto !important; }
+html.k24[data-faction] #win .ors-r .ivc.nil { display: block; background: radial-gradient(#211a12, #0a0705); box-shadow: inset 0 0 0 1px #4a3a2a, inset 0 0 8px #000; border-radius: 4px; }
+html.k24[data-faction] #win .ors-top { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
+html.k24[data-faction] #win .ors-tgt, html.k24[data-faction] #win .ors-prv { flex: none; width: 70px; height: 70px; display: grid; place-items: center; position: relative; border: 2px solid #8a6a3a; border-radius: 6px; background: radial-gradient(#2a2118, #0c0806); box-shadow: inset 0 0 10px #000; }
+html.k24[data-faction] #win .ors-prv { border-color: #d8b25a; box-shadow: inset 0 0 12px #000, 0 0 12px #ffcf6a55; }
+html.k24[data-faction] #win .ors-prv.off { opacity: .5; }
+html.k24[data-faction] #win .ors-prv small { font-size: 10px; text-align: center; color: #c9b48a; }
+html.k24[data-faction] #win .ors-tgt .up2-core { width: 100%; height: 100%; }
+html.k24[data-faction] #win .ors-tgt .up2-slot { width: 100%; height: 100%; border: 0; background: none; box-shadow: none; border-radius: 4px; }
+html.k24[data-faction] #win .ors-tgt .up2-rays { inset: 0; }
+html.k24[data-faction] #win .ors-tgt .up2-rays i { height: 46px; margin-top: -46px; }
+html.k24[data-faction] #win .ors-tgt .up2-crack, html.k24[data-faction] #win .ors-tgt .up2-shield { inset: 4px; }
+html.k24[data-faction] #win .ors-tgt .up2-plus, html.k24[data-faction] #win .ors-prv .up2-plus { position: absolute; left: 3px; top: 1px; right: auto; bottom: auto; font-size: 13px; padding: 0 3px; border: 0; background: none; border-radius: 0; }
+html.k24[data-faction] #win .ors-prv .up2-plus { color: #a8ff9a; }
+html.k24[data-faction] #win .ors-grid { flex: none; width: 138px; height: 138px; box-sizing: border-box; padding: 18px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 3px; background: var(--k-ring) center / 100% 100% no-repeat; border: 0; }
+html.k24[data-faction] #win .ors-c { position: relative; display: grid; place-items: center; min-width: 0; min-height: 0; width: 100%; height: 100%; padding: 0; margin: 0; border-radius: 4px; border: 1px solid #3a2f22; background: radial-gradient(#211a12, #0a0705); box-shadow: inset 0 0 6px #000; color: inherit; }
+html.k24[data-faction] #win .ors-c.nil { opacity: .85; }
+html.k24[data-faction] #win .ors-c svg { width: 70%; height: 70%; }
+html.k24[data-faction] #win .ors-c.up2-mat { opacity: .5; }
+html.k24[data-faction] #win .ors-c.up2-mat.on { opacity: 1; border-color: #d8b25a; box-shadow: inset 0 0 6px #000, 0 0 8px #ffcf6a77; }
+html.k24[data-faction] #win button.ors-c:not(:disabled) { cursor: pointer; opacity: .8; }
+html.k24[data-faction] #win button.ors-c:disabled { opacity: .35; }
+html.k24[data-faction] #win .ors-c small { position: absolute; right: 1px; bottom: -1px; font-size: 9px; font-weight: 800; color: #ffe9a0; text-shadow: 0 1px 2px #000; }
+html.k24[data-faction] #win .anvil.ors.forging .up2-mat.on { animation: up2feed 2.4s ease-in forwards; }
+@media (max-height: 480px) { /* denetim: sonuç satırı çıkınca Onayla alttan kırpılmasın (880x406) */
+  html.k24[data-faction] #win .ors-grid { width: 108px; height: 108px; padding: 15px; gap: 2px; }
+  html.k24[data-faction] #win .ors-tgt, html.k24[data-faction] #win .ors-prv { width: 56px; height: 56px; }
+  html.k24[data-faction] #win .ors-l .anvil { gap: 2px; }
+}
+html.k24[data-faction] #win .ors-line { margin: 2px 0 0; text-align: center; font-size: 12px; line-height: 1.25; }
+html.k24[data-faction] #win .ors-line .up { color: #8fe08a; }
+html.k24[data-faction] #win .ors-line .orsok { color: #ffe2a8; }
+html.k24[data-faction] #win .ors-cost { margin: 0; font-size: 11px; text-align: center; }
+html.k24[data-faction] #win .ors .arisk, html.k24[data-faction] #win .ors .ares { margin: 0; font-size: 10.5px; line-height: 1.2; text-align: center; max-width: 100%; }
+html.k24[data-faction] #win .ors-btns { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 2px; }
+html.k24[data-faction] #win .ors-btns .abtn { flex: 0.8 1 0; min-width: 0; }
+html.k24[data-faction] #win .ors-pair { flex: 1.3 1 0; display: flex; gap: 0; min-width: 0; }
+html.k24[data-faction] #win .ors-pair .btn { flex: 1 1 0; min-width: 0; padding-left: 2px; padding-right: 2px; font-size: 11px; }
+html.k24[data-faction] #win .forge .abtn { min-width: 0; }
+
+/* === G3 KLAN/DÜNYA === */
+/* Klan Karargâhı: kart satırları, bağış, tesis kartları (kit 9-dilim kart) */
+html.k24[data-faction] #win[data-scr="klan"] :is(.kl-head, .row, .hq-fac, .hs-head, .hs-part, .hs-ac) {
+  border: 14px solid transparent !important; border-image: var(--k-card) 48 fill / 14px stretch !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; padding: 0 2px !important;
+}
+html.k24[data-faction] #win[data-scr="klan"] .hq-fac { padding: 0 !important; }
+html.k24[data-faction="ocak"] #win[data-scr="klan"] .hq-fac:nth-child(even) { border-image-source: var(--k-card2) !important; }
+html.k24[data-faction] #win[data-scr="klan"] .hq-fac.on { filter: brightness(1.12) saturate(1.1); }
+html.k24[data-faction] #win[data-scr="klan"] .board > div { background: linear-gradient(180deg, #ffffff0c, #0000001a) !important; border: 1px solid #d9b04a44 !important; border-radius: 6px !important; }
+html.k24[data-faction] #win[data-scr="klan"] .board > div.me { border-color: #f2cf6acc !important; background: linear-gradient(180deg, #f2cf6a26, #0000001a) !important; }
+html.k24[data-faction] #win[data-scr="klan"] .kl-kv > div { background: var(--k-ring) center / 100% 100% no-repeat !important; border: 0 !important; border-radius: 0 !important; }
+html.k24[data-faction] #win[data-scr="klan"] .kl-kv > div { padding: 5px 4px 3px !important; line-height: 1.15; }
+html.k24[data-faction] #win[data-scr="klan"] .pbar { height: 10px; border-radius: 3px; border: 1px solid #d9b04a88; background: #0b0f16; box-shadow: inset 0 1px 3px #000c; }
+html.k24[data-faction] #win[data-scr="klan"] .pbar > i { background: linear-gradient(90deg, #3a7d52, #8bd69a); border-radius: 2px; }
+html.k24[data-faction="ocak"] #win[data-scr="klan"] .pbar > i { background: linear-gradient(90deg, #8a3418, #e0a83c); }
+/* denetim: Genel sekmesi 406 yükseklikte kaydırılır; kaydırma çubuğu hep görünür (bağış satırı ilk ekranın altında) */
+html.k24[data-faction] #win[data-scr="klan"] #page { scrollbar-width: thin; scrollbar-color: #d9b04a #0b0f1666; }
+html.k24[data-faction] #win[data-scr="klan"] #page { padding-bottom: 24px; }
+html.k24[data-faction] #win[data-scr="klan"] #page::after { content: ""; display: block; position: sticky; bottom: -24px; height: 30px; margin-top: -30px; background: linear-gradient(180deg, transparent, #05080df2); pointer-events: none; } /* altta daha çok içerik var işareti */
+html.k24[data-faction] #win[data-scr="klan"] #page::-webkit-scrollbar { width: 7px; }
+html.k24[data-faction] #win[data-scr="klan"] #page::-webkit-scrollbar-track { background: #0b0f1699; border-radius: 4px; }
+html.k24[data-faction] #win[data-scr="klan"] #page::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #f2cf6a, #a8731c); border-radius: 4px; border: 1px solid #1a120a; }
+html.k24[data-faction] #win[data-scr="klan"] .kl-don { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+html.k24[data-faction] #win[data-scr="klan"] .kl-don .btn { min-width: 84px; }
+/* Karargâh / Hisar üst görseli */
+.hq-art, .hs-art { background-size: cover; background-position: center; background-repeat: no-repeat; }
+.hq-art { position: absolute; inset: 0; }
+.hq-top:has(.hq-art) { border: 3px solid #d9b04a; border-radius: 8px; box-shadow: 0 3px 10px #000a, inset 0 0 0 1px #000a; }
+.hq-top:has(.hq-art)::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, #0000 55%, #000a); }
+.hq-top:has(.hq-art) .hq-title { left: 0; right: 0; top: auto; bottom: 8px; justify-content: center; z-index: 1; flex-direction: column; gap: 2px; }
+.hq-top:has(.hq-art) .hq-title b { font-size: 22px; border: 0; text-shadow: 0 2px 4px #000, 0 0 10px #000; }
+html.k24[data-faction] #win[data-scr="klan"] .hq-top:has(.hq-art) .hq-ban { position: absolute; left: 10px; top: 8px; width: auto; z-index: 1; padding: 2px; } /* denetim: kul-demir position:relative yapıyor, siyah şerit çıkıyor */
+.hs-art { width: clamp(150px, 30vw, 220px); aspect-ratio: 5/3; flex: none; border: 2px solid #d9b04a; border-radius: 6px; box-shadow: 0 2px 8px #000a; }
+/* Otağ haritası: bölge pinleri, kart altı satırı */
+.dmap .mpin { filter: drop-shadow(0 3px 3px #000c); }
+.zcard .zc-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+.zcard .zc-foot .zc-ash { position: static !important; display: inline-block; margin: 0; background: #000a; border: 1px solid #ffffff22; }
+html.k24[data-faction] #win .zcard { border: 14px solid transparent !important; border-image: var(--k-card) 48 fill / 14px stretch !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; overflow: visible; }
+html.k24[data-faction] #win .zcard::before { display: none; }
+html.k24[data-faction] #win .dm-sum, html.k24[data-faction] #win .tre-big, html.k24[data-faction] #win .ledger { border-radius: 0 !important; }
+html.k24[data-faction] #win .dm-sum { border: 14px solid transparent !important; border-image: var(--k-card) 48 fill / 14px stretch !important; background: none !important; padding: 0 2px !important; }
+html.k24[data-faction] #win .tre .tgold { border: 14px solid transparent !important; border-image: var(--k-card) 48 fill / 14px stretch !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; }
+html.k24[data-faction] #win .tre .kv > div { background: linear-gradient(180deg, #2a303d, #12161e) !important; border: 1px solid #d9b04a77 !important; border-radius: 5px !important; box-shadow: inset 0 1px 0 #ffffff14 !important; }
+html.k24[data-faction] #win .led > div { border: 1px solid #d9b04a55 !important; border-radius: 6px !important; background: linear-gradient(180deg, #ffffff0c, #0000001a) !important; }
+/* Kapı / Bölgeler: arkada karartılmış dünya haritası kesiti */
+html.k24[data-faction] #win .zbg[style*="--p24map"] { background-image: var(--p24map) !important; background-size: 260% auto !important; background-position: var(--p24mx, 0%) 50% !important; }
+html.k24[data-faction] #win .zbg[style*="--p24map"]::before { background: linear-gradient(180deg, rgba(6,8,12,.78), rgba(6,8,12,.64) 45%, rgba(6,8,12,.84)) !important; }
+/* Sunucu: üst banner + rozet, ırk kartları */
+.srv .srv-head.srv-ban { display: block; min-height: 104px; padding: 0 !important; background-size: cover; background-position: center; border: 3px solid #d9b04a; border-radius: 8px; overflow: hidden; }
+.srv .srv-head.srv-ban::after { display: none; }
+.srv .srv-badge { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; padding: 6px 22px; background: linear-gradient(180deg, #1c2230ee, #0b0f16ee); border: 2px solid #d9b04a; border-radius: 6px; box-shadow: 0 3px 10px #000b; white-space: nowrap; }
+.srv .srv-badge h2 { margin: 0; font: 900 26px/1 Cinzel, serif; letter-spacing: 4px; color: #ffe7a6 !important; background: none; }
+.srv .srv-badge small { display: block; color: #cdbf9c; font-size: 11px; }
+.srv .srv-badge .srv-kick { font: 800 10px/1 Inter, sans-serif; letter-spacing: 4px; color: #d9b04a !important; margin-bottom: 3px; }
+.srv .srv-stat { justify-content: center; }
+.srv .srv-stat span { background: linear-gradient(180deg, #2a303d, #12161e); border: 1px solid #d9b04a66; color: #f0e6c8; }
+.srv .srv-card.f-sancak { background: linear-gradient(180deg, #1c3a6e, #0d1b38) !important; border: 3px double #d9b04a !important; border-radius: 4px !important; }
+.srv .srv-card.f-sancak h4 { color: #ffe7a6 !important; text-shadow: 0 0 12px #3b82d6; }
+.srv .srv-card.f-ocak { background: linear-gradient(180deg, #5a1a14, #260a08) !important; border: 3px double #b07a3a !important; border-radius: 4px !important; }
+.srv .srv-card.f-ocak h4 { color: #ffd9b0 !important; text-shadow: 0 0 12px #e0301a; }
+
+/* === G4 KARAKTER/YETENEK === */
+/* Karakter penceresi (Karakter / Yetenek / Ustalık / Unvan): sol dikey menü yok; sekmeler üstte, başlığın solunda yatay şerit */
+html.k24[data-faction] #win[data-scr="karakter"] .frame { width: min(calc(var(--lw) * .985), 1240px) !important; }
+html.k24[data-faction] #win[data-scr="karakter"] .frame > header h2 { position: absolute; left: 50%; transform: translateX(-50%); margin: 0; z-index: 2; }
+html.k24[data-faction] #win[data-scr="karakter"] .wbody { position: static; }
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs {
+  position: absolute; z-index: 3; top: 3px; left: 8px; width: auto !important; height: 32px; margin: 0; padding: 0;
+  display: flex !important; flex-direction: row !important; flex-wrap: nowrap; align-items: stretch; gap: 3px !important; overflow: visible;
+}
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button {
+  position: relative; flex: none; width: auto !important; min-width: 0; height: 30px; margin: 0 !important; padding: 0 3px !important; gap: 3px;
+  display: inline-flex !important; align-items: center; justify-content: center; white-space: nowrap !important;
+  border-width: 6px !important; border-image-width: 6px !important; font: 700 10.5px/1 Cinzel, Georgia, serif !important; text-align: center;
+}
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button > span { display: inline !important; overflow: visible; overflow-wrap: normal; white-space: nowrap; font: inherit; }
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button small { display: none !important; }
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button .tico { width: 13px; height: 13px; flex: none; display: inline-grid; place-items: center; }
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button .tico svg { width: 13px; height: 13px; }
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button .tdot { position: absolute; top: -1px; right: -1px; width: 8px; height: 8px; }
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button .tico { display: none !important; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-base { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8px; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-base .kx-r { min-width: 0; font-size: 10.5px; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-base .kx-r > :first-child { display: none; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-foot { align-items: center; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-bulk { flex: none; display: inline-flex; align-items: center; min-height: 26px; height: 28px; width: 84px; font-size: 11px; line-height: 1; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-bulk .ri { display: none; }
+/* Sayfa: pencere iç genişliği boyunca */
+html.k24[data-faction] #win[data-scr="karakter"] #page { width: 100% !important; margin: 0 !important; padding: 6px !important; box-sizing: border-box; }
+/* Ekipman (3 sütun) */
+html.k24[data-faction] #win[data-scr="karakter"] .kx { grid-template-columns: minmax(0, 1.2fr) minmax(0, .85fr) minmax(0, 1.05fr); gap: 8px; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-hero { padding: 4px 6px 6px; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-head { justify-content: center; border-bottom: 0; padding: 0 0 2px; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-head .kx-ava { display: none; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-head > div { text-align: center; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-fac { justify-content: center; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-doll { grid-template-columns: auto minmax(0, 1fr) auto; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-model.kx-2b {
+  background: var(--kx-stage) 50% 100% / cover no-repeat, #0b0a10 !important; border-radius: 4px; box-shadow: inset 0 0 0 1px #0009, inset 0 0 18px #000b;
+}
+html.k24[data-faction] #win[data-scr="karakter"] .kx-model.kx-2b .kx-hero2b { position: absolute; left: 50%; bottom: 22%; width: auto; max-width: 96%; height: 74%; margin: 0; transform: translateX(-50%); object-fit: contain; filter: drop-shadow(0 6px 6px #000a); }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-model.kx-2b .kx-ilv { bottom: 4px; background: #000a; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-slot { background: var(--k-ring) center / 100% 100% no-repeat !important; border: 0 !important; box-shadow: none !important; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-slot .ico { width: 78%; height: 78%; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-slot.sel { filter: drop-shadow(0 0 5px #ffd36a); }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-ftabs button { min-height: 22px; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-grid .ivg { grid-template-columns: repeat(5, 1fr) !important; }
+html.k24[data-faction] #win[data-scr="karakter"] .kx-reset, html.k24[data-faction] #win[data-scr="karakter"] .kx-bulk {
+  background: none !important; border: 11px solid transparent !important; border-image: var(--k-btn2) 40 fill / 11px stretch !important; border-radius: 0 !important; box-shadow: none !important;
+  color: #f3e8d2 !important; text-shadow: 0 1px 2px #000; padding: 0 4px !important; min-height: 28px; justify-content: center;
+}
+/* Yetenek (tam genişlik; sınıf sekmeleri sayfanın solunda) */
+html.k24[data-faction] #win[data-scr="karakter"] .yt { grid-template-columns: clamp(104px, 14vw, 180px) minmax(0, 1fr) clamp(190px, 26vw, 310px); gap: 8px; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-btn.go {
+  background: none !important; border: 14px solid transparent !important; border-image: var(--k-btn-ok) 40 fill / 14px stretch !important; border-radius: 0 !important; box-shadow: none !important;
+  color: #f4fff2 !important; text-transform: uppercase; letter-spacing: .3px; padding: 0 !important; min-height: 34px; text-shadow: 0 1px 2px #000;
+}
+html.k24[data-faction] #win[data-scr="karakter"] .yt-btn:not(.go), html.k24[data-faction] #win[data-scr="karakter"] .yt-bb {
+  background: none !important; border: 12px solid transparent !important; border-image: var(--k-btn2) 40 fill / 12px stretch !important; border-radius: 0 !important; box-shadow: none !important;
+  color: #f3e8d2 !important; text-shadow: 0 1px 2px #000; padding: 0 4px !important; min-height: 30px; justify-content: center;
+}
+html.k24[data-faction] #win[data-scr="karakter"] .yt-btn:not(.go) { text-transform: uppercase; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bar { flex-wrap: wrap; gap: 2px 3px; padding: 3px 5px; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bar .yt-bb { flex: 1 1 30%; min-width: 0; min-height: 26px; order: 3; border-width: 9px !important; border-image-width: 9px !important; font-size: 9px; letter-spacing: 0; white-space: nowrap; text-transform: uppercase; gap: 2px; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bar .yt-bb > :first-child { display: none; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bar .yt-load { margin: 0; flex: none; order: 2; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bar .yt-load small { display: none; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bar .yt-ls { width: 17px; height: 17px; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bar .yt-pts { flex: 1 1 calc(100% - 128px); order: 1; font-size: 10px; white-space: nowrap; }
+html.k24[data-faction] #win[data-scr="karakter"] .yt-bb.on { border-image-source: var(--k-btn1); }
+
+/* Karakter seçimi: sağ üstteki "KARAKTERLER n/3" yazısı hafif koyu kapsül + gölge */
+html body .ks .ks-count { padding: 3px 11px; border-radius: 999px; background: rgba(6, 8, 14, .55); box-shadow: 0 0 0 1px rgba(240, 212, 136, .22), 0 1px 6px rgba(0, 0, 0, .55); color: #e9dcc0; text-shadow: 0 1px 2px #000, 0 0 6px #000; }
+/* Karakter oluştur: Bereket satırı güneş armasının üstüne binmesin (tek satır, kartın üst kenarına yakın) */
+.vz .vz-ban small.vz-bl, .vz .vz-ban small.vz-nf { top: calc(-1 * var(--U)); width: max-content; max-width: 96%; white-space: nowrap; box-sizing: border-box; font-size: calc(7 * var(--U)); line-height: 1.2; }
+
+/* === G5 MAĞAZA/MEYDAN === */
+/* Kervan: üst görsel (ban_kervan) + kit kartları */
+html.k24[data-faction] #win .page .hint.kv-ban { position:relative; min-height:72px; padding:12px 14px 12px 48%; min-height:86px; display:flex; align-items:center; overflow:hidden; border-radius:6px; border:2px solid #0008 !important;
+  background:linear-gradient(90deg, #0000 0%, #0000 34%, rgba(12,9,8,.82) 56%, rgba(12,9,8,.94) 100%), var(--kv-ban, none) left center / cover no-repeat, #0c0a09 !important; box-shadow:inset 0 0 0 1px #d9b04a55; }
+html.k24[data-faction] #win .page .hint.kv-ban > span { display:block; font-size:12px; line-height:1.35; text-align:left; color:#f1e4c9; text-shadow:0 1px 2px #000; }
+html.k24[data-faction] #win .kv-grid { grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px; }
+html.k24[data-faction] #win .kv-card { border:16px solid transparent !important; border-image:var(--k-card) 48 fill / 16px stretch !important; background:none !important; padding:2px 4px 6px !important; border-radius:0 !important; box-shadow:none !important; }
+html.k24[data-faction] #win .kv-card .kv-badge { top:-6px; right:-6px; }
+html.k24[data-faction] #win .kv-card .kv-name { font-size:15px; letter-spacing:.5px; text-transform:uppercase; color:#f6ead0 !important; text-shadow:0 1px 2px #000; }
+html.k24[data-faction] #win .kv-card .btn.kv-buy:not(:disabled) { border-image:var(--k-btn1) 28 32 fill / 14px 16px stretch !important; }
+html.k24[data-faction] #win .kv-card .kv-ico { background:var(--k-ring) center / 100% 100% no-repeat; padding:10px; width:64px; height:64px; display:grid; place-items:center; box-sizing:border-box; }
+/* Premium: üç sütun, taç ikonları */
+html.k24[data-faction] #win .tiers { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px; }
+html.k24[data-faction] #win .tier { border:16px solid transparent !important; border-image:var(--k-card) 48 fill / 16px stretch !important; background:none !important; box-shadow:none !important; border-radius:0 !important; text-align:center; padding:4px 6px 8px !important; }
+html.k24[data-faction] #win .tier h4 { display:grid; justify-items:center; margin:0; font:900 20px var(--display); letter-spacing:1px; text-transform:uppercase; }
+html.k24[data-faction] #win .tier h4 > svg, html.k24[data-faction] #win .tier h4 > .ri { display:none; }
+html.k24[data-faction] #win .tier h4::before { content:''; width:46px; height:30px; margin-bottom:2px; background:var(--k-crown-b) center / contain no-repeat; filter:drop-shadow(0 2px 3px #000); }
+html.k24[data-faction] #win .tier.t2 h4::before { background-image:var(--k-crown-s); }
+html.k24[data-faction] #win .tier.t3 h4::before { background-image:var(--k-crown-p); }
+html.k24[data-faction] #win .tier.t1 h4 { color:#f0a060 !important; } html.k24[data-faction] #win .tier.t2 h4 { color:#d6d8de !important; } html.k24[data-faction] #win .tier.t3 h4 { color:#9fdcff !important; }
+html.k24[data-faction] #win .tier.t3 { filter:drop-shadow(0 0 6px #6cc8ff55); } html.k24[data-faction] #win .tier.t1 { filter:drop-shadow(0 0 6px #e0803055); }
+html.k24[data-faction] #win .tier ul { text-align:left; margin:3px 0 6px; padding-left:16px; font-size:11px; line-height:1.25; }
+html.k24[data-faction] #win .tier .price { font-size:13px; color:#f6ead0 !important; }
+/* Meydan */
+html.k24[data-faction] #win .mz-head { border:16px solid transparent; border-image:var(--k-card2) 48 fill / 16px stretch; background:none !important; padding:0 4px; gap:12px; }
+html.k24[data-faction] #win .mz-rate > b { white-space:nowrap; font-size:17px; letter-spacing:.5px; text-transform:uppercase; color:#f3dca0; text-shadow:0 2px 3px #000; }
+html.k24[data-faction] #win .mz-rate > b small { display:inline; font-size:9.5px; letter-spacing:0; margin-left:4px; color:#e6d3a4; }
+html.k24[data-faction] #win .mz-tk i.on { width:13px; height:17px; border-radius:50% 50% 45% 45%; background:radial-gradient(circle at 35% 30%, #fff0a0, #e9b32a 55%, #8a5a10); box-shadow:0 0 5px #ffc24a99, inset 0 -1px 2px #6a410a; }
+html.k24[data-faction] #win .mz-tk { max-width:none; flex-wrap:nowrap; gap:2px; } html.k24[data-faction] #win .mz-tk i { width:11px !important; } html.k24[data-faction] #win .mz-rate { overflow:hidden; }
+html.k24[data-faction] #win .mz-head .btn.sm { min-width:96px; }
+html.k24[data-faction] #win .mz-race { border:14px solid transparent; border-image:var(--k-card2) 48 fill / 14px stretch; background:none !important; padding:0 2px; }
+html.k24[data-faction] #win .mz-rtrack { border-radius:3px; border:1px solid #000a; box-shadow:0 0 0 1px #d9b04a66; }
+html.k24[data-faction] #win .mz-opp, html.k24[data-faction] #win .mz-mode, html.k24[data-faction] #win .fdrow, html.k24[data-faction] #win .mz-defhead, html.k24[data-faction] #win .mz-dslot, html.k24[data-faction] #win .mz-hc, html.k24[data-faction] #win .mz-wallet, html.k24[data-faction] #win .mz-feudhead {
+  border:12px solid transparent !important; border-image:var(--k-card) 48 fill / 12px stretch !important; background:none !important; box-shadow:none !important; border-radius:0 !important; padding:0 2px !important; }
+html.k24[data-faction] #win .mz-opp:hover { transform:none; filter:brightness(1.12); }
+html.k24[data-faction] #win .mz-go { font-size:15px; }
+/* Taş Yemini: süslü çerçeve + kaide + 3x2 istatistik */
+html.k24[data-faction] #win .sfig { border:16px solid transparent; border-image:var(--k-card2) 48 fill / 16px stretch; border-bottom-width:6px; background:radial-gradient(#6e6450, #2a251d) padding-box; padding:0; border-radius:0; box-shadow:0 0 22px #ffcf4066; }
+html.k24[data-faction] #win .sfig::before { top:-40px; width:56px; height:40px; z-index:2; background:var(--k-crown-b) center / contain no-repeat; clip-path:none; filter:brightness(1.6) saturate(1.6) drop-shadow(0 0 8px #ffcf40cc) drop-shadow(0 1px 2px #000); }
+html.k24[data-faction] #win .sfig .pt.full { filter:grayscale(.75) sepia(.55) saturate(1.4) contrast(1.08) brightness(1.1); background:none; }
+html.k24[data-faction] #win .sped { border:2px solid #0009; border-top:0; background:linear-gradient(180deg,#8f8676,#4a4338 60%,#6a6252); box-shadow:inset 0 0 0 1px #e7c75a66, 0 3px 6px #000a; padding:3px 12px 4px; }
+html.k24[data-faction] #win .sped b { display:block; margin:2px auto 0; padding:1px 10px; text-transform:uppercase; letter-spacing:1.5px; color:#f6dc8a; background:#241a0aee; border:1px solid #d9b04a; }
+html.k24[data-faction] #win .minfo .kv { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; }
+html.k24[data-faction] #win .minfo .kv > div { border:10px solid transparent; border-image:var(--k-card) 48 fill / 10px stretch; background:none; padding:0 2px; text-align:center; display:grid; gap:1px; }
+html.k24[data-faction] #win .minfo .kv > div small { color:#c9b88e; font-size:10px; }
+html.k24[data-faction] #win .minfo .mbtns { display:flex; gap:10px; }
+/* Sıralama: koyu metalik satırlar, ilk 3 altın/gümüş/bronz */
+html.k24[data-faction] #win[data-scr="siralama"] .board > button, html.k24[data-faction] #win[data-scr="siralama"] .board > div { border:0 !important; border-left:4px solid #6b5a3c !important; border-radius:4px !important; color:#efe3c8 !important;
+  background:linear-gradient(180deg, #2c261f 0%, #1a1611 100%) !important; box-shadow:inset 0 0 0 1px #d9b04a22, inset 0 1px 0 #ffffff14, 0 2px 4px #0008 !important; margin:0; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > button:nth-child(even), html.k24[data-faction] #win[data-scr="siralama"] .board > div:nth-child(even) { background:linear-gradient(180deg, #25201a, #15110d) !important; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > button b, html.k24[data-faction] #win[data-scr="siralama"] .board > div b { color:#f4e8cc; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > button > span, html.k24[data-faction] #win[data-scr="siralama"] .board > div > span { color:#c9b88e !important; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > .me { border-left-color:#e0563c !important; box-shadow:inset 0 0 0 1px #e0563c66, 0 2px 4px #0008 !important; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > :nth-child(1) { border-left-color:#f2c24a !important; background:linear-gradient(90deg, #6b4f12 0%, #2d2310 45%, #1a1611 100%) !important; box-shadow:inset 0 0 0 1px #f2c24a99, 0 0 10px #f2c24a33 !important; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > :nth-child(2) { border-left-color:#c9d2dc !important; background:linear-gradient(90deg, #4d5560 0%, #25282c 45%, #1a1611 100%) !important; box-shadow:inset 0 0 0 1px #c9d2dc88 !important; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > :nth-child(3) { border-left-color:#c27a42 !important; background:linear-gradient(90deg, #5e3a1c 0%, #2b1f15 45%, #1a1611 100%) !important; box-shadow:inset 0 0 0 1px #c27a4288 !important; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > :nth-child(-n+3) > span:first-child { font-weight:900; font-size:15px; }
+html.k24[data-faction] #win[data-scr="siralama"] .board > :nth-child(1) > span:first-child { color:#f2c24a !important; } html.k24[data-faction] #win[data-scr="siralama"] .board > :nth-child(2) > span:first-child { color:#dfe6ee !important; } html.k24[data-faction] #win[data-scr="siralama"] .board > :nth-child(3) > span:first-child { color:#e09a62 !important; }
+
+/* === G6 SOSYAL/MENÜ === */
+/* Takvim: tema dışı mor/yeşil noktalar bronz-altın-kızıl tonlara; 7 metalik gün sekmesi */
+html.k24[data-faction] #win .calx .ev-dot.akin { background: #d9532f; box-shadow: 0 0 0 1px #0007; }
+html.k24[data-faction] #win .calx .ev-dot.rift { background: #e8b84a; box-shadow: 0 0 0 1px #0007; }
+html.k24[data-faction] #win .calx .ev-dot.week { background: #b9c4cf; box-shadow: 0 0 0 1px #0007; }
+html.k24[data-faction] #win .calx .ev-strip { gap: 6px; }
+html.k24[data-faction] #win .calx .ev-day {
+  background: linear-gradient(180deg, #4a4f58 0, #2a2e36 46%, #1a1d23 100%) !important; border: 1px solid #0b0c0f !important; border-radius: 6px !important;
+  box-shadow: inset 0 1px 0 #ffffff33, inset 0 0 0 1px #8a8f98aa, 0 2px 4px #0009 !important; color: #e6dfd0 !important; font-weight: 800;
+}
+html.k24[data-faction] #win .calx .ev-day.today {
+  background: linear-gradient(180deg, #fff0b8 0, #e8b84a 48%, #a8731c 100%) !important; border-color: #3a2406 !important; color: #2a1804 !important;
+  box-shadow: inset 0 1px 0 #fffbe0, 0 0 0 1px #ffd76a, 0 0 12px #ffc65a99 !important;
+}
+html.k24[data-faction] #win .calx .ev-day.today .ev-dot { box-shadow: 0 0 0 1px #2a1804aa; }
+
+/* Görevler: ince altın/bronz başlık şeridi, Git düğmesi kit düğmesi, kartlar kesilmeden sığar */
+html.k24[data-faction] #win .qb2-card { min-width: 0; }
+html.k24[data-faction] #win .qb2-card .btn { white-space: nowrap; }
+
+/* Sohbet: duyuru şeridi koyu kehribar yarı saydam + altın çerçeve */
+html.k24[data-faction] #win .chpin.annpin, html.k24[data-faction] #win .chpin.annpin[class*="k-"] {
+  background: linear-gradient(180deg, #5a3a0e99, #2c1b0899) !important; border: 1px solid #d9a93e !important; color: #ffe8b8 !important;
+  box-shadow: inset 0 0 0 1px #00000066, inset 0 1px 0 #ffe29a44, 0 2px 6px #0007 !important; border-radius: 6px !important;
+}
+html.k24[data-faction] #win .chpin.annpin b { color: #ffd76a !important; }
+html.k24[data-faction] #win .chpin.annpin i { color: #ffd76a !important; }
+html.k24[data-faction] #win .chpin.annpin time { color: #e2c78a !important; }
+html.k24[data-faction] #win .chatin, html.k24[data-faction] #win .chsend { opacity: 1 !important; }
+
+/* Ansiklopedi: koyu parşömen okuma alanı, metalik alt konu sekmeleri */
+html.k24[data-faction] #win .rh-nav button {
+  background: linear-gradient(180deg, #4a4f58 0, #2a2e36 48%, #181b21 100%) !important; border: 1px solid #0b0c0f !important; border-radius: 6px !important;
+  box-shadow: inset 0 1px 0 #ffffff30, inset 0 0 0 1px #7c828c99, 0 2px 4px #0009 !important; color: #e6dfd0 !important;
+}
+html.k24[data-faction] #win .rh-nav button.on {
+  background: linear-gradient(180deg, #5a4420 0, #34260e 50%, #20160a 100%) !important; box-shadow: inset 0 1px 0 #ffe29a55, inset 0 0 0 1px #e8b84a, 0 0 10px #e8b84a66 !important; color: #fff0c8 !important;
+}
+html.k24[data-faction] #win .rh-page {
+  background: linear-gradient(180deg, #2b2114, #20180e) !important; border: 1px solid #0b0905 !important; border-radius: 6px !important; color: #e8dcc2 !important;
+  box-shadow: inset 0 0 0 1px #8a6a3a66, inset 0 0 24px #0008 !important;
+}
+html.k24[data-faction] #win .rh-page :is(h3, h4, .rh-h, .rh-sub) { color: #ffd98a !important; }
+html.k24[data-faction] #win .rh-page :is(p, li, td, th, .rh-li, .rh-intro) { color: #e8dcc2; }
+html.k24[data-faction] #win .rh-page .mut { color: #b9a988 !important; }
+
+/* Başarımlar: üst bonus şeridi, metalik kategori hapları, kademe kartları */
+html.k24[data-faction] #win[data-scr="basarim"] .sub { display: flex; flex-wrap: wrap; gap: 4px; }
+html.k24[data-faction] #win[data-scr="basarim"] .sub > button {
+  background: linear-gradient(180deg, #4a4f58 0, #2a2e36 50%, #181b21 100%) !important; border: 1px solid #0b0c0f !important; border-radius: 12px 4px 12px 4px !important;
+  box-shadow: inset 0 1px 0 #ffffff30, inset 0 0 0 1px #8a8f98aa !important; color: #e6dfd0 !important; padding: 3px 7px !important; min-height: 0 !important; font-weight: 800; font-size: 12px !important;
+}
+html.k24[data-faction] #win[data-scr="basarim"] .sub > button.on {
+  background: linear-gradient(180deg, #fff0b8 0, #e8b84a 50%, #a8731c 100%) !important; color: #2a1804 !important; box-shadow: inset 0 1px 0 #fffbe0, 0 0 8px #ffc65a88 !important;
+}
+html.k24[data-faction] #win .arow {
+  background: linear-gradient(180deg, #1c2a4a, #121c36) !important; border: 1px solid #b98a32 !important; border-radius: 8px !important;
+  box-shadow: inset 0 0 0 1px #000a, inset 0 1px 0 #ffe29a33, 0 2px 5px #0008 !important;
+}
+html.k24[data-faction="ocak"] #win .arow { background: linear-gradient(180deg, #3a2218, #22130d) !important; }
+html.k24[data-faction] #win .arow .pbar { height: 7px; border-radius: 4px; background: #0b1020 !important; border: 1px solid #5a6a8a; box-shadow: none !important; overflow: hidden; }
+html.k24[data-faction] #win .arow .pbar > i { background: linear-gradient(180deg, #7ab8ff, #2f6fd0) !important; border-radius: 3px; display: block; height: 100%; }
+html.k24[data-faction] #win .arow .pbar::before, html.k24[data-faction] #win .arow .pbar::after { display: none !important; }
+
+/* Ayarlar: 5 grafik kartı düzenli, 3 sütun; son satır ortalanır (boş süs kutusu yok) */
+html.k24[data-faction] #win .ayopts { display: grid !important; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+html.k24[data-faction] #win .ayopts > .ayopt { grid-column: span 2; min-width: 0; }
+html.k24[data-faction] #win .ayopts > .ayopt:nth-child(4) { grid-column: 2 / span 2; }
+html.k24[data-faction] #win .ayopts > .ayopt:nth-child(5) { grid-column: 4 / span 2; }
+html.k24[data-faction] #win .ayopt {
+  border: 10px solid transparent !important; border-image: var(--k-card) 48 fill / 10px stretch !important; background: none !important; border-radius: 0 !important; box-shadow: none !important; padding: 2px 4px !important; color: #e8dcc2 !important;
+}
+html.k24[data-faction] #win .ayopt.on { filter: drop-shadow(0 0 6px #ffc65acc) brightness(1.15); }
+html.k24[data-faction] #win .ayopt b { color: #ffe2a8; font-family: Cinzel, Georgia, serif; text-transform: uppercase; }
+
+
+/* === G7 HARİTA/HUD === */
+/* Başkent: sohbet satırı metni çerçevenin dikey ortasına (resmin üst kenarı alttan daha kalın) */
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs > :last-child { position: relative !important; top: calc(var(--s2u) * 3); }
+
+/* -- Menü (p23Drawer): 2x5 = 10 metalik kart, sunucu rozeti başlıkta; Ayarlar/Tam ekran/Karakter/Çıkış alt satırda -- */
+html.k24.p23[data-faction][data-faction][data-faction] #modal .box.p23m {
+  width: min(640px, 94vw); overflow: visible; border: 18px solid transparent !important; border-image: var(--k-frame) 42 fill / 18px stretch !important; background: none !important; box-shadow: 0 14px 44px #000c !important; border-radius: 0 !important; }
+html.k24.p23[data-faction] #modal .box.p23m .p23m-hd { height: auto; min-height: 30px; padding: 0 44px 2px 4px; background: none; border: 0; justify-content: flex-start; gap: 10px; }
+html.k24.p23[data-faction] #modal .box.p23m .p23m-hd h2 { min-width: 110px; box-sizing: border-box; padding: 4px 4px !important; border: 0 solid transparent !important; border-width: 0 26px !important; border-image: var(--k-title) 0 80 fill / 0 26px stretch !important; text-align: center; font: 700 16px/24px Cinzel, Georgia, serif !important; letter-spacing: .06em; color: #ffe2a8 !important; text-shadow: 0 1px 2px #000 !important; }
+html.k24.p23[data-faction] #modal .box.p23m .p23m-srv { height: 24px; border: 0 solid transparent; border-width: 0 14px; border-image: var(--k-pill) 0 60 fill / 0 14px stretch; background: none; padding: 0 10px 0 8px; color: #e9e1d3; }
+html.k24.p23[data-faction][data-faction] #modal .box.p23m > .x { right: -12px !important; top: -14px !important; width: 30px !important; height: 30px !important; background: var(--k-close) center / 100% 100% no-repeat !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; font-size: 0 !important; color: transparent !important; padding: 0 !important; }
+html.k24.p23 .p23m-grid { grid-auto-rows: clamp(38px, 11.4vh, 54px); gap: 5px 10px; padding: 6px 2px 4px; }
+html.k24.p23[data-faction] .p23m-grid .mc { height: auto; box-sizing: border-box; border: 8px solid transparent; border-image: var(--k-card) 48 fill / 8px stretch; border-radius: 0; background: none; padding: 0 6px 0 2px; gap: 8px; }
+html.k24.p23[data-faction] .p23m-grid .mc:active { filter: brightness(1.25); transform: translateY(1px); }
+html.k24.p23 .mc-g { width: clamp(24px, 7vh, 34px); height: clamp(24px, 7vh, 34px); border-radius: 3px; }
+html.k24.p23 .mc-t b { font: 700 clamp(11px, 3.1vh, 14px)/1.1 Cinzel, Georgia, serif; color: #ffe2a8; }
+html.k24.p23 .mc-t small { font: 400 clamp(9px, 2.6vh, 11px)/1.15 Inter, sans-serif; color: #c9bba4; }
+html.k24.p23 .mc-dot { right: 14px; top: 50%; margin-top: -4px; }
+html.k24.p23 .p23m-ft { padding: 2px 2px 2px; gap: 6px; }
+html.k24.p23[data-faction] .p23m-alt { height: clamp(28px, 8.5vh, 36px); border: 9px solid transparent; border-image: var(--k-btn2) 40 fill / 9px stretch; background: none; border-radius: 0; font: 700 clamp(10px, 2.9vh, 12px)/1 Inter, sans-serif; color: #f3e6c8; gap: 5px; }
+html.k24.p23 .p23m-alt i { width: 14px; height: 14px; }
+
+/* -- Oyuncu profili (p23Profile): metal çerçeve, k-card bilgi/stat kutuları, ince kesikli test araçları -- */
+html.k24.p23[data-faction][data-faction][data-faction] #modal .box.p23p {
+  border: 18px solid transparent !important; border-image: var(--k-frame) 42 fill / 18px stretch !important; background: none !important; box-shadow: 0 14px 44px #000c !important; border-radius: 0 !important; width: min(760px, 95vw); padding: 2px 6px 4px; gap: 7px; max-height: calc(100vh - 12px); }
+html.k24.p23[data-faction][data-faction] #modal .box.p23p > .x { right: -8px !important; top: -12px !important; width: 30px !important; height: 30px !important; background: var(--k-close) center / 100% 100% no-repeat !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; font-size: 0 !important; color: transparent !important; padding: 0 !important; }
+html.k24.p23 .box.p23p .pp-gear { right: 38px; top: 6px; width: 30px; height: 30px; border: 8px solid transparent; border-image: var(--k-btn2) 40 fill / 8px stretch; background: none; border-radius: 0; }
+html.k24.p23 .box.p23p .pp-gear i { width: 14px; height: 14px; }
+html.k24.p23 .box.p23p .pp-id { height: auto; min-height: 66px; padding: 0 168px 6px 0; }
+html.k24.p23 .box.p23p .pp-met { right: 76px; top: -2px; }
+html.k24.p23 .box.p23p .pp-met > div { width: 84px; height: 50px; border: 9px solid transparent; border-image: var(--k-card) 48 fill / 9px stretch; background: none; border-radius: 0; }
+html.k24.p23 .box.p23p .pp-ttl { border: 6px solid transparent; border-image: var(--k-btn2) 40 fill / 6px stretch; background: none; border-radius: 0; height: 26px; padding: 0 4px; color: #ffe2a8; }
+html.k24.p23 .box.p23p .pp-ava { border: 3px solid transparent; border-image: var(--k-ring) 40 fill / 3px stretch; border-radius: 0; background: #0e0b10; }
+html.k24.p23 .box.p23p .pp-chip { min-height: 46px; border: 10px solid transparent; border-image: var(--k-card) 48 fill / 10px stretch; background: none; border-radius: 0; padding: 0 2px; }
+html.k24.p23 .box.p23p .pp-tile { height: 60px; border: 10px solid transparent; border-image: var(--k-card) 48 fill / 10px stretch; background: none; border-radius: 0; gap: 2px; }
+html.k24.p23 .box.p23p .pp-tile b { font: 800 18px/20px Cinzel, Georgia, serif; color: #fff1d0; }
+html.k24.p23 .box.p23p .pp-dev { background: rgba(10,8,8,.45); border: 1px dashed rgba(224,160,48,.45); border-radius: 4px; padding: 6px 8px; }
+html.k24.p23 .box.p23p .pp-dev .btn.sm { min-height: 26px; height: 28px; border-width: 8px !important; border-image-width: 8px !important; font-size: 11px; }
+html.k24.p23 .box.p23p .pp-dev .mbtns { gap: 4px; }
+
+/* -- Işınlanma Kapısı: yer seçenekleri metalik kart düğmeler (k-card çerçeve + k-btn1 vurgu) -- */
+html.k24[data-faction][data-faction] #modal .box .btn.portopt { border: 14px solid transparent !important; border-image: var(--k-card) 48 fill / 14px stretch !important; background: none !important; color: #ffe2a8 !important; text-transform: none; letter-spacing: 0; min-height: 54px; transition: filter .15s; }
+html.k24[data-faction][data-faction] #modal .box .btn.portopt b { font: 700 15px/1.2 Cinzel, Georgia, serif; color: #ffe2a8; }
+html.k24[data-faction][data-faction] #modal .box .btn.portopt small { font: 400 11px/1.2 Inter, sans-serif; color: #cdbfa6; text-transform: none; letter-spacing: 0; }
+html.k24[data-faction][data-faction] #modal .box .btn.portopt:not(:disabled):hover, html.k24[data-faction][data-faction] #modal .box .btn.portopt:not(:disabled):active { border-image-source: var(--k-btn1) !important; filter: brightness(1.12); }
+html.k24[data-faction] #modal .box .btn.portopt .ico { filter: drop-shadow(0 1px 2px #000); }

@@ -1,0 +1,130 @@
+/* P27 A+ görsel yenileme — magaza (docs/referans/p27-a-plus/TALIMAT.md). Kurallar ekran/duruma kapsamlı; !important yok. */
+
+/* ---------- 3.2 Yakut Al · Yakut Paketleri (ui-odeme.js packsHtml: .ypacks.yp27 > .ypack.yp27c) ---------- */
+html[data-faction] #win #page .ynote { padding: 4px 10px; margin: 0 0 6px; font-size: 11.5px; line-height: 1.3; }
+html[data-faction] #win #page .ypacks.yp27 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 8px; margin: 10px 0 4px; }
+html[data-faction] #win #page .ypack.yp27c {
+  display: grid; grid-template-columns: 66px minmax(0, 1fr); column-gap: 6px; row-gap: 0;
+  align-items: center; justify-items: start; text-align: left; padding: 15px 6px 6px 4px; min-height: 0; overflow: visible; clip-path: none;
+}
+html[data-faction] #win #page .ypack.yp27c > .yp-art {
+  grid-column: 1; grid-row: 1 / 5; width: 66px; height: 62px; object-fit: contain; align-self: center; justify-self: center;
+  filter: drop-shadow(0 4px 6px #000a) drop-shadow(0 0 8px #ff3b4a33);
+}
+html[data-faction] #win #page .ypack.yp27c > .ygem { grid-column: 1; grid-row: 1 / 5; justify-self: center; }
+html[data-faction] #win #page .ypack.yp27c > :is(.yname, .yamt, .ysub, .ybuy) { grid-column: 2; }
+html[data-faction] #win #page .ypack.yp27c > .yname { font-size: 12px; line-height: 1.15; white-space: normal; overflow: visible; text-overflow: clip; max-width: 100%; }
+html[data-faction] #win #page .ypack.yp27c > .yamt { font-size: 15px; line-height: 1.1; color: #f2d08a; }
+html[data-faction] #win #page .ypack.yp27c > .ysub { font-size: 10px; line-height: 1.15; }
+html[data-faction] #win #page .ypack.yp27c > .ybuy { margin-top: 3px; min-width: 0; width: 100%; max-width: 116px; padding: 3px 8px; font-size: 12px; }
+@media (max-height: 380px) {
+  html[data-faction] #win #page .ynote { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  html[data-faction] #win #page .ypack.yp27c { grid-template-columns: 54px minmax(0, 1fr); }
+  html[data-faction] #win #page .ypack.yp27c > .yp-art { width: 54px; height: 52px; }
+  html[data-faction] #win #page .ypack.yp27c > .ysub { display: none; }
+}
+/* "İlk alım: +…" kurdelesi: koyu bordo + ince altın çerçeve (çiğ parlak kırmızı kutu yerine) */
+html[data-faction] #win #page .ypack.yp27c > .yrib {
+  top: -6px; right: 8px; padding: 2px 12px 3px; border-radius: 0; font-size: 10px; font-weight: 700; letter-spacing: .02em;
+  color: #f6dfa4; text-shadow: 0 1px 1px #000; background: linear-gradient(180deg, #5a1019, #2e070c);
+  border: 1px solid #b8914a; box-shadow: 0 2px 5px #000a, inset 0 0 0 1px #00000066;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 50%, 100% 100%, 0 100%, 6px 50%);
+}
+html[data-faction] #win #page .ypack.yp27c.yfirst { box-shadow: inset 0 0 0 1px #b8914a55; }
+html[data-faction] #win #page .ypacks.yp27 + .mut { margin: 2px 0 0; font-size: 11px; }
+
+/* ---------- 3.2 Yakut Al · Yakut Kartı vitrini (cardHtml: .yc27) ---------- */
+html[data-faction] #win #page .yc27 {
+  display: grid; grid-template-columns: minmax(150px, 34%) minmax(0, 1fr); grid-template-rows: 1fr auto; gap: 8px 14px;
+  padding: 10px 12px; margin: 2px 0 6px; border: 1px solid #b8914a66; border-radius: 4px;
+  background: radial-gradient(ellipse at 18% 40%, #5a101d55, transparent 60%), linear-gradient(180deg, #1c1410e6, #110c09f0);
+  box-shadow: inset 0 0 0 1px #00000080, 0 3px 10px #0008;
+}
+html[data-faction] #win #page .yc27-arma { position: relative; grid-row: 1; display: grid; place-items: center; min-height: 0; }
+html[data-faction] #win #page .yc27-arma img { width: 100%; max-width: 150px; max-height: 150px; object-fit: contain; filter: drop-shadow(0 6px 10px #000c) drop-shadow(0 0 14px #c21a3a40); }
+html[data-faction] #win #page .yc27-gun {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); padding: 3px 14px; white-space: nowrap;
+  font-family: var(--display, serif); font-size: 13px; font-weight: 800; letter-spacing: .12em; color: #2a1a06;
+  background: linear-gradient(180deg, #f6dc94, #c89b47 55%, #9a7128); border: 1px solid #fff1c0; box-shadow: 0 2px 6px #000b;
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 8px 100%, 0 50%);
+}
+html[data-faction] #win #page .yc27-sag { grid-row: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px; min-width: 0; }
+html[data-faction] #win #page .yc27-sag h3 { margin: 0; font-family: var(--display, serif); font-size: 17px; color: #f2d08a; letter-spacing: .04em; }
+html[data-faction] #win #page .yc27-perks { display: grid; grid-template-columns: 1fr; gap: 6px; }
+html[data-faction] #win #page .yc27-perks > div {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 7px 12px;
+  background: linear-gradient(90deg, #3a0d14cc, #1a1210cc); border: 1px solid #b8914a80; border-left: 3px solid #c89b47; box-shadow: inset 0 0 0 1px #0007;
+}
+html[data-faction] #win #page .yc27-perks small { font-size: 12px; color: #d8c4a0; text-transform: uppercase; letter-spacing: .06em; }
+html[data-faction] #win #page .yc27-perks b { font-size: 16px; color: #ffe7b0; white-space: nowrap; }
+html[data-faction] #win #page .yc27-bar {
+  grid-column: 1 / -1; grid-row: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 6px 10px; border-top: 1px solid #b8914a66; background: #0006;
+}
+html[data-faction] #win #page .yc27-bar p { margin: 0; font-size: 12.5px; min-width: 0; }
+html[data-faction] #win #page .yc27-bar .mbtns { margin: 0; flex: none; }
+html[data-faction] #win #page .yc27 + .mut { font-size: 11px; margin: 2px 0 0; }
+
+/* ---------- 3.4 Tüccar Halvor başlık simgesi (ui-town.js shopTitle: .pz-tt-halvor) ---------- */
+html[data-faction] #win header h2 .pz-tt-halvor .pz-por { display: inline-block; width: 34px; height: 34px; flex: none; background: url(../img/p27/icon_tuccar.webp) center / contain no-repeat; filter: drop-shadow(0 2px 3px #000c); }
+html[data-faction] #win header h2 .pz-tt-halvor .pz-por svg { display: none; }
+
+/* ---------- 4.3 Takı / Silah / Zırh dükkânı: tek satır NPC şeridi + fiyat/AL tam görünür ---------- */
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head { min-height: 0; height: auto; padding: 3px 10px; border-width: 6px; border-image-width: 6px; margin-bottom: 6px; gap: 10px; align-items: center; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head .pz-bigpor { width: 38px; height: 38px; flex: none; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head .pz-bigpor :is(img, svg) { width: 38px; height: 38px; object-fit: cover; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head > .grow { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head > .grow > b { flex: none; font-size: 15px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head > .grow > p { margin: 0; min-width: 0; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head + .pz-sub { margin: 0 0 6px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-sub + .hint { padding: 4px 10px; margin: 0 0 6px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Takı vitrini kartları: sabit yükseklik, ayrıntı kırpılır, alt satır (satıcı · fiyat · Al) her zaman görünür */
+html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-grid { grid-auto-rows: 132px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-card { display: flex; flex-direction: column; height: 132px; min-height: 0; overflow: hidden; padding-bottom: 6px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-card > .pz-top { flex: 1 1 auto; min-height: 0; overflow: hidden; align-items: flex-start; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-card > .pz-bd { flex: none; max-height: 22px; overflow: hidden; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-card > .pz-bot { flex: none; margin-top: 4px; }
+/* Kart çerçevesi (k-card2, p24 kit !important 14–16px) inceltilemediği için içerik sıkıştırılır */
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head .pz-bigpor { width: 30px; height: 30px; border-width: 1px; box-shadow: 0 0 0 2px #3a2a12, 0 2px 5px #000c; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head .pz-bigpor :is(img, svg) { width: 100%; height: 100%; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-sub > button { padding-top: 3px; padding-bottom: 3px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-card.dk-card { min-height: 0; gap: 10px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-body { gap: 1px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-body .pz-nm .gn { font-size: 15px; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-body .pz-bot { margin-top: 0; }
+html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-body .pz-bot .btn.sm { padding-top: 3px; padding-bottom: 3px; font-size: 14px; }
+@media (max-height: 380px) {
+  html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head { margin-bottom: 4px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-head + .pz-sub, html.k24[data-faction] #win[data-scr="dukkan"] #page .pz-sub + :is(.pz-sub, .hint) { margin-bottom: 4px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-well { width: 50px; height: 50px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-well .ico.lg { width: 46px; height: 46px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-body .pz-nm .gn { font-size: 14px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] #page .dk-body .pz-nm { font-size: 11px; line-height: 1.2; }
+  html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-grid { grid-auto-rows: 112px; }
+  html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-card { height: 112px; }
+}
+/* Zırh: dar ekranda dükkân sekmeleri ile sınıf süzgeci tek satırda (kart ilk görünümde tam kalsın) */
+@media (max-height: 380px) {
+  html.k24[data-faction] #win[data-scr="dukkan"] #page > .pz-sub:has(+ .pz-sub), html.k24[data-faction] #win[data-scr="dukkan"] #page > .pz-sub + .pz-sub { display: inline-flex; width: auto; vertical-align: middle; margin: 0 6px 4px 0; }
+}
+@media (max-height: 380px) {
+  html.k24[data-faction] #win[data-scr="dukkan"] #page #pzlist .pz-card > .pz-bd { display: none; }
+  html[data-faction] #win #page .ypacks.yp27 { margin-top: 8px; gap: 9px 6px; }
+  html[data-faction] #win #page .ypack.yp27c { padding-top: 10px; padding-bottom: 4px; }
+  html[data-faction] #win #page .yc27 { padding: 6px 10px; gap: 6px 12px; }
+  html[data-faction] #win #page .yc27-arma img { max-height: 112px; }
+  html[data-faction] #win #page .yc27-sag { gap: 5px; }
+  html[data-faction] #win #page .yc27-perks > div { padding: 4px 10px; }
+  html[data-faction] #win #page .yc27-bar { padding: 3px 8px; }
+}
+/* Tüccar Halvor (scr "genel", tcSub sekmeleri): Takı/Silah/Zırh başlık sıkıştırmasının aynısı — dar ekranda ilk kart satırının Al düğmesi kesilmesin */
+html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-head .pz-bigpor { width: 30px; height: 30px; border-width: 1px; box-shadow: 0 0 0 2px #3a2a12, 0 2px 5px #000c; }
+html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-head .pz-bigpor :is(img, svg) { width: 100%; height: 100%; }
+html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-head > .grow { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-head > .grow > b { flex: none; font-size: 15px; }
+html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-head > .grow > p { margin: 0; min-width: 0; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-sub > button { padding-top: 3px; padding-bottom: 3px; }
+@media (max-height: 380px) {
+  html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-head { margin-bottom: 4px; }
+  html.k24[data-faction] #win[data-scr="genel"] #page:has([data-a="tcSub"]) .pz-head + .pz-sub { margin-bottom: 4px; }
+}

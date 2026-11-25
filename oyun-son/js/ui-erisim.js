@@ -21,13 +21,13 @@ export function pageErisim() {
     ${row('star', 'Yüksek kontrast', 'Parşömen üstündeki yazılar koyulaşır, kenarlar netleşir.', sw(A.hc, 'hc'), A.hc)}
     ${head('Işık ve hareket')}
     ${row('bolt', 'Ekran parlaması', 'Kritik, evre ve örs sonucundaki beyaz parlama.', sw(!A.noFlash, 'noFlash'), !A.noFlash)}
-    ${row('stomp', 'Kamera sarsıntısı', 'Kritik vuruş, boss ve büyü sarsıntıları.', sw(!A.noShake, 'noShake'), !A.noShake)}
+    ${row('stomp', 'Kamera sarsıntısı', 'Kritik vuruş, Boss ve büyü sarsıntıları.', sw(!A.noShake, 'noShake'), !A.noShake)}
     ${row('star', 'Işıma (bloom)', 'Parlayan yüzeylerin hâlesi. Kapatmak zayıf telefonda hızı da artırır.', sw(!A.noBloom, 'noBloom'), !A.noBloom)}
     ${row('timer', 'Vuruşta kısa donma', 'Her vuruştaki ve kritikteki anlık duraklama (hit-stop).', sw(!A.noStop, 'noStop'), !A.noStop)}
     ${head('Duyma')}
     ${row('send', 'Ses kanalları', 'Müzik ve ortam, efekt ve arayüz sesleri ayrı ayarlanır.', '<button class="btn sm" data-a="aeSes">Ses ayarları</button>', false)}
     ${row('send', 'Tek kanal (mono) ses', 'İki kulağa aynı ses gider; tek kulaklık kullananlar için.', sw(A.mono, 'mono'), A.mono)}
-    ${row('news', 'Görsel karşılıklar', 'Örs sonucu, boss girişi, zafer gibi sesli ipuçları ekranda yazıyla da görünür.', sw(A.captions, 'captions'), A.captions)}
+    ${row('news', 'Görsel karşılıklar', 'Örs sonucu, Boss girişi, zafer gibi sesli ipuçları ekranda yazıyla da görünür.', sw(A.captions, 'captions'), A.captions)}
     ${head('Dokunma ve zamanlama')}
     ${row('melee', 'Büyük dokunma alanı', 'Düğmeler en az 44 piksel olur (kaynak +, kapatma düğmesi…).', sw(A.bigTouch, 'bigTouch'), A.bigTouch)}
     ${row('timer', 'Süre uzatma', `Canlı Meydan’da hamle süresi iki katına çıkar.`, sw(A.slowTimer, 'slowTimer'), A.slowTimer)}
@@ -38,7 +38,7 @@ export function pageErisim() {
     ${row('rank', 'Büyük sıra ve can çubukları', 'Savaştaki birimlerin üstündeki çubuklar büyür.', sw(A.bigTurn, 'bigTurn'), A.bigTurn)}
     ${row('quest', 'Öğretici ve fragman', 'Açılış anlatımını yeniden izle.', '<button class="btn sm" data-a="aeTut">İzle</button>', false)}
     ${row('mail', 'Sohbeti kapat', 'Ana ekrandaki sohbet şeridi gizlenir (Menü’den yine açılır). Engelleme ve küfür süzgeci açık kalır.', sw(A.noChat, 'noChat'), A.noChat)}
-    ${row('news', 'Bildirim sınırı', 'Ekranın üstünden geçen duyuru şeridi gösterilmez; son duyuru genel sohbette durur.', sw(A.noTicker, 'noTicker'), A.noTicker)}
+    ${row('news', 'Bildirim sınırı', 'Etkinlik hatırlatma bandı (başlamadan 1 saat ve 5 dakika önce) gösterilmez; etkinlik saatleri Sefer › Etkinlikler sekmesinde durur.', sw(A.noTicker, 'noTicker'), A.noTicker)}
     <p class="mut">Erişilebilirlik ayarları bu cihazda saklanır.</p></div>`;
 }
 const TOGGLE_INV = { noFlash: 1, noShake: 1, noBloom: 1, noStop: 1 };

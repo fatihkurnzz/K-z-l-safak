@@ -49,8 +49,8 @@ export const MQ = [
 
   N('m09', 3, 'a', 'Yol Görmüş', 'Seviyeni 10’a çıkar.', 10, p => p.lvl, [{ t: 'akce', n: 800 }], 'gate', ['m08']),
   N('m10', 3, 'b', 'Sözünü Tut', 'Günlük görevlerden birinin ödülünü al.', 1, p => Math.max(C(p, 'qclaim'), C(p, 'dailyAll'), Object.keys(p.daily?.qdone || {}).length ? 1 : 0), [{ t: 'energy', n: 30 }], 'quests', ['m09']),
-  N('m11', 3, 'c', 'Baş Avı', 'Bir boss yen; kapı kaptanları ve boss’lar günde bir kez ödül verir.', 1, A('bosskill'), [{ t: 'stone', g: 0, n: 3 }], 'gate', ['m09']),
-  N('m12', 3, 'd', 'Vahran Fatihi', 'Vahran Ovası’nı bitir: 25. aşamanın boss’unu yen.', 1, zoneDone(1), [{ t: 'yakut', n: 20 }], 'gate', ['m10', 'm11']),
+  N('m11', 3, 'c', 'Baş Avı', 'Bir Boss yen; kapı kaptanları ve Boss’lar günde bir kez ödül verir.', 1, A('bosskill'), [{ t: 'stone', g: 0, n: 3 }], 'gate', ['m09']),
+  N('m12', 3, 'd', 'Vahran Fatihi', 'Vahran Ovası’nı bitir: 25. aşamanın Boss’unu yen.', 1, zoneDone(1), [{ t: 'yakut', n: 20 }], 'gate', ['m10', 'm11']),
 
   N('m13', 4, 'a', 'Meydana Çık', 'Meydan’da bir dövüş yap (12. seviyede açılır).', 1, p => (p.arena?.wins || 0) + (p.arena?.losses || 0), [{ t: 'san', n: 60 }], 'meydan', ['m12']),
   N('m14', 4, 'b', 'Pazar Gezen', 'Pazar’dan bir eşya satın al.', 1, A('bought'), [{ t: 'akce', n: 1500 }], 'market', ['m13']),
@@ -65,7 +65,7 @@ export const MQ = [
   N('m21', 6, 'a', 'Uzmanlık Yolu', 'Uzmanlık yolunu seç (10. seviyede açılır).', 1, p => heroes(p).some(h => h.path) ? 1 : 0, [{ t: 'yakut', n: 30 }], 'partyPath', ['m20']),
   N('m22', 6, 'b', 'Mühür Kıran', 'Mühürlü Oda’yı bir kez kazan (Kapı → Zindanlar).', 1, A('seal'), [{ t: 'stone', g: 2, n: 1 }], 'dungeons', ['m21']),
   N('m23', 6, 'c', 'Sözünün Eri', 'Bir gün bütün günlük görevleri bitir ve sandığı aç.', 1, A('dailyall'), [{ t: 'yakut', n: 30 }], 'quests', ['m21']),
-  N('m24', 6, 'd', 'Kül Geçidi', 'Kül Geçidi’ni bitir: 2. bölgenin son boss’unu yen.', 1, zoneDone(2), [{ t: 'yakut', n: 60 }, { t: 'stone', g: 2, n: 2 }], 'gate', ['m22', 'm23']),
+  N('m24', 6, 'd', 'Kül Geçidi', 'Kül Geçidi’ni bitir: 2. bölgenin son Boss’unu yen.', 1, zoneDone(2), [{ t: 'yakut', n: 60 }, { t: 'stone', g: 2, n: 2 }], 'gate', ['m22', 'm23']),
 ];
 // 19 Kas: hikâye görevleri (7–16. bölüm). İlerleme gerçek durumdan okunur; ödüller Bağlı (nt) gelir.
 const lvl = p => p.lvl || 0;
@@ -76,7 +76,7 @@ MQ.push(
   N('m28', 7, 'd', 'Cübbenin Sahibi', 'Kül Geçidi’nin 15. aşamasını geç; cübbelilerin izini sür.', 1, hasStage('2-15'), [{ t: 'yakut', n: 25 }], 'gate', ['m26', 'm27']),
 
   N('m29', 8, 'a', 'Şamanın Çağrısı', 'Yashka seni bekliyor: seviyeni 25’e çıkar.', 25, lvl, [{ t: 'akce', n: 4000 }], 'gate', ['m28']),
-  N('m30', 8, 'b', 'Kemik Fal', 'Yashka’nın falı için 3 farklı boss türü yen.', 3, A('bosskind'), [{ t: 'stone', g: 1, n: 2 }], 'gate', ['m29']),
+  N('m30', 8, 'b', 'Kemik Fal', 'Yashka’nın falı için 3 farklı Boss türü yen.', 3, A('bosskind'), [{ t: 'stone', g: 1, n: 2 }], 'gate', ['m29']),
   N('m31', 8, 'c', 'Derinden Gelen Ses', 'Dipsiz Kuyu’da 10 dalga temizle; ses aşağıdan geliyor.', 10, A('well'), [{ t: 'energy', n: 50 }], 'dungeons', ['m29']),
   N('m32', 8, 'd', 'Kehanetin Kapısı', 'Kül Geçidi’ni baştan sona geç; kehanet yolu açar.', 1, zoneDone(2), [{ t: 'yakut', n: 40 }], 'gate', ['m30', 'm31']),
 

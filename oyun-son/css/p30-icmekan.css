@@ -1,0 +1,97 @@
+/* P30 — İç mekân katmanı (js/ic-mekan.js; şartname docs/referans/p30-ic-mekan/TALIMAT.md).
+   Kap: #win (Örs, Karaborsa, Maden, Klan Karargâhı, Otağ) ya da #p28bina (Han, Ahır). important bildirimi YOK.
+   Geçiş süresi 260 ms (interiors.json transition_ms; js GECIS_MS ile aynı). Görsel 1584x672, kaplayacak biçimde yerleşir. */
+
+/* ---- Katman ve sahne kutusu ---- */
+.icm { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #0b0a0d; container-type: size; animation: icm-gir 260ms ease-out both; }
+.icm-sahne { position: absolute; left: 50%; top: 50%; width: max(100cqw, 100cqh * 1584 / 672); aspect-ratio: 1584 / 672; transform: translate(-50%, -50%); }
+.icm-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; pointer-events: none; user-select: none; }
+@keyframes icm-gir { from { opacity: 0; } to { opacity: 1; } }
+.icm-hayalet { position: absolute; inset: 0; z-index: 60; pointer-events: none; background: #0b0a0d center / cover no-repeat; opacity: 1; transition: opacity 260ms ease-in; }
+.icm-hayalet.git { opacity: 0; }
+
+/* ---- Hafif ışık efektleri (şömine, meşale, fener, köz, kristal, pencere huzmesi) ---- */
+.icm-fx { position: absolute; aspect-ratio: 1; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; mix-blend-mode: screen; will-change: opacity, transform; }
+.icm-ates { background: radial-gradient(closest-side, rgba(255, 170, 70, 0.5), rgba(255, 120, 30, 0.2) 45%, rgba(255, 110, 20, 0) 72%); animation: icm-ates 1.7s ease-in-out infinite; }
+.icm-fener { background: radial-gradient(closest-side, rgba(255, 196, 110, 0.42), rgba(255, 160, 60, 0.14) 50%, rgba(255, 150, 50, 0) 72%); animation: icm-fener 3.1s ease-in-out infinite; }
+.icm-kor { background: radial-gradient(closest-side, rgba(255, 70, 40, 0.34), rgba(220, 40, 20, 0.12) 50%, rgba(200, 30, 10, 0) 72%); animation: icm-nabiz 4.2s ease-in-out infinite; }
+.icm-kristal { background: radial-gradient(closest-side, rgba(120, 190, 255, 0.4), rgba(70, 140, 255, 0.14) 50%, rgba(60, 120, 255, 0) 72%); animation: icm-nabiz 3.6s ease-in-out infinite; }
+.icm-isik { background: radial-gradient(closest-side, rgba(220, 235, 255, 0.2), rgba(200, 220, 255, 0.06) 55%, rgba(200, 220, 255, 0) 75%); animation: icm-nabiz 6s ease-in-out infinite; }
+@keyframes icm-ates { 0%, 100% { opacity: 0.72; transform: translate(-50%, -50%) scale(1); } 22% { opacity: 1; transform: translate(-50%, -51%) scale(1.07); } 47% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.96); } 71% { opacity: 0.92; transform: translate(-50%, -51%) scale(1.04); } }
+@keyframes icm-fener { 0%, 100% { opacity: 0.7; } 35% { opacity: 1; } 62% { opacity: 0.78; } 80% { opacity: 0.95; } }
+@keyframes icm-nabiz { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+/* Örs kıvılcımı: altı küçük kor tanesi yukarı doğru savrulur */
+.icm-kv { position: absolute; width: 0; height: 0; pointer-events: none; }
+.icm-kv i { position: absolute; left: 0; top: 0; width: 3px; height: 3px; border-radius: 50%; background: #ffd27a; box-shadow: 0 0 6px 1px rgba(255, 150, 40, 0.8); opacity: 0;
+  --dx: calc((var(--i) - 2.5) * 13px); animation: icm-kv 1.9s linear infinite; animation-delay: calc(var(--i) * -0.31s); }
+@keyframes icm-kv { 0% { opacity: 0; transform: translate(0, 0); } 12% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), -64px); } }
+.icm-sakin .icm-fx { animation: none; opacity: 0.7; }
+.icm-sakin .icm-kv { display: none; }
+@media (prefers-reduced-motion: reduce) { .icm { animation: none; } .icm-fx { animation: none; opacity: 0.7; } .icm-kv { display: none; } }
+
+/* ---- NPC görünmez dokunma alanı (yalnız panel gizliyken etkin) ---- */
+.icm-np { position: absolute; width: 16%; min-width: 88px; aspect-ratio: 3 / 4; transform: translate(-50%, -50%); padding: 0; border: 0; background: none; opacity: 0; cursor: pointer; display: none; }
+.icm-kapali .icm-np { display: block; }
+
+/* ---- Panel gizliyken görünen düğmeler ---- */
+.icm-ust { position: absolute; z-index: 3; right: max(10px, var(--sar, 0px)); top: max(8px, var(--sat, 0px)); display: none; gap: 8px; }
+.icm-kapali .icm-ust { display: flex; }
+.icm-btn { min-width: 88px; min-height: 44px; padding: 0 16px; border-radius: 8px; cursor: pointer; border: 1px solid #c9a45c; background: rgba(18, 15, 20, 0.86);
+  color: #f3e6c8; font: 700 13px/1 Cinzel, Georgia, serif; letter-spacing: 0.06em; text-shadow: 0 1px 2px #000; }
+.icm-btn.icm-cik { border-color: #b4563f; color: #ffd9cc; }
+.icm-btn:active { filter: brightness(1.25); }
+.icm-btn:focus-visible, .icm-goz:focus-visible, .icm-np:focus-visible { outline: 2px solid #ffe2a8; outline-offset: 2px; opacity: 1; }
+
+/* "Mekânı gör" düğmesi (panel başlığında, kapat düğmesinin solunda) */
+.icm-goz { flex: none; width: 44px; height: 44px; padding: 0; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid #c9a45c; background: rgba(18, 15, 20, 0.8); color: #f3d9a0; }
+.icm-goz svg { width: 24px; height: 24px; display: block; }
+.icm-goz:active { filter: brightness(1.3); }
+
+/* ---- #win kabı: karartma kalkar, çerçeve yan panel olur (ölçüler js'te satır içi), gizlenince solar ---- */
+#win.icm-var > .scrim { display: none; }
+#win.icm-var > .frame { z-index: 2; transition: opacity 260ms ease, visibility 0s linear 0s; }
+#win.icm-var.icm-kapali > .frame { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 260ms ease, visibility 0s linear 260ms; }
+#win.icm-var > .frame > header .icm-goz { width: 36px; height: 36px; margin: 0 6px 0 4px; position: relative; z-index: 2; }
+#win.icm-var > .frame > header .icm-goz svg { width: 20px; height: 20px; }
+
+/* ---- Maden: panel altta, sahne üstte; madenci, cevher ve vagon katmanı sahnenin ön zemininde ---- */
+.icm.icm-maden { --icm-altn: var(--icm-altn0, 0.52); }
+.icm-kapali > .icm.icm-maden { --icm-altn: 0; }
+.icm-maden .icm-sahne { top: auto; bottom: calc(100cqh * var(--icm-altn, 0.52)); transform: translateX(-50%); transition: bottom 260ms ease; }
+.icm-maden .icm-on { position: absolute; inset: 0 0 calc(100cqh * var(--icm-altn, 0.52)) 0; transition: bottom 260ms ease; --mh: min(calc(100cqh * (1 - var(--icm-altn, 0.52)) * 0.86), 210px); --mz: calc(var(--mh) * 0.1); /* P31 G3: zemin payı — ayaklar panel kenarına gömülmesin */ }
+html.p23 .icm-maden .icm-on .mn-stage.mn-p23 { position: absolute; inset: 0; height: auto; margin: 0; border-radius: 0; background: none; overflow: visible; }
+html.p23 .icm-maden .icm-on .mn-p23 .p23m-bg { display: none; }
+html.p23 .icm-maden .icm-on .mn-p23 .p23m-rock { bottom: calc(var(--mz) + var(--mh) * 0.05); height: calc(var(--mh) * 0.62); }
+html.p23 .icm-maden .icm-on .mn-p23 .p23m-cart { bottom: calc(var(--mz) + var(--mh) * 0.04); height: calc(var(--mh) * 0.67); }
+html.p23 .icm-maden .icm-on .mn-p23 .p23m-man, html.p23 .icm-maden .icm-on .mn-p23 .p23m-shm { bottom: calc(var(--mz) + var(--mh) * -0.19); width: var(--mh); height: var(--mh); }
+html.p23 .icm-maden .icm-on .mn-p23 .p23m-spark { left: calc(var(--mx, 41%) - var(--mh) * 0.333); bottom: calc(var(--mz) + var(--mh) * 0.218); width: calc(var(--mh) * 0.36); height: calc(var(--mh) * 0.36); }
+html.p23 .icm-maden .icm-on .mn-p23 .p23m-fly { bottom: calc(var(--mz) + var(--mh) * 0.54); }
+
+/* ---- Klan Karargâhı: boş sancakların üstünde klan arması ---- */
+.icm-arma { position: absolute; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; color: #f1dfb4; opacity: 0.9; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.7)); }
+.icm-arma svg { display: block; width: 100%; height: 100%; }
+
+/* ---- #p28bina kabı (Han, Ahır): içerik solda dar panel, sağda mekân ---- */
+#p28bina.icm-var { --kb-pan: max(46%, min(400px, 100% - 16px)); padding-right: calc(100% - var(--kb-pan)); background: #0b0a0d; }
+#p28bina.icm-var > .kb-bg { display: none; }
+#p28bina .kb-pan { display: none; }
+#p28bina.icm-var > .kb-pan { display: block; position: absolute; z-index: 1; left: 0; top: 0; bottom: 0; width: calc(var(--kb-pan) + 6px);
+  background: linear-gradient(90deg, rgba(13, 12, 16, 0.94), rgba(13, 12, 16, 0.86)); border-right: 1px solid #c9a45c99; box-shadow: 6px 0 18px rgba(0, 0, 0, 0.55); }
+#p28bina.icm-var > .kb-top, #p28bina.icm-var > .kb-body, #p28bina.icm-var > .kb-pan { transition: opacity 260ms ease, visibility 0s linear 0s; }
+#p28bina.icm-var > .kb-top, #p28bina.icm-var > .kb-body { z-index: 2; }
+#p28bina.icm-var.icm-kapali > .kb-top, #p28bina.icm-var.icm-kapali > .kb-body, #p28bina.icm-var.icm-kapali > .kb-pan { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 260ms ease, visibility 0s linear 260ms; }
+#p28bina.icm-var .kb-top { gap: 6px; }
+#p28bina.icm-var .kb-h { font-size: 18px; }
+#p28bina.icm-var .kb-rs { gap: 4px; }
+#p28bina.icm-var .kb-res { height: 30px; padding: 0 8px 0 6px; gap: 4px; font-size: 12px; }
+#p28bina.icm-var .kb-res .ri { width: 15px; height: 15px; }
+#p28bina.icm-var .icm-goz { width: 44px; height: 44px; }
+/* Dar panelde kartlar tek sütun */
+#p28bina.icm-var.korant-modal-stable .ka-grid { grid-template-columns: minmax(0, 1fr); }
+#p28bina.icm-var.korant-modal-tavern .kh-grid { grid-template-columns: minmax(0, 1fr); }
+#p28bina.icm-var.korant-modal-tavern .kh-hanci img { width: 48px; height: 48px; }
+#p28bina.icm-var.korant-modal-tavern .kh-hanci p { font-size: 13px; }
+
+/* ---- Oba Avı sekmesi: Tepegöz afişi (sahneler/banner_oba_avi_tepegoz.webp) ---- */
+.p30-avban { display: block; width: 100%; height: 96px; margin: 0 0 6px; border-radius: 6px; object-fit: cover; object-position: 50% 30%; border: 1px solid #c9a45c66; }

@@ -1,5 +1,5 @@
 // Açılış: hesabı sunucudan al; karakteri yoksa oluşturmaya, varsa karakter seçme ekranına (sonra başkente) gir.
-// İskeletli modeller (models/, ~3,5 MB) açılışta yüklenir. Kapatmak için: Profil → Grafik: Düşük ya da ?hd=0.
+// İskeletli modeller (models/, ~0,9 MB) başkente varıştan sonra boşta yüklenir (P28 yuk-2; modelleriErtele). Kapatmak için: Profil → Grafik: Düşük ya da ?hd=0.
 // Grafik kademesi (gfx.js) Düşük ise (oyuncu seçtiyse ya da cihaz zayıfsa) modeller hiç indirilmez.
 // Dosyası olmayan birim (ve modelsiz deneme derlemesi) koddan üretilen prosedürel modelle çizilir.
 import { boot, act, LOCAL, locked, hasToken } from './api.js';
@@ -12,6 +12,18 @@ import './ui.js';
 import { loadPortraitOverrides } from './portraits.js';
 import { gfx } from './gfx.js';
 import { initI18n } from './i18n.js';
+import { kdGorsel } from './ui-kaplama.js'; // Kül ve Demir görselleri (kd-png.js) → CSS değişkenleri
+import { karakterYukle } from './karakter-png.js'; // P26 O15: karakter çizimleri (karakter-png-veri.js) tembel
+
+/** İskeletli modelleri (models/, ≈0,9 MB) ilk 3B ihtiyaca erteler: 2B başkent açıldıktan 6 sn sonra boşta (ya da en geç 60 sn). */
+function modelleriErtele() {
+  let bitti = false, mo = null;
+  const yukle = () => { if (bitti) return; bitti = true; mo?.disconnect(); preloadModels().then(n => { window.DD_RIGGED = n > 0; }, () => {}); };
+  const sonra = () => setTimeout(() => (window.requestIdleCallback || (f => f()))(yukle), 6000);
+  mo = new MutationObserver(() => { if (document.documentElement.dataset.hub2d) { mo.disconnect(); sonra(); } });
+  mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-hub2d'] });
+  setTimeout(yukle, 60000);
+}
 
 (async () => {
   const L = document.getElementById('loading');
@@ -23,11 +35,18 @@ import { initI18n } from './i18n.js';
   const low = !gfx.T.rigged; // engine3d açılışta kademeyi belirledi (kayıt, ?gfx ya da cihaz ipuçları)
   say('Oyun dosyaları yükleniyor', 14);
   // window.DD_LOCAL: sunucusuz derleme. Deneme linki model taşımaz; uygulama derlemesi (DD_MODELS) taşır.
-  if ((!window.DD_LOCAL || window.DD_MODELS) && (hd === '1' || (hd !== '0' && !low))) window.DD_RIGGED = (await preloadModels((d, t) => { if (t) say(`Karakter modelleri yükleniyor (${d}/${t})`, 14 + 72 * d / t); })) > 0;
-  say('Portreler hazırlanıyor', 88);
-  await loadPortraitOverrides();
+  // P26 O15 (açılış yükü): sunucu seçimi yalnız çekirdek JS + p23-sunucu görselleriyle açılır. Karakter ekranının gerekleri
+  // (Kül ve Demir kabuğu kd-png, portreler, karakter çizimleri) karakter seçimi/oluşturmadan önce beklenir.
+  const rig = (!window.DD_LOCAL || window.DD_MODELS) && (hd === '1' || (hd !== '0' && !low));
   say('Hazır', 100);
-  await showStart(); // sunucu seçimi + giriş / oyuna gir (ui-acilis.js)
+  let gerek = null;
+  // P28 yuk-2: karakter ekranı paketleri (kd-png, portre-png, karakter-png-veri ≈4,3 MB) sunucu ekranında zamanlayıcıyla önden
+  // inmez; yalnız "Oyuna gir"den sonra istenir. İskeletli modeller (yalnız 2B çizimi olmayan yaratıklar) başkente varınca boşta iner.
+  const arka = () => (gerek ||= Promise.all([kdGorsel(), loadPortraitOverrides(), karakterYukle()]));
+  if (rig) modelleriErtele();
+  const bas = showStart(); // sunucu seçimi + giriş / oyuna gir (ui-acilis.js)
+  await bas;
+  arka();
   let s;
   if (!hasToken()) { L && (L.hidden = true); await showLogin(); if (L) L.hidden = false; } // sunucuya bağlı derleme: önce hesap
   for (;;) {
@@ -37,6 +56,9 @@ import { initI18n } from './i18n.js';
       startNote(`${e.message} · Yeniden deneniyor…`); await new Promise(r => setTimeout(r, 3000));
     }
   }
+  await gerek; // karakter ekranı görselleri hazır (kul-demir.css var(--kdg-…) tanımsızken çizilmesin)
+  // P26 O15: seçili karakterin halkına ait başkent paketi (p23-sehir2-*, ≈0,6 MB) karakter ekranı açıkken arkada iner (başkent ilk karesi görselsiz kalmasın)
+  { const c = s.chars.find(x => x.id === s.cur) || s.chars[0]; if (c) import(c.race === 'sancak' ? './p23-sehir2-sancak.js' : './p23-sehir2-ocak.js').catch(() => {}); }
   L?.remove();
   if (locked()) return; // yasaklı hesap: oyun açılmaz (ekranı ui-guvenlik.js gösterir)
   // Hesap var → karakter seçme ekranı; karakter yok → oluşturma (ui-karakter.js)

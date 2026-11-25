@@ -24,7 +24,7 @@ import { hideBattleUI } from './combat.js';
 import { hideTown } from './town.js';
 import { hideChatBar } from './ui-social.js';
 import { onView } from './orient.js';
-import { charCreated } from './ui-karakter.js';
+import { charCreated, p23On, p23Img, p23Fit } from './ui-karakter.js';
 import { svg } from './icons.js';
 import { LANG_KEYS, lang } from './i18n.js';
 import { sprUrl, sprBox, yuzUrl } from './karakter-png.js';
@@ -66,6 +66,7 @@ function open() {
   b.id = 'olz'; b.className = 'vz';
   const n = (ACC?.chars || []).length;
   b.innerHTML = `<div class="vz-shade" aria-hidden="true"></div>
+    ${p23On() ? '<div class="p23-seal" aria-hidden="true"><i></i><img alt="" draggable="false"></div>' : ''}
     <div class="vz-hero" id="vzhero" aria-hidden="true"><img alt="" draggable="false"></div>
     <h1 class="vz-title"><span>Karakter Oluştur</span></h1>
     <div class="vz-meta"><span class="vz-lang" translate="no">${LANG_KEYS.map(k => `<button data-o="lang" data-l="${k}" class="${lang() === k ? 'on' : ''}" lang="${k}">${k.toUpperCase()}</button>`).join('')}</span><span class="vz-slots" title="${LOCAL ? 'Karakterler bu cihazda saklanır.' : ''}">Hesap ${n}/${ACC?.max || CHAR.slots}</span></div>
@@ -154,6 +155,10 @@ function hero() {
   setMood(CR.race); stageRace(CR.race); B.dataset.race = CR.race; B.dataset.cls = CR.cls; B.dataset.g = CR.gender;
   const im = B.querySelector('#vzhero img'), u = sprUrl(CR.race, CR.cls, CR.gender);
   if (im && im.getAttribute('src') !== u) { im.classList.remove('swap'); void im.offsetWidth; im.src = u || ''; im.classList.add('swap'); }
+  if (p23On()) {
+    const sl = B.querySelector('.p23-seal img'), su = p23Img('muhur-' + CR.race); if (sl && sl.getAttribute('src') !== su) sl.src = su;
+    const tt = B.querySelector('.vz-title'); if (tt) tt.style.backgroundImage = `url(${p23Img('levha-' + CR.race)})`;
+  }
   placeHero(); wake();
 }
 // Ayak hizası: görünür alt sınır (BOX y1) ortak ayak çizgisine; görünür yükseklik eşit; genişlik orta alana sığar.
@@ -161,10 +166,11 @@ function hero() {
 function placeHero() {
   const B = V.box, h = B?.querySelector('#vzhero'); if (!h || !B.offsetWidth) return;
   const W = B.offsetWidth, H = B.offsetHeight, bx = sprBox(CR.race, CR.cls, CR.gender) || [0, 0, 512, 768];
-  const u = Math.min(H / 406, W / 880), foot = H * 0.835, top = H * 0.085;
+  const u = Math.min(H / 406, W / 880);
+  const { foot, top } = p23On() ? p23Fit(H, W) : { foot: H * 0.835, top: H * 0.085 };
   const room = W - 2 * 205 * u; // sol sancak + portre sütunu ile sağ panel arası
   let s = (foot - top) / (bx[3] - bx[1]); s = Math.min(s, Math.max(120, room) / (bx[2] - bx[0]));
-  const cx = W * 0.5 - 4 * u;
+  const cx = W * 0.5 - (p23On() ? 0 : 4 * u); // P23: karakter ve mühür tam ortada (daire merkezi x=440)
   h.style.cssText = `width:${512 * s}px;height:${768 * s}px;left:${cx - ((bx[0] + bx[2]) / 2) * s}px;top:${foot - bx[3] * s}px`;
 }
 

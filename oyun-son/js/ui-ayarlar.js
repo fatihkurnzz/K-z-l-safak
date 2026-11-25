@@ -77,9 +77,10 @@ const canRig = () => (!window.DD_LOCAL || window.DD_MODELS) && hd !== '0';
 const wantReload = () => hd !== '1' && canRig() && TIERS[getGfx().tier].rigged !== !!window.DD_RIGGED;
 function pageGfx() {
   const g = getGfx(), T = TIERS[g.tier], less = motionLess();
-  const opt = (id, name, note) => `<button class="ayopt ${g.choice === id ? 'on' : ''}" data-a="aySetGfx" data-t="${id}"><b>${name}</b><small>${note}</small></button>`;
-  return `<div class="ayopts">${opt('auto', 'Otomatik', `Cihazına göre seçilir; oyun takılırsa bir kademe iner. Şu an: ${TIER_NAMES[g.tier]}.`)}${TIER_KEYS.map(k => opt(k, TIER_NAMES[k], TIER_NOTES[k])).join('')}</div>
-    <p class="mut aynow">${TIER_NAMES[g.tier]}: çözünürlük en çok ×${String(T.dpr).replace('.', ',')} · ${T.shadow ? `gölge ${T.shadow} piksel` : 'zemin lekesi'} · ${T.post ? 'ışıma açık' : 'ışıma kapalı'} · ${T.rigged ? 'ayrıntılı karakterler' : 'hafif karakterler'}${g.forced ? ' · adres çubuğundan zorlanmış' : ''}</p>
+  // P25-a: referans 01_ayarlar — yalnız gerçek kademe kartları (Otomatik + 4 kademe), 3+2 dengeli ızgara (css/p25-a.css .pa-gfx)
+  const opt = (id, name, note) => `<button class="pa-opt ${g.choice === id ? 'on' : ''}" data-a="aySetGfx" data-t="${id}" aria-pressed="${g.choice === id}"><b>${g.choice === id ? '<i class="pa-ok" aria-hidden="true">✓</i>' : ''}${name}</b><i class="pa-hr" aria-hidden="true"></i><small>${note}</small></button>`;
+  return `<div class="pa-gfx">${opt('auto', 'Otomatik', `Cihazına göre seçilir; oyun takılırsa bir kademe iner. Şu an: ${TIER_NAMES[g.tier]}.`)}${TIER_KEYS.map(k => opt(k, TIER_NAMES[k], TIER_NOTES[k])).join('')}</div>
+    <p class="mut aynow pa-foot">${TIER_NAMES[g.tier]}: çözünürlük en çok ×${String(T.dpr).replace('.', ',')} · ${T.shadow ? `gölge ${T.shadow} piksel` : 'zemin lekesi'} · ${T.post ? 'ışıma açık' : 'ışıma kapalı'} · ${T.rigged ? 'ayrıntılı karakterler' : 'hafif karakterler'}${g.forced ? ' · adres çubuğundan zorlanmış' : ''}</p>
     ${wantReload() ? `<div class="hint ayrel"><span>Karakter modelleri oyun yeniden açılınca ${T.rigged ? 'ayrıntılı (yaklaşık 3,5 MB indirilir)' : 'hafif'} olur.</span><button class="btn sm" data-a="gfxReload">Yeniden aç</button></div>` : ''}
     <div class="row">${med('timer', less ? 'green' : '')}<div class="grow"><b>Hareketi azalt</b><br><span class="mut">Geçişleri, parlamaları ve döngülü süslemeleri durdurur.${sysCalm() ? ' Cihazının kendi ayarı zaten açık.' : ''}</span></div>${sw(less, 'ayMotion')}</div>
     <div class="row">${med('timer', 'blue')}<div class="grow"><b>Oyun Denetçisi</b><br><span class="mut">Kare hızını (FPS), kare süresini, belleği ve çizim yükünü köşede gösterir; 30 saniyelik ölçüm özeti alır.</span></div><button class="btn sm" data-a="denetci">Aç / kapat</button></div>
@@ -154,9 +155,24 @@ ACT.ayEmek = () => {
 ACT.ayProfile = () => { ACT.closeWin(); ACT.profile(); };
 ACT.ayFragman = () => { ACT.closeWin?.(); replayFragman(); };
 
+// ---------- P25-a görsel paketi ----------
+// Referans asıllarından kırpılan kart çerçeveleri, madalyonlar, rozet, zarf (game/js/p25-a-png.js; üreteç tools/p25-a-paketle.py).
+// Paket bir kez tembel yüklenir ve <style id="p25a-img"> içinde :root değişkenlerine yazılır: --p25a-<anahtar>: url(data:…).
+// Ayarlar, Başarımlar, Bildirimler, Duyurular ve Destek pencereleri (css/p25-a.css) bu değişkenleri kullanır.
+let p25aYuk = null;
+/** P25-a görsel paketini yükler (bir kez) ve CSS değişkenlerini yazar. @returns {Promise<void>} */
+export function p25aImg() {
+  if (!p25aYuk) p25aYuk = import('./p25-a-png.js').then(m => {
+    const P = m.default || {}, st = document.getElementById('p25a-img') || document.head.appendChild(Object.assign(document.createElement('style'), { id: 'p25a-img' }));
+    st.textContent = `:root{${Object.keys(P).map(k => `--p25a-${k}:url(data:image/webp;base64,${P[k]})`).join(';')}}`;
+  }).catch(() => { p25aYuk = null; });
+  return p25aYuk;
+}
+setTimeout(p25aImg, 1200);
+
 const PAGES = { gfx: pageGfx, ses: pageSes, erisim: pageErisim, dil: pageDil, notif: pageNotif, acc: pageAcc };
 const AY = {
-  title: 'Ayarlar', tab: 'gfx',
+  title: 'Ayarlar', tab: 'gfx', scr: 'ayarlar',
   get tabs() {
     return [{ id: 'gfx', label: 'Grafik', small: TIER_NAMES[getGfx().tier], pre: tico(ICON.gfx) }, { id: 'ses', label: 'Ses', small: isMuted() ? 'Kapalı' : pctText(getAudio().master), pre: tico(ICON.ses) },
       { id: 'erisim', label: 'Erişilebilirlik', small: 'Görme, duyma, dokunma', pre: tico(ICON.erisim) }, { id: 'dil', label: 'Dil', small: LANGS[lang()].name, pre: tico(ICON.dil) }, { id: 'notif', label: 'Bildirimler', small: 'Kategoriler', pre: tico(ICON.notif) }, { id: 'acc', label: 'Hesap', small: 'Kimlik, profil', pre: tico(ICON.acc) }];

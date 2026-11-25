@@ -1,0 +1,28 @@
+/* P26-savas — 100 puan paketi (docs/referans/p26-100-puan/TALIMAT.md). Kurallar ekran kapsamlı; !important yok. */
+
+/* ---- O5: boyalı VFX (combat.js vfx26) — savaş katmanı #overlay içinde, figürün göğsünde kısa ölçek+solma ---- */
+#overlay > .p26vfx { position: absolute; pointer-events: none; mix-blend-mode: screen; opacity: 0; transform-origin: 50% 50%;
+  animation: p26vfx .42s cubic-bezier(.2,.7,.3,1) forwards; will-change: transform, opacity; }
+#overlay > .p26vfx-kilic { animation-duration: .36s; }
+#overlay > .p26vfx-kritik { animation-name: p26vfx-kritik; animation-duration: .48s; }
+#overlay > .p26vfx-kalkan { animation-name: p26vfx-kalkan; animation-duration: .5s; }
+@keyframes p26vfx { 0% { opacity: .2; transform: rotate(var(--r,0deg)) scale(.75); } 15% { opacity: 1; } 55% { opacity: .9; } 100% { opacity: 0; transform: rotate(var(--r,0deg)) scale(1.15); } }
+@keyframes p26vfx-kritik { 0% { opacity: .3; transform: rotate(var(--r,0deg)) scale(.5); } 15% { opacity: 1; transform: rotate(var(--r,0deg)) scale(1.05); } 100% { opacity: 0; transform: rotate(var(--r,0deg)) scale(1.3); } }
+@keyframes p26vfx-kalkan { 0% { opacity: .2; transform: scale(.8); } 20% { opacity: 1; } 60% { opacity: .9; } 100% { opacity: 0; transform: scale(1.08); } }
+/* hareketi azalt / parlamaları kapat: ölçeksiz, kısa ve soluk */
+@keyframes p26vfx-sakin { 0% { opacity: 0; } 30% { opacity: .6; } 100% { opacity: 0; } }
+html.motion-less #overlay > .p26vfx, html.a-nofl #overlay > .p26vfx { animation: p26vfx-sakin .28s linear forwards; transform: rotate(var(--r,0deg)); }
+@media (prefers-reduced-motion: reduce) { #overlay > .p26vfx { animation: p26vfx-sakin .28s linear forwards; transform: rotate(var(--r,0deg)); } }
+
+/* ---- N1: boss evre parlaması koyu kızıl (beyaz tam ekran kare yok) + savaş girişi koyu perde ---- */
+.flash.p26-faz { background: radial-gradient(circle, #ff7a4a55 0, #5a120a66 45%, #0a030200 75%); }
+#p26perde { position: fixed; inset: 0; z-index: 90; background: #0b0807; pointer-events: none; opacity: 0; transition: opacity .38s ease-out; }
+#p26perde.on { opacity: 1; transition: opacity .12s linear; pointer-events: auto; }
+#p26perde.off { opacity: 0; }
+
+/* ---- G1: yüksek kademe kahraman (Sv.45+ Savaşçı) — VS ve Karakter penceresinde boyalı tam boy ---- */
+#win .vs2 .vs2-img.p26-t3 { object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 6px 14px #000c); }
+#win .kx .kx-hero2b.p26-t3 { object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 6px 12px #000b); }
+
+/* ---- N2 ek: boss savaşında yetenek/olay başlığı (.banner) üstteki boss can çubuğunun (#bboss) altına iner ---- */
+html:has(#battleUI.bossf:not([hidden])) #overlay .banner { top: 37%; }

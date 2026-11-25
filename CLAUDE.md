@@ -8,7 +8,13 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (23.11, 15. oturum) — P23 PROJE PAKETİ
+## SON DURUM (25.11, 16. oturum) — DIŞ SÜRÜM ÇEKİLDİ
+- Kullanıcı başka modellerle (P23–P32) ilerletilmiş son hali verdi: https://claude.ai/artifact/Xgt9b5UzmwMEXw6U9TVL21 (kuruluş dışı, okunur, YAYIMLANAMAZ; sürüm 1795639850-dc98, 443 dosya). **Bundan devam ediliyor.**
+- `oyun-son/` bu sürümle birebir eşitlendi: 84 değişen + 140 yeni dosya (css/p23…p32, d23-*, js/p2x-*-png.js, ic-mekan.js, ui-ahir/han/zafer, shared/ahir/han/zafer/config/storePrices, interiors/, sahneler/, img/p27–p28, audio/arka-plan|boss|intro). shared/ de değişti (dış sürümün mekaniği geçerli). Artık başvurulmayan 192 `img/kd/*` dosyası silindi (kd-png.js'e gömülü). Yerelde kalan yayın dışı: img/items3d, img/icons/*-512, models/test, video/README.
+- Tüm JS `node --check` (.mjs) geçti. Tarayıcıda denenmedi. Önceki notlardaki dosya/CSS düzeni (v26–v33, duzen.css sonu kuralı) bu sürümde p2x CSS'leriyle genişledi; yeni CSS'i nereye ekleyeceğine index.html sırasına bakarak karar ver.
+- Kendi yayınımız (GwNoLLWnf5Wjc1PUJep2yi) henüz bu sürüme güncellenmedi.
+
+## ÖNCEKİ DURUM (23.11, 15. oturum) — P23 PROJE PAKETİ
 - Kullanıcı 11 telefon ekranıyla yeni istekler verdi; **bu oturumda kod DEĞİŞMEDİ**. Kullanıcı işleri başka bir Claude Opus 5.5, Gemini Neon 4 ve GPT Astra 6.2'ye yaptıracak.
 - Paket: `oyun-son/_tasarim/proje-23kas/` (00_PROJE_VE_SIRA.md = istekler U1–U14 + eklenen bulgular E1–E11 + sıra; CLAUDE_OPUS_GOREVLERI.md K1–K12; GEMINI_NEON_GOREVLERI.md N1–N9; GPT_ASTRA_GOREVLERI.md A1–A8; REFERANS_EKRAN/ döndürülmüş ekranlar). ZIP kullanıcıya gönderildi (depoya konmadı; içerik proje-23kas klasöründe).
 - Sonraki Claude: `CLAUDE_OPUS_GOREVLERI.md`'den başla; kodda sürüm 38 durumu geçerli.

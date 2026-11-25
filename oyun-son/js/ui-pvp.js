@@ -64,19 +64,19 @@ ACT.tierInfo = d => {
   showModal(`<h2>${T.name} kademe</h2><div class="in" style="text-align:left">
     <p>Aynı 100 aşama, aynı dizilimle; ama bütün yaratıklar <b>Sv. ${T.lvl}</b> ve bölgeden bölgeye sertleşir.</p>
     <p class="warn">Zorluk</p><p>Her yaratık kendi silah türüne ve zayıf olmadığı elementlere <b>+${pc(T.res)}</b> dirençlidir, vuruşları savunmanın <b>${pc(T.pen)}</b>’sini deler. Zayıf olduğu elemente direnç eklenmez: doğru elementle vurmak daha da önemlidir.</p>
-    <p class="up"><b>Karşılığı</b></p><p>Eşya düşme oranı <b>${mul(D.gear)}</b>; sıradan yaratıktan düşen eşyanın <b>${pc(D.rare[0])}</b>’i, azılıdan düşenin <b>${pc(D.rare[1])}</b>’i Nadir. İnce taş <b>${mul(D.stone1)}</b>, Usta taş <b>${mul(D.stone2)}</b>, Tav Közü <b>${mul(D.ember)}</b>, eşsiz şansı <b>${mul(D.unique)}</b>, boss izi <b>${mul(D.marks)}</b>, kesim akçesi <b>${mul(T.akce)}</b>. İlk geçiş: kapı ${T.first.gate}, boss ${T.first.boss} yakut.</p>
-    <p class="mut">Yaratık aşaması ${T.energy.mob}, kapı ${T.energy.gate} enerji; boss’lar enerjisizdir. Yıldızlar, seri savaş ve günlük boss hakkı bu kademeye özeldir. Bir sonraki kademe, bu kademede ${ZONES.at(-1).name} son boss’u geçilince açılır.</p>
+    <p class="up"><b>Karşılığı</b></p><p>Eşya düşme oranı <b>${mul(D.gear)}</b>; sıradan yaratıktan düşen eşyanın <b>${pc(D.rare[0])}</b>’i, azılıdan düşenin <b>${pc(D.rare[1])}</b>’i Nadir. İnce taş <b>${mul(D.stone1)}</b>, Usta taş <b>${mul(D.stone2)}</b>, Tav Közü <b>${mul(D.ember)}</b>, eşsiz şansı <b>${mul(D.unique)}</b>, Boss izi <b>${mul(D.marks)}</b>, kesim akçesi <b>${mul(T.akce)}</b>. İlk geçiş: kapı ${T.first.gate}, boss ${T.first.boss} yakut.</p>
+    <p class="mut">Yaratık aşaması ${T.energy.mob}, kapı ${T.energy.gate} enerji; Boss’lar enerjisizdir. Yıldızlar, seri savaş ve günlük Boss hakkı bu kademeye özeldir. Bir sonraki kademe, bu kademede ${ZONES.at(-1).name} son Boss’u geçilince açılır.</p>
     </div>`, 'pv-wide');
 };
 export function tierBar() {
   // üst kademeler son bölgeye gelene kadar hiç gösterilmez (yeni oyuncunun bölge ekranı sade kalsın)
-  if (!tierOpen(S, 1) && !PV.tier) return !stageOpen(S, `${ZONES.length}-1`) ? '' : `<div class="pv-tiers one"><span class="mut">${ri('lock')} <b>${STAGE_TIERS[1].name}</b> ve <b>${STAGE_TIERS[2].name}</b> kademeler: ${ZONES.at(-1).name} son boss’u geçilince bütün bölgeler daha sert yaratıklar ve daha iyi ganimetle yeniden açılır.</span></div>`;
+  if (!tierOpen(S, 1) && !PV.tier) return !stageOpen(S, `${ZONES.length}-1`) ? '' : `<div class="pv-tiers one"><span class="mut">${ri('lock')} <b>${STAGE_TIERS[1].name}</b> ve <b>${STAGE_TIERS[2].name}</b> kademeler: ${ZONES.at(-1).name} son Boss’u geçilince bütün bölgeler daha sert yaratıklar ve daha iyi ganimetle yeniden açılır.</span></div>`;
   return `<div class="pv-tiers">${STAGE_TIERS.map(T => { const open = tierOpen(S, T.id); return `<button data-a="tier" data-t="${T.id}" class="t${T.id} ${T.id === PV.tier ? 'on' : ''} ${open ? '' : 'lock'}">${open ? '' : ri('lock')}<b>${T.name}</b><small>${open ? `${tierStars(T.id)}/${ZONES.length * STAGES_PER_ZONE * 3} ★` : `${STAGE_TIERS[T.id - 1].name} bitince`}</small></button>`; }).join('')}</div>`;
 }
 ACT.tier = d => {
   const t = +d.t;
   if (!STAGE_TIERS[t]) return;
-  if (!tierOpen(S, t)) return toast(`${STAGE_TIERS[t].name} kademe, ${STAGE_TIERS[t - 1].name} kademede ${ZONES.at(-1).name} son boss’u (${lastStage}) geçilince açılır.`);
+  if (!tierOpen(S, t)) return toast(`${STAGE_TIERS[t].name} kademe, ${STAGE_TIERS[t - 1].name} kademede ${ZONES.at(-1).name} son Boss’u (${lastStage}) geçilince açılır.`);
   PV.tier = t; redraw();
 };
 
@@ -104,7 +104,7 @@ export const modResultLine = r => { const M = modById(r.mod); return M ? `Haftan
 const giveChips = give => give.map(d => (d.t === 'gear' ? '<span class="chip rw gn g1">Nadir eşya</span>' : lootChip(d))).join('');
 export function depthVs() {
   const f = S.depth + 1, boss = f % 5 === 0, M = modNow(now());
-  return { title: `Yeraltı Ocağı · ${f}. kat`, energy: CLIMB.energy, rules: [boss ? 'Kapı boss’u katı' : '2 dalga', f > CLIMB.deep ? 'Kor katı: yaratıklar kat kat sertleşir' : 'Her 5 katta boss', `Düzen: ${M.name}`],
+  return { title: `Yeraltı Ocağı · ${f}. kat`, energy: CLIMB.energy, rules: [boss ? 'Kapı Boss’u katı' : '2 dalga', f > CLIMB.deep ? 'Kor katı: yaratıklar kat kat sertleşir' : 'Her 5 katta boss', `Düzen: ${M.name}`],
     unknown: `Sv. ${climbLevel(f)} yaratıklar.`, extra: `<div class="hint"><b>${f}. kat ödülü:</b> <span class="chips" style="display:inline-flex">${giveChips(climbRewards(f))}</span></div>${modVsNote('depth')}` };
 }
 // Zindanlar sekmesindeki satır. lockChips: kilit çipleri · enterBtn: "Gir" düğmesi (ui-battle üretir)
@@ -121,8 +121,8 @@ ACT.depthFloors = d => {
   showModal(`<h2>Yeraltı Ocağı</h2><div class="in" style="text-align:left">
     <p class="mut">${CLIMB.floors} kat. Her sezon başında (${left(seasonEndAt(now()) - now())} sonra) sıfırlanır; her katın ödülü dönem başına bir kez alınır.${S.depthPrev ? ` Önceki dönemde <b>${S.depthPrev}. kata</b> indin: o kata kadar <b>seri iniş</b> yapabilirsin.` : ''}</p>
     <div class="pv-floors">${Array.from({ length: CLIMB.floors }, (_, i) => tile(i + 1)).join('')}</div>
-    <div class="hint"><b>${floorSel}. kat</b> <span class="mut">· Sv. ${climbLevel(floorSel)}${floorSel % 5 === 0 ? ' · kapı boss’u' : ''}${floorSel > CLIMB.deep ? ' · kor katı' : ''}${floorSel <= S.depth ? ' · bu dönem geçildi' : ''}</span><div class="chips">${giveChips(climbRewards(floorSel))}</div></div>
-    <p class="mut">Kalın çerçeveli katlar boss katıdır (ek Usta taş ve yakut). ${CLIMB.deep}. kattan sonraki kor katları 65. seviyededir, kat kat sertleşir ve parça verir.</p>
+    <div class="hint"><b>${floorSel}. kat</b> <span class="mut">· Sv. ${climbLevel(floorSel)}${floorSel % 5 === 0 ? ' · kapı Boss’u' : ''}${floorSel > CLIMB.deep ? ' · kor katı' : ''}${floorSel <= S.depth ? ' · bu dönem geçildi' : ''}</span><div class="chips">${giveChips(climbRewards(floorSel))}</div></div>
+    <p class="mut">Kalın çerçeveli katlar Boss katıdır (ek Usta taş ve yakut). ${CLIMB.deep}. kattan sonraki kor katları 65. seviyededir, kat kat sertleşir ve parça verir.</p>
     </div>`, 'pv-wide');
 };
 ACT.depthSweep = () => confirmBox('Seri iniş', `Önceki dönemde indiğin ${S.depthPrev}. kata kadar katları sunucu senin yerine oynatır (en çok ${CLIMB.sweepMax} kat). Her kat ${CLIMB.energy} enerji harcar ve kendi ödülünü verir; yenilgide, enerji ya da çanta bitince durur.`, async () => {

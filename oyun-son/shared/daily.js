@@ -82,7 +82,7 @@ export const DAILY_HANDLERS = {
   'hall.up'(p, { stat }) {
     need(p, 'hall');
     if (!Object.hasOwn(HALL.stats, stat)) fail('bad-stat');
-    if (p.hall[stat] >= HALL.max) fail('max', 'Bu bonus en yüksek seviyede.');
+    if (p.hall[stat] >= HALL.max) fail('max', 'Bu Bonus en yüksek seviyede.');
     busy(p);
     pay(p, 'san', HALL.cost(p.hall[stat]), 'Yeterli şan yok.');
     p.hall[stat]++;
@@ -171,6 +171,15 @@ export const DAILY_HANDLERS = {
     if (!env.dev) fail('forbidden');
     for (let z = 1; z <= 4; z++) for (let n = 1; n <= 25; n++) p.stages[`${z}-${n}`] = 3;
     for (const id in MOBS) p.codex[id] = p.codex[id] || { k: 1, d: {} };
+  },
+  // P28 deneme: reset = Ahır/Han/Zafer kaydını sıfırla · day = günlük sayaçlar dünmüş gibi (besleme, çorba, anıt ödülü) · buffEnd = Han ve Zafer buff'ını bitir
+  'dev.p28'(p, { what } = {}, env) {
+    if (!env.dev) fail('forbidden');
+    if (what === 'reset') { p.ahir = { own: {}, active: null, feedDay: 0, feeds: 0 }; p.han = { buff: null, soupDay: 0, soups: 0 }; p.zafer = { claimDay: 0, buffUntil: 0 }; }
+    else if (what === 'day') { for (const [o, k] of [[p.ahir, 'feedDay'], [p.han, 'soupDay'], [p.zafer, 'claimDay']]) if (o && o[k]) o[k]--; }
+    else if (what === 'buffEnd') { if (p.han) p.han.buff = null; if (p.zafer) p.zafer.buffUntil = 0; }
+    else fail('bad-args', 'what: reset | day | buffEnd');
+    return { what };
   },
   'dev.premium'(p, _, env) { if (!env.dev) fail('forbidden'); const t = (premTier(p, env.now) + 1) % PREMIUM.length; p.premium = { tier: t, until: t ? env.now + 30 * 86400000 : 0 }; },
 };

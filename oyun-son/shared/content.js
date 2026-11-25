@@ -154,7 +154,7 @@ export const QUESTS = [
   { id: 'win',     name: '5 savaş kazan',            key: 'win',     need: 5, reward: { t: 'energy', n: 25 } },
   { id: 'up',      name: 'Örste 3 deneme yap',       key: 'up',      need: 3, reward: { t: 'stone', g: 0, n: 2 } },
   { id: 'break',   name: '5 eşya parçala ya da sat', key: 'break',   need: 5, reward: { t: 'akce', n: 400 } },
-  { id: 'boss',    name: 'Bir günlük boss ile savaş', key: 'boss',   need: 1, reward: { t: 'yakut', n: 10 } },
+  { id: 'boss',    name: 'Bir günlük Boss ile savaş', key: 'boss',   need: 1, reward: { t: 'yakut', n: 10 } },
   { id: 'arena',   name: 'Meydanda 2 kez dövüş',     key: 'arena',   need: 2, reward: { t: 'san', n: 40 } },
   { id: 'collect', name: 'Maden kazancını topla', key: 'collect', need: 1, reward: { t: 'stone', g: 1, n: 1 } },
 ];

@@ -227,7 +227,7 @@ export const PVP_HANDLERS = {
 function farmGate(p, z, tier) {
   if (p.lvl < UNLOCK.idle) fail('locked', `${UNLOCK.idle}. seviyede açılır.`);
   if (!int(z, 1, ZONES.length) || !validTier(tier)) fail('bad-zone', 'Böyle bir bölge yok.');
-  if (!farmZoneOpen(p, z, tier)) fail('zone-locked', 'Nöbet için bölgenin son boss’u bu kademede geçilmiş olmalı.');
+  if (!farmZoneOpen(p, z, tier)) fail('zone-locked', 'Nöbet için bölgenin son Boss’u bu kademede geçilmiş olmalı.');
 }
 
 // Oyuncu kaydını yazmayan işlemler (dispatch: READ_ONLY)

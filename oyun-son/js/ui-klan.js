@@ -10,17 +10,32 @@ import { CLAN_LEVELS, CLAN_MAX_LEVEL, CLAN_DONATE, CLAN_XP, NISAN, RANKS, RANK_K
   BANNER_PAIRS, CAPE_COLORS, EMBLEMS, EMBLEM_KEYS, CAPE_STEPS, capeStep, capeOf, HQ_FAC, HQ_KEYS, HQ_MAX, hqLvl, hqCost, hqTime } from '../shared/clan.js';
 import { ri } from './icons.js';
 import { bannerSvg, emblemSvg, capeSvg } from './banner.js';
-import { hisarTab } from './ui-hisar.js';
+import { icmArma } from './ic-mekan.js';
+import { hisarTab, HISAR_BAN } from './ui-hisar.js';
 
 const K = { tab: 'genel', draft: null, draftOf: null };
+// P25-c: sol menüde düz vektör yerine kabartmalı altın ikon (p25-c-png.js; CSS değişkeni --p25c-ic_<ad>)
+const ic = k => `<span class="tico p25c-ic" data-ic="${k}" aria-hidden="true"></span>`;
 const TABS = [
-  { id: 'hq', label: 'Karargâh', small: 'Ortak üs', icon: 'gate' },
-  { id: 'genel', label: 'Genel', small: 'Seviye, bağış', icon: 'clan' }, { id: 'uyeler', label: 'Üyeler', small: 'Rütbeler', icon: 'party' },
-  { id: 'gorev', label: 'Görevler', small: 'Ortak hedefler', icon: 'quest' }, { id: 'dukkan', label: 'Dükkân', small: NISAN.name, icon: 'market' },
-  { id: 'sancak', label: 'Sancak', small: 'Renk, amblem, pelerin', icon: 'star' }, { id: 'av', label: 'Oba Avı', small: 'Tepegöz', icon: 'skull' },
-  { id: 'hisar', label: 'Hisar', small: 'Kuşatma, ittifak', icon: 'siege' },
+  { id: 'hq', label: 'Karargâh', small: 'Ortak üs', icon: 'gate', pre: ic('hq') },
+  { id: 'genel', label: 'Genel', small: 'Seviye, bağış', icon: 'clan', pre: ic('genel') }, { id: 'uyeler', label: 'Üyeler', small: 'Rütbeler', icon: 'party', pre: ic('uyeler') },
+  { id: 'hazine', label: 'Hazine', small: 'Kasa, bağış', icon: 'chest', pre: ic('hazine') },
+  { id: 'gorev', label: 'Görevler', small: 'Ortak hedefler', icon: 'quest', pre: ic('gorev') }, { id: 'dukkan', label: 'Dükkân', small: NISAN.name, icon: 'market', pre: ic('dukkan') },
+  { id: 'sancak', label: 'Sancak', small: 'Renk, amblem, pelerin', icon: 'star', pre: ic('sancak') }, { id: 'av', label: 'Oba Avı', small: 'Tepegöz', icon: 'skull', pre: ic('av') },
+  { id: 'hisar', label: 'Hisar', small: 'Kuşatma, ittifak', icon: 'siege', pre: ic('hisar') },
 ];
-const TOP_TABS = ['hq', 'genel', 'uyeler', 'gorev', 'dukkan', 'av'];
+const TOP_TABS = ['hq', 'genel', 'uyeler', 'hazine', 'gorev', 'dukkan', 'av'];
+let P25C = null;
+/** P25-c görsel paketini (kabartmalı ikonlar, sandık, hazine görseli, klan NPC portreleri) bir kez tembel yükler;
+ *  her anahtar `:root` üzerinde `--p25c-<anahtar>` CSS değişkeni olur (css/p25-c.css kullanır). Promise<boolean> döner. */
+export function p25cLoad() {
+  if (!P25C) P25C = import('./p25-c-png.js').then(m => {
+    const st = document.getElementById('p25c-img') || document.head.appendChild(Object.assign(document.createElement('style'), { id: 'p25c-img' }));
+    st.textContent = `:root{${Object.entries(m.default).map(([k, v]) => `--p25c-${k}:url(data:image/webp;base64,${v})`).join(';')}}`;
+    return true;
+  }).catch(() => false);
+  return P25C;
+}
 const rankChip = r => `<span class="chip kl-rk ${r}">${RANKS[r].name}</span>`;
 const rankByOrder = n => RANKS[RANK_KEYS.find(k => RANKS[k].order === n) || 'uye'].name;
 const minRank = perm => rankByOrder(PERMS[perm].min);
@@ -34,6 +49,7 @@ ACT.clan = d => {
   if (S.clan) K.fromHq = false;
   if (locked('clan')) return openWin({ title: 'Klan Karargâhı', render: () => `<div class="hint">${ri('lock')} ${lockNote('clan')}</div>` });
   if (!S.clan) return openWin({ title: 'Klan Karargâhı', load: loadLobby, render: lobby });
+  p25cLoad();
   // 19 Kas: sekme şeridinde yalnız altı ana sekme, pencerenin üstünde (top). Sancak ve Hisar klan toprağındaki binalarından açılır;
   // onlardan biri açıksa şeritte geçici olarak görünür.
   const tabs = TABS.filter(t => TOP_TABS.includes(t.id) || t.id === K.tab);
@@ -52,6 +68,7 @@ async function loadLobby() {
 }
 async function loadHome(tab) {
   const r = await run('clan.view');
+  if (r && !r.gone) await p25cLoad(); // P25-c paketi (P29: karargâh/hisar üst görseli düz dosya, beklenmez)
   if (r && !r.gone && tab === 'hisar') r.hs = await run('hisar.view'); // Hisar sekmesi: kuşatma, vergi, ittifak, yardım (ui-hisar.js)
   if (r?.gone) toast('Artık bu klanın üyesi değilsin.');
   if (!r || r.gone) { if (!S.clan) setTimeout(() => ACT.clan(), 0); return null; }
@@ -84,7 +101,8 @@ function home(tab) {
   mark();
   const D = cur().data;
   if (!D) return loading;
-  return tab === 'hq' ? hq(D) : tab === 'uyeler' ? members(D) : tab === 'gorev' ? quests(D) : tab === 'dukkan' ? shop(D) : tab === 'sancak' ? bannerTab(D) : tab === 'av' ? huntTab(D) : tab === 'hisar' ? hisarTab(D) : general(D);
+  icmArma(D.clan?.banner ? emblemSvg(D.clan.banner.s) : ''); // P30: karargâh sahnesindeki boş sancaklara klan arması
+  return tab === 'hq' ? hq(D) : tab === 'uyeler' ? members(D) : tab === 'gorev' ? quests(D) : tab === 'dukkan' ? shop(D) : tab === 'sancak' ? bannerTab(D) : tab === 'av' ? huntTab(D) : tab === 'hazine' ? treasury(D) : tab === 'hisar' ? hisarTab(D) : general(D);
 }
 const myCape = D => ({ c: D.clan.banner.c, a: D.clan.banner.a, s: D.clan.banner.s, l: capeStep(D.clan.lvl) });
 // Bir seviyenin getirdikleri (tablolardan)
@@ -113,9 +131,9 @@ function general(D) {
       <div class="pbar"><i style="width:${max ? 100 : Math.min(100, 100 * C.xp / C.need)}%"></i></div>
       <p class="mut">${max ? `En yüksek seviye · ${fmt(C.xp)} klan deneyimi` : `Klan deneyimi <b>${fmt(C.xp)}/${fmt(C.need)}</b> · ${C.lvl + 1}. seviye: ${perksOf(C.lvl + 1).join(', ')}`}</p>
       <div class="kv kl-kv"><div><small>Üye</small>${C.members.length}/${C.cap}</div><div><small>Klan gücü</small>${fmt(power)}</div><div><small>${NISAN.name}</small>${fmt(S.nisan || 0)}</div></div></div></div>
-    <div class="row">${med('quest')}<div class="grow"><b>Klan içi duyuru</b><br><span class="kl-txt ${C.notice ? '' : 'mut'}"${C.notice ? ' translate="no"' : ''}>${C.notice ? esc(C.notice) : 'Duyuru yok.'}</span><br><b>Tanıtım</b> <span class="mut">(herkese açık · en az güç: ${fmt(C.minPower || 0)})</span><br><span class="kl-txt ${C.promo ? '' : 'mut'}"${C.promo ? ' translate="no"' : ''}>${C.promo ? esc(C.promo) : 'Tanıtım yok.'}</span></div>${can(D.me.rank, 'notice') ? '<button class="btn sm" data-a="klNotice">Düzenle</button>' : ''}</div>
     <div class="row">${resTile('akce')}<div class="grow"><b>Klan kasasına bağış</b> <span class="chip cnt">Bugün ${fmt(don)}/${fmt(donateCap(S.lvl))}</span><br><span class="mut">Her ${CLAN_XP.donatePer} akçe 1 klan deneyimi, her ${NISAN.donatePer} akçe 1 ${NISAN.name} kazandırır.</span>
       <div class="kl-don">${CLAN_DONATE.steps.map(n => `<button class="btn sm" data-a="klDonate" data-n="${n}" ${n <= left && S.akce >= n ? '' : 'disabled'}>${ri('akce')} ${fmt(n)}</button>`).join('')}</div></div></div>
+    <div class="row">${med('quest')}<div class="grow"><b>Klan içi duyuru</b><br><span class="kl-txt ${C.notice ? '' : 'mut'}"${C.notice ? ' translate="no"' : ''}>${C.notice ? esc(C.notice) : 'Duyuru yok.'}</span><br><b>Tanıtım</b> <span class="mut">(herkese açık · en az güç: ${fmt(C.minPower || 0)})</span><br><span class="kl-txt ${C.promo ? '' : 'mut'}"${C.promo ? ' translate="no"' : ''}>${C.promo ? esc(C.promo) : 'Tanıtım yok.'}</span></div>${can(D.me.rank, 'notice') ? '<button class="btn sm" data-a="klNotice">Düzenle</button>' : ''}</div>
     <h3>Bağış sıralaması <span class="mut">· yalnızca klan içinde görünür</span></h3><div class="board kl-mem">${[...C.members].filter(m => m.don > 0).sort((a, b) => b.don - a.don).slice(0, 10).map((m, i) => `<div class="${m.me ? 'me' : ''}"><span>${i + 1}.</span><b>${esc(m.name)}</b><span>${ri('akce')}${fmt(m.don)}</span></div>`).join('') || '<p class="mut">Henüz bağış yok.</p>'}</div>
     <h3>Seviye ayrıcalıkları</h3><div class="board kl-lvls">${CLAN_LEVELS.map((_, i) => `<div class="${i + 1 === C.lvl ? 'me' : i + 1 < C.lvl ? 'kl-past' : ''}"><span>Sv. ${i + 1}</span><b>${perksOf(i + 1).join(' · ')}</b></div>`).join('')}</div>
     <h3>Klan günlüğü</h3><div class="board kl-log">${C.log.map(l => `<div><b>${(LOG[l.t] || (() => ''))(l)}</b><span>${when(l.at)}</span></div>`).join('') || '<p class="mut">Henüz kayıt yok.</p>'}</div>`;
@@ -164,8 +182,8 @@ ACT.klMember = d => {
 // Üye kimliği: gerçek oyuncu sayı, yapay üye metin olarak gönderilir (sunucu ikisini de doğrular)
 const mid = id => (/^\d+$/.test(id) ? +id : id);
 ACT.klRank = async d => { if (await run('clan.rank', { id: mid(d.id), rank: d.rank })) { closeModal(); reload(); } };
-ACT.klKick = d => confirmBox('Klandan çıkar', `${esc(d.name)} klandan çıkarılsın mı? Bugünkü av hasarı klanın toplamında kalır, sıralamadan düşer.`, async () => { if (await run('clan.kick', { id: mid(d.id) })) reload(); }, 'Çıkar');
-ACT.klTransfer = d => confirmBox('Reisliği devret', `Reislik ${esc(d.name)} adlı üyeye geçecek; sen ${RANKS.yardimci.name} olacaksın. Bu işlemi yalnızca yeni reis geri alabilir.`, async () => { if (await run('clan.transfer', { id: mid(d.id) })) reload(); }, 'Devret');
+ACT.klKick = d => !d?.name ? undefined : confirmBox('Klandan çıkar', `${esc(d.name)} klandan çıkarılsın mı? Bugünkü av hasarı klanın toplamında kalır, sıralamadan düşer.`, async () => { if (await run('clan.kick', { id: mid(d.id) })) reload(); }, 'Çıkar');
+ACT.klTransfer = d => !d?.name ? undefined : confirmBox('Reisliği devret', `Reislik ${esc(d.name)} adlı üyeye geçecek; sen ${RANKS.yardimci.name} olacaksın. Bu işlemi yalnızca yeni reis geri alabilir.`, async () => { if (await run('clan.transfer', { id: mid(d.id) })) reload(); }, 'Devret');
 ACT.clanLeave = () => confirmBox('Klandan ayrıl', 'Pelerinin ve bugünkü Oba Avı sıralama ödülün gider; kazandığın Oba Nişanları sende kalır. Son üye ayrılırsa klan dağılır.', async () => { if (await run('clan.leave')) ACT.clan(); }, 'Ayrıl');
 
 // ---------- Görevler: günlük ve haftalık ortak hedefler ----------
@@ -202,14 +220,15 @@ function bannerTab(D) {
   if (!K.draft || K.draftOf !== C.id + JSON.stringify(C.banner)) { K.draft = { ...C.banner }; K.draftOf = C.id + JSON.stringify(C.banner); }
   const B = edit ? K.draft : C.banner, changed = edit && JSON.stringify(B) !== JSON.stringify(C.banner);
   const sw = (i, on, a, inner) => `<button class="kl-sw ${on ? 'on' : ''}" data-a="${a}" data-i="${i}" ${edit ? '' : 'disabled'}>${inner}</button>`;
-  return `<div class="kl-ban"><div class="kl-prev">${bannerSvg(B, 'xl')}<p><b>${EMBLEMS[B.s]}</b> sancağı</p>
-      ${edit ? `<button class="btn sm red" data-a="klBannerSave" ${changed ? '' : 'disabled'}>Kaydet</button>` : ''}
-      ${capeSvg({ c: B.c, a: B.a, s: B.s, l: step }, 'lg')}<p class="mut">${CAPE_STEPS[step].name} · klan Sv. ${C.lvl}${next ? `<br>Sv. ${next.lvl}: ${next.name}` : ''}</p></div>
-    <div class="grow">${edit ? '' : `<div class="hint">Sancağı ve pelerin rengini yalnızca ${RANKS.reis.name} değiştirir. Klandaki herkesin karakteri bu pelerini kuşanır; sırtında sancağın arması durur.</div>`}
-      <h3>Renk çifti <span class="mut">· zemin ve desen</span></h3><div class="kl-sws">${BANNER_PAIRS.map(([bg, fg], i) => sw(i, B.a === i, 'klPair', `<i style="background:linear-gradient(135deg,${bg} 0 58%,${fg} 58%)"></i>`)).join('')}</div>
-      <h3>Amblem <span class="mut">· ${EMBLEM_KEYS.length} seçenek</span></h3><div class="kl-ems">${EMBLEM_KEYS.map(k => `<button class="kl-em ${B.s === k ? 'on' : ''}" data-a="klSym" data-i="${k}" title="${EMBLEMS[k]}" ${edit ? '' : 'disabled'}>${emblemSvg(k)}</button>`).join('')}</div>
-      <h3>Pelerin rengi</h3><div class="kl-sws">${CAPE_COLORS.map((c, i) => sw(i, B.c === i, 'klCape', `<i style="background:${c}"></i>`)).join('')}</div>
-      <h3>Pelerin boyu <span class="mut">· klan seviyesiyle uzar</span></h3><div class="kl-steps">${CAPE_STEPS.map((s, i) => `<div class="${i === step ? 'on' : i < step ? 'past' : ''}">${capeSvg({ c: B.c, a: B.a, s: B.s, l: i }, 'sm')}<small>Sv. ${s.lvl}<br>${s.name}</small></div>`).join('')}</div></div></div>`;
+  // P25-c (referans 08): solda önizleme kartı + Kaydet, sağda ağır kartlar (renk çifti, amblem, pelerin rengi, pelerin boyu)
+  return `<div class="p25c-snc"><div class="p25c-sl"><div class="p25c-prev">${bannerSvg(B, 'xl')}<p><b>${EMBLEMS[B.s]}</b> sancağı</p>
+      ${capeSvg({ c: B.c, a: B.a, s: B.s, l: step }, 'lg')}<small>${CAPE_STEPS[step].name} · Klan Sv. ${C.lvl}${next ? `<br>Sv. ${next.lvl}: ${next.name}` : ''}</small></div>
+      ${edit ? `<button class="btn red p25c-save" data-a="klBannerSave" ${changed ? '' : 'disabled'}>Kaydet</button>` : ''}</div>
+    <div class="p25c-sr">${edit ? '' : `<div class="hint">Sancağı ve pelerin rengini yalnızca ${RANKS.reis.name} değiştirir. Klandaki herkesin karakteri bu pelerini kuşanır; sırtında sancağın arması durur.</div>`}
+      <div class="p25c-box"><h4>Renk çifti · zemin ve desen</h4><div class="kl-sws p25c-sws">${BANNER_PAIRS.map(([bg, fg], i) => sw(i, B.a === i, 'klPair', `<i style="background:linear-gradient(135deg,${bg} 0 50%,${fg} 50%)"></i>`)).join('')}</div></div>
+      <div class="p25c-box"><h4>Amblem · ${EMBLEM_KEYS.length} seçenek</h4><div class="kl-ems p25c-ems">${EMBLEM_KEYS.map(k => `<button class="kl-em ${B.s === k ? 'on' : ''}" data-a="klSym" data-i="${k}" title="${EMBLEMS[k]}" ${edit ? '' : 'disabled'}>${emblemSvg(k)}</button>`).join('')}</div></div>
+      <div class="p25c-box"><h4>Pelerin rengi</h4><div class="kl-sws p25c-sws">${CAPE_COLORS.map((c, i) => sw(i, B.c === i, 'klCape', `<i style="background:${c}"></i>`)).join('')}</div></div>
+      <div class="p25c-box"><h4>Pelerin boyu · klan seviyesiyle uzar</h4><div class="p25c-steps">${CAPE_STEPS.map((s, i) => `<div class="${i === step ? 'on' : i < step ? 'past' : ''}" title="${s.name}">${capeSvg({ c: B.c, a: B.a, s: B.s, l: i }, 'sm')}<small>Sv. ${s.lvl}</small></div>`).join('')}</div></div></div></div>`;
 }
 ACT.klPair = d => { K.draft.a = +d.i; redraw(); };
 ACT.klSym = d => { K.draft.s = d.i; redraw(); };
@@ -221,24 +240,25 @@ function huntTab(D) {
   const C = D.clan, H = HUNT_DIFF[D.hunt.diff] || HUNT_DIFF[0], claimed = S.daily.clanChest || 0, mine = C.members.find(m => m.me);
   const blocked = D.me.fresh && !(mine?.dmg > 0), canClaim = D.tier > claimed && !blocked, top = CLAN.tiers.at(-1);
   const dealers = C.members.filter(m => m.dmg > 0);
-  const chests = CLAN.tiers.map((t, i) => `<div class="kl-chest ${i < claimed ? 'got' : i < D.tier ? 'open' : ''}"><b>${i + 1}/${CLAN.tiers.length}</b><small>${fmt(t)}</small><span>${HUNT_CHESTS[i].map(lootChip).join('')}</span><em>${i < claimed ? 'Alındı' : i < D.tier ? 'Açıldı' : 'Kilitli'}</em></div>`).join('');
+  // P25-c (referans 06): kademe kartında sandık görseli; kilitli kademe gri sandık + kilit
+  const chests = CLAN.tiers.map((t, i) => `<div class="p25c-ch ${i < claimed ? 'got' : i < D.tier ? 'open' : 'lock'}"><span class="p25c-sd" aria-hidden="true">${i < D.tier ? '' : ri('lock')}</span><b>${i + 1}/${CLAN.tiers.length} · ${fmt(t)}</b><span class="p25c-cr">${HUNT_CHESTS[i].map(lootChip).join('')}</span><em>· ${i < claimed ? 'Alındı' : i < D.tier ? 'Açıldı' : 'Kilitli'}</em></div>`).join('');
   const startable = can(D.me.rank, 'hunt') && !D.hunt.diff && C.dmg === 0;
   const diffRow = HUNT_DIFF.map((h, i) => {
     const on = i === D.hunt.diff, lock = C.lvl < h.lvl;
-    return `<div class="kl-diff ${on ? 'on' : ''} ${lock ? 'lock' : ''}"><b>${h.name}</b><small>${i ? `Tepegöz: can ×${String(h.hp).replace('.', ',')}, saldırı ×${String(h.atk).replace('.', ',')}` : 'Tepegöz olağan gücünde'}<br>Hasarın %${h.credit}'i klana yazılır</small>
+    return `<div class="p25c-df ${on ? 'on' : ''} ${lock ? 'lock' : ''}" title="${i ? `Tepegöz: can ×${String(h.hp).replace('.', ',')}, saldırı ×${String(h.atk).replace('.', ',')}` : 'Tepegöz olağan gücünde'}"><b>${h.name}</b><small>(Hasarın %${h.credit})</small>
       ${on ? `<em>Bugünkü av${D.hunt.by ? ` · başlatan: ${esc(D.hunt.by)}` : ''}</em>` : lock ? `<em>${ri('lock')} Klan Sv. ${h.lvl}</em>` : i && startable ? `<button class="btn sm red" data-a="klHunt" data-d="${i}">Başlat</button>` : i ? `<em>${D.hunt.diff || C.dmg > 0 ? 'Bugün av başladı' : `${minRank('hunt')} ve üstü başlatır`}</em>` : ''}</div>`;
   }).join('');
   const rankRow = (m, i) => { const R = m.dmg > 0 ? huntRankReward(i + 1, dealers.length) : null; return `<div class="${m.me ? 'me' : ''}"><span>${m.dmg > 0 ? `${i + 1}.` : '—'}</span><b>${esc(m.name)}</b><span class="kl-rw">${R ? [...R.give, { t: 'nisan', n: R.nisan }].map(lootChip).join('') : ''}</span><span>${m.dmg > 0 ? fmt(m.dmg) : 'saldırmadı'}</span></div>`; };
   const L = D.hunt.last;
-  return `<div class="row">${mobImg('tepegoz', false, '')}<div class="grow"><b>Oba Avı: Tepegöz</b> <span class="chip cnt">Bugün ${D.bossUsed}/1</span> <span class="chip">${H.name}</span><br>
-      <span class="mut">Klanın bugünkü toplam hasarı: <b>${fmt(C.dmg)}</b> · açılan sandık ${D.tier}/${CLAN.tiers.length}</span><div class="pbar" style="margin-top:3px"><i style="width:${Math.min(100, 100 * C.dmg / top)}%"></i></div></div>
-      <button class="btn sm green" data-a="clanClaim" ${canClaim ? '' : 'disabled'}>Sandık</button><button class="btn red" data-a="mode" data-m="clanboss" ${D.bossUsed < 1 ? '' : 'disabled'}>Saldır</button></div>
-    <div class="kl-chests">${chests}</div>
+  return `<img class="p30-avban" src="sahneler/banner_oba_avi_tepegoz.webp" alt="" decoding="async" draggable="false"><div class="p25c-boss"><span class="p25c-port">${mobImg('tepegoz', false, '')}</span><div class="grow"><div class="p25c-bh"><b>Oba Avı: Tepegöz</b><span class="chip">${H.name} · Bugün ${D.bossUsed}/1</span></div>
+      <span class="p25c-bd">Klanın bugünkü toplam hasarı: <b>${fmt(C.dmg)}</b> · açılan sandık ${D.tier}/${CLAN.tiers.length}</span><div class="pbar"><i style="width:${Math.min(100, 100 * C.dmg / top)}%"></i></div></div>
+      <div class="p25c-bb"><button class="btn sm ${canClaim ? 'green' : ''}" data-a="clanClaim" ${canClaim ? '' : 'disabled'}>Sandık</button><button class="btn red" data-a="mode" data-m="clanboss" ${D.bossUsed < 1 ? '' : 'disabled'}>Saldır</button></div></div>
+    <div class="p25c-chs">${chests}</div>
     ${blocked ? '<p class="mut"><b>Klana bugün katıldın:</b> sandık için bugün ava hasar yazmalısın ya da yarını beklemelisin.</p>' : ''}
-    <h3>Av kademesi</h3><div class="kl-diffs">${diffRow}</div>
+    <h3 class="p25c-h">Av kademesi</h3><div class="p25c-dfs">${diffRow}</div>
     <p class="mut">Olağan Av her gün kendiliğinden açıktır. Azgın ve Kudurmuş Av'ı ${minRank('hunt')} ve üstü, o gün klana ilk hasar yazılmadan önce başlatır. 60 tur boyunca verdiğin hasar savaş biter bitmez klana yazılır; günde 1 saldırı hakkın vardır.</p>
-    <h3>Bugünkü hasar sıralaması <span class="mut">· ödül gün dönümünde postayla</span></h3>
-    <div class="board kl-hrank">${C.members.map(rankRow).join('')}</div>
+    <h3 class="p25c-h2"><span class="p25c-npc sm" data-npc="kahya" title="Klan kâhyası" aria-hidden="true"></span>Bugünkü hasar sıralaması <span class="mut">· ödül gün dönümünde postayla</span></h3>
+    <div class="board kl-hrank p25c-scroll">${C.members.map(rankRow).join('')}</div>
     <p class="mut">Sıralama ödülü, o gün hasar yazan üye sayısına bağlıdır (en üst basamaklar için en az 5 saldıran). Ödül gün dönümünde klanda olan üyelere gider.</p>
     ${L ? `<h3>Önceki av</h3><div class="board">${L.top.slice(0, 5).map((m, i) => `<div class="${String(m.id) === String(mine?.id) ? 'me' : ''}"><span>${i + 1}.</span><b>${esc(m.name)}</b><span>${fmt(m.dmg)}</span></div>`).join('')}</div><p class="mut">Toplam ${fmt(L.dmg)} hasar · ${L.tier}/${CLAN.tiers.length} sandık.</p>` : ''}
     <div class="row">${med('siege', 'red')}<div class="grow"><b>Hisar Kuşatması</b> <span class="chip cnt">Bu hafta ${D.siegeUsed}/3</span><br><span class="mut">Klanın kuşatma puanı: <b>${fmt(C.siege)}</b></span></div><button class="btn" data-a="gate" data-tab="events">Etkinlikler</button></div>`;
@@ -268,6 +288,8 @@ const FAC_ICON = { talim: 'battle', demirhane: 'anvil', ambar: 'chest', gozcu: '
 const facBonus = (id, l) => { const F = HQ_FAC[id], v = Math.abs(F.per) * l; return !l ? '—' : F.unit === '%' ? `${F.per < 0 ? '−' : '+'}%${v}` : `+${v} üye`; };
 // Karargâh illüstrasyonu: yapılar tesis seviyesine göre canlanır (seviye 0: soluk temel çizgisi); ana bina klan seviyesiyle büyür
 function hqScene(C) {
+  const art = HISAR_BAN; // P29: Karakaya Hisarı afişi (iki halk aynı; p24 ban_hisar_* kalktı)
+  if (art) return `<div class="hq-art" role="img" aria-label="Klan Karargâhı" style="background-image:url(${art})"></div>`;
   const f = id => hqLvl(C.hq.fac, id), [bg, fg] = BANNER_PAIRS[C.banner.a], lv = C.lvl, ocak = C.faction === 'ocak';
   const sky = ocak ? ['#2a0c08', '#7a2a14', '#e08a3a'] : ['#0b1c38', '#2f5c93', '#e3c58a'], hill = ocak ? ['#3a1209', '#1d0905'] : ['#1f3a5c', '#0f2038'];
   const dim = l => (l ? '' : ' opacity=".32" stroke-dasharray="3 3"'), glow = l => (l ? `<ellipse cx="0" cy="0" rx="${6 + l * 2}" ry="${2 + l}" fill="#ffb347" opacity=".${3 + l}"/>` : '');
@@ -293,29 +315,42 @@ function hqScene(C) {
 function hqJoin() {
   return `<div class="hq-join"><div class="hq-join-art">${ri('clan')}</div><div class="grow"><b>Karargâh yalnızca klan üyelerinin ortak üssüdür.</b><br><span class="mut">Bir klana katıl ya da kendi klanını kur: bağışlarla karargâhı büyütür, tesisleri yükseltir ve Talim Meydanı, Demirhane, Ambar, Gözcü Kulesi, Sancak Salonu bonuslarını kazanırsın.</span></div></div>`;
 }
+// P25-c: referans düzeni (04 Klan Karargâhı / 05 Klan Hazinesi) — üst banner (görsel + NPC portresi + başlık), bağış şeridi, 2 sütun tesis kartları
+const FAC_IMG = { talim: 'f_talim', demirhane: 'f_demirhane', ambar: 'f_ambar', gozcu: 'f_gozcu', sancak: 'ic_sancak' };
+/** Klan penceresi üst banner'ı: `bg` arka görsel HTML'i, `npc` portre anahtarı (ocak|sancak|kahya), `body` sağdaki başlık bloğu. */
+const p25Ban = (cls, bg, npc, body) => `<div class="p25c-ban ${cls}">${bg}${npc ? `<span class="p25c-npc" data-npc="${npc}" aria-hidden="true"></span>` : ''}<div class="p25c-bt">${body}</div></div>`;
+const p25Bar = (pct, txt) => `<div class="p25c-bar"><i style="width:${Math.max(0, Math.min(100, pct))}%"></i><span>${txt}</span></div>`;
+const donBtns = (left, label = '') => CLAN_DONATE.steps.map(n => `<button class="btn sm p25c-dn" data-a="klDonate" data-n="${n}" ${n <= left && S.akce >= n ? '' : 'disabled'}>${ri('akce')} ${fmt(n)}${label}</button>`).join('');
 function hq(D) {
   const C = D.clan, H = C.hq, don = S.daily.cdon || 0, cap = donateCap(S.lvl), left = cap - don, max = C.lvl >= CLAN_MAX_LEVEL;
   const maxL = Math.max(1, ...C.members.map(m => m.don || 0));
   const card = id => {
     const F = HQ_FAC[id], l = hqLvl(H.fac, id), top = l >= HQ_MAX, capped = l >= H.cap, to = l + 1, cost = top ? 0 : hqCost(id, to);
     const U = H.up, busyMe = U && U.id === id, why = top ? 'En yüksek' : capped ? `Klan Sv. ${to * 2 - 1}` : !H.can ? `Yetki: ${minRank('hq')}+` : U ? 'Başka yükseltme sürüyor' : H.tre < cost ? 'Hazine yetmiyor' : '';
-    return `<div class="hq-fac ${l ? 'on' : ''}"><div class="hq-fh"><span class="ico rs hq-fi">${ri(FAC_ICON[id] || 'star')}</span><b>${F.name}</b><span class="chip cnt">Sv. ${l}/${HQ_MAX}</span></div>
-      <div class="hq-pips" aria-hidden="true">${Array.from({ length: HQ_MAX }, (_, i) => `<i class="${i < l ? 'on' : i < H.cap ? '' : 'lock'}"></i>`).join('')}</div>
-      <span class="mut hq-desc">${F.desc}</span>
-      <div class="hq-bon"><span>Şimdi <b>${facBonus(id, l)}</b></span>${top ? '' : `<span>Sonraki <b class="up">${facBonus(id, to)}</b></span>`}</div>
-      ${busyMe ? `<div class="hq-run"><span>${ri('anvil')} Sv. ${U.to} yapılıyor · <b data-hqend="${U.end}">${clockText(U.end - now())}</b>${U.help?.ask ? ` · ${U.help.by.length} yardım` : ' <button class="btn sm green" data-a="hsAsk">Yardım iste</button>'}</span><div class="pbar"><i style="width:${Math.min(100, 100 * (now() - U.at) / Math.max(1, U.end - U.at))}%"></i></div></div>` : top ? '<span class="chip up">En yüksek seviye</span>' : `<span class="mut hq-dur">Süre ${clockText(hqTime(to))}</span><button class="btn sm ${why ? '' : 'green'}" data-a="klFac" data-id="${id}" ${why ? 'disabled' : ''}>${why ? `${capped || !H.can ? ri('lock') + ' ' : ''}${why}` : `Yükselt · ${ri('akce')} ${fmt(cost)}`}</button>${why === 'Hazine yetmiyor' ? `<span class="mut hq-cost">${ri('akce')} ${fmt(cost)} gerek</span>` : ''}`}</div>`;
+    const line = busyMe ? `<em class="p25c-run">${ri('anvil')} Sv. ${U.to} yapılıyor · <b data-hqend="${U.end}">${clockText(U.end - now())}</b>${U.help?.ask ? ` · ${U.help.by.length} yardım` : ''}</em><div class="pbar"><i style="width:${Math.min(100, 100 * (now() - U.at) / Math.max(1, U.end - U.at))}%"></i></div>`
+      : top ? '<em>En yüksek seviye</em>' : `<em>${l ? `Şimdi ${facBonus(id, l)} · ` : ''}${clockText(hqTime(to))}${why ? ` · ${why}` : ''}</em>`;
+    const btn = busyMe ? (U.help?.ask ? '' : '<button class="btn sm green p25c-fb" data-a="hsAsk">Yardım iste</button>') : top ? ''
+      : `<button class="btn sm ${why ? '' : 'green'} p25c-fb" data-a="klFac" data-id="${id}" ${why ? 'disabled' : ''} title="${why || 'Yükselt'}">${why ? ri('lock') + ' ' : ''}${ri('akce')} ${fmt(cost)}</button>`;
+    return `<div class="p25c-fac ${l ? 'on' : ''}" title="${F.desc}"><span class="p25c-fi" data-ic="${FAC_IMG[id] || 'ic_hq'}" aria-hidden="true"></span><div class="grow"><b>${F.name}</b><small>Sv. ${l}/${HQ_MAX}${top ? '' : ` · Sonraki ${facBonus(id, to)}`}</small>${line}</div>${btn}</div>`;
   };
   const logs = C.log.filter(l => ['don', 'fac', 'facs', 'lvl', 'join', 'create', 'tax'].includes(l.t)).slice(0, 8);
-  return `<div class="hq-top">${hqScene(C)}<div class="hq-ban">${bannerSvg(C.banner, 'lg')}</div>
-      <div class="hq-title"><b style="--fc:${FACTIONS[C.faction].color}">${esc(C.name)}</b><span class="chip kl-lv">Karargâh Sv. ${C.lvl}/${CLAN_MAX_LEVEL}</span></div></div>
-    <div class="pbar"><i style="width:${max ? 100 : Math.min(100, 100 * C.xp / C.need)}%"></i></div>
-    <p class="mut">${max ? 'Karargâh en yüksek seviyede.' : `Klan deneyimi ${fmt(C.xp)}/${fmt(C.need)} · bir sonraki seviye tesis sınırını ve üye sınırını büyütür.`} Tesisler en çok <b>Sv. ${H.cap}</b> olabilir.</p>
-    <div class="row hq-tre">${resTile('akce')}<div class="grow"><b>Klan hazinesi: ${ri('akce')} ${fmt(H.tre)} akçe</b> <span class="chip cnt">Bugün ${fmt(don)}/${fmt(cap)}</span><br><span class="mut">Üyelerin bağışı hazineye girer (toplam ${fmt(H.tot)}); tesisler buradan ödenir. Günlük bağış sınırı seviyenle büyür. Her ${CLAN_XP.donatePer} akçe ayrıca 1 klan deneyimi, her ${NISAN.donatePer} akçe 1 ${NISAN.name} kazandırır.</span>
-      <div class="kl-don">${CLAN_DONATE.steps.map(n => `<button class="btn sm" data-a="klDonate" data-n="${n}" ${n <= left && S.akce >= n ? '' : 'disabled'}>${ri('akce')} ${fmt(n)}</button>`).join('')}</div></div></div>
-    <h3>Tesisler <span class="mut">· ${H.can ? 'yükseltmeyi sen yapabilirsin' : `yükseltmeyi ${minRank('hq')} ve üstü yapar`}</span></h3><div class="hq-facs">${HQ_KEYS.map(card).join('')}</div>
-    <p class="mut">Talim Meydanı yaratıklara karşı savaşta (aşama, zindan, av) karakterinin saldırı ve büyü gücünü, Demirhane Örs akçe maliyetini, Ambar maden üretimini, Gözcü Kulesi Meydan savunma kaydındaki can ve savunmayı, Sancak Salonu üye sınırını (şimdi ${C.cap}) etkiler. Bonuslar girişte ve klan ekranı açılınca tazelenir.</p>
+  return `${p25Ban('p25c-hq', hqScene(C), C.faction, `<b class="p25c-name" style="--fc:${FACTIONS[C.faction].color}">${esc(C.name)}</b><span class="p25c-sub">Karargâh Sv. ${C.lvl}/${CLAN_MAX_LEVEL}</span>${p25Bar(max ? 100 : 100 * C.xp / C.need, max ? 'En yüksek seviye' : `${fmt(C.xp)}/${fmt(C.need)}`)}`)}
+    <div class="p25c-don"><span class="p25c-dt">Klan hazinesi: <b>${fmt(H.tre)}</b> akçe · Bugün ${fmt(don)}/${fmt(cap)}</span><span class="p25c-dbs">${donBtns(left)}</span></div>
+    <h3 class="p25c-h">Tesisler</h3><div class="p25c-facs">${HQ_KEYS.map(card).join('')}</div>
+    <p class="mut">${max ? 'Karargâh en yüksek seviyede.' : 'Bir sonraki klan seviyesi tesis ve üye sınırını büyütür.'} Tesisler en çok <b>Sv. ${H.cap}</b> olabilir; ${H.can ? 'yükseltmeyi sen yapabilirsin' : `yükseltmeyi ${minRank('hq')} ve üstü yapar`}. Talim Meydanı yaratıklara karşı savaşta (aşama, zindan, av) karakterinin saldırı ve büyü gücünü, Demirhane Örs akçe maliyetini, Ambar maden üretimini, Gözcü Kulesi Meydan savunma kaydındaki can ve savunmayı, Sancak Salonu üye sınırını (şimdi ${C.cap}) etkiler. Bonuslar girişte ve klan ekranı açılınca tazelenir.</p>
     <h3>Katkı sıralaması <span class="mut">· toplam bağış</span></h3><div class="board kl-mem hq-rank">${[...C.members].filter(m => m.don > 0).sort((a, b) => b.don - a.don).slice(0, 10).map((m, i) => `<div class="${m.me ? 'me' : ''}"><span>${i + 1}.</span><b>${esc(m.name)}</b><span class="hq-bar"><i style="width:${Math.max(4, 100 * m.don / maxL)}%"></i></span><span>${ri('akce')} ${fmt(m.don)}</span></div>`).join('') || '<p class="mut">Henüz bağış yok. İlk bağışı sen yap.</p>'}</div>
     <h3>Karargâh kaydı</h3><div class="board kl-log">${logs.map(l => `<div><b>${(LOG[l.t] || (() => ''))(l)}</b><span>${when(l.at)}</span></div>`).join('') || '<p class="mut">Henüz kayıt yok.</p>'}</div>`;
+}
+// Klan Hazinesi sekmesi (P25-c, referans 05): kasa bakiyesi, günlük bağış, bağış düğmeleri, hazine akışı ve en çok bağış yapanlar.
+// Yalnızca clan.view verisi: klan kasasında yakut ve haftalık gelir dökümü tutulmadığı için gösterilmez.
+function treasury(D) {
+  const C = D.clan, H = C.hq, don = S.daily.cdon || 0, cap = donateCap(S.lvl), left = cap - don;
+  const top = [...C.members].filter(m => m.don > 0).sort((a, b) => b.don - a.don).slice(0, 5), tax = C.log.find(l => l.t === 'tax');
+  return `${p25Ban('p25c-kasa', '<span class="p25c-art" aria-hidden="true"></span>', 'kahya', `<b class="p25c-name">Klan Kasası</b><span class="p25c-big">${ri('akce')} ${fmt(H.tre)} Akçe</span>${p25Bar(100 * don / cap, `Günlük bağışın: ${fmt(don)} / ${fmt(cap)}`)}`)}
+    <div class="p25c-don p25c-don3">${donBtns(left, ' Akçe Bağışla')}</div>
+    <div class="p25c-two"><div class="p25c-box"><h4>Hazine akışı</h4><p><span>Toplam bağış</span><b>+${fmt(H.tot)} akçe</b></p><p><span>Son hisar vergisi</span><b>${tax ? `+${fmt(tax.n)} akçe · ${when(tax.at)}` : '—'}</b></p><p><span>Bugünkü bağışın</span><b>${fmt(don)} akçe</b></p></div>
+      <div class="p25c-box"><h4>En çok bağış yapanlar</h4>${top.map((m, i) => `<p class="${m.me ? 'me' : ''}"><span>${i + 1}. ${esc(m.name)}</span><b>${fmt(m.don)}</b></p>`).join('') || '<p class="mut">Henüz bağış yok.</p>'}</div></div>
+    <p class="mut">Üyelerin bağışı kasaya girer; Karargâh tesisleri buradan ödenir. Her ${CLAN_XP.donatePer} akçe 1 klan deneyimi, her ${NISAN.donatePer} akçe 1 ${NISAN.name} kazandırır. Günlük bağış sınırı seviyenle büyür. Hisar sahibi ya da müttefiki olunca vergi payı da kasaya geçer.</p>`;
 }
 ACT.klFac = d => {
   const D = cur().data, id = d.id, F = HQ_FAC[id]; if (!F || !D) return;

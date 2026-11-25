@@ -7,7 +7,7 @@ import { THREE, camRig, clock, projectTo, floatText, pick, wait, tween, ease, bu
 import { view } from './orient.js';
 import { play as fx, projectile, skyStrike, shockwave, elementImpact, statusHold, vfxOnYukle } from './fx.js';
 // C14: savaşa gidilirken (Kapı, VS ekranı) arka plan ve efekt paketlerini önden indir (ui-battle.js çağırır)
-export const savasOnYukle = () => { try { arkaOnYukle(); vfxOnYukle(); } catch { } };
+export const savasOnYukle = () => { try { arkaOnYukle(); vfxOnYukle(); p26Paket(); } catch { } };
 import { EVENT_FX, ELEMENT_FX, ANIM_FX, skillElement, fxElement, fxOfTick } from './fx-table.js';
 import { Battle } from '../shared/battle.js';
 import { SKILLS, describe, baseActives, skillName } from '../shared/skills.js';
@@ -23,8 +23,10 @@ import { SFX } from './sfx.js';
 import * as KAM from './savas-kamera.js'; // 22 Kas: dinamik savaş kamerası (durum makinesi, sınırlara göre kadraj)
 import { pickBg, setProjector, arkaOnYukle } from './savas-arka.js'; // 22 Kas: boyalı savaş arka planları
 import { cozum as b2dOf, onYukle as b2dYukle, portre as b2dPortre } from './savas-birim2d.js'; // 23 Kas (C3/C5): boyalı 2B savaş birimleri (yalnız çizim)
-import { heroImg, mobImg } from './ui-core.js';
-import { mobResim } from './yaratik2d.js';
+import { heroImg, mobImg, hooks } from './ui-core.js';
+// P28: Ahır yoldaşı hamlelerinin başlık şeridindeki adı (yoldaş kimliği ya da hamle türü → ad; yalnız gösterim)
+const PET_MOVE = { kragmir_ejder: 'Kül Alevi', elentha_sahin: 'Keskin Dalma', shield: 'Koruyucu Siper', strike: 'Keskin Dalma', rally: 'Kükreme', bleed: 'Kanatan Diş', shake: 'Sarsan Hücum' };
+import { mobResim, p26Paket, P26_HAM, paket as b2dPaket, HAZIR as B2D_HAZIR } from './yaratik2d.js';
 import { charLookFor } from './gorunus.js';
 let KP = null; import('./karakter-png.js').then(m => { KP = m; }).catch(() => {}); // boyalı yüz portreleri
 // 19 Kas: savaş arayüzü portreleri (sıra şeridi, kahraman çerçevesi) // savaş sesleri: olay türü, silah türü ve elemente göre (kural içermez)
@@ -40,13 +42,13 @@ let onTap = null;
 // Bu savaşta oyuncunun yaptıkları (öğretici okur: ui-kalicilik.js 'bar' adımı) · auto: OTO açık mı
 export const BT = { sk: false, pot: false, auto: false, on: false };
 // Öğretici kilidi (ui-kalicilik.js doldurur): 'bar' adımında iksir içilene dek saldırı, OTO ve çıkış kapalı
-export const TUTLOCK = { pot: () => false, say: null };
+export const TUTLOCK = { pot: () => false, say: null, hold: () => false }; // hold: öğretici savaşında OTO kapalı başlar, oto-tip çıkmaz (23 Kas K2)
 // OTO 10. seviyede açılır (19 Kas): ok() ui-kalicilik.js'te seviyeye bağlanır. İlk 3 savaşta OTO düğmesi hatırlatılır.
 export const OTO = { lvl: 1, ok: () => true }; // 22 Kas (kullanıcı): OTO her seviyede açık
 const OTO_HINT = 'dd_oto_hint';
 function otoHint() {
   let n = 0; try { n = +localStorage.getItem(OTO_HINT) || 0; } catch { }
-  if (!OTO.ok() || n >= 3 || TUTLOCK.pot()) return;
+  if (!OTO.ok() || n >= 3 || TUTLOCK.pot() || TUTLOCK.hold()) return;
   try { localStorage.setItem(OTO_HINT, String(n + 1)); } catch { }
   document.querySelector('.oto-tip')?.remove();
   const t = document.createElement('div'); t.className = 'oto-tip'; t.innerHTML = '<b>Otomatik</b> açık! Dokunursan savaşı senin yerine oynar; istediğin an kapatırsın.';
@@ -103,7 +105,80 @@ function spot(u, n, idx = u.slot) {
 }
 const SCALE_HERO = 1.3, SCALE_MOB = 1.15; // savaşta kahramanlar %30, canavarlar %15 büyük (kullanıcı 19 Kas)
 function slowmo(realSec) { clock.scale = ui.speed * 0.25; setTimeout(() => { clock.scale = ui.speed; }, realSec * 1000); }
-function flashScreen() { const f = document.createElement('div'); f.className = 'flash'; document.body.appendChild(f); setTimeout(() => f.remove(), 450); }
+// P26 (N1): boss evre parlaması beyaz değil koyu kızıl (p26-savas.css .flash.p26-faz); tam ekran beyaz kare görünmez
+function flashScreen() { const f = document.createElement('div'); f.className = 'flash p26-faz'; document.body.appendChild(f); setTimeout(() => f.remove(), 450); }
+
+// ---- P26 (O5): boyalı VFX katmanı ----
+// Dört olayda (silah vuruşu, ateş/büyü patlaması, kalkan/güçlendirme, kritik) figürün göğsünde DOM resmi; mevcut 3B efektlerin
+// ÜSTÜNE biner (yerini almaz: şerit/parçacık izi ve ışık kalır). mix-blend-mode: screen; ~420 ms ölçek+solma (p26-savas.css).
+// Hareketi azalt (html.motion-less, prefers-reduced-motion) ve "parlamaları kapat" (html.a-nofl): ölçeksiz kısa solma.
+const VFX26 = { kilic: 'vfx_kilic', alev: 'vfx_alev', kalkan: 'vfx_kalkan', kritik: 'vfx_kritik' };
+const VFX26_URL = {}, v26a = new THREE.Vector3(), v26b = new THREE.Vector3();
+/** Boyalı VFX'i bir savaş figürünün üstünde oynatır. tur: kilic|alev|kalkan|kritik · c: Birim2D/Character · boy: ölçek çarpanı */
+export function vfx26(tur, c, boy = 1) {
+  const H = P26_HAM; if (!H) { p26Paket(); return; }
+  const k = VFX26[tur], b = k && H[k]; if (!b || !c?.chestTo || c.dead) return;
+  const g = projectTo(c.chestTo(v26a)), gx = g.x, gy = g.y; if (g.behind) return;
+  const t = projectTo(c.headTo(v26b)), ty = t.y, a = projectTo(c.pos);
+  const fig = Math.max(40, a.y - ty); // figürün ekrandaki boyu
+  const px = Math.round(Math.max(110, Math.min(view.h * 0.7, fig * (tur === 'kalkan' ? 1.3 : tur === 'kilic' ? 1.15 : 1.05))) * boy);
+  const el = document.createElement('img');
+  el.className = 'p26vfx p26vfx-' + tur; el.alt = ''; el.draggable = false;
+  el.src = VFX26_URL[k] ||= 'data:image/webp;base64,' + b;
+  el.style.cssText = `left:${Math.round(gx - px / 2)}px;top:${Math.round((tur === 'kalkan' ? (gy + ty) / 2 : gy) - px / 2)}px;width:${px}px;height:${px}px;--r:${Math.round((Math.random() - 0.5) * (tur === 'kilic' ? 50 : 30)) + (tur === 'kilic' ? -25 : 0)}deg`;
+  overlay.appendChild(el);
+  setTimeout(() => el.remove(), 700);
+}
+// Vuruşun VFX türü: kritik > ateş/efsun/gölge büyüsü > silah (buz ve yıldırımın kendi şeritleri kalır)
+const vfx26Tur = (crit, el) => crit ? 'kritik' : ['fire', 'arcane', 'dark'].includes(el) ? 'alev' : !el || el === 'phys' ? 'kilic' : '';
+
+// ---- P26 (N2): düşman can çubukları ayrık dursun ----
+// Her karede çubukların hedef yeri (başın üstü) hesaplanır; öndeki (ekranda daha aşağıdaki) birim yerinde kalır, arkadakiler
+// üst üste biniyorsa çubuk yüksekliği kadar yukarı kaydırılır. Sonuç: her çubuk ayrık bir yerde, aynı sıra her karede.
+let engel = null, engelN = 0; // boss can çubuğu (#bboss) dikdörtgeni: kahraman çubuğu onun altına iner
+function hudAyir(list) {
+  list.sort((p, q) => q.py - p.py);
+  const yer = [];
+  if (++engelN % 30 === 1) { const b = document.getElementById('bboss'), r = b && !b.hidden && Math.abs(innerWidth - view.w) < 2 ? b.getBoundingClientRect() : null; engel = r && r.width ? r : null; }
+  for (const a of list) {
+    if (!a.hw || ++a.hudOlc % 90 === 0) { a.hw = a.hud.offsetWidth || 90; a.hh = a.hud.offsetHeight || 20; a.hudOlc = a.hudOlc || 1; } // ölçü ara sıra (yerleşim zorlamasın)
+    let y = a.py;
+    for (let n = 0; n < 6; n++) {
+      const c = yer.find(b => Math.abs(b.px - a.px) < (b.hw + a.hw) / 2 + 2 && y > b.y - b.hh - 2 && y - a.hh < b.y + 2);
+      if (!c) break;
+      y = c.y - c.hh - 3;
+    }
+    y = Math.max(a.hh + 4, y);
+    if (engel && Math.abs(a.px - (engel.left + engel.right) / 2) < engel.width / 2 + a.hw / 2 && y - a.hh < engel.bottom + 2 && y > engel.top - 2) y = engel.bottom + a.hh + 4;
+    a.y = y; yer.push(a);
+  }
+}
+
+// ---- P26 (N1): savaş girişi koyu perde + ön-yükleme ----
+// Savaş kurulmadan önce koyu perde iner; birimlerin çizim paketleri, boss çizimleri (decode) ve P26 paketi hazırlanır
+// (en çok 2,5 sn). Sahne ilk kareleri çizince perde yumuşakça kalkar: giriş boyunca beyaz/boş kare görünmez.
+/** Savaş öncesi koyu perdeyi indirir ve görselleri ön-yükler. units: motor birimleri (parti + dalgalar). */
+export async function savasHazirla(units = []) {
+  let pr = document.getElementById('p26perde');
+  if (!pr) { pr = document.createElement('div'); pr.id = 'p26perde'; pr.setAttribute('aria-hidden', 'true'); document.body.appendChild(pr); }
+  pr.className = 'on';
+  savasOnYukle();
+  const decode = b64 => { if (!b64) return null; const im = new Image(); im.src = 'data:image/webp;base64,' + b64; return im.decode().catch(() => {}); };
+  const isler = [p26Paket()];
+  for (const u of units) {
+    const s = b2dOf(u); if (!s) continue;
+    isler.push(b2dPaket(s.ad).then(() => { const d = B2D_HAZIR[s.ad]?.[s.anahtar]; return u.boss || s.hero ? decode(d?.bekleme) : null; }));
+  }
+  await Promise.race([Promise.all(isler), new Promise(r => setTimeout(r, 2500))]).catch(() => {});
+}
+/** Perdeyi kaldırır (sahne ilk kareleri çizdikten sonra). */
+export function perdeKaldir() {
+  const pr = document.getElementById('p26perde'); if (!pr) return;
+  let bitti = false;
+  const kaldir = () => { if (bitti) return; bitti = true; pr.className = 'off'; setTimeout(() => { if (pr.className === 'off') pr.remove(); }, 500); };
+  requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(kaldir, 120)));
+  setTimeout(kaldir, 4000); // güvenlik: kare gelmese de perde takılı kalmaz
+}
 function showBanner(text, small, side = 'A') {
   const b = document.createElement('div');
   b.className = 'banner ' + side;
@@ -143,14 +218,14 @@ function bossCard(u) {
 // onDone(kazandı, hamleler) · onExit: oyuncu çekilirse
 // coop (ortak savaş, coop.js): { me: oyuncu kimliği, getAct(i) → i. hamle (sunucudan, gelene dek bekler), putAct(i, c) → kabul edildi mi }
 // Başka oyuncunun biriminin sırasında hamle sunucudan beklenir; kendi biriminde seçilen hamle sunucuya gönderilir (reddedilirse sunucununki alınır).
-export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, onExit, coop = null, fast = true }) {
+export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, onExit, coop = null, fast = true, mode = '', faction = '' }) { // 23 Kas: arka plan kuralı için mod/halk
   document.getElementById('bdwbar')?.remove();
   ui.fast = fast && !coop; // 2x/3x yalnız PvE ve tek oyunculu savaşta (ortak savaş ve PvP'de 1x)
   clearScene();
   const token = world.token;
   setHfov(42); // ana üs geniş açıyla bakar; savaş kendi açısına döner
   setShift(0, 0); // 22 Kas: kadraj savas-kamera.js ile
-  ensureEnv(env, 'foto:' + pickBg(env, setup.seed)); // 22 Kas (kullanıcı): eski çizilmiş savaş alanı yerine boyalı resim
+  ensureEnv(env, 'foto:' + pickBg(env, setup.seed, mode, faction)); // 22 Kas (kullanıcı): eski çizilmiş savaş alanı yerine boyalı resim
   const battle = new Battle(setup);
   b2dYukle([...battle.units, ...(setup.waves || []).flat()]); // 2B poz paketlerini önden indir
   battle.noAutoPot = !potPref(); ui.battle = battle; ui.hasPot = battle.units.some(x => x.side === 'A' && x.potHp !== undefined && (x.potHp > 0 || x.potMp > 0)) && !battle.units.some(x => x.side !== 'A' && x.cls && !x.mon); // Oto İksir yalnız PvE
@@ -220,8 +295,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       const u = a.unit;
       if (a.gone) continue;
       // gösterge yalnızca değiştiğinde yazılır (kare başına biçem hesabı ve metin üretimi azalır)
-      const p = projectTo(a.char.headTo(hv)), hx = Math.round(p.x * 2) / 2, hy = Math.round(p.y * 2) / 2;
-      if (hx !== a.hx || hy !== a.hy) { a.hx = hx; a.hy = hy; a.hud.style.transform = `translate(${hx}px, ${hy}px) translate(-50%,-100%)`; }
+      const p = projectTo(a.char.headTo(hv)); a.px = Math.round(p.x * 2) / 2; a.py = Math.round(p.y * 2) / 2; // yazımı hudAyir'den sonra (P26 N2)
       const op = a.shown <= 0 && a.char.dead ? 0 : 1, hp = Math.round(1000 * Math.max(0, a.shown) / u.maxHp) / 10, tm = Math.round(Math.min(100, u.tm / 10));
       if (op !== a.hop) { a.hop = op; a.hud.style.opacity = op; }
       if (hp !== a.hhp) { a.hhp = hp; a.hpEl.style.width = hp + '%'; a.trEl.style.width = hp + '%'; a.hud.classList.toggle('low', hp < 30); }
@@ -239,8 +313,16 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       a.ring.material.opacity = active ? 0.9 : targetable ? 0.5 + Math.sin(performance.now() / 150) * 0.35 : 0;
       a.ring.rotation.y += 0.01;
     }
+    const gor = []; for (const a of actors.values()) if (!a.gone && a.hop !== 0) gor.push(a);
+    hudAyir(gor);
+    for (const a of actors.values()) {
+      if (a.gone) continue;
+      const hx = a.px, hy = a.y ?? a.py; a.y = undefined;
+      if (hx !== a.hx || hy !== a.hy) { a.hx = hx; a.hy = hy; a.hud.style.transform = `translate(${hx}px, ${hy}px) translate(-50%,-100%)`; }
+    }
   });
 
+  perdeKaldir(); // P26 N1: sahne kuruldu; ilk kareler çizilince giriş perdesi kalkar
   Object.assign(ui, { auto, choose: null, active: null, onExit, legal: [] });
   if (ui.fast && [2, 3].includes(+PREF.get('dd_speed'))) ui.speed = +PREF.get('dd_speed'); // hatırlanan hız (PvE; 22 Kas: OTO'dan bağımsız)
   clock.scale = ui.speed;
@@ -276,10 +358,14 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     el.innerHTML = out.map((u, i) => `<span class="bo ${u.side}${i === 0 && cur ? ' now' : ''}${u.boss ? ' boss' : ''}" title="${escH(u.name)}">${PORT.get(u.id)}<i>${u.lvl}</i></span>`).join('');
   }
   setTitle();
-  if (!OTO.ok()) ui.auto = false;
+  if (!OTO.ok() || TUTLOCK.hold()) ui.auto = false; // öğretici savaşı elle oynanır (tercih dd_oto bozulmaz)
   Object.assign(BT, { sk: false, pot: false, auto: ui.auto, on: true });
   renderButtons(); otoHint();
   $('#bwho').textContent = '';
+  { // P28: Han / Zafer buff rozeti (yalnız PvE tek oyunculu savaşta işler; buff yoksa boş)
+    let rz = $('#p28brz'); if (!rz) { rz = document.createElement('div'); rz.id = 'p28brz'; battleUI.appendChild(rz); }
+    rz.innerHTML = ui.fast ? (hooks.p28Hud?.() || '') : ''; rz.hidden = !rz.innerHTML;
+  }
 
   // ---- Savaş çubuğu (sürüm 12): temel saldırı + 6 yetenek yuvası + Can ve Mana iksiri; üstünde can ve mana göstergesi ----
   // Oyuncunun kahramanı (yapay zekâ müttefiki değil). Açılmamış temel yetenekler kilitli yuvada açılış seviyesiyle görünür.
@@ -441,9 +527,10 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       // ▲ zayıflığına vuruldu · ▼ savunma katsayısı ya da direnci hasarı azalttı · ◈ kalkanın emdiği (tamamı emildiyse yalnızca o yazar)
       if (f.abs >= f.amt) floatText(c.headPos(), `◈ Emildi`, 'shield');
       else floatText(c.headPos(), (f.weak ? 'ZAYIF! ' : '') + (f.crit ? 'KRİTİK ' : '') + (f.amt - f.abs) + (f.cut ? ' ▼' : ''), (f.crit ? 'crit' : 'dmg') + (f.weak ? ' weak' : ''), f.abs ? `◈ −${f.abs}` : ''); // 20 Kas: zayıf noktaya vuruş ayrı renkli 'ZAYIF!'
-      if (f.abs > 0) fx(EVENT_FX.absorb, c);
+      if (f.abs > 0) { fx(EVENT_FX.absorb, c); if (f.abs >= f.amt) vfx26('kalkan', c, 0.9); }
       if (f.abs < f.amt && ctx.spark !== false) fx(EVENT_FX.dmg, c, { from, weaponKind: ctx.kind, wt: ctx.wt, el: ctx.el, color: ctx.color, crit: f.crit, heavy });
       if (f.crit) fx(EVENT_FX.crit, c, { special: heavy });
+      if (f.abs < f.amt) { const t26 = vfx26Tur(f.crit, ctx.el); if (t26) vfx26(t26, c, f.crit && heavy ? 1.2 : 1); } // P26 O5
       if (f.weak) fx(EVENT_FX.weak, c);
       if (f.killed) { a.shown = 0; c.die(); } // erime efekti (EVENT_FX.kill) karakterin ölümünde oynar
     } else if (f.k === 'heal') {
@@ -452,6 +539,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     } else if (f.k === 'st') {
       floatText(c.headPos(), `${STATUS[f.s].icon} ${STATUS[f.s].name}`, 'st' + (f.s === 'shield' ? ' shield' : STATUS[f.s].good ? ' good' : ' bad'));
       fx(EVENT_FX.st, c, { s: f.s });
+      if (STATUS[f.s]?.good) vfx26('kalkan', c); // P26 O5: savunma/kalkan/güçlendirme
     } else if (f.k === 'resist') { floatText(c.headPos(), 'Direndi', 'miss'); fx(EVENT_FX.resist, c); } // etki tutmadı (ıska)
     else if (f.k === 'cleanse') { floatText(c.headPos(), 'Arındı', 'st good'); fx(EVENT_FX.cleanse, c); }
     else if (f.k === 'tm') fx(EVENT_FX.tm, c, { v: f.v });
@@ -468,11 +556,27 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     } else if (f.k === 'guard') { // himaye: payı üstlenen birim vurulur
       c.hit(from, false); a.shown = f.hp;
       floatText(c.headPos(), f.abs >= f.amt ? '◈ Emildi' : `${STATUS.guard.icon} ${f.amt - f.abs}`, f.abs >= f.amt ? 'shield' : 'dmg guard', f.abs && f.abs < f.amt ? `◈ −${f.abs}` : '');
-      fx(EVENT_FX.guard, c);
+      fx(EVENT_FX.guard, c); vfx26('kalkan', c, 0.9);
       if (f.killed) { a.shown = 0; c.die(); }
     } else if (f.k === 'strip') { floatText(c.headPos(), `${f.s.map(s => STATUS[s].icon).join('')} Söküldü`, 'st bad'); fx(EVENT_FX.strip, c); }
-    else if (f.k === 'ward') { floatText(c.headPos(), `${STATUS.ward.icon} Savuşturdu`, 'st good'); fx(EVENT_FX.ward, c); }
+    else if (f.k === 'ward') { floatText(c.headPos(), `${STATUS.ward.icon} Savuşturdu`, 'st good'); fx(EVENT_FX.ward, c); vfx26('kalkan', c, 0.9); }
     syncStatus(a);
+  }
+
+  // P28: yoldaş hamlesi mevcut efekt satırlarıyla (applyFx) oynar; başlık şeridi ve #bwho "[Yoldaş Adı] hamle" yazar.
+  async function playPet(ev) {
+    const A = byId(ev.u); if (!A) return;
+    const mv = PET_MOVE[ev.pet] || PET_MOVE[ev.kind] || '';
+    showBanner(`${ev.tag} ${mv}`, A.unit.name, A.unit.side);
+    const w = $('#bwho'); if (w && !ui.choose) w.innerHTML = `<b>${escH(ev.tag)}</b> · <span>${escH(mv)}</span>`;
+    fx(EVENT_FX.skill, A.char, { el: 'arcane', color: 0xffd36a });
+    await wait(0.35);
+    const from = A.char.pos.clone(), ctx = { kind: A.char.weaponKind, wt: A.unit.wt, el: 'phys', color: 0, self: ev.u, heal: 0x6dff8a };
+    for (const f of ev.fx) {
+      if (f.k === 'pet') { const t = byId(f.u); if (t) { floatText(t.char.headPos(), `${f.s === 'atkUp' ? '▲' : '▼'} Saldırı ${f.s === 'atkUp' ? '+' : '−'}%${f.v}`, f.s === 'atkUp' ? 'st good' : 'st bad'); syncStatus(t); } }
+      else applyFx(f, from, false, ctx);
+    }
+    KAM.settle(); await wait(0.45);
   }
 
   async function playSkill(ev) {
@@ -627,6 +731,9 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
         if (ev.skip) { floatText(a.char.headPos(), `${STATUS[ev.skip].icon} ${STATUS[ev.skip].name}`, 'st bad'); fx(EVENT_FX.skip, a.char, { s: ev.skip }); }
         if (ev.ticks.length || ev.skip) await wait(0.45);
         syncStatus(a);
+      } else if (ev.t === 'pet') { // P28 Ahır yoldaşının destek hamlesi (battle.js petMove)
+        await playPet(ev);
+        renderOrder(); syncBdw();
       } else if (ev.t === 'skill') {
         if (ev.mp !== undefined && byId(ev.u)) byId(ev.u).shownMp = ev.mp;
         await playSkill(ev);

@@ -164,6 +164,19 @@ export function stageDef(id, tier = 0) {
     waves: waves.map(unitsOf),
   };
 }
+// P28 M5: öğretici ilk dövüşü (Eğitim Ormanı, Kül Kurdu). Aşama 1-1'in KENDİSİ değişmez; savaş 1-1 olarak açılır, kaydı ve
+// ödül/ilerleme akışı aynıdır (game.js 'battle.start' args.tut), yalnız dalga tek dalga / tek yaratıktır.
+// hp/atk: soloMob'dan (solo.js) sonra çarpan. Ölçü (scratchpad sim, 4 sınıf × 2 halk × 40 tohum, yalnız temel saldırı, Sv.1):
+// hp 6 / atk 2 → her sınıf 2–3 turda bitirir, kahramanın canı en düşük %83 (ölüm 0). xr: normal 1-1'in ödül ağırlığı (8 yaratık,
+// biri Seçkin) tek kurda yüklenir; deneyim/akçe/eşya şansı beklentisi eskisiyle aynı kalır.
+export const TUT_FIGHT = { stage: '1-1', hp: 6, atk: 2 };
+/** Öğretici dövüşünün dalgaları: [[tek yaratık]] (soloWaves uygulanmış, başlangıç savaşında yeniden ölçeklenmez). */
+export function tutWaves(soloMobFn) {
+  const def = stageDef(TUT_FIGHT.stage), m = def.waves[0][0];
+  const xr = def.waves.flat().reduce((a, u) => a + (RANK_REWARD[u.elite ? 'e' : 'n'] || 1), 0);
+  const u = soloMobFn ? soloMobFn(mobUnit(def.mob, def.lvl)) : m;
+  return [[{ ...u, maxHp: Math.max(1, Math.round(u.maxHp * TUT_FIGHT.hp)), atk: Math.round(u.atk * TUT_FIGHT.atk), mag: Math.round(u.mag * TUT_FIGHT.atk), xr }]];
+}
 export const zoneStages = (z, tier = 0) => Array.from({ length: STAGES_PER_ZONE }, (_, i) => stageDef(stageId(z, i + 1), tier));
 // Bir bölgedeki yaratıkların ansiklopedi sırası
 export const zoneMobs = z => Object.entries(MOBS).filter(([, m]) => m.zone === z && !m.event).map(([id]) => id);

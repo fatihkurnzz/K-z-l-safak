@@ -1,0 +1,26 @@
+/* d23-pencere.css — 23 Kas denetim düzeltmeleri (K-12, K-14, K-15, sonuç ekranı). EN SON yüklenir. */
+
+/* 23 Kas K-14: pencere başlığında kırmızı "!" rozeti (h2::before) bölüm simgesiyle (i.kp-hi) çift görünüyordu; yalnız başlıkta gizlenir. */
+html[data-faction] .frame > header h2:has(> .kp-hi)::before { display:none !important; }
+
+/* 23 Kas K-15: Kapı menüsü satırları düz kırmızı (.btn.red) idi; boyalı ikincil düğme görseli (--u-b2n/--u-b2p), halka duyarlı. */
+html[data-faction] #modal .gatemenu .mbtns .btn.red::before { border-image-source:var(--u-b2n) !important; }
+html[data-faction] #modal .gatemenu .mbtns .btn.red:not(:disabled):active::before { border-image-source:var(--u-b2p) !important; }
+html[data-faction] #modal .gatemenu .mbtns .btn.red { color:var(--u-t1); }
+
+/* 23 Kas K-12: savaşta kullanılmayan boş yetenek yuvaları gizlenir (dolu yuvalar ve kilitli yuvalar aynı kalır). */
+html:root body #game #battleUI #skills .skill.empty { display:none !important; }
+
+/* 23 Kas: sonuç ekranı paneli boyalı kit (--u-po) ile; eski düz koyu panel yerine. */
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2 { background:var(--kd-mat), var(--kd-panel-fill) !important; background-size:var(--kd-mat-size), auto, auto, auto !important; border:0 solid transparent !important; border-image:var(--u-po) 48 / 18px / 6px stretch !important; border-radius:0 !important; box-shadow:0 20px 60px #000c !important; }
+
+/* 23 Kas: sonuç düğmeleri boyalı kit düğmesiyle (Devam = birincil --u-b1n/--u-b1p, diğerleri ikincil --u-b2n/--u-b2p). */
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn { position:relative !important; background:transparent !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; height:44px !important; color:var(--u-t1) !important; }
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn::before { display:block !important; content:"" !important; position:absolute; inset:0; z-index:-1; pointer-events:none; clip-path:none !important; background:none !important; border:0 solid transparent; border-image:var(--u-b2n) 50% 64 fill / 50% 18px / 0 stretch !important; }
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn:not(:disabled):active::before { border-image-source:var(--u-b2p) !important; }
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn[data-a="next"]::before,
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2:not(:has([data-a="next"])) .mbtns .btn[data-a="hub"]::before { border-image-source:var(--u-b1n) !important; }
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn[data-a="next"]:not(:disabled):active::before,
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2:not(:has([data-a="next"])) .mbtns .btn[data-a="hub"]:not(:disabled):active::before { border-image-source:var(--u-b1p) !important; }
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2 .mbtns .btn[data-a="next"],
+html[data-faction][data-faction][data-faction][data-faction] #modal .box.bres.rz2:not(:has([data-a="next"])) .mbtns .btn[data-a="hub"] { background:transparent !important; border:0 !important; color:#fff !important; }

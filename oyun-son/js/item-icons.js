@@ -349,6 +349,21 @@ const variantNo = b => { const P = String(b).split(':'), v = P[P[0] === 'a' ? 4 
 const pngKey = b => { const P = String(b).split(':'); return P[0] === 'a' ? P.slice(0, 4).join(':') : P.slice(0, 3).join(':'); };
 const PNG_IDX = {}; for (const k in PNG_MAP) { const P = k.split(':'), t = P[0] === 'a' ? `a:${P[1]}:${P[3]}` : `${P[0]}:${P[1]}`; (PNG_IDX[t] ||= []).push([+P[2], PNG_MAP[k]]); }
 const nearPng = (t, c) => { const L = PNG_IDX[t]; if (!L) return null; let best = L[0]; for (const x of L) if (Math.abs(x[0] - c) < Math.abs(best[0] - c)) best = x; return best[1]; };
+// Yeni boyalı simgeler (esya2-silah/taki/zirh.js, 128 px WebP, 702 kimlik): ilk açılışı geciktirmemek için dinamik import ile,
+// ilk simge isteğinde yüklenir (P26 O15); yüklenince 'dd-esya2' olayı pencereyi yeniden çizdirir. Yüklenene dek eski mantık çalışır.
+// Arama sırası: tam kimlik (varyant dahil) → varyantsız kimlik → eski esya-png mantığı → eski yedekler.
+const NEW = {}, NEW_URL = {};
+let NEWP = null; // P26 O15: paketler ilk simge isteğinde iner (açılışta değil)
+export const newPngKey = b => { b = String(b); if (NEW[b]) return b; if (!NEWP) loadNewPng(); const k = pngKey(b); return NEW[k] ? k : null; };
+export const newPngUrl = b => {
+  const k = newPngKey(b); if (!k) return null; if (NEW_URL[k]) return NEW_URL[k];
+  const s = NEW[k];
+  try { const t = atob(s), a = new Uint8Array(t.length); for (let i = 0; i < t.length; i++) a[i] = t.charCodeAt(i); return (NEW_URL[k] = URL.createObjectURL(new Blob([a], { type: 'image/webp' }))); }
+  catch { return (NEW_URL[k] = 'data:image/webp;base64,' + s); }
+};
+export const loadNewPng = () => NEWP ||= Promise.all([import('./esya2-silah.js'), import('./esya2-taki.js'), import('./esya2-zirh.js')].map(p => p.then(m => { Object.assign(NEW, m.default); return true; }, () => false)))
+  .then(r => { if (typeof window !== 'undefined' && r.some(Boolean)) window.dispatchEvent(new Event('dd-esya2')); return r; });
+// P26 O15: eskiden sayfa yüklenince 1,2 sn sonra iniyordu (4,6 MB, açılışta); artık ilk itemIcon/newPngKey çağrısında (Çanta, Karakter, Örs…).
 export const itemPng = b => {
   const P = String(b).split(':'), k = pngKey(b);
   if (PNG_MAP[k]) return PNG_MAP[k];
@@ -361,6 +376,8 @@ export const itemPng = b => {
   return B.kind === 'jewel' ? nearPng(`j:${B.type}`, c) : nearPng(`w:${B.type}`, c);
 };
 export const itemIcon = b => {
+  const nu = newPngUrl(b);
+  if (nu) return `<img class="gi g3d gpng" src="${nu}" alt="" draggable="false">`;
   const pn = itemPng(b), pu = pn && esyaUrl(pn);
   if (pu) return `<img class="gi g3d gpng" src="${pu}" alt="" draggable="false">`;
   const glb = itemBase(b)?.glb; // hazır 3B modeli olan eşya: modelden çizilmiş görsel (img/items3d, models.js GLB_ITEM)

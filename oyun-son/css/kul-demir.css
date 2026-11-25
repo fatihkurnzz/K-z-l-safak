@@ -29,8 +29,8 @@ html[data-faction="sancak"] {
 }
 
 /* ---------- 2. Pencere çerçevesi: pilot paketin büyük paneli (9 dilim, kenar 48 px) ---------- */
-html[data-faction="ocak"] .frame { border-image:url("../img/kd/ui/ocak/panel-buyuk-ocak.png") 48 / 14px / 0 stretch; }
-html[data-faction="sancak"] .frame { border-image:url("../img/kd/ui/sancak/panel-buyuk-sancak.png") 48 / 14px / 0 stretch; }
+html[data-faction="ocak"] .frame { border-image:var(--kdg-panel-buyuk-ocak) 48 / 14px / 0 stretch; }
+html[data-faction="sancak"] .frame { border-image:var(--kdg-panel-buyuk-sancak) 48 / 14px / 0 stretch; }
 html[data-faction] .frame { border-width:14px; }
 html[data-faction] .frame h2 { font-family:Cinzel, Georgia, serif; }
 
@@ -81,24 +81,24 @@ html[data-faction="sancak"] body #game #battleUI #skills .yrow, html[data-factio
 
 /* ---------- 6. Ana merkez simgeleri: pilot paketin PNG simgeleri (CSS ile; SVG yedek olarak DOM'da kalır) ---------- */
 #game #hud .dock .dbtn > i, #game #hud .lrail .lbtn > i, #game #hud .krail .lbtn > i { background:var(--kdi, none) center / contain no-repeat; }
-#game #hud [data-a="party"]    { --kdi:url("../img/kd/simge/simge-karakter.png"); }
-#game #hud [data-a="bag"]      { --kdi:url("../img/kd/simge/simge-canta.png"); }
-#game #hud [data-a="quests"]   { --kdi:url("../img/kd/simge/simge-gorev.png"); }
-#game #hud [data-a="clan"]     { --kdi:url("../img/kd/simge/simge-klan.png"); }
-#game #hud [data-a="shop"]     { --kdi:url("../img/kd/simge/simge-kervan.png"); }
-#game #hud [data-a="savas"]    { --kdi:url("../img/kd/simge/simge-savas.png"); }
-#game #hud [data-a="mail"]     { --kdi:url("../img/kd/simge/simge-posta.png"); }
-#game #hud [data-a="codex"]    { --kdi:url("../img/kd/simge/simge-ansiklopedi.png"); }
-#game #hud [data-a="drawer"]   { --kdi:url("../img/kd/simge/simge-ayarlar.png"); }
-#game #hud [data-a="notifs"]   { --kdi:url("../img/kd/simge/simge-bildirim.png"); }
-#game #hud [data-a="calendar"] { --kdi:url("../img/kd/simge/simge-takvim.png"); }
-#game #hud [data-a="achs"]     { --kdi:url("../img/kd/simge/simge-basarim.png"); }
-#game #hud [data-a="news"]     { --kdi:url("../img/kd/simge/simge-duyuru.png"); }
-#game #hud .lrail [data-a="diyarMap"] { --kdi:url("../img/kd/simge/simge-harita.png"); }
+#game #hud [data-a="party"]    { --kdi:var(--kdg-simge-karakter); }
+#game #hud [data-a="bag"]      { --kdi:var(--kdg-simge-canta); }
+#game #hud [data-a="quests"]   { --kdi:var(--kdg-simge-gorev); }
+#game #hud [data-a="clan"]     { --kdi:var(--kdg-simge-klan); }
+#game #hud [data-a="shop"]     { --kdi:var(--kdg-simge-kervan); }
+#game #hud [data-a="savas"]    { --kdi:var(--kdg-simge-savas); }
+#game #hud [data-a="mail"]     { --kdi:var(--kdg-simge-posta); }
+#game #hud [data-a="codex"]    { --kdi:var(--kdg-simge-ansiklopedi); }
+#game #hud [data-a="drawer"]   { --kdi:var(--kdg-simge-ayarlar); }
+#game #hud [data-a="notifs"]   { --kdi:var(--kdg-simge-bildirim); }
+#game #hud [data-a="calendar"] { --kdi:var(--kdg-simge-takvim); }
+#game #hud [data-a="achs"]     { --kdi:var(--kdg-simge-basarim); }
+#game #hud [data-a="news"]     { --kdi:var(--kdg-simge-duyuru); }
+#game #hud .lrail [data-a="diyarMap"] { --kdi:var(--kdg-simge-harita); }
 /* SVG yalnızca PNG'si olan düğmelerde gizlenir (eşlemede olmayan düğme eski simgesiyle kalır) */
 #game #hud :is([data-a="party"],[data-a="bag"],[data-a="quests"],[data-a="clan"],[data-a="shop"],[data-a="savas"],[data-a="mail"],[data-a="codex"],[data-a="drawer"],[data-a="notifs"],[data-a="calendar"],[data-a="achs"],[data-a="news"],.lrail [data-a="diyarMap"]) > i > svg { visibility:hidden; }
 #game #hud .dock .dbtn > i { width:calc(28px * var(--h17-s, 1)) !important; height:calc(28px * var(--h17-s, 1)) !important; }
-#game #hud .mm-ft span { background:url("../img/kd/simge/simge-harita.png") center / contain no-repeat; width:14px; height:14px; } #game #hud .mm-ft span svg { visibility:hidden; }
+#game #hud .mm-ft span { background:var(--kdg-simge-harita) center / contain no-repeat; width:14px; height:14px; } #game #hud .mm-ft span svg { visibility:hidden; }
 
 /* ---------- 7. Savaş: hedef/sıra vurgusu tokenlarla ---------- */
 html[data-faction="ocak"] body #game #battleUI #skills .skill.sel { box-shadow:inset 0 0 0 2px #ffb347, 0 0 10px rgba(255,122,26,.7) !important; }
@@ -238,12 +238,12 @@ html[data-faction="sancak"] #modal .box.ds-box { background:radial-gradient(120%
 html[data-faction="ocak"] {
   --kp-acc:#f27717; --kp-acc2:#7b3124; --kp-i3:#47362e; --kd-ash:#6a6a68; --kd-blood:#7b3124;
   --kd-panel-fill:linear-gradient(180deg,#221c18,#1f1916 50%,#1c1614);
-  --kd-btn1:url("../img/kd/ui/ocak/dugme-birincil-normal-ocak.png"); --kd-btn1p:url("../img/kd/ui/ocak/dugme-birincil-basili-ocak.png");
+  --kd-btn1:var(--kdg-dugme-birincil-normal-ocak); --kd-btn1p:var(--kdg-dugme-birincil-basili-ocak);
 }
 html[data-faction="sancak"] {
   --kp-i4:#3f5675; --kp-acc:#d39a53; --kp-on2:#c5b9ab; --gold:#d39a53; --kd-gold:#d39a53;
   --kd-panel-fill:linear-gradient(180deg,#212e46,#1f2b42 50%,#1b273b);
-  --kd-btn1:url("../img/kd/ui/sancak/dugme-birincil-normal-sancak.png"); --kd-btn1p:url("../img/kd/ui/sancak/dugme-birincil-basili-sancak.png");
+  --kd-btn1:var(--kdg-dugme-birincil-normal-sancak); --kd-btn1p:var(--kdg-dugme-birincil-basili-sancak);
 }
 html[data-faction] .frame, html[data-faction] .box { background:var(--kd-mat), var(--kd-panel-fill) !important; background-size:var(--kd-mat-size), auto, auto, auto !important; }
 /* (birincil düğme kuralları §20'ye taşındı) */
@@ -251,8 +251,8 @@ html[data-faction] .frame, html[data-faction] .box { background:var(--kd-mat), v
 /* ---------- 20. Aşama 2 UI kit (revize, 20 Kas; kullanıcı: "bağla", nadirlik Standart→sıradan, Nadir→nadir, Eşsiz→efsanevi) ----------
    Kaynak docs/kd/asama2 (MANIFEST). Oyundaki kopyalarda panel/sekme/sayaç kenarındaki başıboş çizikler silindi (9 dilimde uzamasın).
    Yalnız görünüş: data-a eylemleri, yerleşim kenarları ve oyun kuralları aynı. Kitte olmayan durum (seçili sekme kitte çok silik) CSS ile belirginleşir. */
-html[data-faction="ocak"] { --u-xps:url("../img/kd/ui/ocak/dugme-kapat-basili-ocak.png"); --u-pb:url("../img/kd/ui/ocak/panel-buyuk-ocak.png"); --u-po:url("../img/kd/ui/ocak/panel-orta-ocak.png"); --u-b1n:url("../img/kd/ui/ocak/dugme-birincil-normal-ocak.png"); --u-b1p:url("../img/kd/ui/ocak/dugme-birincil-basili-ocak.png"); --u-b1x:url("../img/kd/ui/ocak/dugme-birincil-pasif-ocak.png"); --u-b2n:url("../img/kd/ui/ocak/dugme-ikincil-normal-ocak.png"); --u-b2p:url("../img/kd/ui/ocak/dugme-ikincil-basili-ocak.png"); --u-b2x:url("../img/kd/ui/ocak/dugme-ikincil-pasif-ocak.png"); --u-b3n:url("../img/kd/ui/ocak/dugme-tehlike-normal-ocak.png"); --u-b3p:url("../img/kd/ui/ocak/dugme-tehlike-basili-ocak.png"); --u-b3x:url("../img/kd/ui/ocak/dugme-tehlike-pasif-ocak.png"); --u-xn:url("../img/kd/ui/ocak/dugme-kapat-normal-ocak.png"); --u-xp:url("../img/kd/ui/ocak/cubuk-xp-dolgu-ocak.png"); --u-bkn:url("../img/kd/ui/ocak/dugme-geri-normal-ocak.png"); --u-bkp:url("../img/kd/ui/ocak/dugme-geri-basili-ocak.png"); --u-tv:url("../img/kd/ui/ocak/sekme-dikey-normal-ocak.png"); --u-tvs:url("../img/kd/ui/ocak/sekme-dikey-secili-ocak.png"); --u-th:url("../img/kd/ui/ocak/sekme-yatay-normal-ocak.png"); --u-ths:url("../img/kd/ui/ocak/sekme-yatay-secili-ocak.png"); --u-s0:url("../img/kd/ui/ocak/esya-yuvasi-siradan-normal-ocak.png"); --u-s0s:url("../img/kd/ui/ocak/esya-yuvasi-siradan-secili-ocak.png"); --u-s1:url("../img/kd/ui/ocak/esya-yuvasi-nadir-normal-ocak.png"); --u-s1s:url("../img/kd/ui/ocak/esya-yuvasi-nadir-secili-ocak.png"); --u-s2:url("../img/kd/ui/ocak/esya-yuvasi-efsanevi-normal-ocak.png"); --u-s2s:url("../img/kd/ui/ocak/esya-yuvasi-efsanevi-secili-ocak.png"); --u-se:url("../img/kd/ui/ocak/esya-yuvasi-bos-normal-ocak.png"); --u-ses:url("../img/kd/ui/ocak/esya-yuvasi-bos-secili-ocak.png"); --u-barb:url("../img/kd/ui/ocak/cubuk-can-bos-ocak.png"); --u-barm:url("../img/kd/ui/ocak/cubuk-mana-bos-ocak.png"); --u-barx:url("../img/kd/ui/ocak/cubuk-xp-bos-ocak.png"); --u-can:url("../img/kd/ui/ocak/cubuk-can-dolgu-ocak.png"); --u-mana:url("../img/kd/ui/ocak/cubuk-mana-dolgu-ocak.png"); --u-say:url("../img/kd/ui/ocak/kaynak-sayaci-akce-ocak.png"); --u-toast:url("../img/kd/ui/ocak/toast-ocak.png"); }
-html[data-faction="sancak"] { --u-xps:url("../img/kd/ui/sancak/dugme-kapat-basili-sancak.png"); --u-pb:url("../img/kd/ui/sancak/panel-buyuk-sancak.png"); --u-po:url("../img/kd/ui/sancak/panel-orta-sancak.png"); --u-b1n:url("../img/kd/ui/sancak/dugme-birincil-normal-sancak.png"); --u-b1p:url("../img/kd/ui/sancak/dugme-birincil-basili-sancak.png"); --u-b1x:url("../img/kd/ui/sancak/dugme-birincil-pasif-sancak.png"); --u-b2n:url("../img/kd/ui/sancak/dugme-ikincil-normal-sancak.png"); --u-b2p:url("../img/kd/ui/sancak/dugme-ikincil-basili-sancak.png"); --u-b2x:url("../img/kd/ui/sancak/dugme-ikincil-pasif-sancak.png"); --u-b3n:url("../img/kd/ui/sancak/dugme-tehlike-normal-sancak.png"); --u-b3p:url("../img/kd/ui/sancak/dugme-tehlike-basili-sancak.png"); --u-b3x:url("../img/kd/ui/sancak/dugme-tehlike-pasif-sancak.png"); --u-xn:url("../img/kd/ui/sancak/dugme-kapat-normal-sancak.png"); --u-xp:url("../img/kd/ui/sancak/cubuk-xp-dolgu-sancak.png"); --u-bkn:url("../img/kd/ui/sancak/dugme-geri-normal-sancak.png"); --u-bkp:url("../img/kd/ui/sancak/dugme-geri-basili-sancak.png"); --u-tv:url("../img/kd/ui/sancak/sekme-dikey-normal-sancak.png"); --u-tvs:url("../img/kd/ui/sancak/sekme-dikey-secili-sancak.png"); --u-th:url("../img/kd/ui/sancak/sekme-yatay-normal-sancak.png"); --u-ths:url("../img/kd/ui/sancak/sekme-yatay-secili-sancak.png"); --u-s0:url("../img/kd/ui/sancak/esya-yuvasi-siradan-normal-sancak.png"); --u-s0s:url("../img/kd/ui/sancak/esya-yuvasi-siradan-secili-sancak.png"); --u-s1:url("../img/kd/ui/sancak/esya-yuvasi-nadir-normal-sancak.png"); --u-s1s:url("../img/kd/ui/sancak/esya-yuvasi-nadir-secili-sancak.png"); --u-s2:url("../img/kd/ui/sancak/esya-yuvasi-efsanevi-normal-sancak.png"); --u-s2s:url("../img/kd/ui/sancak/esya-yuvasi-efsanevi-secili-sancak.png"); --u-se:url("../img/kd/ui/sancak/esya-yuvasi-bos-normal-sancak.png"); --u-ses:url("../img/kd/ui/sancak/esya-yuvasi-bos-secili-sancak.png"); --u-barb:url("../img/kd/ui/sancak/cubuk-can-bos-sancak.png"); --u-barm:url("../img/kd/ui/sancak/cubuk-mana-bos-sancak.png"); --u-barx:url("../img/kd/ui/sancak/cubuk-xp-bos-sancak.png"); --u-can:url("../img/kd/ui/sancak/cubuk-can-dolgu-sancak.png"); --u-mana:url("../img/kd/ui/sancak/cubuk-mana-dolgu-sancak.png"); --u-say:url("../img/kd/ui/sancak/kaynak-sayaci-akce-sancak.png"); --u-toast:url("../img/kd/ui/sancak/toast-sancak.png"); }
+html[data-faction="ocak"] { --u-xps:var(--kdg-dugme-kapat-basili-ocak); --u-pb:var(--kdg-panel-buyuk-ocak); --u-po:var(--kdg-panel-orta-ocak); --u-b1n:var(--kdg-dugme-birincil-normal-ocak); --u-b1p:var(--kdg-dugme-birincil-basili-ocak); --u-b1x:var(--kdg-dugme-birincil-pasif-ocak); --u-b2n:var(--kdg-dugme-ikincil-normal-ocak); --u-b2p:var(--kdg-dugme-ikincil-basili-ocak); --u-b2x:var(--kdg-dugme-ikincil-pasif-ocak); --u-b3n:var(--kdg-dugme-tehlike-normal-ocak); --u-b3p:var(--kdg-dugme-tehlike-basili-ocak); --u-b3x:var(--kdg-dugme-tehlike-pasif-ocak); --u-xn:var(--kdg-dugme-kapat-normal-ocak); --u-xp:var(--kdg-cubuk-xp-dolgu-ocak); --u-bkn:var(--kdg-dugme-geri-normal-ocak); --u-bkp:var(--kdg-dugme-geri-basili-ocak); --u-tv:var(--kdg-sekme-dikey-normal-ocak); --u-tvs:var(--kdg-sekme-dikey-secili-ocak); --u-th:var(--kdg-sekme-yatay-normal-ocak); --u-ths:var(--kdg-sekme-yatay-secili-ocak); --u-s0:var(--kdg-esya-yuvasi-siradan-normal-ocak); --u-s0s:var(--kdg-esya-yuvasi-siradan-secili-ocak); --u-s1:var(--kdg-esya-yuvasi-nadir-normal-ocak); --u-s1s:var(--kdg-esya-yuvasi-nadir-secili-ocak); --u-s2:var(--kdg-esya-yuvasi-efsanevi-normal-ocak); --u-s2s:var(--kdg-esya-yuvasi-efsanevi-secili-ocak); --u-se:var(--kdg-esya-yuvasi-bos-normal-ocak); --u-ses:var(--kdg-esya-yuvasi-bos-secili-ocak); --u-barb:var(--kdg-cubuk-can-bos-ocak); --u-barm:var(--kdg-cubuk-mana-bos-ocak); --u-barx:var(--kdg-cubuk-xp-bos-ocak); --u-can:var(--kdg-cubuk-can-dolgu-ocak); --u-mana:var(--kdg-cubuk-mana-dolgu-ocak); --u-say:var(--kdg-kaynak-sayaci-akce-ocak); --u-toast:var(--kdg-toast-ocak); }
+html[data-faction="sancak"] { --u-xps:var(--kdg-dugme-kapat-basili-sancak); --u-pb:var(--kdg-panel-buyuk-sancak); --u-po:var(--kdg-panel-orta-sancak); --u-b1n:var(--kdg-dugme-birincil-normal-sancak); --u-b1p:var(--kdg-dugme-birincil-basili-sancak); --u-b1x:var(--kdg-dugme-birincil-pasif-sancak); --u-b2n:var(--kdg-dugme-ikincil-normal-sancak); --u-b2p:var(--kdg-dugme-ikincil-basili-sancak); --u-b2x:var(--kdg-dugme-ikincil-pasif-sancak); --u-b3n:var(--kdg-dugme-tehlike-normal-sancak); --u-b3p:var(--kdg-dugme-tehlike-basili-sancak); --u-b3x:var(--kdg-dugme-tehlike-pasif-sancak); --u-xn:var(--kdg-dugme-kapat-normal-sancak); --u-xp:var(--kdg-cubuk-xp-dolgu-sancak); --u-bkn:var(--kdg-dugme-geri-normal-sancak); --u-bkp:var(--kdg-dugme-geri-basili-sancak); --u-tv:var(--kdg-sekme-dikey-normal-sancak); --u-tvs:var(--kdg-sekme-dikey-secili-sancak); --u-th:var(--kdg-sekme-yatay-normal-sancak); --u-ths:var(--kdg-sekme-yatay-secili-sancak); --u-s0:var(--kdg-esya-yuvasi-siradan-normal-sancak); --u-s0s:var(--kdg-esya-yuvasi-siradan-secili-sancak); --u-s1:var(--kdg-esya-yuvasi-nadir-normal-sancak); --u-s1s:var(--kdg-esya-yuvasi-nadir-secili-sancak); --u-s2:var(--kdg-esya-yuvasi-efsanevi-normal-sancak); --u-s2s:var(--kdg-esya-yuvasi-efsanevi-secili-sancak); --u-se:var(--kdg-esya-yuvasi-bos-normal-sancak); --u-ses:var(--kdg-esya-yuvasi-bos-secili-sancak); --u-barb:var(--kdg-cubuk-can-bos-sancak); --u-barm:var(--kdg-cubuk-mana-bos-sancak); --u-barx:var(--kdg-cubuk-xp-bos-sancak); --u-can:var(--kdg-cubuk-can-dolgu-sancak); --u-mana:var(--kdg-cubuk-mana-dolgu-sancak); --u-say:var(--kdg-kaynak-sayaci-akce-sancak); --u-toast:var(--kdg-toast-sancak); }
 html[data-faction="ocak"] { --u-t1:#f6e3c6; --u-t2:#ece4d6; --u-tsel:#ffb347; }
 html[data-faction="sancak"] { --u-t1:#f3ecd8; --u-t2:#eef1f5; --u-tsel:#f0d488; }
 /* paneller: pencere = büyük (9 dilim 64), kutu = orta (48); yerleşim kenarı aynı, çizim dışa taşar */
@@ -331,37 +331,37 @@ html[data-hub2d] #game #hud .dock { right:calc(var(--h17-sr) + 160px * var(--h17
   background:var(--sv2-n) center / 100% 100% no-repeat; filter:drop-shadow(0 4px 8px rgba(0,0,0,.6)); }
 #game #hud .savas2d:active { background-image:var(--sv2-p); transform:translateY(1px); }
 #game #hud .savas2d span { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
-html[data-faction="ocak"] { --sv2-n:url("../img/kd/merkez/dugme-savas-normal-ocak.png"); --sv2-p:url("../img/kd/merkez/dugme-savas-basili-ocak.png"); }
-html[data-faction="sancak"] { --sv2-n:url("../img/kd/merkez/dugme-savas-normal-sancak.png"); --sv2-p:url("../img/kd/merkez/dugme-savas-basili-sancak.png"); }
+html[data-faction="ocak"] { --sv2-n:var(--kdg-dugme-savas-normal-ocak); --sv2-p:var(--kdg-dugme-savas-basili-ocak); }
+html[data-faction="sancak"] { --sv2-n:var(--kdg-dugme-savas-normal-sancak); --sv2-p:var(--kdg-dugme-savas-basili-sancak); }
 /* menü simgeleri (Aşama 3 revize, halka göre madalyon) */
-html[data-faction="ocak"] #game #hud [data-a="party"] { --kdi:url("../img/kd/simge3/simge-karakter-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="bag"] { --kdi:url("../img/kd/simge3/simge-canta-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="quests"] { --kdi:url("../img/kd/simge3/simge-gorevler-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="clan"] { --kdi:url("../img/kd/simge3/simge-klan-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="shop"] { --kdi:url("../img/kd/simge3/simge-kervan-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="savas"] { --kdi:url("../img/kd/simge3/simge-savas-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="mail"] { --kdi:url("../img/kd/simge3/simge-posta-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="codex"] { --kdi:url("../img/kd/simge3/simge-ansiklopedi-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="drawer"] { --kdi:url("../img/kd/simge3/simge-menu-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="notifs"] { --kdi:url("../img/kd/simge3/simge-bildirim-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="calendar"] { --kdi:url("../img/kd/simge3/simge-takvim-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="achs"] { --kdi:url("../img/kd/simge3/simge-basarim-ocak.png"); }
-html[data-faction="ocak"] #game #hud [data-a="news"] { --kdi:url("../img/kd/simge3/simge-duyuru-ocak.png"); }
-html[data-faction="ocak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:url("../img/kd/simge3/simge-diyar-haritasi-ocak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="party"] { --kdi:url("../img/kd/simge3/simge-karakter-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="bag"] { --kdi:url("../img/kd/simge3/simge-canta-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="quests"] { --kdi:url("../img/kd/simge3/simge-gorevler-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="clan"] { --kdi:url("../img/kd/simge3/simge-klan-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="shop"] { --kdi:url("../img/kd/simge3/simge-kervan-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="savas"] { --kdi:url("../img/kd/simge3/simge-savas-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="mail"] { --kdi:url("../img/kd/simge3/simge-posta-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="codex"] { --kdi:url("../img/kd/simge3/simge-ansiklopedi-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="drawer"] { --kdi:url("../img/kd/simge3/simge-menu-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="notifs"] { --kdi:url("../img/kd/simge3/simge-bildirim-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="calendar"] { --kdi:url("../img/kd/simge3/simge-takvim-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="achs"] { --kdi:url("../img/kd/simge3/simge-basarim-sancak.png"); }
-html[data-faction="sancak"] #game #hud [data-a="news"] { --kdi:url("../img/kd/simge3/simge-duyuru-sancak.png"); }
-html[data-faction="sancak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:url("../img/kd/simge3/simge-diyar-haritasi-sancak.png"); }
+html[data-faction="ocak"] #game #hud [data-a="party"] { --kdi:var(--kdg-simge-karakter-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="bag"] { --kdi:var(--kdg-simge-canta-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="quests"] { --kdi:var(--kdg-simge-gorevler-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="clan"] { --kdi:var(--kdg-simge-klan-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="shop"] { --kdi:var(--kdg-simge-kervan-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="savas"] { --kdi:var(--kdg-simge-savas-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="mail"] { --kdi:var(--kdg-simge-posta-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="codex"] { --kdi:var(--kdg-simge-ansiklopedi-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="drawer"] { --kdi:var(--kdg-simge-menu-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="notifs"] { --kdi:var(--kdg-simge-bildirim-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="calendar"] { --kdi:var(--kdg-simge-takvim-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="achs"] { --kdi:var(--kdg-simge-basarim-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="news"] { --kdi:var(--kdg-simge-duyuru-ocak); }
+html[data-faction="ocak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:var(--kdg-simge-diyar-haritasi-ocak); }
+html[data-faction="sancak"] #game #hud [data-a="party"] { --kdi:var(--kdg-simge-karakter-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="bag"] { --kdi:var(--kdg-simge-canta-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="quests"] { --kdi:var(--kdg-simge-gorevler-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="clan"] { --kdi:var(--kdg-simge-klan-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="shop"] { --kdi:var(--kdg-simge-kervan-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="savas"] { --kdi:var(--kdg-simge-savas-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="mail"] { --kdi:var(--kdg-simge-posta-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="codex"] { --kdi:var(--kdg-simge-ansiklopedi-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="drawer"] { --kdi:var(--kdg-simge-menu-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="notifs"] { --kdi:var(--kdg-simge-bildirim-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="calendar"] { --kdi:var(--kdg-simge-takvim-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="achs"] { --kdi:var(--kdg-simge-basarim-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="news"] { --kdi:var(--kdg-simge-duyuru-sancak); }
+html[data-faction="sancak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:var(--kdg-simge-diyar-haritasi-sancak); }
 
 /* ==================== eski v23-ekranlar.css ==================== */
 /* ==================== v23 · Aşama 4 kritik ekranlar (20 Kas) ====================
@@ -635,33 +635,33 @@ html[data-faction] #win[data-scr="klan"] .page .btn.sm:not(.green):not(.red):not
 
 /* ---------- 1. Kit kalanları: halk başına görsel değişkenleri ---------- */
 html[data-faction="ocak"] {
-  --c-tgl0:url("../img/kd/ui/ocak/acma-kapama-kapali-ocak.png"); --c-tgl1:url("../img/kd/ui/ocak/acma-kapama-acik-ocak.png");
-  --c-chk0:url("../img/kd/ui/ocak/onay-kutusu-kapali-ocak.png"); --c-chk1:url("../img/kd/ui/ocak/onay-kutusu-acik-ocak.png");
-  --c-pb0:url("../img/kd/ui/ocak/cubuk-ilerleme-bos-ocak.png"); --c-pb1:url("../img/kd/ui/ocak/cubuk-ilerleme-dolgu-ocak.png");
-  --c-bdg:url("../img/kd/ui/ocak/rozet-sayi-zemini-ocak.png"); --c-dot:url("../img/kd/ui/ocak/rozet-bildirim-noktasi-ocak.png");
-  --c-ayr:url("../img/kd/ui/ocak/ayrac-catlak-dikilitas-ocak.png"); --c-pk:url("../img/kd/ui/ocak/panel-kucuk-ocak.png");
-  --c-pbs:url("../img/kd/ui/ocak/panel-baslik-seridi-ocak.png"); --c-yv0:url("../img/kd/ui/ocak/dugme-yuvarlak-normal-ocak.png"); --c-yv1:url("../img/kd/ui/ocak/dugme-yuvarlak-basili-ocak.png");
-  --c-st1:url("../img/kd/ui/ocak/rozet-yildiz-1-ocak.png"); --c-st2:url("../img/kd/ui/ocak/rozet-yildiz-2-ocak.png"); --c-st3:url("../img/kd/ui/ocak/rozet-yildiz-3-ocak.png");
-  --c-lock:url("../img/kd/ui/ocak/rozet-kilit-ocak.png"); --c-lv:url("../img/kd/ui/ocak/rozet-seviye-ocak.png"); --c-new:url("../img/kd/ui/ocak/rozet-yeni-zemini-ocak.png");
-  --c-say-energy:url("../img/kd/ui/ocak/kaynak-sayaci-enerji-ocak.png"); --c-say-gem:url("../img/kd/ui/ocak/kaynak-sayaci-yakut-ocak.png"); --c-say-san:url("../img/kd/ui/ocak/kaynak-sayaci-san-ocak.png");
-  --c-mod:url("../img/kd/ui/ocak/modal-arkasi-ocak.png"); --c-sheet:url("../img/kd/ui/ocak/alt-sayfa-ocak.png");
-  --c-levha:url("../img/kd/merkez/levha-bina-adi-ocak.png"); --c-kervan:url("../img/kd/merkez/dugme-kervan-ocak.png");
-  --c-toz:url("../img/kd/simge3/simge-ors-tozu-ocak.png");
+  --c-tgl0:var(--kdg-acma-kapama-kapali-ocak); --c-tgl1:var(--kdg-acma-kapama-acik-ocak);
+  --c-chk0:var(--kdg-onay-kutusu-kapali-ocak); --c-chk1:var(--kdg-onay-kutusu-acik-ocak);
+  --c-pb0:var(--kdg-cubuk-ilerleme-bos-ocak); --c-pb1:var(--kdg-cubuk-ilerleme-dolgu-ocak);
+  --c-bdg:var(--kdg-rozet-sayi-zemini-ocak); --c-dot:var(--kdg-rozet-bildirim-noktasi-ocak);
+  --c-ayr:var(--kdg-ayrac-catlak-dikilitas-ocak); --c-pk:var(--kdg-panel-kucuk-ocak);
+  --c-pbs:var(--kdg-panel-baslik-seridi-ocak); --c-yv0:var(--kdg-dugme-yuvarlak-normal-ocak); --c-yv1:var(--kdg-dugme-yuvarlak-basili-ocak);
+  --c-st1:var(--kdg-rozet-yildiz-1-ocak); --c-st2:var(--kdg-rozet-yildiz-2-ocak); --c-st3:var(--kdg-rozet-yildiz-3-ocak);
+  --c-lock:var(--kdg-rozet-kilit-ocak); --c-lv:var(--kdg-rozet-seviye-ocak); --c-new:var(--kdg-rozet-yeni-zemini-ocak);
+  --c-say-energy:var(--kdg-kaynak-sayaci-enerji-ocak); --c-say-gem:var(--kdg-kaynak-sayaci-yakut-ocak); --c-say-san:var(--kdg-kaynak-sayaci-san-ocak);
+  --c-mod:var(--kdg-modal-arkasi-ocak); --c-sheet:var(--kdg-alt-sayfa-ocak);
+  --c-levha:var(--kdg-levha-bina-adi-ocak); --c-kervan:var(--kdg-dugme-kervan-ocak);
+  --c-toz:var(--kdg-simge-ors-tozu-ocak);
   --c-parch:#2a211c; --c-parch2:#1d1714; --c-ink:#efe2cb; --c-ink2:#b5a28a;
 }
 html[data-faction="sancak"] {
-  --c-tgl0:url("../img/kd/ui/sancak/acma-kapama-kapali-sancak.png"); --c-tgl1:url("../img/kd/ui/sancak/acma-kapama-acik-sancak.png");
-  --c-chk0:url("../img/kd/ui/sancak/onay-kutusu-kapali-sancak.png"); --c-chk1:url("../img/kd/ui/sancak/onay-kutusu-acik-sancak.png");
-  --c-pb0:url("../img/kd/ui/sancak/cubuk-ilerleme-bos-sancak.png"); --c-pb1:url("../img/kd/ui/sancak/cubuk-ilerleme-dolgu-sancak.png");
-  --c-bdg:url("../img/kd/ui/sancak/rozet-sayi-zemini-sancak.png"); --c-dot:url("../img/kd/ui/sancak/rozet-bildirim-noktasi-sancak.png");
-  --c-ayr:url("../img/kd/ui/sancak/ayrac-catlak-dikilitas-sancak.png"); --c-pk:url("../img/kd/ui/sancak/panel-kucuk-sancak.png");
-  --c-pbs:url("../img/kd/ui/sancak/panel-baslik-seridi-sancak.png"); --c-yv0:url("../img/kd/ui/sancak/dugme-yuvarlak-normal-sancak.png"); --c-yv1:url("../img/kd/ui/sancak/dugme-yuvarlak-basili-sancak.png");
-  --c-st1:url("../img/kd/ui/sancak/rozet-yildiz-1-sancak.png"); --c-st2:url("../img/kd/ui/sancak/rozet-yildiz-2-sancak.png"); --c-st3:url("../img/kd/ui/sancak/rozet-yildiz-3-sancak.png");
-  --c-lock:url("../img/kd/ui/sancak/rozet-kilit-sancak.png"); --c-lv:url("../img/kd/ui/sancak/rozet-seviye-sancak.png"); --c-new:url("../img/kd/ui/sancak/rozet-yeni-zemini-sancak.png");
-  --c-say-energy:url("../img/kd/ui/sancak/kaynak-sayaci-enerji-sancak.png"); --c-say-gem:url("../img/kd/ui/sancak/kaynak-sayaci-yakut-sancak.png"); --c-say-san:url("../img/kd/ui/sancak/kaynak-sayaci-san-sancak.png");
-  --c-mod:url("../img/kd/ui/sancak/modal-arkasi-sancak.png"); --c-sheet:url("../img/kd/ui/sancak/alt-sayfa-sancak.png");
-  --c-levha:url("../img/kd/merkez/levha-bina-adi-sancak.png"); --c-kervan:url("../img/kd/merkez/dugme-kervan-sancak.png");
-  --c-toz:url("../img/kd/simge3/simge-ors-tozu-sancak.png");
+  --c-tgl0:var(--kdg-acma-kapama-kapali-sancak); --c-tgl1:var(--kdg-acma-kapama-acik-sancak);
+  --c-chk0:var(--kdg-onay-kutusu-kapali-sancak); --c-chk1:var(--kdg-onay-kutusu-acik-sancak);
+  --c-pb0:var(--kdg-cubuk-ilerleme-bos-sancak); --c-pb1:var(--kdg-cubuk-ilerleme-dolgu-sancak);
+  --c-bdg:var(--kdg-rozet-sayi-zemini-sancak); --c-dot:var(--kdg-rozet-bildirim-noktasi-sancak);
+  --c-ayr:var(--kdg-ayrac-catlak-dikilitas-sancak); --c-pk:var(--kdg-panel-kucuk-sancak);
+  --c-pbs:var(--kdg-panel-baslik-seridi-sancak); --c-yv0:var(--kdg-dugme-yuvarlak-normal-sancak); --c-yv1:var(--kdg-dugme-yuvarlak-basili-sancak);
+  --c-st1:var(--kdg-rozet-yildiz-1-sancak); --c-st2:var(--kdg-rozet-yildiz-2-sancak); --c-st3:var(--kdg-rozet-yildiz-3-sancak);
+  --c-lock:var(--kdg-rozet-kilit-sancak); --c-lv:var(--kdg-rozet-seviye-sancak); --c-new:var(--kdg-rozet-yeni-zemini-sancak);
+  --c-say-energy:var(--kdg-kaynak-sayaci-enerji-sancak); --c-say-gem:var(--kdg-kaynak-sayaci-yakut-sancak); --c-say-san:var(--kdg-kaynak-sayaci-san-sancak);
+  --c-mod:var(--kdg-modal-arkasi-sancak); --c-sheet:var(--kdg-alt-sayfa-sancak);
+  --c-levha:var(--kdg-levha-bina-adi-sancak); --c-kervan:var(--kdg-dugme-kervan-sancak);
+  --c-toz:var(--kdg-simge-ors-tozu-sancak);
   --c-parch:#22314f; --c-parch2:#18233b; --c-ink:#eef1f5; --c-ink2:#a9b6c8;
 }
 
@@ -726,10 +726,10 @@ html[data-faction] .qx-bd { background:var(--c-bdg) center / contain no-repeat !
 /* ---------- 8. Kaynak simgeleri (Aşama 2 ortak simgeler) ve sayaçlar ---------- */
 .ri.ri-akce, .ri.ri-energy, .ri.ri-gem, .ri.ri-san { background:center / contain no-repeat; }
 .ri.ri-akce > *, .ri.ri-energy > *, .ri.ri-gem > *, .ri.ri-san > * { visibility:hidden; }
-.ri.ri-akce { background-image:url("../img/kd/ui/ortak/simge-akce-kirp.png"); }
-.ri.ri-energy { background-image:url("../img/kd/ui/ortak/simge-enerji-kirp.png"); }
-.ri.ri-gem { background-image:url("../img/kd/ui/ortak/simge-yakut-kirp.png"); }
-.ri.ri-san { background-image:url("../img/kd/ui/ortak/simge-san-kirp.png"); }
+.ri.ri-akce { background-image:var(--kdg-simge-akce-kirp); }
+.ri.ri-energy { background-image:var(--kdg-simge-enerji-kirp); }
+.ri.ri-gem { background-image:var(--kdg-simge-yakut-kirp); }
+.ri.ri-san { background-image:var(--kdg-simge-san-kirp); }
 html[data-faction] .ri.ri-toz { background:var(--c-toz) center / 130% no-repeat; border-radius:50%; } html[data-faction] .ri.ri-toz > * { visibility:hidden; }
 html[data-faction] #game #hud .res .pill:has(.ri-energy) { border-image-source:var(--c-say-energy) !important; }
 html[data-faction] #game #hud .res .pill:has(.ri-gem) { border-image-source:var(--c-say-gem) !important; }
@@ -808,8 +808,8 @@ html[data-faction] :is(#win,#modal) :is(.yrow,.v13-card,.onl-c,.wrow,.mlx-item,.
 html[data-faction] #win em.atag { background:var(--a5-cardh) !important; color:var(--a5-hi) !important; border:1px solid var(--a5-line2) !important; }
 html[data-faction] #win em.atag.off { background:#0006 !important; color:var(--a5-mut) !important; border-color:var(--a5-line) !important; }
 html[data-faction] :is(#win,#modal) .pf-lv { color:#1a1208; }
-html[data-faction="ocak"] { --i-savas:url("../img/kd/simge3/simge-savas-ocak.png"); --i-zindan:url("../img/kd/simge3/simge-zindan-ocak.png"); --i-etkinlik:url("../img/kd/simge3/simge-etkinlik-ocak.png"); --i-ana-gorev:url("../img/kd/simge3/simge-ana-gorev-ocak.png"); --i-meydan:url("../img/kd/simge3/simge-meydan-ocak.png"); --i-gorevler:url("../img/kd/simge3/simge-gorevler-ocak.png"); --i-mini-dizi:url("../img/kd/simge3/simge-mini-dizi-ocak.png"); --i-odul-sandigi:url("../img/kd/simge3/simge-odul-sandigi-ocak.png"); --i-ansiklopedi:url("../img/kd/simge3/simge-ansiklopedi-ocak.png"); --i-klan:url("../img/kd/simge3/simge-klan-ocak.png"); --i-posta:url("../img/kd/simge3/simge-posta-ocak.png"); --i-karakter:url("../img/kd/simge3/simge-karakter-ocak.png"); --i-diyar-haritasi:url("../img/kd/simge3/simge-diyar-haritasi-ocak.png"); --i-baskin:url("../img/kd/simge3/simge-baskin-ocak.png"); }
-html[data-faction="sancak"] { --i-savas:url("../img/kd/simge3/simge-savas-sancak.png"); --i-zindan:url("../img/kd/simge3/simge-zindan-sancak.png"); --i-etkinlik:url("../img/kd/simge3/simge-etkinlik-sancak.png"); --i-ana-gorev:url("../img/kd/simge3/simge-ana-gorev-sancak.png"); --i-meydan:url("../img/kd/simge3/simge-meydan-sancak.png"); --i-gorevler:url("../img/kd/simge3/simge-gorevler-sancak.png"); --i-mini-dizi:url("../img/kd/simge3/simge-mini-dizi-sancak.png"); --i-odul-sandigi:url("../img/kd/simge3/simge-odul-sandigi-sancak.png"); --i-ansiklopedi:url("../img/kd/simge3/simge-ansiklopedi-sancak.png"); --i-klan:url("../img/kd/simge3/simge-klan-sancak.png"); --i-posta:url("../img/kd/simge3/simge-posta-sancak.png"); --i-karakter:url("../img/kd/simge3/simge-karakter-sancak.png"); --i-diyar-haritasi:url("../img/kd/simge3/simge-diyar-haritasi-sancak.png"); --i-baskin:url("../img/kd/simge3/simge-baskin-sancak.png"); }
+html[data-faction="ocak"] { --i-savas:var(--kdg-simge-savas-ocak); --i-zindan:var(--kdg-simge-zindan-ocak); --i-etkinlik:var(--kdg-simge-etkinlik-ocak); --i-ana-gorev:var(--kdg-simge-ana-gorev-ocak); --i-meydan:var(--kdg-simge-meydan-ocak); --i-gorevler:var(--kdg-simge-gorevler-ocak); --i-mini-dizi:var(--kdg-simge-mini-dizi-ocak); --i-odul-sandigi:var(--kdg-simge-odul-sandigi-ocak); --i-ansiklopedi:var(--kdg-simge-ansiklopedi-ocak); --i-klan:var(--kdg-simge-klan-ocak); --i-posta:var(--kdg-simge-posta-ocak); --i-karakter:var(--kdg-simge-karakter-ocak); --i-diyar-haritasi:var(--kdg-simge-diyar-haritasi-ocak); --i-baskin:var(--kdg-simge-baskin-ocak); }
+html[data-faction="sancak"] { --i-savas:var(--kdg-simge-savas-sancak); --i-zindan:var(--kdg-simge-zindan-sancak); --i-etkinlik:var(--kdg-simge-etkinlik-sancak); --i-ana-gorev:var(--kdg-simge-ana-gorev-sancak); --i-meydan:var(--kdg-simge-meydan-sancak); --i-gorevler:var(--kdg-simge-gorevler-sancak); --i-mini-dizi:var(--kdg-simge-mini-dizi-sancak); --i-odul-sandigi:var(--kdg-simge-odul-sandigi-sancak); --i-ansiklopedi:var(--kdg-simge-ansiklopedi-sancak); --i-klan:var(--kdg-simge-klan-sancak); --i-posta:var(--kdg-simge-posta-sancak); --i-karakter:var(--kdg-simge-karakter-sancak); --i-diyar-haritasi:var(--kdg-simge-diyar-haritasi-sancak); --i-baskin:var(--kdg-simge-baskin-sancak); }
 /* ---------- 14. Aşama 3 madalyon simgeleri: Kapı, sekmeler, menü ---------- */
 html[data-faction] #modal .gatemenu [data-a="gateGo"] .ico, html[data-faction] #modal .gatemenu [data-a="gateDestan"] .ico, html[data-faction] #modal .gatemenu [data-a="gateCz"] .ico,
 html[data-faction] #modal .box.menu [data-a="seriesOpen"] .ico, html[data-faction] #modal .box.menu [data-a="rehber"] .ico, html[data-faction] #modal .box.menu [data-a="friendsMenu"] .ico, html[data-faction] #modal .box.menu [data-a="supportMenu"] .ico, html[data-faction] #modal .box.menu [data-a="server"] .ico,

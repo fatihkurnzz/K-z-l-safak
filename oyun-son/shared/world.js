@@ -40,6 +40,11 @@ import { hisarWorld, HISAR_READ_ONLY, hisarCollect, hisarAfter } from './hisarop
 import { baskinWorld } from './baskin.js';
 import { nobetWorld } from './nobet.js';
 import { coopWorld } from './coop.js';
+import { AHIR_HANDLERS } from './ahir.js';
+import { HAN_HANDLERS } from './han.js';
+import { ZAFER_WORLD, ZAFER_READ_ONLY } from './zafer.js';
+// P28: oyuncu-yerel (p, args, env) eylemlerini WORLD imzasına (ctx, p, action) çevirir; ctx env alanlarını (now, dev) taşır
+const localWorld = H => Object.fromEntries(Object.entries(H).map(([k, f]) => [k, (ctx, p, a) => f(p, a, ctx)]));
 
 const need = (p, key) => { if (p.lvl < UNLOCK[key]) fail('locked', `${UNLOCK[key]}. seviyede açılır.`); };
 const nid = ctx => Array.from({ length: 4 }, () => Math.floor(ctx.rand() * 65536).toString(16).padStart(4, '0')).join('');
@@ -396,6 +401,8 @@ export const WORLD = {
   ...BASKIN_W.HANDLERS, // Dünya Baskını (baskin.js)
   ...NOBET_W.HANDLERS, // Kristal Nöbeti (nobet.js)
   ...COOP_W.HANDLERS, // ortak parti savaşı (coop.js)
+  ...localWorld({ ...AHIR_HANDLERS, ...HAN_HANDLERS }), // P28: Ahır (ahir.js) ve Han (han.js)
+  ...ZAFER_WORLD, // P28: Zafer Anıtı (zafer.js)
 };
 
 export { clanPower };
@@ -585,5 +592,5 @@ export async function dispatch(store, pid, action, env, first) {
   fail('conflict', 'Eşzamanlı işlem. Tekrar dene.');
 }
 const READ_ONLY = new Set(['chat.list', 'chat.peek', 'chat.convs', 'mail.list', 'mail.who', 'rank.top', 'clan.top', 'rank.period', 'rank.info', 'clan.page', 'player.card', 'siege.top', 'monument.view', 'codex.get', 'codex.item', 'ann.feed', 'feud.list', ...META_READ_ONLY]);
-for (const k of [...COOP_W.READ_ONLY, ...NOBET_W.READ_ONLY, ...SETTINGS_READ_ONLY, ...PAY_READ_ONLY, ...SOCIAL_READ_ONLY, ...REALM_READ_ONLY, ...PVP.READ_ONLY, ...PVP_READ_ONLY, ...REPORT_READ_ONLY, ...SUPPORT_READ_ONLY, ...HISAR_READ_ONLY, ...BASKIN_W.READ_ONLY]) READ_ONLY.add(k);
+for (const k of [...COOP_W.READ_ONLY, ...NOBET_W.READ_ONLY, ...SETTINGS_READ_ONLY, ...PAY_READ_ONLY, ...SOCIAL_READ_ONLY, ...REALM_READ_ONLY, ...PVP.READ_ONLY, ...PVP_READ_ONLY, ...REPORT_READ_ONLY, ...SUPPORT_READ_ONLY, ...HISAR_READ_ONLY, ...BASKIN_W.READ_ONLY, ...ZAFER_READ_ONLY]) READ_ONLY.add(k);
 export const WORLD_ACTIONS = Object.keys(WORLD);

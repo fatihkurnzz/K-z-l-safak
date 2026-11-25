@@ -10,8 +10,10 @@ import { bannerSvg } from './banner.js';
 import { FACTIONS, CLASSES, SHOP, PREMIUM } from '../shared/content.js';
 import { itemBase, itemStats, STARTER_WEAPONS } from '../shared/items.js';
 import { priceText } from '../shared/pay.js';
+import { STORE_CUR } from '../shared/config/storePrices.js';
 import { REPORT_REASONS, REPORT_NOTE_MAX } from '../shared/reasons.js';
 import { svg, ri } from './icons.js';
+import { p25bImg } from './ui-town.js'; // P25-b: arkadaş sekme simgeleri ve boş durum madalyonu
 import { nativeKind, storeReady, storePrices, storeBuy, storeFinish } from './pay-native.js';
 
 const ls = { get: k => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch { } } };
@@ -21,7 +23,7 @@ const dateText = t => new Date(t).toLocaleDateString('tr-TR', { day: '2-digit', 
 // ====================================================================================================================
 // Yakut Al
 // ====================================================================================================================
-const Y = { cur: 'USD', // tek para birimi
+const Y = { cur: STORE_CUR, // tek para birimi (P28 O9: shared/config/storePrices.js)
   busy: null, prices: {}, store: null, cfg: null, shop: null, D: null };
 // Yarım kalan satın almalar (ödeme yapıldı ama onay yanıtı alınamadı): cihazda saklanır, ekran açılınca yeniden onaylanır
 const K_PEND = 'dd_pay_pending';
@@ -50,15 +52,18 @@ function banner(D) {
   if (Y.store === false) return `<div class="hint ynote"><b>Mağaza satın alması bu cihazda kullanılamıyor.</b> ${prov.kind === 'android' ? 'Google Play' : 'App Store'} hesabını ve bağlantını denetleyip yeniden dene.</div>`;
   return `<div class="hint ynote">Ödeme ${prov.kind === 'android' ? 'Google Play' : 'App Store'} üzerinden yapılır; geçerli fiyatı mağaza gösterir. Yakut, satın alma doğrulanınca hesabına yazılır.</div>`;
 }
-const curSwitch = () => ''; // para birimi seçimi kaldırıldı: fiyatlar yalnızca USD
+const curSwitch = () => ''; // para birimi seçimi yok: fiyatlar yalnızca TL (storePrices.js)
 const buyBtn = (D, P, label) => `<button class="btn red ybuy" data-a="payBuy" data-sku="${esc(P.sku)}" ${canBuy(D) && !Y.busy ? '' : 'disabled'}>${LOCAL ? 'Yakında' : Y.busy === P.sku ? 'Bekle…' : label || esc(priceOf(D, P))}</button>`;
 
+// P27 3.2: paket görselleri (saydam, ucuzdan pahalıya; game/img/p27). Ürün kimliği → görsel; eşleşmeyen pakette eski vektör elmas kalır.
+const YAKUT_IMG = { yakut100: 'yakut_1_avuc', yakut320: 'yakut_2_kese', yakut600: 'yakut_3_sandik', yakut1300: 'yakut_4_kupu', yakut2800: 'yakut_5_hazine', yakut7500: 'yakut_6_hakan' };
+const packArt = (P, i) => YAKUT_IMG[P.sku] ? `<img class="yp-art" src="img/p27/${YAKUT_IMG[P.sku]}.webp" alt="" draggable="false" loading="lazy">` : `<i class="ygem s${Math.min(5, i)}">${svg('gem')}</i>`;
 function packsHtml(D) {
   const packs = D.products.filter(P => P.kind === 'yakut');
   return `${banner(D)}${curSwitch(D)}
-    <div class="ypacks">${packs.map((P, i) => `<div class="ypack${P.bonus ? ' first' : ''}">
+    <div class="ypacks yp27">${packs.map((P, i) => `<div class="ypack yp27c${P.bonus ? ' yfirst' : ''}">
       ${P.bonus ? `<span class="yrib">İlk alım: +${fmt(P.bonus)}</span>` : ''}
-      <i class="ygem s${Math.min(5, i)}">${svg('gem')}</i>
+      ${packArt(P, i)}
       <b class="yname">${esc(P.name)}</b>
       <span class="yamt">${fmt(P.total)} <small>yakut</small></span>
       <span class="mut ysub">${P.bonus ? `${fmt(P.yakut)} + ${fmt(P.bonus)} bonus` : `${fmt(P.yakut)} yakut`}</span>
@@ -70,10 +75,10 @@ function cardHtml(D) {
   if (!P) return '<div class="hint">Yakut Kartı şu an satışta değil.</div>';
   const full = C.days + P.days > C.max;
   return `${banner(D)}${curSwitch(D)}
-    <div class="ycard"><div class="ycface"><i>${svg('gem')}</i><b>${esc(P.name)}</b><small>${P.days} gün</small></div>
-      <div class="ycinfo"><h3>${esc(P.name)}</h3>
-        <div class="kv"><div><small>Hemen</small>${fmt(P.yakut)} yakut</div><div><small>Her gün</small>${fmt(P.daily)} yakut</div><div><small>${P.days} günde toplam</small>${fmt(P.sum)} yakut</div></div>
-        <p>${C.active ? `<b class="up">Kartın etkin:</b> ${C.days} gün kaldı.` : 'Şu an etkin kartın yok.'} ${C.active ? (C.claimed ? 'Bugünkü yakut alındı; yarın yeniden gel.' : `Bugünkü <b>${fmt(P.daily)} yakut</b> seni bekliyor.`) : ''}</p>
+    <div class="yc27"><div class="yc27-arma"><img src="img/p27/yakut_karti_arma.webp" alt="" draggable="false" loading="lazy"><span class="yc27-gun">${P.days} GÜN</span></div>
+      <div class="yc27-sag"><h3>${esc(P.name)}</h3>
+        <div class="yc27-perks"><div><small>Hemen</small><b>${fmt(P.yakut)} Yakut</b></div><div><small>Her Gün</small><b>${fmt(P.daily)} Yakut</b></div><div><small>${P.days} Günde Toplam</small><b>${fmt(P.sum)} Yakut</b></div></div></div>
+      <div class="yc27-bar"><p>${C.active ? `<b class="up">Kartın etkin:</b> ${C.days} gün kaldı.` : 'Şu an etkin kartın yok.'} ${C.active ? (C.claimed ? 'Bugünkü yakut alındı; yarın yeniden gel.' : `Bugünkü <b>${fmt(P.daily)} yakut</b> seni bekliyor.`) : ''}</p>
         <div class="mbtns">${C.active ? `<button class="btn green" data-a="payCard" ${C.claimed ? 'disabled' : ''}>${C.claimed ? 'Bugün alındı' : `Bugünkü ${fmt(P.daily)} yakutu al`}</button>` : ''}
           ${full ? `<button class="btn" disabled>En çok ${C.max} gün</button>` : buyBtn(D, P, `${C.active ? `Uzat (+${P.days} gün)` : 'Satın al'} · ${esc(priceOf(D, P))}`)}</div></div></div>
     <p class="mut">Günlük yakut, kart sürerken her gün bir kez bu ekrandan alınır; alınmayan günün yakutu yanar. Kart yeniden alınırsa süre uzar (en çok ${C.max} gün ileriye). Kart kendiliğinden yenilenmez, tek seferlik ödemedir.</p>`;
@@ -176,7 +181,8 @@ const used = k => S.daily[k] || 0;
 const perkList = T => `<li>Savaşta <b>+%${Math.round(T.xp * 100)}</b> deneyim ve akçe</li><li>Eşya düşme oranı <b>+%${Math.round(T.drop * 100)}</b></li><li>Maden <b>×${String(T.mine).replace('.', ',')}</b> cevher</li><li><b>+${T.slots}</b> pazar ilan yuvası</li><li><b>+${T.tickets}</b> günlük meydan hakkı</li>`;
 function shopYakut() {
   const T = PREMIUM[1], tier = myTier();
-  return `<div class="hint">Kervan <b>Yakut</b> ile çalışır. Yakut günlük görevlerden, meydandan, ilk boss ve kapı geçişlerinden gelir. Eşsiz eşya ve boss hakkı satılmaz. (Elinde ${ri('gem')} ${fmt(S.yakut)})</div>
+  const bn = new URL('sahneler/banner_kervan.webp', document.baseURI).href; // P29: Kervan afişi düz dosya (p24 ban_kervan kalktı; sayfa açılınca iner)
+  return `<div class="hint kv-ban" ${bn ? `style="--kv-ban:url(${bn})"` : ''}><span>Kervan <b>Yakut</b> ile çalışır. Yakut günlük görevlerden, meydandan, ilk Boss ve kapı geçişlerinden gelir. Eşsiz eşya ve Boss hakkı satılmaz. (Elinde ${ri('gem')} ${fmt(S.yakut)})</span></div>
     <div class="kv-grid">${SHOP.map(x => { const n = used('shop_' + x.id), ok = S.yakut >= x.cost && n < x.max; return `<div class="kv-card">
       <span class="kv-badge">Günde ${x.max}</span>${resTile(x.give ? lootKind(x.give) : 'ticket', 'kv-ico')}
       <b class="kv-name">${x.name}</b><span class="mut kv-desc">${x.desc}</span><span class="chip">Bugün ${n}/${x.max}</span>
@@ -274,14 +280,17 @@ function friendsHtml(D, tab) {
       ${D.blocked.map(x => `<div class="row frow"><span class="fwho"><b>${esc(x.name)}</b></span><button class="btn sm" data-a="unblock" data-id="${esc(x.id)}">Engeli kaldır</button></div>`).join('') || '<p class="mut">Engellediğin oyuncu yok.</p>'}`;
   }
   const on = D.friends.filter(x => x.online).length;
-  return `<p class="mut">Arkadaşların: <b>${D.friends.length}/${D.max}</b> · şu an çevrimiçi: <b>${on}</b>${D.in.length ? ` · <button class="flink" data-a="tab" data-id="req">${D.in.length} yeni istek</button>` : ''}</p>
+  return `<p class="mut fr-top">Arkadaşların: <b>${D.friends.length}/${D.max}</b> · şu an çevrimiçi: <b>${on}</b>${D.in.length ? ` · <button class="flink" data-a="tab" data-id="req">${D.in.length} yeni istek</button>` : ''}</p>
     ${D.friends.map(x => `<div class="row frow"><span class="fface">${faceImg(x, 'xs')}<i class="fdot ${x.online ? 'on' : ''}" title="${x.online ? 'Çevrimiçi' : 'Çevrimdışı'}"></i></span>${whoRich(x, `${x.lvl ? `Sv. ${x.lvl} · ` : ''}${x.il ? `${ilvTag(x.il)} · ` : ''}${x.online ? 'Çevrimiçi' : `Son görülme: ${agoText(x.seen)}`}`)}
       <button class="btn sm red" data-a="pm" data-id="${esc(x.id)}" data-name="${esc(x.name)}">Mesaj</button><button class="btn sm" data-a="frRemoveAsk" data-id="${esc(x.id)}" data-name="${esc(x.name)}">Çıkar</button></div>`).join('')
-      || '<div class="hint"><b>Henüz arkadaşın yok.</b> Sohbette, sıralamada ya da Taş Yemini\'nde bir oyuncunun adına dokun; açılan karttan “Arkadaş ekle” seç.</div>'}`;
+      || '<div class="fr-empty k-card"><i class="fr-med" aria-hidden="true"></i><b>Henüz arkadaşın yok.</b><p>Sohbette, sıralamada ya da Taş Yemini\'nde bir oyuncunun adına dokun; açılan karttan “Arkadaş ekle” seç.</p></div>'}`;
 }
 let FR = null;
-ACT.friends = d => openWin(FR = { title: 'Arkadaşlar', tab: d?.tab || 'list', tabs: [{ id: 'list', label: 'Arkadaşlar', small: 'Son görülme', icon: 'party' }, { id: 'req', label: 'İstekler', small: 'Gelen ve giden', icon: 'mail' }, { id: 'blocked', label: 'Engellenenler', small: 'Engel listesi', icon: 'lock' }],
-  load: () => run('friend.list'), render: t => { const D = cur().data; return D ? friendsHtml(D, t) : loading; } });
+// P25-b: sekme simgesi (kabartmalı altın; p25-b-png.js anahtarı)
+const frTab = k => `<span class="tico p25b-ic" style="--ic:var(--p25b-${k})" aria-hidden="true"></span>`;
+/** Arkadaşlar penceresi (Arkadaşlar / İstekler / Engellenenler). d.tab: açılacak sekme. */
+ACT.friends = d => { p25bImg(); return openWin(FR = { title: 'Arkadaşlar', scr: 'arkadas', tab: d?.tab || 'list', tabs: [{ id: 'list', label: 'Arkadaşlar', small: 'Son görülme', pre: frTab('ic_arkadas') }, { id: 'req', label: 'İstekler', small: 'Gelen ve giden', pre: frTab('ic_istek') }, { id: 'blocked', label: 'Engellenenler', small: 'Engel listesi', pre: frTab('ic_engel') }],
+  load: () => run('friend.list'), render: t => { const D = cur().data; return D ? friendsHtml(D, t) : loading; } }); };
 ACT.friendsMenu = () => { closeModal(); ACT.friends(); };
 // İşlemden sonra: arkadaş penceresi açıksa yenilenir; oyuncu kartından geldiyse kart yeniden açılır
 const after = (d, msg) => { if (msg) toast(msg); if (cur() === FR) reload(); if (d.card && !modal.hidden) ACT.pcard({ id: d.id }); }; // kart bu arada kapatıldıysa yeniden açılmaz
@@ -290,19 +299,19 @@ ACT.frAccept = async d => { if (await run('friend.accept', { id: d.id })) after(
 ACT.frDecline = async d => { if (await run('friend.decline', { id: d.id })) after(d); };
 ACT.frCancel = async d => { if (await run('friend.cancel', { id: d.id })) after(d, 'İstek geri çekildi.'); };
 ACT.frRemove = async d => { const ok = await run('friend.remove', { id: d.id }); if (!d.card || !ok) closeModal(); if (ok) after(d, 'Arkadaş listenden çıkarıldı.'); };
-ACT.frRemoveAsk = d => showModal(`<h2>Arkadaşlıktan çıkar</h2><div class="in"><p><b>${esc(d.name)}</b> arkadaş listenden çıkarılsın mı? Onun listesinden de silinirsin.</p>
+ACT.frRemoveAsk = d => !d?.name ? undefined : showModal(`<h2>Arkadaşlıktan çıkar</h2><div class="in"><p><b>${esc(d.name)}</b> arkadaş listenden çıkarılsın mı? Onun listesinden de silinirsin.</p>
   <div class="mbtns"><button class="btn red tehlike" data-a="frRemove" data-id="${esc(d.id)}" ${d.card ? 'data-card="1"' : ''}>Çıkar</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
 
 // ====================================================================================================================
 // Engel ve şikâyet
 // ====================================================================================================================
-ACT.blockAsk = d => showModal(`<h2>Oyuncuyu engelle</h2><div class="in"><p><b>${esc(d.name)}</b> engellensin mi?</p><p class="mut">Sohbet mesajlarını ve özel mesajlarını görmezsin; sana özel mesaj ve arkadaşlık isteği gönderemez. Arkadaşsanız arkadaşlık biter. Engeli Menü → Arkadaşlar → Engellenenler'den kaldırabilirsin.</p>
+ACT.blockAsk = d => !d?.name ? undefined : showModal(`<h2>Oyuncuyu engelle</h2><div class="in"><p><b>${esc(d.name)}</b> engellensin mi?</p><p class="mut">Sohbet mesajlarını ve özel mesajlarını görmezsin; sana özel mesaj ve arkadaşlık isteği gönderemez. Arkadaşsanız arkadaşlık biter. Engeli Menü → Arkadaşlar → Engellenenler'den kaldırabilirsin.</p>
   <div class="mbtns"><button class="btn red tehlike" data-a="block" data-id="${esc(d.id)}">Engelle</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
 ACT.block = async d => { closeModal(); if (await run('social.block', { id: d.id })) { toast('Oyuncu engellendi. Mesajları artık görünmeyecek.'); if (cur() === FR) reload(); } };
 ACT.unblock = async d => { if (await run('social.unblock', { id: d.id })) after(d, 'Engel kaldırıldı.'); };
 
 // Sohbet satırındaki "⋯": mesaj için şikâyet, gönderen için engel ve kart
-ACT.msgMenu = d => !d ? undefined : showModal(`<h2>${esc(d.name)}</h2><div class="in"><p class="mquote">“${esc(d.text || '')}”</p>
+ACT.msgMenu = d => !d?.name ? undefined : showModal(`<h2>${esc(d.name)}</h2><div class="in"><p class="mquote">“${esc(d.text || '')}”</p>
   <div class="mgrid"><button class="btn" data-a="quoteMsg" data-name="${esc(d.name)}" data-text="${esc(d.text || '')}">Alıntı yap</button><button class="btn red" data-a="reportAsk" data-id="${esc(d.id)}" data-name="${esc(d.name)}" data-msg="${esc(d.msg)}" data-ch="${esc(d.ch)}" data-to="${esc(d.to || '')}" data-text="${esc(d.text || '')}">Mesajı şikâyet et</button>
     <button class="btn" data-a="blockAsk" data-id="${esc(d.id)}" data-name="${esc(d.name)}">Engelle</button><button class="btn" data-a="pcard" data-id="${esc(d.id)}">Kartını aç</button></div></div>`);
 // Alıntı (19 Kas): mesajın kısaltılmış hâli yazı kutusunun başına eklenir; sohbet penceresi açıksa onun kutusuna, değilse alt sohbet çubuğuna
@@ -321,7 +330,7 @@ function reportBox() {
     <p class="mut">Şikâyetler yöneticilerce incelenir. Bir oyuncuyu günde bir kez şikâyet edebilirsin.</p>
     <div class="mbtns"><button class="btn red" data-a="repSend" ${REP.reason ? '' : 'disabled'}>Gönder</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`, 'rep');
 }
-ACT.reportAsk = d => { Object.assign(REP, { id: d.id, name: d.name, msg: d.msg || null, ch: d.ch || null, to: d.to || null, text: d.text || '', reason: null }); const n = $('#repnote'); if (n) n.value = ''; reportBox(); };
+ACT.reportAsk = d => { if (!d?.name) return; Object.assign(REP, { id: d.id, name: d.name, msg: d.msg || null, ch: d.ch || null, to: d.to || null, text: d.text || '', reason: null }); const n = $('#repnote'); if (n) n.value = ''; reportBox(); };
 ACT.repReason = d => { REP.reason = d.k; reportBox(); };
 ACT.repSend = async () => {
   if (!REP.reason) return;

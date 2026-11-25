@@ -76,7 +76,7 @@ export const DESTAN = [
                 outro: ['“Taş elden, söz bozulmaz.” Yemin buymuş. Altındaki mühür Marven’in.', 'Marven gölgeden çıkar. Gri cübbesini artık saklamıyor.'] },
               { intro: ['Taş Yemini’nin çatlağı iki yüzü ayırmış. Lira bir yüzü, Şaman Yashka öbürünü okuyor; ilk kez aynı metne bakıyorlar.', 'Son satırın altında sonradan kazınmış bir mühür.'],
                 outro: ['Yemin: “Taş elden, söz bozulmaz.” Altındaki mühür Mareşal Marven’in.', 'Marven kılıcını çeker. “Üç yüz yıldır,” der, “savaşı ben besledim. Barış, Adsız’ın açlığıdır.”'] }) },
-  { id: 8, roman: 'VIII', name: 'Tarihin Külleri', lvl: 60, kind: 'battle', play: 'Son boss Adsız; iki kral yan yana. Açık son: taşın dibinde yeni bir rün.',
+  { id: 8, roman: 'VIII', name: 'Tarihin Külleri', lvl: 60, kind: 'battle', play: 'Son Boss Adsız; iki kral yan yana. Açık son: taşın dibinde yeni bir rün.',
     reward: [{ t: 'akce', n: 40000 }, { t: 'yakut', n: 100 }],
     tale: L({ intro: ['Sisli Çukur. Ateşsiz kazanın başında Adsız bekliyor. Yanında Volgar Demirdiş ve Kral Edran; üç yüz yıldır ilk kez aynı safta.', 'Volgar Yerkıran’ı kaldırır: “Babam bu çekici bir savaşı bitirmek için taşırdı. Bugün bitiyor.”'],
                 outro: ['Adsız dağılır; kül olur, sonra külü de kalmaz. Kazan söner.', 'Taş Yemini’nin dibinde, çatlağın en altında, kimsenin kazımadığı yeni bir rün belirir. Yashka’nın gözü titrer: “Bu bizim dilimiz değil.”'] },

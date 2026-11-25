@@ -13,6 +13,7 @@ import {
   KINGDOM, GRANT, DECREE, TERR, WEATHER, PHASES, phaseOf, clockOf, weatherAt, forecast, zoneBonusText, zoneBonusFor, zoneOwnerFor, HOUR, DAY,
 } from '../shared/realm.js';
 import { svg, ri } from './icons.js';
+import { p24Img } from './ui-kaplama.js';
 import { serverEmblem } from './ui-sunucu.js';
 import { SERVER } from '../shared/content.js';
 import { world, ensureEnv } from './world.js';
@@ -123,7 +124,7 @@ ACT.worldInfo = () => {
 const OT = { amRuler: false };
 const TABS = () => [{ id: 'ruler', label: KINGDOM.title, small: 'Taht ve seçim', pre: `<span class="tico">${titleSvg('ruler')}</span>` }, { id: 'treasury', label: 'Hazine', small: 'Ulufe defteri', icon: 'akce' }, { id: 'grant', label: GRANT.name, small: 'Dağıt, ferman yaz', icon: 'gift' }, { id: 'map', label: 'Harita', small: 'Bölge hâkimiyeti', icon: 'zones' }];
 async function loadOtag(tab) {
-  if (tab === 'map') { try { DIYAR_IMG = (await import('./hikaye-png.js')).url('diyar'); } catch { } return { map: await run('realm.map') }; } // 22 Kas: GPT Diyar Haritası resmi
+  if (tab === 'map') { try { DIYAR_IMG = (await new Promise(ok => { const im = new Image(); im.onload = () => ok(DIYAR_URL); im.onerror = () => ok(null); im.src = DIYAR_URL; })) || (await import('./hikaye-png.js')).url('diyar'); } catch { } return { map: await run('realm.map') }; } // P28: yeni Diyar Haritası (düz dosya, yalnız bu sekmede iner)
   const v = await run('realm.view'); if (!v) return null;
   OT.amRuler = v.isRuler;
   return { v, led: tab === 'treasury' ? await run('realm.ledger') : null, ros: tab === 'grant' && v.isRuler ? await run('realm.roster') : null };
@@ -138,13 +139,26 @@ function renderOtag(tab) {
 }
 const ledgerRows = list => (list.length ? `<div class="board led">${list.map(e => `<div><span>${ago(e.at)}</span><b>${esc(e.toName)}</b><span>${ri('akce')} <b>${fmt(e.n)}</b> · ${esc(e.byName)}</span></div>`).join('')}</div>` : '<p class="mut">Henüz ulufe verilmedi.</p>');
 
+// P23 K7: GPT A6 tahtı (halka göre). Görseller js/p23-taht-png.js'ten tembel inip kök öğeye --p23-taht-<halk>(-golge) olarak yazılır (html.p23-tahtli).
+const p23On = () => document.documentElement.classList.contains('p23');
+let THL = null;
+const tahtYukle = () => (THL ||= import('./p23-taht-png.js').then(m => { const r = document.documentElement, B = m.default;
+  for (const k of ['elentha', 'kragmir']) for (const sfx of ['', '_golge']) { const b = atob(B['taht-' + k + sfx]), a = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) a[i] = b.charCodeAt(i);
+    r.style.setProperty('--p23-taht-' + k + sfx.replace('_', '-'), `url(${URL.createObjectURL(new Blob([a], { type: 'image/webp' }))})`); }
+  r.classList.add('p23-tahtli'); }).catch(() => null));
+/** Tahtın HTML'i: f = 'ocak' | 'sancak'; inner = tahtın oturağındaki portre (hükümdar varsa). */
+const tahtHtml = (f, inner = '') => { tahtYukle(); return `<div class="p23-taht ${inner ? 'dolu' : 'bos'}" data-t="${f === 'ocak' ? 'kragmir' : 'elentha'}"><span class="th-golge"></span><span class="th-art"></span>${inner}</div>`; };
 function rulerHtml(v) {
   const E = v.election, top = Math.max(1, ...E.cands.map(c => c.votes)), R = v.ruler;
-  const head = R ? `<div class="okart" style="--fc:${fcol(v.faction)}"><button class="oface" data-a="pcard" data-id="${esc(R.id)}">${faceImg({ av: R.av, faction: v.faction, title: 'ruler' }, 'lg')}</button>
+  const head = p23On() ? (R ? `<div class="okart p23-okart" style="--fc:${fcol(v.faction)}">${tahtHtml(v.faction, `<button class="oface" data-a="pcard" data-id="${esc(R.id)}">${faceImg({ av: R.av, faction: v.faction, title: 'ruler' }, 'lg')}</button>`)}
+      <div><h3>${esc(R.name)} ${titleChip('ruler')}${v.isRuler ? ' <span class="chip up">Bu sensin</span>' : ''}</h3><p>${fname(v.faction)} ırkının bu haftaki ${KINGDOM.title}u. Seçimi <b>${fmt(R.votes)}</b> oyla kazandı (toplam ${fmt(R.total)} oy).</p>
+      <p class="mut">${KINGDOM.title}, ${KINGDOM.treasury}'nden ırkdaşlarına ulufe dağıtır ve ırk sohbetine ferman yazar. Görevi pazartesi 00:00'da biter.</p></div></div>`
+    : `<div class="okart p23-okart" style="--fc:${fcol(v.faction)}">${tahtHtml(v.faction)}<div><h3>Taht boş</h3><p>Taht boş · pazartesi 00:00'da seçilen oturur.</p><p class="mut">Geçen hafta kimse seçilmedi.</p></div></div>`)
+    : R ? `<div class="okart" style="--fc:${fcol(v.faction)}"><button class="oface" data-a="pcard" data-id="${esc(R.id)}">${faceImg({ av: R.av, faction: v.faction, title: 'ruler' }, 'lg')}</button>
       <div><h3>${esc(R.name)} ${titleChip('ruler')}${v.isRuler ? ' <span class="chip up">Bu sensin</span>' : ''}</h3><p>${fname(v.faction)} ırkının bu haftaki ${KINGDOM.title}u. Seçimi <b>${fmt(R.votes)}</b> oyla kazandı (toplam ${fmt(R.total)} oy).</p>
       <p class="mut">${KINGDOM.title}, ${KINGDOM.treasury}'nden ırkdaşlarına ulufe dağıtır ve ırk sohbetine ferman yazar. Görevi pazartesi 00:00'da biter.</p></div></div>`
     : `<div class="hint"><b>Taht boş.</b> Geçen hafta kimse seçilmedi. Bu haftanın seçimini kazanan, pazartesi 00:00'da ${KINGDOM.title} olur.</div>`;
-  const cand = c => `<div class="row cand ${c.me ? 'me' : ''}">${faceImg({ av: c.av, faction: v.faction }, 'sm')}<div class="grow"><b>${esc(c.name)}</b> <span class="mut">Sv. ${c.lvl}${c.me ? ' · sen' : ''}</span>${c.slogan ? `<br><span class="cslo">“${esc(c.slogan)}”</span>` : ''}
+  const cand = c => `<div class="row cand ${c.me ? 'me' : ''}">${faceImg({ av: c.av, faction: v.faction }, 'sm')}<div class="grow"><b>${esc(c.name)}</b> <span class="mut">Sv. ${c.lvl}${c.me ? ' · sen' : ''}</span>${p23On() ? ` <span class="chip p23-oy">${fmt(c.votes)} oy</span>` : ''}${c.slogan ? `<br><span class="cslo">“${esc(c.slogan)}”</span>` : ''}
       <div class="pbar"><i style="width:${Math.round(100 * c.votes / top)}%"></i></div></div><span class="tag">${fmt(c.votes)}<small>oy</small></span>
       ${E.voted === c.id ? '<span class="chip up">Oyun</span>' : `<button class="btn sm red" data-a="rVote" data-id="${esc(c.id)}" data-name="${esc(c.name)}" ${E.voteBlock ? 'disabled' : ''}>Oy ver</button>`}</div>`;
   return `${head}
@@ -156,7 +170,7 @@ function rulerHtml(v) {
       <button class="btn green" data-a="rRun" ${E.runBlock ? 'disabled' : ''}>Aday ol</button></div>
     <div class="hint"><b>Kurallar:</b> aday olmak için seviye ${KINGDOM.candLvl}, elde ${fmt(KINGDOM.candSan)} Şan ve ${KINGDOM.candAgeDays} günlük hesap; oy vermek için seviye ${KINGDOM.voteLvl} ve ${KINGDOM.voteAgeDays} günlük hesap gerekir. Oylar pazartesi 00:00'da (UTC+3) sayılır; eşitlikte önce aday olan kazanır.</div>`;
 }
-ACT.rVote = d => showModal(`<h2>Oy ver</h2><div class="in"><p>Oyunu <b>${esc(d.name)}</b> için kullanmak üzeresin.</p><p class="mut">Haftada tek oy kullanılır ve oy değiştirilemez.</p>
+ACT.rVote = d => !d?.name ? undefined : showModal(`<h2>Oy ver</h2><div class="in"><p>Oyunu <b>${esc(d.name)}</b> için kullanmak üzeresin.</p><p class="mut">Haftada tek oy kullanılır ve oy değiştirilemez.</p>
   <div class="mbtns"><button class="btn red" data-a="rVoteGo" data-id="${esc(d.id)}">Oyumu ver</button><button class="btn" data-a="closeModal">Vazgeç</button></div></div>`);
 ACT.rVoteGo = async d => { closeModal(); if (await run('realm.vote', { id: d.id })) { toast('Oyun sayıldı.'); reload(); } };
 ACT.rRun = async () => {
@@ -203,6 +217,7 @@ ACT.rDecree = async () => {
   if (await run('realm.announce', { text })) { toast('Ferman ırk sohbetine sabitlendi.'); reload(); }
 };
 ACT.rGrant = d => {
+  if (!d?.name) return; // P26 G3: parametresiz çağrı
   const max = Math.max(0, +d.max || 0);
   showModal(`<h2>${GRANT.name} ver</h2><div class="in"><p><b>${esc(d.name)}</b> adlı ırkdaşına ${KINGDOM.treasury}'nden akçe ver.</p>
     <div class="crow"><input type="text" id="gamt" inputmode="numeric" maxlength="9" value="${max}" autocomplete="off" data-enter="rGrantGo" data-id="${esc(d.id)}"><span class="mut">akçe${max ? ` · en çok ${fmt(max)}` : ''}</span></div>
@@ -244,14 +259,21 @@ const RIBBON = (x, y, text, w) => `<g class="rib"><path d="M${x - w / 2 - 8} ${y
 // 22 Kas (GPT 2340 teslimi): boyalı Diyar Haritası — soldan sağa Vahran Ovası, Kül Geçidi, Kızıl Bahar Meydanı, Sisli Çukur.
 // Resim üstünde bölge şeridi (hâkim ırk rengi), kurdele etiket ve hâkim imzası. Resim yüklenemezse eski çizim (mapSvg).
 let DIYAR_IMG = null;
-const BAND = { 1: [0, 585, 300, 600], 2: [585, 1095, 840, 760], 3: [1095, 1720, 1390, 300], 4: [1720, 2340, 2030, 560] }; // [sol, sağ, etiket x, etiket y]
+// P29: sahneler/diyar_haritasi.webp (1376x768). Bölge adları resmin ÜSTÜNDE yazılı (TALIMAT §3): statik metin katmanı yok; yalnız
+// dinamik hâkimiyet (bölge elipsi + halk rengi pin + hâkim imzası) ve tıklama pini. Pin yazının hemen altında, yazıyı örtmez.
+// Yazı konumları (resim pikseli): 4 Sisli Çukur (440,207) kuzeybatı karlı, 1 Vahran Ovası (862,392) orta-doğu yeşil,
+// 3 Kızıl Bahar Meydanı (630,545) güney-orta kızıl ağaçlık, 2 Kül Geçidi (1070,282) doğu volkanik.
+// [pin x, pin y (pin ortası; pin ±66/39 px), bölge elipsi cx, cy, rx, ry]; pin dokunulunca Kapı o bölgeyle açılır (dokunma ≥44 px: .mhit)
+const DIYAR_URL = 'sahneler/diyar_haritasi.webp';
+const ZPIN = { 1: [865, 478, 850, 420, 190, 130], 2: [1070, 366, 1100, 330, 170, 200], 3: [632, 628, 640, 560, 130, 110], 4: [448, 292, 450, 240, 170, 95] };
 function mapImg(zs) {
-  const k = 6.6;
-  const lands = zs.map(z => { const [x0, x1] = BAND[z.id] || [0, 0], mine = z.owner === S.faction, col = fcol(z.owner);
-    return `<g class="mzf ${z.owner || 'none'} ${mine ? 'mine' : ''} ${zAsh(z.id) ? 'ash' : ''}"><rect x="${x0}" y="0" width="${x1 - x0}" height="1080" fill="${col}" fill-opacity="${z.owner ? .16 : 0}"/>${zAsh(z.id) ? `<rect x="${x0}" y="0" width="${x1 - x0}" height="1080" fill="#1a1612" fill-opacity=".55"/>` : ''}<rect x="${x0 + 6}" y="1046" width="${x1 - x0 - 12}" height="22" rx="6" fill="${col}" fill-opacity="${z.owner ? .9 : .35}"/>${mine ? `<rect x="${x0 + 6}" y="6" width="${x1 - x0 - 12}" height="1068" rx="14" fill="none" stroke="#f2cf6a" stroke-width="7" stroke-dasharray="26 14"/>` : ''}</g>`; }).join('');
-  const labels = zs.map(z => { const [, , lx, ly] = BAND[z.id] || [0, 0, 0, 0], w = Math.max(56, z.name.length * 6.6);
-    return `<g transform="translate(${lx} ${ly}) scale(${k})">${RIBBON(0, 0, esc(z.name), w)}<g class="mo-own">${z.owner ? SIGN_SVG[z.owner](-30, 22) : ''}<text x="${z.owner ? 6 : 0}" y="26" class="mo">${z.owner ? fname(z.owner) : 'Sahipsiz'}</text></g></g>`; }).join('');
-  return `<svg class="dmap fancy img" viewBox="0 0 2340 1080" role="img" aria-label="Diyar Haritası"><image href="${DIYAR_IMG}" x="0" y="0" width="2340" height="1080" preserveAspectRatio="none"/>${lands}${labels}</svg>`;
+  const k = 3, W = 1376, H = 768;
+  const lands = zs.map(z => { const [, , cx, cy, rx, ry] = ZPIN[z.id] || [0, 0, 0, 0, 0, 0], mine = z.owner === S.faction, col = fcol(z.owner);
+    return `<g class="mzf ${z.owner || 'none'} ${mine ? 'mine' : ''} ${zAsh(z.id) ? 'ash' : ''}"><ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${col}" fill-opacity="${z.owner ? .16 : 0}"/>${zAsh(z.id) ? `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="#1a1612" fill-opacity=".55"/>` : ''}${mine ? `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="none" stroke="#f2cf6a" stroke-width="4" stroke-dasharray="18 10"/>` : ''}</g>`; }).join('');
+  const labels = zs.map(z => { const [lx, ly] = ZPIN[z.id] || [0, 0];
+    // P24: bölge pini (ırk imzası sivri damla); P28: pin Kapı'yı o bölgeyle açar; P29: ad kurdelesi kalktı (ad haritada yazılı; aria-label kalır)
+    return `<g class="mpin-g" data-a="gate" data-tab="zones" data-zone="${z.id}" role="button" aria-label="${esc(z.name)}" transform="translate(${lx} ${ly}) scale(${k})"><circle class="mhit" cx="0" cy="-2" r="54" fill="transparent"/><path d="M0 -22 c-9 0 -14 6 -14 13 c0 9 14 22 14 22 s14 -13 14 -22 c0 -7 -5 -13 -14 -13z" class="mpin" fill="${fcol(z.owner)}" stroke="#f2cf6a" stroke-width="1.6"/><circle cx="0" cy="-9" r="4.2" fill="#120c08"/>${z.owner ? `<g class="mo-own">${SIGN_SVG[z.owner](0, 25)}</g>` : ''}</g>`; }).join('');
+  return `<svg class="dmap fancy img" viewBox="0 0 ${W} ${H}" role="img" aria-label="Diyar Haritası"><image href="${DIYAR_IMG}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none"/>${lands}${labels}</svg>`;
 }
 function mapSvg(zs) {
   const hub = [198, 172];
@@ -279,11 +301,10 @@ function mapHtml(M) {
   // Bölge kartı: bölgenin manzarası, hâkim ırkın rengi ve imzası, bonus, iki ırkın puan çekişmesi
   const card = z => {
     const tot = Math.max(1, z.score.ocak + z.score.sancak), lead = z.score.ocak === z.score.sancak ? null : z.score.ocak > z.score.sancak ? 'ocak' : 'sancak', mine = z.owner === S.faction, po = Math.round(100 * z.score.ocak / tot);
-    return `<div class="zcard z${z.id} ${mine ? 'mine' : ''} ${z.owner ? 'own-' + z.owner : 'own-none'} ${zAsh(z.id) ? 'ash' : ''}" style="--fc:${fcol(z.owner)}">${zAsh(z.id) ? '<span class="zc-ash">Küllü · henüz açmadın</span>' : ''}
-      <div class="zc-top"><span class="zc-name">${ri('zone' + z.id)}<b>${esc(z.name)}</b></span><span class="zc-own"><i class="zc-sign"></i>${z.owner ? fname(z.owner) : 'Sahipsiz'}</span></div>
+    return `<div class="zcard z${z.id} ${mine ? 'mine' : ''} ${z.owner ? 'own-' + z.owner : 'own-none'} ${zAsh(z.id) ? 'ash' : ''}" style="--fc:${fcol(z.owner)}">      <div class="zc-top"><span class="zc-name">${ri('zone' + z.id)}<b>${esc(z.name)}</b></span><span class="zc-own"><i class="zc-sign"></i>${z.owner ? fname(z.owner) : 'Sahipsiz'}</span></div>
       <div class="zc-bon ${mine ? 'on' : ''}">${zoneBonusText(z.id)}${mine ? ' · <b>sende etkin</b>' : ''}</div>
       <div class="zc-war"><b style="color:${FACTIONS.ocak.color}">${fmt(z.score.ocak)}</b><div class="zc-bar"><i style="width:${po}%;background:${FACTIONS.ocak.color}"></i><i style="width:${100 - po}%;background:${FACTIONS.sancak.color}"></i><em style="left:${po}%"></em></div><b style="color:${FACTIONS.sancak.color}">${fmt(z.score.sancak)}</b></div>
-      <small class="zc-next">${lead ? `Gelecek hafta: <b style="color:${fcol(lead)}">${fname(lead)}</b>` : 'Eşit: bölge sahibinde kalır'}</small></div>`;
+      <div class="zc-foot"><small class="zc-next">${lead ? `Gelecek hafta: <b style="color:${fcol(lead)}">${fname(lead)}</b>` : 'Eşit: bölge sahibinde kalır'}</small>${zAsh(z.id) ? '<span class="zc-ash">Küllü · henüz açmadın</span>' : ''}</div></div>`;
   };
   const mineN = M.zones.filter(z => z.owner === S.faction).length;
   return `<div class="dm-sum" style="--fc:${fcol(S.faction)}"><span class="dm-big"><b>${mineN}</b>/${M.zones.length}</span><span><b>bölge ${fname(S.faction)} hâkimiyetinde</b><br><span class="mut">Hafta ${left(M.endsAt - now())} sonra biter; puanı yüksek ırk gelecek hafta bölgeyi alır.</span></span></div>
@@ -307,6 +328,7 @@ hooks.race = D => (D?.terr ? `<div class="zstrip"><b>Bölge hâkimiyeti</b>${D.t
 // Taş Yemini → Başbuğ: iki ırkın bu haftaki önderleri
 hooks.rulers = D => {
   const one = f => { const r = D.rulers?.[f], F = FACTIONS[f];
+    if (p23On()) return `<div class="rcol" style="--fc:${F.color}"><h3>${F.name}</h3>${r ? `${tahtHtml(f, `<button class="oface" data-a="pcard" data-id="${esc(r.id)}">${faceImg({ ...r, title: 'ruler' }, 'lg')}</button>`)}<b>${esc(r.name)}</b>${titleChip('ruler')}<small>Sv. ${r.lvl} · ${fmt(r.votes)}/${fmt(r.total)} oy</small>` : `${tahtHtml(f)}<b>Taht boş</b><small>pazartesi 00:00'da seçilen oturur</small>`}</div>`;
     return `<div class="rcol" style="--fc:${F.color}"><h3>${F.name}</h3>${r ? `<button class="oface" data-a="pcard" data-id="${esc(r.id)}">${faceImg({ ...r, title: 'ruler' }, 'lg')}</button><b>${esc(r.name)}</b>${titleChip('ruler')}<small>Sv. ${r.lvl} · ${fmt(r.votes)}/${fmt(r.total)} oy</small>` : `<div class="rempty">${svg('crown')}</div><b>Taht boş</b><small>Geçen hafta kimse seçilmedi</small>`}</div>`; };
   return `<div class="rtwo">${one('ocak')}${one('sancak')}</div>
     <p class="mut">Her ırk, haftada bir ${KINGDOM.title}unu seçer. ${KINGDOM.title} ırkın hazinesinden ulufe dağıtır, ferman yazar ve unvanıyla çerçevesini bir hafta taşır.</p>

@@ -3,7 +3,7 @@
 //  - sol üstte oyuncu kartı, altında üyelik şeridi, onun altında Menü ve Kapı kısayolu
 //  - sağ üstte kaynaklar, altta kısayol çubuğu (başta Sıralama, sonda Kervan), çubuğun üstünde sohbet şeridi
 import './sahne.js'; // 23 Kas: G4–G6 görselleri arkada yüklenir (--sc-* CSS değişkenleri)
-import { CAPITALS, capitalOf } from '../shared/content.js';
+import { CAPITALS, capitalOf, dayKey } from '../shared/content.js';
 import { serverTag, serverEmblem } from './ui-sunucu.js';
 import { rankIdx, rankName, nextRank } from '../shared/rutbe.js';
 import { playFragman } from './ui-fragman.js';
@@ -11,7 +11,7 @@ import { S, now, DEV, devUI, LOCAL, resetLocal, onState, logout } from './api.js
 import { NUFUS_LINE, FULL_TEXT, blessed } from '../shared/nufus.js'; // nüfus dengesi: Bereket rozeti, dolu ırk kartı
 import { ACT, $, hud, openWin, lockNote, chatbar, esc, fmt, toast, run, showModal, closeModal, confirmBox, closeWin, hooks, heroImg, mobImg, avatarImg, myTier, DEF_W, energyNow, locked, me, titleChip, bonusBox, tName, rkBadge, lootToast } from './ui-core.js';
 import { camRig, project, setShift, setHfov, THREE, RENDER } from './engine3d.js';
-import { show2d, pos2d, hub2dOn, active2d, onHit, onHitOk } from './hub2d.js'; // 20 Kas Aşama 3: 2B başkent
+import { show2d, pos2d, hub2dOn, active2d, onHit, onHitOk, sehir2Aktif, S2, S2_CARSI_BG, S2_KLAN_BG, S2_BG } from './hub2d.js'; // 20 Kas Aşama 3: 2B başkent
 import { gfx, TIER_NAMES } from './gfx.js';
 import { view } from './orient.js';
 import { world, clearScene, ensureEnv, spawn, setUpdater } from './world.js';
@@ -31,7 +31,11 @@ import { svg, ri } from './icons.js';
 import { DESTAN, chapterOpen, chapterDone } from '../shared/destan.js'; // 20 Kas: Görevler panelinde sıradaki Destan bölümü
 import { unitFrame, hotbarHtml, expHtml, minimapHtml, drawMinimap, plate, ROLE } from './hud17.js'; // 19 Kas ana merkez arayüzü (css/v17-hub.css)
 import { bannerSvg } from './banner.js';
+import P23IMG from './p23-anaekran-png.js'; // 23 Kas (P23 K4/K5): çerçeveler, hava ve premium simgeleri, menü glifleri (WebP base64)
+import { WEATHER, weatherAt, forecast, clockOf } from '../shared/realm.js';
+import { SERVER } from '../shared/content.js';
 import { seriesNewCount } from '../shared/minidizi.js';
+import { weeklyReady, monthlyReady } from '../shared/meta.js';
 import { supportBadge } from './ui-destek.js'; // okunmamış duyuru / yanıt rozeti
 import { starterBtn } from './ui-odeme.js'; // İlk Alım Paketi simgesi
 import { achTitle, tutActive, WEEKLY, MONTHLY, weeklyProgress, monthlyProgress } from '../shared/meta.js';
@@ -49,6 +53,12 @@ const BUILDINGS = [
   { id: 'wheel', name: 'Kader Çarkı', act: 'wheel', key: 'wheel' },
   { id: 'monument', name: 'Taş Yemini', act: 'monument' },
 ];
+// P28 (TALIMAT §2): yeni başkent (sehir2) binaları. Çarşı, Kapı ve Savaş Çadırı başkentten kalktı; Han, Ahır ve Zafer Anıtı geldi
+// (ACT.han / ACT.ahir / ACT.zaferAniti başka modülde; tanımsızsa ACT.building "Yakında" der). Eski 3B/2B başkent BUILDINGS'i kullanır.
+const BUILDINGS2 = [...BUILDINGS.filter(b => b.id !== 'gate' && b.id !== 'carsi'),
+  { id: 'han', name: 'Han', act: 'han' }, { id: 'ahir', name: 'Ahır', act: 'ahir' }, { id: 'zaferAniti', name: 'Zafer Anıtı', act: 'zaferAniti' }];
+/** Zafer Anıtı günlük ödülü bugün alındı mı (S.zafer.claimDay = dayKey ya da 'YYYY-AA-GG'; alan yoksa alınmadı sayılır). */
+const zaferAlindi = () => { const d = S?.zafer?.claimDay, t = now(); return d != null && (d === dayKey(t) || d === new Date(t + 3 * 3600000).toISOString().slice(0, 10)); };
 
 // ---- Başkent ve Yemin Pazarı ----
 // Ana üs ırkın başkentidir (Kragmir: Kragmir Dağ Salonları, isli ocaklar · Elentha: Elentha Ak Kuleleri, beyaz surlar). Yemin Pazarı iki ırkın buluştuğu
@@ -59,7 +69,7 @@ export const CAPITAL = CAPITALS;
 const CARSI = [{ id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'carsi', name: 'Başkente dön', act: 'goCapital', cls: 'portal' }, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, { id: 'yashka', name: 'Şaman Yashka', act: 'yashka' }, { id: 'pazar', name: 'Pazar', act: 'pazar', key: 'market' }, { id: 'tuccar', name: 'Tüccar', act: 'tuccar', nolabel: true }, { id: 'monument', name: 'Taş Yemini', act: 'monument' }, { id: 'pier', name: 'Balık Tut', act: 'balik' }]; // iskele: balık tutma (ui-balik.js) · Kader Çarkı yalnız başkentte
 // 22 Kas (GPT "VAHRAN Haritalar"): 2B çarşıda dört satış noktası Tüccar'ın raflarına ve Pazar'ın takı süzgecine açılır;
 // ışınlanma kapısı (portal) yer seçimini açar. Pazar, Karaborsa, Şaman Yashka ve Balık Tut çarşıda kalır (yalnız yerleri değişti).
-const CARSI2 = [{ id: 'c_silah', name: 'Silah ve Kalkan', act: 'tcWeapons' }, { id: 'c_zirh', name: 'Zırh', act: 'tcArmors' }, { id: 'c_taki', name: 'Takı', act: 'pzTaki', key: 'market' },
+const CARSI2 = [{ id: 'c_silah', name: 'Silah ve Kalkan', act: 'tcWeapons' }, { id: 'c_zirh', name: 'Zırh', act: 'tcArmors' }, { id: 'c_taki', name: 'Takı', act: 'tcJewels' },
   { id: 'c_sarf', name: 'Sarf ve Malzeme', act: 'tcMats' }, { id: 'pazar', name: 'Pazar', act: 'pazar', key: 'market' }, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' },
   { id: 'yashka', name: 'Şaman Yashka', act: 'yashka' }, { id: 'pier', name: 'Balık Tut', act: 'balik' }, PORTAL];
 const PLACE = { cur: 'capital' };
@@ -83,9 +93,9 @@ ACT.npcKing = async () => { const k = kingOf(); if (!k) return; // 23 Kas (C8): 
 // Klan haritası: binalar klan penceresinin sekmelerini açar (ui-klan.js ACT.clan({ tab }))
 const KLAN = [{ id: 'gate', name: 'Kapı', act: 'gateMenu' }, { id: 'portal', name: 'Işınlanma Kapısı', act: 'portalMenu', cls: 'portal' }, { id: 'k_hq', name: 'Karargâh', tab: 'hq' }, { id: 'k_salon', name: 'Klan Salonu', tab: 'genel' },
   { id: 'k_gorev', name: 'Görev Panosu', tab: 'gorev' }, { id: 'k_dukkan', name: 'Klan Dükkânı', tab: 'dukkan' }, { id: 'k_sancak', name: 'Sancak Direği', tab: 'sancak' },
-  { id: 'k_av', name: 'Oba Avı', tab: 'av' }, { id: 'k_hisar', name: 'Hisar', tab: 'hisar' }, { id: 'k_hazine', name: 'Klan Hazinesi', tab: 'hq' }].map(b => b.tab ? { ...b, act: 'klanTab' } : b);
+  { id: 'k_av', name: 'Oba Avı', tab: 'av' }, { id: 'k_hisar', name: 'Hisar', tab: 'hisar' }, { id: 'k_hazine', name: 'Klan Hazinesi', tab: 'hazine' }].map(b => b.tab ? { ...b, act: 'klanTab' } : b);
 hooks.placeName = () => PLACE.cur === 'carsi' ? 'Yemin Pazarı' : PLACE.cur === 'klan' ? 'Klan toprağı' : (CAPITAL[S.faction] || GAME.hub); // sonuç ekranının dönüş düğmesi (en son bulunulan yer)
-const blds = () => (PLACE.cur === 'carsi' ? [...(hub2dOn() ? CARSI2 : CARSI), ...npcs()] : PLACE.cur === 'klan' ? KLAN : [...BUILDINGS, ...(hub2dOn() ? [PORTAL, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, { id: 'arena', name: 'Savaş Çadırı', act: 'savas' }] : []), ...kingNpc()]); // 2B başkentte Karaborsa da var (Aşama 3; işlev Çarşı'dakiyle aynı)
+const blds = () => (PLACE.cur === 'carsi' ? [...(hub2dOn() ? CARSI2 : CARSI), ...npcs()] : PLACE.cur === 'klan' ? KLAN : SEHIR2 && hub2dOn() ? [...BUILDINGS2, PORTAL, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, ...kingNpc()] : [...BUILDINGS, ...(hub2dOn() ? [PORTAL, { id: 'karaborsa', name: 'Karaborsa', act: 'karaborsa' }, { id: 'arena', name: 'Savaş Çadırı', act: 'savas' }] : []), ...kingNpc()]); // P28: sehir2 başkentinde BUILDINGS2 // 2B başkentte Karaborsa da var (Aşama 3; işlev Çarşı'dakiyle aynı)
 // Etiketin ekran noktası: 2B başkentte resim koordinatından, 3B'de sahne izdüşümünden
 const posOf = id => active2d() ? pos2d(id) : (anchors[id] ? project(anchors[id]) : null);
 ACT.klanTab = d => { const b = KLAN.find(x => x.id === (d?.id || LAST_BLD)); ACT.clan({ tab: b?.tab || 'hq' }); };
@@ -114,16 +124,22 @@ ACT.gateMenu = () => { // 19 Kas: her yerde ve öğreticide de önce seçim penc
 ACT.gateGo = () => { closeModal(); ACT.gate(); };
 // Işınlanma kapısı (22 Kas): her haritada bir tane; buradan olmayan, erişilebilen yerler seçilir (başkent yalnız kendi halkının,
 // klan toprağı yalnız klan üyesine)
+/** Işınlanma Kapısı (P26 O8): yer başına kit kartı (.k-card) — küçük harita önizlemesi + ad + kısa açıklama; bulunulan yer ve kilitli klan toprağı pasif. */
 ACT.portalMenu = () => {
-  const here = PLACE.cur, opt = (a, ic, t, sub) => `<button class="btn red" data-a="${a}" style="display:flex;align-items:center;gap:10px;justify-content:flex-start"><span class="ico g1 sm">${svg(ic)}</span><span style="text-align:left"><b>${t}</b><br><small>${sub}</small></span></button>`;
-  const L = [here !== 'capital' ? opt('gateCapital', 'gate', esc(CAPITAL[S.faction] || GAME.hub), 'Irkının başkenti') : '',
-    here !== 'carsi' ? opt('gateCarsi', 'market', 'Yemin Pazarı', 'Silah, zırh, takı ve erzak tezgâhları') : '',
-    S.clan && here !== 'klan' ? opt('gateKlan', 'clan', 'Klan toprağı', esc(S.clanTag?.n || 'Klanının otağı')) : ''].filter(Boolean);
-  showModal(`<h2>Işınlanma Kapısı</h2><div class="in"><div class="mbtns" style="flex-direction:column;align-items:stretch">${L.join('')}</div>${S.clan ? '' : '<p class="mut">Klan toprağına geçmek için bir klana katıl.</p>'}</div>`, 'gatemenu');
+  const here = PLACE.cur, f = S.faction;
+  const yer = [
+    { id: 'capital', a: 'gateCapital', t: esc(CAPITAL[f] || GAME.hub), sub: SEHIR2 && hub2dOn() ? 'Irkının başkenti: Örs, Kral, Han ve Ahır' : 'Irkının başkenti: Örs, Kral ve Kapı', bg: 'var(--s2-bg, none)' }, // P28: Kapı/Meydan SAVAŞ düğmesinde
+    { id: 'carsi', a: 'gateCarsi', t: 'Yemin Pazarı', sub: 'Silah, zırh, takı ve erzak tezgâhları', bg: `url(${S2_CARSI_BG})` }, // P29: yeni çarşı sahnesi (her kipte; eski map_carsi inmez)
+    { id: 'klan', a: 'gateKlan', t: 'Klan toprağı', sub: S.clan ? esc(S.clanTag?.n || 'Klanının otağı') : 'Bir klana katılınca açılır', bg: `url(${S2_KLAN_BG[f === 'sancak' ? 'sancak' : 'ocak']})`, lock: !S.clan }]; // P29: klan kartı yeni oba sahnesi (map_klan_* inmez)
+  const kart = y => { const on = here === y.id || (y.id === 'capital' && !['carsi', 'klan'].includes(here));
+    return `<button class="k-card pt-card${on ? ' here' : ''}${y.lock ? ' lock' : ''}" data-a="${y.a}" data-pt="${y.id}"${on || y.lock ? ' disabled' : ''}><span class="pt-img" style="background-image:${y.bg || 'none'}" aria-hidden="true"></span><span class="pt-tx"><b>${y.t}</b><small>${y.sub}</small>${on ? '<em>Buradasın</em>' : y.lock ? `<em class="pt-lk">${svg('lock')} Kilitli</em>` : ''}</span></button>`; };
+  showModal(`<h2>Işınlanma Kapısı</h2><div class="in"><div class="pt-grid">${yer.map(kart).join('')}</div></div>`, 'gatemenu portalm');
+  import('./ui-kaplama.js').then(K => { for (const y of yer) if (y.key) K.p24Img(y.key).then(u => { const el = document.querySelector(`#modal .portalm [data-pt="${y.id}"] .pt-img`); if (u && el) el.style.backgroundImage = `url(${u})`; }); }).catch(() => {});
 };
 // Çarşı tezgâhları (yalnız yönlendirme: Tüccar'ın rafı ya da Pazar'ın süzgeci seçili açılır)
 ACT.tcWeapons = () => ACT.tuccarSub?.('weapons'); ACT.tcArmors = () => ACT.tuccarSub?.('armors'); ACT.tcMats = () => ACT.tuccarSub?.('mats');
 ACT.pzTaki = () => ACT.marketKindOpen?.('jewel');
+ACT.tcJewels = () => ACT.tuccarSub?.('jewels'); // 24 Kas: Çarşı'daki Takı etiketi ve Lira figürü Takı dükkânını (npcTaki) açar; öğreticide ilk alım Halvor'da kalır
 ACT.gateDestan = () => { closeModal(); ACT.destan(); };
 ACT.gateCapital = () => { closeModal(); ACT.goCapital(); };
 ACT.gateCarsi = () => { closeModal(); ACT.goCarsi(); };
@@ -167,6 +183,7 @@ function fitHub() {
 const NUDGE_UI = ['.pcard', '.premrow', '.lrail', '.krail', '.res', '.wclock', '.wterr', '.dock', '.mmap', '.hotbar', '.qtrk', '.expbar', '.wsrv', '.dev', '.srail', '.savas2d', '.rrail'], NUDGE_GAP = 3, NUDGE_MAX = 140; // 21 Kas: sunucu rozeti, deneme şeridi, İlk Alım, Savaş düğmesi de korunur
 let nudges = {};
 function planNudges() {
+  if (sehir2Aktif()) { nudges = {}; return; } // sehir2: etiketler referans yerinde kalır (itme yok)
   const rot = document.documentElement.classList.contains('rot'), iw = innerWidth;
   const box = e => { const r = e.getBoundingClientRect(); return rot ? [r.top, iw - r.right, r.bottom, iw - r.left] : [r.left, r.top, r.right, r.bottom]; };
   const ui = [...NUDGE_UI.map(q => hud.querySelector(q)), chatbar].filter(e => e && !e.hidden && e.getClientRects().length).map(box);
@@ -263,6 +280,8 @@ function renderEnergy() {
   const { e, left } = energyNow();
   const h = `<b>${e}/${ENERGY.max}</b>${left ? `<small>${Math.floor(left / 60000)}:${String(Math.floor(left / 1000) % 60).padStart(2, '0')}</small>` : ''}`;
   if (el._h !== h) { el._h = h; el.innerHTML = h; }
+  for (const x of hud.querySelectorAll('.s2-enr')) x.textContent = `${e}/${ENERGY.max}`; // 23 Kas: yeni ana ekran kapsülü
+  if (P23() || SEHIR2) p23Tick();
 }
 const freePoints = () => partyIds(S).reduce((a, c) => a + statPointsFree(S, c) + skillPointsFree(S, c), 0); // karakterin dağıtılmamış puanı
 const questReady = () => QUESTS.filter(q => questProgress(S, q) >= q.need && !S.daily.qdone[q.id]).length + (S.daily.gift ? 0 : 1) + mqReady(S);
@@ -270,9 +289,43 @@ function buildingBadge(id) {
   if (id === 'mine' && !locked('mine')) return mineStock(S, now()) >= mineRate(S, now()) * 2;
   return false;
 }
+// ---------- P23 ana ekran (html.p23; ?p23=0 eski görünüme döner) ----------
+const P23 = () => document.documentElement.classList.contains('p23');
+let p23Css = false;
+/** Gömülü görselleri --p23-<ad> CSS değişkeni olarak bir kez yazar (css/p23-anaekran.css kullanır). */
+function p23Images() {
+  if (p23Css) return; p23Css = true;
+  const st = document.createElement('style'); st.id = 'p23-img';
+  st.textContent = ':root{' + Object.entries(P23IMG).map(([k, v]) => `--p23-${k}:url(data:image/webp;base64,${v})`).join(';') + '}';
+  document.head.appendChild(st);
+}
+// Hava kutusu: saat + hava adı + bonus/bedel; dokununca açıklama balonu (WEATHER[k].line) ve sonraki 6 saatlik dilimin tahmini
+let hvOpen = false;
+const HV_ICON = { clear: 'acik', rain: 'yagmur', fog: 'sis', wind: 'poyraz' };
+function havaHtml(s2) {
+  const t = now(), k = weatherAt(t), W = WEATHER[k], F = forecast(t), cur = F.find(f => f.now), nx = F.find(f => !f.now);
+  const parts = k === 'clear' ? [] : String(W.short).split(' · ');
+  const eff = k === 'clear' ? '<span class="n">Hava dingin · Etkisi yok</span>' : parts.map((x, i) => `<span class="${i ? 'c' : 'b'}">${esc(x)}</span>`).join('');
+  const nxt = nx ? `Sonraki dilim (${clockOf(nx.from)}): ${WEATHER[nx.k].name}${nx.k === 'clear' ? ' · Etkisi yok' : ' · ' + WEATHER[nx.k].short}` : '';
+  return `<button class="ph-main" data-a="p23Hava" aria-expanded="${hvOpen}"><i class="ph-ico" style="background-image:var(--p23-hava-${HV_ICON[k]})"></i><span class="ph-t"><b>${clockOf(t)} · ${esc(W.name)}</b><span class="ph-e">${eff}</span></span></button>
+    <button class="ph-srv" data-a="server" title="Sunucu bilgileri">${s2 ? `<span class="s2-sv"><b>${esc(SERVER.name)}</b><small>Sunucu</small></span>` : ''}${s2 ? '' : esc(SERVER.name) + ' '}▾</button>
+    <div class="ph-tip" role="tooltip"><b>${esc(W.name.toLocaleUpperCase('tr'))} · ${clockOf(cur.from)}–${clockOf(cur.to)}</b><span>${esc(W.line)}</span><em>${esc(nxt)}</em></div>`;
+}
+const havaBox = () => `<div class="p23-hv ${hvOpen ? 'open' : ''}">${havaHtml()}</div>`;
+/** Saat ve hava değişince kutuyu tazeler (elemanı değiştirmez; açık balon kapanmaz). */
+function p23Tick() {
+  for (const el of hud.querySelectorAll('.p23-hv, .s2-hv')) {
+    const h = havaHtml(el.classList.contains('s2-hv')); if (el._h !== h) { el._h = h; el.innerHTML = h; }
+    el.classList.toggle('open', hvOpen);
+  }
+}
+ACT.p23Hava = () => { hvOpen = !hvOpen; p23Tick(); };
+document.addEventListener('click', e => { if (hvOpen && !e.composedPath().some(n => n.classList?.contains('p23-hv') || n.classList?.contains('s2-hv'))) { hvOpen = false; p23Tick(); } }, true);
+
 // Oyuncu kartının hemen altında üyelik şeridi: kademe ve kalan gün, yoksa çağrı
 function premBar() {
   const t = myTier(), days = t ? Math.max(1, Math.ceil((S.premium.until - now()) / 86400000)) : 0;
+  if (P23()) return `<div class="premrow p23prem"><button class="prem t${t}" data-a="premium"><i style="background-image:var(--p23-premium-simge)"></i><b>PREMİUM</b><small>${t ? `${days} gün kaldı` : 'Avantajları gör'}</small></button></div>`; // ödeme ilk sürümde kapalı ("Yakında"): Premium penceresi karşılar
   return `<div class="premrow"><button class="prem t${t}" data-a="premium"><i>${svg(t ? 'san' : 'gem')}</i><b>${t ? PREMIUM[t].name + ' Premium' : 'Premium'}</b><small>${t ? `${days} gün kaldı` : `+%${Math.round(PREMIUM.at(-1).xp * 100)} kazanç`}</small></button></div>`; // yanındaki bayraklı çip (.wterr, ui-dunya.js) bölge hâkimiyetidir: Diyar Haritası'nı açar. Premium'un geniş dokunma alanı (::after) çipin üstüne taşmasın diye v13-hub.css .prem'i konumlu yapar
 }
 // Görev izleyici (19 Kas, 2. sürüm): sol üstte, Premium şeridinin altında. Kapalıyken (varsayılan) yalnız ana görev satırı;
@@ -287,22 +340,24 @@ function questBox() {
   const dq = QUESTS.filter(q => !S.daily.qdone?.[q.id]).map(q => ({ q, c: questProgress(S, q) })).sort((a, b) => (b.c >= b.q.need) - (a.c >= a.q.need) || b.c / b.q.need - a.c / a.q.need);
   const ready = dq.filter(x => x.c >= x.q.need).length;
   const main = n ? qRow('mqTrack', n.id, mqAsk(n), mqProg(S, n), n.need, mqState(S, n) === 'ready', 'main') : `<span class="qt-none">Ana görevler tamam</span>`;
-  const tog = `<button class="qt-tog" data-a="qboxToggle" title="${qOpen ? 'Küçült' : 'Görevleri aç'}">${qOpen ? '−' : '+'}${!qOpen && ready ? `<span class="badge">${ready}</span>` : ''}</button>`;
+  const tog = `<button class="qt-tog" data-a="qboxToggle" title="${qOpen ? 'Küçült' : 'Görevleri aç'}">${qOpen ? '−' : '+'}${!qOpen && ready ? `<span class="badge">${cap9(ready)}</span>` : ''}</button>`;
   return `<div class="qtrk ${qOpen ? 'open' : ''}"><div class="qt-hd" data-a="questLog">Görevler</div><div class="qt-top"><span class="qt-k"><i>${svg('quest')}</i>Ana görev</span>${main}${tog}</div>${qOpen ? `<div class="qt-grid">${dq.slice(0, 4).map(({ q, c }) => qRow(c >= q.need ? 'quests' : 'questGo', q.id, q.name, c, q.need, c >= q.need)).join('')}</div><button class="qt-all" data-a="questLog">Tümünü gör</button>` : ''}</div>`;
 }
 // görev izleyici sohbet kutusunun hemen üstünde durur: sohbetin yüksekliği CSS'e --chath olarak verilir
 try { new ResizeObserver(() => document.documentElement.style.setProperty('--chath', `${chatbar.offsetHeight || 92}px`)).observe(chatbar); } catch {}
 ACT.qboxToggle = () => { qOpen = !qOpen; try { localStorage.setItem('dd_qtrk', qOpen ? '1' : '0'); } catch {} renderHud(); };
 // Savaş düğmesi: savaş kapılarını tek pencerede toplar
+// P27 3.1: her kart tam boy sahne (img/p27/card_<k>.webp, css/p27-savas.css); kilitli kartta kilit rozeti
+/** Savaş seçim modalını açar: Sefer, Hızlı Av, Meydan, Şan Divanı (Meydan/Şan Divanı arena kilidine bağlı). */
 ACT.savas = () => {
   const cz = locked('arena');
-  const opt = (a, ic, t, sub, off) => `<button class="sv-opt ${off ? 'off' : ''}" data-a="${a}" ${off ? 'disabled' : ''}><i>${svg(ic)}</i><span><b>${t}</b><small>${sub}</small></span></button>`;
+  const opt = (a, k, t, sub, off) => `<button class="sv-opt sv-${k} ${off ? 'off' : ''}" data-a="${a}" ${off ? 'disabled' : ''}><span><b>${t}</b><small>${sub}</small></span>${off ? `<em class="sv-kilit" aria-label="Kilitli">${svg('lock')}</em>` : ''}</button>`;
   showModal(`<h2>Savaş</h2><div class="in"><div class="sv-grid">${[
-    opt('svGo', 'battle', 'Sefer', 'Bölgeler, bosslar ve zindanlar'),
-    opt('svQuick', 'energy', 'Hızlı Av', 'Açık en yüksek bölümde tek savaş'),
-    opt('svCz', 'arena', 'Meydan', cz ? lockNote('arena') : 'Oyunculara karşı (PvP)', cz),
-    opt('svDivan', 'trophy', 'Şan Divanı', cz ? lockNote('arena') : 'CZ - PK ve rütbe', cz),
-  ].join('')}</div></div>`);
+    opt('svGo', 'sefer', 'Sefer', 'Bölgeler, bosslar ve zindanlar'),
+    opt('svQuick', 'hizli_av', 'Hızlı Av', 'Açık en yüksek bölümde tek savaş'),
+    opt('svCz', 'meydan', 'Meydan', cz ? lockNote('arena') : 'Oyunculara karşı (PvP)', cz),
+    opt('svDivan', 'san_divani', 'Şan Divanı', cz ? lockNote('arena') : 'CZ - PK ve rütbe', cz),
+  ].join('')}</div></div>`, 'p27sv');
 };
 ACT.svGo = () => { closeModal(); ACT.gateGo(); };
 ACT.svQuick = () => { closeModal(); ACT.quick(); };
@@ -329,17 +384,75 @@ const mapTitle = () => PLACE.cur === 'carsi' ? 'Yemin Pazarı – Ortaçarşı' 
 const mapXY = () => PLACE.cur === 'carsi' ? [512, 498] : PLACE.cur === 'klan' ? [208, 377] : S.faction === 'ocak' ? [349, 611] : [664, 402];
 let mmDirty = true;
 ACT.hotbar = () => ACT.party({ tab: 'skill' });
+// ---------- Yeni başkent ana ekranı (html.sehir2; ?sehir=0 ya da dd_sehir=0 kapatır) ----------
+// Yalnızca ana başkent görünümünde (html[data-hub2d=ocak|sancak]) css/p23-anaekran.css gösterir; çarşı ve klan eski HUD'u korur.
+const SEHIR2 = (() => { try { return new URLSearchParams(location.search).get('sehir') !== '0' && localStorage.getItem('dd_sehir') !== '0'; } catch { return true; } })();
+if (SEHIR2) document.documentElement.classList.add('sehir2');
+let s2Fac = '';
+const S2_SPRITE = /^(g[1-4]|m[1-4]|bu|bs|cf|ce|cark)$/; // P28: başkentten kalkan canlı sprite/çark anahtarları (paket içinde kalır, CSS'e yazılmaz)
+/** Irkın HUD parçalarını (WebP base64) --s2-<ad> CSS değişkeni olarak yazar; data-faction değişince yenilenir. */
+async function s2Images() {
+  if (!SEHIR2 || !document.documentElement.dataset.hub2d) return; // P28 yuk: paket yalnız başkentte (oluşturma ekranında öteki halkınki inmesin); mevcut karakterde main.js önden ısıtır
+  const f = document.documentElement.dataset.faction === 'sancak' || (!document.documentElement.dataset.faction && S?.faction === 'sancak') ? 'sancak' : 'ocak';
+  if (f === s2Fac) return; s2Fac = f;
+  try {
+    const m = (await (f === 'sancak' ? import('./p23-sehir2-sancak.js') : import('./p23-sehir2-ocak.js'))).default;
+    if (s2Fac !== f) return;
+    let st = document.getElementById('s2-img'); if (!st) { st = document.createElement('style'); st.id = 's2-img'; document.head.appendChild(st); }
+    st.textContent = 'html{' + Object.entries(m).filter(([k, v]) => typeof v === 'string' && k !== 'bg' && !S2_SPRITE.test(k)).map(([k, v]) => `--s2-${k.replace(/_/g, '-')}:url(data:image/webp;base64,${v})`).concat(`--s2-bg:url(${S2_BG[f]})`).join(';') + '}'; // P29: başkent sahnesi sahneler/ (Işınlanma menüsü kartı); canlı sprite anahtarları değişkene yazılmaz
+  } catch { s2Fac = ''; }
+}
+if (SEHIR2) try { // --s2u: bir referans pikseli (1376x768 kompozisyon); yükseklikten, dar-uzun ekranda genişlikten
+  const ro = () => { const w = hud.clientWidth, h = hud.clientHeight; if (w && h) document.documentElement.style.setProperty('--s2u', Math.min(w / 1376, h / 768).toFixed(5) + 'px'); };
+  new ResizeObserver(ro).observe(hud); ro();
+} catch {}
+if (SEHIR2) { s2Images(); try { new MutationObserver(() => s2Images()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-faction', 'data-hub2d'] }); } catch {} }
+/** Sayı rozeti sınırı (P26 D4): 9'dan büyük sayılar "9+" yazılır; sayı olmayan rozet ('!') aynen kalır. */
+export const cap9 = n => (typeof n === 'number' && n > 9 ? '9+' : n);
+/** Yeni ana ekran HUD'u: sol üst profil, sol 5 düğme, sağ üst kaynaklar, alt sohbet + EXP + 6 menü + SAVAŞ. */
+function s2Html(u0, pts, qr) {
+  const t = myTier(), days = t ? Math.max(1, Math.ceil((S.premium.until - now()) / 86400000)) : 0;
+  const prem = t ? `${PREMIUM[t].name} Premium · ${days} gün` : 'Premium · Avantajlar';
+  const need = xpNeed(S.lvl), xp = need > 0 ? Math.max(0, Math.min(100, 100 * S.xp / need)) : 0;
+  const bd = n => n ? `<span class="badge">${cap9(n)}</span>` : '';
+  const rb = (a, k, label, badge = '') => `<button class="s2-rb s2-rb-${k}" data-a="${a}" aria-label="${label}" title="${label}">${bd(badge)}</button>`;
+  const mb = (a, k, label, badge = '') => `<button class="s2-m s2-m-${k}" data-a="${a}"><i aria-hidden="true"></i><span>${label}</span>${bd(badge)}</button>`;
+  const cap = (a, k, title, inner) => `<button class="s2-cap s2-cap-${k}" data-a="${a}" title="${title}"><b>${inner}</b><em aria-hidden="true">+</em></button>`;
+  const wk = weeklyReady(S) + monthlyReady(S), news = supportBadge().news;
+  return `<div class="s2hud">
+    <div class="s2-sancak" aria-hidden="true"></div>
+    <button class="s2-pf" data-a="profile" aria-label="Profil"><span class="s2-av">${avatarImg('ava')}</span><b class="s2-lv">Sv.${S.lvl}</b></button>
+    <div class="s2-nm">${tName(S.name, S.ach?.title, rankIdx(S))}</div>
+    <div class="s2-bar s2-hp"><span>${fmt(u0.maxHp || 0)} / ${fmt(u0.maxHp || 0)}</span></div>
+    ${u0.maxMp > 0 ? `<div class="s2-bar s2-mp"><span>${fmt(u0.maxMp)} / ${fmt(u0.maxMp)}</span></div>` : ''}
+    <button class="s2-prem t${t}" data-a="premium"><b>${prem}</b><i aria-hidden="true">›</i></button>
+    ${hooks.p28Hud?.() || ''}
+    <div class="s2-lr">${rb('drawer', 'menu', 'Menü', me.req || '')}${rb('news', 'duyuru', 'Duyurular', news ? (typeof news === 'number' ? news : 1) : '')}${rb('mail', 'posta', 'Posta')}${rb('codex', 'rehber', 'Rehber')}${rb('diyarMap', 'harita', 'Harita')}</div>
+    <div class="s2-res">
+      <div class="s2-caps">${cap('shop', 'enerji', 'Enerji', `<span class="s2-enr">${energyNow().e}/${ENERGY.max}</span>`)}${cap('shop', 'akce', 'Akçe', fmt(S.akce))}${cap('yakutAl', 'yakut', 'Yakut al', fmt(S.yakut))}</div>
+      <div class="s2-hv ${hvOpen ? 'open' : ''}">${havaHtml(true)}</div>
+    </div>
+    <div class="s2-dock">${mb('party', 'karakter', 'Karakter', pts || '')}${mb('hotbar', 'yetenek', 'Yetenek')}${mb('bag', 'canta', 'Çanta', S.items.length >= BAG_LIMIT ? '!' : '')}${mb('quests', 'gorev', 'Görevler', qr + wk || '')}${mb('clan', 'klan', 'Klan')}${mb('shop', 'kervan', 'Kervan')}</div>
+    <button class="s2-savas" data-a="savas" aria-label="Savaş"><b>SAVAŞ</b></button>
+    <div class="s2-exp" title="Deneyim ${fmt(S.xp)} / ${fmt(need)}"><b>EXP %${xp.toFixed(2).replace('.', ',')}</b><span><i style="width:${xp}%"></i></span></div>
+  </div>`;
+}
 function renderHud() {
   if (hud.hidden || !S) return;
-  const pts = freePoints(), qr = questReady();
-  const btn = (a, icon, label, badge, cls = '') => `<button class="dbtn ${cls}" data-a="${a}"><i>${svg(icon)}</i><span>${label}</span>${badge ? `<span class="badge">${badge}</span>` : ''}</button>`;
+  const pts = freePoints(), qr = questReady(), p23 = P23(); if (p23 || SEHIR2) p23Images();
+  const btn = (a, icon, label, badge, cls = '') => `<button class="dbtn ${cls}" data-a="${a}"><i>${svg(icon)}</i><span>${label}</span>${badge ? `<span class="badge">${cap9(badge)}</span>` : ''}</button>`;
   const u0 = partyUnits(S)[0] || {}, carsi = PLACE.cur === 'carsi', klan = PLACE.cur === 'klan';
-  const lbl = b => { const lk = b.key && locked(b.key); return `<button class="blabel ${lk ? 'lock' : ''} ${b.cls || ''}" data-a="building" data-id="${b.id}">${b.cls === 'portal' ? '<i class="bl-glow" aria-hidden="true"></i>' : ''}${plate(ROLE[b.id] ?? '', b.name)}${lk ? `<small><i>${svg('lock')}</i>Sv. ${UNLOCK[b.key]}</small>` : ''}${!lk && buildingBadge(b.id) ? '<span class="dot"></span>' : ''}</button>`; };
+  const lbl = b => { const lk = b.key && locked(b.key);
+    if (sehir2Aktif() && S2[b.id]) { const dot = b.id === 'zaferAniti' ? !zaferAlindi() : !lk && buildingBadge(b.id); // P28/P29: başkent, Yemin Pazarı ve Klan Obası etiketi yalnız beyaz yazı (kutu/simge yok); .s2n yazı boyunu taşır
+      return `<button class="blabel s2 s2y ${lk ? 'lock' : ''} s2-${b.id}" data-a="building" data-id="${b.id}"><b class="s2t"><span class="s2n">${b.id === 'king' ? 'Kral ' + (S.faction === 'ocak' ? 'Volgar' : 'Edran') : esc(b.name)}</span></b>${lk ? `<em class="s2lk">Sv.${UNLOCK[b.key]}</em>` : ''}${dot ? `<span class="dot${b.id === 'zaferAniti' ? ' s2y-altin' : ''}"></span>` : ''}</button>`; }
+    if (sehir2Aktif() && S2[b.id]) return `<button class="blabel s2 ${lk ? 'lock' : ''} s2-${b.id}" data-a="building" data-id="${b.id}"><u class="s2tp" aria-hidden="true"></u>${S2[b.id][2] ? `<i class="s2i" style="--ic:var(--s2-i${S2[b.id][2]})" aria-hidden="true"></i>` : ''}<b class="s2t">${b.id === 'king' ? 'Kral ' + (S.faction === 'ocak' ? 'Volgar' : 'Edran') : esc(b.name)}</b>${lk ? `<em class="s2lk">${svg('lock')}Sv.${UNLOCK[b.key]}</em>` : ''}${!lk && buildingBadge(b.id) ? '<span class="dot"></span>' : ''}</button>`; // 23 Kas: sehir2 etiketi (elmas ikon + koyu plaka)
+    return `<button class="blabel ${lk ? 'lock' : ''} ${b.cls || ''}" data-a="building" data-id="${b.id}">${b.cls === 'portal' ? '<i class="bl-glow" aria-hidden="true"></i>' : ''}${plate(ROLE[b.id] ?? '', b.name)}${lk ? `<small><i>${svg('lock')}</i>Sv. ${UNLOCK[b.key]}</small>` : ''}${!lk && buildingBadge(b.id) ? '<span class="dot"></span>' : ''}</button>`; };
   hud.innerHTML = `
     <div id="blabels">${blds().filter(b => !b.nolabel).map(lbl).join('')}<button class="blabel plate me" data-a="profile" data-id="me"><b><i class="me-sh">${svg('shield')}</i>${esc(S.name)}</b><span class="me-bar"><i></i></span></button></div>
     <button class="pcard uf" data-a="profile">${unitFrame({ avatar: avatarImg('ava'), name: tName(S.name, S.ach?.title, rankIdx(S)), lvl: S.lvl, hp: u0.maxHp || 0, mp: u0.maxMp || 0 })}</button>
     ${premBar()}
-    <div class="lrail"><button class="lbtn" data-a="drawer"><i>${svg('grid')}</i><span>Menü</span>${me.req ? `<span class="badge">${me.req}</span>` : supportBadge().tickets || seriesNewCount(S) ? '<span class="badge dot md-dot"></span>' : ''}</button><button class="lbtn" data-a="news"><i>${svg('news')}</i><span>Duyuru</span>${supportBadge().news ? '<span class="badge dot"></span>' : ''}</button><button class="lbtn" data-a="mail"><i>${svg('mail')}</i><span>Posta</span></button><button class="lbtn" data-a="codex"><i>${svg('book')}</i><span>Ansiklopedi</span></button><button class="lbtn" data-a="diyarMap" title="Diyar Haritası"><i>${svg('map')}</i><span>Harita</span></button></div>
+    ${p23 ? havaBox() : ''}
+    <div class="lrail"><button class="lbtn" data-a="drawer"><i>${svg('grid')}</i><span>Menü</span>${me.req ? `<span class="badge">${cap9(me.req)}</span>` : supportBadge().tickets || seriesNewCount(S) ? '<span class="badge dot md-dot"></span>' : ''}</button><button class="lbtn" data-a="news"><i>${svg('news')}</i><span>Duyuru</span>${supportBadge().news ? '<span class="badge dot"></span>' : ''}</button><button class="lbtn" data-a="mail"><i>${svg('mail')}</i><span>Posta</span></button><button class="lbtn" data-a="codex"><i>${svg('book')}</i><span>${p23 ? 'Rehber' : 'Ansiklopedi'}</span></button><button class="lbtn" data-a="diyarMap" title="Diyar Haritası"><i>${svg('map')}</i><span>Harita</span></button></div>
     <div class="res">
       <div class="pill" title="Enerji" data-a="shop">${ri('energy', '#7fe08a')}<span id="enr" style="display:contents"></span><button data-a="shop">+</button></div>
       <div class="pill" title="Akçe">${ri('akce')}<b>${fmt(S.akce)}</b></div>
@@ -350,6 +463,7 @@ function renderHud() {
     ${''/* 20 Kas (kullanıcı): alttaki yetenek çubuğu kalktı (yetenekler Karakter → Yetenek'te) */}
     ${expHtml(S.xp, xpNeed(S.lvl))}
     ${starterBtn()}
+    ${SEHIR2 ? s2Html(u0, pts, qr) : ''}
     ${questBox()}
     ${devUI() ? `<div class="dev">${LOCAL ? 'DENEME SÜRÜMÜ<span> · kayıt bu cihazda</span>' : 'TEST SUNUCUSU'}</div>` : ''}`;
   mmDirty = true;
@@ -364,7 +478,7 @@ ACT.czpk = () => showModal(`<h2>CZ - PK</h2><div class="in"><div class="mbtns" s
 ACT.czHall = () => { closeModal(); ACT.hall(); };
 ACT.czArena = () => { closeModal(); ACT.gate({ tab: 'pvp' }); };
 ACT.czMarket = () => { closeModal(); ACT.shop(); };
-ACT.building = d => { const b = d?.id && blds().find(x => x.id === d.id); if (!b || !ACT[b.act]) return; LAST_BLD = d.id; // C13: kimliksiz/bilinmeyen bina sessiz döner
+ACT.building = d => { const b = d?.id && blds().find(x => x.id === d.id); if (!b) return; if (!ACT[b.act]) return toast('Yakında'); LAST_BLD = d.id; // C13: kimliksiz bina sessiz döner; P28: eylemi henüz yüklenmemiş bina "Yakında"
   if (b.key && locked(b.key)) return toast(`${b.name}, seviye ${UNLOCK[b.key]} olunca açılır.`); ACT[b.act](); };
 // Sıradaki (geçilmemiş ilk açık) aşamanın savaş öncesi ekranı — "5 savaş kazan" görevinin Git düğmesi kullanır
 ACT.quick = () => {
@@ -375,6 +489,26 @@ ACT.quick = () => {
 ACT.drawer = () => showModal(`<h2>Menü</h2><div class="in">
   ${[['rankMenu', 'rank', 'Sıralama'], ['rehber', 'book', 'Rehber: oyunun bütün sistemleri'], ['friendsMenu', 'party', `Arkadaşlar${me.req ? ` · ${me.req} yeni istek` : ''}`], ['promoMenu', 'gift', 'Promosyon kodu kullan'], ['supportMenu', 'mail', 'Sorun / Teknik Destek'], ['seriesOpen', 'film', 'Mini Dizi'], ['server', 'clan', 'Sunucu: Ares'], ['fullscreen', 'expand', 'Tam ekran'], ...(LOCAL ? [] : [['logoutMenu', 'lock', 'Çıkış yap']]), ['charSwitchMenu', 'party', 'Karakter değiştir']].map(([a, i, t]) => `<button class="ibtn" data-a="${a}"><span class="ico g1 sm">${svg(i)}</span><span><b>${t}</b></span>${a === 'seriesOpen' && seriesNewCount(S) ? '<span class="badge dot md-dot"></span>' : ''}</button>`).join('')}
   </div>`, 'menu');
+// 23 Kas (P23 K5): tek ızgara, tek kart biçimi; "Sunucu: Ares" madde değil başlıkta küçük bilgi (css/p23-anaekran.css)
+const drawerOld = ACT.drawer;
+ACT.drawer = () => P23() ? p23Drawer() : drawerOld();
+const BELL_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3v1h16v-1l-2-3V9a6 6 0 0 0-6-6zm-2 15a2 2 0 0 0 4 0z"/></svg>';
+function p23Drawer() {
+  p23Images();
+  const card = (a, g, t, sub, dot) => `<button class="mc" data-a="${a}"><span class="mc-g" style="--g:var(--p23-glif-${g})"></span><span class="mc-t"><b>${t}</b><small>${sub}</small></span>${dot ? '<i class="mc-dot"></i>' : ''}</button>`;
+  const ic = (a, g, t, sub) => `<button class="mc" data-a="${a}"><span class="mc-g s2i">${g}</span><span class="mc-t"><b>${t}</b><small>${sub}</small></span></button>`; // 23 Kas: sağ raydan kalkan kısayollar (simge SVG)
+  showModal(`<div class="p23m-hd"><h2>Menü</h2><button class="p23m-srv" data-a="server"><i style="--g:var(--p23-glif-sunucu)"></i>Sunucu: <b>${esc(SERVER.name)}</b></button></div>
+    <div class="p23m-grid">${[
+      ...(SEHIR2 ? [ic('notifs', BELL_SVG, 'Bildirimler', 'Sunucu ve hesap bildirimleri'), ic('calendar', svg('gift'), 'Takvim', 'Giriş ödülleri ve etkinlikler'), ic('achs', svg('trophy'), 'Başarımlar', 'Başarım ve unvanlar'), ic('onlineOpen', svg('timer'), 'Çevrimiçi Ödül', 'Süreli sandıklar')] : []),
+      card('rankMenu', 'siralama', 'Sıralama', 'Sunucu ve halk sıralaması'),
+      card('rehber', 'rehber', 'Rehber', 'Oyun sistemleri ve kurallar'),
+      card('friendsMenu', 'arkadaslar', 'Arkadaşlar', me.req ? `${me.req} yeni istek` : 'Liste, istekler ve çevrimiçi', me.req),
+      card('promoMenu', 'promosyon', 'Promosyon Kodu', 'Ödül ve hediye kodu kullan'),
+      card('supportMenu', 'destek', 'Destek', 'İletişim ve yardım', supportBadge().tickets),
+      card('seriesOpen', 'mini-dizi', 'Mini Dizi', 'Korant hikâye bölümleri', seriesNewCount(S)),
+    ].join('')}</div>
+    <div class="p23m-ft"><button class="p23m-alt" data-a="settings"><i style="--g:var(--p23-glif-ayarlar)"></i>Ayarlar</button><button class="p23m-alt" data-a="fullscreen"><i style="--g:var(--p23-glif-tam-ekran)"></i>Tam Ekran</button><button class="p23m-alt" data-a="charSwitchMenu"><i style="--g:var(--p23-glif-karakter-degistir)"></i>Karakter Değiştir</button>${LOCAL ? '' : '<button class="p23m-alt" data-a="logoutMenu">Çıkış yap</button>'}</div>`, 'p23m');
+}
 ACT.rankMenu = () => { closeModal(); ACT.rank(); };
 ACT.logoutMenu = () => confirmBox('Çıkış yap', 'Bu cihazdaki oturumun kapanır. Karakterlerin sunucuda hesabında kalır.', () => logout(), 'Çıkış yap');
 // Menü kısayolları: pencereyi kapatıp ilgili ekranı açar
@@ -442,6 +576,35 @@ ACT.profile = () => {
     ${devUI() ? `<div class="hint"><b>Test araçları</b><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm aşamaları aç</button>${LOCAL ? '<button class="btn sm red tehlike" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : ''}
   `, `prof pf-${S.faction}`);
 };
+// 23 Kas (P23 K10b): Gemini N8 düzeni + GPT A8 arka planı (tembel yüklenir); Test araçları bölümü K10a bayrağına (devUI) bağlıdır
+const profileOld = ACT.profile;
+ACT.profile = () => P23() ? p23Profile() : profileOld();
+function p23Profile() {
+  const st = S.stats, F = FACTIONS[S.faction], t = myTier(), need = xpNeed(S.lvl), xpPct = Math.min(100, 100 * S.xp / need);
+  const winRate = st.battles ? Math.round(100 * st.wins / st.battles) : 0, upRate = st.upOk + st.upFail ? Math.round(100 * st.upOk / (st.upOk + st.upFail)) : 0;
+  const nr = nextRank(S), rk = `${rankName(rankIdx(S))}${nr ? ` · ${rankName(nr.i)} için ${fmt(nr.need)} Şan` : ''}`;
+  const tile = (label, val, sub = '') => `<div class="pp-tile"><small>${label}</small><b>${val}${sub ? `<em>${sub}</em>` : ''}</b></div>`;
+  const tools = devUI() ? `<div class="pp-dev"><div class="pp-dh"><b>TEST ARAÇLARI · ${LOCAL ? 'DENEME SÜRÜMÜ' : 'TEST SUNUCUSU'}</b><small>Mağaza derlemesinde gizlenir</small></div><div class="mbtns"><button class="btn sm" data-a="devEnergy">Enerji doldur</button><button class="btn sm" data-a="devLevel">Seviye +5</button><button class="btn sm" data-a="devMastery">Ustalık +10</button><button class="btn sm" data-a="devGive">Kaynak ver</button><button class="btn sm" data-a="devGear">Eşya ver</button><button class="btn sm" data-a="devUnlock">Tüm aşamaları aç</button>${LOCAL ? '<button class="btn sm red tehlike" data-a="devReset">Kaydı sıfırla</button>' : ''}</div></div>` : '';
+  showModal(`<button class="pp-gear" data-a="settings" title="Ayarlar" aria-label="Ayarlar"><i style="--g:var(--p23-glif-ayarlar)"></i></button>
+    <div class="pp-id">
+      <button class="pp-ava" data-a="avatarPick" title="Fotoğrafı değiştir" aria-label="Fotoğrafı değiştir">${avatarImg('lg')}<span class="pp-lv">Sv. ${S.lvl}</span></button>
+      <div class="pp-who">
+        <div class="pp-nm">${rkBadge(rankIdx(S))}<h2>${esc(S.name)}</h2><button class="pp-ttl" data-a="titlePick" title="Unvan seç">${S.ach?.title ? esc(achTitle(S.ach.title)) : 'Unvan Seç'} ▾</button></div>
+        <div class="pp-tags"><span class="pp-fac">${F.name}</span><span>Sunucu: <b>${esc(SERVER.name)}</b></span><span class="pp-rk" title="Rütbe ömür boyu kazandığın Şan’dan gelir; harcamak düşürmez.">${rk}</span></div>
+        <div class="pp-xp"><span class="pp-bar"><i style="width:${xpPct}%"></i></span><small><span>Tecrübe Puanı (TP)</span><span>%${xpPct >= 10 ? Math.floor(xpPct) : xpPct.toFixed(1).replace('.', ',')}</span></small></div>
+      </div>
+      <div class="pp-met"><div><small>GÜÇ</small><b>${fmt(partyPower(S))}</b></div><div class="g"><small>EŞYA SV.</small><b>${itemLevel(S) ?? '—'}</b></div></div>
+    </div>
+    <div class="pp-strip">
+      <button class="pp-chip" data-a="premiumMenu"><small>Üyelik</small><b>${t ? `${PREMIUM[t].name} Premium` : 'Yok'}</b></button>
+      <button class="pp-chip" data-a="clan"><small>Klan</small><b>${S.clanName ? esc(S.clanName) : 'Klansız'}</b></button>
+      <div class="pp-chip g"><small>${FACTION_BONUS[S.faction].name}</small><b>${bonusLines(S.faction).join(' · ')}</b></div>
+    </div>
+    <div class="pp-grid">${tile('Savaş', fmt(st.battles))}${tile('Zafer', fmt(st.wins), `%${winRate}`)}${tile('Başarılı Basma', fmt(st.upOk), `%${upRate}`)}${tile('Başarısız Basma', fmt(st.upFail))}${tile('Çanta', S.items.length, `/${BAG_LIMIT}`)}</div>
+    ${S.rk?.fr?.length ? '<div class="mbtns pf-acts"><button class="btn sm" data-a="frameSel">Çerçeve</button></div>' : ''}
+    ${tools}`, `p23p ${devUI() ? '' : 'nodev'}`);
+  import('./p23-profil-png.js').then(m => { const el = document.querySelector('#modal .box.p23p'); if (el) el.style.setProperty('--p23-pbg', `url(data:image/webp;base64,${m.default[S.faction === 'ocak' ? 'kragmir' : 'elentha']})`); }).catch(() => {});
+}
 // Grafik ayarı (ACT.gfx): ui-isik.js, kademeler gfx.js
 // Profil fotoğrafı: kendi kahramanların ve ansiklopedide keşfettiğin yaratıklar arasından seçilir
 ACT.avatarPick = () => {

@@ -16,7 +16,7 @@ export { slashArc, whirlRing, projectile, meteorStrike, shockwave, healAura } fr
 // Deneme linki: .glb dosyası sunulamadığından model base64 .js modülü olarak gelir (yalnız yayın kopyası)
 const loadGLB = (url, cb) => import('../' + url + '.js').then(m => { const s = atob(m.default), b = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) b[i] = s.charCodeAt(i); new GLTFLoader().parse(b.buffer, '', cb, () => {}); }).catch(() => {});
 const GLB_W = {};
-loadGLB('models/weapons/lance.glb', g => {
+const glbLance = () => loadGLB('models/weapons/lance.glb', g => {
   let geo = null; g.scene.traverse(o => { if (o.isMesh && !geo) geo = o.geometry; });
   if (!geo) return;
   if (!geo.attributes.normal) geo.computeVertexNormals();
@@ -51,7 +51,7 @@ const GLB_ITEM = {
   chitin_shield: { L: 0.9, a: 0x6e5a44, shield: true }, dread_shield: { L: 0.85, a: 0x5a6672, shield: true },
 };
 const GLB_I = {};
-for (const [k, D] of Object.entries(GLB_ITEM)) loadGLB(`models/items/${k}.glb`, gl => {
+const glbItems = () => { for (const [k, D] of Object.entries(GLB_ITEM)) loadGLB(`models/items/${k}.glb`, gl => {
   let geo = null; gl.scene.traverse(o => { if (o.isMesh && !geo) geo = o.geometry; });
   if (!geo) return;
   geo = geo.index ? geo.toNonIndexed() : geo; geo.computeVertexNormals();
@@ -65,7 +65,12 @@ for (const [k, D] of Object.entries(GLB_ITEM)) loadGLB(`models/items/${k}.glb`, 
   else { geo.translate(0, -D.h, 0).scale(D.L, D.L, D.L); if (D.w !== 'staff') geo.rotateX(Math.PI / 2).rotateZ(Math.PI / 2); }
   geo.computeBoundingSphere();
   GLB_I[k] = geo;
-}, undefined, () => {});
+}, undefined, () => {}); };
+// P26 O15 (açılış yükü): 12 hazır model (≈2,6 MB .glb.js) eskiden modül yüklenince (sunucu ekranından önce) iniyordu; artık ilk
+// 3B silah/kalkan kurulumunda bir kez iner (2B savaş ve başkentte hiç gerekmez). Yüklenene dek prosedürel model (eski davranış).
+let glbOn = false;
+/** Hazır silah/kalkan modellerini ilk gerektiğinde bir kez indirmeye başlatır. */
+export function glbYukle() { if (glbOn) return; glbOn = true; glbLance(); glbItems(); }
 const glbMat = (c, glow, lv) => c.M.plate(0xffffff, { map: null, bumpMap: null, vertexColors: true, roughness: 0.4, metalness: 0.5, side: THREE.DoubleSide, ...(glow ? { emissive: glow, emissiveIntensity: lv.emissive * 0.12 } : {}) });
 
 // ---------- Yardımcılar ----------
@@ -290,6 +295,7 @@ function buildWeaponCore(kind, c, G) {
   c.glowSparks = lv ? lv.sparks : 0;
   c.glowMeshes ||= [];
   const steel = glow ? M.plate(0xe6ecf2, { emissive: glow, emissiveIntensity: lv.emissive }) : M.plate(0xd6dde4, { roughness: 0.2 });
+  glbYukle();
   const GI = c.wglb && GLB_I[c.wglb];
   if (GI && kind !== 'shield') { // eşyanın kendi 3B modeli (GLB_ITEM)
     g.add(mesh(GI, glbMat(c, glow, lv)));
@@ -406,6 +412,7 @@ function buildWeaponCore(kind, c, G) {
 
 export function buildShield(c, look) {
   const M = c.M;
+  glbYukle();
   if (c.sglb && GLB_I[c.sglb]) { const g = new THREE.Group(); g.add(mesh(GLB_I[c.sglb], glbMat(c))); return g; }
   const s = new THREE.Shape();
   s.moveTo(-0.26, 0.32); s.lineTo(0.26, 0.32); s.lineTo(0.26, 0.02); s.quadraticCurveTo(0.24, -0.36, 0, -0.52); s.quadraticCurveTo(-0.24, -0.36, -0.26, 0.02); s.closePath();

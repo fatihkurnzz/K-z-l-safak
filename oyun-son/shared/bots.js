@@ -82,6 +82,6 @@ export const BOT_LINES = [
   'Pazarda Nadir yüzük arıyorum', 'Klanımıza alım var, seviye 30 üstü', 'Dipsiz Kuyu 8. dalgada yine kaldım', 'Usta taşı kaça gidiyor şu an?',
   'Akın birazdan açılıyor', 'Kızıl Bahar Meydanı yaratıkları rahipsiz geçilmiyor', 'Çarktan eşsiz çıktı sonunda!', 'Meydanda Şampiyon ligine çıkan var mı',
   'Elentha bu hafta seferi alır', 'Kragmir geri adım atmaz', 'Maden gece boyu iyi biriktirmiş', 'Sisli Çukur 20 için ateş büyücüsü şart',
-  'iyi oyunlar herkese', 'Su verilmiş kılıç fark ediyor gerçekten', 'Tepegöz avına 5 dk kala', 'Yeraltı Ocağı 25. kat boss zor mu?',
+  'iyi oyunlar herkese', 'Su verilmiş kılıç fark ediyor gerçekten', 'Tepegöz avına 5 dk kala', 'Yeraltı Ocağı 25. kat Boss zor mu?',
 ];
 export const BOT_REPLIES = ['Selam! Şu an savaştayım, sonra yazarım.', 'Eyvallah, kolay gelsin.', 'Pazara bak, orada var.', 'Klanda konuşalım mı?', 'Meydanda görüşürüz.'];

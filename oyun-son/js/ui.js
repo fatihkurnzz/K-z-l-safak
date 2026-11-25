@@ -39,5 +39,8 @@ import './ui-destan.js'; // Destan: sekiz hikâye bölümü (20 Kas)
 import './ui-anit.js'; // Anıt Savaşı: Şaman Yashka'dan (19 Kas) // Kristal Nöbeti: Yemin Pazarı'nda Şaman Yashka (19 Kas) // Yemin Pazarı Karaborsası (19 Kas)
 import './ui-klavye.js'; // döndürülmüş kipte (dik telefon) oyunun yatay ekran klavyesi
 import './ui-denetci.js'; // Oyun Denetçisi: FPS, kare süresi, bellek ölçümü // Zindanlar: mini sahneler ve ilerleme yolları // Meydan (CZ - PK): Savaş, Savunma, Meydan Marketi, Şan Dükkânı // çevrimiçi ödülleri (15 dk · 30 dk · 1 sa · 2 sa)
+import './ui-ahir.js'; // P28: Ahır (yoldaşlar) ve üç binanın ortak tam ekran katmanı
+import './ui-han.js'; // P28: Han (içecek buff'ları, Sıcak Çorba, HUD rozeti)
+import './ui-zafer.js'; // P28: Zafer Anıtı (son halk savaşı, günlük ödül)
 export { showHub, showCreate } from './ui-hub.js';
 export { toast } from './ui-core.js';

@@ -1,0 +1,19 @@
+/* P29 — savas/zindan/karakter/harita sahneleri. important bildirimi YOK. */
+
+/* P29 #2: savaş sonucu ekranı (ui-battle.js showResult, #modal .box.p25r; görünüm p25-d.css) arka zemini =
+   sahneler/savas_sonuc_arkaplan.webp. Yalnız arkadaki zemin değişir; kartlar/arma/düğmeler aynı. Kural yalnız sonuç penceresi
+   açıkken eşleşir: resim tembel iner. Okunurluk için ortada koyu hâle; yenilgide yarı desatüre (saturation katmanı). */
+#modal:has(> .box.p25r) {
+  background:
+    radial-gradient(ellipse 62% 70% at 50% 46%, #000a, #0006 70%, #000a),
+    url(../sahneler/savas_sonuc_arkaplan.webp) 50% 50% / cover no-repeat,
+    #0b0a0c;
+}
+#modal:has(> .box.p25r.yenilgi) {
+  background:
+    radial-gradient(ellipse 62% 70% at 50% 46%, #000b, #0007 70%, #000b),
+    linear-gradient(#80808099, #80808099),
+    url(../sahneler/savas_sonuc_arkaplan.webp) 50% 50% / cover no-repeat,
+    #0b0a0c;
+  background-blend-mode: normal, saturation, normal, normal;
+}

@@ -1,0 +1,41 @@
+/* P28 — anaekran. Kurallar ekran/duruma kapsamli; important bildirimi YOK. */
+
+/* bildirim */
+/* Eylem geri bildirimi: alt ortada tek satır (ui-core.js toast; bottom JS ile dock/pencere/yetenek çubuğuna göre) */
+#toastAlt { position:fixed; left:50%; bottom:12%; z-index:100; max-width:min(calc(var(--lw, 100vw) * .6), 520px); box-sizing:border-box; padding:3px 14px; border-radius:11px;
+  background:rgba(12, 9, 6, .86); border:1px solid rgba(231, 199, 90, .38); color:#f3e6c4; font:600 12px/1.35 Inter, sans-serif; text-align:center;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; pointer-events:none; opacity:0; transform:translate(-50%, 6px); transition:opacity .16s ease-out, transform .16s ease-out; }
+#toastAlt.on { opacity:1; transform:translate(-50%, 0); }
+#toastAlt:empty { display:none; }
+/* Etkinlik hatırlatma bandı (ui-duyuru.js hatShow): ince, dokunulabilir */
+#annbar .ann2.hat { height:26px; pointer-events:auto; cursor:pointer; }
+#annbar .ann2.hat .ann2-txt { font-size:12px; }
+@media (prefers-reduced-motion: reduce) { #toastAlt, #annbar .ann2.hat { transition:none; } }
+
+/* 1. Başkent = yalnız fotoğraf (hub2d.js s2Kur): düz koyu zemin; kırpma kutusu dışına taşma yok */
+html[data-sehir2][data-hub2d="ocak"] #hub2d, html[data-sehir2][data-hub2d="sancak"] #hub2d { background:#0b0907; }
+html[data-sehir2][data-hub2d] #hub2d .s2-box.s2-foto { overflow:hidden; }
+
+/* 3. Başkent bina adları: yalnız beyaz yazı + koyu gölge; kutu/çerçeve/simge yok. Dokunma kutusu en az 44x44 (görünmez dolgu).
+   p23-sehir2.css'teki important'lı padding (sol 50u, sağ 24u) ezilemediği için yazı translate ile ortalanır. */
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me) { --h:max(44px, calc(var(--s2u, .5px) * 26)); --tx:#fff; min-height:44px; justify-content:center; filter:none; translate:calc(var(--s2u, .5px) * -13) 0; transition:none; }
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y.s2-wheel:not(.me) { translate:none; }
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me)::before,
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me)::after { background:none; clip-path:none; box-shadow:none; }
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me) .s2t { letter-spacing:.3px; }
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me):hover { scale:none; filter:none; }
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y.lock:not(.me) { filter:none; opacity:.82; }
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me) .s2lk { color:#fff; text-shadow:0 1px 2px #000, 0 0 4px #000; }
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me) .dot { right:2px; top:8px; animation:none; }
+/* 4. Zafer Anıtı: günlük ödül alınmamışsa yumuşak antik altın nokta */
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me) .dot.s2y-altin { width:9px; height:9px; border-radius:50%; background:#c4a468; border:1px solid rgba(40,30,16,.85); box-shadow:0 0 6px rgba(196,164,104,.55); }
+
+/* carsi */
+/* 1. Yemin Pazarı = yalnız fotoğraf (hub2d.js s2Kur): başkentle aynı düz koyu zemin */
+html[data-sehir2][data-hub2d="carsi"] #hub2d { background:#0b0907; }
+/* 2. Bina adı yazı boyu (başkent + Yemin Pazarı): .s2t'nin important'lı fontu çocuk .s2n'de ezilir (880x406'da 13px, 740x360'ta 12px, tablette en çok 20px) */
+html[data-sehir2][data-faction] #game #hud #blabels .blabel.s2.s2y:not(.me) .s2n { font-size:clamp(12px, calc(var(--s2u, .5px) * 25), 20px); line-height:1.1; white-space:nowrap; }
+/* 4. Hatırlatma bandı dar aralıkta (sol öğeler ile kaynak çipleri arası < 260px; ui-duyuru.js hatShow): etiket gizlenir, yazı tek satır */
+#annbar.dar .ann2.hat .ann2-tag { display:none; }
+#annbar .ann2.hat .ann2-txt { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#annbar.dar .ann2.hat .ann2-txt { font-size:11px; letter-spacing:0; }

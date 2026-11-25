@@ -10,6 +10,7 @@ import { achBonus } from './meta.js';
 import { capeOf } from './clan.js';
 import { clsOf, heroIds, partyIds, srcId } from './roster.js';
 import { PATH, pathOf, specTrees, specPoints } from './paths.js';
+import { companionStats, petOf } from './ahir.js';
 
 export const LOADOUT_ACTIVES = 5; // 19 Kas (kullanıcı): savaş çubuğunda 6 yetenek = temel saldırı + 5 aktif (+ iki iksir yuvası)
 export const statPointsTotal = lvl => (lvl - 1) * STAT_POINTS_PER_LEVEL;
@@ -168,12 +169,13 @@ export function heroStats(p, id) {
   const atk = (C.base.atk + C.grow.atk * L + P.str * C.k.str + P.dex * C.k.dex + g.atk) * (1 + (m.atkPct || 0)) * hb('atk') * mx.atk;
   const mag = (C.base.mag + C.grow.mag * L + P.mp * (C.k.mp || 0) + P.int * (C.k.int || 0) + g.mag) * (1 + (m.magPct || 0)) * hb('atk') * mx.mag;
   const def = (C.base.def + C.grow.def * L + P.vit * 0.3 + g.def) * (1 + (m.defPct || 0)) * hb('def') * mx.def;
+  const cs = companionStats(p), ca = 1 + cs.atkPct / 100; // P28 Ahır: etkin yoldaşın pasifi toplamın üstüne (saldırı yüzdesi büyüye de)
   return {
-    maxHp: Math.round(hp), atk: Math.round(atk), mag: Math.round(mag), def: Math.round(def),
+    maxHp: Math.round(hp + cs.hp), atk: Math.round(atk * ca), mag: Math.round(mag * ca), def: Math.round(def * (1 + cs.defPct / 100)),
     // Asanın element hasarı (elx) uzmanlığa göre çevrilir: Yıldırım (boran) → bolt, Alev ya da uzmanlıksız → fire
     fire: Math.round((g.fire || 0) + (elxTo(h) === 'fire' ? g.elx || 0 : 0)), bolt: Math.round((g.bolt || 0) + (elxTo(h) === 'bolt' ? g.elx || 0 : 0)), lock: g.lock || 0, // Alev / Yıldırım Hasarı (eşyadan; büyücü uzmanlık yeteneklerinde işler)
     spd: Math.round(C.base.spd + dexK * P.dex * 0.1 + g.spd + (m.spd || 0) + mx.spd),
-    crit: C.base.crit + dexK * P.dex * 0.0005 + g.crit + (m.crit || 0) + mx.crit, critDmg: 1.5 + (m.critDmg || 0),
+    crit: C.base.crit + dexK * P.dex * 0.0005 + g.crit + (m.crit || 0) + mx.crit + cs.critPct / 100, critDmg: 1.5 + (m.critDmg || 0),
     mods: { dr: Math.min(0.5, m.dr || 0), healPct: m.healPct || 0, steal: m.steal || 0, burnPct: (m.burnPct || 0) + (g.burnPct || 0), debuffAcc: m.debuffAcc || 0, ccAcc: m.ccAcc || 0, ...pathMods(m) },
     wt: weaponClass(p, id), pen: r4(Math.min(COEF.penCap, (g.pen || 0) + (m.pen || 0))), res: gearRes(g, m.wcRes || m.elRes ? { wc: m.wcRes, el: m.elRes } : null),
     ...(m.ccRes ? { ccRes: m.ccRes } : {}),
@@ -208,7 +210,7 @@ export function heroUnit(p, id) {
   // Mana (mana.js): maxMp havuz, mpr tur başı yenilenme, mpc yeteneklerin bu seviyedeki bedeli. Motor bu alanları taşıyan birimde
   // manayı uygular (alanı olmayan eski kayıt ve yaratık bedelsiz oynar).
   const mpc = {}; for (const k of skills) { const c = mpCost(mpBase(SKILLS[k]), p.lvl); if (c) mpc[k] = c; }
-  return { key: id, cls, name: h.name || CLASSES[cls].name, lvl: p.lvl, weak: null, ccRes: 0, ...s, skills, maxMp, mpr: mpRegenOf(cls, maxMp), mpc, faction: p.faction, wm: weaponModel(p, id), ...(h.v ? { v: h.v } : {}), ...(p.clan && capeOf(p.clanTag) ? { cape: capeOf(p.clanTag) } : {}) }; // cape: klan pelerini (yalnızca görünüm)
+  return { key: id, cls, name: h.name || CLASSES[cls].name, lvl: p.lvl, weak: null, ccRes: 0, ...s, skills, maxMp, mpr: mpRegenOf(cls, maxMp), mpc, faction: p.faction, wm: weaponModel(p, id), ...(petOf(p) ? { pet: petOf(p) } : {}), ...(h.v ? { v: h.v } : {}), ...(p.clan && capeOf(p.clanTag) ? { cape: capeOf(p.clanTag) } : {}) }; // cape: klan pelerini (yalnızca görünüm)
 }
 // slot: parti düzeni (roster.js PARTY_SLOTS); verilmezse Sefer düzeni. Dizinin sırası savaştaki diziliştir.
 export const partyUnits = (p, slot) => partyIds(p, slot).map(id => heroUnit(p, id));
