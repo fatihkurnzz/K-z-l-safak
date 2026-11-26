@@ -1,6 +1,6 @@
 # P33 · Değişiklik raporu (KORANT-v40-1dda167 → KORANT-v40-1dda167+P33)
 
-Fark: `git diff 1dda167 HEAD -- oyun-son ':!oyun-son/_tasarim'` → 22 dosya, +873 / −55 satır, 4 yeni dosya
+Fark: `git diff 1dda167 HEAD -- oyun-son ':!oyun-son/_tasarim'` → 23 dosya, +923 / −56 satır, 4 yeni dosya
 (`css/p33-kabul.css`, `js/npc-soz.js`, `js/yukleme-metin.js`, `js/p33-canli.js`). **`shared/` (mekanik, ekonomi, ödül, kayıt) DEĞİŞMEDİ.**
 Görsel/ses dosyası, 42 sahne, 13 iç mekân, ana harita DEĞİŞMEDİ (sha kanıtı `kanit/koruma/koruma.json`).
 
@@ -47,7 +47,20 @@ Gereksinim ↔ değişiklik eşlemesi: `KAPSAM_MATRISI.md`. Test sonuçları: `T
 ### K9 · Akış çakışması (BUL-A5)
 - `js/ui-karakter.js`: "Hoş geldin" yazısı öğretici/NPC diyaloğu kapanınca gösterilir.
 
+### K10 · Ölçüm turlarında çıkan kalan kusurlar (ilk tur sonrası; hedefli betiklerle yeniden ölçüldü)
+- 11 px altı: İlk Alım rozeti, sunucu saati kapsülü, unvan seçimi, tüccar satırı, örs önizlemesi ve olasılık hücreleri, savaş HUD düğmeleri,
+  görev halkası ve toplu ödül adı, oyuncu kartı, Ansiklopedi eşya kutusu, karakter Unvan/Yetenek sekmeleri, baskın puanı, sonuç satırları.
+- Örs başlığı: 7 kaynak kapsülünde ilk kapsül başlığın altına giriyordu → sıkı yerleşim.
+- 1180×820: Oto İksir 77 px'e büyüyüp hız düğmesine biniyordu → 57 px sınırı.
+- 667×375: sonuç düğmeleri çerçeve altında ve yazıları kesikti; ödeme notu, profil adı/rütbesi, anıt puanı, bölge adları, bölge etkileri,
+  karakterdeki akçe kesik/taşmalıydı → dar ekranda satır kırılır.
+- `js/p33-canli.js` sayaç akışı, güncelleme sırasında ara değerde takılıyordu → başka yazım gelince akış iptal (sayac.js ile doğrulandı).
+
+### K11 · Dil sızıntısı
+- `js/ui-town.js` + `js/i18n/en-ui.js`: EN kipinde Premium fiyatı "Yakında" Türkçe kalıyordu → "Coming soon".
+
 ## Açık kararlar (kullanıcıya)
+0. 667×375'te savaş HUD'u ve yan menü katman ölçeğiyle 6–9,8 px (HUD şablonu otomatik; kullanıcı telefonunda sorun yok). Karakter "+" 22 px (satır yerleşimi).
 1. Aynı işe birden çok giriş (Mağaza 5, Unvan 3, Görev 2, Meydan 4): yönlendirme değiştirilmedi.
 2. Test paneli (profil "TEST ARAÇLARI"): 24 Kas kararıyla varsayılan görünür; Play Store derlemesinde `?store=1` davranışı varsayılan yapılmalı.
 3. Haritada sancak/su/ateş hareketi için GPT katman çizimi (`GPT_ISTEK_P34.md`).
