@@ -1,0 +1,25 @@
+{
+ "log": {
+  "boss_1-10_vs": {
+   "baslik": "10. Kapkaççı"
+  },
+  "boss_1-10_vsStart": true,
+  "boss_1-10_sonuc": null,
+  "boss_2-10_vs": {
+   "baslik": "10. Kül Şövalye"
+  },
+  "boss_2-10_vsStart": true,
+  "boss_2-10_sonuc": null,
+  "boss_3-10_vs": {
+   "baslik": "10. Trol Kralı"
+  },
+  "boss_3-10_vsStart": true,
+  "boss_3-10_sonuc": null,
+  "boss_4-10_vs": {
+   "baslik": "10. Ölüm Şövalyesi"
+  },
+  "boss_4-10_vsStart": true,
+  "boss_4-10_sonuc": null
+ },
+ "hatalar": []
+}

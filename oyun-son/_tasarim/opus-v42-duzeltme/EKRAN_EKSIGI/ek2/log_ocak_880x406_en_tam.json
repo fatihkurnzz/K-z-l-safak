@@ -1,0 +1,206 @@
+{
+ "log": {
+  "t_achs": {
+   "baslik": "Achievements"
+  },
+  "t_titles": {
+   "baslik": "Achievements"
+  },
+  "t_bag": {
+   "baslik": "Bag"
+  },
+  "t_balik": {
+   "baslik": "Go Fishing"
+  },
+  "t_baskin": {
+   "baslik": "Gate"
+  },
+  "t_calendar": {
+   "baslik": "Calendar"
+  },
+  "t_chatMenu": {
+   "baslik": "Chat"
+  },
+  "t_clan": {
+   "baslik": "Clan Hall"
+  },
+  "t_clanhq": {
+   "baslik": "Clan Hall"
+  },
+  "t_codex": {
+   "baslik": "Codex"
+  },
+  "t_czArena": {
+   "baslik": "Arena"
+  },
+  "t_czHall": {
+   "baslik": "Arena"
+  },
+  "t_czMarket": {
+   "baslik": "Caravan"
+  },
+  "t_destan": {
+   "baslik": "Destan"
+  },
+  "t_diyarMap": {
+   "baslik": "Otağ · Kragmir"
+  },
+  "t_drawer": {
+   "baslik": "Menu"
+  },
+  "t_erisim": {
+   "baslik": "Settings"
+  },
+  "t_friends": {
+   "baslik": "Friends"
+  },
+  "t_gate": {
+   "baslik": "Gate"
+  },
+  "t_gateDestan": {
+   "baslik": "Destan"
+  },
+  "t_gateEvents": {
+   "baslik": "Gate"
+  },
+  "t_gatePvp": {
+   "baslik": "Arena"
+  },
+  "t_gateZones": {
+   "baslik": "Gate"
+  },
+  "t_hall": {
+   "baslik": "Arena"
+  },
+  "t_hotbar": {
+   "baslik": "Skill"
+  },
+  "t_iksir": {
+   "baslik": "Potions & Scrolls"
+  },
+  "t_karaborsa": {
+   "baslik": "Karaborsa"
+  },
+  "t_karakter": {
+   "baslik": "Skill"
+  },
+  "t_mail": {
+   "baslik": "Mail"
+  },
+  "t_market": {
+   "baslik": "Market"
+  },
+  "t_meydan": {
+   "baslik": "Arena"
+  },
+  "t_mine": {
+   "baslik": "Mine"
+  },
+  "t_mnMain": {
+   "baslik": "Quests"
+  },
+  "t_modInfo": {
+   "baslik": "Dungeon rotations"
+  },
+  "t_monument": {
+   "baslik": "Oath Stone"
+  },
+  "t_news": {
+   "baslik": "Announcements"
+  },
+  "t_nobet": {
+   "baslik": "Kristal Nöbeti"
+  },
+  "t_notifs": {
+   "baslik": "Notifications"
+  },
+  "t_onlineOpen": {
+   "baslik": "Çevrimiçi ödülleri"
+  },
+  "t_otag": {
+   "baslik": "Otağ · Kragmir"
+  },
+  "t_party": {
+   "baslik": "Skill"
+  },
+  "t_pazar": {
+   "baslik": "Market"
+  },
+  "t_premium": {
+   "baslik": "Premium"
+  },
+  "t_profile": {
+   "baslik": "Denetci"
+  },
+  "t_promoMenu": {
+   "baslik": "Promosyon kodu"
+  },
+  "t_questLog": {
+   "baslik": "Görev Defteri"
+  },
+  "t_quests": {
+   "baslik": "Quests"
+  },
+  "t_quick": {
+   "baslik": "1. Small bandicoot"
+  },
+  "t_rank": {
+   "baslik": "Rankings"
+  },
+  "t_rehber": {
+   "baslik": "Codex"
+  },
+  "t_reports": {
+   "baslik": "Mail"
+  },
+  "t_savas": {
+   "baslik": "Battle"
+  },
+  "t_season": {
+   "baslik": "Arena Season"
+  },
+  "t_server": {
+   "baslik": "Ares"
+  },
+  "t_settings": {
+   "baslik": "Settings"
+  },
+  "t_shop": {
+   "baslik": "Caravan"
+  },
+  "t_starterOpen": {
+   "baslik": "First Purchase Pack"
+  },
+  "t_supportMenu": {
+   "baslik": "Issue / Technical Support"
+  },
+  "t_tuccar": {
+   "baslik": "Merchant"
+  },
+  "t_wheel": {
+   "baslik": "Wheel of Fate"
+  },
+  "t_worldInfo": {
+   "baslik": "State of the Realm"
+  },
+  "t_yakutMenu": {
+   "baslik": "Get Yakut"
+  },
+  "t_yashka": {
+   "baslik": null
+  },
+  "t_anvil": {
+   "baslik": "Anvil"
+  },
+  "t_han": {
+   "baslik": null
+  },
+  "t_ahir": {
+   "baslik": null
+  },
+  "t_zaferAniti": {
+   "baslik": null
+  }
+ },
+ "hatalar": []
+}

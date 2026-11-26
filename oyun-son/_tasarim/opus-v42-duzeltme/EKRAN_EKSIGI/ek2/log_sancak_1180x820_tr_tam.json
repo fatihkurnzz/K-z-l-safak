@@ -1,0 +1,209 @@
+{
+ "log": {
+  "t_achs": {
+   "baslik": "Başarımlar"
+  },
+  "t_titles": {
+   "baslik": "Başarımlar"
+  },
+  "t_bag": {
+   "baslik": "Çanta"
+  },
+  "t_balik": {
+   "baslik": "Balık Tut"
+  },
+  "t_baskin": {
+   "baslik": "Kapı"
+  },
+  "t_calendar": {
+   "baslik": "Takvim"
+  },
+  "t_chatMenu": {
+   "baslik": "Sohbet"
+  },
+  "t_clan": {
+   "baslik": "Klan Karargâhı"
+  },
+  "t_clanhq": {
+   "baslik": "Klan Karargâhı"
+  },
+  "t_codex": {
+   "baslik": "Ansiklopedi"
+  },
+  "t_czArena": {
+   "baslik": "Meydan"
+  },
+  "t_czHall": {
+   "baslik": "Meydan"
+  },
+  "t_czMarket": {
+   "baslik": "Kervan"
+  },
+  "t_destan": {
+   "baslik": "Destan"
+  },
+  "t_diyarMap": {
+   "baslik": "Otağ · Elentha"
+  },
+  "t_drawer": {
+   "baslik": "Menü"
+  },
+  "t_erisim": {
+   "baslik": "Ayarlar"
+  },
+  "t_friends": {
+   "baslik": "Arkadaşlar"
+  },
+  "t_gate": {
+   "baslik": "Kapı"
+  },
+  "t_gateDestan": {
+   "baslik": "Destan"
+  },
+  "t_gateEvents": {
+   "baslik": "Kapı"
+  },
+  "t_gatePvp": {
+   "baslik": "Meydan"
+  },
+  "t_gateZones": {
+   "baslik": "Kapı"
+  },
+  "t_hall": {
+   "baslik": "Meydan"
+  },
+  "t_hotbar": {
+   "baslik": "Yetenek"
+  },
+  "t_iksir": {
+   "baslik": "İksir ve Parşömen"
+  },
+  "t_karaborsa": {
+   "baslik": "Karaborsa"
+  },
+  "t_karakter": {
+   "baslik": "Yetenek"
+  },
+  "t_mail": {
+   "baslik": "Posta"
+  },
+  "t_market": {
+   "baslik": "Pazar"
+  },
+  "t_meydan": {
+   "baslik": "Meydan"
+  },
+  "t_mine": {
+   "baslik": "Maden"
+  },
+  "t_mnMain": {
+   "baslik": "Görevler"
+  },
+  "t_modInfo": {
+   "baslik": "Zindan düzenleri"
+  },
+  "t_monument": {
+   "baslik": "Taş Yemini"
+  },
+  "t_news": {
+   "baslik": "Duyurular"
+  },
+  "t_nobet": {
+   "baslik": "Kristal Nöbeti"
+  },
+  "t_notifs": {
+   "baslik": "Bildirimler"
+  },
+  "t_onlineOpen": {
+   "baslik": "Çevrimiçi ödülleri"
+  },
+  "t_otag": {
+   "baslik": "Otağ · Elentha"
+  },
+  "t_party": {
+   "baslik": "Yetenek"
+  },
+  "t_pazar": {
+   "baslik": "Pazar"
+  },
+  "t_premium": {
+   "baslik": "Premium"
+  },
+  "t_profile": {
+   "baslik": "Denetci"
+  },
+  "t_promoMenu": {
+   "baslik": "Promosyon kodu"
+  },
+  "t_questLog": {
+   "baslik": "Görev Defteri"
+  },
+  "t_quests": {
+   "baslik": "Görevler"
+  },
+  "t_quick": {
+   "baslik": "1. Küçük Bandikut"
+  },
+  "t_rank": {
+   "baslik": "Sıralama"
+  },
+  "t_rehber": {
+   "baslik": "Ansiklopedi"
+  },
+  "t_reports": {
+   "baslik": "Posta"
+  },
+  "t_savas": {
+   "baslik": "Savaş"
+  },
+  "t_season": {
+   "baslik": "Meydan Sezonu"
+  },
+  "t_server": {
+   "baslik": "Ares"
+  },
+  "t_settings": {
+   "baslik": "Ayarlar"
+  },
+  "t_shop": {
+   "baslik": "Kervan"
+  },
+  "t_starterOpen": {
+   "baslik": "İlk Alım Paketi"
+  },
+  "t_supportMenu": {
+   "baslik": "Sorun / Teknik Destek"
+  },
+  "t_tuccar": {
+   "baslik": "Tüccar"
+  },
+  "t_wheel": {
+   "baslik": "Kader Çarkı"
+  },
+  "t_worldInfo": {
+   "baslik": "Diyarın Hâli"
+  },
+  "t_yakutMenu": {
+   "baslik": "Yakut Al"
+  },
+  "t_yashka": {
+   "baslik": null
+  },
+  "t_anvil": {
+   "baslik": "Örs"
+  },
+  "t_han": {
+   "baslik": null
+  },
+  "t_ahir": {
+   "baslik": null
+  },
+  "t_zaferAniti": {
+   "baslik": null
+  }
+ },
+ "hatalar": [
+  "SHOT t_reports",
+  "SHOT t_wheel"
+ ]
+}

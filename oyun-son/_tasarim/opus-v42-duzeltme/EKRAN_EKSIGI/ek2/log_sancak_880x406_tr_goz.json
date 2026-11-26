@@ -1,0 +1,25 @@
+{
+ "log": {
+  "goz_anvil_once": {
+   "baslik": "Örs"
+  },
+  "goz_anvil": true,
+  "goz_iksir_once": {
+   "baslik": "İksir ve Parşömen"
+  },
+  "goz_iksir": false,
+  "goz_mine_once": {
+   "baslik": "Maden"
+  },
+  "goz_mine": true,
+  "goz_wheel_once": {
+   "baslik": "Kader Çarkı"
+  },
+  "goz_wheel": false,
+  "goz_monument_once": {
+   "baslik": "Taş Yemini"
+  },
+  "goz_monument": false
+ },
+ "hatalar": []
+}

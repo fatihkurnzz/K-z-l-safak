@@ -1,0 +1,13 @@
+{
+ "log": {
+  "meydan_liste": {
+   "baslik": "Meydan"
+  },
+  "arenaVs": {
+   "baslik": "Meydan · DeliYürek"
+  },
+  "pvp_vsStart": true,
+  "pvp_sonuc": null
+ },
+ "hatalar": []
+}
