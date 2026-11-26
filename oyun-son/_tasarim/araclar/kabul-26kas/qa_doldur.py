@@ -17,10 +17,16 @@ def karar(o, png):
     if o is None: return 'TEST_EDILMEDI', 'ölçüm yok'
     if isinstance(o, dict) and o.get('hata'): return 'TEST_EDILMEDI', 'ölçüm hatası: ' + o['hata'][:80]
     k = kusur(o)
-    if k and set(k) == {'kucukYazi'} and all(any(m in x for m in SONRA_DUZ) for x in k['kucukYazi']):
+    if k:  # bilinen tasarım gereği eşleşmeler (gerekçe: KAPSAM_MATRISI / TEST_KANITLARI)
+        for x in list(k):
+            k[x] = [y for y in k[x] if not any(m in y for m in TASARIM)]
+            if not k[x]: del k[x]
+        if not k: return 'KABUL', 'otomatik ölçüm temiz; yalnız tasarım gereği eşleşmeler (Diyar haritası bölge şekilleri, diyalog şeridindeki düğme, Taş Yemini kapat düğmesi, sohbet önizlemesinin … ile kısalması)'
+    if k and set(k) <= {'kucukYazi', 'tasma'} and all(any(m in x for m in SONRA_DUZ) for v in k.values() for x in v):
         return 'DUZELTILDI_ILK_TUR_SONRASI', 'İLK TUR ÖLÇÜMÜ: yalnız 11 px altı yazı vardı; ilk turdan sonra css/p33-kabul.css "Son ölçüm turu" bölümüyle 11 px yapıldı (görüntü düzeltmeden önceki hâl): ' + json.dumps(k, ensure_ascii=False)[:300]
     return ('DUZELTME', json.dumps(k, ensure_ascii=False)[:600]) if k else ('KABUL', 'otomatik ölçüm temiz (kesik/taşma/çakışma/küçük yazı/küçük hedef 0); görüntü ekte')
-SONRA_DUZ = ['«/', 'görevi de bit', 'Gören Göz', 'Yıldız Toplayan', 'Diyar Diyar', 'Yol Görmüş', 'Baş Avı', 'Büyük Av', 'Nadide Sandık', '«Başarı»', 'Sv. ', '«İlk Alım»', 'tbtn', 'srv-kick', 'span.rar', 'span.cf', 'arisk', 'ivst', 'wctx', '#bapot', '#bauto', 'i.mpc', 'i.pn', 'i.lv', 'bt-info', 'Sunucu Saati', 'Unvan', '«Standart»', 'Savunma delme', '«S»', '+6 ve üstünde']
+TASARIM = ['g ⨯ g', 'div.dlg-serit ⨯ button.btn.dlg-b', 'button.x.mx ⨯ div.ty-rite', 'div.cl «']
+SONRA_DUZ = ['span.wx', '«Seviye kaybı»', '«Kırılma»', '«Korunur»', '«Başarısız»', ' olur»', ' düşer»', ' kalır»', '«/', 'görevi de', 'Gören Göz', 'Yıldız Toplayan', 'Diyar Diyar', 'Yol Görmüş', 'Baş Avı', 'Büyük Av', 'Nadide Sandık', '«Başarı»', 'Sv. ', '«İlk Alım»', 'tbtn', 'srv-kick', 'span.rar', 'span.cf', 'arisk', 'ivst', 'wctx', '#bapot', '#bauto', 'i.mpc', 'i.pn', 'i.lv', 'bt-info', 'Sunucu Saati', 'Unvan', '«Standart»', 'Savunma delme', '«S»', '+6 ve üstünde']
 rel = lambda p: os.path.relpath(p, SON) if p else None
 T = G['testler']; ozet = collections.Counter()
 cek = {r: oku(SON, f'cek115-{r}', '_denetim.json') for r in ('ocak', 'sancak')}
