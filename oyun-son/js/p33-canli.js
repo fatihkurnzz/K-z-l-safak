@@ -162,11 +162,21 @@ const onceki = new Map();
 let yaziyor = 0; // kendi yazdığımız ara değerler gözlemciyi tetiklemesin
 const yaz = (el, v) => { yaziyor++; el.textContent = v; Promise.resolve().then(() => yaziyor--); };
 function akit(el, key) {
-  const yeniV = sayi(el.textContent), eski = onceki.get(key); onceki.set(key, yeniV);
-  if (eski === undefined || eski === yeniV || sakin() || Math.abs(yeniV - eski) > 1e9) return;
-  const t0 = performance.now(), D = 360, metin = el.textContent;
-  el.classList.add(yeniV > eski ? 'p33-art' : 'p33-azal');
-  const adim = () => { if (!el.isConnected) return; const k = Math.min(1, (performance.now() - t0) / D), v = Math.round(eski + (yeniV - eski) * (1 - (1 - k) ** 3)); if (k < 1) { yaz(el, fmtTR(v)); requestAnimationFrame(adim); } else { yaz(el, metin); setTimeout(() => el.classList.remove('p33-art', 'p33-azal'), 250); } };
+  const st = el._p33;
+  if (st && el.textContent === st.yazdik) return; // kendi yazdığımız ara değer
+  const gercek = sayi(el.textContent), eski = st ? st.gosterilen : onceki.get(key); onceki.set(key, gercek);
+  if (st) st.iptal = true; // yeni gerçek değer geldi: eski akış biter, yenisi gösterilen yerden başlar
+  el._p33 = null;
+  if (eski === undefined || eski === gercek || sakin() || Math.abs(gercek - eski) > 1e9) return;
+  const metin = el.textContent, t0 = performance.now(), D = 360, S = { iptal: false, gosterilen: eski, yazdik: null }; el._p33 = S;
+  el.classList.add(gercek > eski ? 'p33-art' : 'p33-azal'); el.classList.remove(gercek > eski ? 'p33-azal' : 'p33-art');
+  const adim = () => {
+    if (S.iptal || !el.isConnected) return;
+    if (S.yazdik !== null && el.textContent !== S.yazdik) { el._p33 = null; return; } // başkası yazdı: o değer geçerli
+    const k = Math.min(1, (performance.now() - t0) / D), v = Math.round(eski + (gercek - eski) * (1 - (1 - k) ** 3)); S.gosterilen = v;
+    if (k < 1) { S.yazdik = fmtTR(v); yaz(el, S.yazdik); requestAnimationFrame(adim); }
+    else { S.yazdik = metin; yaz(el, metin); el._p33 = null; setTimeout(() => el.classList.remove('p33-art', 'p33-azal'), 250); }
+  };
   requestAnimationFrame(adim);
 }
 function expAkit(i) { const w = parseFloat(i.style.width), e = onceki.get('exp'); onceki.set('exp', w); if (e === undefined || e === w || sakin() || !(w >= e)) return; i.style.transition = 'none'; i.style.width = e + '%'; requestAnimationFrame(() => requestAnimationFrame(() => { i.style.transition = 'width 380ms cubic-bezier(.2,.8,.2,1)'; i.style.width = w + '%'; })); }

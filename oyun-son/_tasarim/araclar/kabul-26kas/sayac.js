@@ -1,0 +1,8 @@
+const { chromium } = require('playwright'); const giris = require('/home/user/K-z-l-safak/oyun-son/_tasarim/araclar/kabul-26kas/giris.js');
+(async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 880, height: 406 } }); await giris(p, 'sancak', '?gfx=low&store=1');
+  await p.evaluate(() => { const m = document.querySelector('#modal'); if (m) { m.hidden = true; m.innerHTML = ''; } });
+  const r = await p.evaluate(async () => { const A = await import('/js/api.js'); const C = await import('/js/ui-core.js'); const log = []; const t0 = performance.now(); const q = () => document.querySelector('#hud .s2-cap-akce > b')?.textContent; log.push([0, q(), A.S.akce]);
+    const pr = C.ACT.devGive(); for (let i = 0; i < 25; i++) { await new Promise(r => setTimeout(r, 50)); log.push([Math.round(performance.now() - t0), q(), A.S.akce]); } await pr; await new Promise(r => setTimeout(r, 800)); log.push(['son', q(), A.S.akce, A.S.akce.toLocaleString('tr-TR')]); return log; });
+  console.log(JSON.stringify(r));
+  const o = await p.evaluate(async () => { const C = await import('/js/ui-core.js'); C.ACT.anvil({}); await new Promise(r => setTimeout(r, 1500)); const w = !!document.querySelector('#win:not([hidden]) .frame'); const { taps } = await import('/js/api.js'); for (const f of taps) try { f('anvil.upgrade', {}, Promise.resolve({ out: 'ok', plus: 8 })); } catch { } const s = []; for (let i = 0; i < 16; i++) { await new Promise(r => setTimeout(r, 200)); s.push(document.querySelector('.p33-ors')?.className || '-'); } return { w, s }; });
+  await b.close(); })();
