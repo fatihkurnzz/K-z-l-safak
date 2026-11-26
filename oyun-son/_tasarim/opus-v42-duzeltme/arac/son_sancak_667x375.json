@@ -1,0 +1,1574 @@
+{
+ "irk": "sancak",
+ "boyut": "667x375",
+ "dil": "tr",
+ "hatalar": [],
+ "http": [],
+ "ekranlar": {
+  "hub": {
+   "enk": 11,
+   "metinN": 33,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 13,
+   "tr": [
+    "Kral Otağı",
+    "Örs",
+    "İksir ve Parşömen",
+    "Kader Çarkı",
+    "Taş Yemini",
+    "Ahır"
+   ],
+   "hedefN": 18,
+   "hedef": [
+    "126x24 premium",
+    "28x28 drawer",
+    "28x28 news",
+    "28x28 mail",
+    "28x28 codex",
+    "28x28 diyarMap"
+   ],
+   "tasma": [],
+   "baslik": null
+  },
+  "achs": {
+   "enk": 11,
+   "metinN": 28,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 16,
+   "tr": [
+    "Başarımlar",
+    "20/119 Kademe · +%2,5 Güç",
+    "Başarımlar",
+    "Kalıcı güç",
+    "Kalıcı bonus:",
+    "Can +%4,5 · Saldırı ve büyü +%2,5 · Savu"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "43x44 achCat"
+   ],
+   "tasma": [
+    "BUTTON@748,162",
+    "BUTTON@822,162",
+    "BUTTON@864,162"
+   ],
+   "baslik": "Başarımlar"
+  },
+  "titles": {
+   "enk": 11,
+   "metinN": 22,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 13,
+   "tr": [
+    "Başarımlar",
+    "20/119 Kademe · +%2,5 Güç",
+    "Başarımlar",
+    "Kalıcı güç",
+    "Kazandığın her başarım kademesi bir nite",
+    "en çok +%5"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "P@625,395",
+    "B@309,434",
+    "SMALL@309,447"
+   ],
+   "baslik": "Başarımlar"
+  },
+  "bag": {
+   "enk": 11,
+   "metinN": 42,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 15,
+   "tr": [
+    "Çanta",
+    "Kabuk Savaşçı Miğfer +7",
+    "Eşsiz",
+    "Boşta",
+    "Savaşçı",
+    "Güç"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "183x38 breakWin"
+   ],
+   "tasma": [
+    "dn@170,396",
+    "dn@203,396",
+    "nx@236,396"
+   ],
+   "baslik": "Çanta"
+  },
+  "balik": {
+   "enk": 11,
+   "metinN": 11,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 7,
+   "tr": [
+    "Balık Tut",
+    "Atış 30/30",
+    "Söğüt Oltası",
+    "Göletin balıkları iskelenin ucunda. Olta",
+    "Kovan boş.",
+    "Tüccar'a sat (+0)"
+   ],
+   "hedefN": 2,
+   "hedef": [
+    "159x38 balikRod",
+    "81x38 balikDefter"
+   ],
+   "tasma": [
+    "btn@230,405",
+    "[object@349,390",
+    "btn@483,405"
+   ],
+   "baslik": "Balık Tut"
+  },
+  "baskin": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 12,
+   "tr": [
+    "Kapı",
+    "Bölgeler",
+    "Günlük",
+    "Sefer, akın",
+    "Dünya Baskını · Küllerin Tarikatı",
+    "Kül Ağası Karadun"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "H4@613,384",
+    "B@243,415",
+    "B@550,415"
+   ],
+   "baslik": "Kapı"
+  },
+  "calendar": {
+   "enk": 11,
+   "metinN": 33,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 19,
+   "tr": [
+    "5 etkinlik açık",
+    "Yedi Gün",
+    "Hoş geldin",
+    "Aylık",
+    "28 günlük döngü",
+    "Yeni gelenlere yedi günlük hediye"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Takvim"
+  },
+  "chatMenu": {
+   "enk": 11,
+   "metinN": 18,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 6,
+   "tr": [
+    "Irkdaşların",
+    "Klan üyeleri",
+    "Özel",
+    "Canlı Meydan açıldı (13:00). Bir saat bo",
+    "Kragmir geri adım atmaz",
+    "Gönder"
+   ],
+   "hedefN": 3,
+   "hedef": [
+    "30x30 pcard",
+    "70x17 pcard",
+    "32x32 msgMenu"
+   ],
+   "tasma": [],
+   "baslik": "Sohbet"
+  },
+  "clan": {
+   "enk": 12,
+   "metinN": 15,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 11,
+   "tr": [
+    "Karargâha hoş geldin.",
+    "Klan Karargâhı",
+    "Klan, aynı taraftan oyuncuların birliğid",
+    "Oba Avı",
+    "'na çıkar, klan görevlerini tamamlar, ba",
+    "belirler: klana girince karakterin klanı"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "381x40 INPUT"
+   ],
+   "tasma": [
+    "icm-bg@775,375",
+    "icm-arma@751,109",
+    "[object@84,427"
+   ],
+   "baslik": "Klan Karargâhı"
+  },
+  "clanhq": {
+   "enk": 12,
+   "metinN": 13,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 10,
+   "tr": [
+    "Karargâha hoş geldin.",
+    "Klan Karargâhı",
+    "Karargâh yalnızca klan üyelerinin ortak ",
+    "Bir klana katıl ya da kendi klanını kur:",
+    "Klan, aynı taraftan oyuncuların birliğid",
+    "Oba Avı"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "381x40 INPUT"
+   ],
+   "tasma": [
+    "icm-bg@775,375",
+    "icm-arma@751,109",
+    "[object@84,438"
+   ],
+   "baslik": "Klan Karargâhı"
+  },
+  "codex": {
+   "enk": 11,
+   "metinN": 19,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 14,
+   "tr": [
+    "146 Yaratık · 1.247 Eşya",
+    "23 bölüm",
+    "146 yaratık",
+    "Eşyalar",
+    "1247 eşya",
+    "Başlarken"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@205,392",
+    "SPAN@279,392",
+    "[object@206,437"
+   ],
+   "baslik": "Ansiklopedi"
+  },
+  "czArena": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 15,
+   "tr": [
+    "Savaş",
+    "Rakip seç",
+    "Kan Davası",
+    "Şan ile",
+    "Şan Dükkânı",
+    "Kalıcı bonus"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@656,452",
+    "B@256,410",
+    "mut@364,409"
+   ],
+   "baslik": "Meydan"
+  },
+  "czHall": {
+   "enk": 11,
+   "metinN": 17,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 8,
+   "tr": [
+    "Savaş",
+    "Rakip seç",
+    "Kan Davası",
+    "Şan ile",
+    "Şan Dükkânı",
+    "Kalıcı bonus"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@417,378",
+    "B@462,413",
+    "I@353,431"
+   ],
+   "baslik": "Meydan"
+  },
+  "czMarket": {
+   "enk": 11,
+   "metinN": 21,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 13,
+   "tr": [
+    "Günlük erzak",
+    "Gerçek para",
+    "Paket ve üyelik",
+    "ile çalışır. Yakut günlük görevlerden, m",
+    "Günde 3",
+    "Enerji Erzağı"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@224,409",
+    "[object@374,409",
+    "mut@608,387"
+   ],
+   "baslik": "Kervan"
+  },
+  "destan": {
+   "enk": 11,
+   "metinN": 19,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 14,
+   "tr": [
+    "VAHRAN: Tarihin Külleri",
+    "0/8 bölüm · Elentha anlatısı",
+    "İki Taht",
+    "Savaş",
+    "Öğretici: kendi kralının sarayında başla",
+    "Açık"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "ds-rom@97,438",
+    "B@197,403",
+    "ds-kind@316,403"
+   ],
+   "baslik": "Destan"
+  },
+  "diyarMap": {
+   "enk": 11,
+   "metinN": 16,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 8,
+   "tr": [
+    "Otağ · Elentha",
+    "Başbuğ",
+    "Taht ve seçim",
+    "Dağıt, ferman yaz",
+    "Bölge hâkimiyeti",
+    "bölge Elentha hâkimiyetinde"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "icm-bg@775,375",
+    "icm-fx@700,276",
+    "zc-bon@476,390"
+   ],
+   "baslik": "Otağ · Elentha"
+  },
+  "drawer": {
+   "enk": 11,
+   "metinN": 26,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 14,
+   "tr": [
+    "Menü",
+    "Giriş ödülleri ve etkinlikler",
+    "Başarımlar",
+    "Başarım ve unvanlar",
+    "Çevrimiçi Ödül",
+    "Süreli sandıklar"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Menü"
+  },
+  "erisim": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 18,
+   "tr": [
+    "Düşük",
+    "Erişilebilirlik",
+    "Görme, duyma, dokunma",
+    "Türkçe",
+    "Oyunu ölçeklendir",
+    "Pencereler, düğmeler ve ana ekran parçal"
+   ],
+   "hedefN": 7,
+   "hedef": [
+    "216x14 INPUT",
+    "108x38 aeSet",
+    "71x29 aeSet",
+    "64x29 aeSet",
+    "94x29 aeSet",
+    "78x38 aeTog"
+   ],
+   "tasma": [
+    "[object@220,390",
+    "mut@501,406",
+    "btn@620,400"
+   ],
+   "baslik": "Ayarlar"
+  },
+  "friends": {
+   "enk": 11,
+   "metinN": 13,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 8,
+   "tr": [
+    "Arkadaşlar",
+    "Arkadaşlar",
+    "Son görülme",
+    "İstekler",
+    "Arkadaşların:",
+    "· şu an çevrimiçi:"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Arkadaşlar"
+  },
+  "gate": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 12,
+   "tr": [
+    "Kapı",
+    "Bölgeler",
+    "Günlük",
+    "Sefer, akın",
+    "Dünya Baskını · Küllerin Tarikatı",
+    "Kül Ağası Karadun"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "H4@613,384",
+    "B@243,415",
+    "B@550,415"
+   ],
+   "baslik": "Kapı"
+  },
+  "gateDestan": {
+   "enk": 11,
+   "metinN": 19,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 14,
+   "tr": [
+    "VAHRAN: Tarihin Külleri",
+    "0/8 bölüm · Elentha anlatısı",
+    "İki Taht",
+    "Savaş",
+    "Öğretici: kendi kralının sarayında başla",
+    "Açık"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "ds-rom@97,438",
+    "B@197,403",
+    "ds-kind@316,403"
+   ],
+   "baslik": "Destan"
+  },
+  "gateEvents": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 12,
+   "tr": [
+    "Kapı",
+    "Bölgeler",
+    "Günlük",
+    "Sefer, akın",
+    "Dünya Baskını · Küllerin Tarikatı",
+    "Kül Ağası Karadun"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "H4@613,384",
+    "B@243,415",
+    "B@550,415"
+   ],
+   "baslik": "Kapı"
+  },
+  "gatePvp": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 15,
+   "tr": [
+    "Savaş",
+    "Rakip seç",
+    "Kan Davası",
+    "Şan ile",
+    "Şan Dükkânı",
+    "Kalıcı bonus"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@656,452",
+    "B@256,410",
+    "mut@364,409"
+   ],
+   "baslik": "Meydan"
+  },
+  "gateZones": {
+   "enk": 11,
+   "metinN": 36,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 14,
+   "tr": [
+    "Kapı",
+    "Bölgeler",
+    "Günlük",
+    "Sefer, akın",
+    "Vahran Ovası",
+    "Kül Geçidi"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@923,640",
+    "B@210,381",
+    "kstars@216,404"
+   ],
+   "baslik": "Kapı"
+  },
+  "hall": {
+   "enk": 11,
+   "metinN": 17,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 8,
+   "tr": [
+    "Savaş",
+    "Rakip seç",
+    "Kan Davası",
+    "Şan ile",
+    "Şan Dükkânı",
+    "Kalıcı bonus"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@417,378",
+    "B@462,413",
+    "I@353,431"
+   ],
+   "baslik": "Meydan"
+  },
+  "hotbar": {
+   "enk": 11,
+   "metinN": 30,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 20,
+   "tr": [
+    "Ustalık",
+    "Savaşçı",
+    "Güç",
+    "Eşya Sv.",
+    "Savaş düzeni",
+    "1 temel + 5 aktif. Açık bir yeteneğe dok"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "yico-png@73,391",
+    "mut@303,408",
+    "[object@57,432"
+   ],
+   "baslik": "Yetenek"
+  },
+  "iksir": {
+   "enk": 11,
+   "metinN": 18,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 8,
+   "tr": [
+    "İksir ve Parşömen",
+    "İksirci Maelis",
+    "Kazanda yeni kaynadı! Savaşta bir yudum,",
+    "İksirler",
+    "Can İksiri",
+    "Azami canının %30’ini hemen yeniler."
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "mut@625,425",
+    "ik-grp@625,458",
+    "[object@97,518"
+   ],
+   "baslik": "İksir ve Parşömen"
+  },
+  "karaborsa": {
+   "enk": 11,
+   "metinN": 29,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 5,
+   "tr": [
+    "Mallarıma bak, adımı sorma.",
+    "Yemin Pazarı'nın gölgesinde",
+    "Satın al",
+    "Satın al",
+    "Satın al"
+   ],
+   "hedefN": 3,
+   "hedef": [
+    "107x34 kbBuy",
+    "107x36 kbBuy",
+    "107x36 kbBuy"
+   ],
+   "tasma": [
+    "icm-bg@775,375",
+    "kb-buy@164,383",
+    "kb-buy@321,383"
+   ],
+   "baslik": "Karaborsa"
+  },
+  "karakter": {
+   "enk": 11,
+   "metinN": 30,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 20,
+   "tr": [
+    "Ustalık",
+    "Savaşçı",
+    "Güç",
+    "Eşya Sv.",
+    "Savaş düzeni",
+    "1 temel + 5 aktif. Açık bir yeteneğe dok"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "yico-png@73,391",
+    "mut@303,408",
+    "[object@57,432"
+   ],
+   "baslik": "Yetenek"
+  },
+  "mail": {
+   "enk": 11,
+   "metinN": 10,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 3,
+   "tr": [
+    "Savaş kayıtları",
+    "Hoş geldin, kahraman! Korant Online’a ad",
+    "26 Kasım · eki var"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Posta"
+  },
+  "market": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 11,
+   "tr": [
+    "Satın al",
+    "Sat · İlan aç",
+    "İlanlarım 0/8",
+    "Tümü",
+    "Zırh",
+    "Takı"
+   ],
+   "hedefN": 12,
+   "hedef": [
+    "114x37 marketSub",
+    "139x37 marketSub",
+    "152x37 marketSub",
+    "93x37 marketKind",
+    "94x37 marketKind",
+    "88x37 marketKind"
+   ],
+   "tasma": [
+    "BUTTON@723,175",
+    "BUTTON@795,175",
+    "on@893,175"
+   ],
+   "baslik": "Pazar"
+  },
+  "meydan": {
+   "enk": 11,
+   "metinN": 17,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 8,
+   "tr": [
+    "Savaş",
+    "Rakip seç",
+    "Kan Davası",
+    "Şan ile",
+    "Şan Dükkânı",
+    "Kalıcı bonus"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@417,378",
+    "B@462,413",
+    "I@353,431"
+   ],
+   "baslik": "Meydan"
+  },
+  "mine": {
+   "enk": 11.5,
+   "metinN": 8,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 3,
+   "tr": [
+    "yağmur: +%10",
+    "Madeni büyüt",
+    "500 akçe"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "icm-bg@775,180",
+    "icm-fx@736,-30",
+    "[object@89,399"
+   ],
+   "baslik": "Maden"
+  },
+  "mnMain": {
+   "enk": 11,
+   "metinN": 33,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 22,
+   "tr": [
+    "Görevler",
+    "Ana Görevler",
+    "Rehber ve ödül",
+    "Günlük",
+    "1 ödül hazır",
+    "Haftalık"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "B@743,164",
+    "SMALL@772,163",
+    "B@1013,164"
+   ],
+   "baslik": "Görevler"
+  },
+  "modInfo": {
+   "enk": 11,
+   "metinN": 18,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 11,
+   "tr": [
+    "Zindan düzenleri",
+    "Her pazartesi 00:00’da sıradaki düzen ba",
+    "Şimdi",
+    "Kalkan Duvarı",
+    "Yaratıklar kılıca, baltaya ve hançere %2",
+    "1× İnce Bileği Taşı"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "tag@127,390",
+    "mut@420,386",
+    "[object@278,402"
+   ],
+   "baslik": "Zindan düzenleri"
+  },
+  "monument": {
+   "enk": 11,
+   "metinN": 28,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 16,
+   "tr": [
+    "Taş Yemini",
+    "Üstün Irk: yok · 1.908 – 1.542",
+    "Şampiyon",
+    "En güçlü klan",
+    "Başbuğ",
+    "Irk önderleri"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Taş Yemini"
+  },
+  "news": {
+   "enk": 11,
+   "metinN": 16,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 11,
+   "tr": [
+    "Diyar akışı",
+    "Sunucu olayları",
+    "Bugün · 1",
+    "Güncelleme",
+    "Hoş geldin, yiğit!",
+    "Korant Online'a hoş geldin. İlerlemen bu"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Duyurular"
+  },
+  "nobet": {
+   "enk": 11,
+   "metinN": 10,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 7,
+   "tr": [
+    "Kristal Nöbeti",
+    "Şaman Yashka · Sönmüş Mabet",
+    "Kristal Nöbeti",
+    "“Kristal söndüğü gün Tarikat geri döner.",
+    "Nöbet sürüyor · 11. dakika",
+    "Güçlendirme: saldırı ve savunma +%15"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "SMALL@606,418",
+    "B@129,443",
+    "c-priest@155,444"
+   ],
+   "baslik": "Kristal Nöbeti"
+  },
+  "notifs": {
+   "enk": 11,
+   "metinN": 18,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 6,
+   "tr": [
+    "· Son 9 kayıt · 3 gün saklanır",
+    "Adın Vahran Sınırı’nda dilden dile. Yeni",
+    "Yıldız Toplayan: Aşamalardan 300 yıldız ",
+    "Savaşçı, bu zafer senin omuzlarında. Yen",
+    "Diyar Diyar: 4 bölgenin son Boss’unu yen",
+    "Elentha senin için dalgalanıyor. Yeni ba"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "88x38 tab"
+   ],
+   "tasma": [
+    "pa-nic@233,392",
+    "SMALL@576,396",
+    "pa-dot@609,384"
+   ],
+   "baslik": "Bildirimler"
+  },
+  "onlineOpen": {
+   "enk": 11,
+   "metinN": 24,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 13,
+   "tr": [
+    "Çevrimiçi ödülleri",
+    "İlk sandığın sayacı işliyor.",
+    "Sandıklar sırayla açılır; her gün 00:00’",
+    "300 Akçe",
+    "600 Akçe",
+    "Sırada"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Çevrimiçi ödülleri"
+  },
+  "otag": {
+   "enk": 11,
+   "metinN": 24,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 12,
+   "tr": [
+    "Diyarın halini gör.",
+    "Otağ · Elentha",
+    "Ares · Seçime 3g 1s",
+    "Başbuğ",
+    "Taht ve seçim",
+    "Dağıt, ferman yaz"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "79x38 rVote"
+   ],
+   "tasma": [
+    "icm-bg@775,375",
+    "icm-fx@700,276",
+    "pt@228,413"
+   ],
+   "baslik": "Otağ · Elentha"
+  },
+  "party": {
+   "enk": 11,
+   "metinN": 30,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 20,
+   "tr": [
+    "Ustalık",
+    "Savaşçı",
+    "Güç",
+    "Eşya Sv.",
+    "Savaş düzeni",
+    "1 temel + 5 aktif. Açık bir yeteneğe dok"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "yico-png@73,391",
+    "mut@303,408",
+    "[object@57,432"
+   ],
+   "baslik": "Yetenek"
+  },
+  "pazar": {
+   "enk": 11,
+   "metinN": 32,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 11,
+   "tr": [
+    "Satın al",
+    "Sat · İlan aç",
+    "İlanlarım 0/8",
+    "Tümü",
+    "Zırh",
+    "Takı"
+   ],
+   "hedefN": 12,
+   "hedef": [
+    "114x37 marketSub",
+    "139x37 marketSub",
+    "152x37 marketSub",
+    "93x37 marketKind",
+    "94x37 marketKind",
+    "88x37 marketKind"
+   ],
+   "tasma": [
+    "BUTTON@723,175",
+    "BUTTON@795,175",
+    "on@893,175"
+   ],
+   "baslik": "Pazar"
+  },
+  "premium": {
+   "enk": 11,
+   "metinN": 58,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 24,
+   "tr": [
+    "Şu an üyeliğin yok. Elinde",
+    "/ 30 gün",
+    "Savaşta",
+    "deneyim ve akçe",
+    "Eşya düşme oranı",
+    "pazar ilan yuvası"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "warn@179,393",
+    "btn@385,404",
+    "btn@583,404"
+   ],
+   "baslik": "Premium"
+  },
+  "profile": {
+   "enk": 11,
+   "metinN": 36,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 19,
+   "tr": [
+    "Er · Onbaşı için 300 Şan",
+    "Tecrübe Puanı (TP)",
+    "GÜÇ",
+    "EŞYA SV.",
+    "Üyelik",
+    "Klansız"
+   ],
+   "hedefN": 9,
+   "hedef": [
+    "30x30 settings",
+    "133x28 devEnergy",
+    "98x28 devLevel",
+    "112x28 devMastery",
+    "114x28 devGive",
+    "95x28 devGear"
+   ],
+   "tasma": [],
+   "baslik": "Denetci"
+  },
+  "promoMenu": {
+   "enk": 12,
+   "metinN": 4,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 2,
+   "tr": [
+    "Etkinliklerde ve duyurularda paylaşılan ",
+    "Vazgeç"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "402x40 INPUT"
+   ],
+   "tasma": [],
+   "baslik": "Promosyon kodu"
+  },
+  "questLog": {
+   "enk": 11,
+   "metinN": 15,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 9,
+   "tr": [
+    "Görev Defteri",
+    "Ana görev",
+    "Hikâye sırasıyla",
+    "İlk Kan",
+    "Kapı’dan bir bölgeye gir; savaş sırayla ",
+    "Günlük"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "B@345,395",
+    "EM@616,393",
+    "B@345,442"
+   ],
+   "baslik": "Görev Defteri"
+  },
+  "quests": {
+   "enk": 11,
+   "metinN": 33,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 22,
+   "tr": [
+    "Görevler",
+    "Ana Görevler",
+    "Rehber ve ödül",
+    "Günlük",
+    "1 ödül hazır",
+    "Haftalık"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "B@743,164",
+    "SMALL@772,163",
+    "B@1013,164"
+   ],
+   "baslik": "Görevler"
+  },
+  "quick": {
+   "enk": 11,
+   "metinN": 23,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 12,
+   "tr": [
+    "1. Küçük Bandikut",
+    "Sv. 53 · Elentha · Savaşçı",
+    "Güç 1.057",
+    "Aşamayı geç",
+    "Azılı Küçük Bandikut",
+    "Sv. 1 · Seçkin"
+   ],
+   "hedefN": 5,
+   "hedef": [
+    "72x32 vsForm",
+    "85x38 sweep",
+    "63x38 sweep",
+    "62x38 vsAuto",
+    "144x38 vsStart"
+   ],
+   "tasma": [],
+   "baslik": "1. Küçük Bandikut"
+  },
+  "rank": {
+   "enk": 11,
+   "metinN": 47,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 19,
+   "tr": [
+    "Sıralama",
+    "Meydan puanı",
+    "Klan gücü",
+    "Irk Üstünlüğü",
+    "Haftalık sefer",
+    "Günlük"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "pt@259,385",
+    "SPAN@221,425",
+    "pt@259,432"
+   ],
+   "baslik": "Sıralama"
+  },
+  "rehber": {
+   "enk": 11,
+   "metinN": 19,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 14,
+   "tr": [
+    "146 Yaratık · 1.247 Eşya",
+    "23 bölüm",
+    "146 yaratık",
+    "Eşyalar",
+    "1247 eşya",
+    "Başlarken"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@205,392",
+    "SPAN@279,392",
+    "[object@206,437"
+   ],
+   "baslik": "Ansiklopedi"
+  },
+  "reports": {
+   "enk": 11,
+   "metinN": 12,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 4,
+   "tr": [
+    "Savaş kayıtları",
+    "Savaşlarım",
+    "Oynadığın son 5 savaşın raporu (seri sav",
+    "Henüz kayıtlı bir savaşın yok."
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Posta"
+  },
+  "savas": {
+   "enk": 11,
+   "metinN": 9,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 7,
+   "tr": [
+    "Savaş",
+    "Bölgeler, bosslar ve zindanlar",
+    "Hızlı Av",
+    "Açık en yüksek bölümde tek savaş",
+    "Oyunculara karşı (PvP)",
+    "Şan Divanı"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Savaş"
+  },
+  "season": {
+   "enk": 11,
+   "metinN": 26,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 15,
+   "tr": [
+    "Durum, sıralama",
+    "Ödüller",
+    "Lig ve sıra",
+    "Geçmiş",
+    "· 16 Kas – 13 Ara · bitişine 17g 1sa",
+    "1000 puan · sıralama için 10 dövüş daha "
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Meydan Sezonu"
+  },
+  "server": {
+   "enk": 11,
+   "metinN": 28,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 13,
+   "tr": [
+    "Açılıştan beri 26. gün",
+    "Hâkim bölge",
+    "Kayıtlı oyuncu",
+    "Son 7 günde giren",
+    "Nüfus durumu",
+    "Bereket +%15 EXP · +%10 Akçe"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "H3@614,404",
+    "SPAN@120,427",
+    "B@614,427"
+   ],
+   "baslik": "Ares"
+  },
+  "settings": {
+   "enk": 11,
+   "metinN": 31,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 18,
+   "tr": [
+    "Düşük",
+    "Erişilebilirlik",
+    "Görme, duyma, dokunma",
+    "Türkçe",
+    "Oyunu ölçeklendir",
+    "Pencereler, düğmeler ve ana ekran parçal"
+   ],
+   "hedefN": 7,
+   "hedef": [
+    "216x14 INPUT",
+    "108x38 aeSet",
+    "71x29 aeSet",
+    "64x29 aeSet",
+    "94x29 aeSet",
+    "78x38 aeTog"
+   ],
+   "tasma": [
+    "[object@220,390",
+    "mut@501,406",
+    "btn@620,400"
+   ],
+   "baslik": "Ayarlar"
+  },
+  "shop": {
+   "enk": 11,
+   "metinN": 21,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 13,
+   "tr": [
+    "Günlük erzak",
+    "Gerçek para",
+    "Paket ve üyelik",
+    "ile çalışır. Yakut günlük görevlerden, m",
+    "Günde 3",
+    "Enerji Erzağı"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "[object@224,409",
+    "[object@374,409",
+    "mut@608,387"
+   ],
+   "baslik": "Kervan"
+  },
+  "starterOpen": {
+   "enk": 11,
+   "metinN": 20,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 19,
+   "tr": [
+    "İlk Alım Paketi",
+    "Bir silah seç; hesabına yalnızca bir kez",
+    "Kahraman Asası",
+    "Büyücü · Sv. 5",
+    "Büyü 26 · Alev Hasarı 21",
+    "Yakında"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "İlk Alım Paketi"
+  },
+  "supportMenu": {
+   "enk": 11,
+   "metinN": 6,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 3,
+   "tr": [
+    "Hata, hesap ya da ödeme: talebini yaz, y",
+    "Yeni talep aç",
+    "Henüz bir talebin yok. Her şey yolunda g"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Sorun / Teknik Destek"
+  },
+  "tuccar": {
+   "enk": 11,
+   "metinN": 17,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 10,
+   "tr": [
+    "Tüccar",
+    "Tüccar Halvor",
+    "Yemin Pazarı’nın en dürüst tezgâhı! Erza",
+    "Erzak ve Örs Malzemeleri",
+    "Genel satış",
+    "Örs Tozu Kesesi"
+   ],
+   "hedefN": 4,
+   "hedef": [
+    "233x37 tcSub",
+    "136x37 tcSub",
+    "50x38 tcBuy",
+    "50x38 tcBuy"
+   ],
+   "tasma": [],
+   "baslik": "Tüccar"
+  },
+  "wheel": {
+   "enk": 11.5,
+   "metinN": 11,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 8,
+   "tr": [
+    "Kader Çarkı",
+    "Gök Yarığı'ndan gelen parçalar burada mü",
+    "Kor Parçası",
+    "Parça yetmiyor",
+    "Ayaz Parçası",
+    "Parça yetmiyor"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Kader Çarkı"
+  },
+  "worldInfo": {
+   "enk": 11,
+   "metinN": 33,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 21,
+   "tr": [
+    "Diyarın Hâli",
+    "Yağmur · Maden üretimi +%10 · Bedel: Böl",
+    "Ak Taş (ırk bonusu)",
+    "Savaş akçesi +%8 · Pazar vergisi %5 yeri",
+    "Hava bonusu: Yağmur",
+    "Maden üretimi +%10"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [],
+   "baslik": "Diyarın Hâli"
+  },
+  "yakutMenu": {
+   "enk": 11,
+   "metinN": 40,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 21,
+   "tr": [
+    "Yakut Kartı",
+    "Günlük yakut",
+    "Geçmiş",
+    "Satın almalar",
+    "Mağaza yakında açılıyor.",
+    "Bu sürümde gerçek parayla satın alma yok"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "btn@319,378",
+    "btn@469,378",
+    "btn@618,378"
+   ],
+   "baslik": "Yakut Al"
+  },
+  "yashka": {
+   "enk": 11,
+   "metinN": 5,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 3,
+   "tr": [
+    "Şaman Yashka",
+    "Kemiklerim iki yol gösteriyor, yiğit. Ha",
+    "İleri"
+   ],
+   "hedefN": 1,
+   "hedef": [
+    "124x40 dlgNext"
+   ],
+   "tasma": [],
+   "baslik": null
+  },
+  "anvil": {
+   "enk": 11,
+   "metinN": 55,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 10,
+   "tr": [
+    "Demir sabır ister.",
+    "Örs",
+    "Kabuk Savaşçı Miğfer +7",
+    "%35 Başarı",
+    "5× Usta Taş",
+    "akçe"
+   ],
+   "hedefN": 34,
+   "hedef": [
+    "32x32 upOpt",
+    "32x32 upOpt",
+    "80x35 upClear",
+    "80x35 upPrev",
+    "43x43 pickUp",
+    "43x43 pickUp"
+   ],
+   "tasma": [
+    "icm-bg@775,375",
+    "btn@166,402",
+    "btn@254,395"
+   ],
+   "baslik": "Örs"
+  },
+  "han": {
+   "enk": 11,
+   "metinN": 17,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 13,
+   "tr": [
+    "Kadehini seç, yolun uzun.",
+    "Cepheye çıkmadan önce boğazını ıslat sav",
+    "Kanlı Bal Şarabı",
+    "+%8 Saldırı Gücü",
+    "45 dk veya 5 savaş",
+    "İç · 600 Akçe"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "icm-bg@775,375",
+    "kh-ic@93,384",
+    "SMALL@267,389"
+   ],
+   "baslik": "Han"
+  },
+  "ahir": {
+   "enk": 11,
+   "metinN": 21,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 10,
+   "tr": [
+    "Yoldaşın seni bekler.",
+    "Ahır",
+    "Zırhlı Savaş Atı",
+    "Her 4 turda sahibine azami canının %8’i ",
+    "Açılmadı",
+    "Aç · 2.500 Akçe"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "icm-bg@775,375",
+    "kb-btn@385,424",
+    "IMG@108,523"
+   ],
+   "baslik": "Ahır"
+  },
+  "zaferAniti": {
+   "enk": 11,
+   "metinN": 20,
+   "kucuk": {},
+   "kucukN": 0,
+   "trN": 5,
+   "tr": [
+    "Son halk savaşı · 2026-11-24",
+    "Savaşın İlk 3 Kahramanı",
+    "Zafer Lütufu",
+    "+1.200 Akçe · +25 Enerji · 24 saat +%5 E",
+    "Ödülü Al"
+   ],
+   "hedefN": 0,
+   "hedef": [],
+   "tasma": [
+    "icm-bg@776,375"
+   ],
+   "baslik": "ZAFER ANITI"
+  }
+ },
+ "ag": {
+  "n": 814,
+  "bayt": 64838779
+ },
+ "yuklemeMs": 3643,
+ "agYukleme": {
+  "n": 234,
+  "bayt": 8006908
+ },
+ "atla1": true,
+ "atla2": true,
+ "agHub": {
+  "n": 287,
+  "bayt": 28098605
+ },
+ "bellekMB": 104,
+ "agSon": {
+  "n": 814,
+  "bayt": 64838779
+ }
+}

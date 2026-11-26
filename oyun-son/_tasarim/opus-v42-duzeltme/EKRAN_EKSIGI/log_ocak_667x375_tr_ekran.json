@@ -1,0 +1,47 @@
+{
+ "log": {
+  "karakter": {
+   "baslik": "Karakter"
+  },
+  "bag": {
+   "baslik": "Çanta"
+  },
+  "quests": {
+   "baslik": "Görevler"
+  },
+  "shop": {
+   "baslik": "Kervan"
+  },
+  "meydan": {
+   "baslik": "Meydan"
+  },
+  "settings": {
+   "baslik": "Ayarlar"
+  },
+  "clan": {
+   "baslik": "Klan Karargâhı"
+  },
+  "karaborsa": {
+   "baslik": "Karaborsa"
+  },
+  "rank": {
+   "baslik": "Sıralama"
+  },
+  "news": {
+   "baslik": "Duyurular"
+  },
+  "profile": {
+   "baslik": "Denetci"
+  },
+  "gate": {
+   "baslik": "Kapı"
+  },
+  "market": {
+   "baslik": "Pazar"
+  },
+  "tuccar": {
+   "baslik": "Tüccar"
+  }
+ },
+ "hatalar": []
+}

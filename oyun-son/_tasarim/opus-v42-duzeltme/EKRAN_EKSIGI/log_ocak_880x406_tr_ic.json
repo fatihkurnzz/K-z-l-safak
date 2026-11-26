@@ -1,0 +1,32 @@
+{
+ "log": {
+  "bina_anvil": {
+   "baslik": "Örs"
+  },
+  "bina_iksir": {
+   "baslik": "İksir ve Parşömen"
+  },
+  "bina_mine": {
+   "baslik": "Maden"
+  },
+  "bina_king": {
+   "baslik": null
+  },
+  "bina_wheel": {
+   "baslik": "Kader Çarkı"
+  },
+  "bina_monument": {
+   "baslik": "Taş Yemini"
+  },
+  "bina_carsi": {
+   "baslik": null
+  },
+  "bina_pazar": {
+   "baslik": null
+  }
+ },
+ "hatalar": [
+  "SHOT bina_mine",
+  "SHOT bina_carsi"
+ ]
+}

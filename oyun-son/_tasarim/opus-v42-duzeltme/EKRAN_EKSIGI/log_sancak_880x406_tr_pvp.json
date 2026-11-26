@@ -1,0 +1,23 @@
+{
+ "log": {
+  "gatePvp": {
+   "baslik": "Meydan"
+  },
+  "czArena": {
+   "baslik": "Meydan"
+  },
+  "gateZones": {
+   "baslik": "Kapı"
+  },
+  "gateEvents": {
+   "baslik": "Kapı"
+  },
+  "nobet": {
+   "baslik": "Kristal Nöbeti"
+  },
+  "baskin": {
+   "baslik": "Kapı"
+  }
+ },
+ "hatalar": []
+}

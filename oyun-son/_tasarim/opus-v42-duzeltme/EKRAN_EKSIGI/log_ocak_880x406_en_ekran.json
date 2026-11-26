@@ -1,0 +1,47 @@
+{
+ "log": {
+  "karakter": {
+   "baslik": "Character"
+  },
+  "bag": {
+   "baslik": "Bag"
+  },
+  "quests": {
+   "baslik": "Quests"
+  },
+  "shop": {
+   "baslik": "Caravan"
+  },
+  "meydan": {
+   "baslik": "Arena"
+  },
+  "settings": {
+   "baslik": "Settings"
+  },
+  "clan": {
+   "baslik": "Clan Hall"
+  },
+  "karaborsa": {
+   "baslik": "Karaborsa"
+  },
+  "rank": {
+   "baslik": "Rankings"
+  },
+  "news": {
+   "baslik": "Announcements"
+  },
+  "profile": {
+   "baslik": "Denetci"
+  },
+  "gate": {
+   "baslik": "Gate"
+  },
+  "market": {
+   "baslik": "Market"
+  },
+  "tuccar": {
+   "baslik": "Merchant"
+  }
+ },
+ "hatalar": []
+}
