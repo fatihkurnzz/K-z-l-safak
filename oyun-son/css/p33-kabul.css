@@ -233,3 +233,19 @@ html.k24[data-faction] #win .frame > header .wres:has(> span:nth-child(7)) { gap
 html.k24[data-faction] #win .frame > header .wres:has(> span:nth-child(7)) > span { padding: 0 6px 0 4px !important; gap: 2px !important; font-size: 11px !important; }
 html.k24[data-faction="sancak"] #win .frame > header .wres:has(> span:nth-child(7)) > span { padding-left: 20px !important; }
 html.k24[data-faction="sancak"] #win .frame > header .wres:has(> span:nth-child(7)) > span > .ri:first-child { margin-left: -16px !important; }
+
+/* ---- Çözünürlük turu (26 Kas): 1180×820'de Oto İksir 77 px'e büyüyüp hız düğmesine biniyordu → telefon boyutunda (57 px) kalır ---- */
+#battleUI #bctl2 #bapot { max-width: 57px !important; max-height: 57px !important; }
+/* 667×375: savaş sonucu düğmeleri çerçevenin alt süsünün altında kalıyordu → arma küçülür, alt boşluk açılır */
+html.narrow #modal .box.p25bres .p25r-arma { height: 44px !important; width: 44px !important; }
+html.narrow #modal .box.p25bres { padding-bottom: 20px !important; }
+html.narrow #modal .box.p25bres .mbtns { margin-top: 4px !important; }
+html.narrow #modal .box.p25bres .mbtns > button { border-top-width: 3px !important; border-bottom-width: 3px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; line-height: 1.1 !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+/* 667×375 (html.narrow): "…" ile kısalan bilgi yazıları iki satıra kırılır (bilgi kaybı olmasın) */
+html.narrow #win .hint.ynote { white-space: normal !important; text-overflow: clip !important; overflow: visible !important; height: auto !important; max-height: none !important; }
+html.narrow #modal .pp-who :is(.pp-nm > h2, .pp-tags > .pp-rk) { white-space: normal !important; text-overflow: clip !important; overflow-wrap: anywhere; line-height: 1.12 !important; }
+html.narrow #modal .mon .minfo .kv > div, html.narrow #win .mon .minfo .kv > div { white-space: normal !important; text-overflow: clip !important; }
+html.narrow #win .zonerow > button > span { white-space: normal !important; text-overflow: clip !important; line-height: 1.05 !important; }
+html.narrow :is(#win, #modal) .wfc .wslot > span { white-space: normal !important; text-overflow: clip !important; line-height: 1.1 !important; }
+html.narrow #win .kx-bag .kx-foot { flex-wrap: wrap !important; row-gap: 2px !important; min-width: 0; }
+html.narrow #win .kx-bag .kx-foot > span { min-width: 0; }
