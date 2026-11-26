@@ -1,0 +1,668 @@
+{
+ "icmGizle": [],
+ "icmAc": [],
+ "icmCik": [],
+ "ormanFight": [],
+ "binaKapat": [],
+ "ahir": [],
+ "ahirAc": [],
+ "ahirKusan": [],
+ "ahirBesle": [],
+ "quests": [],
+ "mqSel": [],
+ "mqClaim": [],
+ "mqGo": [],
+ "mqTrack": [
+  "quests"
+ ],
+ "yashka": [],
+ "yashkaNobet": [
+  "nobet"
+ ],
+ "anit": [],
+ "anitGo": [],
+ "aySetGfx": [],
+ "ayMotion": [],
+ "ayMute": [],
+ "ayTest": [],
+ "ayLang": [],
+ "ayNotifs": [],
+ "ayCopy": [],
+ "ayEmek": [],
+ "ayProfile": [
+  "closeWin",
+  "profile"
+ ],
+ "ayFragman": [],
+ "settings": [],
+ "drawer": [],
+ "gfx": [
+  "settings"
+ ],
+ "balik": [],
+ "balikGo": [],
+ "balikRod": [
+  "balik"
+ ],
+ "balikSat": [],
+ "balikDefter": [],
+ "baskinGo": [],
+ "mnBaskin": [
+  "gate"
+ ],
+ "baskin": [],
+ "gate": [
+  "meydan"
+ ],
+ "zone": [],
+ "stage": [],
+ "arenaRefresh": [],
+ "wormGo": [],
+ "vsBack": [
+  "gate",
+  "meydan"
+ ],
+ "vsAuto": [],
+ "vsCoef": [],
+ "vsStart": [],
+ "vsForm": [
+  "party"
+ ],
+ "vsReturn": [
+  "hub"
+ ],
+ "sweep": [],
+ "exchange": [],
+ "exchangeDo": [],
+ "mode": [],
+ "arenaVs": [],
+ "liveFind": [],
+ "again": [
+  "clan",
+  "hub",
+  "meydan",
+  "nbGo"
+ ],
+ "next": [
+  "clan",
+  "hub",
+  "meydan"
+ ],
+ "backPvp": [
+  "clan",
+  "hub",
+  "meydan"
+ ],
+ "backClan": [
+  "clan",
+  "hub"
+ ],
+ "onlineOpen": [],
+ "onlineClaim": [
+  "onlineOpen"
+ ],
+ "closeModal": [],
+ "yes": [],
+ "closeWin": [],
+ "tab": [],
+ "denetci": [],
+ "destan": [],
+ "destanPlay": [],
+ "destanGo": [],
+ "destanOutro": [],
+ "destanMemory": [],
+ "destanBack": [
+  "destan"
+ ],
+ "destanPick": [
+  "destanOutro"
+ ],
+ "news": [
+  "tab"
+ ],
+ "supportMenu": [],
+ "spList": [],
+ "spNew": [],
+ "spCat": [],
+ "spOpen": [],
+ "spSend": [],
+ "spSay": [
+  "spOpen"
+ ],
+ "spClose": [],
+ "dlgNext": [],
+ "dlgClose": [],
+ "worldInfo": [],
+ "otag": [],
+ "diyarMap": [
+  "otag"
+ ],
+ "otagMenu": [
+  "otag"
+ ],
+ "rVote": [],
+ "rVoteGo": [],
+ "rRun": [],
+ "rDecree": [],
+ "rGrant": [],
+ "rGrantGo": [],
+ "devRuler": [],
+ "notifs": [
+  "tab"
+ ],
+ "bag": [],
+ "bagF": [],
+ "bagPick": [],
+ "bagGo": [
+  "anvil",
+  "market",
+  "party"
+ ],
+ "bagOne": [
+  "bag"
+ ],
+ "aeTog": [],
+ "aeSet": [],
+ "aeSes": [
+  "settings"
+ ],
+ "aeTut": [],
+ "erisim": [
+  "settings"
+ ],
+ "upClear": [],
+ "upPrev": [],
+ "pickUp": [],
+ "upOpt": [],
+ "upgrade": [],
+ "codex": [
+  "tab"
+ ],
+ "cxZone": [],
+ "mob": [],
+ "goStage": [
+  "gate"
+ ],
+ "cxType": [],
+ "cxCls": [],
+ "cxItem": [],
+ "han": [],
+ "hanIc": [],
+ "hanOnay": [],
+ "hanVazgec": [],
+ "hsInvite": [],
+ "hsSend": [],
+ "hsAccept": [],
+ "hsDecline": [],
+ "hsLeave": [],
+ "hsAsk": [],
+ "hsHelp": [],
+ "clanHisar": [
+  "clan"
+ ],
+ "npcKing": [],
+ "klanTab": [
+  "clan"
+ ],
+ "goKlan": [
+  "clanhq"
+ ],
+ "goCarsi": [
+  "travel"
+ ],
+ "travel": [],
+ "gateMenu": [],
+ "gateGo": [
+  "gate"
+ ],
+ "portalMenu": [],
+ "tcWeapons": [],
+ "tcArmors": [],
+ "tcMats": [],
+ "pzTaki": [],
+ "tcJewels": [],
+ "gateDestan": [
+  "destan"
+ ],
+ "gateCapital": [
+  "goCapital"
+ ],
+ "gateCarsi": [
+  "goCarsi"
+ ],
+ "gateKlan": [
+  "goKlan"
+ ],
+ "gateCz": [
+  "czpk"
+ ],
+ "goCapital": [
+  "travel"
+ ],
+ "hub": [],
+ "p23Hava": [],
+ "qboxToggle": [],
+ "savas": [],
+ "svGo": [
+  "gateGo"
+ ],
+ "svQuick": [
+  "quick"
+ ],
+ "svCz": [
+  "gate"
+ ],
+ "svDivan": [
+  "czHall",
+  "czpk"
+ ],
+ "questLog": [],
+ "qlOpen": [
+  "quests"
+ ],
+ "hotbar": [
+  "party"
+ ],
+ "czpk": [
+  "meydan"
+ ],
+ "czHall": [
+  "hall"
+ ],
+ "czArena": [
+  "gate"
+ ],
+ "czMarket": [
+  "shop"
+ ],
+ "building": [],
+ "quick": [
+  "stage"
+ ],
+ "rankMenu": [
+  "rank"
+ ],
+ "logoutMenu": [],
+ "fullscreen": [],
+ "mnMain": [
+  "quests"
+ ],
+ "charSwitchMenu": [
+  "charSwitch"
+ ],
+ "mnFish": [
+  "balik"
+ ],
+ "mnHisar": [
+  "clan",
+  "clanHisar"
+ ],
+ "mnFree": [
+  "shop"
+ ],
+ "gateZones": [
+  "gate"
+ ],
+ "gateEvents": [
+  "gate"
+ ],
+ "gatePvp": [
+  "gate"
+ ],
+ "chatMenu": [
+  "chatOpen"
+ ],
+ "premiumMenu": [
+  "premium"
+ ],
+ "promoMenu": [],
+ "promoDo": [],
+ "profile": [],
+ "avatarPick": [],
+ "avatarSet": [
+  "profile"
+ ],
+ "devEnergy": [],
+ "devLevel": [],
+ "devMastery": [],
+ "devGive": [],
+ "devGear": [],
+ "devUnlock": [],
+ "devReset": [],
+ "gfxSet": [],
+ "gfxReload": [],
+ "kxRot": [],
+ "kxF": [],
+ "kxSlot": [],
+ "kxPick": [],
+ "kxEquip": [],
+ "kxUnequip": [],
+ "kxUp": [
+  "anvil"
+ ],
+ "kxSell": [],
+ "notifGo": [],
+ "notifCat": [],
+ "devTut": [],
+ "calendar": [],
+ "evGo": [],
+ "calInfo": [],
+ "calClaim": [],
+ "monthlyClaim": [],
+ "monthlyBonus": [],
+ "weeklyClaim": [],
+ "weeklyBonus": [],
+ "achs": [],
+ "titles": [
+  "achs"
+ ],
+ "achCat": [],
+ "titleSet": [],
+ "titleLock": [],
+ "titlePick": [],
+ "titlePickSet": [
+  "profile"
+ ],
+ "titlesMenu": [
+  "titles"
+ ],
+ "devAsk": [],
+ "devYes": [],
+ "devNo": [],
+ "devOff": [],
+ "devTest": [],
+ "karaborsa": [],
+ "kbBuy": [],
+ "charSelect": [
+  "charCreate"
+ ],
+ "tkPick": [],
+ "tkEnter": [],
+ "charSwitch": [
+  "charSelect"
+ ],
+ "clan": [],
+ "clanhq": [
+  "clan",
+  "goKlan"
+ ],
+ "clanCreate": [
+  "clan"
+ ],
+ "clanJoin": [
+  "clan"
+ ],
+ "clanApply": [
+  "clan"
+ ],
+ "clanUnapply": [],
+ "clanDecline": [],
+ "klHq": [
+  "clan"
+ ],
+ "klDonate": [],
+ "klNotice": [],
+ "klNoticeSave": [],
+ "klAccept": [],
+ "klReject": [],
+ "klOpen": [],
+ "klMember": [],
+ "klRank": [],
+ "klKick": [],
+ "klTransfer": [],
+ "clanLeave": [
+  "clan"
+ ],
+ "klQuest": [],
+ "klBuy": [],
+ "klPair": [],
+ "klSym": [],
+ "klCape": [],
+ "klBannerSave": [],
+ "klInvite": [],
+ "clanClaim": [],
+ "klHunt": [],
+ "klFac": [],
+ "meydan": [],
+ "mzRefresh": [],
+ "feudGo": [
+  "arenaVs"
+ ],
+ "mzBackDef": [
+  "meydan"
+ ],
+ "mzBuy": [],
+ "hall": [
+  "meydan"
+ ],
+ "seasonBack": [
+  "gate",
+  "meydan"
+ ],
+ "seriesOpen": [],
+ "seriesLocked": [],
+ "seriesClose": [],
+ "seriesPlay": [],
+ "seriesDone": [],
+ "nobet": [],
+ "nbJoin": [],
+ "nbLeave": [],
+ "nbLobbyOff": [],
+ "nbGo": [
+  "hub"
+ ],
+ "nbClaim": [],
+ "yakutAl": [],
+ "yakutMenu": [
+  "yakutAl"
+ ],
+ "payCur": [],
+ "payCard": [],
+ "payBuy": [],
+ "shop": [],
+ "shopBuy": [],
+ "starterOpen": [],
+ "starterLater": [],
+ "friends": [],
+ "friendsMenu": [
+  "friends"
+ ],
+ "frAdd": [],
+ "frAccept": [],
+ "frDecline": [],
+ "frCancel": [],
+ "frRemove": [],
+ "frRemoveAsk": [],
+ "blockAsk": [],
+ "block": [],
+ "unblock": [],
+ "msgMenu": [],
+ "quoteMsg": [],
+ "reportAsk": [],
+ "repReason": [],
+ "repSend": [],
+ "npcMerchant": [],
+ "npcBuy": [],
+ "npcChild": [],
+ "npcWorm": [
+  "wormGo"
+ ],
+ "charCreate": [],
+ "olzCreate": [],
+ "party": [],
+ "karakter": [],
+ "sub": [
+  "party"
+ ],
+ "partyPath": [
+  "party"
+ ],
+ "mstUp": [],
+ "mstReset": [],
+ "slot": [],
+ "equip": [],
+ "unequip": [],
+ "skv": [],
+ "tp": [],
+ "skillReset": [],
+ "skill": [],
+ "sp": [],
+ "statReset": [],
+ "bagBreak": [
+  "breakWin",
+  "party"
+ ],
+ "bagMarket": [
+  "market"
+ ],
+ "tierInfo": [],
+ "tier": [],
+ "modInfo": [],
+ "depthFloors": [],
+ "depthSweep": [],
+ "season": [],
+ "seasonTitle": [],
+ "repLog": [],
+ "repBack": [],
+ "reports": [
+  "mail"
+ ],
+ "repOpen": [],
+ "repList": [],
+ "repSub": [],
+ "bakimBuy": [],
+ "rhSel": [],
+ "rhGo": [],
+ "rehber": [
+  "codex"
+ ],
+ "sandikOpen": [],
+ "sandikClaim": [],
+ "sesToggle": [],
+ "pathRow": [],
+ "pathChange": [],
+ "pathBack": [],
+ "pathPick": [],
+ "pathGo": [],
+ "chatMini": [],
+ "cbTab": [],
+ "cbFull": [
+  "chatOpen"
+ ],
+ "cbSend": [
+  "chatOpen"
+ ],
+ "emoOpen": [],
+ "emoPick": [],
+ "chatOpen": [],
+ "chSend": [],
+ "chConv": [
+  "chatOpen"
+ ],
+ "chBack": [
+  "chatOpen"
+ ],
+ "pcard": [],
+ "pm": [
+  "chatOpen"
+ ],
+ "rank": [],
+ "rkPer": [],
+ "rkFac": [],
+ "rkClaim": [],
+ "rkRewards": [],
+ "frameSel": [],
+ "frameSet": [
+  "frameSel"
+ ],
+ "clanPage": [],
+ "cpGo": [
+  "clan"
+ ],
+ "monument": [],
+ "server": [],
+ "anvil": [],
+ "breakWin": [],
+ "reforge": [],
+ "pick": [],
+ "pickGrade": [],
+ "dismantle": [],
+ "sell": [],
+ "craft": [],
+ "mine": [],
+ "mineCollect": [],
+ "mineUp": [],
+ "mineTrade": [],
+ "market": [
+  "tuccar"
+ ],
+ "pazar": [
+  "market"
+ ],
+ "tuccar": [
+  "npcMerchant"
+ ],
+ "npcSilah": [],
+ "npcZirh": [],
+ "npcTaki": [],
+ "tuccarSub": [
+  "npcSilah",
+  "npcTaki",
+  "npcZirh",
+  "tuccar"
+ ],
+ "marketKindOpen": [
+  "market"
+ ],
+ "marketSub": [],
+ "marketKind": [],
+ "marketRar": [],
+ "marketCls": [],
+ "marketSort": [],
+ "marketPick": [],
+ "pzSet": [],
+ "marketSell": [],
+ "marketBuy": [],
+ "marketCancel": [],
+ "tcSub": [],
+ "tcCls": [],
+ "tcBuy": [],
+ "tcPot": [],
+ "tcPick": [],
+ "tcPickG": [],
+ "tcSell": [],
+ "tcPlain": [],
+ "iksir": [],
+ "ikScroll": [],
+ "mail": [],
+ "mailTo": [
+  "mail",
+  "tab"
+ ],
+ "mailSend": [],
+ "mailOpen": [],
+ "mailBack": [],
+ "mailClaim": [],
+ "hallUp": [],
+ "wheel": [],
+ "wheelBack": [],
+ "spin": [],
+ "devPremium": [],
+ "premium": [],
+ "premBuy": [],
+ "questGo": [],
+ "gift": [],
+ "questClaim": [],
+ "questBonus": [],
+ "yeminGo": [
+  "yeminRite"
+ ],
+ "yeminRite": [
+  "mode"
+ ],
+ "ytAuto": [],
+ "ytSel": [],
+ "ytCls": [],
+ "zaferAniti": [],
+ "zaferAl": []
+}

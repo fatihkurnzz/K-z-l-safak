@@ -1,0 +1,327 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "durum": "yeni içerik önerisi; doğrudan diyalog şeması değil",
+  "npc": [
+    {
+      "icerik_kimligi": "gpt-npc-01",
+      "ad": "Hancı",
+      "halk": "sancak",
+      "mevcut_npc_kimligi": "hanci",
+      "eylem_adayi": "han",
+      "selamlama": [
+        "Hoş geldin, yolcu.",
+        "Ocağımız yorgunlara açıktır.",
+        "Kadehini seç, yolun uzun."
+      ],
+      "basari": [
+        "Gücün yerine gelsin.",
+        "Yolun açık olsun."
+      ],
+      "basarisizlik": [
+        "Kesen buna yetmiyor.",
+        "Şimdilik başka bir içecek seç."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-02",
+      "ad": "Seyis",
+      "halk": "sancak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "ahir",
+      "selamlama": [
+        "Yoldaşın seni bekler.",
+        "Her dost emek ister.",
+        "Ahırımıza hoş geldin."
+      ],
+      "basari": [
+        "Yoldaşın hazır.",
+        "Bağın kuvvetlendi."
+      ],
+      "basarisizlik": [
+        "Henüz şartları karşılamıyorsun.",
+        "Önce gerekli malzemeyi getir."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-03",
+      "ad": "Kral Edran",
+      "halk": "sancak",
+      "mevcut_npc_kimligi": "edran",
+      "eylem_adayi": "otag",
+      "selamlama": [
+        "Sözünün eri ol, savaşçı.",
+        "Ak Kuleler seni selamlar.",
+        "Diyarın halini gör."
+      ],
+      "basari": [
+        "Hizmetin unutulmayacak.",
+        "Elentha adına teşekkür ederim."
+      ],
+      "basarisizlik": [
+        "Bu işin şartları henüz tamam değil.",
+        "Hazır olduğunda yeniden gel."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-04",
+      "ad": "Kaçakçı",
+      "halk": "sancak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "karaborsa",
+      "selamlama": [
+        "Sessiz ol, yolcu.",
+        "Burada gözler değil keseler konuşur.",
+        "Mallarıma bak, adımı sorma."
+      ],
+      "basari": [
+        "Alışveriş tamam.",
+        "Seçimin isabetli."
+      ],
+      "basarisizlik": [
+        "Bu bedel karşılanmadı.",
+        "Şimdilik anlaşamadık."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-05",
+      "ad": "Komutan",
+      "halk": "sancak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "clanhq",
+      "selamlama": [
+        "Sancağını onurla taşı.",
+        "Birlik olmadan zafer olmaz.",
+        "Karargâha hoş geldin."
+      ],
+      "basari": [
+        "Emir yerine getirildi.",
+        "Birliğin güç kazandı."
+      ],
+      "basarisizlik": [
+        "Yetkin veya şartların yetersiz.",
+        "Önce hazırlığını tamamla."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-06",
+      "ad": "Ork Hancı",
+      "halk": "ocak",
+      "mevcut_npc_kimligi": "hanci",
+      "eylem_adayi": "han",
+      "selamlama": [
+        "Ocağa yaklaş, savaşçı.",
+        "Yorgun kemikler ateş ister.",
+        "Ne içeceksin, söyle."
+      ],
+      "basari": [
+        "Gücün geri dönsün.",
+        "Dişini sık, yoluna devam et."
+      ],
+      "basarisizlik": [
+        "Kesen hafif kalmış.",
+        "Başka bir içecek seç."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-07",
+      "ad": "Ork Binek Bakıcısı",
+      "halk": "ocak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "ahir",
+      "selamlama": [
+        "Yoldaşını yalnız bırakma.",
+        "Diş ve pençe sadakat ister.",
+        "Ahıra gir, savaşçı."
+      ],
+      "basari": [
+        "Yoldaşın hazır.",
+        "Bağınız demir gibi olsun."
+      ],
+      "basarisizlik": [
+        "Şartları tamamlamadın.",
+        "Gerekli malzemeyle dön."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-08",
+      "ad": "Kral Volgar Demirdiş",
+      "halk": "ocak",
+      "mevcut_npc_kimligi": "volgar",
+      "eylem_adayi": "otag",
+      "selamlama": [
+        "Ocağın gücü seninle olsun.",
+        "Toprak, çekice boyun eğer.",
+        "Diyarın yükünü gör, savaşçı."
+      ],
+      "basari": [
+        "Hizmetin demire kazınsın.",
+        "Kragmir bunu unutmaz."
+      ],
+      "basarisizlik": [
+        "Henüz hazır değilsin.",
+        "Şartları tamamla, sonra dön."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-09",
+      "ad": "Ork Kaçakçı",
+      "halk": "ocak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "karaborsa",
+      "selamlama": [
+        "Az konuş, malı incele.",
+        "Karanlıkta iyi mallar bulunur.",
+        "Kesen hazır mı, savaşçı?"
+      ],
+      "basari": [
+        "Anlaştık, mal senin.",
+        "İyi pazarlık ettin."
+      ],
+      "basarisizlik": [
+        "Bedeli karşılamadın.",
+        "Bu iş bugün olmaz."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-10",
+      "ad": "Ork Komutan",
+      "halk": "ocak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "clanhq",
+      "selamlama": [
+        "Safını sıkı tut.",
+        "Oba, tek yumruk olmalı.",
+        "Karargâha gir, savaşçı."
+      ],
+      "basari": [
+        "Emir tamamlandı.",
+        "Obanın gücü arttı."
+      ],
+      "basarisizlik": [
+        "Yetkin ya da şartların eksik.",
+        "Hazırlan ve geri dön."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-11",
+      "ad": "Büyük Örs Ustası",
+      "halk": "ortak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "anvil",
+      "selamlama": [
+        "Demir sabır ister.",
+        "Örsün başında acele etme.",
+        "İşlenecek eşyayı göster."
+      ],
+      "basari": [
+        "Örs işini gördü.",
+        "Çekiç boşa inmedi."
+      ],
+      "basarisizlik": [
+        "Bu işlem sonuç vermedi.",
+        "Örs bugün istediğini vermedi."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-12",
+      "ad": "Silah Tüccarı",
+      "halk": "ortak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "c_silah",
+      "selamlama": [
+        "Silahını dikkatle seç.",
+        "Her el aynı çeliği taşımaz.",
+        "Tezgâhıma hoş geldin."
+      ],
+      "basari": [
+        "Alışveriş tamam.",
+        "Silahın yoluna eşlik etsin."
+      ],
+      "basarisizlik": [
+        "Bu alışveriş tamamlanamadı.",
+        "Şartları karşılayınca dön."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-13",
+      "ad": "Zırh Tüccarı",
+      "halk": "ortak",
+      "mevcut_npc_kimligi": null,
+      "eylem_adayi": "c_zirh",
+      "selamlama": [
+        "Sağlam zırh, uzun yol demektir.",
+        "Tezgâhımdaki işçiliğe bak.",
+        "Kendine uygun zırhı seç."
+      ],
+      "basari": [
+        "Alışveriş tamam.",
+        "Zırhın seni korusun."
+      ],
+      "basarisizlik": [
+        "İşlem tamamlanamadı.",
+        "Önce şartları karşıla."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-14",
+      "ad": "Takı Tüccarı",
+      "halk": "ortak",
+      "mevcut_npc_kimligi": "lira",
+      "eylem_adayi": "c_taki",
+      "selamlama": [
+        "Her taşın bir hikâyesi var.",
+        "İşçiliği dikkatle incele.",
+        "Tezgâhıma hoş geldin."
+      ],
+      "basari": [
+        "Seçimin tamamlandı.",
+        "Güle güle kullan."
+      ],
+      "basarisizlik": [
+        "Bu alışveriş tamamlanamadı.",
+        "Şartları tamamlayıp dön."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    },
+    {
+      "icerik_kimligi": "gpt-npc-15",
+      "ad": "Tüccar Halvor",
+      "halk": "sancak",
+      "mevcut_npc_kimligi": "halvor",
+      "eylem_adayi": "merchant",
+      "selamlama": [
+        "Yemin Pazarı seni karşılar.",
+        "İyi donanım, iyi hazırlıktır.",
+        "Ne aradığını söyle, yolcu."
+      ],
+      "basari": [
+        "Alışverişin hayırlı olsun.",
+        "Seçimin yoluna yarasın."
+      ],
+      "basarisizlik": [
+        "Bu işlem tamamlanamadı.",
+        "Şartları karşılayınca yeniden gel."
+      ],
+      "baglama": "Claude gerçek ACT ve sonuç olayını doğrular; ortak halk için aktif faction kullanılır; mevcut diyalog ve öğretici korunur."
+    }
+  ],
+  "notlar": [
+    "15 rol, 105 replik; yeni içerik kimlikleri oyun ID değildir.",
+    "Başarı yalnız işlem gerçekten başarılıysa; kral/komutan için mevcut işlem yoksa başarı repliği bağlanmaz.",
+    "Kragmir merchant karşılığı tuccar-kragmir mevcut; Halvor repliklerini otomatik kopyalama.",
+    "Örs kırılma/düşme sonuçlarını mevcut açık sistem mesajıyla göster; replik bunu değiştirmez."
+  ]
+}

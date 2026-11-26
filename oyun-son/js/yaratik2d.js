@@ -61,7 +61,11 @@ const p26Poz = P => ({
 });
 /** G1: yüksek kademe (Sv.45+) görünümünün seviye eşiği ve GERÇEKTEN çizimi olan halk → sınıf → cinsiyet listesi.
  *  P28 M1: iki halkın t3 çizimi de ERKEK Savaşçı; kadın ya da başka sınıf için çizim gelince buraya eklenir. */
-export const T3 = { cls: 'warrior', lvl: 45, art: { ocak: { warrior: ['m'] }, sancak: { warrior: ['m'] } } };
+// P33 (Gemini N3-01, GPT kimlik kuralı): karakter oluşturma/seçim/Karakter/savaş AYNI kimliği göstermeli. t3_ocak çizimi yeşil ten
+// ve kılıç+kalkan kararlarına uymuyor; bu yüzden t3 görünümü varsayılanda KAPALI (karakter her yerde kendi 2B görselinde kalır).
+// Karşılaştırma için açma: ?t3=1 ya da localStorage dd_t3='1'. Yalnız görünüş; seviye/ekipman/savaş değerleri değişmez.
+const T3_AC = (() => { try { return new URLSearchParams(location.search).get('t3') === '1' || localStorage.getItem('dd_t3') === '1'; } catch { return false; } })();
+export const T3 = { cls: 'warrior', lvl: 45, art: T3_AC ? { ocak: { warrior: ['m'] }, sancak: { warrior: ['m'] } } : {} };
 /** Saf seçim (DOM'suz, test edilir): bu halk+sınıf+cinsiyet için t3 çizimi var ve seviye eşiği geçildi mi.
  *  Cinsiyet bilinmiyorsa (undefined) false: asla karşı cinsiyetin çizimine düşülmez, karakter kendi normal görseline kalır. */
 export const t3Uygun = (halk, cls, gender, lvl) => (lvl || 0) >= T3.lvl && !!T3.art[halk === 'sancak' ? 'sancak' : 'ocak']?.[cls]?.includes(gender);

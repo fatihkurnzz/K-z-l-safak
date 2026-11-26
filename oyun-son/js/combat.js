@@ -1,6 +1,7 @@
 // 3D savaş sahnesi: shared/battle.js motorunun olaylarını oynatır (animasyon, kamera, savaş arayüzü)
 // ve oyuncunun hamlelerini kaydeder. Sonucu hesaplamaz; hamle listesi sunucuya gider, ödülü sunucu belirler.
 // Efektler tabloyla sürülür (fx-table.js): olay türü → efekt adı, yeteneğin elementi, vuranın silahı. Çizen taraf fx.js'tir.
+import { savasMetni, ipucu } from './yukleme-metin.js'; // P33: GPT yükleme metinleri (savaş öncesi perde)
 import { WEAPON_FX as WFX } from '../shared/items.js';
 import { A as A11Y } from './a11y.js';
 import { THREE, camRig, clock, projectTo, floatText, pick, wait, tween, ease, burst, setHfov, setShift } from './engine3d.js';
@@ -52,8 +53,11 @@ function otoHint() {
   try { localStorage.setItem(OTO_HINT, String(n + 1)); } catch { }
   document.querySelector('.oto-tip')?.remove();
   const t = document.createElement('div'); t.className = 'oto-tip'; t.innerHTML = '<b>Otomatik</b> açık! Dokunursan savaşı senin yerine oynar; istediğin an kapatırsın.';
+  // P33 (Gemini N5-01): ipucu 3 sn sonra kendiliğinden, dokununca hemen kapanır (önce 7 sn düğmelerin önünde kalıyordu)
+  const kapa = () => { t.remove(); $('#bauto')?.classList.remove('tut-pulse'); };
+  t.addEventListener('pointerdown', kapa, { once: true });
   battleUI.appendChild(t); $('#bauto').classList.add('tut-pulse');
-  setTimeout(() => { t.remove(); $('#bauto').classList.remove('tut-pulse'); }, 7000);
+  setTimeout(kapa, 3000);
 }
 let curHero = null;
 const potLock = () => { const u = curHero; return !!u && TUTLOCK.pot() && ((u.potHp | 0) + (u.potMp | 0)) > 0; };
@@ -144,9 +148,10 @@ function hudAyir(list) {
     if (!a.hw || ++a.hudOlc % 90 === 0) { a.hw = a.hud.offsetWidth || 90; a.hh = a.hud.offsetHeight || 20; a.hudOlc = a.hudOlc || 1; } // ölçü ara sıra (yerleşim zorlamasın)
     let y = a.py;
     for (let n = 0; n < 6; n++) {
-      const c = yer.find(b => Math.abs(b.px - a.px) < (b.hw + a.hw) / 2 + 2 && y > b.y - b.hh - 2 && y - a.hh < b.y + 2);
+      // P33 (Gemini N5-01): komşu can çubukları arasında en az 7 px dikey boşluk (önce 2–3 px idi)
+      const c = yer.find(b => Math.abs(b.px - a.px) < (b.hw + a.hw) / 2 + 4 && y > b.y - b.hh - 7 && y - a.hh < b.y + 7);
       if (!c) break;
-      y = c.y - c.hh - 3;
+      y = c.y - c.hh - 8;
     }
     y = Math.max(a.hh + 4, y);
     if (engel && Math.abs(a.px - (engel.left + engel.right) / 2) < engel.width / 2 + a.hw / 2 && y - a.hh < engel.bottom + 2 && y > engel.top - 2) y = engel.bottom + a.hh + 4;
@@ -158,10 +163,12 @@ function hudAyir(list) {
 // Savaş kurulmadan önce koyu perde iner; birimlerin çizim paketleri, boss çizimleri (decode) ve P26 paketi hazırlanır
 // (en çok 2,5 sn). Sahne ilk kareleri çizince perde yumuşakça kalkar: giriş boyunca beyaz/boş kare görünmez.
 /** Savaş öncesi koyu perdeyi indirir ve görselleri ön-yükler. units: motor birimleri (parti + dalgalar). */
-export async function savasHazirla(units = []) {
+export async function savasHazirla(units = [], args = null) {
   let pr = document.getElementById('p26perde');
   if (!pr) { pr = document.createElement('div'); pr.id = 'p26perde'; pr.setAttribute('aria-hidden', 'true'); document.body.appendChild(pr); }
   pr.className = 'on';
+  // P33 (GPT yükleme metinleri): perde bu yükleme boyunca zaten iner; bölge/zindan metni ve ipucu yalnız o sürece görünür (ek bekleme yok)
+  { const m = savasMetni(args), ip = ipucu(); pr.innerHTML = m || ip ? `<div class="p33-yuk">${m ? `<b>${m.ad}</b><p>${m.metin}</p>` : ''}${ip ? `<small>${ip}</small>` : ''}</div>` : ''; }
   savasOnYukle();
   const decode = b64 => { if (!b64) return null; const im = new Image(); im.src = 'data:image/webp;base64,' + b64; return im.decode().catch(() => {}); };
   const isler = [p26Paket()];

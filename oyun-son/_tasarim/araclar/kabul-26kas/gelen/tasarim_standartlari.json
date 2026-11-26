@@ -1,0 +1,87 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "kaynak": [
+    "05_KONSEPT/SANAT_KITABI.md",
+    "14_CSS/css/kd-tokens.css",
+    "14_CSS/css/korant-theme-tokens.css",
+    "14_CSS/YUKLEME_SIRASI.md"
+  ],
+  "mevcut_token_bildirimleri": [
+    "/* DEMİR DİYARI · KÜL VE DEMİR · design tokens */\n:root {\n  --kd-ink:#0e0b10; --kd-coal:#1a1519; --kd-soot:#2a2328;\n  --kd-bone:#e9e1d3; --kd-ash:#8d8790; --kd-ash-light:#bfb9be;\n  --kd-blood:#9e1b1b; --kd-heal:#5fcb7a; --kd-mana:#3e8ef0; --kd-gold:#e2b44e;\n  --kd-panel-radius:12px; --kd-card-radius:10px; --kd-focus:#f4d78d;\n  --kd-hit-min:44px; --kd-transition-fast:80ms; --kd-transition-panel:220ms;\n  /* C11 (23 Kas): sanat kitabı tokenleri (_tasarim/denetim-22kas/paket/SANAT_KITABI.md). Henüz hiçbir kural kullanmıyor;\n     yeni ve elden geçen bileşenler bunlara bağlanır. Var olan --kd-* değerleri görünüm değişmesin diye korunur. */\n  --kd-old-gold:#c9a45c; --kd-hp:#b8322c; --kd-mana-ui:#3e7fd6; --kd-heal-ui:#5fbf78; --kd-warn:#e0a030;\n  --kd-r-std:#b9c0c8; --kd-r-rare:#4aa3ff; --kd-r-uniq:#ffb52e;\n  --kd-f-title:'Cinzel', serif; --kd-f-body:'Inter', system-ui, sans-serif;\n  --kd-t1:11px; --kd-t2:13px; --kd-t3:15px; --kd-t4:18px; --kd-t5:22px; --kd-t6:28px; --kd-t7:36px;\n  --kd-btn-h:40px; --kd-btn-h-sm:32px; --kd-close:40px;\n}\nhtml[data-faction=\"ocak\"] {\n  --kd-halk-1:#2b211b; --kd-halk-2:#a66a39; --kd-halk-3:#c2552b; --kd-halk-4:#d9c9a3; /* sanat kitabı Kragmir */\n  --kd-faction-1:#2b2622; --kd-faction-2:#4a423b; --kd-accent:#ff7a1a;\n  --kd-accent-soft:#ffb347; --kd-edge:#8a3b1e; --kd-rune:#d9c9a3;\n  --kd-panel-top:#2b211b; --kd-panel-bottom:#110e0c; --kd-frame:#a66a39;\n  --kd-button-top:#74401f; --kd-button-bottom:#211510; --kd-glow:rgba(255,122,26,.22);\n}\nhtml[data-faction=\"sancak\"] {\n  --kd-halk-1:#1f2c40; --kd-halk-2:#4d8cc9; --kd-halk-3:#c9d3dc; --kd-halk-4:#e8ddc5; /* sanat kitabı Elentha */\n  --kd-faction-1:#253142; --kd-faction-2:#53677e; --kd-accent:#4d8cc9;\n  --kd-accent-soft:#b9d9ef; --kd-edge:#c0a56a; --kd-rune:#e8ddc5;\n  --kd-panel-top:#202b3b; --kd-panel-bottom:#0d121b; --kd-frame:#b7a16f;\n  --kd-button-top:#3b5c7d; --kd-button-bottom:#111d2d; --kd-glow:rgba(77,140,201,.22);\n}\n",
+    "/* P28 merkezi tema değişkenleri (docs/referans/p28-tema-denetim/TALIMAT.md §2) */\n:root {\n  --korant-surface-card: rgba(18, 17, 22, 0.86);\n  --korant-surface-elevated: rgba(26, 24, 31, 0.92);\n  --korant-border-gold: rgba(196, 164, 104, 0.34);\n  --korant-border-gold-strong: rgba(214, 180, 114, 0.62);\n  --korant-text-primary: #EDE6D6;\n  --korant-text-muted: #B6AD9B;\n  --korant-accent-elentha: #3B82C4;\n  --korant-accent-kragmir: #C84032;\n}\n"
+  ],
+  "standart": {
+    "referans": [
+      880,
+      406
+    ],
+    "ek_testler": [
+      [
+        667,
+        375
+      ],
+      [
+        1180,
+        820
+      ]
+    ],
+    "font_baslik": "Cinzel 700/900",
+    "font_govde": "Inter 400/600/800",
+    "font_px": [
+      11,
+      13,
+      15,
+      18,
+      22,
+      28,
+      36
+    ],
+    "buton_px": [
+      40,
+      32
+    ],
+    "kapat_px": [
+      40,
+      40
+    ],
+    "dokunma_hedefi_px": 44,
+    "ikon_izgarasi_px": [
+      24,
+      32,
+      48
+    ],
+    "panel_radius_px": 12,
+    "kart_radius_px": 10
+  },
+  "oneriler": {
+    "bosluk_px": [
+      4,
+      8,
+      12,
+      16
+    ],
+    "cerceve_px": [
+      1,
+      2
+    ],
+    "kontrast_metin": "4.5:1 hedef; büyük metin 3:1; gerçek arka plan üzerinde ölç",
+    "durumlar": {
+      "normal": "rol rengi",
+      "secili": "ince vurgu + işaret",
+      "basili": "kısa koyulaşma",
+      "kilitli": "kilit ve neden",
+      "pasif": "işlem yok; açıklama",
+      "bekleme": "çift işlemi engelle; sonuç bildir",
+      "odak": "görünür odak halkası"
+    },
+    "panel": "Ortak geometri; iç mekânda mevcut sağ panel, Maden alt panel; Örs istisnası mevcut onayla kompakt sol/minimize.",
+    "bos": "Açıklama ve geçerli sonraki eylem; sahte içerik yok",
+    "halk": "Mevcut paleti koru; Kragmir kahverengi yoğunluğunu ve Elentha altın çerçevesini yalnız kanıtlı kusurda dengele."
+  },
+  "uygulama": [
+    "Token tanımı gerçek hesaplanmış CSS değeri değildir.",
+    "Otomatik üretilen dört CSS dosyasını elle düzenleme; şablon veya kontrollü son katman kullan.",
+    "26 px altı ölçüm yalnız tarama eşiği; 44 px hedef için komşu alanları çakıştırma.",
+    "Yatay mimariyi koru; dikey destek iddiası yok."
+  ]
+}

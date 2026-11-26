@@ -1,0 +1,5765 @@
+[
+ {
+  "eylem": "icmGizle",
+  "dosya": "js/ic-mekan.js",
+  "satir": 117,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.icmGizle = () => { if (acik) { acik.kap.classList.add('icm-kapali'); acik.el.querySelector('[data-a=\"icmAc\"].icm-btn')?.focus({ preventScroll: true }); } };"
+ },
+ {
+  "eylem": "icmAc",
+  "dosya": "js/ic-mekan.js",
+  "satir": 118,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.icmAc = () => acik?.kap.classList.remove('icm-kapali');"
+ },
+ {
+  "eylem": "icmCik",
+  "dosya": "js/ic-mekan.js",
+  "satir": 119,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.icmCik = () => { if (!acik) return; if (acik.kap.id === 'p28bina') ACT.binaKapat?.(); else if (cur()) closeWin(); };"
+ },
+ {
+  "eylem": "ormanFight",
+  "dosya": "js/orman.js",
+  "satir": 204,
+  "acar": [
+   "startBattle",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ormanFight = () => {"
+ },
+ {
+  "eylem": "binaKapat",
+  "dosya": "js/ui-ahir.js",
+  "satir": 50,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.binaKapat = binaKapat;"
+ },
+ {
+  "eylem": "ahir",
+  "dosya": "js/ui-ahir.js",
+  "satir": 95,
+  "acar": [
+   "binaAc"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.ahir = () => binaAc('korant-modal-stable', 'Ahır', ahirHead(), ahirBody());"
+ },
+ {
+  "eylem": "ahirAc",
+  "dosya": "js/ui-ahir.js",
+  "satir": 97,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ahir.unlock"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ahirAc = async d => { const r = await run('ahir.unlock', { id: d.id, pay: d.pay }); if (r) toast(`${COMPANIONS[d.id].name} artık ahırında.`); ahirRedraw(); "
+ },
+ {
+  "eylem": "ahirKusan",
+  "dosya": "js/ui-ahir.js",
+  "satir": 99,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ahir.equip"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ahirKusan = async d => { const r = await run('ahir.equip', { id: d.id }); if (r) toast(r.active ? `${COMPANIONS[d.id].name} yanında savaşacak.` : `${COMPANI"
+ },
+ {
+  "eylem": "ahirBesle",
+  "dosya": "js/ui-ahir.js",
+  "satir": 101,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ahir.feed"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ahirBesle = async d => { const r = await run('ahir.feed', { id: d.id }); if (r) toast(r.up ? `${COMPANIONS[d.id].name} seviye atladı: Sv. ${r.lv}` : `${COMP"
+ },
+ {
+  "eylem": "quests",
+  "dosya": "js/ui-anagorev.js",
+  "satir": 90,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.quests = open;"
+ },
+ {
+  "eylem": "mqSel",
+  "dosya": "js/ui-anagorev.js",
+  "satir": 91,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mqSel = d => { V.sel = d.id; const pg = document.querySelector('#page'), sc = document.querySelector('.mq-tree')?.scrollLeft || 0; redrawNow(); const tr = d"
+ },
+ {
+  "eylem": "mqClaim",
+  "dosya": "js/ui-anagorev.js",
+  "satir": 92,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mqClaim = async d => {"
+ },
+ {
+  "eylem": "mqGo",
+  "dosya": "js/ui-anagorev.js",
+  "satir": 96,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mqGo = d => { const n = MQ_BY[d.id]; if (!n) return; closeWin(); GO[n.go]?.(); };"
+ },
+ {
+  "eylem": "mqTrack",
+  "dosya": "js/ui-anagorev.js",
+  "satir": 97,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mqTrack = d => { const n = MQ_BY[d.id]; if (!n) return; if (mqState(S, n) === 'ready') ACT.quests({ tab: 'main', id: n.id }); else { GO[n.go]?.(); } };"
+ },
+ {
+  "eylem": "yashka",
+  "dosya": "js/ui-anit.js",
+  "satir": 11,
+  "acar": [
+   "diyalog"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.yashka = async () => { const { diyalog } = await import('./ui-diyalog.js');"
+ },
+ {
+  "eylem": "yashkaNobet",
+  "dosya": "js/ui-anit.js",
+  "satir": 16,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.yashkaNobet = () => { closeModal(); ACT.nobet(); };"
+ },
+ {
+  "eylem": "anit",
+  "dosya": "js/ui-anit.js",
+  "satir": 17,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.anit = () => {"
+ },
+ {
+  "eylem": "anitGo",
+  "dosya": "js/ui-anit.js",
+  "satir": 32,
+  "acar": [
+   "startBattle"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.anitGo = () => { closeModal(); startBattle({ mode: 'anit' }); };"
+ },
+ {
+  "eylem": "aySetGfx",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 89,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.aySetGfx = d => { setGfx(d.t); redraw(); };"
+ },
+ {
+  "eylem": "ayMotion",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 90,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.ayMotion = () => { setMotion(!motionLess()); redraw(); };"
+ },
+ {
+  "eylem": "ayMute",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 102,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ayMute = d => { if (d.b) mute(!getAudio().mute[d.b], d.b); else mute(!isMuted()); redraw(); if (!isMuted()) play('ui.toggle'); };"
+ },
+ {
+  "eylem": "ayTest",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 103,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ayTest = d => { const n = (BUS_TEST[d.b] || []).find(hasSound); if (n) play(n); };"
+ },
+ {
+  "eylem": "ayLang",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 126,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ayLang = d => chooseLang(d.l);"
+ },
+ {
+  "eylem": "ayNotifs",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 136,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ayNotifs = () => ACT.notifs?.({ tab: 'set' });"
+ },
+ {
+  "eylem": "ayCopy",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 150,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.ayCopy = async () => { const id = AY.data?.id; if (!id) return; try { await navigator.clipboard.writeText(id); toast(t('Kimlik kopyalandı.')); } catch { toa"
+ },
+ {
+  "eylem": "ayEmek",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 151,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.ayEmek = () => {"
+ },
+ {
+  "eylem": "ayProfile",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 155,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.ayProfile = () => { ACT.closeWin(); ACT.profile(); };"
+ },
+ {
+  "eylem": "ayFragman",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 156,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.ayFragman = () => { ACT.closeWin?.(); replayFragman(); };"
+ },
+ {
+  "eylem": "settings",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 185,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.settings = d => { closeModal(); AY.tab = Object.hasOwn(PAGES, d?.tab) ? d.tab : AY.tab; openWin(AY); };"
+ },
+ {
+  "eylem": "drawer",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 190,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.drawer = () => {"
+ },
+ {
+  "eylem": "gfx",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 197,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.gfx = () => ACT.settings({ tab: 'gfx' });"
+ },
+ {
+  "eylem": "balik",
+  "dosya": "js/ui-balik.js",
+  "satir": 70,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.balik = () => {"
+ },
+ {
+  "eylem": "balikGo",
+  "dosya": "js/ui-balik.js",
+  "satir": 76,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "fish.cast"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.balikGo = () => {"
+ },
+ {
+  "eylem": "balikRod",
+  "dosya": "js/ui-balik.js",
+  "satir": 105,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "fish.rod"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.balikRod = async () => {"
+ },
+ {
+  "eylem": "balikSat",
+  "dosya": "js/ui-balik.js",
+  "satir": 109,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "fish.sell"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.balikSat = async () => {"
+ },
+ {
+  "eylem": "balikDefter",
+  "dosya": "js/ui-balik.js",
+  "satir": 115,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.balikDefter = () => {"
+ },
+ {
+  "eylem": "baskinGo",
+  "dosya": "js/ui-baskin.js",
+  "satir": 54,
+  "acar": [
+   "startBattle"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.baskinGo = () => startBattle({ mode: 'baskin' });"
+ },
+ {
+  "eylem": "mnBaskin",
+  "dosya": "js/ui-baskin.js",
+  "satir": 55,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mnBaskin = () => { closeModal(); ACT.gate({ tab: 'events' }); };"
+ },
+ {
+  "eylem": "baskin",
+  "dosya": "js/ui-baskin.js",
+  "satir": 56,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.baskin = ACT.mnBaskin;"
+ },
+ {
+  "eylem": "gate",
+  "dosya": "js/ui-battle.js",
+  "satir": 39,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "arena.list",
+   "war.view",
+   "akin.view",
+   "siege.top",
+   "baskin.view"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.gate = d => { savasOnYukle();"
+ },
+ {
+  "eylem": "zone",
+  "dosya": "js/ui-battle.js",
+  "satir": 71,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.zone = d => { GV.zone = +d.z; redraw(); };"
+ },
+ {
+  "eylem": "stage",
+  "dosya": "js/ui-battle.js",
+  "satir": 72,
+  "acar": [
+   "ACT.stage",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.stage = d => { if (!d || !d.id) return; const t = +d.t || 0; if (!stageOpen(S, d.id, t)) return toast('Kilitli: önce bir önceki aşama geçilmeli.'); openStag"
+ },
+ {
+  "eylem": "arenaRefresh",
+  "dosya": "js/ui-battle.js",
+  "satir": 116,
+  "acar": [],
+  "okuma": [
+   "arena.list"
+  ],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.arenaRefresh = async () => { const r = await run('arena.list', { refresh: true }); if (r) redraw(); };"
+ },
+ {
+  "eylem": "wormGo",
+  "dosya": "js/ui-battle.js",
+  "satir": 124,
+  "acar": [
+   "openVs"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.wormGo = () => openVs({ title: 'Dev Solucan', foe: 'Dev Solucan <span class=\"mut\">· Nessa’yı yuttu</span>', waves: soloWaves([[mobUnit('devsolucan', Math.ma"
+ },
+ {
+  "eylem": "vsBack",
+  "dosya": "js/ui-battle.js",
+  "satir": 125,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.vsBack = () => (['arena', 'live', 'banner'].includes(VS?.args?.mode) ? ACT.meydan({ tab: 'fight' }) : ACT.gate({ tab: GV.tab === 'pvp' ? 'zones' : GV.tab, z"
+ },
+ {
+  "eylem": "vsAuto",
+  "dosya": "js/ui-battle.js",
+  "satir": 164,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.vsAuto = () => { VS.auto = !VS.auto; try { localStorage.setItem('dd_oto', VS.auto ? '1' : '0'); } catch { } redraw(); };"
+ },
+ {
+  "eylem": "vsCoef",
+  "dosya": "js/ui-battle.js",
+  "satir": 165,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.vsCoef = () => showModal(`<h2>Saldırı Türleri</h2><div class=\"in\" style=\"text-align:left\">${vsCoefTable(vsLeft(), VS.waves)}</div>`, 'cxbox');"
+ },
+ {
+  "eylem": "vsStart",
+  "dosya": "js/ui-battle.js",
+  "satir": 166,
+  "acar": [
+   "startBattle"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.vsStart = () => startBattle(VS.args, VS.auto);"
+ },
+ {
+  "eylem": "vsForm",
+  "dosya": "js/ui-battle.js",
+  "satir": 168,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.vsForm = () => ACT.party({ back: 'vsReturn' });"
+ },
+ {
+  "eylem": "vsReturn",
+  "dosya": "js/ui-battle.js",
+  "satir": 169,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.vsReturn = () => { if (VS) openWin({ title: VS.title, back: 'vsBack', scr: 'vs', render: renderVs }); else ACT.hub(); };"
+ },
+ {
+  "eylem": "sweep",
+  "dosya": "js/ui-battle.js",
+  "satir": 170,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [
+   "battle.sweep"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.sweep = async d => {"
+ },
+ {
+  "eylem": "exchange",
+  "dosya": "js/ui-battle.js",
+  "satir": 184,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.exchange = d => {"
+ },
+ {
+  "eylem": "exchangeDo",
+  "dosya": "js/ui-battle.js",
+  "satir": 189,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "boss.exchange"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.exchangeDo = async d => { const r = await run('boss.exchange', { boss: d.boss, b: d.b }); if (r) { closeModal(); toast(`${itemBase(d.b).name} çantana eklend"
+ },
+ {
+  "eylem": "mode",
+  "dosya": "js/ui-battle.js",
+  "satir": 203,
+  "acar": [
+   "openVs"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mode = d => { const c = MODE_VS[d.m](); openVs({ extra: modVsNote(d.m), ...c, args: { mode: d.m } }); if (c.back) VS.backTo = c.back; };"
+ },
+ {
+  "eylem": "arenaVs",
+  "dosya": "js/ui-battle.js",
+  "satir": 204,
+  "acar": [
+   "openVs"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.arenaVs = d => { const o = S.arena.opp[+d.i]; openVs({ title: `Meydan · ${o.name}`, foe: `${esc(o.name)} <span class=\"mut\">· ${o.rating} puan</span>`, waves"
+ },
+ {
+  "eylem": "liveFind",
+  "dosya": "js/ui-battle.js",
+  "satir": 205,
+  "acar": [
+   "openVs"
+  ],
+  "okuma": [],
+  "yazma": [
+   "live.find"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.liveFind = async () => { const r = await run('live.find'); if (!r) return; const o = S.arena.liveOpp; openVs({ title: `Canlı Meydan · ${o.name}`, foe: `${es"
+ },
+ {
+  "eylem": "again",
+  "dosya": "js/ui-battle.js",
+  "satir": 249,
+  "acar": [
+   "showModal",
+   "startBattle"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.again = () => (m === 'nobet' ? ACT.nbGo() : startBattle(m === 'depth' || m === 'kule' ? { mode: m } : args, auto)); // Kristal Nöbeti: parti savaşına (ui-no"
+ },
+ {
+  "eylem": "next",
+  "dosya": "js/ui-battle.js",
+  "satir": 250,
+  "acar": [
+   "showModal",
+   "startBattle"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.next = () => startBattle(tier ? { stage: next.id, tier } : { stage: next.id }, auto);"
+ },
+ {
+  "eylem": "backPvp",
+  "dosya": "js/ui-battle.js",
+  "satir": 251,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.backPvp = () => { ACT.hub(); ACT.meydan({ tab: 'fight' }); };"
+ },
+ {
+  "eylem": "backClan",
+  "dosya": "js/ui-battle.js",
+  "satir": 252,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.backClan = () => { ACT.hub(); ACT.clan(m === 'clanboss' ? { tab: 'av' } : undefined); };"
+ },
+ {
+  "eylem": "onlineOpen",
+  "dosya": "js/ui-cevrimici.js",
+  "satir": 79,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.onlineOpen = () => { p25bImg(); showModal(html(), 'onl p25b'); paint(); };"
+ },
+ {
+  "eylem": "onlineClaim",
+  "dosya": "js/ui-cevrimici.js",
+  "satir": 80,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "online.claim"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.onlineClaim = async d => {"
+ },
+ {
+  "eylem": "closeModal",
+  "dosya": "js/ui-core.js",
+  "satir": 232,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.closeModal = closeModal;"
+ },
+ {
+  "eylem": "yes",
+  "dosya": "js/ui-core.js",
+  "satir": 238,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.yes = () => { const f = confirmYes; confirmYes = null; closeModal(); f?.(); };"
+ },
+ {
+  "eylem": "closeWin",
+  "dosya": "js/ui-core.js",
+  "satir": 359,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.closeWin = () => closeWin();"
+ },
+ {
+  "eylem": "tab",
+  "dosya": "js/ui-core.js",
+  "satir": 360,
+  "acar": [
+   "ACT.tab"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tab = d => { W.tab = d.id; W.data = null; W.onTab?.(d.id); drawWin(); const pg = $('#page'); if (pg) pg.scrollTop = 0; reload(); };"
+ },
+ {
+  "eylem": "denetci",
+  "dosya": "js/ui-denetci.js",
+  "satir": 75,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.denetci = () => (D.on ? close() : open());"
+ },
+ {
+  "eylem": "destan",
+  "dosya": "js/ui-destan.js",
+  "satir": 22,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.destan = () => openWin({ title: 'Destan', render: listHtml });"
+ },
+ {
+  "eylem": "destanPlay",
+  "dosya": "js/ui-destan.js",
+  "satir": 26,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.destanPlay = d => { const C = DESTAN_BY[+d.id]; if (!C) return; closeModal(); scene(C, S.faction, 'intro', `<button class=\"btn red\" data-a=\"destanGo\" data-i"
+ },
+ {
+  "eylem": "destanGo",
+  "dosya": "js/ui-destan.js",
+  "satir": 27,
+  "acar": [
+   "startBattle"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.destanGo = d => { const C = DESTAN_BY[+d.id]; closeModal(); if (C.kind === 'battle') return startBattle({ mode: 'destan', ch: C.id }); PZ = { id: C.id, pick"
+ },
+ {
+  "eylem": "destanOutro",
+  "dosya": "js/ui-destan.js",
+  "satir": 28,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.destanOutro = d => { const C = DESTAN_BY[+d.id]; if (!C) return; scene(C, S.faction, 'outro', `<button class=\"btn\" data-a=\"destanMemory\" data-id=\"${C.id}\">Ö"
+ },
+ {
+  "eylem": "destanMemory",
+  "dosya": "js/ui-destan.js",
+  "satir": 29,
+  "acar": [
+   "showModal",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.destanMemory = d => { const C = DESTAN_BY[+d.id]; if (!C || !done(C.id)) return toast('Bu anı bölüm bitince açılır.'); const o = otherFaction(S.faction);"
+ },
+ {
+  "eylem": "destanBack",
+  "dosya": "js/ui-destan.js",
+  "satir": 31,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.destanBack = () => { closeModal(); ACT.destan(); };"
+ },
+ {
+  "eylem": "destanPick",
+  "dosya": "js/ui-destan.js",
+  "satir": 44,
+  "acar": [
+   "startBattle",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "destan.solve"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.destanPick = async d => {"
+ },
+ {
+  "eylem": "news",
+  "dosya": "js/ui-destek.js",
+  "satir": 27,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "news.list",
+   "news.read"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.news = () => {"
+ },
+ {
+  "eylem": "supportMenu",
+  "dosya": "js/ui-destek.js",
+  "satir": 84,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "ticket.list"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.supportMenu = () => { closeModal(); SP.view = 'list'; SP.t = null; openWin({ title: 'Sorun / Teknik Destek', scr: 'destek', load: () => run('ticket.list'), "
+ },
+ {
+  "eylem": "spList",
+  "dosya": "js/ui-destek.js",
+  "satir": 85,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.spList = () => { SP.view = 'list'; SP.t = null; reload(); };"
+ },
+ {
+  "eylem": "spNew",
+  "dosya": "js/ui-destek.js",
+  "satir": 86,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.spNew = () => { SP.view = 'new'; redraw(); };"
+ },
+ {
+  "eylem": "spCat",
+  "dosya": "js/ui-destek.js",
+  "satir": 87,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.spCat = d => { const sub = document.getElementById('spsub')?.value, txt = document.getElementById('sptxt')?.value; SP.cat = d.c; redraw(); if (sub !== undef"
+ },
+ {
+  "eylem": "spOpen",
+  "dosya": "js/ui-destek.js",
+  "satir": 88,
+  "acar": [],
+  "okuma": [
+   "ticket.get"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.spOpen = async d => {"
+ },
+ {
+  "eylem": "spSend",
+  "dosya": "js/ui-destek.js",
+  "satir": 94,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ticket.open"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.spSend = async () => {"
+ },
+ {
+  "eylem": "spSay",
+  "dosya": "js/ui-destek.js",
+  "satir": 100,
+  "acar": [
+   "say"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ticket.say"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.spSay = async () => {"
+ },
+ {
+  "eylem": "spClose",
+  "dosya": "js/ui-destek.js",
+  "satir": 105,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ticket.close"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.spClose = async () => { if (await run('ticket.close', { id: SP.t.id })) { toast('Talep kapandı.'); SP.view = 'list'; SP.t = null; reload(); } };"
+ },
+ {
+  "eylem": "dlgNext",
+  "dosya": "js/ui-diyalog.js",
+  "satir": 39,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.dlgNext = () => { if (!D.s) return; if (D.i < D.s.satirlar.length - 1) { D.i++; ciz(false); } };"
+ },
+ {
+  "eylem": "dlgClose",
+  "dosya": "js/ui-diyalog.js",
+  "satir": 40,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.dlgClose = () => { D.s = null; closeModal(); };"
+ },
+ {
+  "eylem": "worldInfo",
+  "dosya": "js/ui-dunya.js",
+  "satir": 109,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.worldInfo = () => {"
+ },
+ {
+  "eylem": "otag",
+  "dosya": "js/ui-dunya.js",
+  "satir": 132,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.otag = d => { closeModal(); openWin({ title: `${KINGDOM.court} · ${fname(S.faction)}`, tab: d?.tab || 'ruler', tabs: TABS(), load: loadOtag, render: renderO"
+ },
+ {
+  "eylem": "diyarMap",
+  "dosya": "js/ui-dunya.js",
+  "satir": 133,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.diyarMap = () => ACT.otag({ tab: 'map' });"
+ },
+ {
+  "eylem": "otagMenu",
+  "dosya": "js/ui-dunya.js",
+  "satir": 134,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.otagMenu = () => ACT.otag();"
+ },
+ {
+  "eylem": "rVote",
+  "dosya": "js/ui-dunya.js",
+  "satir": 173,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rVote = d => !d?.name ? undefined : showModal(`<h2>Oy ver</h2><div class=\"in\"><p>Oyunu <b>${esc(d.name)}</b> için kullanmak üzeresin.</p><p class=\"mut\">Haft"
+ },
+ {
+  "eylem": "rVoteGo",
+  "dosya": "js/ui-dunya.js",
+  "satir": 175,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "realm.vote"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rVoteGo = async d => { closeModal(); if (await run('realm.vote', { id: d.id })) { toast('Oyun sayıldı.'); reload(); } };"
+ },
+ {
+  "eylem": "rRun",
+  "dosya": "js/ui-dunya.js",
+  "satir": 176,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "realm.run"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.rRun = async () => {"
+ },
+ {
+  "eylem": "rDecree",
+  "dosya": "js/ui-dunya.js",
+  "satir": 215,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "realm.announce"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.rDecree = async () => {"
+ },
+ {
+  "eylem": "rGrant",
+  "dosya": "js/ui-dunya.js",
+  "satir": 219,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rGrant = d => {"
+ },
+ {
+  "eylem": "rGrantGo",
+  "dosya": "js/ui-dunya.js",
+  "satir": 227,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "realm.grant"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rGrantGo = async d => {"
+ },
+ {
+  "eylem": "devRuler",
+  "dosya": "js/ui-dunya.js",
+  "satir": 351,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "dev.ruler"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devRuler = async () => { if (await run('dev.ruler')) { OT.amRuler = true; closeModal(); toast(`Irkının ${KINGDOM.title}u oldun; hazineye deneme akçesi kondu"
+ },
+ {
+  "eylem": "notifs",
+  "dosya": "js/ui-duyuru.js",
+  "satir": 264,
+  "acar": [
+   "ACT.tab"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ann.feed"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.notifs = d => { n0(d); const w = cur(); if (!w || w.v13) return; w.v13 = 1; const r0 = w.render; w.render = t => (t === 'list' ? notifCards(w, r0(t)) : r0(t"
+ },
+ {
+  "eylem": "news",
+  "dosya": "js/ui-duyuru.js",
+  "satir": 269,
+  "acar": [
+   "ACT.tab"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ann.feed"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.news = d => {"
+ },
+ {
+  "eylem": "bag",
+  "dosya": "js/ui-envanter.js",
+  "satir": 62,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.bag = () => openWin({ title: 'Çanta', render: bagHtml });"
+ },
+ {
+  "eylem": "bagF",
+  "dosya": "js/ui-envanter.js",
+  "satir": 63,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.bagF = d => { BAGV.f = d.id; redrawBag(); };"
+ },
+ {
+  "eylem": "bagPick",
+  "dosya": "js/ui-envanter.js",
+  "satir": 64,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.bagPick = d => { BAGV.sel = +d.id; redrawBag(); };"
+ },
+ {
+  "eylem": "bagGo",
+  "dosya": "js/ui-envanter.js",
+  "satir": 66,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.bagGo = d => {"
+ },
+ {
+  "eylem": "bagOne",
+  "dosya": "js/ui-envanter.js",
+  "satir": 72,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.bagOne = d => {"
+ },
+ {
+  "eylem": "aeTog",
+  "dosya": "js/ui-erisim.js",
+  "satir": 45,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.aeTog = d => { const k = d.k; if (k === 'orient') setA11y({ orient: A.orient === 'lock' ? 'auto' : 'lock' }); else setA11y({ [k]: !A[k] }); redraw(); if (TO"
+ },
+ {
+  "eylem": "aeSet",
+  "dosya": "js/ui-erisim.js",
+  "satir": 46,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.aeSet = d => { const k = d.k, v = k === 'scale' || k === 'speed' ? +d.v : d.v; setA11y({ [k]: v }); redraw(); };"
+ },
+ {
+  "eylem": "aeSes",
+  "dosya": "js/ui-erisim.js",
+  "satir": 47,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.aeSes = () => ACT.settings({ tab: 'ses' });"
+ },
+ {
+  "eylem": "aeTut",
+  "dosya": "js/ui-erisim.js",
+  "satir": 48,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.aeTut = () => { ACT.closeWin?.(); replayFragman(); };"
+ },
+ {
+  "eylem": "erisim",
+  "dosya": "js/ui-erisim.js",
+  "satir": 49,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.erisim = () => ACT.settings({ tab: 'erisim' });"
+ },
+ {
+  "eylem": "upClear",
+  "dosya": "js/ui-esya.js",
+  "satir": 85,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.upClear = () => { if (UP.busy) return; UP.charm = false; UP.ember = false; UP.last = null; redraw(); };"
+ },
+ {
+  "eylem": "upPrev",
+  "dosya": "js/ui-esya.js",
+  "satir": 87,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.upPrev = () => {"
+ },
+ {
+  "eylem": "pickUp",
+  "dosya": "js/ui-esya.js",
+  "satir": 93,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pickUp = d => { if (UP.busy) return; UP.id = +d.id; UP.last = null; redraw(); };"
+ },
+ {
+  "eylem": "upOpt",
+  "dosya": "js/ui-esya.js",
+  "satir": 94,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.upOpt = d => { if (UP.busy) return; UP[d.k] = !UP[d.k]; UP.last = null; redraw(); };"
+ },
+ {
+  "eylem": "upgrade",
+  "dosya": "js/ui-esya.js",
+  "satir": 96,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "anvil.upgrade"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.upgrade = async () => {"
+ },
+ {
+  "eylem": "codex",
+  "dosya": "js/ui-esya.js",
+  "satir": 127,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.codex = d => openWin({ title: 'Ansiklopedi', top: true, tab: d?.tab || 'mobs', tabs: [{ id: 'mobs', label: 'Yaratıklar', small: `${Object.keys(MOBS).length}"
+ },
+ {
+  "eylem": "cxZone",
+  "dosya": "js/ui-esya.js",
+  "satir": 134,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cxZone = d => { CX.zone = +d.z; redraw(); $('#page').scrollTop = 0; };"
+ },
+ {
+  "eylem": "mob",
+  "dosya": "js/ui-esya.js",
+  "satir": 135,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [
+   "codex.get"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mob = async d => {"
+ },
+ {
+  "eylem": "goStage",
+  "dosya": "js/ui-esya.js",
+  "satir": 150,
+  "acar": [
+   "ACT.goStage"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.goStage = d => { closeModal(); ACT.gate({ tab: 'zones', zone: d.id.split('-')[0] }); };"
+ },
+ {
+  "eylem": "cxType",
+  "dosya": "js/ui-esya.js",
+  "satir": 161,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cxType = d => { CX.type = d.k; redraw(); $('#page').scrollTop = 0; };"
+ },
+ {
+  "eylem": "cxCls",
+  "dosya": "js/ui-esya.js",
+  "satir": 162,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cxCls = d => { CX.cls = d.c; redraw(); };"
+ },
+ {
+  "eylem": "cxItem",
+  "dosya": "js/ui-esya.js",
+  "satir": 176,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [
+   "codex.item"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cxItem = async d => {"
+ },
+ {
+  "eylem": "han",
+  "dosya": "js/ui-han.js",
+  "satir": 44,
+  "acar": [
+   "binaAc"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.han = () => { pending = null; binaAc('korant-modal-tavern', 'Han', hanHead(), hanBody(), () => { pending = null; }); };"
+ },
+ {
+  "eylem": "hanIc",
+  "dosya": "js/ui-han.js",
+  "satir": 46,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hanIc = d => {"
+ },
+ {
+  "eylem": "hanOnay",
+  "dosya": "js/ui-han.js",
+  "satir": 52,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.hanOnay = () => { if (pending) drink(pending, true); };"
+ },
+ {
+  "eylem": "hanVazgec",
+  "dosya": "js/ui-han.js",
+  "satir": 53,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.hanVazgec = () => { pending = null; hanRedraw(); };"
+ },
+ {
+  "eylem": "hsInvite",
+  "dosya": "js/ui-hisar.js",
+  "satir": 73,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [
+   "ally.list"
+  ],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.hsInvite = async () => {"
+ },
+ {
+  "eylem": "hsSend",
+  "dosya": "js/ui-hisar.js",
+  "satir": 77,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ally.invite"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hsSend = async d => { const r = await run('ally.invite', { id: d.id }); if (r) { closeModal(); toast(r.accepted ? `${r.name} ittifaka katıldı.` : `${r.name}"
+ },
+ {
+  "eylem": "hsAccept",
+  "dosya": "js/ui-hisar.js",
+  "satir": 78,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ally.accept"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hsAccept = async d => { const r = await run('ally.accept', { id: d.id }); if (r) { toast(`${r.name} ile ittifak kuruldu.`); reload(); } };"
+ },
+ {
+  "eylem": "hsDecline",
+  "dosya": "js/ui-hisar.js",
+  "satir": 79,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "ally.decline"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hsDecline = async d => { if (await run('ally.decline', { id: d.id })) reload(); };"
+ },
+ {
+  "eylem": "hsLeave",
+  "dosya": "js/ui-hisar.js",
+  "satir": 80,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ally.leave"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.hsLeave = () => confirmBox('İttifaktan ayrıl', 'Klanın ittifaktan ayrılır; vergi payı ve yardımlaşma biter. İki klanlık ittifak dağılır.', async () => { if "
+ },
+ {
+  "eylem": "hsAsk",
+  "dosya": "js/ui-hisar.js",
+  "satir": 81,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "help.ask"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.hsAsk = async () => { if (await run('help.ask')) { toast('Yardım istendi.'); reload(); } };"
+ },
+ {
+  "eylem": "hsHelp",
+  "dosya": "js/ui-hisar.js",
+  "satir": 82,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "help.give"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hsHelp = async d => { const r = await run('help.give', { id: d.id }); if (r) { toast(`Süre ${clockText(r.cut)} kısaldı.${r.akce ? ` +${fmt(r.akce)} akçe` : "
+ },
+ {
+  "eylem": "clanHisar",
+  "dosya": "js/ui-hisar.js",
+  "satir": 89,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanHisar = () => ACT.clan({ tab: 'hisar' });"
+ },
+ {
+  "eylem": "npcKing",
+  "dosya": "js/ui-hub.js",
+  "satir": 90,
+  "acar": [
+   "diyalog"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.npcKing = async () => { const k = kingOf(); if (!k) return; // 23 Kas (C8): görsel roman diyaloğu, GPT G4 yarım boy portre"
+ },
+ {
+  "eylem": "klanTab",
+  "dosya": "js/ui-hub.js",
+  "satir": 101,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klanTab = d => { const b = KLAN.find(x => x.id === (d?.id || LAST_BLD)); ACT.clan({ tab: b?.tab || 'hq' }); };"
+ },
+ {
+  "eylem": "goKlan",
+  "dosya": "js/ui-hub.js",
+  "satir": 103,
+  "acar": [
+   "ACT.goKlan",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.goKlan = () => { if (!S.clan) return ACT.clanhq(); if (PLACE.cur === 'klan') return showHub(); portalFlash(); PLACE.cur = 'klan'; document.documentElement.d"
+ },
+ {
+  "eylem": "goCarsi",
+  "dosya": "js/ui-hub.js",
+  "satir": 105,
+  "acar": [
+   "ACT.goCarsi"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.goCarsi = () => { if (PLACE.cur !== 'carsi') ACT.travel(); else showHub(); };"
+ },
+ {
+  "eylem": "travel",
+  "dosya": "js/ui-hub.js",
+  "satir": 108,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.travel = () => { portalFlash(); PLACE.cur = PLACE.cur === 'carsi' ? 'capital' : 'carsi'; document.documentElement.dataset.place = PLACE.cur; showHub(); toas"
+ },
+ {
+  "eylem": "gateMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 111,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gateMenu = () => { // 19 Kas: her yerde ve öğreticide de önce seçim penceresi açılır (otomatik ışınlama yok)"
+ },
+ {
+  "eylem": "gateGo",
+  "dosya": "js/ui-hub.js",
+  "satir": 124,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gateGo = () => { closeModal(); ACT.gate(); };"
+ },
+ {
+  "eylem": "portalMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 128,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.portalMenu = () => {"
+ },
+ {
+  "eylem": "tcWeapons",
+  "dosya": "js/ui-hub.js",
+  "satir": 140,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tcWeapons = () => ACT.tuccarSub?.('weapons'); ACT.tcArmors = () => ACT.tuccarSub?.('armors'); ACT.tcMats = () => ACT.tuccarSub?.('mats');"
+ },
+ {
+  "eylem": "tcArmors",
+  "dosya": "js/ui-hub.js",
+  "satir": 140,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tcWeapons = () => ACT.tuccarSub?.('weapons'); ACT.tcArmors = () => ACT.tuccarSub?.('armors'); ACT.tcMats = () => ACT.tuccarSub?.('mats');"
+ },
+ {
+  "eylem": "tcMats",
+  "dosya": "js/ui-hub.js",
+  "satir": 140,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tcWeapons = () => ACT.tuccarSub?.('weapons'); ACT.tcArmors = () => ACT.tuccarSub?.('armors'); ACT.tcMats = () => ACT.tuccarSub?.('mats');"
+ },
+ {
+  "eylem": "pzTaki",
+  "dosya": "js/ui-hub.js",
+  "satir": 141,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.pzTaki = () => ACT.marketKindOpen?.('jewel');"
+ },
+ {
+  "eylem": "tcJewels",
+  "dosya": "js/ui-hub.js",
+  "satir": 142,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tcJewels = () => ACT.tuccarSub?.('jewels'); // 24 Kas: Çarşı'daki Takı etiketi ve Lira figürü Takı dükkânını (npcTaki) açar; öğreticide ilk alım Halvor'da k"
+ },
+ {
+  "eylem": "gateDestan",
+  "dosya": "js/ui-hub.js",
+  "satir": 143,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gateDestan = () => { closeModal(); ACT.destan(); };"
+ },
+ {
+  "eylem": "gateCapital",
+  "dosya": "js/ui-hub.js",
+  "satir": 144,
+  "acar": [
+   "ACT.goCapital"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gateCapital = () => { closeModal(); ACT.goCapital(); };"
+ },
+ {
+  "eylem": "gateCarsi",
+  "dosya": "js/ui-hub.js",
+  "satir": 145,
+  "acar": [
+   "ACT.goCarsi"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gateCarsi = () => { closeModal(); ACT.goCarsi(); };"
+ },
+ {
+  "eylem": "gateKlan",
+  "dosya": "js/ui-hub.js",
+  "satir": 146,
+  "acar": [
+   "ACT.goKlan"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gateKlan = () => { closeModal(); ACT.goKlan(); };"
+ },
+ {
+  "eylem": "gateCz",
+  "dosya": "js/ui-hub.js",
+  "satir": 147,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gateCz = () => { if (locked('arena')) return toast(`CZ - PK: ${lockNote('arena')}`); closeModal(); ACT.czpk(); };"
+ },
+ {
+  "eylem": "goCapital",
+  "dosya": "js/ui-hub.js",
+  "satir": 148,
+  "acar": [
+   "ACT.goCapital",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.goCapital = () => { if (PLACE.cur === 'carsi') return ACT.travel(); if (PLACE.cur === 'klan') { portalFlash(); PLACE.cur = 'capital'; document.documentEleme"
+ },
+ {
+  "eylem": "hub",
+  "dosya": "js/ui-hub.js",
+  "satir": 277,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.hub = showHub;"
+ },
+ {
+  "eylem": "p23Hava",
+  "dosya": "js/ui-hub.js",
+  "satir": 322,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.p23Hava = () => { hvOpen = !hvOpen; p23Tick(); };"
+ },
+ {
+  "eylem": "qboxToggle",
+  "dosya": "js/ui-hub.js",
+  "satir": 348,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.qboxToggle = () => { qOpen = !qOpen; try { localStorage.setItem('dd_qtrk', qOpen ? '1' : '0'); } catch {} renderHud(); };"
+ },
+ {
+  "eylem": "savas",
+  "dosya": "js/ui-hub.js",
+  "satir": 352,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.savas = () => {"
+ },
+ {
+  "eylem": "svGo",
+  "dosya": "js/ui-hub.js",
+  "satir": 362,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.svGo = () => { closeModal(); ACT.gateGo(); };"
+ },
+ {
+  "eylem": "svQuick",
+  "dosya": "js/ui-hub.js",
+  "satir": 363,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.svQuick = () => { closeModal(); ACT.quick(); };"
+ },
+ {
+  "eylem": "svCz",
+  "dosya": "js/ui-hub.js",
+  "satir": 364,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.svCz = () => { closeModal(); ACT.gate({ tab: 'pvp' }); };"
+ },
+ {
+  "eylem": "svDivan",
+  "dosya": "js/ui-hub.js",
+  "satir": 365,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.svDivan = () => { closeModal(); ACT.czHall ? ACT.czHall() : ACT.czpk(); };"
+ },
+ {
+  "eylem": "questLog",
+  "dosya": "js/ui-hub.js",
+  "satir": 367,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.questLog = () => openWin({ title: 'Görev Defteri', render: questLogHtml });"
+ },
+ {
+  "eylem": "qlOpen",
+  "dosya": "js/ui-hub.js",
+  "satir": 380,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.qlOpen = d => ACT.quests({ tab: d.tab });"
+ },
+ {
+  "eylem": "hotbar",
+  "dosya": "js/ui-hub.js",
+  "satir": 386,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hotbar = () => ACT.party({ tab: 'skill' });"
+ },
+ {
+  "eylem": "czpk",
+  "dosya": "js/ui-hub.js",
+  "satir": 477,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.czpk = () => showModal(`<h2>CZ - PK</h2><div class=\"in\"><div class=\"mbtns\" style=\"flex-direction:column;align-items:stretch\"><button class=\"btn red\" data-a="
+ },
+ {
+  "eylem": "czHall",
+  "dosya": "js/ui-hub.js",
+  "satir": 478,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.czHall = () => { closeModal(); ACT.hall(); };"
+ },
+ {
+  "eylem": "czArena",
+  "dosya": "js/ui-hub.js",
+  "satir": 479,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.czArena = () => { closeModal(); ACT.gate({ tab: 'pvp' }); };"
+ },
+ {
+  "eylem": "czMarket",
+  "dosya": "js/ui-hub.js",
+  "satir": 480,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.czMarket = () => { closeModal(); ACT.shop(); };"
+ },
+ {
+  "eylem": "building",
+  "dosya": "js/ui-hub.js",
+  "satir": 481,
+  "acar": [
+   "ACT.building",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.building = d => { const b = d?.id && blds().find(x => x.id === d.id); if (!b) return; if (!ACT[b.act]) return toast('Yakında'); LAST_BLD = d.id; // C13: kim"
+ },
+ {
+  "eylem": "quick",
+  "dosya": "js/ui-hub.js",
+  "satir": 484,
+  "acar": [
+   "ACT.stage"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.quick = () => {"
+ },
+ {
+  "eylem": "drawer",
+  "dosya": "js/ui-hub.js",
+  "satir": 489,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.drawer = () => showModal(`<h2>Menü</h2><div class=\"in\">"
+ },
+ {
+  "eylem": "drawer",
+  "dosya": "js/ui-hub.js",
+  "satir": 494,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.drawer = () => P23() ? p23Drawer() : drawerOld();"
+ },
+ {
+  "eylem": "rankMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 512,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.rankMenu = () => { closeModal(); ACT.rank(); };"
+ },
+ {
+  "eylem": "logoutMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 513,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.logoutMenu = () => confirmBox('Çıkış yap', 'Bu cihazdaki oturumun kapanır. Karakterlerin sunucuda hesabında kalır.', () => logout(), 'Çıkış yap');"
+ },
+ {
+  "eylem": "fullscreen",
+  "dosya": "js/ui-hub.js",
+  "satir": 516,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.fullscreen = async () => {"
+ },
+ {
+  "eylem": "mnMain",
+  "dosya": "js/ui-hub.js",
+  "satir": 526,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mnMain = () => { closeModal(); ACT.quests({ tab: 'main' }); };"
+ },
+ {
+  "eylem": "charSwitchMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 527,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.charSwitchMenu = () => { closeModal(); clearInterval(hudTimer); hideChatBar(); ACT.charSwitch(); };"
+ },
+ {
+  "eylem": "mnFish",
+  "dosya": "js/ui-hub.js",
+  "satir": 528,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.mnFish = () => { closeModal(); ACT.balik ? ACT.balik() : toast('Balık tutma şu an açılamadı.'); };"
+ },
+ {
+  "eylem": "mnHisar",
+  "dosya": "js/ui-hub.js",
+  "satir": 530,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mnHisar = () => {"
+ },
+ {
+  "eylem": "mnFree",
+  "dosya": "js/ui-hub.js",
+  "satir": 537,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mnFree = () => { closeModal(); ACT.shop({ tab: 'free' }); };"
+ },
+ {
+  "eylem": "gateZones",
+  "dosya": "js/ui-hub.js",
+  "satir": 539,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.gateZones = () => { closeModal(); ACT.gate({ tab: 'zones' }); };"
+ },
+ {
+  "eylem": "gateEvents",
+  "dosya": "js/ui-hub.js",
+  "satir": 540,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.gateEvents = () => { closeModal(); ACT.gate({ tab: 'events' }); };"
+ },
+ {
+  "eylem": "gatePvp",
+  "dosya": "js/ui-hub.js",
+  "satir": 541,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.gatePvp = () => { closeModal(); ACT.gate({ tab: 'pvp' }); };"
+ },
+ {
+  "eylem": "chatMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 542,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.chatMenu = () => { closeModal(); ACT.chatOpen(); };"
+ },
+ {
+  "eylem": "premiumMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 543,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.premiumMenu = () => { closeModal(); ACT.premium(); };"
+ },
+ {
+  "eylem": "promoMenu",
+  "dosya": "js/ui-hub.js",
+  "satir": 545,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.promoMenu = () => showModal(`<h2>Promosyon kodu</h2><div class=\"in\"><p class=\"mut\">Etkinliklerde ve duyurularda paylaşılan kodu yaz. Her kod hesap başına bi"
+ },
+ {
+  "eylem": "promoDo",
+  "dosya": "js/ui-hub.js",
+  "satir": 548,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "promo.redeem"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.promoDo = async () => { const code = ($('#promo')?.value || '').trim(); if (!code) return toast('Önce kodu yaz.'); const r = await run('promo.redeem', { cod"
+ },
+ {
+  "eylem": "profile",
+  "dosya": "js/ui-hub.js",
+  "satir": 552,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.profile = () => {"
+ },
+ {
+  "eylem": "profile",
+  "dosya": "js/ui-hub.js",
+  "satir": 581,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.profile = () => P23() ? p23Profile() : profileOld();"
+ },
+ {
+  "eylem": "avatarPick",
+  "dosya": "js/ui-hub.js",
+  "satir": 610,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.avatarPick = () => {"
+ },
+ {
+  "eylem": "avatarSet",
+  "dosya": "js/ui-hub.js",
+  "satir": 618,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "profile.avatar"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.avatarSet = async d => { if (await run('profile.avatar', { id: d.id })) { renderHud(); ACT.profile(); } };"
+ },
+ {
+  "eylem": "devEnergy",
+  "dosya": "js/ui-hub.js",
+  "satir": 619,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "dev.energy"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devEnergy = async () => { if (await run('dev.energy')) { renderHud(); } };"
+ },
+ {
+  "eylem": "devLevel",
+  "dosya": "js/ui-hub.js",
+  "satir": 620,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "dev.level"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devLevel = async () => { if (await run('dev.level', { lvl: Math.min(GAME.maxLevel, S.lvl + 5) })) { showHub(); } };"
+ },
+ {
+  "eylem": "devMastery",
+  "dosya": "js/ui-hub.js",
+  "satir": 621,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "dev.mastery"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devMastery = async () => { if (await run('dev.mastery')) { renderHud(); toast('Ustalık +10 seviye.'); } };"
+ },
+ {
+  "eylem": "devGive",
+  "dosya": "js/ui-hub.js",
+  "satir": 622,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "dev.give"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devGive = async () => { if (await run('dev.give')) { renderHud(); toast('Test kaynakları eklendi.'); } };"
+ },
+ {
+  "eylem": "devGear",
+  "dosya": "js/ui-hub.js",
+  "satir": 623,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "dev.gear"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devGear = async () => { if (await run('dev.gear')) { renderHud(); toast('Test eşyaları çantaya eklendi (artılı Nadirler ve bir Eşsiz).'); } };"
+ },
+ {
+  "eylem": "devUnlock",
+  "dosya": "js/ui-hub.js",
+  "satir": 624,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "dev.unlock"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devUnlock = async () => { if (await run('dev.unlock')) { renderHud(); toast('Bütün aşamalar 3 yıldızla açıldı.'); } };"
+ },
+ {
+  "eylem": "devReset",
+  "dosya": "js/ui-hub.js",
+  "satir": 625,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devReset = () => confirmBox('Kaydı sıfırla', 'Bu cihazdaki deneme kaydı silinecek.', resetLocal, 'Sil');"
+ },
+ {
+  "eylem": "gfx",
+  "dosya": "js/ui-isik.js",
+  "satir": 24,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gfx = gfxModal;"
+ },
+ {
+  "eylem": "gfxSet",
+  "dosya": "js/ui-isik.js",
+  "satir": 25,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.gfxSet = d => { setGfx(d.t); gfxModal(); };"
+ },
+ {
+  "eylem": "gfxReload",
+  "dosya": "js/ui-isik.js",
+  "satir": 26,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gfxReload = () => location.reload();"
+ },
+ {
+  "eylem": "upgrade",
+  "dosya": "js/ui-isik.js",
+  "satir": 141,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "if (upgrade) ACT.upgrade = async d => {"
+ },
+ {
+  "eylem": "kxRot",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 81,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxRot = d => { KV.rot = (KV.rot + (+d.d) + 8) % 8; redraw(); };"
+ },
+ {
+  "eylem": "kxF",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 82,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxF = d => { KV.f = d.id; KV.slot = null; redraw(); };"
+ },
+ {
+  "eylem": "kxSlot",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 83,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxSlot = d => { KV.slot = KV.slot === d.s ? null : d.s; const id = S.heroes[mainId(S)].eq[d.s]; if (KV.slot && id != null) { KV.sel = id; } redraw(); };"
+ },
+ {
+  "eylem": "kxPick",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 84,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxPick = d => { KV.sel = +d.id; const it = S.items.find(x => x.id === KV.sel); if (it) showModal(`<div class=\"kx-card\">${cardFor(it)}</div>`, 'kxcard'); red"
+ },
+ {
+  "eylem": "kxEquip",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 85,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxEquip = async d => { closeModal(); const r = await doAct('item.equip', { hero: mainId(S), id: +d.id, ...(KV.slot && fits(S.items.find(x => x.id === +d.id)"
+ },
+ {
+  "eylem": "kxUnequip",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 86,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxUnequip = async d => { closeModal(); if (await doAct('item.unequip', { hero: mainId(S), slot: d.s })) toast('Çıkarıldı.'); };"
+ },
+ {
+  "eylem": "kxUp",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 87,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxUp = d => { closeModal(); ACT.anvil({ tab: 'up' }); ACT.pickUp?.({ id: +d.id }); };"
+ },
+ {
+  "eylem": "kxSell",
+  "dosya": "js/ui-kahraman.js",
+  "satir": 88,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kxSell = d => {"
+ },
+ {
+  "eylem": "notifGo",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 128,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.notifGo = d => jump(d.go);"
+ },
+ {
+  "eylem": "notifs",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 129,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "notif.list",
+   "notif.read"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.notifs = d => openWin({"
+ },
+ {
+  "eylem": "notifCat",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 165,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "notif.set"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.notifCat = async d => { if (await run('notif.set', { cat: d.k, on: !!S.notif.off?.[d.k] })) { redraw(); planSoon(); } };"
+ },
+ {
+  "eylem": "devTut",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 166,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "dev.tut"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devTut = async () => { if (await run('dev.tut')) { closeWin(); TU.card = null; TU.sig = ''; tutTick(); } };"
+ },
+ {
+  "eylem": "calendar",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 174,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.calendar = d => openWin({"
+ },
+ {
+  "eylem": "evGo",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 216,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.evGo = d => { closeWin(); EVGO[d.id]?.(); };"
+ },
+ {
+  "eylem": "calInfo",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 229,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.calInfo = d => { const T = d.k === 'n7' ? CAL7 : CAL28, i = +d.i; if (T[i]) toast(`${i + 1}. gün: ${T[i].map(dropFull).join(', ')}`); };"
+ },
+ {
+  "eylem": "calClaim",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 230,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "cal.claim"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.calClaim = async d => { const r = await run('cal.claim', { k: d.k }); if (r) { lootToast(r.loot); redraw(); } };"
+ },
+ {
+  "eylem": "quests",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 235,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.quests = d => openWin({ title: 'Görevler', tab: d?.tab === 'weekly' || d?.tab === 'monthly' ? d.tab : 'daily', tabs: questTabs(), render: t => (t === 'weekl"
+ },
+ {
+  "eylem": "monthlyClaim",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 246,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "monthly.claim"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.monthlyClaim = async d => { const r = await run('monthly.claim', { id: d.id }); if (r) { lootToast(r.loot); redraw(); } };"
+ },
+ {
+  "eylem": "monthlyBonus",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 247,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "monthly.bonus"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.monthlyBonus = async () => { const r = await run('monthly.bonus'); if (r) { lootToast(r.loot); redraw(); } };"
+ },
+ {
+  "eylem": "weeklyClaim",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 248,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "weekly.claim"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.weeklyClaim = async d => { const r = await run('weekly.claim', { id: d.id }); if (r) { lootToast(r.loot); redraw(); } };"
+ },
+ {
+  "eylem": "weeklyBonus",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 249,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "weekly.bonus"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.weeklyBonus = async () => { const r = await run('weekly.bonus'); if (r) { lootToast(r.loot); redraw(); } };"
+ },
+ {
+  "eylem": "achs",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 255,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.achs = d => openWin({"
+ },
+ {
+  "eylem": "titles",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 260,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.titles = () => ACT.achs({ tab: 'titles' });"
+ },
+ {
+  "eylem": "achCat",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 277,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.achCat = d => { AC.cat = d.k === 'all' || Object.hasOwn(ACH_CATS, d.k) ? d.k : 'all'; redraw(); };"
+ },
+ {
+  "eylem": "titleSet",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 288,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "title.set"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.titleSet = async d => { const r = await run('title.set', { id: d.id || null }); if (r) { toast(r.title ? `Unvanın: ${achOf(r.title).title}` : 'Unvan kaldırı"
+ },
+ {
+  "eylem": "titleLock",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 289,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.titleLock = d => { const A = achOf(d.id); if (A) toast(`${A.title}: ${A.text(A.tiers[0])}.`); };"
+ },
+ {
+  "eylem": "profile",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 293,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.profile = () => {"
+ },
+ {
+  "eylem": "titlePick",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 298,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.titlePick = () => {"
+ },
+ {
+  "eylem": "titlePickSet",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 306,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "title.set"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.titlePickSet = async d => { const r = await run('title.set', { id: d.id || null }); if (r) { hooks.hud(); ACT.profile(); } };"
+ },
+ {
+  "eylem": "titlesMenu",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 307,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.titlesMenu = () => { closeModal(); ACT.titles(); };"
+ },
+ {
+  "eylem": "devAsk",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 373,
+  "acar": [
+   "showModal",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devAsk = () => {"
+ },
+ {
+  "eylem": "devYes",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 382,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "notif.set"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devYes = async () => {"
+ },
+ {
+  "eylem": "devNo",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 389,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "notif.set"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devNo = async () => { closeModal(); await run('notif.set', { cat: 'device', on: false }); backToSettings(); planSoon(); };"
+ },
+ {
+  "eylem": "devOff",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 390,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "notif.set"
+  ],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devOff = async () => { if (await run('notif.set', { cat: 'device', on: false })) { redraw(); planSoon(); } };"
+ },
+ {
+  "eylem": "devTest",
+  "dosya": "js/ui-kalicilik.js",
+  "satir": 391,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devTest = async () => {"
+ },
+ {
+  "eylem": "tab",
+  "dosya": "js/ui-kaplama.js",
+  "satir": 25,
+  "acar": [
+   "ACT.tab"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tab = (d, b) => { tab0(d, b); win.classList.add('kp-tabbed'); };"
+ },
+ {
+  "eylem": "karaborsa",
+  "dosya": "js/ui-karaborsa.js",
+  "satir": 37,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "karaborsa.view"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.karaborsa = () => {"
+ },
+ {
+  "eylem": "kbBuy",
+  "dosya": "js/ui-karaborsa.js",
+  "satir": 47,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "karaborsa.buy"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.kbBuy = d => {"
+ },
+ {
+  "eylem": "charSelect",
+  "dosya": "js/ui-karakter.js",
+  "satir": 74,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.charSelect = async d => {"
+ },
+ {
+  "eylem": "tkPick",
+  "dosya": "js/ui-karakter.js",
+  "satir": 118,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tkPick = d => {"
+ },
+ {
+  "eylem": "tkEnter",
+  "dosya": "js/ui-karakter.js",
+  "satir": 129,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "char.select"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tkEnter = async () => {"
+ },
+ {
+  "eylem": "charSwitch",
+  "dosya": "js/ui-karakter.js",
+  "satir": 140,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.charSwitch = async () => { SEL = S?.char?.id || ACC?.cur || SEL; await act('char.list').catch(() => {}); ACT.charSelect(); }; // P26 D8: liste tazelenir (se"
+ },
+ {
+  "eylem": "clan",
+  "dosya": "js/ui-klan.js",
+  "satir": 47,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clan = d => {"
+ },
+ {
+  "eylem": "clanhq",
+  "dosya": "js/ui-klan.js",
+  "satir": 63,
+  "acar": [
+   "ACT.goKlan",
+   "toast"
+  ],
+  "okuma": [
+   "clan.search",
+   "clan.view",
+   "hisar.view"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanhq = () => { if (S.clan && !locked('clan')) return ACT.goKlan(); K.fromHq = !S.clan; ACT.clan({ tab: 'hq' }); }; // VAHRAN: klanı olan ayrı klan haritas"
+ },
+ {
+  "eylem": "clanCreate",
+  "dosya": "js/ui-klan.js",
+  "satir": 93,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.create"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanCreate = async () => { if (await run('clan.create', { name: $('#cname').value })) { toast('Klan kuruldu. Reis sensin.'); ACT.clan({ tab: 'genel' }); } }"
+ },
+ {
+  "eylem": "clanJoin",
+  "dosya": "js/ui-klan.js",
+  "satir": 94,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.join"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanJoin = async d => { if (await run('clan.join', { id: d.id })) { toast(`${S.clanName} klanına katıldın.`); ACT.clan({ tab: 'genel' }); } else reload(); }"
+ },
+ {
+  "eylem": "clanApply",
+  "dosya": "js/ui-klan.js",
+  "satir": 95,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.apply"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanApply = async d => { const r = await run('clan.apply', { id: d.id }); if (r) { toast(r.joined ? 'Başvurun onaylanmış.' : 'Başvurun gönderildi.'); S.clan"
+ },
+ {
+  "eylem": "clanUnapply",
+  "dosya": "js/ui-klan.js",
+  "satir": 96,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.unapply"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanUnapply = async d => { if (await run('clan.unapply', { id: d.id })) reload(); };"
+ },
+ {
+  "eylem": "clanDecline",
+  "dosya": "js/ui-klan.js",
+  "satir": 97,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.decline"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanDecline = async d => { if (await run('clan.decline', { id: d.id })) reload(); };"
+ },
+ {
+  "eylem": "klHq",
+  "dosya": "js/ui-klan.js",
+  "satir": 141,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klHq = () => ACT.clan({ tab: 'hq' });"
+ },
+ {
+  "eylem": "klDonate",
+  "dosya": "js/ui-klan.js",
+  "satir": 142,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.donate"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klDonate = async d => {"
+ },
+ {
+  "eylem": "klNotice",
+  "dosya": "js/ui-klan.js",
+  "satir": 146,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.klNotice = () => {"
+ },
+ {
+  "eylem": "klNoticeSave",
+  "dosya": "js/ui-klan.js",
+  "satir": 154,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.settings"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.klNoticeSave = async () => { if (await run('clan.settings', { notice: $('#klnote').value, promo: $('#klpromo').value, minPower: Math.max(0, Math.floor(+$('#"
+ },
+ {
+  "eylem": "klAccept",
+  "dosya": "js/ui-klan.js",
+  "satir": 170,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.accept"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klAccept = async d => { const r = await run('clan.accept', { id: d.id }); if (r) { toast(r.gone ? 'Bu oyuncu başka bir klana katılmış; başvuru silindi.' : '"
+ },
+ {
+  "eylem": "klReject",
+  "dosya": "js/ui-klan.js",
+  "satir": 171,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.reject"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klReject = async d => { if (await run('clan.reject', { id: d.id })) reload(); };"
+ },
+ {
+  "eylem": "klOpen",
+  "dosya": "js/ui-klan.js",
+  "satir": 172,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.settings"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klOpen = async d => { if (await run('clan.settings', { open: d.open === '1' })) reload(); };"
+ },
+ {
+  "eylem": "klMember",
+  "dosya": "js/ui-klan.js",
+  "satir": 173,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klMember = d => {"
+ },
+ {
+  "eylem": "klRank",
+  "dosya": "js/ui-klan.js",
+  "satir": 184,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.rank"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klRank = async d => { if (await run('clan.rank', { id: mid(d.id), rank: d.rank })) { closeModal(); reload(); } };"
+ },
+ {
+  "eylem": "klKick",
+  "dosya": "js/ui-klan.js",
+  "satir": 185,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.kick"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klKick = d => !d?.name ? undefined : confirmBox('Klandan çıkar', `${esc(d.name)} klandan çıkarılsın mı? Bugünkü av hasarı klanın toplamında kalır, sıralamad"
+ },
+ {
+  "eylem": "klTransfer",
+  "dosya": "js/ui-klan.js",
+  "satir": 186,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.transfer"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klTransfer = d => !d?.name ? undefined : confirmBox('Reisliği devret', `Reislik ${esc(d.name)} adlı üyeye geçecek; sen ${RANKS.yardimci.name} olacaksın. Bu "
+ },
+ {
+  "eylem": "clanLeave",
+  "dosya": "js/ui-klan.js",
+  "satir": 187,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.leave"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.clanLeave = () => confirmBox('Klandan ayrıl', 'Pelerinin ve bugünkü Oba Avı sıralama ödülün gider; kazandığın Oba Nişanları sende kalır. Son üye ayrılırsa k"
+ },
+ {
+  "eylem": "klQuest",
+  "dosya": "js/ui-klan.js",
+  "satir": 202,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.quest"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klQuest = async d => { const r = await run('clan.quest', { id: d.id }); if (r) { lootToast(r.loot); reload(); } };"
+ },
+ {
+  "eylem": "klBuy",
+  "dosya": "js/ui-klan.js",
+  "satir": 215,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.buy"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klBuy = async d => { const r = await run('clan.buy', { id: d.id }); if (r) { lootToast(r.loot); redraw(); } };"
+ },
+ {
+  "eylem": "klPair",
+  "dosya": "js/ui-klan.js",
+  "satir": 233,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klPair = d => { K.draft.a = +d.i; redraw(); };"
+ },
+ {
+  "eylem": "klSym",
+  "dosya": "js/ui-klan.js",
+  "satir": 234,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klSym = d => { K.draft.s = d.i; redraw(); };"
+ },
+ {
+  "eylem": "klCape",
+  "dosya": "js/ui-klan.js",
+  "satir": 235,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klCape = d => { K.draft.c = +d.i; redraw(); };"
+ },
+ {
+  "eylem": "klBannerSave",
+  "dosya": "js/ui-klan.js",
+  "satir": 236,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.banner"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.klBannerSave = async () => { if (await run('clan.banner', { ...K.draft })) { toast('Sancak değişti. Üyelerin pelerini bir sonraki girişlerinde yenilenir.');"
+ },
+ {
+  "eylem": "klInvite",
+  "dosya": "js/ui-klan.js",
+  "satir": 267,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.invite"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klInvite = async d => { const r = await run('clan.invite', { id: d.id }); if (r) { closeModal(); toast(`${r.name} klana davet edildi.`); } };"
+ },
+ {
+  "eylem": "clanClaim",
+  "dosya": "js/ui-klan.js",
+  "satir": 268,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "clan.claim"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.clanClaim = async () => { const r = await run('clan.claim'); if (r) { lootToast(r.loot); reload(); } };"
+ },
+ {
+  "eylem": "klHunt",
+  "dosya": "js/ui-klan.js",
+  "satir": 269,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.hunt"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klHunt = d => { const h = HUNT_DIFF[+d.d]; confirmBox(h.name, `Bugünkü av ${h.name} olarak başlasın mı? Tepegöz sertleşir, verilen hasarın %${h.credit}'i kl"
+ },
+ {
+  "eylem": "klFac",
+  "dosya": "js/ui-klan.js",
+  "satir": 355,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.hqup"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.klFac = d => {"
+ },
+ {
+  "eylem": "meydan",
+  "dosya": "js/ui-meydan.js",
+  "satir": 21,
+  "acar": [
+   "openWin",
+   "toast"
+  ],
+  "okuma": [
+   "arena.list",
+   "feud.list"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.meydan = d => {"
+ },
+ {
+  "eylem": "mzRefresh",
+  "dosya": "js/ui-meydan.js",
+  "satir": 72,
+  "acar": [],
+  "okuma": [
+   "arena.list"
+  ],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.mzRefresh = async () => { const r = await run('arena.list', { refresh: true }); if (r) { cur().data = r; redraw(); } };"
+ },
+ {
+  "eylem": "feudGo",
+  "dosya": "js/ui-meydan.js",
+  "satir": 89,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "feud.revenge"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.feudGo = async d => { const r = await run('feud.revenge', { id: d.id }); if (r) ACT.arenaVs({ i: 0 }); };"
+ },
+ {
+  "eylem": "mzBackDef",
+  "dosya": "js/ui-meydan.js",
+  "satir": 100,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mzBackDef = () => ACT.meydan({ tab: 'def' });"
+ },
+ {
+  "eylem": "mzBuy",
+  "dosya": "js/ui-meydan.js",
+  "satir": 110,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mzBuy = async d => { const r = await doAct('arena.shop', { id: d.id }); if (r) { if (r.loot?.length) lootToast(r.loot); else toast('+2 meydan hakkı'); } };"
+ },
+ {
+  "eylem": "gate",
+  "dosya": "js/ui-meydan.js",
+  "satir": 125,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.gate = d => (d?.tab === 'pvp' ? ACT.meydan({ tab: 'fight' }) : gate0(d));"
+ },
+ {
+  "eylem": "czpk",
+  "dosya": "js/ui-meydan.js",
+  "satir": 126,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.czpk = () => ACT.meydan({ tab: 'fight' });"
+ },
+ {
+  "eylem": "hall",
+  "dosya": "js/ui-meydan.js",
+  "satir": 127,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hall = () => ACT.meydan({ tab: 'san' });"
+ },
+ {
+  "eylem": "seasonBack",
+  "dosya": "js/ui-meydan.js",
+  "satir": 128,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.seasonBack = () => ACT.meydan({ tab: 'fight' });"
+ },
+ {
+  "eylem": "seriesOpen",
+  "dosya": "js/ui-minidizi.js",
+  "satir": 18,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.seriesOpen = () => win();"
+ },
+ {
+  "eylem": "seriesLocked",
+  "dosya": "js/ui-minidizi.js",
+  "satir": 19,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.seriesLocked = () => toast('Önce önceki bölümü izle.');"
+ },
+ {
+  "eylem": "seriesClose",
+  "dosya": "js/ui-minidizi.js",
+  "satir": 22,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.seriesClose = () => { stop(); if (document.querySelector('.mdzw')) win(); };"
+ },
+ {
+  "eylem": "seriesPlay",
+  "dosya": "js/ui-minidizi.js",
+  "satir": 24,
+  "acar": [
+   "say"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.seriesPlay = ({ ep }) => {"
+ },
+ {
+  "eylem": "seriesDone",
+  "dosya": "js/ui-minidizi.js",
+  "satir": 49,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "series.watch"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.seriesDone = async ({ ep }) => {"
+ },
+ {
+  "eylem": "nobet",
+  "dosya": "js/ui-nobet.js",
+  "satir": 52,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "nobet.view"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.nobet = () => {"
+ },
+ {
+  "eylem": "nbJoin",
+  "dosya": "js/ui-nobet.js",
+  "satir": 56,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "nobet.join"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.nbJoin = () => confirmBox(NOBET.name, `${fmt(NOBET.fee)} akçe ile katıl? Geri sayım ve nöbet boyunca başka savaşa giremezsin.`, async () => { closeModal(); "
+ },
+ {
+  "eylem": "nbLeave",
+  "dosya": "js/ui-nobet.js",
+  "satir": 57,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [
+   "nobet.leave"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.nbLeave = () => confirmBox('Kaydı bırak', 'Kaydı bırakırsan ücret geri verilmez. Emin misin?', async () => { closeModal(); const r = await run('nobet.leave'"
+ },
+ {
+  "eylem": "nbLobbyOff",
+  "dosya": "js/ui-nobet.js",
+  "satir": 67,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.nbLobbyOff = () => { lobbyOff = true; closeModal(); };"
+ },
+ {
+  "eylem": "nbGo",
+  "dosya": "js/ui-nobet.js",
+  "satir": 68,
+  "acar": [
+   "confirmBox",
+   "showModal",
+   "toast"
+  ],
+  "okuma": [
+   "coop.view"
+  ],
+  "yazma": [
+   "coop.join",
+   "coop.leave"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.nbGo = async () => {"
+ },
+ {
+  "eylem": "nbClaim",
+  "dosya": "js/ui-nobet.js",
+  "satir": 87,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "nobet.claim"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.nbClaim = async () => { const r = await run('nobet.claim'); if (r) { toast(`${r.name}: ${r.loot.map(gName).join(', ')}`); reload(); } };"
+ },
+ {
+  "eylem": "yakutAl",
+  "dosya": "js/ui-odeme.js",
+  "satir": 105,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.yakutAl = d => {"
+ },
+ {
+  "eylem": "yakutMenu",
+  "dosya": "js/ui-odeme.js",
+  "satir": 112,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.yakutMenu = () => { closeModal(); ACT.yakutAl(); };"
+ },
+ {
+  "eylem": "payCur",
+  "dosya": "js/ui-odeme.js",
+  "satir": 113,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.payCur = () => {}; // eski düğmelerden gelirse yok sayılır"
+ },
+ {
+  "eylem": "payCard",
+  "dosya": "js/ui-odeme.js",
+  "satir": 114,
+  "acar": [],
+  "okuma": [
+   "pay.card"
+  ],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.payCard = async () => { const r = await run('pay.card'); if (r) { lootToast(r.loot); reload(); } };"
+ },
+ {
+  "eylem": "payBuy",
+  "dosya": "js/ui-odeme.js",
+  "satir": 138,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.payBuy = async d => {"
+ },
+ {
+  "eylem": "shop",
+  "dosya": "js/ui-odeme.js",
+  "satir": 209,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.shop = d => {"
+ },
+ {
+  "eylem": "shopBuy",
+  "dosya": "js/ui-odeme.js",
+  "satir": 217,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.shopBuy = async d => { const r = await doAct('shop.buy', { id: d.id }); if (r) { lootToast(r.loot); if (d.id === 'ticket') toast('+5 meydan hakkı'); } };"
+ },
+ {
+  "eylem": "starterOpen",
+  "dosya": "js/ui-odeme.js",
+  "satir": 251,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.starterOpen = () => { seenMem = true; ls.set(K_SEEN(), '1'); starterOpen(); };"
+ },
+ {
+  "eylem": "starterLater",
+  "dosya": "js/ui-odeme.js",
+  "satir": 252,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.starterLater = () => { closeModal(); hooks.hud(); };"
+ },
+ {
+  "eylem": "friends",
+  "dosya": "js/ui-odeme.js",
+  "satir": 292,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "friend.list"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.friends = d => { p25bImg(); return openWin(FR = { title: 'Arkadaşlar', scr: 'arkadas', tab: d?.tab || 'list', tabs: [{ id: 'list', label: 'Arkadaşlar', smal"
+ },
+ {
+  "eylem": "friendsMenu",
+  "dosya": "js/ui-odeme.js",
+  "satir": 294,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.friendsMenu = () => { closeModal(); ACT.friends(); };"
+ },
+ {
+  "eylem": "frAdd",
+  "dosya": "js/ui-odeme.js",
+  "satir": 297,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "friend.add"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frAdd = async d => { const r = await run('friend.add', { id: d.id }); if (r) after(d, r.friend ? 'Artık arkadaşsınız.' : 'Arkadaşlık isteği gönderildi.'); }"
+ },
+ {
+  "eylem": "frAccept",
+  "dosya": "js/ui-odeme.js",
+  "satir": 298,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "friend.accept"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frAccept = async d => { if (await run('friend.accept', { id: d.id })) after(d, 'Artık arkadaşsınız.'); };"
+ },
+ {
+  "eylem": "frDecline",
+  "dosya": "js/ui-odeme.js",
+  "satir": 299,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "friend.decline"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frDecline = async d => { if (await run('friend.decline', { id: d.id })) after(d); };"
+ },
+ {
+  "eylem": "frCancel",
+  "dosya": "js/ui-odeme.js",
+  "satir": 300,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "friend.cancel"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frCancel = async d => { if (await run('friend.cancel', { id: d.id })) after(d, 'İstek geri çekildi.'); };"
+ },
+ {
+  "eylem": "frRemove",
+  "dosya": "js/ui-odeme.js",
+  "satir": 301,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "friend.remove"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frRemove = async d => { const ok = await run('friend.remove', { id: d.id }); if (!d.card || !ok) closeModal(); if (ok) after(d, 'Arkadaş listenden çıkarıldı"
+ },
+ {
+  "eylem": "frRemoveAsk",
+  "dosya": "js/ui-odeme.js",
+  "satir": 302,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frRemoveAsk = d => !d?.name ? undefined : showModal(`<h2>Arkadaşlıktan çıkar</h2><div class=\"in\"><p><b>${esc(d.name)}</b> arkadaş listenden çıkarılsın mı? O"
+ },
+ {
+  "eylem": "blockAsk",
+  "dosya": "js/ui-odeme.js",
+  "satir": 308,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.blockAsk = d => !d?.name ? undefined : showModal(`<h2>Oyuncuyu engelle</h2><div class=\"in\"><p><b>${esc(d.name)}</b> engellensin mi?</p><p class=\"mut\">Sohbet"
+ },
+ {
+  "eylem": "block",
+  "dosya": "js/ui-odeme.js",
+  "satir": 310,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "social.block"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.block = async d => { closeModal(); if (await run('social.block', { id: d.id })) { toast('Oyuncu engellendi. Mesajları artık görünmeyecek.'); if (cur() === F"
+ },
+ {
+  "eylem": "unblock",
+  "dosya": "js/ui-odeme.js",
+  "satir": 311,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "social.unblock"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.unblock = async d => { if (await run('social.unblock', { id: d.id })) after(d, 'Engel kaldırıldı.'); };"
+ },
+ {
+  "eylem": "msgMenu",
+  "dosya": "js/ui-odeme.js",
+  "satir": 314,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.msgMenu = d => !d?.name ? undefined : showModal(`<h2>${esc(d.name)}</h2><div class=\"in\"><p class=\"mquote\">“${esc(d.text || '')}”</p>"
+ },
+ {
+  "eylem": "quoteMsg",
+  "dosya": "js/ui-odeme.js",
+  "satir": 318,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.quoteMsg = d => {"
+ },
+ {
+  "eylem": "reportAsk",
+  "dosya": "js/ui-odeme.js",
+  "satir": 333,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.reportAsk = d => { if (!d?.name) return; Object.assign(REP, { id: d.id, name: d.name, msg: d.msg || null, ch: d.ch || null, to: d.to || null, text: d.text |"
+ },
+ {
+  "eylem": "repReason",
+  "dosya": "js/ui-odeme.js",
+  "satir": 334,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.repReason = d => { REP.reason = d.k; reportBox(); };"
+ },
+ {
+  "eylem": "repSend",
+  "dosya": "js/ui-odeme.js",
+  "satir": 335,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "chat.report"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.repSend = async () => {"
+ },
+ {
+  "eylem": "npcMerchant",
+  "dosya": "js/ui-ogretici.js",
+  "satir": 29,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.npcMerchant = () => openWin({ title: NPC.merchant.name, render: () => {"
+ },
+ {
+  "eylem": "npcBuy",
+  "dosya": "js/ui-ogretici.js",
+  "satir": 35,
+  "acar": [
+   "say",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "npc.buy"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.npcBuy = async d => {"
+ },
+ {
+  "eylem": "npcChild",
+  "dosya": "js/ui-ogretici.js",
+  "satir": 44,
+  "acar": [
+   "say"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.npcChild = () => {"
+ },
+ {
+  "eylem": "npcWorm",
+  "dosya": "js/ui-ogretici.js",
+  "satir": 52,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.npcWorm = async () => {"
+ },
+ {
+  "eylem": "charCreate",
+  "dosya": "js/ui-olustur.js",
+  "satir": 52,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.charCreate = () => {"
+ },
+ {
+  "eylem": "olzCreate",
+  "dosya": "js/ui-olustur.js",
+  "satir": 214,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.olzCreate = async () => {"
+ },
+ {
+  "eylem": "party",
+  "dosya": "js/ui-party.js",
+  "satir": 27,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.party = d => {"
+ },
+ {
+  "eylem": "karakter",
+  "dosya": "js/ui-party.js",
+  "satir": 36,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.karakter = ACT.party;"
+ },
+ {
+  "eylem": "sub",
+  "dosya": "js/ui-party.js",
+  "satir": 37,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.sub = d => ACT.party({ tab: d.id });"
+ },
+ {
+  "eylem": "partyPath",
+  "dosya": "js/ui-party.js",
+  "satir": 39,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.partyPath = () => { PV.sk[HID()] = 'path'; ACT.party({ tab: 'skill' }); };"
+ },
+ {
+  "eylem": "mstUp",
+  "dosya": "js/ui-party.js",
+  "satir": 78,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mstUp = d => doAct('mastery.up', { hero: HID(), k: d.k });"
+ },
+ {
+  "eylem": "mstReset",
+  "dosya": "js/ui-party.js",
+  "satir": 79,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.mstReset = () => confirmBox('Ustalık puanlarını geri al', `Ustalık puanların boşa çıkar; yeniden dağıtabilirsin. Bedeli ${fmt(MASTERY.resetCost * masteryOf("
+ },
+ {
+  "eylem": "slot",
+  "dosya": "js/ui-party.js",
+  "satir": 117,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.slot = d => { PV.sub = 'eq'; PV.slot = PV.slot === d.s ? null : d.s; redraw(); };"
+ },
+ {
+  "eylem": "equip",
+  "dosya": "js/ui-party.js",
+  "satir": 118,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.equip = d => doAct('item.equip', { hero: HID(), id: +d.id, slot: d.s });"
+ },
+ {
+  "eylem": "unequip",
+  "dosya": "js/ui-party.js",
+  "satir": 119,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.unequip = d => doAct('item.unequip', { hero: HID(), slot: d.s });"
+ },
+ {
+  "eylem": "skv",
+  "dosya": "js/ui-party.js",
+  "satir": 148,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.skv = d => { PV.sk[HID()] = d.id === 'path' ? 'path' : 'tree'; redraw(); };"
+ },
+ {
+  "eylem": "tp",
+  "dosya": "js/ui-party.js",
+  "satir": 149,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tp = d => +d.n > 0 && doAct('skill.add', { hero: HID(), tree: d.t, n: +d.n });"
+ },
+ {
+  "eylem": "skillReset",
+  "dosya": "js/ui-party.js",
+  "satir": 154,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.skillReset = () => confirmBox('Yetenekleri sıfırla', `${rsCost('skill')} ağaç puanların geri verilir.`, () => doAct('skill.reset', { hero: HID() }));"
+ },
+ {
+  "eylem": "skill",
+  "dosya": "js/ui-party.js",
+  "satir": 155,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.skill = d => {"
+ },
+ {
+  "eylem": "sp",
+  "dosya": "js/ui-party.js",
+  "satir": 173,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.sp = d => doAct('stat.add', { hero: HID(), stat: d.k, n: +d.n });"
+ },
+ {
+  "eylem": "statReset",
+  "dosya": "js/ui-party.js",
+  "satir": 174,
+  "acar": [
+   "confirmBox"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.statReset = () => confirmBox('Nitelikleri sıfırla', `${rsCost('stat')} nitelik puanların geri verilir.`, () => doAct('stat.reset', { hero: HID() }));"
+ },
+ {
+  "eylem": "bagBreak",
+  "dosya": "js/ui-pvp.js",
+  "satir": 41,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.bagBreak = () => { closeModal(); locked('anvil') ? ACT.party() : ACT.breakWin(); };"
+ },
+ {
+  "eylem": "bagMarket",
+  "dosya": "js/ui-pvp.js",
+  "satir": 42,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.bagMarket = () => { closeModal(); ACT.market(); };"
+ },
+ {
+  "eylem": "tierInfo",
+  "dosya": "js/ui-pvp.js",
+  "satir": 61,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tierInfo = d => {"
+ },
+ {
+  "eylem": "tier",
+  "dosya": "js/ui-pvp.js",
+  "satir": 76,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tier = d => {"
+ },
+ {
+  "eylem": "modInfo",
+  "dosya": "js/ui-pvp.js",
+  "satir": 91,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.modInfo = () => {"
+ },
+ {
+  "eylem": "depthFloors",
+  "dosya": "js/ui-pvp.js",
+  "satir": 118,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.depthFloors = d => {"
+ },
+ {
+  "eylem": "depthSweep",
+  "dosya": "js/ui-pvp.js",
+  "satir": 128,
+  "acar": [
+   "confirmBox",
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [
+   "depth.sweep"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.depthSweep = () => confirmBox('Seri iniş', `Önceki dönemde indiğin ${S.depthPrev}. kata kadar katları sunucu senin yerine oynatır (en çok ${CLIMB.sweepMax} "
+ },
+ {
+  "eylem": "season",
+  "dosya": "js/ui-pvp.js",
+  "satir": 159,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "season.view"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.season = d => {"
+ },
+ {
+  "eylem": "seasonBack",
+  "dosya": "js/ui-pvp.js",
+  "satir": 164,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.seasonBack = () => ACT.gate({ tab: 'pvp' });"
+ },
+ {
+  "eylem": "seasonTitle",
+  "dosya": "js/ui-pvp.js",
+  "satir": 171,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "season.title"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.seasonTitle = async d => { const r = await run('season.title', { id: d.id || null }); if (r) { toast(r.title ? `Unvanın: ${SEASON_TITLES[r.title]}` : 'Sezon"
+ },
+ {
+  "eylem": "repLog",
+  "dosya": "js/ui-rapor.js",
+  "satir": 75,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.repLog = () => {"
+ },
+ {
+  "eylem": "repBack",
+  "dosya": "js/ui-rapor.js",
+  "satir": 80,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.repBack = () => { if (PREV) { modal.innerHTML = PREV.html; PREV = null; } };"
+ },
+ {
+  "eylem": "reports",
+  "dosya": "js/ui-rapor.js",
+  "satir": 86,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.reports = d => ACT.mail({ tab: 'rep', sub: d?.tab === 'def' ? 'def' : 'mine' });"
+ },
+ {
+  "eylem": "repOpen",
+  "dosya": "js/ui-rapor.js",
+  "satir": 87,
+  "acar": [],
+  "okuma": [
+   "report.get"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.repOpen = async d => { const r = await run('report.get', { id: d.id }); if (r) { RV.doc = r; redraw(); const pg = document.querySelector('#page'); if (pg) p"
+ },
+ {
+  "eylem": "repList",
+  "dosya": "js/ui-rapor.js",
+  "satir": 88,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.repList = () => { RV.doc = null; redraw(); };"
+ },
+ {
+  "eylem": "repSub",
+  "dosya": "js/ui-rapor.js",
+  "satir": 89,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.repSub = d => { RV.sub = d.k === 'def' ? 'def' : 'mine'; RV.doc = null; redraw(); };"
+ },
+ {
+  "eylem": "bakimBuy",
+  "dosya": "js/ui-rapor.js",
+  "satir": 134,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "upkeep.buy"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.bakimBuy = async d => { const r = await run('upkeep.buy', { tier: d.tier }); if (r) { toast(`${UPKEEP.tiers.find(t => t.id === r.tier).name} yapıldı: ${UPKE"
+ },
+ {
+  "eylem": "rhSel",
+  "dosya": "js/ui-rehber.js",
+  "satir": 268,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rhSel = d => { sel = d.id; redraw(); const p = document.querySelector('#page'); if (p) p.scrollTop = 0; };"
+ },
+ {
+  "eylem": "rhGo",
+  "dosya": "js/ui-rehber.js",
+  "satir": 269,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rhGo = d => {"
+ },
+ {
+  "eylem": "codex",
+  "dosya": "js/ui-rehber.js",
+  "satir": 279,
+  "acar": [
+   "ACT.tab"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.codex = d => {"
+ },
+ {
+  "eylem": "rehber",
+  "dosya": "js/ui-rehber.js",
+  "satir": 290,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rehber = d => { closeModal(); if (d?.id) sel = d.id; ACT.codex({ tab: 'rehber' }); };"
+ },
+ {
+  "eylem": "sandikOpen",
+  "dosya": "js/ui-sandik.js",
+  "satir": 32,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.sandikOpen = () => {"
+ },
+ {
+  "eylem": "sandikClaim",
+  "dosya": "js/ui-sandik.js",
+  "satir": 38,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "ofc.claim"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.sandikClaim = async () => {"
+ },
+ {
+  "eylem": "sesToggle",
+  "dosya": "js/ui-ses.js",
+  "satir": 148,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.sesToggle = () => { mute(!isMuted()); if (!isMuted()) play('ui.toggle'); };"
+ },
+ {
+  "eylem": "pathRow",
+  "dosya": "js/ui-sinif.js",
+  "satir": 92,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pathRow = d => { YV.row = +d.i || 0; redraw(); };"
+ },
+ {
+  "eylem": "pathChange",
+  "dosya": "js/ui-sinif.js",
+  "satir": 93,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.pathChange = () => { YV.change = mainId(S); redraw(); };"
+ },
+ {
+  "eylem": "pathBack",
+  "dosya": "js/ui-sinif.js",
+  "satir": 94,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.pathBack = () => { YV.change = null; redraw(); };"
+ },
+ {
+  "eylem": "pathPick",
+  "dosya": "js/ui-sinif.js",
+  "satir": 96,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pathPick = d => {"
+ },
+ {
+  "eylem": "pathGo",
+  "dosya": "js/ui-sinif.js",
+  "satir": 109,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "path.choose"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pathGo = async d => {"
+ },
+ {
+  "eylem": "chatMini",
+  "dosya": "js/ui-social.js",
+  "satir": 27,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.chatMini = () => { const on = !bar.classList.contains('mini'); setMini(on); try { localStorage.setItem(MINI_KEY, on ? '1' : '0'); } catch {} };"
+ },
+ {
+  "eylem": "cbTab",
+  "dosya": "js/ui-social.js",
+  "satir": 32,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cbTab = d => {"
+ },
+ {
+  "eylem": "cbFull",
+  "dosya": "js/ui-social.js",
+  "satir": 40,
+  "acar": [],
+  "okuma": [
+   "chat.convs",
+   "chat.list",
+   "chat.peek"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cbFull = () => ACT.chatOpen({ tab: barTab });"
+ },
+ {
+  "eylem": "cbSend",
+  "dosya": "js/ui-social.js",
+  "satir": 70,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "chat.send"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cbSend = async () => {"
+ },
+ {
+  "eylem": "emoOpen",
+  "dosya": "js/ui-social.js",
+  "satir": 81,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.emoOpen = (d, el) => {"
+ },
+ {
+  "eylem": "emoPick",
+  "dosya": "js/ui-social.js",
+  "satir": 90,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.emoPick = d => {"
+ },
+ {
+  "eylem": "chatOpen",
+  "dosya": "js/ui-social.js",
+  "satir": 103,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.chatOpen = d => {"
+ },
+ {
+  "eylem": "chSend",
+  "dosya": "js/ui-social.js",
+  "satir": 155,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "chat.send"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.chSend = async () => {"
+ },
+ {
+  "eylem": "chConv",
+  "dosya": "js/ui-social.js",
+  "satir": 161,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.chConv = d => { CH.to = d.id; CH.toName = d.name; CH.msgs = []; ACT.chatOpen({ to: d.id, name: d.name }); };"
+ },
+ {
+  "eylem": "chBack",
+  "dosya": "js/ui-social.js",
+  "satir": 162,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.chBack = () => { CH.to = null; CH.msgs = []; ACT.chatOpen({ tab: 'p' }); };"
+ },
+ {
+  "eylem": "pcard",
+  "dosya": "js/ui-social.js",
+  "satir": 165,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [
+   "player.card"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pcard = async d => {"
+ },
+ {
+  "eylem": "pm",
+  "dosya": "js/ui-social.js",
+  "satir": 176,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pm = d => { closeModal(); ACT.chatOpen({ to: d.id, name: d.name }); };"
+ },
+ {
+  "eylem": "rank",
+  "dosya": "js/ui-social.js",
+  "satir": 204,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "war.view",
+   "rank.info"
+  ],
+  "yazma": [
+   "rank.period"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rank = d => openWin({ title: 'Sıralama', tab: d?.tab || 'players', tabs: [{ id: 'players', label: 'Oyuncular', small: 'Meydan puanı' }, { id: 'clans', label"
+ },
+ {
+  "eylem": "rkPer",
+  "dosya": "js/ui-social.js",
+  "satir": 218,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rkPer = d => { R.per = d.id; reload(); };"
+ },
+ {
+  "eylem": "rkFac",
+  "dosya": "js/ui-social.js",
+  "satir": 219,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.rkFac = d => { R.fac = d.id === '1'; reload(); };"
+ },
+ {
+  "eylem": "rkClaim",
+  "dosya": "js/ui-social.js",
+  "satir": 220,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "rank.claim"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.rkClaim = async () => {"
+ },
+ {
+  "eylem": "rkRewards",
+  "dosya": "js/ui-social.js",
+  "satir": 227,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.rkRewards = () => showModal(`<h2>Sıralama ödülleri</h2><div class=\"in\"><p class=\"mut\">Dönem bitince (gün, pazartesi, ayın 1'i; UTC) önceki dönemin sıralamas"
+ },
+ {
+  "eylem": "frameSel",
+  "dosya": "js/ui-social.js",
+  "satir": 230,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frameSel = () => {"
+ },
+ {
+  "eylem": "frameSet",
+  "dosya": "js/ui-social.js",
+  "satir": 235,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "rank.frame"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.frameSet = async d => { if (await run('rank.frame', { id: d.id || null })) { hooks.hud(); ACT.frameSel(); } };"
+ },
+ {
+  "eylem": "clanPage",
+  "dosya": "js/ui-social.js",
+  "satir": 237,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [
+   "clan.page"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.clanPage = async d => {"
+ },
+ {
+  "eylem": "cpGo",
+  "dosya": "js/ui-social.js",
+  "satir": 249,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.cpGo = async d => {"
+ },
+ {
+  "eylem": "monument",
+  "dosya": "js/ui-social.js",
+  "satir": 275,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "war.view",
+   "monument.view"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.monument = d => openWin({ title: 'Taş Yemini', top: true, tab: d?.tab || 'champ', tabs: [{ id: 'champ', label: TITLES.champ.name, small: 'Meydan birincisi' "
+ },
+ {
+  "eylem": "server",
+  "dosya": "js/ui-sunucu.js",
+  "satir": 60,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.server = async () => {"
+ },
+ {
+  "eylem": "anvil",
+  "dosya": "js/ui-town.js",
+  "satir": 39,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.anvil = () => { resetUp(); openWin({ title: 'Örs', render: () => locked('anvil') ? lockPage('anvil') : anvilUp() }); }; // VAHRAN: Örs'te yalnızca artı basm"
+ },
+ {
+  "eylem": "breakWin",
+  "dosya": "js/ui-town.js",
+  "satir": 41,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.breakWin = () => { resetUp(); openWin({ title: 'Parçala ya da Sat', render: () => locked('anvil') ? lockPage('anvil') : anvilBreak() }); };"
+ },
+ {
+  "eylem": "reforge",
+  "dosya": "js/ui-town.js",
+  "satir": 48,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.reforge = async d => { const r = await doAct('anvil.reforge', { id: +d.id }); if (r) toast('Su verildi: eşya kalıcı olarak güçlendi.'); };"
+ },
+ {
+  "eylem": "pick",
+  "dosya": "js/ui-town.js",
+  "satir": 59,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pick = d => { const id = +d.id; AV.pick.has(id) ? AV.pick.delete(id) : AV.pick.add(id); AV.last = id; redraw(); }; // AV.last: bilgi kartında gösterilen son"
+ },
+ {
+  "eylem": "pickGrade",
+  "dosya": "js/ui-town.js",
+  "satir": 60,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pickGrade = d => { const eq = equippedIds(S), g = +d.g; AV.pick = new Set(g < 0 ? [] : S.items.filter(x => !eq.has(x.id) && x.g <= g && x.p === 0 && !x.r).m"
+ },
+ {
+  "eylem": "dismantle",
+  "dosya": "js/ui-town.js",
+  "satir": 61,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.dismantle = async () => { const r = await doAct('item.dismantle', { ids: [...AV.pick] }); if (r) { AV.pick.clear(); toast(`+${fmt(r.toz)} Örs Tozu`); redraw"
+ },
+ {
+  "eylem": "sell",
+  "dosya": "js/ui-town.js",
+  "satir": 62,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.sell = async () => { const r = await doAct('item.sell', { ids: [...AV.pick] }); if (r) { AV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } };"
+ },
+ {
+  "eylem": "craft",
+  "dosya": "js/ui-town.js",
+  "satir": 70,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.craft = d => doAct('anvil.craft', { g: +d.g, n: +d.n });"
+ },
+ {
+  "eylem": "mine",
+  "dosya": "js/ui-town.js",
+  "satir": 73,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mine = () => openWin({ title: 'Maden', render: () => {"
+ },
+ {
+  "eylem": "mineCollect",
+  "dosya": "js/ui-town.js",
+  "satir": 85,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.mineCollect = async () => { // P23 K6: madenci arabaya yürür, boşaltır; boşaltma anında toplama isteği gider"
+ },
+ {
+  "eylem": "mineUp",
+  "dosya": "js/ui-town.js",
+  "satir": 88,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.mineUp = () => doAct('mine.upgrade');"
+ },
+ {
+  "eylem": "mineTrade",
+  "dosya": "js/ui-town.js",
+  "satir": 89,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mineTrade = async d => { const r = await doAct('mine.trade', { k: d.k, n: +d.n }); if (r) lootToast(r.loot); };"
+ },
+ {
+  "eylem": "market",
+  "dosya": "js/ui-town.js",
+  "satir": 134,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "market.list",
+   "market.mine"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.market = d => {"
+ },
+ {
+  "eylem": "pazar",
+  "dosya": "js/ui-town.js",
+  "satir": 139,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pazar = () => ACT.market({ tab: 'pazar' });"
+ },
+ {
+  "eylem": "tuccar",
+  "dosya": "js/ui-town.js",
+  "satir": 149,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tuccar = () => {"
+ },
+ {
+  "eylem": "npcSilah",
+  "dosya": "js/ui-town.js",
+  "satir": 154,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.npcSilah = d => openShop('silah', d?.sub);"
+ },
+ {
+  "eylem": "npcZirh",
+  "dosya": "js/ui-town.js",
+  "satir": 155,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.npcZirh = d => openShop('zirh', d?.sub);"
+ },
+ {
+  "eylem": "npcTaki",
+  "dosya": "js/ui-town.js",
+  "satir": 156,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.npcTaki = d => openShop('taki', d?.sub);"
+ },
+ {
+  "eylem": "tuccarSub",
+  "dosya": "js/ui-town.js",
+  "satir": 158,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tuccarSub = k => { if (tutorialBuy()) return ACT.tuccar(); if (k === 'weapons') return ACT.npcSilah(); if (k === 'armors') return ACT.npcZirh(); if (k === '"
+ },
+ {
+  "eylem": "marketKindOpen",
+  "dosya": "js/ui-town.js",
+  "satir": 159,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.marketKindOpen = k => { MV.kind = k; MV.sub = 'buy'; ACT.market({}); };"
+ },
+ {
+  "eylem": "marketSub",
+  "dosya": "js/ui-town.js",
+  "satir": 160,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketSub = d => { MV.sub = d.k; const w = cur(); w.data = null; redraw(); reload(); };"
+ },
+ {
+  "eylem": "marketKind",
+  "dosya": "js/ui-town.js",
+  "satir": 161,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketKind = d => { MV.kind = d.k; redraw(); };"
+ },
+ {
+  "eylem": "marketRar",
+  "dosya": "js/ui-town.js",
+  "satir": 162,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketRar = d => { MV.rar = d.k; redraw(); };"
+ },
+ {
+  "eylem": "marketCls",
+  "dosya": "js/ui-town.js",
+  "satir": 163,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketCls = d => { MV.cls = d.k; redraw(); };"
+ },
+ {
+  "eylem": "marketSort",
+  "dosya": "js/ui-town.js",
+  "satir": 164,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketSort = d => { MV.sort = d.k; redraw(); };"
+ },
+ {
+  "eylem": "marketPick",
+  "dosya": "js/ui-town.js",
+  "satir": 165,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketPick = d => { MV.sel = +d.id; redraw(); };"
+ },
+ {
+  "eylem": "pzSet",
+  "dosya": "js/ui-town.js",
+  "satir": 166,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.pzSet = d => { const el = $('#mprice'); if (el) { el.value = d.v; el.dispatchEvent(new Event('input', { bubbles: true })); } };"
+ },
+ {
+  "eylem": "marketSell",
+  "dosya": "js/ui-town.js",
+  "satir": 167,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "market.sell"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.marketSell = async () => { const el = $('#mprice'), price = Math.floor(+el.value.replace(/\\D/g, '')), mn = +el.dataset.min, mx = +el.dataset.max;"
+ },
+ {
+  "eylem": "marketBuy",
+  "dosya": "js/ui-town.js",
+  "satir": 170,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "market.buy"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketBuy = async d => { const r = await run('market.buy', { id: d.id }); if (r) toast(`${itemName(r.item)} satın alındı.`); reload(); };"
+ },
+ {
+  "eylem": "marketCancel",
+  "dosya": "js/ui-town.js",
+  "satir": 171,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "market.cancel"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.marketCancel = async d => { if (await run('market.cancel', { id: d.id })) reload(); };"
+ },
+ {
+  "eylem": "tcSub",
+  "dosya": "js/ui-town.js",
+  "satir": 233,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tcSub = d => { TV.sub = d.k; if (TV.shop === 'taki' && d.k === 'jewels') { const w = cur(); if (w) w.data = null; redraw(); reload(); } else redraw(); };"
+ },
+ {
+  "eylem": "tcCls",
+  "dosya": "js/ui-town.js",
+  "satir": 234,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tcCls = d => { TV.cls = d.k; redraw(); };"
+ },
+ {
+  "eylem": "tcBuy",
+  "dosya": "js/ui-town.js",
+  "satir": 235,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "npc.buy"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tcBuy = async d => { const r = await run('npc.buy', { id: d.id }); if (!r) return; toast(r.mat ? 'Satın alındı.' : `${itemBase(r.b).name} çantana girdi.`); "
+ },
+ {
+  "eylem": "tcPot",
+  "dosya": "js/ui-town.js",
+  "satir": 236,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "npc.pot"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tcPot = async d => { const r = await run('npc.pot', { k: d.k, n: +d.n }); if (!r) return; toast(`${POT[r.k].name} ×${r.n} alındı (elinde ${r.have}).`); redr"
+ },
+ {
+  "eylem": "tcPick",
+  "dosya": "js/ui-town.js",
+  "satir": 237,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tcPick = d => { const id = +d.id; TV.pick.has(id) ? TV.pick.delete(id) : TV.pick.add(id); TV.last = id; redraw(); };"
+ },
+ {
+  "eylem": "tcPickG",
+  "dosya": "js/ui-town.js",
+  "satir": 238,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.tcPickG = d => { const g = +d.g; TV.pick = new Set(g < 0 ? [] : shopSellable().filter(x => x.g <= g && !x.p && !x.r).map(x => x.id)); redraw(); };"
+ },
+ {
+  "eylem": "tcSell",
+  "dosya": "js/ui-town.js",
+  "satir": 239,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "npc.sell"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tcSell = async () => { const r = await run('npc.sell', { ids: [...TV.pick] }); if (r) { TV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } };"
+ },
+ {
+  "eylem": "tcPlain",
+  "dosya": "js/ui-town.js",
+  "satir": 240,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "npc.sell"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.tcPlain = () => { const ids = shopSellable().filter(x => x.g === 0 && !x.p && !x.r).map(x => x.id), total = ids.reduce((a, id) => a + sellPrice(itemOf(S, id"
+ },
+ {
+  "eylem": "iksir",
+  "dosya": "js/ui-town.js",
+  "satir": 280,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.iksir = d => { if (d?.tab) IV.tab = d.tab === 'scrolls' ? 'scrolls' : 'pots';"
+ },
+ {
+  "eylem": "ikScroll",
+  "dosya": "js/ui-town.js",
+  "satir": 283,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "npc.scroll"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ikScroll = async d => { const r = await run('npc.scroll', { id: d.id }); if (!r) return; const x = npcScrolls(S).find(s => s.id === r.id); toast(`${x ? x.na"
+ },
+ {
+  "eylem": "mail",
+  "dosya": "js/ui-town.js",
+  "satir": 292,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [
+   "mail.list",
+   "report.list"
+  ],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mail = d => { repReset(null, true); MAILV.open = null; MAILV.who = null; if (d?.tab !== 'yaz') MAILV.to = null; let first = true; p25bImg(); openWin({ title"
+ },
+ {
+  "eylem": "mailTo",
+  "dosya": "js/ui-town.js",
+  "satir": 325,
+  "acar": [
+   "ACT.tab"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mailTo = d => { if (!d?.name) return; closeModal(); MAILV.to = { id: d.id, name: d.name }; if (!$('#win').hidden && cur()?.title === 'Posta') ACT.tab({ id: "
+ },
+ {
+  "eylem": "mailSend",
+  "dosya": "js/ui-town.js",
+  "satir": 326,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "mail.nation",
+   "clan.mail",
+   "mail.send"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.mailSend = async () => {"
+ },
+ {
+  "eylem": "mailOpen",
+  "dosya": "js/ui-town.js",
+  "satir": 334,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mailOpen = d => { MAILV.open = d.id; redraw(); };"
+ },
+ {
+  "eylem": "mailBack",
+  "dosya": "js/ui-town.js",
+  "satir": 335,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.mailBack = () => { MAILV.open = null; redraw(); };"
+ },
+ {
+  "eylem": "mailClaim",
+  "dosya": "js/ui-town.js",
+  "satir": 336,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "mail.claim"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.mailClaim = async d => { const r = await run('mail.claim', { id: d.id }); if (r) { lootToast(r.loot); MAILV.open = null; } reload(); };"
+ },
+ {
+  "eylem": "hall",
+  "dosya": "js/ui-town.js",
+  "satir": 339,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hall = () => openWin({ title: 'Şan Divanı', render: () => locked('hall') ? lockPage('hall') : `<div class=\"hint\">Meydanda ve seferlerde kazandığın <b>Şan</b"
+ },
+ {
+  "eylem": "hallUp",
+  "dosya": "js/ui-town.js",
+  "satir": 341,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.hallUp = d => doAct('hall.up', { stat: d.k });"
+ },
+ {
+  "eylem": "wheel",
+  "dosya": "js/ui-town.js",
+  "satir": 361,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.wheel = () => { wheelLast = null; Promise.all(['gem_kor', 'gem_ayaz', 'gem_simsek'].map(p24Img)).then(() => { if (cur()?.title === 'Kader Çarkı' && !wheelAn"
+ },
+ {
+  "eylem": "wheelBack",
+  "dosya": "js/ui-town.js",
+  "satir": 370,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.wheelBack = () => { wheelLast = null; redraw(); };"
+ },
+ {
+  "eylem": "spin",
+  "dosya": "js/ui-town.js",
+  "satir": 371,
+  "acar": [],
+  "okuma": [],
+  "yazma": [
+   "wheel.spin"
+  ],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.spin = async d => {"
+ },
+ {
+  "eylem": "devPremium",
+  "dosya": "js/ui-town.js",
+  "satir": 380,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": true,
+  "ozet": "ACT.devPremium = () => doAct('dev.premium');"
+ },
+ {
+  "eylem": "premium",
+  "dosya": "js/ui-town.js",
+  "satir": 383,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.premium = () => openWin({ title: 'Premium', render: () => {"
+ },
+ {
+  "eylem": "premBuy",
+  "dosya": "js/ui-town.js",
+  "satir": 397,
+  "acar": [
+   "confirmBox",
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.premBuy = d => {"
+ },
+ {
+  "eylem": "quests",
+  "dosya": "js/ui-town.js",
+  "satir": 413,
+  "acar": [
+   "openWin"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.quests = () => openWin({ title: 'Günlük Görevler', render: dailyQuestsHtml }); // ui-kalicilik.js bunu sekmeli (Günlük / Haftalık) pencereyle değiştirir"
+ },
+ {
+  "eylem": "questGo",
+  "dosya": "js/ui-town.js",
+  "satir": 431,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.questGo = d => QUEST_GO[d.id]?.();"
+ },
+ {
+  "eylem": "gift",
+  "dosya": "js/ui-town.js",
+  "satir": 432,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.gift = async () => { const r = await doAct('daily.gift'); if (r) lootToast(r.loot); };"
+ },
+ {
+  "eylem": "questClaim",
+  "dosya": "js/ui-town.js",
+  "satir": 433,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.questClaim = async d => { const r = await doAct('quest.claim', { id: d.id }); if (r) lootToast(r.loot); };"
+ },
+ {
+  "eylem": "questBonus",
+  "dosya": "js/ui-town.js",
+  "satir": 434,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.questBonus = async () => { const r = await doAct('quest.bonus'); if (r) lootToast(r.loot); };"
+ },
+ {
+  "eylem": "yeminGo",
+  "dosya": "js/ui-yemin.js",
+  "satir": 19,
+  "acar": [
+   "showModal"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.yeminGo = () => {"
+ },
+ {
+  "eylem": "yeminRite",
+  "dosya": "js/ui-yemin.js",
+  "satir": 25,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.yeminRite = () => { clearTimeout(tmr); closeModal(); ACT.mode({ m: 'yemin' }); };"
+ },
+ {
+  "eylem": "ytAuto",
+  "dosya": "js/ui-yetenek.js",
+  "satir": 72,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ytAuto = async d => { const r = await doAct('loadout.auto', { hero: d.hid }); if (r) toast('Savaş düzeni önerilene göre kuruldu.'); };"
+ },
+ {
+  "eylem": "ytSel",
+  "dosya": "js/ui-yetenek.js",
+  "satir": 73,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ytSel = d => { YV.sel = d.id; redraw(); };"
+ },
+ {
+  "eylem": "ytCls",
+  "dosya": "js/ui-yetenek.js",
+  "satir": 74,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ytCls = d => { YV.cls = d.id; YV.sel = null; redraw(); };"
+ },
+ {
+  "eylem": "zaferAniti",
+  "dosya": "js/ui-zafer.js",
+  "satir": 49,
+  "acar": [
+   "binaAc"
+  ],
+  "okuma": [
+   "zafer.view"
+  ],
+  "yazma": [],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.zaferAniti = async () => {"
+ },
+ {
+  "eylem": "zaferAl",
+  "dosya": "js/ui-zafer.js",
+  "satir": 58,
+  "acar": [
+   "toast"
+  ],
+  "okuma": [],
+  "yazma": [
+   "zafer.claim"
+  ],
+  "parametre": false,
+  "dev": false,
+  "ozet": "ACT.zaferAl = async () => {"
+ }
+]

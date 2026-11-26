@@ -1,0 +1,5548 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "ekran_sayisi": 226,
+  "birlesik_ekran_kimligi": 115,
+  "ic_mekan_sayisi": 13,
+  "testler": [
+    {
+      "test_id": "UI-elentha-A01-yukleme",
+      "halk": "elentha",
+      "ekran": "A01-yukleme",
+      "ad": "Yükleme",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Açılış resmi ve yükleme çubuğu (img/korant-acilis.jpg, değişmez).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A02-sunucu-secimi",
+      "halk": "elentha",
+      "ekran": "A02-sunucu-secimi",
+      "ad": "Sunucu seçimi",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Sunucu kartı (Ares), giriş düğmesi .sv-go.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A03-olustur-acilis",
+      "halk": "elentha",
+      "ekran": "A03-olustur-acilis",
+      "ad": "Karakter oluştur · açılış",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Halk (ırk) seçimi, sınıf, cinsiyet, ad.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "A04-olustur-halk",
+        "A05-olustur-warrior-f"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A05-olustur-rogue-f",
+      "halk": "elentha",
+      "ekran": "A05-olustur-rogue-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: rogue / kadın",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A05-olustur-mage-f",
+      "halk": "elentha",
+      "ekran": "A05-olustur-mage-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: mage / kadın",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A05-olustur-priest-f",
+      "halk": "elentha",
+      "ekran": "A05-olustur-priest-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: priest / kadın",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A05-olustur-warrior-m",
+      "halk": "elentha",
+      "ekran": "A05-olustur-warrior-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: warrior / erkek",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A05-olustur-rogue-m",
+      "halk": "elentha",
+      "ekran": "A05-olustur-rogue-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: rogue / erkek",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A05-olustur-mage-m",
+      "halk": "elentha",
+      "ekran": "A05-olustur-mage-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: mage / erkek",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A05-olustur-priest-m",
+      "halk": "elentha",
+      "ekran": "A05-olustur-priest-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: priest / erkek",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A06-karakter-secme",
+      "halk": "elentha",
+      "ekran": "A06-karakter-secme",
+      "ad": "Karakter seçme",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Oluşturulan karakterler, 2B tam boy, Giriş (#tkenter).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A07-giris-sonrasi",
+      "halk": "elentha",
+      "ekran": "A07-giris-sonrasi",
+      "ad": "Giriş sonrası / hikâye girişi",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Krallık yemini/destan girişi (Geç düğmesi).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-A08-ogretici",
+      "halk": "elentha",
+      "ekran": "A08-ogretici",
+      "ad": "Öğretici",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Kemikli Koru öğretici savaşı ve anlatıcı (atlanabilir).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-B01-hub-baskent",
+      "halk": "elentha",
+      "ekran": "B01-hub-baskent",
+      "ad": "Ana ekran · Başkent",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Halkın boyalı başkenti (2B), binalar, HUD, dock, sohbet, Savaş düğmesi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-B02-hub-yemin-pazari",
+      "halk": "elentha",
+      "ekran": "B02-hub-yemin-pazari",
+      "ad": "Ana ekran · Yemin Pazarı",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Ortak çarşı: silah/zırh/sarf/takı tezgâhları, pazar, karaborsa, Yashka, iskele (Balık Tut).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-B03-hub-klan",
+      "halk": "elentha",
+      "ekran": "B03-hub-klan",
+      "ad": "Ana ekran · Klan Obası",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Klan toprağı: salon, karargâh, hazine, dükkân, hisar, av, görev, sancak.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "clan",
+        "clanhq",
+        "gateKlan"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-bag",
+      "halk": "elentha",
+      "ekran": "bag",
+      "ad": "Çanta",
+      "eylem": "ACT.bag()",
+      "beklenen": "Envanter: eşya kuşanma, satma, parçalama, kilit.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-karakter",
+      "halk": "elentha",
+      "ekran": "karakter",
+      "ad": "Karakter",
+      "eylem": "ACT.karakter()",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": [
+        "eq",
+        "skill",
+        "mst",
+        "unvan"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [
+          "button.kx-plus 17x17 «+»",
+          "button.on 53x22 «Hepsi»",
+          "button 49x22 «Silah»",
+          "button 45x22 «Zırh»",
+          "button 45x22 «Takı»",
+          "button 53x22 «Boşta»"
+        ],
+        "cakisma": [
+          "button.ivc ⨯ button.kx-bulk"
+        ]
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-karakter~skill",
+      "halk": "elentha",
+      "ekran": "karakter~skill",
+      "ad": "Karakter › Yetenek",
+      "eylem": "ACT.karakter() → ACT.tab({id:'skill'})",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "party~skill",
+        "hotbar",
+        "hotbar~skill"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-karakter~mst",
+      "halk": "elentha",
+      "ekran": "karakter~mst",
+      "ad": "Karakter › Ustalık",
+      "eylem": "ACT.karakter() → ACT.tab({id:'mst'})",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "party~mst",
+        "hotbar~mst"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-karakter~unvan",
+      "halk": "elentha",
+      "ekran": "karakter~unvan",
+      "ad": "Karakter › Unvan",
+      "eylem": "ACT.karakter() → ACT.tab({id:'unvan'})",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "party",
+        "party~unvan",
+        "hotbar~unvan"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-quests",
+      "halk": "elentha",
+      "ekran": "quests",
+      "ad": "Görevler",
+      "eylem": "ACT.quests()",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": [
+        "main",
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "ayni_goruntu": [
+        "mnMain"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "b «Yemin Pazarı’nda Fısıltı»",
+          "b «Mühürlerin Ardı»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": [
+          "button.mq-n.locked ⨯ button.btn.blue"
+        ]
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-quests~daily",
+      "halk": "elentha",
+      "ekran": "quests~daily",
+      "ad": "Görevler › Günlük",
+      "eylem": "ACT.quests() → ACT.tab({id:'daily'})",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "mnMain~daily"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "div.qb2-card.gift «Bugün\n    Günlük giriş ödülü»▸"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-quests~weekly",
+      "halk": "elentha",
+      "ekran": "quests~weekly",
+      "ad": "Görevler › Haftalık",
+      "eylem": "ACT.quests() → ACT.tab({id:'weekly'})",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "mnMain~weekly"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-quests~monthly",
+      "halk": "elentha",
+      "ekran": "quests~monthly",
+      "ad": "Görevler › Aylık",
+      "eylem": "ACT.quests() → ACT.tab({id:'monthly'})",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "mnMain~monthly"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-shop",
+      "halk": "elentha",
+      "ekran": "shop",
+      "ad": "Dükkân (Kervan)",
+      "eylem": "ACT.shop()",
+      "beklenen": "Yakutla erzak, bilet, muska; para sekmesi (Yakında).",
+      "sekmeler": [
+        "yakut",
+        "money"
+      ],
+      "ayni_goruntu": [
+        "czMarket"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-shop~money",
+      "halk": "elentha",
+      "ekran": "shop~money",
+      "ad": "Dükkân (Kervan) › Para",
+      "eylem": "ACT.shop() → ACT.tab({id:'money'})",
+      "beklenen": "Yakutla erzak, bilet, muska; para sekmesi (Yakında).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "czMarket~money"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-mail",
+      "halk": "elentha",
+      "ekran": "mail",
+      "ad": "Posta",
+      "eylem": "ACT.mail()",
+      "beklenen": "Gelen posta, raporlar, yazma.",
+      "sekmeler": [
+        "sys",
+        "yaz",
+        "rep"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-mail~yaz",
+      "halk": "elentha",
+      "ekran": "mail~yaz",
+      "ad": "Posta › Yaz",
+      "eylem": "ACT.mail() → ACT.tab({id:'yaz'})",
+      "beklenen": "Gelen posta, raporlar, yazma.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "reports~yaz"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-mail~rep",
+      "halk": "elentha",
+      "ekran": "mail~rep",
+      "ad": "Posta › Raporlar",
+      "eylem": "ACT.mail() → ACT.tab({id:'rep'})",
+      "beklenen": "Gelen posta, raporlar, yazma.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "reports",
+        "reports~rep"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-market",
+      "halk": "elentha",
+      "ekran": "market",
+      "ad": "Pazar",
+      "eylem": "ACT.market()",
+      "beklenen": "Oyuncular arası alım satım ilanları.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-pazar",
+      "halk": "elentha",
+      "ekran": "pazar",
+      "ad": "Pazar (çarşı girişi)",
+      "eylem": "ACT.pazar()",
+      "beklenen": "Pazar penceresinin çarşı kısayolu.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-settings",
+      "halk": "elentha",
+      "ekran": "settings",
+      "ad": "Ayarlar",
+      "eylem": "ACT.settings()",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": [
+        "gfx",
+        "ses",
+        "erisim",
+        "dil",
+        "notif",
+        "acc"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-settings~ses",
+      "halk": "elentha",
+      "ekran": "settings~ses",
+      "ad": "Ayarlar › Ses",
+      "eylem": "ACT.settings() → ACT.tab({id:'ses'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~ses"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-settings~erisim",
+      "halk": "elentha",
+      "ekran": "settings~erisim",
+      "ad": "Ayarlar › Erişilebilirlik",
+      "eylem": "ACT.settings() → ACT.tab({id:'erisim'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim",
+        "erisim~erisim"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-settings~dil",
+      "halk": "elentha",
+      "ekran": "settings~dil",
+      "ad": "Ayarlar › Dil",
+      "eylem": "ACT.settings() → ACT.tab({id:'dil'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~dil"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-settings~notif",
+      "halk": "elentha",
+      "ekran": "settings~notif",
+      "ad": "Ayarlar › Bildirim",
+      "eylem": "ACT.settings() → ACT.tab({id:'notif'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~notif"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-settings~acc",
+      "halk": "elentha",
+      "ekran": "settings~acc",
+      "ad": "Ayarlar › Hesap",
+      "eylem": "ACT.settings() → ACT.tab({id:'acc'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~acc"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-rank",
+      "halk": "elentha",
+      "ekran": "rank",
+      "ad": "Sıralama",
+      "eylem": "ACT.rank()",
+      "beklenen": "Oyuncu/klan/ırk sıralamaları.",
+      "sekmeler": [
+        "players",
+        "clans",
+        "race"
+      ],
+      "ayni_goruntu": [
+        "rankMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-rank~clans",
+      "halk": "elentha",
+      "ekran": "rank~clans",
+      "ad": "Sıralama › Klanlar",
+      "eylem": "ACT.rank() → ACT.tab({id:'clans'})",
+      "beklenen": "Oyuncu/klan/ırk sıralamaları.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rankMenu~clans"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-rank~race",
+      "halk": "elentha",
+      "ekran": "rank~race",
+      "ad": "Sıralama › Irk",
+      "eylem": "ACT.rank() → ACT.tab({id:'race'})",
+      "beklenen": "Oyuncu/klan/ırk sıralamaları.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rankMenu~race"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-friends",
+      "halk": "elentha",
+      "ekran": "friends",
+      "ad": "Arkadaşlar",
+      "eylem": "ACT.friends()",
+      "beklenen": "Arkadaş listesi, istekler, engellenenler.",
+      "sekmeler": [
+        "list",
+        "req",
+        "blocked"
+      ],
+      "ayni_goruntu": [
+        "friendsMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-friends~req",
+      "halk": "elentha",
+      "ekran": "friends~req",
+      "ad": "Arkadaşlar › İstekler",
+      "eylem": "ACT.friends() → ACT.tab({id:'req'})",
+      "beklenen": "Arkadaş listesi, istekler, engellenenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "friendsMenu~req"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-friends~blocked",
+      "halk": "elentha",
+      "ekran": "friends~blocked",
+      "ad": "Arkadaşlar › Engellenenler",
+      "eylem": "ACT.friends() → ACT.tab({id:'blocked'})",
+      "beklenen": "Arkadaş listesi, istekler, engellenenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "friendsMenu~blocked"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-notifs",
+      "halk": "elentha",
+      "ekran": "notifs",
+      "ad": "Bildirimler",
+      "eylem": "ACT.notifs()",
+      "beklenen": "Bildirim akışı ve ayarları.",
+      "sekmeler": [
+        "list",
+        "set"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-notifs~set",
+      "halk": "elentha",
+      "ekran": "notifs~set",
+      "ad": "Bildirimler › Ayarlar",
+      "eylem": "ACT.notifs() → ACT.tab({id:'set'})",
+      "beklenen": "Bildirim akışı ve ayarları.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-calendar",
+      "halk": "elentha",
+      "ekran": "calendar",
+      "ad": "Takvim",
+      "eylem": "ACT.calendar()",
+      "beklenen": "Günlük giriş ödülleri (7 gün / 28 gün).",
+      "sekmeler": [
+        "ev",
+        "n7",
+        "m28"
+      ],
+      "ayni_goruntu": [
+        "calendar~n7"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-calendar~m28",
+      "halk": "elentha",
+      "ekran": "calendar~m28",
+      "ad": "Takvim › 28 gün",
+      "eylem": "ACT.calendar() → ACT.tab({id:'m28'})",
+      "beklenen": "Günlük giriş ödülleri (7 gün / 28 gün).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-codex",
+      "halk": "elentha",
+      "ekran": "codex",
+      "ad": "Ansiklopedi",
+      "eylem": "ACT.codex()",
+      "beklenen": "Eşya ve canavar ansiklopedisi (G3 çizimleri).",
+      "sekmeler": [
+        "rehber",
+        "mobs",
+        "items"
+      ],
+      "ayni_goruntu": [
+        "rehber"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-codex~mobs",
+      "halk": "elentha",
+      "ekran": "codex~mobs",
+      "ad": "Ansiklopedi › Canavarlar",
+      "eylem": "ACT.codex() → ACT.tab({id:'mobs'})",
+      "beklenen": "Eşya ve canavar ansiklopedisi (G3 çizimleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rehber~mobs"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-codex~items",
+      "halk": "elentha",
+      "ekran": "codex~items",
+      "ad": "Ansiklopedi › Eşyalar",
+      "eylem": "ACT.codex() → ACT.tab({id:'items'})",
+      "beklenen": "Eşya ve canavar ansiklopedisi (G3 çizimleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rehber~items"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-achs",
+      "halk": "elentha",
+      "ekran": "achs",
+      "ad": "Başarımlar",
+      "eylem": "ACT.achs()",
+      "beklenen": "Başarımlar ve unvanlar.",
+      "sekmeler": [
+        "list",
+        "titles"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "small «Çetin ve Yaman kademelerde 1»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-achs~titles",
+      "halk": "elentha",
+      "ekran": "achs~titles",
+      "ad": "Başarımlar › Unvanlar",
+      "eylem": "ACT.achs() → ACT.tab({id:'titles'})",
+      "beklenen": "Başarımlar ve unvanlar.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "titles",
+        "titles~titles",
+        "titlesMenu",
+        "titlesMenu~titles"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-premium",
+      "halk": "elentha",
+      "ekran": "premium",
+      "ad": "Üyelik",
+      "eylem": "ACT.premium()",
+      "beklenen": "Bronz/Gümüş/Altın üyelik avantajları.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "premiumMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-profile",
+      "halk": "elentha",
+      "ekran": "profile",
+      "ad": "Profil",
+      "eylem": "ACT.profile()",
+      "beklenen": "Oyuncu profili, istatistik, amblem.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-server",
+      "halk": "elentha",
+      "ekran": "server",
+      "ad": "Sunucu",
+      "eylem": "ACT.server()",
+      "beklenen": "Sunucu bilgisi ve kuralları.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-wheel",
+      "halk": "elentha",
+      "ekran": "wheel",
+      "ad": "Çark",
+      "eylem": "ACT.wheel()",
+      "beklenen": "Yakutla şans çarkı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-anvil",
+      "halk": "elentha",
+      "ekran": "anvil",
+      "ad": "Örs (Büyük Örs)",
+      "eylem": "ACT.anvil()",
+      "beklenen": "Eşya yükseltme +1…+10, parçalama; iç mekân yemin-pazari/ors.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [
+          "button.up2-mat.ors-c 25x25 «14»",
+          "button.up2-mat.ors-c 25x25 «13»"
+        ],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-mine",
+      "halk": "elentha",
+      "ekran": "mine",
+      "ad": "Maden",
+      "eylem": "ACT.mine()",
+      "beklenen": "Saatlik cevher, yükseltme, takas; iç mekân maden.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-iksir",
+      "halk": "elentha",
+      "ekran": "iksir",
+      "ad": "İksirci",
+      "eylem": "ACT.iksir()",
+      "beklenen": "İksir ve sarf satın alma (Maelis / Kragmir iksircisi).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-monument",
+      "halk": "elentha",
+      "ekran": "monument",
+      "ad": "Anıt",
+      "eylem": "ACT.monument()",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": [
+        "champ",
+        "clan",
+        "ruler",
+        "race"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-monument~clan",
+      "halk": "elentha",
+      "ekran": "monument~clan",
+      "ad": "Anıt › Klan",
+      "eylem": "ACT.monument() → ACT.tab({id:'clan'})",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-monument~ruler",
+      "halk": "elentha",
+      "ekran": "monument~ruler",
+      "ad": "Anıt › Önder",
+      "eylem": "ACT.monument() → ACT.tab({id:'ruler'})",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-monument~race",
+      "halk": "elentha",
+      "ekran": "monument~race",
+      "ad": "Anıt › Irk",
+      "eylem": "ACT.monument() → ACT.tab({id:'race'})",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-karaborsa",
+      "halk": "elentha",
+      "ekran": "karaborsa",
+      "ad": "Karaborsa",
+      "eylem": "ACT.karaborsa()",
+      "beklenen": "Gizli tüccar; iç mekân karaborsa.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "b.kb-name «Kaya Dev Gövdelik»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-tuccar",
+      "halk": "elentha",
+      "ekran": "tuccar",
+      "ad": "Tüccar",
+      "eylem": "ACT.tuccar()",
+      "beklenen": "Silah/zırh/takı tezgâhı (Halvor / Kragmir tüccarı).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-meydan",
+      "halk": "elentha",
+      "ekran": "meydan",
+      "ad": "Meydan (PvP)",
+      "eylem": "ACT.meydan()",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": [
+        "fight",
+        "feud",
+        "def",
+        "shop",
+        "san"
+      ],
+      "ayni_goruntu": [
+        "czArena",
+        "gatePvp"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": [
+          "button.btn ⨯ button.btn.red"
+        ]
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-meydan~feud",
+      "halk": "elentha",
+      "ekran": "meydan~feud",
+      "ad": "Meydan (PvP) › Kan davası",
+      "eylem": "ACT.meydan() → ACT.tab({id:'feud'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall~feud",
+        "czArena~feud",
+        "czHall~feud",
+        "gatePvp~feud"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-meydan~def",
+      "halk": "elentha",
+      "ekran": "meydan~def",
+      "ad": "Meydan (PvP) › Savunma",
+      "eylem": "ACT.meydan() → ACT.tab({id:'def'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall~def",
+        "czArena~def",
+        "czHall~def",
+        "gatePvp~def"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-meydan~shop",
+      "halk": "elentha",
+      "ekran": "meydan~shop",
+      "ad": "Meydan (PvP) › Dükkân",
+      "eylem": "ACT.meydan() → ACT.tab({id:'shop'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall~shop",
+        "czArena~shop",
+        "czHall~shop",
+        "gatePvp~shop"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-meydan~san",
+      "halk": "elentha",
+      "ekran": "meydan~san",
+      "ad": "Meydan (PvP) › Şan",
+      "eylem": "ACT.meydan() → ACT.tab({id:'san'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall",
+        "hall~san",
+        "czArena~san",
+        "czHall",
+        "czHall~san",
+        "gatePvp~san"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-nobet",
+      "halk": "elentha",
+      "ekran": "nobet",
+      "ad": "Kristal Nöbeti",
+      "eylem": "ACT.nobet()",
+      "beklenen": "Dalga savunma etkinliği.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-baskin",
+      "halk": "elentha",
+      "ekran": "baskin",
+      "ad": "Baskın",
+      "eylem": "ACT.baskin()",
+      "beklenen": "Dünya Baskını ve zindan kartları.",
+      "sekmeler": [
+        "zones",
+        "dungeons",
+        "events"
+      ],
+      "ayni_goruntu": [
+        "baskin~events",
+        "gate",
+        "gate~events",
+        "gateZones~events",
+        "gateEvents",
+        "gateEvents~events"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-baskin~dungeons",
+      "halk": "elentha",
+      "ekran": "baskin~dungeons",
+      "ad": "Baskın › Zindanlar",
+      "eylem": "ACT.baskin() → ACT.tab({id:'dungeons'})",
+      "beklenen": "Dünya Baskını ve zindan kartları.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "gate~dungeons",
+        "gateZones~dungeons",
+        "gateEvents~dungeons"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-destan",
+      "halk": "elentha",
+      "ekran": "destan",
+      "ad": "Destan",
+      "eylem": "ACT.destan()",
+      "beklenen": "8 bölümlük hikâye savaşları.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "gateDestan"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-diyarMap",
+      "halk": "elentha",
+      "ekran": "diyarMap",
+      "ad": "Diyar Haritası",
+      "eylem": "ACT.diyarMap()",
+      "beklenen": "Diyar haritası, hazine, bağış (Otağ sekmeleri).",
+      "sekmeler": [
+        "ruler",
+        "treasury",
+        "grant",
+        "map"
+      ],
+      "ayni_goruntu": [
+        "diyarMap~map",
+        "otag~map",
+        "otagMenu~map"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Sunucu: Ares»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-diyarMap~treasury",
+      "halk": "elentha",
+      "ekran": "diyarMap~treasury",
+      "ad": "Diyar Haritası › Hazine",
+      "eylem": "ACT.diyarMap() → ACT.tab({id:'treasury'})",
+      "beklenen": "Diyar haritası, hazine, bağış (Otağ sekmeleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "otag~treasury",
+        "otagMenu~treasury"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Ares · Seçime 3g 21s»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-diyarMap~grant",
+      "halk": "elentha",
+      "ekran": "diyarMap~grant",
+      "ad": "Diyar Haritası › Bağış",
+      "eylem": "ACT.diyarMap() → ACT.tab({id:'grant'})",
+      "beklenen": "Diyar haritası, hazine, bağış (Otağ sekmeleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "otag~grant",
+        "otagMenu~grant"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Ares · Seçime 3g 21s»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-balik",
+      "halk": "elentha",
+      "ekran": "balik",
+      "ad": "Balık Tut",
+      "eylem": "ACT.balik()",
+      "beklenen": "Balık tutma mini oyunu (şelale/iskele).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-savas",
+      "halk": "elentha",
+      "ekran": "savas",
+      "ad": "Savaş menüsü",
+      "eylem": "ACT.savas()",
+      "beklenen": "Savaş giriş kartları (Sefer, Hızlı Av, Meydan, Şan Divanı).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-season",
+      "halk": "elentha",
+      "ekran": "season",
+      "ad": "Sezon",
+      "eylem": "ACT.season()",
+      "beklenen": "Sezon ödülleri ve geçmişi.",
+      "sekmeler": [
+        "now",
+        "rew",
+        "hist"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-season~rew",
+      "halk": "elentha",
+      "ekran": "season~rew",
+      "ad": "Sezon › Ödüller",
+      "eylem": "ACT.season() → ACT.tab({id:'rew'})",
+      "beklenen": "Sezon ödülleri ve geçmişi.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-season~hist",
+      "halk": "elentha",
+      "ekran": "season~hist",
+      "ad": "Sezon › Geçmiş",
+      "eylem": "ACT.season() → ACT.tab({id:'hist'})",
+      "beklenen": "Sezon ödülleri ve geçmişi.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-news",
+      "halk": "elentha",
+      "ekran": "news",
+      "ad": "Duyurular",
+      "eylem": "ACT.news()",
+      "beklenen": "Oyun haberleri akışı.",
+      "sekmeler": [
+        "news",
+        "feed"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-news~feed",
+      "halk": "elentha",
+      "ekran": "news~feed",
+      "ad": "Duyurular › Akış",
+      "eylem": "ACT.news() → ACT.tab({id:'feed'})",
+      "beklenen": "Oyun haberleri akışı.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-onlineOpen",
+      "halk": "elentha",
+      "ekran": "onlineOpen",
+      "ad": "Çevrimiçi ödülü",
+      "eylem": "ACT.onlineOpen()",
+      "beklenen": "Çevrimiçi kalma sandığı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-starterOpen",
+      "halk": "elentha",
+      "ekran": "starterOpen",
+      "ad": "Başlangıç paketi",
+      "eylem": "ACT.starterOpen()",
+      "beklenen": "İlk alım paketi teklifi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-yakutMenu",
+      "halk": "elentha",
+      "ekran": "yakutMenu",
+      "ad": "Yakut al",
+      "eylem": "ACT.yakutMenu()",
+      "beklenen": "Yakut paketleri (Yakında), aylık kart, geçmiş.",
+      "sekmeler": [
+        "packs",
+        "card",
+        "hist"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-yakutMenu~card",
+      "halk": "elentha",
+      "ekran": "yakutMenu~card",
+      "ad": "Yakut al › Aylık kart",
+      "eylem": "ACT.yakutMenu() → ACT.tab({id:'card'})",
+      "beklenen": "Yakut paketleri (Yakında), aylık kart, geçmiş.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-yakutMenu~hist",
+      "halk": "elentha",
+      "ekran": "yakutMenu~hist",
+      "ad": "Yakut al › Geçmiş",
+      "eylem": "ACT.yakutMenu() → ACT.tab({id:'hist'})",
+      "beklenen": "Yakut paketleri (Yakında), aylık kart, geçmiş.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-supportMenu",
+      "halk": "elentha",
+      "ekran": "supportMenu",
+      "ad": "Sorun / Teknik Destek",
+      "eylem": "ACT.supportMenu()",
+      "beklenen": "Destek bileti.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-logoutMenu",
+      "halk": "elentha",
+      "ekran": "logoutMenu",
+      "ad": "Çıkış",
+      "eylem": "ACT.logoutMenu()",
+      "beklenen": "Çıkış onayı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-gateMenu",
+      "halk": "elentha",
+      "ekran": "gateMenu",
+      "ad": "Kapı menüsü",
+      "eylem": "ACT.gateMenu()",
+      "beklenen": "Bölge/etkinlik seçim menüsü.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-otag",
+      "halk": "elentha",
+      "ekran": "otag",
+      "ad": "Otağ (Taht Salonu)",
+      "eylem": "ACT.otag()",
+      "beklenen": "Kral otağı: harita, hazine, bağış; iç mekân taht-salonu.",
+      "sekmeler": [
+        "ruler",
+        "treasury",
+        "grant",
+        "map"
+      ],
+      "ayni_goruntu": [
+        "otagMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Ares · Seçime 3g 21s»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-questLog",
+      "halk": "elentha",
+      "ekran": "questLog",
+      "ad": "Görev günlüğü",
+      "eylem": "ACT.questLog()",
+      "beklenen": "Ana görev (64 adım) ilerlemesi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-promoMenu",
+      "halk": "elentha",
+      "ekran": "promoMenu",
+      "ad": "Promosyon kodu",
+      "eylem": "ACT.promoMenu()",
+      "beklenen": "Kod girme.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-chatOpen",
+      "halk": "elentha",
+      "ekran": "chatOpen",
+      "ad": "Sohbet (tam ekran)",
+      "eylem": "ACT.chatOpen()",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": [
+        "g",
+        "f",
+        "c",
+        "p"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-chatOpen~f",
+      "halk": "elentha",
+      "ekran": "chatOpen~f",
+      "ad": "Sohbet (tam ekran) › Arkadaş",
+      "eylem": "ACT.chatOpen() → ACT.tab({id:'f'})",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-chatOpen~c",
+      "halk": "elentha",
+      "ekran": "chatOpen~c",
+      "ad": "Sohbet (tam ekran) › Klan",
+      "eylem": "ACT.chatOpen() → ACT.tab({id:'c'})",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "chatMenu~c"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-chatOpen~p",
+      "halk": "elentha",
+      "ekran": "chatOpen~p",
+      "ad": "Sohbet (tam ekran) › Özel",
+      "eylem": "ACT.chatOpen() → ACT.tab({id:'p'})",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "chatMenu",
+        "chatMenu~p"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-drawer",
+      "halk": "elentha",
+      "ekran": "drawer",
+      "ad": "Yan çekmece",
+      "eylem": "ACT.drawer()",
+      "beklenen": "Menü çekmecesi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-gateZones",
+      "halk": "elentha",
+      "ekran": "gateZones",
+      "ad": "Kapı · Bölgeler",
+      "eylem": "ACT.gateZones()",
+      "beklenen": "Kapının bölge sekmesi.",
+      "sekmeler": [
+        "zones",
+        "dungeons",
+        "events"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-modInfo",
+      "halk": "elentha",
+      "ekran": "modInfo",
+      "ad": "Kip bilgisi",
+      "eylem": "ACT.modInfo()",
+      "beklenen": "Oyun kipi açıklaması.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-worldInfo",
+      "halk": "elentha",
+      "ekran": "worldInfo",
+      "ad": "Dünya bilgisi",
+      "eylem": "ACT.worldInfo()",
+      "beklenen": "Diyar/bölge açıklaması.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-chatMenu~f",
+      "halk": "elentha",
+      "ekran": "chatMenu~f",
+      "ad": "Sohbet menüsü › Arkadaş",
+      "eylem": "ACT.chatMenu() → ACT.tab({id:'f'})",
+      "beklenen": "Sohbet kanal menüsü.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-quick",
+      "halk": "elentha",
+      "ekran": "quick",
+      "ad": "Hızlı av",
+      "eylem": "ACT.quick()",
+      "beklenen": "Son açık aşamanın VS ekranını doğrudan açar (D01 ile aynı görüntü).",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "D01-vs-1-1"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "div.vside.a «DenetciSv. 53 · Elentha · Sa»▸",
+          "div.vmid «Aşamayı geç Can > %25 Can > »▸",
+          "small «×2 Küçük Bandikut»",
+          "small «×3 Küçük Bandikut»",
+          "small «×2 Küçük Bandikut + ×1 Azılı»"
+        ],
+        "tasma": [],
+        "kucuk": [
+          "button.vs2-kr 68x24 «Karakter»"
+        ],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-han",
+      "halk": "elentha",
+      "ekran": "han",
+      "ad": "Han",
+      "eylem": "ACT.han()",
+      "beklenen": "Hancı ve içecekler; iç mekân han.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-ahir",
+      "halk": "elentha",
+      "ekran": "ahir",
+      "ad": "Ahır",
+      "eylem": "ACT.ahir()",
+      "beklenen": "Yoldaş hayvanlar; iç mekân ahır.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-zaferAniti",
+      "halk": "elentha",
+      "ekran": "zaferAniti",
+      "ad": "Zafer Anıtı",
+      "eylem": "ACT.zaferAniti()",
+      "beklenen": "Haftalık zafer sandığı ve bayraklar.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-D02-savas-a",
+      "halk": "elentha",
+      "ekran": "D02-savas-a",
+      "ad": "Savaş · açılış",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Sıra tabanlı savaş HUD'u (can/mana, yetenekler, iksirler, OTO, hız).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-D03-savas-b",
+      "halk": "elentha",
+      "ekran": "D03-savas-b",
+      "ad": "Savaş · ilerleyen tur",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Vuruş/VFX anı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-elentha-D04-savas-sonucu",
+      "halk": "elentha",
+      "ekran": "D04-savas-sonucu",
+      "ad": "Savaş sonucu",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Zafer/yenilgi, 3 yıldız, ödüller, amblem.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_elentha_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A01-yukleme",
+      "halk": "kragmir",
+      "ekran": "A01-yukleme",
+      "ad": "Yükleme",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Açılış resmi ve yükleme çubuğu (img/korant-acilis.jpg, değişmez).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A02-sunucu-secimi",
+      "halk": "kragmir",
+      "ekran": "A02-sunucu-secimi",
+      "ad": "Sunucu seçimi",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Sunucu kartı (Ares), giriş düğmesi .sv-go.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A03-olustur-acilis",
+      "halk": "kragmir",
+      "ekran": "A03-olustur-acilis",
+      "ad": "Karakter oluştur · açılış",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Halk (ırk) seçimi, sınıf, cinsiyet, ad.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A04-olustur-halk",
+      "halk": "kragmir",
+      "ekran": "A04-olustur-halk",
+      "ad": "Karakter oluştur · halk seçildi",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Seçilen halkın varsayılan sınıfı/cinsiyeti, 2B tam boy önizleme.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "A05-olustur-warrior-m"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A05-olustur-warrior-f",
+      "halk": "kragmir",
+      "ekran": "A05-olustur-warrior-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: warrior / kadın",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A05-olustur-rogue-f",
+      "halk": "kragmir",
+      "ekran": "A05-olustur-rogue-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: rogue / kadın",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A05-olustur-mage-f",
+      "halk": "kragmir",
+      "ekran": "A05-olustur-mage-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: mage / kadın",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A05-olustur-priest-f",
+      "halk": "kragmir",
+      "ekran": "A05-olustur-priest-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: priest / kadın",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A05-olustur-rogue-m",
+      "halk": "kragmir",
+      "ekran": "A05-olustur-rogue-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: rogue / erkek",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A05-olustur-mage-m",
+      "halk": "kragmir",
+      "ekran": "A05-olustur-mage-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: mage / erkek",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A05-olustur-priest-m",
+      "halk": "kragmir",
+      "ekran": "A05-olustur-priest-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: priest / erkek",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A06-karakter-secme",
+      "halk": "kragmir",
+      "ekran": "A06-karakter-secme",
+      "ad": "Karakter seçme",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Oluşturulan karakterler, 2B tam boy, Giriş (#tkenter).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A07-giris-sonrasi",
+      "halk": "kragmir",
+      "ekran": "A07-giris-sonrasi",
+      "ad": "Giriş sonrası / hikâye girişi",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Krallık yemini/destan girişi (Geç düğmesi).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_01.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-A08-ogretici",
+      "halk": "kragmir",
+      "ekran": "A08-ogretici",
+      "ad": "Öğretici",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Kemikli Koru öğretici savaşı ve anlatıcı (atlanabilir).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-B01-hub-baskent",
+      "halk": "kragmir",
+      "ekran": "B01-hub-baskent",
+      "ad": "Ana ekran · Başkent",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Halkın boyalı başkenti (2B), binalar, HUD, dock, sohbet, Savaş düğmesi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-B02-hub-yemin-pazari",
+      "halk": "kragmir",
+      "ekran": "B02-hub-yemin-pazari",
+      "ad": "Ana ekran · Yemin Pazarı",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Ortak çarşı: silah/zırh/sarf/takı tezgâhları, pazar, karaborsa, Yashka, iskele (Balık Tut).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-B03-hub-klan",
+      "halk": "kragmir",
+      "ekran": "B03-hub-klan",
+      "ad": "Ana ekran · Klan Obası",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Klan toprağı: salon, karargâh, hazine, dükkân, hisar, av, görev, sancak.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "clan",
+        "clanhq",
+        "gateKlan"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-bag",
+      "halk": "kragmir",
+      "ekran": "bag",
+      "ad": "Çanta",
+      "eylem": "ACT.bag()",
+      "beklenen": "Envanter: eşya kuşanma, satma, parçalama, kilit.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-karakter",
+      "halk": "kragmir",
+      "ekran": "karakter",
+      "ad": "Karakter",
+      "eylem": "ACT.karakter()",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": [
+        "eq",
+        "skill",
+        "mst",
+        "unvan"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [
+          "button.kx-plus 17x17 «+»",
+          "button.on 53x22 «Hepsi»",
+          "button 49x22 «Silah»",
+          "button 45x22 «Zırh»",
+          "button 45x22 «Takı»",
+          "button 53x22 «Boşta»"
+        ],
+        "cakisma": [
+          "button.ivc ⨯ button.kx-bulk"
+        ]
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-karakter~skill",
+      "halk": "kragmir",
+      "ekran": "karakter~skill",
+      "ad": "Karakter › Yetenek",
+      "eylem": "ACT.karakter() → ACT.tab({id:'skill'})",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "party~skill",
+        "hotbar~skill"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-karakter~mst",
+      "halk": "kragmir",
+      "ekran": "karakter~mst",
+      "ad": "Karakter › Ustalık",
+      "eylem": "ACT.karakter() → ACT.tab({id:'mst'})",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "party~mst",
+        "hotbar~mst"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-karakter~unvan",
+      "halk": "kragmir",
+      "ekran": "karakter~unvan",
+      "ad": "Karakter › Unvan",
+      "eylem": "ACT.karakter() → ACT.tab({id:'unvan'})",
+      "beklenen": "Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "party",
+        "party~unvan",
+        "hotbar~unvan"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-quests",
+      "halk": "kragmir",
+      "ekran": "quests",
+      "ad": "Görevler",
+      "eylem": "ACT.quests()",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": [
+        "main",
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "ayni_goruntu": [
+        "mnMain"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "b «Yemin Pazarı’nda Fısıltı»",
+          "b «Mühürlerin Ardı»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": [
+          "button.mq-n.locked ⨯ button.btn.blue"
+        ]
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-quests~daily",
+      "halk": "kragmir",
+      "ekran": "quests~daily",
+      "ad": "Görevler › Günlük",
+      "eylem": "ACT.quests() → ACT.tab({id:'daily'})",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "mnMain~daily"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "div.qb2-card.gift «Bugün\n    Günlük giriş ödülü»▸"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-quests~weekly",
+      "halk": "kragmir",
+      "ekran": "quests~weekly",
+      "ad": "Görevler › Haftalık",
+      "eylem": "ACT.quests() → ACT.tab({id:'weekly'})",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "mnMain~weekly"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-quests~monthly",
+      "halk": "kragmir",
+      "ekran": "quests~monthly",
+      "ad": "Görevler › Aylık",
+      "eylem": "ACT.quests() → ACT.tab({id:'monthly'})",
+      "beklenen": "Günlük/haftalık/aylık görevler ve ödülleri.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "mnMain~monthly"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_02.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-shop",
+      "halk": "kragmir",
+      "ekran": "shop",
+      "ad": "Dükkân (Kervan)",
+      "eylem": "ACT.shop()",
+      "beklenen": "Yakutla erzak, bilet, muska; para sekmesi (Yakında).",
+      "sekmeler": [
+        "yakut",
+        "money"
+      ],
+      "ayni_goruntu": [
+        "czMarket"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-shop~money",
+      "halk": "kragmir",
+      "ekran": "shop~money",
+      "ad": "Dükkân (Kervan) › Para",
+      "eylem": "ACT.shop() → ACT.tab({id:'money'})",
+      "beklenen": "Yakutla erzak, bilet, muska; para sekmesi (Yakında).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "czMarket~money"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-mail",
+      "halk": "kragmir",
+      "ekran": "mail",
+      "ad": "Posta",
+      "eylem": "ACT.mail()",
+      "beklenen": "Gelen posta, raporlar, yazma.",
+      "sekmeler": [
+        "sys",
+        "yaz",
+        "rep"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-mail~yaz",
+      "halk": "kragmir",
+      "ekran": "mail~yaz",
+      "ad": "Posta › Yaz",
+      "eylem": "ACT.mail() → ACT.tab({id:'yaz'})",
+      "beklenen": "Gelen posta, raporlar, yazma.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "reports~yaz"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-mail~rep",
+      "halk": "kragmir",
+      "ekran": "mail~rep",
+      "ad": "Posta › Raporlar",
+      "eylem": "ACT.mail() → ACT.tab({id:'rep'})",
+      "beklenen": "Gelen posta, raporlar, yazma.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "reports",
+        "reports~rep"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-market",
+      "halk": "kragmir",
+      "ekran": "market",
+      "ad": "Pazar",
+      "eylem": "ACT.market()",
+      "beklenen": "Oyuncular arası alım satım ilanları.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-pazar",
+      "halk": "kragmir",
+      "ekran": "pazar",
+      "ad": "Pazar (çarşı girişi)",
+      "eylem": "ACT.pazar()",
+      "beklenen": "Pazar penceresinin çarşı kısayolu.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-settings",
+      "halk": "kragmir",
+      "ekran": "settings",
+      "ad": "Ayarlar",
+      "eylem": "ACT.settings()",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": [
+        "gfx",
+        "ses",
+        "erisim",
+        "dil",
+        "notif",
+        "acc"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-settings~ses",
+      "halk": "kragmir",
+      "ekran": "settings~ses",
+      "ad": "Ayarlar › Ses",
+      "eylem": "ACT.settings() → ACT.tab({id:'ses'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~ses"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-settings~erisim",
+      "halk": "kragmir",
+      "ekran": "settings~erisim",
+      "ad": "Ayarlar › Erişilebilirlik",
+      "eylem": "ACT.settings() → ACT.tab({id:'erisim'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim",
+        "erisim~erisim"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-settings~dil",
+      "halk": "kragmir",
+      "ekran": "settings~dil",
+      "ad": "Ayarlar › Dil",
+      "eylem": "ACT.settings() → ACT.tab({id:'dil'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~dil"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-settings~notif",
+      "halk": "kragmir",
+      "ekran": "settings~notif",
+      "ad": "Ayarlar › Bildirim",
+      "eylem": "ACT.settings() → ACT.tab({id:'notif'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~notif"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-settings~acc",
+      "halk": "kragmir",
+      "ekran": "settings~acc",
+      "ad": "Ayarlar › Hesap",
+      "eylem": "ACT.settings() → ACT.tab({id:'acc'})",
+      "beklenen": "Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "erisim~acc"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_03.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-rank",
+      "halk": "kragmir",
+      "ekran": "rank",
+      "ad": "Sıralama",
+      "eylem": "ACT.rank()",
+      "beklenen": "Oyuncu/klan/ırk sıralamaları.",
+      "sekmeler": [
+        "players",
+        "clans",
+        "race"
+      ],
+      "ayni_goruntu": [
+        "rankMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-rank~clans",
+      "halk": "kragmir",
+      "ekran": "rank~clans",
+      "ad": "Sıralama › Klanlar",
+      "eylem": "ACT.rank() → ACT.tab({id:'clans'})",
+      "beklenen": "Oyuncu/klan/ırk sıralamaları.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rankMenu~clans"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-rank~race",
+      "halk": "kragmir",
+      "ekran": "rank~race",
+      "ad": "Sıralama › Irk",
+      "eylem": "ACT.rank() → ACT.tab({id:'race'})",
+      "beklenen": "Oyuncu/klan/ırk sıralamaları.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rankMenu~race"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-friends",
+      "halk": "kragmir",
+      "ekran": "friends",
+      "ad": "Arkadaşlar",
+      "eylem": "ACT.friends()",
+      "beklenen": "Arkadaş listesi, istekler, engellenenler.",
+      "sekmeler": [
+        "list",
+        "req",
+        "blocked"
+      ],
+      "ayni_goruntu": [
+        "friendsMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-friends~req",
+      "halk": "kragmir",
+      "ekran": "friends~req",
+      "ad": "Arkadaşlar › İstekler",
+      "eylem": "ACT.friends() → ACT.tab({id:'req'})",
+      "beklenen": "Arkadaş listesi, istekler, engellenenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "friendsMenu~req"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-friends~blocked",
+      "halk": "kragmir",
+      "ekran": "friends~blocked",
+      "ad": "Arkadaşlar › Engellenenler",
+      "eylem": "ACT.friends() → ACT.tab({id:'blocked'})",
+      "beklenen": "Arkadaş listesi, istekler, engellenenler.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "friendsMenu~blocked"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-notifs",
+      "halk": "kragmir",
+      "ekran": "notifs",
+      "ad": "Bildirimler",
+      "eylem": "ACT.notifs()",
+      "beklenen": "Bildirim akışı ve ayarları.",
+      "sekmeler": [
+        "list",
+        "set"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-notifs~set",
+      "halk": "kragmir",
+      "ekran": "notifs~set",
+      "ad": "Bildirimler › Ayarlar",
+      "eylem": "ACT.notifs() → ACT.tab({id:'set'})",
+      "beklenen": "Bildirim akışı ve ayarları.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-calendar",
+      "halk": "kragmir",
+      "ekran": "calendar",
+      "ad": "Takvim",
+      "eylem": "ACT.calendar()",
+      "beklenen": "Günlük giriş ödülleri (7 gün / 28 gün).",
+      "sekmeler": [
+        "ev",
+        "n7",
+        "m28"
+      ],
+      "ayni_goruntu": [
+        "calendar~n7"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-calendar~m28",
+      "halk": "kragmir",
+      "ekran": "calendar~m28",
+      "ad": "Takvim › 28 gün",
+      "eylem": "ACT.calendar() → ACT.tab({id:'m28'})",
+      "beklenen": "Günlük giriş ödülleri (7 gün / 28 gün).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-codex",
+      "halk": "kragmir",
+      "ekran": "codex",
+      "ad": "Ansiklopedi",
+      "eylem": "ACT.codex()",
+      "beklenen": "Eşya ve canavar ansiklopedisi (G3 çizimleri).",
+      "sekmeler": [
+        "rehber",
+        "mobs",
+        "items"
+      ],
+      "ayni_goruntu": [
+        "rehber"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-codex~mobs",
+      "halk": "kragmir",
+      "ekran": "codex~mobs",
+      "ad": "Ansiklopedi › Canavarlar",
+      "eylem": "ACT.codex() → ACT.tab({id:'mobs'})",
+      "beklenen": "Eşya ve canavar ansiklopedisi (G3 çizimleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rehber~mobs"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-codex~items",
+      "halk": "kragmir",
+      "ekran": "codex~items",
+      "ad": "Ansiklopedi › Eşyalar",
+      "eylem": "ACT.codex() → ACT.tab({id:'items'})",
+      "beklenen": "Eşya ve canavar ansiklopedisi (G3 çizimleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "rehber~items"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_04.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-achs",
+      "halk": "kragmir",
+      "ekran": "achs",
+      "ad": "Başarımlar",
+      "eylem": "ACT.achs()",
+      "beklenen": "Başarımlar ve unvanlar.",
+      "sekmeler": [
+        "list",
+        "titles"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "small «Çetin ve Yaman kademelerde 1»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-achs~titles",
+      "halk": "kragmir",
+      "ekran": "achs~titles",
+      "ad": "Başarımlar › Unvanlar",
+      "eylem": "ACT.achs() → ACT.tab({id:'titles'})",
+      "beklenen": "Başarımlar ve unvanlar.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "titles",
+        "titles~titles",
+        "titlesMenu",
+        "titlesMenu~titles"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-premium",
+      "halk": "kragmir",
+      "ekran": "premium",
+      "ad": "Üyelik",
+      "eylem": "ACT.premium()",
+      "beklenen": "Bronz/Gümüş/Altın üyelik avantajları.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "premiumMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-profile",
+      "halk": "kragmir",
+      "ekran": "profile",
+      "ad": "Profil",
+      "eylem": "ACT.profile()",
+      "beklenen": "Oyuncu profili, istatistik, amblem.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-server",
+      "halk": "kragmir",
+      "ekran": "server",
+      "ad": "Sunucu",
+      "eylem": "ACT.server()",
+      "beklenen": "Sunucu bilgisi ve kuralları.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-wheel",
+      "halk": "kragmir",
+      "ekran": "wheel",
+      "ad": "Çark",
+      "eylem": "ACT.wheel()",
+      "beklenen": "Yakutla şans çarkı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-anvil",
+      "halk": "kragmir",
+      "ekran": "anvil",
+      "ad": "Örs (Büyük Örs)",
+      "eylem": "ACT.anvil()",
+      "beklenen": "Eşya yükseltme +1…+10, parçalama; iç mekân yemin-pazari/ors.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [
+          "span.wx «238» x172-225"
+        ],
+        "kucuk": [
+          "button.up2-mat.ors-c 25x25 «14»",
+          "button.up2-mat.ors-c 25x25 «13»"
+        ],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-mine",
+      "halk": "kragmir",
+      "ekran": "mine",
+      "ad": "Maden",
+      "eylem": "ACT.mine()",
+      "beklenen": "Saatlik cevher, yükseltme, takas; iç mekân maden.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-iksir",
+      "halk": "kragmir",
+      "ekran": "iksir",
+      "ad": "İksirci",
+      "eylem": "ACT.iksir()",
+      "beklenen": "İksir ve sarf satın alma (Maelis / Kragmir iksircisi).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-monument",
+      "halk": "kragmir",
+      "ekran": "monument",
+      "ad": "Anıt",
+      "eylem": "ACT.monument()",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": [
+        "champ",
+        "clan",
+        "ruler",
+        "race"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-monument~clan",
+      "halk": "kragmir",
+      "ekran": "monument~clan",
+      "ad": "Anıt › Klan",
+      "eylem": "ACT.monument() → ACT.tab({id:'clan'})",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-monument~ruler",
+      "halk": "kragmir",
+      "ekran": "monument~ruler",
+      "ad": "Anıt › Önder",
+      "eylem": "ACT.monument() → ACT.tab({id:'ruler'})",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-monument~race",
+      "halk": "kragmir",
+      "ekran": "monument~race",
+      "ad": "Anıt › Irk",
+      "eylem": "ACT.monument() → ACT.tab({id:'race'})",
+      "beklenen": "Irk/klan/önder anıtları (Lira).",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_05.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-karaborsa",
+      "halk": "kragmir",
+      "ekran": "karaborsa",
+      "ad": "Karaborsa",
+      "eylem": "ACT.karaborsa()",
+      "beklenen": "Gizli tüccar; iç mekân karaborsa.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "b.kb-name «Kaya Dev Gövdelik»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-tuccar",
+      "halk": "kragmir",
+      "ekran": "tuccar",
+      "ad": "Tüccar",
+      "eylem": "ACT.tuccar()",
+      "beklenen": "Silah/zırh/takı tezgâhı (Halvor / Kragmir tüccarı).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-meydan",
+      "halk": "kragmir",
+      "ekran": "meydan",
+      "ad": "Meydan (PvP)",
+      "eylem": "ACT.meydan()",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": [
+        "fight",
+        "feud",
+        "def",
+        "shop",
+        "san"
+      ],
+      "ayni_goruntu": [
+        "czArena",
+        "gatePvp"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": [
+          "button.btn ⨯ button.btn.red"
+        ]
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-meydan~feud",
+      "halk": "kragmir",
+      "ekran": "meydan~feud",
+      "ad": "Meydan (PvP) › Kan davası",
+      "eylem": "ACT.meydan() → ACT.tab({id:'feud'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall~feud",
+        "czArena~feud",
+        "czHall~feud",
+        "gatePvp~feud"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-meydan~def",
+      "halk": "kragmir",
+      "ekran": "meydan~def",
+      "ad": "Meydan (PvP) › Savunma",
+      "eylem": "ACT.meydan() → ACT.tab({id:'def'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall~def",
+        "czArena~def",
+        "czHall~def",
+        "gatePvp~def"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-meydan~shop",
+      "halk": "kragmir",
+      "ekran": "meydan~shop",
+      "ad": "Meydan (PvP) › Dükkân",
+      "eylem": "ACT.meydan() → ACT.tab({id:'shop'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall~shop",
+        "czArena~shop",
+        "czHall~shop",
+        "gatePvp~shop"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-meydan~san",
+      "halk": "kragmir",
+      "ekran": "meydan~san",
+      "ad": "Meydan (PvP) › Şan",
+      "eylem": "ACT.meydan() → ACT.tab({id:'san'})",
+      "beklenen": "Rakip seçimi, savunma takımı, kan davası, şan dükkânı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "hall",
+        "hall~san",
+        "czArena~san",
+        "czHall",
+        "czHall~san",
+        "gatePvp~san"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-nobet",
+      "halk": "kragmir",
+      "ekran": "nobet",
+      "ad": "Kristal Nöbeti",
+      "eylem": "ACT.nobet()",
+      "beklenen": "Dalga savunma etkinliği.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-baskin",
+      "halk": "kragmir",
+      "ekran": "baskin",
+      "ad": "Baskın",
+      "eylem": "ACT.baskin()",
+      "beklenen": "Dünya Baskını ve zindan kartları.",
+      "sekmeler": [
+        "zones",
+        "dungeons",
+        "events"
+      ],
+      "ayni_goruntu": [
+        "baskin~events",
+        "gate",
+        "gate~events",
+        "gateZones~events",
+        "gateEvents",
+        "gateEvents~events"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-baskin~dungeons",
+      "halk": "kragmir",
+      "ekran": "baskin~dungeons",
+      "ad": "Baskın › Zindanlar",
+      "eylem": "ACT.baskin() → ACT.tab({id:'dungeons'})",
+      "beklenen": "Dünya Baskını ve zindan kartları.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "gate~dungeons",
+        "gateZones~dungeons",
+        "gateEvents~dungeons"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-destan",
+      "halk": "kragmir",
+      "ekran": "destan",
+      "ad": "Destan",
+      "eylem": "ACT.destan()",
+      "beklenen": "8 bölümlük hikâye savaşları.",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "gateDestan"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-diyarMap",
+      "halk": "kragmir",
+      "ekran": "diyarMap",
+      "ad": "Diyar Haritası",
+      "eylem": "ACT.diyarMap()",
+      "beklenen": "Diyar haritası, hazine, bağış (Otağ sekmeleri).",
+      "sekmeler": [
+        "ruler",
+        "treasury",
+        "grant",
+        "map"
+      ],
+      "ayni_goruntu": [
+        "diyarMap~map",
+        "otag~map",
+        "otagMenu~map"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Sunucu: Ares»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-diyarMap~treasury",
+      "halk": "kragmir",
+      "ekran": "diyarMap~treasury",
+      "ad": "Diyar Haritası › Hazine",
+      "eylem": "ACT.diyarMap() → ACT.tab({id:'treasury'})",
+      "beklenen": "Diyar haritası, hazine, bağış (Otağ sekmeleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "otag~treasury",
+        "otagMenu~treasury"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_06.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Ares · Seçime 3g 21s»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-diyarMap~grant",
+      "halk": "kragmir",
+      "ekran": "diyarMap~grant",
+      "ad": "Diyar Haritası › Bağış",
+      "eylem": "ACT.diyarMap() → ACT.tab({id:'grant'})",
+      "beklenen": "Diyar haritası, hazine, bağış (Otağ sekmeleri).",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "otag~grant",
+        "otagMenu~grant"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Ares · Seçime 3g 21s»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-balik",
+      "halk": "kragmir",
+      "ekran": "balik",
+      "ad": "Balık Tut",
+      "eylem": "ACT.balik()",
+      "beklenen": "Balık tutma mini oyunu (şelale/iskele).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-savas",
+      "halk": "kragmir",
+      "ekran": "savas",
+      "ad": "Savaş menüsü",
+      "eylem": "ACT.savas()",
+      "beklenen": "Savaş giriş kartları (Sefer, Hızlı Av, Meydan, Şan Divanı).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-season",
+      "halk": "kragmir",
+      "ekran": "season",
+      "ad": "Sezon",
+      "eylem": "ACT.season()",
+      "beklenen": "Sezon ödülleri ve geçmişi.",
+      "sekmeler": [
+        "now",
+        "rew",
+        "hist"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-season~rew",
+      "halk": "kragmir",
+      "ekran": "season~rew",
+      "ad": "Sezon › Ödüller",
+      "eylem": "ACT.season() → ACT.tab({id:'rew'})",
+      "beklenen": "Sezon ödülleri ve geçmişi.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-season~hist",
+      "halk": "kragmir",
+      "ekran": "season~hist",
+      "ad": "Sezon › Geçmiş",
+      "eylem": "ACT.season() → ACT.tab({id:'hist'})",
+      "beklenen": "Sezon ödülleri ve geçmişi.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-news",
+      "halk": "kragmir",
+      "ekran": "news",
+      "ad": "Duyurular",
+      "eylem": "ACT.news()",
+      "beklenen": "Oyun haberleri akışı.",
+      "sekmeler": [
+        "news",
+        "feed"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-news~feed",
+      "halk": "kragmir",
+      "ekran": "news~feed",
+      "ad": "Duyurular › Akış",
+      "eylem": "ACT.news() → ACT.tab({id:'feed'})",
+      "beklenen": "Oyun haberleri akışı.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-onlineOpen",
+      "halk": "kragmir",
+      "ekran": "onlineOpen",
+      "ad": "Çevrimiçi ödülü",
+      "eylem": "ACT.onlineOpen()",
+      "beklenen": "Çevrimiçi kalma sandığı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-starterOpen",
+      "halk": "kragmir",
+      "ekran": "starterOpen",
+      "ad": "Başlangıç paketi",
+      "eylem": "ACT.starterOpen()",
+      "beklenen": "İlk alım paketi teklifi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-yakutMenu",
+      "halk": "kragmir",
+      "ekran": "yakutMenu",
+      "ad": "Yakut al",
+      "eylem": "ACT.yakutMenu()",
+      "beklenen": "Yakut paketleri (Yakında), aylık kart, geçmiş.",
+      "sekmeler": [
+        "packs",
+        "card",
+        "hist"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-yakutMenu~card",
+      "halk": "kragmir",
+      "ekran": "yakutMenu~card",
+      "ad": "Yakut al › Aylık kart",
+      "eylem": "ACT.yakutMenu() → ACT.tab({id:'card'})",
+      "beklenen": "Yakut paketleri (Yakında), aylık kart, geçmiş.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-yakutMenu~hist",
+      "halk": "kragmir",
+      "ekran": "yakutMenu~hist",
+      "ad": "Yakut al › Geçmiş",
+      "eylem": "ACT.yakutMenu() → ACT.tab({id:'hist'})",
+      "beklenen": "Yakut paketleri (Yakında), aylık kart, geçmiş.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_07.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-supportMenu",
+      "halk": "kragmir",
+      "ekran": "supportMenu",
+      "ad": "Sorun / Teknik Destek",
+      "eylem": "ACT.supportMenu()",
+      "beklenen": "Destek bileti.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-logoutMenu",
+      "halk": "kragmir",
+      "ekran": "logoutMenu",
+      "ad": "Çıkış",
+      "eylem": "ACT.logoutMenu()",
+      "beklenen": "Çıkış onayı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-gateMenu",
+      "halk": "kragmir",
+      "ekran": "gateMenu",
+      "ad": "Kapı menüsü",
+      "eylem": "ACT.gateMenu()",
+      "beklenen": "Bölge/etkinlik seçim menüsü.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-otag",
+      "halk": "kragmir",
+      "ekran": "otag",
+      "ad": "Otağ (Taht Salonu)",
+      "eylem": "ACT.otag()",
+      "beklenen": "Kral otağı: harita, hazine, bağış; iç mekân taht-salonu.",
+      "sekmeler": [
+        "ruler",
+        "treasury",
+        "grant",
+        "map"
+      ],
+      "ayni_goruntu": [
+        "otagMenu"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "span.wctx «Ares · Seçime 3g 21s»"
+        ],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-questLog",
+      "halk": "kragmir",
+      "ekran": "questLog",
+      "ad": "Görev günlüğü",
+      "eylem": "ACT.questLog()",
+      "beklenen": "Ana görev (64 adım) ilerlemesi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-promoMenu",
+      "halk": "kragmir",
+      "ekran": "promoMenu",
+      "ad": "Promosyon kodu",
+      "eylem": "ACT.promoMenu()",
+      "beklenen": "Kod girme.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-chatOpen",
+      "halk": "kragmir",
+      "ekran": "chatOpen",
+      "ad": "Sohbet (tam ekran)",
+      "eylem": "ACT.chatOpen()",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": [
+        "g",
+        "f",
+        "c",
+        "p"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": [
+          "button.x ⨯ button.cmore"
+        ]
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-chatOpen~f",
+      "halk": "kragmir",
+      "ekran": "chatOpen~f",
+      "ad": "Sohbet (tam ekran) › Arkadaş",
+      "eylem": "ACT.chatOpen() → ACT.tab({id:'f'})",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-chatOpen~c",
+      "halk": "kragmir",
+      "ekran": "chatOpen~c",
+      "ad": "Sohbet (tam ekran) › Klan",
+      "eylem": "ACT.chatOpen() → ACT.tab({id:'c'})",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "chatMenu~c"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-chatOpen~p",
+      "halk": "kragmir",
+      "ekran": "chatOpen~p",
+      "ad": "Sohbet (tam ekran) › Özel",
+      "eylem": "ACT.chatOpen() → ACT.tab({id:'p'})",
+      "beklenen": "Kanallar: genel, klan, fısıltı.",
+      "sekmeler": null,
+      "ayni_goruntu": [
+        "chatMenu",
+        "chatMenu~p"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-drawer",
+      "halk": "kragmir",
+      "ekran": "drawer",
+      "ad": "Yan çekmece",
+      "eylem": "ACT.drawer()",
+      "beklenen": "Menü çekmecesi.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-gateZones",
+      "halk": "kragmir",
+      "ekran": "gateZones",
+      "ad": "Kapı · Bölgeler",
+      "eylem": "ACT.gateZones()",
+      "beklenen": "Kapının bölge sekmesi.",
+      "sekmeler": [
+        "zones",
+        "dungeons",
+        "events"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-hotbar",
+      "halk": "kragmir",
+      "ekran": "hotbar",
+      "ad": "Yetenek çubuğu ayarı",
+      "eylem": "ACT.hotbar()",
+      "beklenen": "Savaş yetenek yuvaları (Karakter → Yetenek).",
+      "sekmeler": [
+        "eq",
+        "skill",
+        "mst",
+        "unvan"
+      ],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_08.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-modInfo",
+      "halk": "kragmir",
+      "ekran": "modInfo",
+      "ad": "Kip bilgisi",
+      "eylem": "ACT.modInfo()",
+      "beklenen": "Oyun kipi açıklaması.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-worldInfo",
+      "halk": "kragmir",
+      "ekran": "worldInfo",
+      "ad": "Dünya bilgisi",
+      "eylem": "ACT.worldInfo()",
+      "beklenen": "Diyar/bölge açıklaması.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-chatMenu~f",
+      "halk": "kragmir",
+      "ekran": "chatMenu~f",
+      "ad": "Sohbet menüsü › Arkadaş",
+      "eylem": "ACT.chatMenu() → ACT.tab({id:'f'})",
+      "beklenen": "Sohbet kanal menüsü.",
+      "sekmeler": null,
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-quick",
+      "halk": "kragmir",
+      "ekran": "quick",
+      "ad": "Hızlı av",
+      "eylem": "ACT.quick()",
+      "beklenen": "Son açık aşamanın VS ekranını doğrudan açar (D01 ile aynı görüntü).",
+      "sekmeler": [],
+      "ayni_goruntu": [
+        "D01-vs-1-1"
+      ],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [
+          "div.vside.a «DenetciSv. 53 · Kragmir · Sa»▸",
+          "div.vmid «Aşamayı geç Can > %25 Can > »▸",
+          "small «×2 Küçük Bandikut»",
+          "small «×3 Küçük Bandikut»",
+          "small «×2 Küçük Bandikut + ×1 Azılı»"
+        ],
+        "tasma": [],
+        "kucuk": [
+          "button.vs2-kr 68x24 «Karakter»"
+        ],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-han",
+      "halk": "kragmir",
+      "ekran": "han",
+      "ad": "Han",
+      "eylem": "ACT.han()",
+      "beklenen": "Hancı ve içecekler; iç mekân han.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-ahir",
+      "halk": "kragmir",
+      "ekran": "ahir",
+      "ad": "Ahır",
+      "eylem": "ACT.ahir()",
+      "beklenen": "Yoldaş hayvanlar; iç mekân ahır.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-zaferAniti",
+      "halk": "kragmir",
+      "ekran": "zaferAniti",
+      "ad": "Zafer Anıtı",
+      "eylem": "ACT.zaferAniti()",
+      "beklenen": "Haftalık zafer sandığı ve bayraklar.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-D02-savas-a",
+      "halk": "kragmir",
+      "ekran": "D02-savas-a",
+      "ad": "Savaş · açılış",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Sıra tabanlı savaş HUD'u (can/mana, yetenekler, iksirler, OTO, hız).",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-D03-savas-b",
+      "halk": "kragmir",
+      "ekran": "D03-savas-b",
+      "ad": "Savaş · ilerleyen tur",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Vuruş/VFX anı.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "UI-kragmir-D04-savas-sonucu",
+      "halk": "kragmir",
+      "ekran": "D04-savas-sonucu",
+      "ad": "Savaş sonucu",
+      "eylem": "akış adımı (bkz. çekim betiği)",
+      "beklenen": "Zafer/yenilgi, 3 yıldız, ödüller, amblem.",
+      "sekmeler": [],
+      "ayni_goruntu": [],
+      "kaynak_kolaj": "01_KOLAJLAR/KOLAJ_kragmir_09.webp",
+      "onceki_otomatik_bulgu": {
+        "kesik": [],
+        "tasma": [],
+        "kucuk": [],
+        "cakisma": []
+      },
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-kragmir/han",
+      "halk": "kragmir",
+      "eylem": "ACT.han",
+      "beklenen": "Hancı ve içecekler (saldırı/savunma/EXP bonusu, enerji çorbası); doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/kragmir/han/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-kragmir/ahir",
+      "halk": "kragmir",
+      "eylem": "ACT.ahir",
+      "beklenen": "Yoldaş hayvanlar: aç, kuşan, besle; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/kragmir/ahir/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-kragmir/taht-salonu",
+      "halk": "kragmir",
+      "eylem": "ACT.otag",
+      "beklenen": "Diyar haritası, hazine, bağış; kralın salonu; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/kragmir/taht-salonu/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-kragmir/karaborsa",
+      "halk": "kragmir",
+      "eylem": "ACT.karaborsa",
+      "beklenen": "Gizli tüccar, nadir mallar; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/kragmir/karaborsa/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-kragmir/maden",
+      "halk": "kragmir",
+      "eylem": "ACT.mine",
+      "beklenen": "Saatlik cevher, yükseltme, takas (panel altta); doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/kragmir/maden/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-kragmir/klan-karargahi",
+      "halk": "kragmir",
+      "eylem": "ACT.clanhq",
+      "beklenen": "Klan yönetimi; boş sancaklara klan arması bindirilir; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/kragmir/klan-karargahi/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-elentha/han",
+      "halk": "elentha",
+      "eylem": "ACT.han",
+      "beklenen": "Hancı ve içecekler (saldırı/savunma/EXP bonusu, enerji çorbası); doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/elentha/han/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-elentha/ahir",
+      "halk": "elentha",
+      "eylem": "ACT.ahir",
+      "beklenen": "Yoldaş hayvanlar: aç, kuşan, besle; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/elentha/ahir/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-elentha/taht-salonu",
+      "halk": "elentha",
+      "eylem": "ACT.otag",
+      "beklenen": "Diyar haritası, hazine, bağış; kralın salonu; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/elentha/taht-salonu/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-elentha/karaborsa",
+      "halk": "elentha",
+      "eylem": "ACT.karaborsa",
+      "beklenen": "Gizli tüccar, nadir mallar; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/elentha/karaborsa/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-elentha/maden",
+      "halk": "elentha",
+      "eylem": "ACT.mine",
+      "beklenen": "Saatlik cevher, yükseltme, takas (panel altta); doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/elentha/maden/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-elentha/klan-karargahi",
+      "halk": "elentha",
+      "eylem": "ACT.clanhq",
+      "beklenen": "Klan yönetimi; boş sancaklara klan arması bindirilir; doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/elentha/klan-karargahi/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "IC-yemin-pazari/ors",
+      "halk": "ortak",
+      "eylem": "ACT.anvil",
+      "beklenen": "Eşya yükseltme ve parçalama (Örs, Parçala ya da Sat); doğru sahne, hotspot, kapatma, geri dönüş ve durum korunması",
+      "gorsel": "interiors/yemin-pazari/ors/bg.webp",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-FLOW",
+      "beklenen": "Yeni hesap; giriş/karakter/öğretici/Yashka/ilk savaş; 5 dk, 30 dk, 2 saat",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-ROUTE",
+      "beklenen": "Tüm ACT girişleri; parametreli eylemler ve aynı görüntü kısayolları; kapatma ve geri dönüş",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-STATE",
+      "beklenen": "Boş/dolu/kilitli/yükleme/hata/başarı/bağlantı kesilmesi",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-DEVICE",
+      "beklenen": "880×406, 667×375, 1180×820 ve masaüstü; gerçek Android/iOS yatay; dokunma ve taşma",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-PERF",
+      "beklenen": "5/30/120 dk FPS, p95 kare süresi, bellek, pil, sıcaklık, ağ; cihaz ve koşul kaydı",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-SAVE",
+      "beklenen": "Yenileme/kapanma/yarım işlem/kayıt bozulması/yedek/geri yükleme/sürüm geçişi",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-DUP",
+      "beklenen": "Çoklu sekme ve çift tıklama; ödül, satın alma, örs, satış, pazar tekrarları",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-AUTH",
+      "beklenen": "DD_LOCAL sınırı; sunucu yoksa gerçek yetkilendirme ve anti-cheat kabul edilmez",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-RESET",
+      "beklenen": "UTC+3 gece yarısı ve pazartesi 00:00; tekrar ödül yok",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-BATTLE",
+      "beklenen": "Her sınıf/halk/cinsiyet; normal, OTO, 1x–3x, boss, pusu, zindan, PvP; sonuç tutarlılığı",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-AUDIO",
+      "beklenen": "Mevcut 4 müzik ve sentez anahtarları; kanal ayarı, crossfade, arka plan, sessiz fallback",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-ASSET",
+      "beklenen": "42 hash, 13 iç mekân, tüm varlık eşleşmeleri; eksik video/portre/poz/fallback",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-LANG",
+      "beklenen": "TR ve EN; Ares, Sv., TL, özgün eşya adları; gerçek para kapalı",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-REG",
+      "beklenen": "Eski/yeni aynı kayıt ve tohum; mekanik, ekonomi, onaylı varlık, kayıt korunması",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    },
+    {
+      "test_id": "SYS-SEC",
+      "beklenen": "Yetkili test ortamında XSS, geliştirici araçları, veri doğrulama, bağımlılık ve gizli anahtar kontrolü",
+      "gerceklesen": null,
+      "kanit": null,
+      "oncelik": null,
+      "durum": "TEST_EDILMEDI"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "bolgeler": [
+    {
+      "bolge_no": 1,
+      "ad": "Vahran Ovası",
+      "metin": "Üç yüz yıldır kanla sulanan ovanın uzun otları, unutulmuş kemikleri saklar. Yaban sürüleri ve kurtlar eski savaşların izinde dolaşır."
+    },
+    {
+      "bolge_no": 2,
+      "ad": "Kül Geçidi",
+      "metin": "Sönmüş yanardağın eteğinde ince gri kül birikir. Dar geçitte taş ve gölge arasındaki tehlikeler yolcuları bekler."
+    },
+    {
+      "bolge_no": 3,
+      "ad": "Kızıl Bahar Meydanı",
+      "metin": "İki ordunun çarpıştığı bu yerde o yıl çiçek açmadı. Gri gölgeler hâlâ eski muharebenin izlerini takip eder."
+    },
+    {
+      "bolge_no": 4,
+      "ad": "Sisli Çukur",
+      "metin": "Ovanın kuzeyindeki sis, eski muharebenin kemiklerini örter. Küllerin Tarikatı ateşsiz kazanın çevresinde toplanır."
+    }
+  ],
+  "zindanlar": [
+    {
+      "kimlik": "well",
+      "ad": "Dipsiz Kuyu",
+      "metin": "Kuyunun derinliğinde yankılar birbirine karışır. Aşağıya inenler karanlığa karşı hazırlıklı olmalıdır."
+    },
+    {
+      "kimlik": "depth",
+      "ad": "Yeraltı Ocağı",
+      "metin": "Taşın altında eski ocakların sessizliği hüküm sürer. Derinliklere hazırlıksız girme."
+    },
+    {
+      "kimlik": "rift",
+      "ad": "Gök Yarığı",
+      "metin": "Yarığın eşiğinde gökyüzü uzak görünür. Yoluna çıkacak tehlikelere karşı hazırlığını tamamla."
+    },
+    {
+      "kimlik": "seal",
+      "ad": "Mühürlü Oda",
+      "metin": "Mührün ardında sessiz bir oda bekler. Eşiği aşmadan önce donanımını gözden geçir."
+    },
+    {
+      "kimlik": "kule",
+      "ad": "Kül Kulesi",
+      "metin": "Külün örttüğü kule, yükseldikçe yeni sınavlar vaat eder. Her adımda gücünü ölç."
+    }
+  ],
+  "ipuclari": [
+    "Çantandaki silahı kuşanmadan savaşta kullanamazsın.",
+    "Yeteneklerini savaştan önce gözden geçir.",
+    "Mana tüketimini takip et.",
+    "İksirlerini savaş öncesinde hazırla.",
+    "Düşmanın zayıflıklarını incele.",
+    "Kalkan etkisi alınan hasarı emer.",
+    "Sersemleme ve Donma hedefin sırasını kaybetmesine neden olur.",
+    "Çürüme alınan şifayı yarıya indirir.",
+    "Kırık Zırh savunmayı azaltır.",
+    "Sağlamlık fiziksel hasara karşı etkilidir.",
+    "Yetenek ağacını sınıfının rolüne göre seç.",
+    "Örs işleminin olası sonuçlarını onaylamadan önce oku.",
+    "Kullanmadığın eşyaları satmadan veya parçalamadan önce kontrol et.",
+    "Han içeceklerinin bonuslarını karşılaştır.",
+    "Ahırda yoldaşlarını yönetebilirsin.",
+    "Kapı üzerinden bölge ve aşama seçebilirsin.",
+    "Savaş hızını 1x ile 3x arasında ayarlayabilirsin.",
+    "Görev Defteri üzerinden ilerlemeni takip et.",
+    "Günlük sıfırlama UTC+3 gece yarısında gerçekleşir.",
+    "Haftalık sıfırlama pazartesi 00.00 UTC+3 saatindedir."
+  ],
+  "kurallar": [
+    "Yalnız gerçek yükleme sırasında göster; sahte gecikme yok.",
+    "Zindan metinleri yeni atmosfer metni, yeni lore olayı veya mekanik iddiası değil.",
+    "EN dilinde Türkçe metin gösterme; çeviri tamamlanana kadar mevcut EN fallback."
+  ]
+}

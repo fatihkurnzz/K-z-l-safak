@@ -1,5 +1,6 @@
 // Karaborsa penceresi (19 Kas): Yemin Pazarı'ndaki koyu tezgâh. 3×3 raf; her rafta indirim rozeti, eski ve yeni yakut fiyatı,
 // alınınca "Alındı" mührü. Raf 8 saatte bir yenilenir (shared/karaborsa.js); geri sayım başlıkta.
+import { icmSoz } from './ic-mekan.js'; // P33: kaçakçı başarı/başarısızlık satırı (GPT)
 import { S, now } from './api.js';
 import { ACT, esc, fmt, run, openWin, redraw, cur, reload, clockText, ico, lootToast, toast, confirmBox } from './ui-core.js';
 import { itemBase, GRADES, gradeOf } from '../shared/items.js';
@@ -46,10 +47,11 @@ ACT.karaborsa = () => {
 };
 ACT.kbBuy = d => {
   const w = cur(), o = w?.data?.offers?.[+d.i]; if (!o) return;
-  if (S.yakut < o.price) return toast('Yeterli yakut yok.');
+  if (S.yakut < o.price) { icmSoz('basarisizlik'); return toast('Yeterli yakut yok.'); }
   const name = o.give.t === 'item' ? itemBase(o.give.b).name : o.name;
   confirmBox('Karaborsa', `<b>${esc(name)}</b> · ${fmt(o.price)} yakut (%${o.disc} indirim). Alınsın mı?`, async () => {
     const r = await run('karaborsa.buy', { i: o.i });
+    icmSoz(r ? 'basari' : 'basarisizlik');
     if (!r) return;
     lootToast(r.loot);
     w.data.got = [...w.data.got, o.i]; redraw();

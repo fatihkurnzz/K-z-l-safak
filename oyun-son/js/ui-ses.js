@@ -10,6 +10,7 @@ import { ACT, hooks, hud, modal } from './ui-core.js';
 import { S, onState, taps, onLock } from './api.js';
 import './ui-hub.js'; // ACT.building tanımlandıktan sonra sarılır
 import { phaseNow, weatherNow } from './daylight.js';
+import { icmTur } from './ic-mekan.js'; // P33: iç mekân ortam sesi (GPT ses bağlamları)
 import { initAudio, play, stop, hold, setLoops, mute, isMuted, onAudio, getAudio } from './audio.js';
 import { SFX, tapSound, buildingSound, actionSounds, anvilSounds, errorSound, sceneLoops, ANVIL_TENSION_MS, setRace } from './sfx.js';
 
@@ -116,6 +117,7 @@ function scene() {
   if (document.getElementById('fragman')) return { place: 'fragman' }; // 22 Kas: fragmanda tema müziği çalar
   const wx = { phase: phaseNow(), weather: weatherNow() };
   if (battleUI && !battleUI.hidden) { wasBattle = true; return { place: SFX.over ? 'result' : SFX.boss ? 'boss' : 'battle', ...wx }; }
+  { const it = icmTur(); if (S && ['han', 'ahir', 'ors', 'maden', 'klan'].includes(it)) { wasBattle = false; return { place: 'icm', tur: it, faction: S.faction, ust: root.dataset.place === 'carsi' ? 'carsi' : 'hub', ...wx }; } }
   if (!hud.hidden && S) { wasBattle = false; return { place: document.documentElement.dataset.place === 'carsi' ? 'carsi' : 'hub', faction: S.faction, ...wx }; }
   if (S) return wasBattle ? { place: 'result', ...wx } : null; // geçiş anı (savaş kuruluyor): olduğu gibi kalsın
   return root.dataset.faction ? { place: 'hub', faction: root.dataset.faction, ...wx } : { place: 'title' }; // açılış: dokunulan tarafın havası önizlenir
@@ -123,10 +125,11 @@ function scene() {
 function refresh() {
   const sc = scene();
   if (!sc) return;
-  const list = sceneLoops(sc), key = list.join(), place = sc.place + (sc.faction || '');
+  const list = sceneLoops(sc), key = list.join(), place = (sc.ust || sc.place) + (sc.faction || ''); // P33: iç mekâna girince ezgi baştan başlamasın (yalnız ortam değişir)
   if (key !== sceneKey || place !== scenePlace) { const moved = !!scenePlace && place !== scenePlace; sceneKey = key; scenePlace = place; setLoops(list, moved); } // yer değişince ezgi baştan
 }
 SFX.onScene = refresh;
+hooks.sesSahne = refresh; // P33: iç mekân açılıp kapanınca (ic-mekan.js)
 {
   const mo = new MutationObserver(refresh);
   mo.observe(hud, { attributes: true, attributeFilter: ['hidden'] });

@@ -1,0 +1,30 @@
+{
+ "devUI_varsayilan": {
+  "profil_test_araclari": true,
+  "deneme_rozeti": true
+ },
+ "devUI_dev0": {
+  "profil_test_araclari": false,
+  "deneme_rozeti": false
+ },
+ "devUI_store1": {
+  "profil_test_araclari": false,
+  "deneme_rozeti": false
+ },
+ "t3_kapali_varsayilan_ocak": {
+  "t3_sinifi": false,
+  "kaynak_kisa": "blob:http://localhost:8765/75d5586c-6942"
+ },
+ "t3_kapali_varsayilan_sancak": {
+  "t3_sinifi": false,
+  "kaynak_kisa": "blob:http://localhost:8765/63a395fb-d182"
+ },
+ "t3_acik_ocak": {
+  "t3_sinifi": true,
+  "kaynak_kisa": "data:image/webp;base64,UklGRsoiAQBXRUJQV"
+ },
+ "t3_acik_sancak": {
+  "t3_sinifi": false,
+  "kaynak_kisa": "blob:http://localhost:8765/a192b5fd-4d2b"
+ }
+}

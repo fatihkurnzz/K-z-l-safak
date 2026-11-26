@@ -8,7 +8,13 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (26.11, 17. oturum) — GPT/GEMINI GÖREV PAKETLERİ
+## SON DURUM (26.11, 18. oturum) — P33 GPT+GEMINI KABUL İŞİ (YARIDA, clear sonrası devam)
+- **ÖNCE OKU: `oyun-son/_tasarim/araclar/kabul-26kas/DEVIR.md`** (yapılanlar, kanıtlar, sıradaki 6 adım, betikler aynı klasörde; GPT teslimi `gelen/`, Gemini raporu `gelen/gemini_gorsel_kabul_raporu.json`).
+- Kod değişiklikleri commit'li (yayın YOK; sürüm 40 yayında). Yeni: `css/p33-kabul.css`, `js/npc-soz.js`, `js/yukleme-metin.js`. shared/ değişmedi.
+- Kullanıcı bu iş için TEST İSTİYOR (eski "TEST YAPMA" kuralı bu iş için geçersiz). Kanıtsız KABUL yok.
+- TEST DERSİ: giriş betiğinde önce "Evet, atla"ya, sonra .p26o-x'e bas (yoksa öğretici bitmez, her şey orman zemininde kalır). OTO için `localStorage dd_oto='1'`.
+
+## ÖNCEKİ DURUM (26.11, 17. oturum) — GPT/GEMINI GÖREV PAKETLERİ
 - Kullanıcı istedi: KORANT_GPT.zip + KORANT_GEMINI.zip (kod/görsel DEĞİŞMEDİ). Sürüm kimliği `KORANT-v40-1dda167` (oyun dosyaları yayın 40 ile aynı).
 - Çıktı scratchpad `paket/`: KORANT_GPT.zip (13 MB, 181 dosya) + KORANT_GEMINI_01..05of05.zip (her biri <30 MB, 1898 dosya). Kullanıcıya gönderildi.
 - Araçlar ve yeniden üretme sırası: `oyun-son/_tasarim/araclar/paket-26kas/OKU.md` (gömülü görsel çıkarma, katalog, ekran çekimi dpr 2,66, ekran↔varlık ölçümü, belge üretimi, paketleme).

@@ -333,6 +333,18 @@ export const LOOPS = {
   // Yemin Pazarı: uzak kalabalık uğultusu (iki dalgalı orta bölge gürültüsü), arada para ve teneke şıngırtısı, çan
   'amb.market': { b: 'amb', rv: 0.22, beds: [{ n: 'p', bp: [480, 1.1], g: 0.26, lfo: [0.23, 0.55], flfo: [0.17, 140] }, { n: 'p', bp: [950, 1.6], g: 0.1, lfo: [0.37, 0.7], flfo: [0.11, 220] }, { n: 'b', lp: [160, 0.7], g: 0.16 }],
     ev: [{ s: 'amb.clink', every: [1.5, 5], g: [0.15, 0.35], pan: 0.8, pj: 0.08 }, { s: 'amb.chime', every: [9, 22], g: [0.08, 0.16], pan: 0.6, pj: 0.03 }, { s: 'amb.flap', every: [2.5, 7], g: [0.1, 0.22], pan: 0.6, pj: 0.1 }] },
+  // P33 (GPT ses manifesti önerilen bağlamları): iç mekân ortamları YALNIZ mevcut tek seferlik seslerden kurulur (yeni ses dosyası yok).
+  // Han: ocak çıtırtısı + kadeh şıngırtısı · Ahır: rüzgâr + kuş · Örs: köz + örs vuruşu · Maden: damla + şıngırtı · Klan: köz + rüzgâr.
+  'amb.icm.han': { b: 'amb', rv: 0.3, beds: [{ n: 'b', lp: [170, 0.7], g: 0.16, lfo: [0.06, 0.4] }],
+    ev: [{ s: 'amb.crackle', every: [0.15, 0.9], g: [0.1, 0.3], pan: 0.5, pj: 0.2 }, { s: 'amb.clink', every: [3, 9], g: [0.15, 0.35], pan: 0.7, pj: 0.06 }] },
+  'amb.icm.ahir': { b: 'amb', rv: 0.25, beds: [{ n: 'p', bp: [520, 0.6], g: 0.14, lfo: [0.08, 0.6], flfo: [0.05, 160] }],
+    ev: [{ s: 'amb.gust', every: [5, 14], g: [0.15, 0.3], pan: 0.6, pj: 0.1 }, { s: 'amb.chirp', every: [2.5, 8], g: [0.1, 0.25], pan: 0.8, pj: 0.1 }] },
+  'amb.icm.ors': { b: 'amb', rv: 0.3, beds: [{ n: 'b', lp: [150, 0.7], g: 0.2, lfo: [0.07, 0.35] }],
+    ev: [{ s: 'amb.crackle', every: [0.1, 0.6], g: [0.12, 0.35], pan: 0.6, pj: 0.25 }, { s: 'anvil.strike', every: [6, 15], g: [0.12, 0.25], pan: 0.5, pj: 0.05 }] },
+  'amb.icm.maden': { b: 'amb', rv: 0.35, beds: [{ n: 'b', lp: [120, 0.7], g: 0.18, lfo: [0.05, 0.4] }],
+    ev: [{ s: 'amb.drip', every: [0.8, 3], g: [0.12, 0.3], pan: 0.7, pj: 0.1 }, { s: 'amb.clink', every: [4, 12], g: [0.12, 0.3], pan: 0.6, pj: 0.06 }] },
+  'amb.icm.klan': { b: 'amb', rv: 0.25, beds: [{ n: 'b', lp: [160, 0.7], g: 0.16, lfo: [0.06, 0.4] }],
+    ev: [{ s: 'amb.crackle', every: [0.3, 1.4], g: [0.1, 0.25], pan: 0.6, pj: 0.2 }, { s: 'amb.gust', every: [6, 16], g: [0.12, 0.25], pan: 0.6, pj: 0.1 }] },
   'mus.hub.ocak': { b: 'amb', g: 1, rv: 0.3, fade: 2.5, seq: seq('mus.hub.ocak') },
   'mus.hub.sancak': { b: 'amb', g: 0.9, rv: 0.3, fade: 2.5, seq: seq('mus.hub.sancak') },
   // 22 Kas: kullanıcının verdiği parça ("Under the Crimson Eye"): şehir/pazar ezgisi ve fragman müziği (dosyadan, döngüde)
@@ -454,14 +466,15 @@ export function actionSounds(type, r, payload) {
   return out;
 }
 // Yer → çalacak döngüler. place: 'loading' | 'title' | 'hub' | 'battle' | 'boss' | 'result' | 'none'
-export function sceneLoops({ place, faction, phase, weather } = {}) {
+export function sceneLoops({ place, faction, phase, weather, tur } = {}) {
   const f = faction === 'sancak' ? 'sancak' : 'ocak', night = phase === 'night' || phase === 'dusk', wx = ['rain', 'wind', 'fog'].includes(weather) ? [`amb.wx.${weather}`] : [];
   switch (place) {
     case 'loading': return ['mus.intro'];
     case 'title': return ['amb.title'];
     case 'fragman': return ['mus.fragman'];
     case 'hub': return [`amb.${f}.${night ? 'night' : 'day'}`, 'amb.portal', ...wx, 'mus.tema'];
-    case 'carsi': return ['amb.market', ...wx, 'mus.tema']; // Yemin Pazarı: kalabalık uğultusu, tezgâh sesleri; ezgi oyuncunun ırkınınki
+    case 'carsi': return ['amb.market', ...wx, 'mus.tema'];
+    case 'icm': return [`amb.icm.${tur}`, 'mus.tema']; // P33: iç mekân (han|ahir|ors|maden|klan; tek müzik: tema sürer) // Yemin Pazarı: kalabalık uğultusu, tezgâh sesleri; ezgi oyuncunun ırkınınki
     case 'battle': return ['amb.battle', ...wx, 'mus.battle'];
     case 'boss': return ['amb.battle', ...wx, 'mus.boss'];
     case 'result': return ['amb.battle', ...wx];

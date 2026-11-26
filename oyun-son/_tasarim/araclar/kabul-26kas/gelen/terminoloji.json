@@ -1,0 +1,50 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "koru": [
+    "Chitin",
+    "Mirage",
+    "Hell Breaker",
+    "Ares",
+    "Sv.",
+    "TL",
+    "Korant"
+  ],
+  "halk": {
+    "ocak": "Kragmir",
+    "sancak": "Elentha"
+  },
+  "sinif": {
+    "warrior": "Savaşçı",
+    "rogue": "Suikastçı",
+    "priest_sancak": "Şifacı",
+    "priest_ocak": "Şaman",
+    "mage": "Büyücü"
+  },
+  "para": {
+    "akce": "Akçe",
+    "toz": "Örs Tozu",
+    "kulce": "Külçe",
+    "yakut": "Yakut",
+    "san": "Şan"
+  },
+  "bolgeler": [
+    "Vahran Ovası",
+    "Kül Geçidi",
+    "Kızıl Bahar Meydanı",
+    "Sisli Çukur"
+  ],
+  "zindanlar": [
+    "Dipsiz Kuyu",
+    "Yeraltı Ocağı",
+    "Gök Yarığı",
+    "Mühürlü Oda",
+    "Kül Kulesi"
+  ],
+  "kurallar": [
+    "TR: Türkçe arayüz; özgün eşya isimleri kullanıcı kararıyla korunur. EN: mevcut İngilizce sözlük; yeni TR metni sızdırma.",
+    "Türkçe sayı biçimi 1.247 ve 1,5; veri sayılarını stringe dönüştürme.",
+    "Sv. 51, %25, 30 TL; gerçek para ilk yayında kapalı.",
+    "Kızıl Bahar Meydanı kaynak adı; kısaltma yalnız alan gerektirirse.",
+    "Oyun verisindeki kimlikleri ve adları topluca yeniden yazma."
+  ]
+}

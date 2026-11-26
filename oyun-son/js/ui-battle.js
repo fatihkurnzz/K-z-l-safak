@@ -211,7 +211,7 @@ export async function startBattle(args, auto = false) { savasOnYukle();
   const r = await run('battle.start', args);
   if (!r) return;
   const b = r.battle;
-  await savasHazirla([...(b.party || []), ...(b.waves || []).flat()]); // P26 N1: koyu perde + çizimlerin ön-yüklemesi (en çok 2,5 sn)
+  await savasHazirla([...(b.party || []), ...(b.waves || []).flat()], args); // P26 N1: koyu perde + çizimlerin ön-yüklemesi (en çok 2,5 sn)
   closeWin(true); closeModal(); hud.hidden = true; hideTown(); hideChatBar(); // 22 Kas (kullanıcı): savaşta sohbet yok
   try { arkaAsama((!args.mode || args.mode === 'stage') && args.stage ? stageDef(args.stage, args.tier || 0) : null); } catch { arkaAsama(null); } // P28: bölge zemini
   runBattle({

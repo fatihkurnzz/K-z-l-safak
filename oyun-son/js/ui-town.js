@@ -1,6 +1,7 @@
 // Vahran Sınırı binalarının ve alt çubuğun ekranları: Örs, Maden, Usta Odası, Pazar ve Tüccar, Şan Divanı,
 // Kader Çarkı, Kervan, Görevler, Posta, Klan, Ansiklopedi.
-import { S, now, devUI } from './api.js';
+import { S, now, devUI, LOCAL } from './api.js';
+import { soz } from './npc-soz.js';
 import { url as g5url } from './grafik5-png.js';
 import { MERCHANT_SVG } from './ui-ogretici.js';
 import { npcBas } from './sahne.js';
@@ -93,7 +94,10 @@ ACT.mineTrade = async d => { const r = await doAct('mine.trade', { k: d.k, n: +d
 // Sürüm 13: Yemin Pazarı'nda iki ayrı yer ve iki ayrı pencere. Pazar: oyuncudan oyuncuya ilanlar (market.list / sell / mine / cancel / buy).
 // Tüccar: NPC dükkânı (npc.buy / npc.sell; shared/npc.js). İksirler başkentteki İksir ve Parşömen dükkânına taşındı (aşağıda).
 const MV = { sub: 'buy', kind: 'all', rar: 'all', cls: 'all', sort: 'new', q: '', sel: null };
-const TV = { sub: 'weapons', shop: 'halvor', cls: 'all', pick: new Set(), last: null };
+const TV = { sub: 'weapons', shop: 'halvor', cls: 'all', pick: new Set(), last: null, soz: null };
+// P33 (GPT NPC replikleri): tezgâh → GPT eylem adı; satış/alış SONUCUNDAN sonra NPC satırı (TR'de; Kragmir tüccarına Halvor satırı kopyalanmaz)
+const SOZ_TEZGAH = { halvor: 'merchant', silah: 'c_silah', zirh: 'c_zirh', taki: 'c_taki' };
+const tezgahSoz = ok => { TV.soz = soz(SOZ_TEZGAH[TV.shop], ok ? 'basari' : 'basarisizlik', TV.shop === 'halvor' ? S.faction : 'ortak'); };
 // P24: Çarşı'da dört ayrı tezgâh. Raf verisi (merchantShelves) ve alış/satış (npc.buy / npc.sell) aynı; yalnız süzülür.
 /** P25-b: referanstan kırpılmış görselleri (p25-b-png.js) bir kez tembel yükler ve :root'a --p25b-<anahtar> CSS değişkenleri yazar. */
 export function p25bImg() {
@@ -139,7 +143,7 @@ ACT.market = d => {
 ACT.pazar = () => ACT.market({ tab: 'pazar' });
 // Tüccar penceresi: Silahlar · Zırhlar · Erzak · Tüccara sat. Öğreticideki ilk alım Tüccar Halvor penceresinde (ui-ogretici.js)
 function openShop(k, sub) {
-  TV.shop = k; const c = SHOPS[k]; TV.sub = sub && c.tabs.some(t => t[0] === sub) ? sub : c.tabs[0][0];
+  TV.shop = k; TV.soz = null; const c = SHOPS[k]; TV.sub = sub && c.tabs.some(t => t[0] === sub) ? sub : c.tabs[0][0];
   if (k === 'taki') { MV.kind = 'jewel'; MV.rar = 'all'; MV.cls = 'all'; MV.q = ''; }
   if (c.face.startsWith('npc_')) p24Img(c.face).then(u => { if (u && TV.shop === k && cur()?.title === shopTitle(k)) redraw(); });
   if (k !== 'halvor') p25bImg();
@@ -208,7 +212,7 @@ function pazarPage() {
 const nextDay = () => (dayKey(now()) + 1) * 86400000 - 3 * 3600000;
 function tuccarPage() {
   const first = tutorialBuy(), SH = merchantShelves(S, now()), C = shopOf(), subs = pzSub(TV.sub, C.tabs, 'tcSub');
-  const head = `<div class="pz-head k-card2"><div class="pz-bigpor">${shopFace(C)}</div><div class="grow"><b>${C.name}</b><p>${TV.sub === 'sell' ? C.sellSay : C.say}</p></div>${TV.shop === 'silah' || TV.shop === 'zirh' ? '<i class="dk-ocak" aria-hidden="true"></i>' : ''}</div>`;
+  const head = `<div class="pz-head k-card2"><div class="pz-bigpor">${shopFace(C)}</div><div class="grow"><b>${C.name}</b><p>${TV.soz ? esc(TV.soz) : TV.sub === 'sell' ? C.sellSay : C.say}</p></div>${TV.shop === 'silah' || TV.shop === 'zirh' ? '<i class="dk-ocak" aria-hidden="true"></i>' : ''}</div>`;
   const ware = x => { const it = { b: x.b, g: 0, p: 0 }, B = itemBase(x.b), left = npcLeft(S, x.id), ok = S.akce >= x.price && left > 0;
     // P25-b: 2'li ızgarada perçinli kart; solda büyük simge kuyusu, sağda ad / nitelik · stok / fiyat + Al
     return `<div class="pz-card dk-card g0"><div class="dk-well">${ico(it, 'lg')}</div><div class="dk-body"><div class="pz-nm">${itemLine(it)}</div><div class="pz-bd">${B.cls ? `<span class="pz-b">${B.cls.map(c => CLASSES[c].name).join(' · ')}</span>` : ''}${B.set ? `<span class="pz-b pz-st">Set: ${esc(B.set)}</span>` : ''}<span class="dk-stok">Stok: ${left}</span></div><div class="pz-bot"><b class="price">${ri('akce')} ${fmt(x.price)} <small>Akçe</small></b><button class="btn sm ${ok ? 'red' : ''}" data-a="${first && CLASSES[x.id] ? 'npcBuy' : 'tcBuy'}" data-id="${x.id}" ${ok ? '' : 'disabled'}>Al</button></div></div></div>`; };
@@ -232,11 +236,11 @@ function tuccarPage() {
 }
 ACT.tcSub = d => { TV.sub = d.k; if (TV.shop === 'taki' && d.k === 'jewels') { const w = cur(); if (w) w.data = null; redraw(); reload(); } else redraw(); };
 ACT.tcCls = d => { TV.cls = d.k; redraw(); };
-ACT.tcBuy = async d => { const r = await run('npc.buy', { id: d.id }); if (!r) return; toast(r.mat ? 'Satın alındı.' : `${itemBase(r.b).name} çantana girdi.`); redraw(); };
+ACT.tcBuy = async d => { const r = await run('npc.buy', { id: d.id }); tezgahSoz(!!r); if (!r) return redraw(); toast(r.mat ? 'Satın alındı.' : `${itemBase(r.b).name} çantana girdi.`); redraw(); };
 ACT.tcPot = async d => { const r = await run('npc.pot', { k: d.k, n: +d.n }); if (!r) return; toast(`${POT[r.k].name} ×${r.n} alındı (elinde ${r.have}).`); redraw(); };
 ACT.tcPick = d => { const id = +d.id; TV.pick.has(id) ? TV.pick.delete(id) : TV.pick.add(id); TV.last = id; redraw(); };
 ACT.tcPickG = d => { const g = +d.g; TV.pick = new Set(g < 0 ? [] : shopSellable().filter(x => x.g <= g && !x.p && !x.r).map(x => x.id)); redraw(); };
-ACT.tcSell = async () => { const r = await run('npc.sell', { ids: [...TV.pick] }); if (r) { TV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } };
+ACT.tcSell = async () => { const r = await run('npc.sell', { ids: [...TV.pick] }); tezgahSoz(!!r); if (!r) redraw(); if (r) { TV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } };
 ACT.tcPlain = () => { const ids = shopSellable().filter(x => x.g === 0 && !x.p && !x.r).map(x => x.id), total = ids.reduce((a, id) => a + sellPrice(itemOf(S, id)), 0);
   confirmBox('Sıradanları sat', `${ids.length} Standart, artısız eşya tüccara ${fmt(total)} akçeye satılacak.`, async () => { const r = await run('npc.sell', { ids }); if (r) { TV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } }, 'Sat'); };
 
@@ -384,10 +388,10 @@ ACT.premium = () => openWin({ title: 'Premium', render: () => {
   const cur2 = myTier(), days = cur2 ? Math.max(1, Math.ceil((S.premium.until - now()) / 86400000)) : 0;
   const card = T => {
     const label = cur2 === T.id ? 'Uzat (+30 gün)' : cur2 > T.id ? 'Üst kademedesin' : cur2 ? 'Yükselt' : 'Al';
-    return `<div class="tier t${T.id} ${cur2 === T.id ? 'on' : ''}"><h4>${svg('crown')}${T.name}</h4><b class="price">${T.yakut ? `${ri('gem')} ${fmt(T.cost)} yakut` : PREMIUM_SKU[T.id] ? tl(storePrice(PREMIUM_SKU[T.id])) : 'Gerçek parayla'}</b> <span class="mut">/ ${T.days} gün</span>
+    return `<div class="tier t${T.id} ${cur2 === T.id ? 'on' : ''}"><h4>${svg('crown')}${T.name}</h4><b class="price">${T.yakut ? `${ri('gem')} ${fmt(T.cost)} yakut` : PREMIUM_SKU[T.id] ? (LOCAL ? `Yakında <small class="mut p33-tl">${tl(storePrice(PREMIUM_SKU[T.id]))}</small>` : tl(storePrice(PREMIUM_SKU[T.id]))) : 'Yakında'}</b> <span class="mut">/ ${T.days} gün</span>
       <ul><li>Savaşta <b>+%${T.xp * 100}</b> deneyim ve akçe</li><li>Eşya düşme oranı <b>+%${T.drop * 100}</b></li><li>Maden <b>×${String(T.mine).replace('.', ',')}</b> cevher</li><li><b>+${T.slots}</b> pazar ilan yuvası</li><li><b>+${T.tickets}</b> günlük meydan hakkı <span class="mut">(normal ${ARENA.tickets})</span></li></ul>
       ${T.yakut ? `<button class="btn ${cur2 > T.id ? '' : 'red'}" data-a="premBuy" data-t="${T.id}" ${cur2 > T.id || S.yakut < T.cost ? 'disabled' : ''}>${label}</button>${cur2 <= T.id && S.yakut < T.cost ? `<br><span class="warn" style="font-size:11px">${fmt(T.cost - S.yakut)} yakut eksik</span>` : ''}`
-        : `<button class="btn ${cur2 > T.id ? '' : 'red'}" data-a="shop" data-tab="money" ${cur2 > T.id ? 'disabled' : ''}>${cur2 > T.id ? label : 'Kervan\'da gör'}</button>`}</div>`;
+        : `<button class="btn ${cur2 > T.id ? '' : 'red'}" data-a="shop" data-tab="money" ${cur2 > T.id ? 'disabled' : ''}>${cur2 > T.id ? label : LOCAL ? 'Yakında' : 'Kervan\'da gör'}</button>`}</div>`;
   };
   return `<div class="hint">${cur2 ? `Etkin üyeliğin: <b>${PREMIUM[cur2].name} Premium</b> · ${days} gün kaldı.` : 'Şu an üyeliğin yok.'} Elinde ${ri('gem')} <b>${fmt(S.yakut)}</b> yakut var.</div>
     <div class="tiers">${PREMIUM.slice(1).map(card).join('')}</div>
@@ -395,7 +399,7 @@ ACT.premium = () => openWin({ title: 'Premium', render: () => {
     ${devUI() ? '<div class="mbtns"><button class="btn sm" data-a="devPremium">Test: kademeyi değiştir</button></div>' : ''}`;
 } });
 ACT.premBuy = d => {
-  const T = PREMIUM[+d.t], cur2 = myTier();
+  const T = PREMIUM[+d?.t], cur2 = myTier(); if (!T) return; // P33 (C13 kuralı): parametresiz çağrıda sessiz döner
   const go = async () => { const r = await doAct('premium.buy', { tier: T.id }); if (r) toast(`${T.name} Premium etkin.`); };
   cur2 && cur2 < T.id ? confirmBox(`${T.name} Premium`, `${PREMIUM[cur2].name} üyeliğinin kalan süresi devredilmez. ${fmt(T.cost)} yakut karşılığında ${T.name} 30 gün başlasın mı?`, go, 'Yükselt') : go();
 };

@@ -1,0 +1,825 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "mevcut": {
+    "muzik_dosyalari": [
+      {
+        "kimlik": "audio/kizil-goz.mp3",
+        "sabit": "MUSIC_URL",
+        "kullanim": "Tema müziği: başkent, pazar, fragman",
+        "sure_sn": 157.6,
+        "bayt": 2207705,
+        "sha256": "7225053de37b717d10fb08693a47258e085752f81b6a78ab87f130833b6ca625",
+        "bicim": "mp3"
+      },
+      {
+        "kimlik": "audio/intro.mp3",
+        "sabit": "INTRO_URL",
+        "kullanim": "Yükleme ekranı müziği",
+        "sure_sn": 154.6,
+        "bayt": 2474873,
+        "sha256": "9fabfbc0d7abb89784b7a3df1a0718b09742a9f261d2cf49fa35669181e63a5d",
+        "bicim": "mp3"
+      },
+      {
+        "kimlik": "audio/arka-plan.mp3",
+        "sabit": "HUB_URL",
+        "kullanim": "Ana ekran arka plan müziği",
+        "sure_sn": 174.9,
+        "bayt": 2798791,
+        "sha256": "0692c3298a9391fd26cc2cd1f758e946d58d13b02a0b8590fda9d4729b1c3231",
+        "bicim": "mp3"
+      },
+      {
+        "kimlik": "audio/boss.mp3",
+        "sabit": "BOSS_URL",
+        "kullanim": "Patron savaşı müziği",
+        "sure_sn": 105.7,
+        "bayt": 1692035,
+        "sha256": "c24d07082e7d48239b9c4460f96c0258f6d45626ad85b03bffe3ab7ae434d2cc",
+        "bicim": "mp3"
+      }
+    ],
+    "sentez_sesleri": [
+      {
+        "kimlik": "id.ocak",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "id.sancak",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "id.plus10",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "id.siege",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ann.ping",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.tap",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.tab",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.toggle",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.confirm.sancak",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.confirm.ocak",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.tab.sancak",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.tab.ocak",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.confirm",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.back",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.open",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.close",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.modal",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.modalClose",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.error",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.toast",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.bell",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.coins",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.sale",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.reward",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.levelup",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.quest",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.ach",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.chest",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.equip",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.unequip",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.dismantle",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.send",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.point",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.upgrade",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.stamp",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "ui.horn",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "rar.0",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "rar.1",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "rar.2",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hub.knock",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hub.gate",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hub.mine",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hub.wheel",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hub.hall",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hub.stone",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.strike",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.tension",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.ok",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.fail",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.drop",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.break",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.safe",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "anvil.sparkle",
+        "kanal": "ui",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "swing.sword",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "swing.axe",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "swing.dagger",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "swing.bow",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "swing.mace",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "swing.staff",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hit.sword",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hit.axe",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hit.dagger",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hit.bow",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hit.mace",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "hit.staff",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "cast.fire",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "cast.ice",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "cast.bolt",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "cast.arcane",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "cast.heal",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "cast.buff",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "imp.fire",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "imp.ice",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "imp.bolt",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "imp.arcane",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.meteor",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.whirl",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.stomp",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.heal",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.shield",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.buff",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.debuff",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.burn",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.poison",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.stun",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.freeze",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.taunt",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.tick.poison",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.tick.burn",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.tick.regen",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.crit",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.resist",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.absorb",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.death",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.revive",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.cleanse",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.enrage",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.special",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.start",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.wave",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.boss",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.phase",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.victory",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "bt.defeat",
+        "kanal": "battle",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.crackle",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.pop",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.clink",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.chirp",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.cricket",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.flap",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.gust",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.drip",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.chime",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.ocak.day",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.ocak.night",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.sancak.day",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.sancak.night",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.wx.rain",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.wx.wind",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.wx.fog",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.portal",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.battle",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.title",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "amb.market",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "mus.hub.ocak",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "mus.hub.sancak",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "mus.intro",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "mus.tema",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "mus.fragman",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "mus.battle",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      },
+      {
+        "kimlik": "mus.boss",
+        "kanal": "amb",
+        "kaynak": "js/sfx.js (WebAudio ile anlık üretilir; dosyası YOK)"
+      }
+    ]
+  },
+  "onerilen_baglamlar": {
+    "elentha": [
+      "mus.hub.sancak",
+      "amb.sancak.day",
+      "amb.sancak.night",
+      "amb.chime"
+    ],
+    "kragmir": [
+      "mus.hub.ocak",
+      "amb.ocak.day",
+      "amb.ocak.night",
+      "amb.crackle"
+    ],
+    "yemin-pazari": [
+      "mus.tema",
+      "amb.market",
+      "amb.clink"
+    ],
+    "han": [
+      "amb.crackle",
+      "amb.clink"
+    ],
+    "ahir": [
+      "amb.gust",
+      "amb.chirp"
+    ],
+    "ors": [
+      "anvil.strike",
+      "amb.crackle"
+    ],
+    "maden": [
+      "amb.drip",
+      "amb.clink"
+    ],
+    "klan-karargahi": [
+      "amb.crackle",
+      "amb.gust"
+    ],
+    "well": [
+      "mus.battle",
+      "amb.drip"
+    ],
+    "depth": [
+      "mus.battle",
+      "amb.crackle"
+    ],
+    "rift": [
+      "mus.battle",
+      "amb.gust"
+    ],
+    "seal": [
+      "mus.battle",
+      "amb.chime"
+    ],
+    "kule": [
+      "mus.battle",
+      "amb.gust"
+    ],
+    "boss": [
+      "mus.boss",
+      "bt.boss"
+    ],
+    "zafer": [
+      "bt.victory"
+    ],
+    "maglubiyet": [
+      "bt.defeat"
+    ]
+  },
+  "uretilmesi_gereken": [
+    {
+      "rol": "Hancı",
+      "icerik_kimligi": "gpt-npc-01",
+      "metin": "Hoş geldin, yolcu.",
+      "durum": "ses dosyası yok; üretim ve lisans gerekli"
+    },
+    {
+      "rol": "Kral Edran",
+      "icerik_kimligi": "gpt-npc-03",
+      "metin": "Elentha adına.",
+      "durum": "ses dosyası yok; üretim ve lisans gerekli"
+    },
+    {
+      "rol": "Kaçakçı",
+      "icerik_kimligi": "gpt-npc-04",
+      "metin": "Sessiz ol.",
+      "durum": "ses dosyası yok; üretim ve lisans gerekli"
+    },
+    {
+      "rol": "Ork Hancı",
+      "icerik_kimligi": "gpt-npc-06",
+      "metin": "Ocağa yaklaş.",
+      "durum": "ses dosyası yok; üretim ve lisans gerekli"
+    },
+    {
+      "rol": "Kral Volgar Demirdiş",
+      "icerik_kimligi": "gpt-npc-08",
+      "metin": "Kragmir için.",
+      "durum": "ses dosyası yok; üretim ve lisans gerekli"
+    },
+    {
+      "rol": "Ork Kaçakçı",
+      "icerik_kimligi": "gpt-npc-09",
+      "metin": "Az konuş.",
+      "durum": "ses dosyası yok; üretim ve lisans gerekli"
+    },
+    {
+      "rol": "Büyük Örs Ustası",
+      "icerik_kimligi": "gpt-npc-11",
+      "metin": "Demir sabır ister.",
+      "durum": "ses dosyası yok; üretim ve lisans gerekli"
+    }
+  ],
+  "kanallar": [
+    "Müzik",
+    "Çevre",
+    "Efekt",
+    "NPC"
+  ],
+  "kurallar": [
+    "Mevcut 131 sentez anahtarını koru; bağlam önerileri mevcut bağlantı iddiası değildir.",
+    "Ses üretimi yapılmadı; yeni ortam kayıtları isteğe bağlı, lisanslı olmalı.",
+    "Crossfade önerisi 400–800 ms; aynı anda tek müzik; arka planda duraklat; NPC sesi yoksa sessiz fallback.",
+    "Saldırı ve vuruş için mevcut swing.* / hit.*; kritik bt.crit; kalkan bt.shield/bt.absorb; nadirlik rar.0–2; örs anvil.ok/fail/drop/break; mevcut sonuç olaylarına bağla."
+  ]
+}

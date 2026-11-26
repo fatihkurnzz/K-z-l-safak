@@ -1,0 +1,333 @@
+{
+ "race": "sancak",
+ "savaslar": [
+  {
+   "ad": "bolge1_vahran_1-5",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "vahran",
+    "dosya": "sah:savas_vahran_ovasi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 2,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+278"
+  },
+  {
+   "ad": "bolge2_kulgecidi_2-3",
+   "durum": "zaman aşımı",
+   "zemin": {
+    "id": "kulgecit",
+    "dosya": "sah:savas_kul_gecidi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 2,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 2,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "sonuç ekranı 240 sn içinde gelmedi"
+  },
+  {
+   "ad": "bolge3_kizilbahar_3-3",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "kizilbahar",
+    "dosya": "sah:savas_kizil_bahar"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+78"
+  },
+  {
+   "ad": "bolge4_sisli_4-3",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "sisli",
+    "dosya": "sah:savas_sisli_cukur"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+37"
+  },
+  {
+   "ad": "boss_bolge1_1-25",
+   "durum": "zaman aşımı",
+   "zemin": {
+    "id": "bossmag",
+    "dosya": "sah:savas_boss_magarasi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -28.5,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -29,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "sonuç ekranı 240 sn içinde gelmedi"
+  },
+  {
+   "ad": "boss_bolge2_2-15",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "bossmag",
+    "dosya": "sah:savas_boss_magarasi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -28.5,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -29,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+60"
+  },
+  {
+   "ad": "boss_bolge3_3-5",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "bossmag",
+    "dosya": "sah:savas_boss_magarasi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -24,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -29,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+0"
+  },
+  {
+   "ad": "boss_bolge4_4-5",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "bossmag",
+    "dosya": "sah:savas_boss_magarasi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -29,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+0"
+  },
+  {
+   "ad": "zindan_well",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "zkuyu",
+    "dosya": "sah:zindan_dipsiz_kuyu"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+163"
+  },
+  {
+   "ad": "zindan_depth",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "zocak",
+    "dosya": "sah:zindan_yeralti_ocagi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+25"
+  },
+  {
+   "ad": "zindan_rift",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "zyarik",
+    "dosya": "sah:zindan_gok_yarigi"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": 8,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -2,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+0"
+  },
+  {
+   "ad": "zindan_seal",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "zmuhur",
+    "dosya": "sah:zindan_muhurlu_oda"
+   },
+   "hud_ilk": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -28.5,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 3,
+    "en_kucuk_dikey_bosluk_px": -29,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+0"
+  },
+  {
+   "ad": "zindan_kule",
+   "durum": "hata: page.waitForSelector: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#battleUI:not([hidden])') to be v"
+  },
+  {
+   "ad": "meydan_pvp",
+   "durum": "zaman aşımı",
+   "zemin": {
+    "id": "pvparena",
+    "dosya": "sah:savas_pvp_arena"
+   },
+   "hud_ilk": {
+    "dusman_hud": 1,
+    "en_kucuk_dikey_bosluk_px": null,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 1,
+    "en_kucuk_dikey_bosluk_px": null,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "sonuç ekranı 240 sn içinde gelmedi"
+  },
+  {
+   "ad": "baskin",
+   "durum": "hata: page.evaluate: TypeError: MODE_VS[d.m] is not a function\n    at ACT.mode (http://localhost:8765/js/ui-battle.js:203:41)\n"
+  },
+  {
+   "ad": "oba_avi_tepegoz",
+   "durum": "tamamlandı",
+   "zemin": {
+    "id": "obaavi",
+    "dosya": "sah:savas_oba_avi_arena"
+   },
+   "hud_ilk": {
+    "dusman_hud": 1,
+    "en_kucuk_dikey_bosluk_px": null,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "hud_sonra": {
+    "dusman_hud": 1,
+    "en_kucuk_dikey_bosluk_px": null,
+    "oto_tip_var": false,
+    "oto_tip_cakisan": []
+   },
+   "sonuc": "+183"
+  }
+ ],
+ "klan": {
+  "kurma": "kuruldu",
+  "oba_yer": "klan / hub2d=klan",
+  "oba_binalar": [
+   "gate",
+   "portal",
+   "k_hq",
+   "k_salon",
+   "k_gorev",
+   "k_dukkan",
+   "k_sancak",
+   "k_av",
+   "k_hisar",
+   "k_hazine"
+  ],
+  "oba_zemin": "url(sahneler/baskent_elentha.webp)",
+  "arma_sayisi": 2,
+  "arma_dolu": 2
+ },
+ "boss_asamalari": {
+  "1": "1-25",
+  "2": "2-15",
+  "3": "3-5",
+  "4": "4-5"
+ },
+ "js_hatalari": []
+}

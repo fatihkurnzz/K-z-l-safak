@@ -1,0 +1,45 @@
+{
+ "acilis_ipucu": "Haftalık sıfırlama pazartesi 00.00 UTC+3 saatindedir.",
+ "ses_dongu_kayitli": [
+  [
+   "han",
+   true
+  ],
+  [
+   "ahir",
+   true
+  ],
+  [
+   "ors",
+   true
+  ],
+  [
+   "maden",
+   true
+  ],
+  [
+   "klan",
+   true
+  ]
+ ],
+ "ses_sahne_listesi": {
+  "han": [
+   "amb.icm.han",
+   "mus.tema"
+  ],
+  "hub": [
+   "amb.ocak.day",
+   "amb.portal",
+   "mus.tema"
+  ]
+ },
+ "han_selamlama": "Ocağa yaklaş, savaşçı.",
+ "han_basari": "Gücün geri dönsün.",
+ "han_akce_once_sonra": [
+  5050500,
+  5049900
+ ],
+ "tezgah_once": "Çeliğin hakkını veren savaşçıya en keskin bıçaklar burada.",
+ "tezgah_sonra": "Alışveriş tamam.",
+ "savas_perdesi": "Kül Geçidi\n\nSönmüş yanardağın eteğinde ince gri kül birikir. Dar geçitte taş ve gölge arasındaki tehlikeler yolcuları bekler.\n\nHaftalık sıfırlama pazartesi 00.00 UTC+3 saatindedir."
+}

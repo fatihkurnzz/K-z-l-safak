@@ -122,9 +122,12 @@ async function p24Kit() {
 }
 // P26 O15: kit (p24-ekran-png.js, 1,9 MB) açılışta değil; ilk pencere/modal/savaş açılınca hemen, başkent ilk kez göründüğünde
 // ise ilk kare çizildikten 2 sn sonra (arkada) yüklenir.
+let p24Bir = false;
+/** P33 (Gemini N4-04): ortak kabuk kitini hemen yükletir; #p28bina (Han, Ahır, Zafer Anıtı) gibi #win/#modal dışı katmanlar çağırır. */
+export const p24KitKur = () => { if (!p24Bir) { p24Bir = true; p24Kit(); } };
 {
   const bui = document.getElementById('battleUI');
-  let bir = false; const kur = () => { if (!bir) { bir = true; p24Kit(); } };
+  const kur = p24KitKur;
   const acik = () => !win.hidden || !modal.hidden || (bui && !bui.hidden);
   if (acik()) kur();
   else {

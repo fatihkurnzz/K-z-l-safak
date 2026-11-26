@@ -14,6 +14,7 @@ import { gfx } from './gfx.js';
 import { initI18n } from './i18n.js';
 import { kdGorsel } from './ui-kaplama.js'; // Kül ve Demir görselleri (kd-png.js) → CSS değişkenleri
 import { karakterYukle } from './karakter-png.js'; // P26 O15: karakter çizimleri (karakter-png-veri.js) tembel
+import { ipucu } from './yukleme-metin.js'; // P33: GPT ipuçları (açılış yüklemesi)
 
 /** İskeletli modelleri (models/, ≈0,9 MB) ilk 3B ihtiyaca erteler: 2B başkent açıldıktan 6 sn sonra boşta (ya da en geç 60 sn). */
 function modelleriErtele() {
@@ -27,6 +28,8 @@ function modelleriErtele() {
 
 (async () => {
   const L = document.getElementById('loading');
+  // P33 (GPT yükleme metinleri): açılış yüklemesi sürerken bir ipucu (yalnız TR; yükleme ekranı kalkınca kendiliğinden gider)
+  try { const ip = ipucu(), F = L?.querySelector('.ld-foot'); if (ip && F && !F.querySelector('.ld-ipucu')) F.insertAdjacentHTML('beforeend', `<div class="ld-ipucu">${ip}</div>`); } catch { }
   const LD = window.DDLoad || { set() {}, fail() {} };
   const say = (t, p) => LD.set(p ?? LD.pct ?? 0, t);
   say('Dil dosyaları yükleniyor', 8);

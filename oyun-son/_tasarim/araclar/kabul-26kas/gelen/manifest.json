@@ -1,0 +1,97 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "dosyalar": [
+    {
+      "yol": "CLAUDE_ENTEGRASYON_TALIMATI.md",
+      "varlik_kimligi": "CLAUDE_ENTEGRASYON_TALIMATI.md",
+      "sha256": "780c3ef3faf33e6fa918b138813244516c63a5b942cf4317d8aaae159b8790db",
+      "bayt": 2513,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "README.md",
+      "varlik_kimligi": "README.md",
+      "sha256": "1cd947ad309b73b323625da6084abd2b93cb6a5c1ea88e22e5ec153444e73330",
+      "bayt": 694,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "npc_replikleri.json",
+      "varlik_kimligi": "npc_replikleri.json",
+      "sha256": "df5178f4d90d5abadbca6e641eee091f5ab55e098b7b969411b8dc8c765a1a78",
+      "bayt": 10667,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "qa_test_matrisi.json",
+      "varlik_kimligi": "qa_test_matrisi.json",
+      "sha256": "5170abe5e51555a5b73ad15c2914d6ee795fc0d0b6fc59be7c533554bd230c14",
+      "bayt": 153212,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "qa_test_plani.md",
+      "varlik_kimligi": "qa_test_plani.md",
+      "sha256": "e92ba79b63b5e5e363dcaa9e3076f532c3c6321e6298ddc8304f813e72c2f573",
+      "bayt": 2199,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "savas_ve_etkilesim_standartlari.json",
+      "varlik_kimligi": "savas_ve_etkilesim_standartlari.json",
+      "sha256": "a71dfbc19b9f519a062f545bc64551262ce277e040ebcc7d7b44d9e10786bfbb",
+      "bayt": 1276,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "ses_manifest_taslagi.json",
+      "varlik_kimligi": "ses_manifest_taslagi.json",
+      "sha256": "1a38d41510b6a45a97a4f5167f3636c11c64cf19f7727ffe038882f53454ac92",
+      "bayt": 23755,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "tasarim_standartlari.json",
+      "varlik_kimligi": "tasarim_standartlari.json",
+      "sha256": "e1d63d8942b6c05632d2607a20726448580962a053f3a0c92f147574239cbad2",
+      "bayt": 4476,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "terminoloji.json",
+      "varlik_kimligi": "terminoloji.json",
+      "sha256": "c3a16c17bf0bb273623f707b74e3bd885ff432b8ab1a16d2baa53d0bad263651",
+      "bayt": 1196,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "varlik_eslesme_kurallari.json",
+      "varlik_kimligi": "varlik_eslesme_kurallari.json",
+      "sha256": "5c12173bdf775269a38709dd7a9621f0857901f2fb1096a45d69eed15d46d085",
+      "bayt": 183167,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    },
+    {
+      "yol": "yukleme_metinleri.json",
+      "varlik_kimligi": "yukleme_metinleri.json",
+      "sha256": "3b655e0853d8d157fa4e6071a9b8b012b4daa926a84e1db66b6ebd4b9b5a99df",
+      "bayt": 3276,
+      "aciklama": "GPT içerik/standart/QA teslimi",
+      "degistirildi": false
+    }
+  ],
+  "notlar": [
+    "Oyun varlıkları değiştirilmedi.",
+    "Manifest kendisini hashlemez."
+  ]
+}

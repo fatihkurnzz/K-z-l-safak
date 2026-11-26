@@ -1,0 +1,8068 @@
+{
+ "ozet": {
+  "kaynak_ACT_tanimi": 455,
+  "ayri_eylem": 439,
+  "tur_dagilimi": {
+   "diğer (yardımcı/iç eylem)": 133,
+   "pencere": 86,
+   "bildirim": 22,
+   "modal": 53,
+   "bina katmanı": 3,
+   "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)": 79,
+   "savaş / VS": 16,
+   "onay penceresi": 8,
+   "onay penceresi + veri yazar": 13,
+   "geliştirici aracı": 2,
+   "yönlendirme (yer değiştirir)": 17,
+   "NPC diyaloğu": 6,
+   "sekme değiştirme": 1
+  },
+  "ekran_acan_eylem": 202,
+  "taramada_ulasilan_ekran_acan_eylem": 34,
+  "tarama_durumu": {
+   "elentha": 120,
+   "kragmir": 120
+  },
+  "onceki_cekim_ekran_kimligi": {
+   "elentha": 112,
+   "kragmir": 114
+  },
+  "birlesik_onceki": 115,
+  "not": "Oyunun tamamı = kaynak koddaki bütün ekran açan eylemler + parametreli varyantlar + dinamik durumlar (onay, diyalog, savaş evresi, sonuç). 115 yalnız önceki otomatik çekimin kimlik sayısıdır."
+ },
+ "eylemler": [
+  {
+   "eylem": "achCat",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-kalicilik.js:277"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "achs",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-kalicilik.js:255"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     43
+    ],
+    "kragmir": [
+     43
+    ]
+   }
+  },
+  {
+   "eylem": "aeSes",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-erisim.js:47"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "settings",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "aeSet",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-erisim.js:46"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "aeTog",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-erisim.js:45"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "aeTut",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-erisim.js:48"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "again",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-battle.js:249"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ahir",
+   "tur": "bina katmanı",
+   "kaynak": [
+    "js/ui-ahir.js:95"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ahirAc",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-ahir.js:97"
+   ],
+   "okur": [],
+   "yazar": [
+    "ahir.unlock"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ahirBesle",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-ahir.js:101"
+   ],
+   "okur": [],
+   "yazar": [
+    "ahir.feed"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ahirKusan",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-ahir.js:99"
+   ],
+   "okur": [],
+   "yazar": [
+    "ahir.equip"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "anit",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-anit.js:17"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "anitGo",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-anit.js:32"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "anvil",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:39"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "arenaRefresh",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-battle.js:116"
+   ],
+   "okur": [
+    "arena.list"
+   ],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "arenaVs",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-battle.js:204"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "avatarPick",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:610"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     38,
+     97
+    ],
+    "kragmir": [
+     38,
+     97
+    ]
+   }
+  },
+  {
+   "eylem": "avatarSet",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:618"
+   ],
+   "okur": [],
+   "yazar": [
+    "profile.avatar"
+   ],
+   "parametreli": true,
+   "uzerinden": "profile",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayCopy",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-ayarlar.js:150"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayEmek",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-ayarlar.js:151"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayFragman",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:156"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayLang",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:126"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayMotion",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:90"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayMute",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:102"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayNotifs",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:136"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayProfile",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-ayarlar.js:155"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "profile",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "aySetGfx",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:89"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ayTest",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:103"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "backClan",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-battle.js:252"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "backPvp",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-battle.js:251"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "bag",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-envanter.js:62"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     23,
+     89
+    ],
+    "kragmir": [
+     23,
+     89
+    ]
+   }
+  },
+  {
+   "eylem": "bagBreak",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-pvp.js:41"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "breakWin",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "bagF",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-envanter.js:63"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "bagGo",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-envanter.js:66"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "anvil",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "bagMarket",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-pvp.js:42"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "market",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "bagOne",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-envanter.js:72"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     59,
+     60
+    ],
+    "kragmir": [
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "eylem": "bagPick",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-envanter.js:64"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "bakimBuy",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-rapor.js:134"
+   ],
+   "okur": [],
+   "yazar": [
+    "upkeep.buy"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "balik",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-balik.js:70"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "balikDefter",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-balik.js:115"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "balikGo",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-balik.js:76"
+   ],
+   "okur": [],
+   "yazar": [
+    "fish.cast"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "balikRod",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-balik.js:105"
+   ],
+   "okur": [],
+   "yazar": [
+    "fish.rod"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "balikSat",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-balik.js:109"
+   ],
+   "okur": [],
+   "yazar": [
+    "fish.sell"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "baskin",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-baskin.js:56"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "baskinGo",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-baskin.js:54"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "binaKapat",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ahir.js:50"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "block",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:310"
+   ],
+   "okur": [],
+   "yazar": [
+    "social.block"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "blockAsk",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-odeme.js:308"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "breakWin",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:41"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     61
+    ],
+    "kragmir": [
+     61
+    ]
+   }
+  },
+  {
+   "eylem": "building",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-hub.js:481"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ],
+    "kragmir": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79
+    ]
+   }
+  },
+  {
+   "eylem": "calClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:230"
+   ],
+   "okur": [],
+   "yazar": [
+    "cal.claim"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "calInfo",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-kalicilik.js:229"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "calendar",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-kalicilik.js:174"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     42
+    ],
+    "kragmir": [
+     42
+    ]
+   }
+  },
+  {
+   "eylem": "cbFull",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:40"
+   ],
+   "okur": [
+    "chat.convs",
+    "chat.list",
+    "chat.peek"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "chatOpen",
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     27,
+     93
+    ],
+    "kragmir": [
+     27,
+     93
+    ]
+   }
+  },
+  {
+   "eylem": "cbSend",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:70"
+   ],
+   "okur": [],
+   "yazar": [
+    "chat.send"
+   ],
+   "parametreli": true,
+   "uzerinden": "chatOpen",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "cbTab",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-social.js:32"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "chBack",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:162"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "chatOpen",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "chConv",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:161"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "chatOpen",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "chSend",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-social.js:155"
+   ],
+   "okur": [],
+   "yazar": [
+    "chat.send"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "charCreate",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-olustur.js:52"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "charSelect",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-karakter.js:74"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "charSwitch",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-karakter.js:140"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "charSwitchMenu",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:527"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "chatMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:542"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "chatOpen",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "chatMini",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-social.js:27"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "chatOpen",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:103"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clan",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-klan.js:47"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     25,
+     40,
+     91
+    ],
+    "kragmir": [
+     25,
+     40,
+     91
+    ]
+   }
+  },
+  {
+   "eylem": "clanApply",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-klan.js:95"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.apply"
+   ],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:268"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.claim"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanCreate",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-klan.js:93"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.create"
+   ],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanDecline",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:97"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.decline"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanHisar",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hisar.js:89"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanJoin",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-klan.js:94"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.join"
+   ],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanLeave",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-klan.js:187"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.leave"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanPage",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-social.js:237"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.page"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanUnapply",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:96"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.unapply"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "clanhq",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-klan.js:63"
+   ],
+   "okur": [
+    "clan.search",
+    "clan.view",
+    "hisar.view"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "closeModal",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-core.js:232"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "closeWin",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-core.js:359"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "codex",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-esya.js:127",
+    "js/ui-rehber.js:279"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     17,
+     84
+    ],
+    "kragmir": [
+     17,
+     84
+    ]
+   }
+  },
+  {
+   "eylem": "cpGo",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:249"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "craft",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:70"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "cxCls",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-esya.js:162"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "cxItem",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-esya.js:176"
+   ],
+   "okur": [
+    "codex.item"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     112,
+     113
+    ],
+    "kragmir": [
+     112,
+     113
+    ]
+   }
+  },
+  {
+   "eylem": "cxType",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-esya.js:161"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "cxZone",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-esya.js:134"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "czArena",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:479"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "gate",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "czHall",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:478"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "meydan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "czMarket",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:480"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "shop",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "czpk",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:477",
+    "js/ui-meydan.js:126"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "denetci",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-denetci.js:75"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "depthFloors",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-pvp.js:118"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "depthSweep",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-pvp.js:128"
+   ],
+   "okur": [],
+   "yazar": [
+    "depth.sweep"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "destan",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-destan.js:22"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "destanBack",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-destan.js:31"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "destan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "destanGo",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-destan.js:27"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "destanMemory",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-destan.js:29"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "destanOutro",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-destan.js:28"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "destanPick",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-destan.js:44"
+   ],
+   "okur": [],
+   "yazar": [
+    "destan.solve"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "destanPlay",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-destan.js:26"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devAsk",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-kalicilik.js:373"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devEnergy",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hub.js:619"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.energy"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devGear",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hub.js:623"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.gear"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devGive",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hub.js:622"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.give"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devLevel",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hub.js:620"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.level"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devMastery",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hub.js:621"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.mastery"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devNo",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:389"
+   ],
+   "okur": [],
+   "yazar": [
+    "notif.set"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devOff",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:390"
+   ],
+   "okur": [],
+   "yazar": [
+    "notif.set"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devPremium",
+   "tur": "geliştirici aracı",
+   "kaynak": [
+    "js/ui-town.js:380"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devReset",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-hub.js:625"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devRuler",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-dunya.js:351"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.ruler"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devTest",
+   "tur": "geliştirici aracı",
+   "kaynak": [
+    "js/ui-kalicilik.js:391"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devTut",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:166"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.tut"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devUnlock",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hub.js:624"
+   ],
+   "okur": [],
+   "yazar": [
+    "dev.unlock"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "devYes",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:382"
+   ],
+   "okur": [],
+   "yazar": [
+    "notif.set"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "dismantle",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-town.js:61"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "diyarMap",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-dunya.js:133"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "otag",
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     18,
+     85
+    ],
+    "kragmir": [
+     18,
+     85
+    ]
+   }
+  },
+  {
+   "eylem": "dlgClose",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-diyalog.js:40"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "dlgNext",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-diyalog.js:39"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "drawer",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ayarlar.js:190",
+    "js/ui-hub.js:489",
+    "js/ui-hub.js:494"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     15,
+     82
+    ],
+    "kragmir": [
+     15,
+     82
+    ]
+   }
+  },
+  {
+   "eylem": "emoOpen",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-social.js:81"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "emoPick",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-social.js:90"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "equip",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:118"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "erisim",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-erisim.js:49"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "settings",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "evGo",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-kalicilik.js:216"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "exchange",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-battle.js:184"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "exchangeDo",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-battle.js:189"
+   ],
+   "okur": [],
+   "yazar": [
+    "boss.exchange"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "feudGo",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-meydan.js:89"
+   ],
+   "okur": [],
+   "yazar": [
+    "feud.revenge"
+   ],
+   "parametreli": true,
+   "uzerinden": "arenaVs",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frAccept",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:298"
+   ],
+   "okur": [],
+   "yazar": [
+    "friend.accept"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frAdd",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:297"
+   ],
+   "okur": [],
+   "yazar": [
+    "friend.add"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frCancel",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:300"
+   ],
+   "okur": [],
+   "yazar": [
+    "friend.cancel"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frDecline",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:299"
+   ],
+   "okur": [],
+   "yazar": [
+    "friend.decline"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frRemove",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:301"
+   ],
+   "okur": [],
+   "yazar": [
+    "friend.remove"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frRemoveAsk",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-odeme.js:302"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frameSel",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-social.js:230"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "frameSet",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-social.js:235"
+   ],
+   "okur": [],
+   "yazar": [
+    "rank.frame"
+   ],
+   "parametreli": true,
+   "uzerinden": "frameSel",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "friends",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-odeme.js:292"
+   ],
+   "okur": [
+    "friend.list"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "friendsMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-odeme.js:294"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "friends",
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     46
+    ],
+    "kragmir": [
+     46
+    ]
+   }
+  },
+  {
+   "eylem": "fullscreen",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-hub.js:516"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gate",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-battle.js:39",
+    "js/ui-meydan.js:125"
+   ],
+   "okur": [
+    "akin.view",
+    "arena.list",
+    "baskin.view",
+    "siege.top",
+    "war.view"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateCapital",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:144"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateCarsi",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:145"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     36
+    ],
+    "kragmir": [
+     36
+    ]
+   }
+  },
+  {
+   "eylem": "gateCz",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:147"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateDestan",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:143"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateEvents",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:540"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateGo",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:124"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateKlan",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:146"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateMenu",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:111"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gatePvp",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:541"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gateZones",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:539"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gfx",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-ayarlar.js:197",
+    "js/ui-isik.js:24"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "settings",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gfxReload",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-isik.js:26"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gfxSet",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-isik.js:25"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "gift",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:432"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "goCapital",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:148"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "goCarsi",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:105"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "goKlan",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:103"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "goStage",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-esya.js:150"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hall",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-meydan.js:127",
+    "js/ui-town.js:339"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "meydan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hallUp",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:341"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "han",
+   "tur": "bina katmanı",
+   "kaynak": [
+    "js/ui-han.js:44"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hanIc",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-han.js:46"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hanOnay",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-han.js:52"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hanVazgec",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-han.js:53"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hotbar",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:386"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "party",
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     22
+    ],
+    "kragmir": [
+     22
+    ]
+   }
+  },
+  {
+   "eylem": "hsAccept",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hisar.js:78"
+   ],
+   "okur": [],
+   "yazar": [
+    "ally.accept"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hsAsk",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hisar.js:81"
+   ],
+   "okur": [],
+   "yazar": [
+    "help.ask"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hsDecline",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hisar.js:79"
+   ],
+   "okur": [],
+   "yazar": [
+    "ally.decline"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hsHelp",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hisar.js:82"
+   ],
+   "okur": [],
+   "yazar": [
+    "help.give"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hsInvite",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hisar.js:73"
+   ],
+   "okur": [
+    "ally.list"
+   ],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hsLeave",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-hisar.js:80"
+   ],
+   "okur": [],
+   "yazar": [
+    "ally.leave"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hsSend",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hisar.js:77"
+   ],
+   "okur": [],
+   "yazar": [
+    "ally.invite"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "hub",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:277"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "icmAc",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ic-mekan.js:118"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "icmCik",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ic-mekan.js:119"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "icmGizle",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ic-mekan.js:117"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ikScroll",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:283"
+   ],
+   "okur": [],
+   "yazar": [
+    "npc.scroll"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "iksir",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:280"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "karaborsa",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-karaborsa.js:37"
+   ],
+   "okur": [
+    "karaborsa.view"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "karakter",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:36"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kbBuy",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-karaborsa.js:47"
+   ],
+   "okur": [],
+   "yazar": [
+    "karaborsa.buy"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klAccept",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:170"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.accept"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klBannerSave",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:236"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.banner"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klBuy",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:215"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.buy"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klCape",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-klan.js:235"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klDonate",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:142"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.donate"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klFac",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-klan.js:355"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.hqup"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klHq",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-klan.js:141"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klHunt",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-klan.js:269"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.hunt"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klInvite",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:267"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.invite"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klKick",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-klan.js:185"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.kick"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klMember",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-klan.js:173"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klNotice",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-klan.js:146"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klNoticeSave",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:154"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.settings"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klOpen",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:172"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.settings"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klPair",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-klan.js:233"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klQuest",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:202"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.quest"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klRank",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:184"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.rank"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klReject",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-klan.js:171"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.reject"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klSym",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-klan.js:234"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klTransfer",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-klan.js:186"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.transfer"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "klanTab",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:101"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "clan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxEquip",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-kahraman.js:85"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxF",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-kahraman.js:82"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxPick",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-kahraman.js:84"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxRot",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-kahraman.js:81"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxSell",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-kahraman.js:88"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxSlot",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-kahraman.js:83"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxUnequip",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-kahraman.js:86"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "kxUp",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-kahraman.js:87"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "anvil",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "liveFind",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-battle.js:205"
+   ],
+   "okur": [],
+   "yazar": [
+    "live.find"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "logoutMenu",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-hub.js:513"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mail",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:292"
+   ],
+   "okur": [
+    "mail.list",
+    "report.list"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     16,
+     83
+    ],
+    "kragmir": [
+     16,
+     83
+    ]
+   }
+  },
+  {
+   "eylem": "mailBack",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:335"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mailClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:336"
+   ],
+   "okur": [],
+   "yazar": [
+    "mail.claim"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mailOpen",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:334"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mailSend",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:326"
+   ],
+   "okur": [],
+   "yazar": [
+    "clan.mail",
+    "mail.nation",
+    "mail.send"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mailTo",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:325"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "mail",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "market",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:134"
+   ],
+   "okur": [
+    "market.list",
+    "market.mine"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketBuy",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:170"
+   ],
+   "okur": [],
+   "yazar": [
+    "market.buy"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketCancel",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:171"
+   ],
+   "okur": [],
+   "yazar": [
+    "market.cancel"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketCls",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:163"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketKind",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:161"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketKindOpen",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:159"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "market",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketPick",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:165"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketRar",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:162"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketSell",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:167"
+   ],
+   "okur": [],
+   "yazar": [
+    "market.sell"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketSort",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:164"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "marketSub",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:160"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "meydan",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-meydan.js:21"
+   ],
+   "okur": [
+    "arena.list",
+    "feud.list"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mine",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:73"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mineCollect",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-town.js:85"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mineTrade",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:89"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mineUp",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:88"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mnBaskin",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-baskin.js:55"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "gate",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mnFish",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:528"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "balik",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mnFree",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:537"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "shop",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mnHisar",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:530"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mnMain",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:526"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mob",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-esya.js:135"
+   ],
+   "okur": [
+    "codex.get"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     110,
+     111
+    ],
+    "kragmir": [
+     110,
+     111
+    ]
+   }
+  },
+  {
+   "eylem": "modInfo",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-pvp.js:91"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mode",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-battle.js:203"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "monthlyBonus",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:247"
+   ],
+   "okur": [],
+   "yazar": [
+    "monthly.bonus"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "monthlyClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:246"
+   ],
+   "okur": [],
+   "yazar": [
+    "monthly.claim"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "monument",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:275"
+   ],
+   "okur": [
+    "monument.view",
+    "war.view"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mqClaim",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-anagorev.js:92"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mqGo",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-anagorev.js:96"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mqSel",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-anagorev.js:91"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mqTrack",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-anagorev.js:97"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "msgMenu",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-odeme.js:314"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mstReset",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-party.js:79"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mstUp",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:78"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mzBackDef",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-meydan.js:100"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "meydan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mzBuy",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-meydan.js:110"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "mzRefresh",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-meydan.js:72"
+   ],
+   "okur": [
+    "arena.list"
+   ],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "nbClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-nobet.js:87"
+   ],
+   "okur": [],
+   "yazar": [
+    "nobet.claim"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "nbGo",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-nobet.js:68"
+   ],
+   "okur": [
+    "coop.view"
+   ],
+   "yazar": [
+    "coop.join",
+    "coop.leave"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "nbJoin",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-nobet.js:56"
+   ],
+   "okur": [],
+   "yazar": [
+    "nobet.join"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "nbLeave",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-nobet.js:57"
+   ],
+   "okur": [],
+   "yazar": [
+    "nobet.leave"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "nbLobbyOff",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-nobet.js:67"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "news",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-destek.js:27",
+    "js/ui-duyuru.js:269"
+   ],
+   "okur": [
+    "news.list",
+    "news.read"
+   ],
+   "yazar": [
+    "ann.feed"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "next",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-battle.js:250"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "nobet",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-nobet.js:52"
+   ],
+   "okur": [
+    "nobet.view"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "notifCat",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:165"
+   ],
+   "okur": [],
+   "yazar": [
+    "notif.set"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "notifGo",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-kalicilik.js:128"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "notifs",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-duyuru.js:264",
+    "js/ui-kalicilik.js:129"
+   ],
+   "okur": [
+    "notif.list",
+    "notif.read"
+   ],
+   "yazar": [
+    "ann.feed"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcBuy",
+   "tur": "NPC diyaloğu",
+   "kaynak": [
+    "js/ui-ogretici.js:35"
+   ],
+   "okur": [],
+   "yazar": [
+    "npc.buy"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcChild",
+   "tur": "NPC diyaloğu",
+   "kaynak": [
+    "js/ui-ogretici.js:44"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcKing",
+   "tur": "NPC diyaloğu",
+   "kaynak": [
+    "js/ui-hub.js:90"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcMerchant",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-ogretici.js:29"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcSilah",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:154"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcTaki",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:156"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcWorm",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-ogretici.js:52"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "wormGo",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "npcZirh",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:155"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "olzCreate",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-olustur.js:214"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "onlineClaim",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-cevrimici.js:80"
+   ],
+   "okur": [],
+   "yazar": [
+    "online.claim"
+   ],
+   "parametreli": true,
+   "uzerinden": "onlineOpen",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "onlineOpen",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-cevrimici.js:79"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     44,
+     100,
+     102
+    ],
+    "kragmir": [
+     44,
+     100,
+     102
+    ]
+   }
+  },
+  {
+   "eylem": "ormanFight",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/orman.js:204"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "otag",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-dunya.js:132"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "otagMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-dunya.js:134"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "otag",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "p23Hava",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:322"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "party",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-party.js:27"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     21,
+     88
+    ],
+    "kragmir": [
+     21,
+     88
+    ]
+   }
+  },
+  {
+   "eylem": "partyPath",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-party.js:39"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "party",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pathBack",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-sinif.js:94"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pathChange",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-sinif.js:93"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pathGo",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-sinif.js:109"
+   ],
+   "okur": [],
+   "yazar": [
+    "path.choose"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pathPick",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-sinif.js:96"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     58
+    ],
+    "kragmir": [
+     58
+    ]
+   }
+  },
+  {
+   "eylem": "pathRow",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-sinif.js:92"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "payBuy",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-odeme.js:138"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "payCard",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-odeme.js:114"
+   ],
+   "okur": [
+    "pay.card"
+   ],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "payCur",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-odeme.js:113"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pazar",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:139"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "market",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pcard",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-social.js:165"
+   ],
+   "okur": [
+    "player.card"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     35,
+     68,
+     69,
+     70,
+     106,
+     107,
+     118,
+     119
+    ],
+    "kragmir": [
+     35,
+     68,
+     69,
+     70,
+     106,
+     107,
+     118,
+     119
+    ]
+   }
+  },
+  {
+   "eylem": "pick",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:59"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pickGrade",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:60"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pickUp",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-esya.js:93"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pm",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:176"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "chatOpen",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "portalMenu",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:128"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "premBuy",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-town.js:397"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "premium",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:383"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     14,
+     81
+    ],
+    "kragmir": [
+     14,
+     81
+    ]
+   }
+  },
+  {
+   "eylem": "premiumMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:543"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "premium",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "profile",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:552",
+    "js/ui-hub.js:581",
+    "js/ui-kalicilik.js:293"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     13,
+     80,
+     95
+    ],
+    "kragmir": [
+     13,
+     80,
+     95
+    ]
+   }
+  },
+  {
+   "eylem": "promoDo",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-hub.js:548"
+   ],
+   "okur": [],
+   "yazar": [
+    "promo.redeem"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "promoMenu",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:545"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     47,
+     101,
+     103
+    ],
+    "kragmir": [
+     47,
+     101,
+     103
+    ]
+   }
+  },
+  {
+   "eylem": "pzSet",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:166"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "pzTaki",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:141"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "qboxToggle",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:348"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "qlOpen",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:380"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "questBonus",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:434"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "questClaim",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:433"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "questGo",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:431"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     117
+    ],
+    "kragmir": [
+     117
+    ]
+   }
+  },
+  {
+   "eylem": "questLog",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:367"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "quests",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-anagorev.js:90",
+    "js/ui-kalicilik.js:235",
+    "js/ui-town.js:413"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     24,
+     90
+    ],
+    "kragmir": [
+     24,
+     90
+    ]
+   }
+  },
+  {
+   "eylem": "quick",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-hub.js:484"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "quoteMsg",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-odeme.js:318"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rDecree",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-dunya.js:215"
+   ],
+   "okur": [],
+   "yazar": [
+    "realm.announce"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rGrant",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-dunya.js:219"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rGrantGo",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-dunya.js:227"
+   ],
+   "okur": [],
+   "yazar": [
+    "realm.grant"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rRun",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-dunya.js:176"
+   ],
+   "okur": [],
+   "yazar": [
+    "realm.run"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rVote",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-dunya.js:173"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     30
+    ],
+    "kragmir": [
+     30
+    ]
+   }
+  },
+  {
+   "eylem": "rVoteGo",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-dunya.js:175"
+   ],
+   "okur": [],
+   "yazar": [
+    "realm.vote"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rank",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-social.js:204"
+   ],
+   "okur": [
+    "rank.info",
+    "war.view"
+   ],
+   "yazar": [
+    "rank.period"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rankMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:512"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "rank",
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     45
+    ],
+    "kragmir": [
+     45
+    ]
+   }
+  },
+  {
+   "eylem": "reforge",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-town.js:48"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rehber",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-rehber.js:290"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "codex",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "repBack",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-rapor.js:80"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "repList",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-rapor.js:88"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "repLog",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-rapor.js:75"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "repOpen",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-rapor.js:87"
+   ],
+   "okur": [
+    "report.get"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "repReason",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-odeme.js:334"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "repSend",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:335"
+   ],
+   "okur": [],
+   "yazar": [
+    "chat.report"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "repSub",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-rapor.js:89"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "reportAsk",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-odeme.js:333"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "reports",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-rapor.js:86"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "mail",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rhGo",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-rehber.js:269"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     53
+    ],
+    "kragmir": [
+     53
+    ]
+   }
+  },
+  {
+   "eylem": "rhSel",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-rehber.js:268"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rkClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-social.js:220"
+   ],
+   "okur": [],
+   "yazar": [
+    "rank.claim"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rkFac",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-social.js:219"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rkPer",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-social.js:218"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "rkRewards",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-social.js:227"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "sandikClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-sandik.js:38"
+   ],
+   "okur": [],
+   "yazar": [
+    "ofc.claim"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "sandikOpen",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-sandik.js:32"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "savas",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-hub.js:352"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     26,
+     92
+    ],
+    "kragmir": [
+     26,
+     92
+    ]
+   }
+  },
+  {
+   "eylem": "season",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-pvp.js:159"
+   ],
+   "okur": [
+    "season.view"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "seasonBack",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-meydan.js:128",
+    "js/ui-pvp.js:164"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "gate",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "seasonTitle",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-pvp.js:171"
+   ],
+   "okur": [],
+   "yazar": [
+    "season.title"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "sell",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-town.js:62"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "seriesClose",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-minidizi.js:22"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "seriesDone",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-minidizi.js:49"
+   ],
+   "okur": [],
+   "yazar": [
+    "series.watch"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "seriesLocked",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-minidizi.js:19"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "seriesOpen",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-minidizi.js:18"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "seriesPlay",
+   "tur": "NPC diyaloğu",
+   "kaynak": [
+    "js/ui-minidizi.js:24"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "server",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-sunucu.js:60"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "sesToggle",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-ses.js:148"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "settings",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-ayarlar.js:185"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     37
+    ],
+    "kragmir": [
+     37
+    ]
+   }
+  },
+  {
+   "eylem": "shop",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-odeme.js:209"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     19,
+     41,
+     86
+    ],
+    "kragmir": [
+     19,
+     41,
+     86
+    ]
+   }
+  },
+  {
+   "eylem": "shopBuy",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-odeme.js:217"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "skill",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-party.js:155"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "skillReset",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-party.js:154"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "skv",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:148"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "slot",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:117"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "sp",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:173"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spCat",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-destek.js:87"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spClose",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-destek.js:105"
+   ],
+   "okur": [],
+   "yazar": [
+    "ticket.close"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spList",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-destek.js:85"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spNew",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-destek.js:86"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spOpen",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-destek.js:88"
+   ],
+   "okur": [
+    "ticket.get"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spSay",
+   "tur": "NPC diyaloğu",
+   "kaynak": [
+    "js/ui-destek.js:100"
+   ],
+   "okur": [],
+   "yazar": [
+    "ticket.say"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spSend",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-destek.js:94"
+   ],
+   "okur": [],
+   "yazar": [
+    "ticket.open"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "spin",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:371"
+   ],
+   "okur": [],
+   "yazar": [
+    "wheel.spin"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "stage",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-battle.js:72"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     116
+    ],
+    "kragmir": [
+     116
+    ]
+   }
+  },
+  {
+   "eylem": "starterLater",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-odeme.js:252"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "starterOpen",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-odeme.js:251"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     99
+    ],
+    "kragmir": [
+     99
+    ]
+   }
+  },
+  {
+   "eylem": "statReset",
+   "tur": "onay penceresi",
+   "kaynak": [
+    "js/ui-party.js:174"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "sub",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-party.js:37"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "party",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "supportMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-destek.js:84"
+   ],
+   "okur": [
+    "ticket.list"
+   ],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     48
+    ],
+    "kragmir": [
+     48
+    ]
+   }
+  },
+  {
+   "eylem": "svCz",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:364"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "gate",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "svDivan",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-hub.js:365"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "meydan",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "svGo",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:362"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "gateGo",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "svQuick",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-hub.js:363"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "quick",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "sweep",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-battle.js:170"
+   ],
+   "okur": [],
+   "yazar": [
+    "battle.sweep"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tab",
+   "tur": "sekme değiştirme",
+   "kaynak": [
+    "js/ui-core.js:360",
+    "js/ui-kaplama.js:25"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     28,
+     29,
+     32,
+     33,
+     34,
+     49,
+     50,
+     51,
+     52,
+     54,
+     55,
+     56,
+     57,
+     62,
+     63,
+     64,
+     65,
+     66,
+     67,
+     94,
+     104,
+     105,
+     108,
+     109,
+     114,
+     115
+    ],
+    "kragmir": [
+     28,
+     29,
+     32,
+     33,
+     34,
+     49,
+     50,
+     51,
+     52,
+     54,
+     55,
+     56,
+     57,
+     62,
+     63,
+     64,
+     65,
+     66,
+     67,
+     94,
+     104,
+     105,
+     108,
+     109,
+     114,
+     115
+    ]
+   }
+  },
+  {
+   "eylem": "tcArmors",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:140"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcBuy",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:235"
+   ],
+   "okur": [],
+   "yazar": [
+    "npc.buy"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcCls",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:234"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcJewels",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:142"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcMats",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:140"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcPick",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:237"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcPickG",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:238"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcPlain",
+   "tur": "onay penceresi + veri yazar",
+   "kaynak": [
+    "js/ui-town.js:240"
+   ],
+   "okur": [],
+   "yazar": [
+    "npc.sell"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcPot",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:236"
+   ],
+   "okur": [],
+   "yazar": [
+    "npc.pot"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcSell",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-town.js:239"
+   ],
+   "okur": [],
+   "yazar": [
+    "npc.sell"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcSub",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:233"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tcWeapons",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-hub.js:140"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tier",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-pvp.js:76"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tierInfo",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-pvp.js:61"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "titleLock",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-kalicilik.js:289"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "titlePick",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-kalicilik.js:298"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     39,
+     98
+    ],
+    "kragmir": [
+     39,
+     98
+    ]
+   }
+  },
+  {
+   "eylem": "titlePickSet",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-kalicilik.js:306"
+   ],
+   "okur": [],
+   "yazar": [
+    "title.set"
+   ],
+   "parametreli": true,
+   "uzerinden": "profile",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "titleSet",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:288"
+   ],
+   "okur": [],
+   "yazar": [
+    "title.set"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "titles",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-kalicilik.js:260"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "achs",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "titlesMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-kalicilik.js:307"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "achs",
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     96
+    ],
+    "kragmir": [
+     96
+    ]
+   }
+  },
+  {
+   "eylem": "tkEnter",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-karakter.js:129"
+   ],
+   "okur": [],
+   "yazar": [
+    "char.select"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tkPick",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-karakter.js:118"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tp",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:149"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "travel",
+   "tur": "yönlendirme (yer değiştirir)",
+   "kaynak": [
+    "js/ui-hub.js:108"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tuccar",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:149"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "npcMerchant",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "tuccarSub",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:158"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "npcMerchant",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "unblock",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-odeme.js:311"
+   ],
+   "okur": [],
+   "yazar": [
+    "social.unblock"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "unequip",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-party.js:119"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "upClear",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-esya.js:85"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "upOpt",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-esya.js:94"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "upPrev",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-esya.js:87"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     31
+    ],
+    "kragmir": [
+     31
+    ]
+   }
+  },
+  {
+   "eylem": "upgrade",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-esya.js:96",
+    "js/ui-isik.js:141"
+   ],
+   "okur": [],
+   "yazar": [
+    "anvil.upgrade"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "vsAuto",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-battle.js:164"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "vsBack",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-battle.js:125"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "gate",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "vsCoef",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-battle.js:165"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "vsForm",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-battle.js:168"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "party",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "vsReturn",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-battle.js:169"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "vsStart",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-battle.js:166"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "weeklyBonus",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:249"
+   ],
+   "okur": [],
+   "yazar": [
+    "weekly.bonus"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "weeklyClaim",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-kalicilik.js:248"
+   ],
+   "okur": [],
+   "yazar": [
+    "weekly.claim"
+   ],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "wheel",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-town.js:361"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "wheelBack",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-town.js:370"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "worldInfo",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-dunya.js:109"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "wormGo",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-battle.js:124"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "yakutAl",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-odeme.js:105"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {
+    "elentha": [
+     20,
+     87
+    ],
+    "kragmir": [
+     20,
+     87
+    ]
+   }
+  },
+  {
+   "eylem": "yakutMenu",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-odeme.js:112"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "yakutAl",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "yashka",
+   "tur": "NPC diyaloğu",
+   "kaynak": [
+    "js/ui-anit.js:11"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "yashkaNobet",
+   "tur": "pencere",
+   "kaynak": [
+    "js/ui-anit.js:16"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": "nobet",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "yeminGo",
+   "tur": "modal",
+   "kaynak": [
+    "js/ui-yemin.js:19"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "yeminRite",
+   "tur": "savaş / VS",
+   "kaynak": [
+    "js/ui-yemin.js:25"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": "mode",
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "yes",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-core.js:238"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ytAuto",
+   "tur": "bildirim",
+   "kaynak": [
+    "js/ui-yetenek.js:72"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ytCls",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-yetenek.js:74"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "ytSel",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-yetenek.js:73"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "zaferAl",
+   "tur": "işlem (veri yazar, ekran açmaz ya da yalnız bildirim)",
+   "kaynak": [
+    "js/ui-zafer.js:58"
+   ],
+   "okur": [],
+   "yazar": [
+    "zafer.claim"
+   ],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "zaferAniti",
+   "tur": "bina katmanı",
+   "kaynak": [
+    "js/ui-zafer.js:49"
+   ],
+   "okur": [
+    "zafer.view"
+   ],
+   "yazar": [],
+   "parametreli": false,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  },
+  {
+   "eylem": "zone",
+   "tur": "diğer (yardımcı/iç eylem)",
+   "kaynak": [
+    "js/ui-battle.js:71"
+   ],
+   "okur": [],
+   "yazar": [],
+   "parametreli": true,
+   "uzerinden": null,
+   "taramada_ulasilan_durum": {}
+  }
+ ],
+ "durumlar": [
+  {
+   "halk": "elentha",
+   "no": 0,
+   "imza": "HUB:baskent",
+   "derinlik": 0,
+   "tarif": "açılış (başkent)",
+   "kanit_dpr1": "tara-sancak/k/0000.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 1,
+   "imza": "W:Otağ · Elentha|genel~ruler @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=clanhq)",
+   "kanit_dpr1": "tara-sancak/k/0001.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 2,
+   "imza": "W:Örs|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=anvil)",
+   "kanit_dpr1": "tara-sancak/k/0002.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 3,
+   "imza": "W:Maden|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=mine)",
+   "kanit_dpr1": "tara-sancak/k/0003.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 4,
+   "imza": "W:İksir ve Parşömen|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=iksir)",
+   "kanit_dpr1": "tara-sancak/k/0004.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 5,
+   "imza": "W:Kader Çarkı|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=wheel)",
+   "kanit_dpr1": "tara-sancak/k/0005.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 6,
+   "imza": "W:Taş Yemini|genel~champ @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=monument)",
+   "kanit_dpr1": "tara-sancak/k/0006.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 7,
+   "imza": "B:Han @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=han)",
+   "kanit_dpr1": "tara-sancak/k/0007.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 8,
+   "imza": "B:Ahır @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=ahir)",
+   "kanit_dpr1": "tara-sancak/k/0008.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 9,
+   "imza": "B:ZAFER ANITI @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=zaferAniti)",
+   "kanit_dpr1": "tara-sancak/k/0009.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 10,
+   "imza": "M:gatemenu.portalm|Işınlanma Kapısı @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=portal)",
+   "kanit_dpr1": "tara-sancak/k/0010.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 11,
+   "imza": "W:Karaborsa|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=karaborsa)",
+   "kanit_dpr1": "tara-sancak/k/0011.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 12,
+   "imza": "M:DİYALOG Kral Edran @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=king)",
+   "kanit_dpr1": "tara-sancak/k/0012.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 13,
+   "imza": "M:p23p.|Denetci @baskent",
+   "derinlik": 1,
+   "tarif": "profile()",
+   "kanit_dpr1": "tara-sancak/k/0013.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 14,
+   "imza": "W:Premium|genel @baskent",
+   "derinlik": 1,
+   "tarif": "premium()",
+   "kanit_dpr1": "tara-sancak/k/0014.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 15,
+   "imza": "M:p23m|Menü @baskent",
+   "derinlik": 1,
+   "tarif": "drawer()",
+   "kanit_dpr1": "tara-sancak/k/0015.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 16,
+   "imza": "W:Posta|posta~sys @baskent",
+   "derinlik": 1,
+   "tarif": "mail()",
+   "kanit_dpr1": "tara-sancak/k/0016.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 17,
+   "imza": "W:Ansiklopedi|genel~rehber @baskent",
+   "derinlik": 1,
+   "tarif": "codex()",
+   "kanit_dpr1": "tara-sancak/k/0017.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 18,
+   "imza": "W:Otağ · Elentha|genel~map @baskent",
+   "derinlik": 1,
+   "tarif": "diyarMap()",
+   "kanit_dpr1": "tara-sancak/k/0018.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 19,
+   "imza": "W:Kervan|genel~yakut @baskent",
+   "derinlik": 1,
+   "tarif": "shop()",
+   "kanit_dpr1": "tara-sancak/k/0019.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 20,
+   "imza": "W:Yakut Al|genel~packs @baskent",
+   "derinlik": 1,
+   "tarif": "yakutAl()",
+   "kanit_dpr1": "tara-sancak/k/0020.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 21,
+   "imza": "W:Karakter|karakter~eq @baskent",
+   "derinlik": 1,
+   "tarif": "party()",
+   "kanit_dpr1": "tara-sancak/k/0021.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 22,
+   "imza": "W:Yetenek|karakter~skill @baskent",
+   "derinlik": 1,
+   "tarif": "hotbar()",
+   "kanit_dpr1": "tara-sancak/k/0022.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 23,
+   "imza": "W:Çanta|canta @baskent",
+   "derinlik": 1,
+   "tarif": "bag()",
+   "kanit_dpr1": "tara-sancak/k/0023.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 24,
+   "imza": "W:Görevler|gorev~main @baskent",
+   "derinlik": 1,
+   "tarif": "quests()",
+   "kanit_dpr1": "tara-sancak/k/0024.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 25,
+   "imza": "W:Klan Karargâhı|klan @baskent",
+   "derinlik": 1,
+   "tarif": "clan()",
+   "kanit_dpr1": "tara-sancak/k/0025.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 26,
+   "imza": "M:p27sv|Savaş @baskent",
+   "derinlik": 1,
+   "tarif": "savas()",
+   "kanit_dpr1": "tara-sancak/k/0026.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 27,
+   "imza": "W:Sohbet|genel~f @baskent",
+   "derinlik": 1,
+   "tarif": "cbFull()",
+   "kanit_dpr1": "tara-sancak/k/0027.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 28,
+   "imza": "W:Otağ · Elentha|genel~treasury @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=clanhq) → tab(id=treasury)",
+   "kanit_dpr1": "tara-sancak/k/0028.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 29,
+   "imza": "W:Otağ · Elentha|genel~grant @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=clanhq) → tab(id=grant)",
+   "kanit_dpr1": "tara-sancak/k/0029.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 30,
+   "imza": "W:Otağ · Elentha|genel~ruler / M:|Oy ver @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=clanhq) → rVote(id=bot:120099:49:60,name=AkKaya)",
+   "kanit_dpr1": "tara-sancak/k/0030.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 31,
+   "imza": "W:Örs|genel / M:|Önizleme @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=anvil) → upPrev()",
+   "kanit_dpr1": "tara-sancak/k/0031.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 32,
+   "imza": "W:Taş Yemini|genel~clan @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → tab(id=clan)",
+   "kanit_dpr1": "tara-sancak/k/0032.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 33,
+   "imza": "W:Taş Yemini|genel~ruler @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → tab(id=ruler)",
+   "kanit_dpr1": "tara-sancak/k/0033.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 34,
+   "imza": "W:Taş Yemini|genel~race @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → tab(id=race)",
+   "kanit_dpr1": "tara-sancak/k/0034.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 35,
+   "imza": "W:Taş Yemini|genel~champ / M:|YamanAyaz @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → pcard(id=bot:7013:65:50)",
+   "kanit_dpr1": "tara-sancak/k/0035.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 36,
+   "imza": "HUB:carsi",
+   "derinlik": 2,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi)",
+   "kanit_dpr1": "tara-sancak/k/0036.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 37,
+   "imza": "W:Ayarlar|ayarlar~gfx @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → settings()",
+   "kanit_dpr1": "tara-sancak/k/0037.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 38,
+   "imza": "M:|Profil fotoğrafı @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → avatarPick()",
+   "kanit_dpr1": "tara-sancak/k/0038.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 39,
+   "imza": "M:|Unvan seç @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → titlePick()",
+   "kanit_dpr1": "tara-sancak/k/0039.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 40,
+   "imza": "W:Klan Karargâhı|klan / M:p23p.|Denetci @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → clan()",
+   "kanit_dpr1": "tara-sancak/k/0040.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 41,
+   "imza": "W:Kervan|genel~money @baskent",
+   "derinlik": 2,
+   "tarif": "premium() → shop(tab=money)",
+   "kanit_dpr1": "tara-sancak/k/0041.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 42,
+   "imza": "W:Takvim|gorev~n7 / M:p23m|Menü @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → calendar()",
+   "kanit_dpr1": "tara-sancak/k/0042.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 43,
+   "imza": "W:Başarımlar|basarim~list / M:p23m|Menü @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → achs()",
+   "kanit_dpr1": "tara-sancak/k/0043.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 44,
+   "imza": "M:onl.p25b|Çevrimiçi ödülleri @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → onlineOpen()",
+   "kanit_dpr1": "tara-sancak/k/0044.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 45,
+   "imza": "W:Sıralama|siralama~players @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → rankMenu()",
+   "kanit_dpr1": "tara-sancak/k/0045.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 46,
+   "imza": "W:Arkadaşlar|arkadas~list @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → friendsMenu()",
+   "kanit_dpr1": "tara-sancak/k/0046.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 47,
+   "imza": "M:|Promosyon kodu @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → promoMenu()",
+   "kanit_dpr1": "tara-sancak/k/0047.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 48,
+   "imza": "W:Sorun Teknik Destek|destek @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → supportMenu()",
+   "kanit_dpr1": "tara-sancak/k/0048.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 49,
+   "imza": "W:Posta|posta~yaz @baskent",
+   "derinlik": 2,
+   "tarif": "mail() → tab(id=yaz)",
+   "kanit_dpr1": "tara-sancak/k/0049.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 50,
+   "imza": "W:Posta|posta~rep @baskent",
+   "derinlik": 2,
+   "tarif": "mail() → tab(id=rep)",
+   "kanit_dpr1": "tara-sancak/k/0050.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 51,
+   "imza": "W:Ansiklopedi|genel~mobs @baskent",
+   "derinlik": 2,
+   "tarif": "codex() → tab(id=mobs)",
+   "kanit_dpr1": "tara-sancak/k/0051.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 52,
+   "imza": "W:Ansiklopedi|genel~items @baskent",
+   "derinlik": 2,
+   "tarif": "codex() → tab(id=items)",
+   "kanit_dpr1": "tara-sancak/k/0052.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 53,
+   "imza": "W:Kapı|genel~zones @baskent",
+   "derinlik": 2,
+   "tarif": "codex() → rhGo(id=baslarken)",
+   "kanit_dpr1": "tara-sancak/k/0053.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 54,
+   "imza": "W:Yakut Al|genel~card @baskent",
+   "derinlik": 2,
+   "tarif": "yakutAl() → tab(id=card)",
+   "kanit_dpr1": "tara-sancak/k/0054.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 55,
+   "imza": "W:Yakut Al|genel~hist @baskent",
+   "derinlik": 2,
+   "tarif": "yakutAl() → tab(id=hist)",
+   "kanit_dpr1": "tara-sancak/k/0055.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 56,
+   "imza": "W:Ustalık|karakter~mst @baskent",
+   "derinlik": 2,
+   "tarif": "hotbar() → tab(id=mst)",
+   "kanit_dpr1": "tara-sancak/k/0056.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 57,
+   "imza": "W:Unvan|karakter~unvan @baskent",
+   "derinlik": 2,
+   "tarif": "hotbar() → tab(id=unvan)",
+   "kanit_dpr1": "tara-sancak/k/0057.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 58,
+   "imza": "W:Yetenek|karakter~skill / M:ybox|Yol seç @baskent",
+   "derinlik": 2,
+   "tarif": "hotbar() → pathPick(k=sur)",
+   "kanit_dpr1": "tara-sancak/k/0058.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 59,
+   "imza": "W:Çanta|canta / M:|Eşyayı parçala @baskent",
+   "derinlik": 2,
+   "tarif": "bag() → bagOne(op=dismantle)",
+   "kanit_dpr1": "tara-sancak/k/0059.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 60,
+   "imza": "W:Çanta|canta / M:|Eşyayı sat @baskent",
+   "derinlik": 2,
+   "tarif": "bag() → bagOne(op=sell)",
+   "kanit_dpr1": "tara-sancak/k/0060.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 61,
+   "imza": "W:Parçala ya da Sat|genel @baskent",
+   "derinlik": 2,
+   "tarif": "bag() → breakWin()",
+   "kanit_dpr1": "tara-sancak/k/0061.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 62,
+   "imza": "W:Görevler|gorev~daily @baskent",
+   "derinlik": 2,
+   "tarif": "quests() → tab(id=daily)",
+   "kanit_dpr1": "tara-sancak/k/0062.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 63,
+   "imza": "W:Görevler|gorev~weekly @baskent",
+   "derinlik": 2,
+   "tarif": "quests() → tab(id=weekly)",
+   "kanit_dpr1": "tara-sancak/k/0063.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 64,
+   "imza": "W:Görevler|gorev~monthly @baskent",
+   "derinlik": 2,
+   "tarif": "quests() → tab(id=monthly)",
+   "kanit_dpr1": "tara-sancak/k/0064.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 65,
+   "imza": "W:Sohbet|genel~g @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → tab(id=g)",
+   "kanit_dpr1": "tara-sancak/k/0065.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 66,
+   "imza": "W:Sohbet|genel~c @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → tab(id=c)",
+   "kanit_dpr1": "tara-sancak/k/0066.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 67,
+   "imza": "W:Sohbet|genel~p @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → tab(id=p)",
+   "kanit_dpr1": "tara-sancak/k/0067.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 68,
+   "imza": "W:Sohbet|genel~f / M:|KızılYürek @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → pcard(id=bot:139:20:50)",
+   "kanit_dpr1": "tara-sancak/k/0068.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 69,
+   "imza": "W:Sohbet|genel~f / M:|KızılOzan @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → pcard(id=bot:235:30:50)",
+   "kanit_dpr1": "tara-sancak/k/0069.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 70,
+   "imza": "W:Taş Yemini|genel~clan / M:|UzunOzan @baskent",
+   "derinlik": 3,
+   "tarif": "building(id=monument) → tab(id=clan) → pcard(id=bot:22001:65:50)",
+   "kanit_dpr1": "tara-sancak/k/0070.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 71,
+   "imza": "W:Silah ve Kalkan|dukkan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_silah)",
+   "kanit_dpr1": "tara-sancak/k/0071.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 72,
+   "imza": "W:Zırh|dukkan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_zirh)",
+   "kanit_dpr1": "tara-sancak/k/0072.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 73,
+   "imza": "W:Takı|dukkan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_taki)",
+   "kanit_dpr1": "tara-sancak/k/0073.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 74,
+   "imza": "W:Tüccar|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_sarf)",
+   "kanit_dpr1": "tara-sancak/k/0074.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 75,
+   "imza": "W:Pazar|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=pazar)",
+   "kanit_dpr1": "tara-sancak/k/0075.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 76,
+   "imza": "W:Karaborsa|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=karaborsa)",
+   "kanit_dpr1": "tara-sancak/k/0076.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 77,
+   "imza": "M:DİYALOG Şaman Yashka @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=yashka)",
+   "kanit_dpr1": "tara-sancak/k/0077.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 78,
+   "imza": "M:blkw|Balık Tut @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=pier)",
+   "kanit_dpr1": "tara-sancak/k/0078.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 79,
+   "imza": "M:gatemenu.portalm|Işınlanma Kapısı @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=portal)",
+   "kanit_dpr1": "tara-sancak/k/0079.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 80,
+   "imza": "M:p23p.|Denetci @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → profile()",
+   "kanit_dpr1": "tara-sancak/k/0080.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 81,
+   "imza": "W:Premium|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → premium()",
+   "kanit_dpr1": "tara-sancak/k/0081.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 82,
+   "imza": "M:p23m|Menü @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → drawer()",
+   "kanit_dpr1": "tara-sancak/k/0082.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 83,
+   "imza": "W:Posta|posta~sys @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → mail()",
+   "kanit_dpr1": "tara-sancak/k/0083.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 84,
+   "imza": "W:Ansiklopedi|genel~rehber @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → codex()",
+   "kanit_dpr1": "tara-sancak/k/0084.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 85,
+   "imza": "W:Otağ · Elentha|genel~map @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → diyarMap()",
+   "kanit_dpr1": "tara-sancak/k/0085.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 86,
+   "imza": "W:Kervan|genel~yakut @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → shop()",
+   "kanit_dpr1": "tara-sancak/k/0086.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 87,
+   "imza": "W:Yakut Al|genel~packs @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → yakutAl()",
+   "kanit_dpr1": "tara-sancak/k/0087.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 88,
+   "imza": "W:Yetenek|karakter~skill @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → party()",
+   "kanit_dpr1": "tara-sancak/k/0088.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 89,
+   "imza": "W:Çanta|canta @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → bag()",
+   "kanit_dpr1": "tara-sancak/k/0089.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 90,
+   "imza": "W:Görevler|gorev~main @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → quests()",
+   "kanit_dpr1": "tara-sancak/k/0090.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 91,
+   "imza": "W:Klan Karargâhı|klan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → clan()",
+   "kanit_dpr1": "tara-sancak/k/0091.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 92,
+   "imza": "M:p27sv|Savaş @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → savas()",
+   "kanit_dpr1": "tara-sancak/k/0092.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 93,
+   "imza": "W:Sohbet|genel~f @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → cbFull()",
+   "kanit_dpr1": "tara-sancak/k/0093.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 94,
+   "imza": "W:Ayarlar|ayarlar~ses @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → settings() → tab(id=ses)",
+   "kanit_dpr1": "tara-sancak/k/0094.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 95,
+   "imza": "M:p23p|Denetci @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → avatarPick() → profile()",
+   "kanit_dpr1": "tara-sancak/k/0095.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 96,
+   "imza": "W:Başarımlar|basarim~titles @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → titlePick() → titlesMenu()",
+   "kanit_dpr1": "tara-sancak/k/0096.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 97,
+   "imza": "W:Klan Karargâhı|klan / M:|Profil fotoğrafı @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → clan() → avatarPick()",
+   "kanit_dpr1": "tara-sancak/k/0097.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 98,
+   "imza": "W:Klan Karargâhı|klan / M:|Unvan seç @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → clan() → titlePick()",
+   "kanit_dpr1": "tara-sancak/k/0098.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 99,
+   "imza": "W:Kervan|genel~money / M:starter|İlk Alım Paketi @baskent",
+   "derinlik": 3,
+   "tarif": "premium() → shop(tab=money) → starterOpen()",
+   "kanit_dpr1": "tara-sancak/k/0099.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 100,
+   "imza": "W:Takvim|gorev~n7 / M:onl.p25b|Çevrimiçi ödülleri @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → calendar() → onlineOpen()",
+   "kanit_dpr1": "tara-sancak/k/0100.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 101,
+   "imza": "W:Takvim|gorev~n7 / M:|Promosyon kodu @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → calendar() → promoMenu()",
+   "kanit_dpr1": "tara-sancak/k/0101.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 102,
+   "imza": "W:Başarımlar|basarim~list / M:onl.p25b|Çevrimiçi ödülleri @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → achs() → onlineOpen()",
+   "kanit_dpr1": "tara-sancak/k/0102.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 103,
+   "imza": "W:Başarımlar|basarim~list / M:|Promosyon kodu @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → achs() → promoMenu()",
+   "kanit_dpr1": "tara-sancak/k/0103.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 104,
+   "imza": "W:Sıralama|siralama~clans @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → tab(id=clans)",
+   "kanit_dpr1": "tara-sancak/k/0104.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 105,
+   "imza": "W:Sıralama|siralama~race @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → tab(id=race)",
+   "kanit_dpr1": "tara-sancak/k/0105.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 106,
+   "imza": "W:Sıralama|siralama~players / M:|YamanAyaz @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → pcard(id=bot:7013:65:50)",
+   "kanit_dpr1": "tara-sancak/k/0106.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 107,
+   "imza": "W:Sıralama|siralama~players / M:|DeliPusat @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → pcard(id=bot:7012:65:50)",
+   "kanit_dpr1": "tara-sancak/k/0107.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 108,
+   "imza": "W:Arkadaşlar|arkadas~req @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → friendsMenu() → tab(id=req)",
+   "kanit_dpr1": "tara-sancak/k/0108.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 109,
+   "imza": "W:Arkadaşlar|arkadas~blocked @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → friendsMenu() → tab(id=blocked)",
+   "kanit_dpr1": "tara-sancak/k/0109.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 110,
+   "imza": "W:Ansiklopedi|genel~mobs / M:|Küçük Bandikut @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=mobs) → mob(id=small_bandicoot)",
+   "kanit_dpr1": "tara-sancak/k/0110.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 111,
+   "imza": "W:Ansiklopedi|genel~mobs / M:|Bandikut @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=mobs) → mob(id=bandicoot)",
+   "kanit_dpr1": "tara-sancak/k/0111.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 112,
+   "imza": "W:Ansiklopedi|genel~items / M:cxbox|Sancak Palası @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=items) → cxItem(b=u:hanguk,g=2)",
+   "kanit_dpr1": "tara-sancak/k/0112.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 113,
+   "imza": "W:Ansiklopedi|genel~items / M:cxbox|Kül Dilimi Kılıç @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=items) → cxItem(b=u:kuldilimi,g=2)",
+   "kanit_dpr1": "tara-sancak/k/0113.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 114,
+   "imza": "W:Kapı|genel~dungeons @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → rhGo(id=baslarken) → tab(id=dungeons)",
+   "kanit_dpr1": "tara-sancak/k/0114.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 115,
+   "imza": "W:Kapı|genel~events @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → rhGo(id=baslarken) → tab(id=events)",
+   "kanit_dpr1": "tara-sancak/k/0115.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 116,
+   "imza": "W:Tarantula|vs @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → rhGo(id=baslarken) → stage(id=2-1,t=0)",
+   "kanit_dpr1": "tara-sancak/k/0116.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 117,
+   "imza": "W:Küçük Bandikut|vs @baskent",
+   "derinlik": 3,
+   "tarif": "quests() → tab(id=daily) → questGo(id=win)",
+   "kanit_dpr1": "tara-sancak/k/0117.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 118,
+   "imza": "W:Sohbet|genel~g / M:|AlpOzan @baskent",
+   "derinlik": 3,
+   "tarif": "cbFull() → tab(id=g) → pcard(id=bot:199:57:50)",
+   "kanit_dpr1": "tara-sancak/k/0118.jpg"
+  },
+  {
+   "halk": "elentha",
+   "no": 119,
+   "imza": "W:Sohbet|genel~g / M:|SarpAyaz @baskent",
+   "derinlik": 3,
+   "tarif": "cbFull() → tab(id=g) → pcard(id=bot:22007:52:50)",
+   "kanit_dpr1": "tara-sancak/k/0119.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 0,
+   "imza": "HUB:baskent",
+   "derinlik": 0,
+   "tarif": "açılış (başkent)",
+   "kanit_dpr1": "tara-ocak/k/0000.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 1,
+   "imza": "W:Otağ · Kragmir|genel~ruler @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=clanhq)",
+   "kanit_dpr1": "tara-ocak/k/0001.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 2,
+   "imza": "W:Örs|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=anvil)",
+   "kanit_dpr1": "tara-ocak/k/0002.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 3,
+   "imza": "W:Maden|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=mine)",
+   "kanit_dpr1": "tara-ocak/k/0003.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 4,
+   "imza": "W:İksir ve Parşömen|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=iksir)",
+   "kanit_dpr1": "tara-ocak/k/0004.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 5,
+   "imza": "W:Kader Çarkı|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=wheel)",
+   "kanit_dpr1": "tara-ocak/k/0005.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 6,
+   "imza": "W:Taş Yemini|genel~champ @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=monument)",
+   "kanit_dpr1": "tara-ocak/k/0006.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 7,
+   "imza": "B:Han @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=han)",
+   "kanit_dpr1": "tara-ocak/k/0007.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 8,
+   "imza": "B:Ahır @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=ahir)",
+   "kanit_dpr1": "tara-ocak/k/0008.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 9,
+   "imza": "B:ZAFER ANITI @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=zaferAniti)",
+   "kanit_dpr1": "tara-ocak/k/0009.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 10,
+   "imza": "M:gatemenu.portalm|Işınlanma Kapısı @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=portal)",
+   "kanit_dpr1": "tara-ocak/k/0010.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 11,
+   "imza": "W:Karaborsa|genel @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=karaborsa)",
+   "kanit_dpr1": "tara-ocak/k/0011.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 12,
+   "imza": "M:DİYALOG Kral Volgar Demirdiş @baskent",
+   "derinlik": 1,
+   "tarif": "building(id=king)",
+   "kanit_dpr1": "tara-ocak/k/0012.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 13,
+   "imza": "M:p23p.|Denetci @baskent",
+   "derinlik": 1,
+   "tarif": "profile()",
+   "kanit_dpr1": "tara-ocak/k/0013.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 14,
+   "imza": "W:Premium|genel @baskent",
+   "derinlik": 1,
+   "tarif": "premium()",
+   "kanit_dpr1": "tara-ocak/k/0014.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 15,
+   "imza": "M:p23m|Menü @baskent",
+   "derinlik": 1,
+   "tarif": "drawer()",
+   "kanit_dpr1": "tara-ocak/k/0015.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 16,
+   "imza": "W:Posta|posta~sys @baskent",
+   "derinlik": 1,
+   "tarif": "mail()",
+   "kanit_dpr1": "tara-ocak/k/0016.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 17,
+   "imza": "W:Ansiklopedi|genel~rehber @baskent",
+   "derinlik": 1,
+   "tarif": "codex()",
+   "kanit_dpr1": "tara-ocak/k/0017.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 18,
+   "imza": "W:Otağ · Kragmir|genel~map @baskent",
+   "derinlik": 1,
+   "tarif": "diyarMap()",
+   "kanit_dpr1": "tara-ocak/k/0018.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 19,
+   "imza": "W:Kervan|genel~yakut @baskent",
+   "derinlik": 1,
+   "tarif": "shop()",
+   "kanit_dpr1": "tara-ocak/k/0019.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 20,
+   "imza": "W:Yakut Al|genel~packs @baskent",
+   "derinlik": 1,
+   "tarif": "yakutAl()",
+   "kanit_dpr1": "tara-ocak/k/0020.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 21,
+   "imza": "W:Karakter|karakter~eq @baskent",
+   "derinlik": 1,
+   "tarif": "party()",
+   "kanit_dpr1": "tara-ocak/k/0021.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 22,
+   "imza": "W:Yetenek|karakter~skill @baskent",
+   "derinlik": 1,
+   "tarif": "hotbar()",
+   "kanit_dpr1": "tara-ocak/k/0022.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 23,
+   "imza": "W:Çanta|canta @baskent",
+   "derinlik": 1,
+   "tarif": "bag()",
+   "kanit_dpr1": "tara-ocak/k/0023.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 24,
+   "imza": "W:Görevler|gorev~main @baskent",
+   "derinlik": 1,
+   "tarif": "quests()",
+   "kanit_dpr1": "tara-ocak/k/0024.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 25,
+   "imza": "W:Klan Karargâhı|klan @baskent",
+   "derinlik": 1,
+   "tarif": "clan()",
+   "kanit_dpr1": "tara-ocak/k/0025.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 26,
+   "imza": "M:p27sv|Savaş @baskent",
+   "derinlik": 1,
+   "tarif": "savas()",
+   "kanit_dpr1": "tara-ocak/k/0026.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 27,
+   "imza": "W:Sohbet|genel~f @baskent",
+   "derinlik": 1,
+   "tarif": "cbFull()",
+   "kanit_dpr1": "tara-ocak/k/0027.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 28,
+   "imza": "W:Otağ · Kragmir|genel~treasury @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=clanhq) → tab(id=treasury)",
+   "kanit_dpr1": "tara-ocak/k/0028.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 29,
+   "imza": "W:Otağ · Kragmir|genel~grant @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=clanhq) → tab(id=grant)",
+   "kanit_dpr1": "tara-ocak/k/0029.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 30,
+   "imza": "W:Otağ · Kragmir|genel~ruler / M:|Oy ver @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=clanhq) → rVote(id=bot:698211:53:60,name=YamanŞahin)",
+   "kanit_dpr1": "tara-ocak/k/0030.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 31,
+   "imza": "W:Örs|genel / M:|Önizleme @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=anvil) → upPrev()",
+   "kanit_dpr1": "tara-ocak/k/0031.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 32,
+   "imza": "W:Taş Yemini|genel~clan @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → tab(id=clan)",
+   "kanit_dpr1": "tara-ocak/k/0032.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 33,
+   "imza": "W:Taş Yemini|genel~ruler @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → tab(id=ruler)",
+   "kanit_dpr1": "tara-ocak/k/0033.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 34,
+   "imza": "W:Taş Yemini|genel~race @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → tab(id=race)",
+   "kanit_dpr1": "tara-ocak/k/0034.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 35,
+   "imza": "W:Taş Yemini|genel~champ / M:|YamanAyaz @baskent",
+   "derinlik": 2,
+   "tarif": "building(id=monument) → pcard(id=bot:7013:65:50)",
+   "kanit_dpr1": "tara-ocak/k/0035.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 36,
+   "imza": "HUB:carsi",
+   "derinlik": 2,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi)",
+   "kanit_dpr1": "tara-ocak/k/0036.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 37,
+   "imza": "W:Ayarlar|ayarlar~gfx @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → settings()",
+   "kanit_dpr1": "tara-ocak/k/0037.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 38,
+   "imza": "M:|Profil fotoğrafı @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → avatarPick()",
+   "kanit_dpr1": "tara-ocak/k/0038.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 39,
+   "imza": "M:|Unvan seç @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → titlePick()",
+   "kanit_dpr1": "tara-ocak/k/0039.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 40,
+   "imza": "W:Klan Karargâhı|klan / M:p23p.|Denetci @baskent",
+   "derinlik": 2,
+   "tarif": "profile() → clan()",
+   "kanit_dpr1": "tara-ocak/k/0040.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 41,
+   "imza": "W:Kervan|genel~money @baskent",
+   "derinlik": 2,
+   "tarif": "premium() → shop(tab=money)",
+   "kanit_dpr1": "tara-ocak/k/0041.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 42,
+   "imza": "W:Takvim|gorev~n7 / M:p23m|Menü @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → calendar()",
+   "kanit_dpr1": "tara-ocak/k/0042.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 43,
+   "imza": "W:Başarımlar|basarim~list / M:p23m|Menü @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → achs()",
+   "kanit_dpr1": "tara-ocak/k/0043.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 44,
+   "imza": "M:onl.p25b|Çevrimiçi ödülleri @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → onlineOpen()",
+   "kanit_dpr1": "tara-ocak/k/0044.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 45,
+   "imza": "W:Sıralama|siralama~players @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → rankMenu()",
+   "kanit_dpr1": "tara-ocak/k/0045.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 46,
+   "imza": "W:Arkadaşlar|arkadas~list @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → friendsMenu()",
+   "kanit_dpr1": "tara-ocak/k/0046.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 47,
+   "imza": "M:|Promosyon kodu @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → promoMenu()",
+   "kanit_dpr1": "tara-ocak/k/0047.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 48,
+   "imza": "W:Sorun Teknik Destek|destek @baskent",
+   "derinlik": 2,
+   "tarif": "drawer() → supportMenu()",
+   "kanit_dpr1": "tara-ocak/k/0048.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 49,
+   "imza": "W:Posta|posta~yaz @baskent",
+   "derinlik": 2,
+   "tarif": "mail() → tab(id=yaz)",
+   "kanit_dpr1": "tara-ocak/k/0049.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 50,
+   "imza": "W:Posta|posta~rep @baskent",
+   "derinlik": 2,
+   "tarif": "mail() → tab(id=rep)",
+   "kanit_dpr1": "tara-ocak/k/0050.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 51,
+   "imza": "W:Ansiklopedi|genel~mobs @baskent",
+   "derinlik": 2,
+   "tarif": "codex() → tab(id=mobs)",
+   "kanit_dpr1": "tara-ocak/k/0051.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 52,
+   "imza": "W:Ansiklopedi|genel~items @baskent",
+   "derinlik": 2,
+   "tarif": "codex() → tab(id=items)",
+   "kanit_dpr1": "tara-ocak/k/0052.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 53,
+   "imza": "W:Kapı|genel~zones @baskent",
+   "derinlik": 2,
+   "tarif": "codex() → rhGo(id=baslarken)",
+   "kanit_dpr1": "tara-ocak/k/0053.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 54,
+   "imza": "W:Yakut Al|genel~card @baskent",
+   "derinlik": 2,
+   "tarif": "yakutAl() → tab(id=card)",
+   "kanit_dpr1": "tara-ocak/k/0054.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 55,
+   "imza": "W:Yakut Al|genel~hist @baskent",
+   "derinlik": 2,
+   "tarif": "yakutAl() → tab(id=hist)",
+   "kanit_dpr1": "tara-ocak/k/0055.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 56,
+   "imza": "W:Ustalık|karakter~mst @baskent",
+   "derinlik": 2,
+   "tarif": "hotbar() → tab(id=mst)",
+   "kanit_dpr1": "tara-ocak/k/0056.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 57,
+   "imza": "W:Unvan|karakter~unvan @baskent",
+   "derinlik": 2,
+   "tarif": "hotbar() → tab(id=unvan)",
+   "kanit_dpr1": "tara-ocak/k/0057.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 58,
+   "imza": "W:Yetenek|karakter~skill / M:ybox|Yol seç @baskent",
+   "derinlik": 2,
+   "tarif": "hotbar() → pathPick(k=sur)",
+   "kanit_dpr1": "tara-ocak/k/0058.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 59,
+   "imza": "W:Çanta|canta / M:|Eşyayı parçala @baskent",
+   "derinlik": 2,
+   "tarif": "bag() → bagOne(op=dismantle)",
+   "kanit_dpr1": "tara-ocak/k/0059.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 60,
+   "imza": "W:Çanta|canta / M:|Eşyayı sat @baskent",
+   "derinlik": 2,
+   "tarif": "bag() → bagOne(op=sell)",
+   "kanit_dpr1": "tara-ocak/k/0060.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 61,
+   "imza": "W:Parçala ya da Sat|genel @baskent",
+   "derinlik": 2,
+   "tarif": "bag() → breakWin()",
+   "kanit_dpr1": "tara-ocak/k/0061.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 62,
+   "imza": "W:Görevler|gorev~daily @baskent",
+   "derinlik": 2,
+   "tarif": "quests() → tab(id=daily)",
+   "kanit_dpr1": "tara-ocak/k/0062.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 63,
+   "imza": "W:Görevler|gorev~weekly @baskent",
+   "derinlik": 2,
+   "tarif": "quests() → tab(id=weekly)",
+   "kanit_dpr1": "tara-ocak/k/0063.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 64,
+   "imza": "W:Görevler|gorev~monthly @baskent",
+   "derinlik": 2,
+   "tarif": "quests() → tab(id=monthly)",
+   "kanit_dpr1": "tara-ocak/k/0064.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 65,
+   "imza": "W:Sohbet|genel~g @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → tab(id=g)",
+   "kanit_dpr1": "tara-ocak/k/0065.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 66,
+   "imza": "W:Sohbet|genel~c @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → tab(id=c)",
+   "kanit_dpr1": "tara-ocak/k/0066.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 67,
+   "imza": "W:Sohbet|genel~p @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → tab(id=p)",
+   "kanit_dpr1": "tara-ocak/k/0067.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 68,
+   "imza": "W:Sohbet|genel~f / M:|YalınKaya @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → pcard(id=bot:22005:38:50)",
+   "kanit_dpr1": "tara-ocak/k/0068.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 69,
+   "imza": "W:Sohbet|genel~f / M:|AkAyaz @baskent",
+   "derinlik": 2,
+   "tarif": "cbFull() → pcard(id=bot:22019:41:50)",
+   "kanit_dpr1": "tara-ocak/k/0069.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 70,
+   "imza": "W:Taş Yemini|genel~clan / M:|UzunOzan @baskent",
+   "derinlik": 3,
+   "tarif": "building(id=monument) → tab(id=clan) → pcard(id=bot:22001:65:50)",
+   "kanit_dpr1": "tara-ocak/k/0070.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 71,
+   "imza": "W:Silah ve Kalkan|dukkan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_silah)",
+   "kanit_dpr1": "tara-ocak/k/0071.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 72,
+   "imza": "W:Zırh|dukkan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_zirh)",
+   "kanit_dpr1": "tara-ocak/k/0072.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 73,
+   "imza": "W:Takı|dukkan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_taki)",
+   "kanit_dpr1": "tara-ocak/k/0073.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 74,
+   "imza": "W:Tüccar|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=c_sarf)",
+   "kanit_dpr1": "tara-ocak/k/0074.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 75,
+   "imza": "W:Pazar|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=pazar)",
+   "kanit_dpr1": "tara-ocak/k/0075.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 76,
+   "imza": "W:Karaborsa|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=karaborsa)",
+   "kanit_dpr1": "tara-ocak/k/0076.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 77,
+   "imza": "M:DİYALOG Şaman Yashka @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=yashka)",
+   "kanit_dpr1": "tara-ocak/k/0077.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 78,
+   "imza": "M:blkw|Balık Tut @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=pier)",
+   "kanit_dpr1": "tara-ocak/k/0078.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 79,
+   "imza": "M:gatemenu.portalm|Işınlanma Kapısı @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → building(id=portal)",
+   "kanit_dpr1": "tara-ocak/k/0079.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 80,
+   "imza": "M:p23p.|Denetci @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → profile()",
+   "kanit_dpr1": "tara-ocak/k/0080.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 81,
+   "imza": "W:Premium|genel @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → premium()",
+   "kanit_dpr1": "tara-ocak/k/0081.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 82,
+   "imza": "M:p23m|Menü @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → drawer()",
+   "kanit_dpr1": "tara-ocak/k/0082.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 83,
+   "imza": "W:Posta|posta~sys @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → mail()",
+   "kanit_dpr1": "tara-ocak/k/0083.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 84,
+   "imza": "W:Ansiklopedi|genel~rehber @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → codex()",
+   "kanit_dpr1": "tara-ocak/k/0084.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 85,
+   "imza": "W:Otağ · Kragmir|genel~map @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → diyarMap()",
+   "kanit_dpr1": "tara-ocak/k/0085.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 86,
+   "imza": "W:Kervan|genel~yakut @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → shop()",
+   "kanit_dpr1": "tara-ocak/k/0086.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 87,
+   "imza": "W:Yakut Al|genel~packs @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → yakutAl()",
+   "kanit_dpr1": "tara-ocak/k/0087.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 88,
+   "imza": "W:Yetenek|karakter~skill @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → party()",
+   "kanit_dpr1": "tara-ocak/k/0088.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 89,
+   "imza": "W:Çanta|canta @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → bag()",
+   "kanit_dpr1": "tara-ocak/k/0089.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 90,
+   "imza": "W:Görevler|gorev~main @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → quests()",
+   "kanit_dpr1": "tara-ocak/k/0090.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 91,
+   "imza": "W:Klan Karargâhı|klan @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → clan()",
+   "kanit_dpr1": "tara-ocak/k/0091.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 92,
+   "imza": "M:p27sv|Savaş @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → savas()",
+   "kanit_dpr1": "tara-ocak/k/0092.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 93,
+   "imza": "W:Sohbet|genel~f @carsi",
+   "derinlik": 3,
+   "tarif": "building(id=portal) → gateCarsi(pt=carsi) → cbFull()",
+   "kanit_dpr1": "tara-ocak/k/0093.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 94,
+   "imza": "W:Ayarlar|ayarlar~ses @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → settings() → tab(id=ses)",
+   "kanit_dpr1": "tara-ocak/k/0094.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 95,
+   "imza": "M:p23p|Denetci @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → avatarPick() → profile()",
+   "kanit_dpr1": "tara-ocak/k/0095.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 96,
+   "imza": "W:Başarımlar|basarim~titles @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → titlePick() → titlesMenu()",
+   "kanit_dpr1": "tara-ocak/k/0096.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 97,
+   "imza": "W:Klan Karargâhı|klan / M:|Profil fotoğrafı @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → clan() → avatarPick()",
+   "kanit_dpr1": "tara-ocak/k/0097.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 98,
+   "imza": "W:Klan Karargâhı|klan / M:|Unvan seç @baskent",
+   "derinlik": 3,
+   "tarif": "profile() → clan() → titlePick()",
+   "kanit_dpr1": "tara-ocak/k/0098.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 99,
+   "imza": "W:Kervan|genel~money / M:starter|İlk Alım Paketi @baskent",
+   "derinlik": 3,
+   "tarif": "premium() → shop(tab=money) → starterOpen()",
+   "kanit_dpr1": "tara-ocak/k/0099.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 100,
+   "imza": "W:Takvim|gorev~n7 / M:onl.p25b|Çevrimiçi ödülleri @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → calendar() → onlineOpen()",
+   "kanit_dpr1": "tara-ocak/k/0100.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 101,
+   "imza": "W:Takvim|gorev~n7 / M:|Promosyon kodu @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → calendar() → promoMenu()",
+   "kanit_dpr1": "tara-ocak/k/0101.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 102,
+   "imza": "W:Başarımlar|basarim~list / M:onl.p25b|Çevrimiçi ödülleri @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → achs() → onlineOpen()",
+   "kanit_dpr1": "tara-ocak/k/0102.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 103,
+   "imza": "W:Başarımlar|basarim~list / M:|Promosyon kodu @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → achs() → promoMenu()",
+   "kanit_dpr1": "tara-ocak/k/0103.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 104,
+   "imza": "W:Sıralama|siralama~clans @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → tab(id=clans)",
+   "kanit_dpr1": "tara-ocak/k/0104.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 105,
+   "imza": "W:Sıralama|siralama~race @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → tab(id=race)",
+   "kanit_dpr1": "tara-ocak/k/0105.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 106,
+   "imza": "W:Sıralama|siralama~players / M:|YamanAyaz @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → pcard(id=bot:7013:65:50)",
+   "kanit_dpr1": "tara-ocak/k/0106.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 107,
+   "imza": "W:Sıralama|siralama~players / M:|DeliPusat @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → rankMenu() → pcard(id=bot:7012:65:50)",
+   "kanit_dpr1": "tara-ocak/k/0107.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 108,
+   "imza": "W:Arkadaşlar|arkadas~req @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → friendsMenu() → tab(id=req)",
+   "kanit_dpr1": "tara-ocak/k/0108.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 109,
+   "imza": "W:Arkadaşlar|arkadas~blocked @baskent",
+   "derinlik": 3,
+   "tarif": "drawer() → friendsMenu() → tab(id=blocked)",
+   "kanit_dpr1": "tara-ocak/k/0109.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 110,
+   "imza": "W:Ansiklopedi|genel~mobs / M:|Küçük Bandikut @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=mobs) → mob(id=small_bandicoot)",
+   "kanit_dpr1": "tara-ocak/k/0110.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 111,
+   "imza": "W:Ansiklopedi|genel~mobs / M:|Bandikut @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=mobs) → mob(id=bandicoot)",
+   "kanit_dpr1": "tara-ocak/k/0111.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 112,
+   "imza": "W:Ansiklopedi|genel~items / M:cxbox|Sancak Palası @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=items) → cxItem(b=u:hanguk,g=2)",
+   "kanit_dpr1": "tara-ocak/k/0112.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 113,
+   "imza": "W:Ansiklopedi|genel~items / M:cxbox|Kül Dilimi Kılıç @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → tab(id=items) → cxItem(b=u:kuldilimi,g=2)",
+   "kanit_dpr1": "tara-ocak/k/0113.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 114,
+   "imza": "W:Kapı|genel~dungeons @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → rhGo(id=baslarken) → tab(id=dungeons)",
+   "kanit_dpr1": "tara-ocak/k/0114.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 115,
+   "imza": "W:Kapı|genel~events @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → rhGo(id=baslarken) → tab(id=events)",
+   "kanit_dpr1": "tara-ocak/k/0115.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 116,
+   "imza": "W:Tarantula|vs @baskent",
+   "derinlik": 3,
+   "tarif": "codex() → rhGo(id=baslarken) → stage(id=2-1,t=0)",
+   "kanit_dpr1": "tara-ocak/k/0116.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 117,
+   "imza": "W:Küçük Bandikut|vs @baskent",
+   "derinlik": 3,
+   "tarif": "quests() → tab(id=daily) → questGo(id=win)",
+   "kanit_dpr1": "tara-ocak/k/0117.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 118,
+   "imza": "W:Sohbet|genel~g / M:|BozTuğ @baskent",
+   "derinlik": 3,
+   "tarif": "cbFull() → tab(id=g) → pcard(id=bot:22004:47:50)",
+   "kanit_dpr1": "tara-ocak/k/0118.jpg"
+  },
+  {
+   "halk": "kragmir",
+   "no": 119,
+   "imza": "W:Sohbet|genel~g / M:|KocaBilek @baskent",
+   "derinlik": 3,
+   "tarif": "cbFull() → tab(id=g) → pcard(id=bot:165:36:50)",
+   "kanit_dpr1": "tara-ocak/k/0119.jpg"
+  }
+ ],
+ "sekmeler": {
+  "elentha": [
+   "blocked (Arkadaşlar)",
+   "c (Sohbet)",
+   "card (Yakut Al)",
+   "champ (Taş Yemini)",
+   "clan (Taş Yemini)",
+   "clans (Sıralama)",
+   "daily (Görevler)",
+   "dungeons (Kapı)",
+   "eq (Karakter)",
+   "events (Kapı)",
+   "f (Sohbet)",
+   "g (Sohbet)",
+   "gfx (Ayarlar)",
+   "grant (Otağ · Elentha)",
+   "hist (Yakut Al)",
+   "items (Ansiklopedi)",
+   "list (Arkadaşlar)",
+   "list (Başarımlar)",
+   "main (Görevler)",
+   "map (Otağ · Elentha)",
+   "mobs (Ansiklopedi)",
+   "money (Kervan)",
+   "monthly (Görevler)",
+   "mst (Ustalık)",
+   "n7 (Takvim)",
+   "p (Sohbet)",
+   "packs (Yakut Al)",
+   "players (Sıralama)",
+   "race (Sıralama)",
+   "race (Taş Yemini)",
+   "rehber (Ansiklopedi)",
+   "rep (Posta)",
+   "req (Arkadaşlar)",
+   "ruler (Otağ · Elentha)",
+   "ruler (Taş Yemini)",
+   "ses (Ayarlar)",
+   "skill (Yetenek)",
+   "sys (Posta)",
+   "titles (Başarımlar)",
+   "treasury (Otağ · Elentha)",
+   "unvan (Unvan)",
+   "weekly (Görevler)",
+   "yakut (Kervan)",
+   "yaz (Posta)",
+   "zones (Kapı)"
+  ],
+  "kragmir": [
+   "blocked (Arkadaşlar)",
+   "c (Sohbet)",
+   "card (Yakut Al)",
+   "champ (Taş Yemini)",
+   "clan (Taş Yemini)",
+   "clans (Sıralama)",
+   "daily (Görevler)",
+   "dungeons (Kapı)",
+   "eq (Karakter)",
+   "events (Kapı)",
+   "f (Sohbet)",
+   "g (Sohbet)",
+   "gfx (Ayarlar)",
+   "grant (Otağ · Kragmir)",
+   "hist (Yakut Al)",
+   "items (Ansiklopedi)",
+   "list (Arkadaşlar)",
+   "list (Başarımlar)",
+   "main (Görevler)",
+   "map (Otağ · Kragmir)",
+   "mobs (Ansiklopedi)",
+   "money (Kervan)",
+   "monthly (Görevler)",
+   "mst (Ustalık)",
+   "n7 (Takvim)",
+   "p (Sohbet)",
+   "packs (Yakut Al)",
+   "players (Sıralama)",
+   "race (Sıralama)",
+   "race (Taş Yemini)",
+   "rehber (Ansiklopedi)",
+   "rep (Posta)",
+   "req (Arkadaşlar)",
+   "ruler (Otağ · Kragmir)",
+   "ruler (Taş Yemini)",
+   "ses (Ayarlar)",
+   "skill (Yetenek)",
+   "sys (Posta)",
+   "titles (Başarımlar)",
+   "treasury (Otağ · Kragmir)",
+   "unvan (Unvan)",
+   "weekly (Görevler)",
+   "yakut (Kervan)",
+   "yaz (Posta)",
+   "zones (Kapı)"
+  ]
+ }
+}

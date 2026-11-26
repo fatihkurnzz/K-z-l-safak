@@ -6,6 +6,7 @@ import { dayKey, ENERGY } from '../shared/content.js';
 import { DRINKS, tavernBuff } from '../shared/han.js';
 import { ZAFER, zaferBuffActive } from '../shared/zafer.js';
 import { binaAc, binaCiz, binaAcik, kbRes } from './ui-ahir.js';
+import { icmSoz } from './ic-mekan.js'; // P33: hancı başarı/başarısızlık satırı (GPT)
 
 const HANCI = 'Cepheye çıkmadan önce boğazını ıslat savaşçı; tek seferde bir kadeh etki eder.'; // şartname §4.3 (aynen)
 let pending = null; // onay bekleyen yeni buff içeceği
@@ -38,7 +39,7 @@ async function drink(id, confirm) {
   const r = await run('han.drink', confirm ? { id, confirm: true } : { id });
   pending = null;
   if (r) toast(id === 'corba' ? `+${r.energy} Enerji` : `${DRINKS[id].name} etkisi başladı.`);
-  hanRedraw(); hooks.hud();
+  hanRedraw(); hooks.hud(); icmSoz(r ? 'basari' : 'basarisizlik');
 }
 /** Han penceresini açar (başkent hotspot'u `han`). */
 ACT.han = () => { pending = null; binaAc('korant-modal-tavern', 'Han', hanHead(), hanBody(), () => { pending = null; }); };

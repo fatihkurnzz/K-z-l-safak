@@ -1,0 +1,44 @@
+{
+  "surum": "KORANT-v40-1dda167",
+  "mevcut_mekanik": {
+    "tur_siniri": 400,
+    "meydan_tur_siniri": 150,
+    "hiz": [
+      1,
+      2,
+      3
+    ],
+    "yetenek_yuvasi": 5,
+    "iksir_yuvasi": 2
+  },
+  "onerilen_sure_ms": {
+    "buton": [
+      80,
+      120
+    ],
+    "sekme": [
+      120,
+      180
+    ],
+    "panel": [
+      150,
+      250
+    ],
+    "sahne": [
+      200,
+      350
+    ]
+  },
+  "kurallar": [
+    "Sıra tabanlı mekanik ve RNG değişmez; animasyon sonucu hesaplamaz.",
+    "HP/MP/EXP göstergeleri gerçek değerleri yansıtır; maksimum ve mevcut değer ayrılır.",
+    "Çoklu düşman HP barları baş üstünde; komşu birim ve efektle örtüşmez.",
+    "Sprite ayakları sahne zeminine oturur; yalnız hafif statik temas gölgesi.",
+    "Kritik, engel, direnç ve şifa gerçek olaydan; renk yanında metin/ikon.",
+    "Boss uyarısı gerçek yetenek ve zamanlamaya bağlı; yeni mekanik ekleme.",
+    "Hasar sayıları üst üste yığılmaz; kısa ve okunur; OTO ve 3x akışını bloke etmez.",
+    "Zafer/mağlubiyet ve ödül gerçek sonuçtan; tekrar ödül yok.",
+    "Düşük profil parçacıkları azaltır; hareket azaltma shake ve dekoratif hareketi kapatır.",
+    "Dinamik gölge, yansıma, ısı dalgalanması yok."
+  ]
+}

@@ -6,13 +6,14 @@ import { ACT, esc, fmt, run, toast, hooks } from './ui-core.js';
 import { S, now } from './api.js';
 import { ri } from './icons.js';
 import { dayKey } from '../shared/content.js';
-import { icmKur, icmBinaKapat, gozHtml } from './ic-mekan.js';
+import { icmKur, icmBinaKapat, gozHtml, icmSoz } from './ic-mekan.js';
+import { p24KitKur } from './ui-kaplama.js'; // P33: ortak kabuk kiti (çerçeve, başlık, kapat) bu katmanda da yüklensin
 import { COMPANIONS, MAX_LV, FEEDS_PER_DAY, FEED_XP, feedCost, xpNeed, statsAt } from '../shared/ahir.js';
 
 // ---------- Ortak tam ekran katmanı (Ahır, Han, Zafer Anıtı) ----------
 let ov = null, onClose = null;
-// P30: Han ve Ahır iç mekân sahnesiyle açılır (js/ic-mekan.js); Zafer Anıtı eski düz arka planında kalır.
-const IC_TUR = { 'korant-modal-tavern': 'han', 'korant-modal-stable': 'ahir' };
+// P30: Han ve Ahır iç mekân sahnesiyle açılır (js/ic-mekan.js). P33 (Gemini N4-01): Zafer Anıtı da onaylı sahnesiyle.
+const IC_TUR = { 'korant-modal-tavern': 'han', 'korant-modal-stable': 'ahir', 'korant-modal-monument': 'zafer' };
 const kapatHtml = () => `${ov?.classList.contains('icm-var') ? gozHtml : ''}<button class="kb-x" data-a="binaKapat" aria-label="Kapat" title="Kapat">×</button>`;
 /** Tam ekran bina katmanını açar. cls: kök sınıf (korant-modal-stable|tavern|monument); title: erişilebilir ad;
  *  head: üst bar HTML'i (× düğmesi otomatik eklenir); body: içerik; closeFn: kapanınca çağrılır (zamanlayıcı temizliği). */
@@ -29,6 +30,7 @@ export function binaAc(cls, title, head, body, closeFn) {
   t && t.parentNode === g ? g.insertBefore(ov, t) : g.appendChild(ov);
   onClose = closeFn || null;
   hooks.sfx?.('modal', cls);
+  p24KitKur();
   ov.querySelector('.kb-x')?.focus({ preventScroll: true });
 }
 /** Açık bina katmanının üst barını ve içeriğini yeniden çizer (kaydırma konumu korunur). */
@@ -94,10 +96,10 @@ const ahirRedraw = () => { if (binaAcik() === 'korant-modal-stable') binaCiz(ahi
 /** Ahır penceresini açar (başkent hotspot'u `ahir`). */
 ACT.ahir = () => binaAc('korant-modal-stable', 'Ahır', ahirHead(), ahirBody());
 /** Yoldaş aç (Akçe ya da Yakut). */
-ACT.ahirAc = async d => { const r = await run('ahir.unlock', { id: d.id, pay: d.pay }); if (r) toast(`${COMPANIONS[d.id].name} artık ahırında.`); ahirRedraw(); };
+ACT.ahirAc = async d => { const r = await run('ahir.unlock', { id: d.id, pay: d.pay }); icmSoz(r ? 'basari' : 'basarisizlik'); if (r) toast(`${COMPANIONS[d.id].name} artık ahırında.`); ahirRedraw(); };
 /** Kuşan; etkin yoldaşa yeniden basmak onu çıkarır. */
-ACT.ahirKusan = async d => { const r = await run('ahir.equip', { id: d.id }); if (r) toast(r.active ? `${COMPANIONS[d.id].name} yanında savaşacak.` : `${COMPANIONS[d.id].name} ahırda dinleniyor.`); ahirRedraw(); };
+ACT.ahirKusan = async d => { const r = await run('ahir.equip', { id: d.id }); icmSoz(r ? 'basari' : 'basarisizlik'); if (r) toast(r.active ? `${COMPANIONS[d.id].name} yanında savaşacak.` : `${COMPANIONS[d.id].name} ahırda dinleniyor.`); ahirRedraw(); };
 /** Besle: günde FEEDS_PER_DAY (bütün yoldaşlar için ortak). */
-ACT.ahirBesle = async d => { const r = await run('ahir.feed', { id: d.id }); if (r) toast(r.up ? `${COMPANIONS[d.id].name} seviye atladı: Sv. ${r.lv}` : `${COMPANIONS[d.id].name} doydu · +${FEED_XP} XP`); ahirRedraw(); };
+ACT.ahirBesle = async d => { const r = await run('ahir.feed', { id: d.id }); icmSoz(r ? 'basari' : 'basarisizlik'); if (r) toast(r.up ? `${COMPANIONS[d.id].name} seviye atladı: Sv. ${r.lv}` : `${COMPANIONS[d.id].name} doydu · +${FEED_XP} XP`); ahirRedraw(); };
 /** Şartnamedeki ad (takma ad). */
 export const openStableModal = () => ACT.ahir();
