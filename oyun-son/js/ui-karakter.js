@@ -133,7 +133,7 @@ ACT.tkEnter = async () => {
   closeSel(); stageClose(); setUpdater(null);
   if (S.battle) { await act('battle.abandon').catch(() => {}); toast('Yarım kalan savaş kapatıldı.'); }
   const fresh = !S.tut?.end && !(S.stats?.battles > 0); // yeni karakter: fragman, sonra başkent
-  const go = () => { showHub(); toast(`Hoş geldin ${S.name}. ${capitalOf(S.faction)} seni bekliyor.`); };
+  const go = () => { showHub(); const msg = `Hoş geldin ${S.name}. ${capitalOf(S.faction)} seni bekliyor.`; let n = 0; const tw = () => (document.querySelector('.dlg, #modal:not([hidden]) .dlgbox') && n++ < 40 ? setTimeout(tw, 750) : toast(msg)); setTimeout(tw, 300); }; // P33 (bulgu A5): öğretici/NPC diyaloğu açıkken karşılama yazısı onun üstüne binmez, kapanınca gelir
   if (fresh) playFragman(go); else go();
 };
 // Oyundan seçme ekranına: açık pencere ve ana üs kapanır (kayıt sunucudadır; bir şey kaybolmaz)

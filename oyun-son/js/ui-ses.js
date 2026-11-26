@@ -116,7 +116,7 @@ function scene() {
   if (document.getElementById('loading')) return { place: 'loading' };
   if (document.getElementById('fragman')) return { place: 'fragman' }; // 22 Kas: fragmanda tema müziği çalar
   const wx = { phase: phaseNow(), weather: weatherNow() };
-  if (battleUI && !battleUI.hidden) { wasBattle = true; return { place: SFX.over ? 'result' : SFX.boss ? 'boss' : 'battle', ...wx }; }
+  if (battleUI && !battleUI.hidden) { wasBattle = true; return { place: SFX.over ? 'result' : SFX.boss ? 'boss' : 'battle', zemin: globalThis.DD_ZEMIN?.aktif, ...wx }; }
   { const it = icmTur(); if (S && ['han', 'ahir', 'ors', 'maden', 'klan'].includes(it)) { wasBattle = false; return { place: 'icm', tur: it, faction: S.faction, ust: root.dataset.place === 'carsi' ? 'carsi' : 'hub', ...wx }; } }
   if (!hud.hidden && S) { wasBattle = false; return { place: document.documentElement.dataset.place === 'carsi' ? 'carsi' : 'hub', faction: S.faction, ...wx }; }
   if (S) return wasBattle ? { place: 'result', ...wx } : null; // geçiş anı (savaş kuruluyor): olduğu gibi kalsın

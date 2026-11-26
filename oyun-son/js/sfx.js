@@ -343,6 +343,12 @@ export const LOOPS = {
     ev: [{ s: 'amb.crackle', every: [0.1, 0.6], g: [0.12, 0.35], pan: 0.6, pj: 0.25 }, { s: 'anvil.strike', every: [6, 15], g: [0.12, 0.25], pan: 0.5, pj: 0.05 }] },
   'amb.icm.maden': { b: 'amb', rv: 0.35, beds: [{ n: 'b', lp: [120, 0.7], g: 0.18, lfo: [0.05, 0.4] }],
     ev: [{ s: 'amb.drip', every: [0.8, 3], g: [0.12, 0.3], pan: 0.7, pj: 0.1 }, { s: 'amb.clink', every: [4, 12], g: [0.12, 0.3], pan: 0.6, pj: 0.06 }] },
+  // P33 (AAA plan 4 "her zindana özgü çevresel ses"): yalnız mevcut tek seferlik seslerden; yeni dosya yok
+  'amb.z.zkuyu': { b: 'amb', rv: 0.5, beds: [{ n: 'b', lp: [110, 0.7], g: 0.2, lfo: [0.04, 0.4] }], ev: [{ s: 'amb.drip', every: [0.6, 2.2], g: [0.14, 0.32], pan: 0.8, pj: 0.1 }] },
+  'amb.z.zyarik': { b: 'amb', rv: 0.35, beds: [{ n: 'p', bp: [700, 0.7], g: 0.16, lfo: [0.12, 0.7], flfo: [0.08, 260] }], ev: [{ s: 'amb.gust', every: [3, 9], g: [0.15, 0.32], pan: 0.9, pj: 0.1 }, { s: 'amb.chime', every: [9, 20], g: [0.05, 0.12], pan: 0.7, pj: 0.2 }] },
+  'amb.z.zmuhur': { b: 'amb', rv: 0.55, beds: [{ n: 'b', lp: [90, 0.7], g: 0.2, lfo: [0.03, 0.5] }], ev: [{ s: 'amb.chime', every: [7, 16], g: [0.06, 0.14], pan: 0.6, pj: -0.3 }, { s: 'amb.drip', every: [4, 10], g: [0.06, 0.14], pan: 0.6, pj: 0.1 }] },
+  'amb.z.zkule': { b: 'amb', rv: 0.3, beds: [{ n: 'b', lp: [160, 0.7], g: 0.18, lfo: [0.06, 0.4] }], ev: [{ s: 'amb.crackle', every: [0.15, 0.9], g: [0.1, 0.28], pan: 0.7, pj: 0.2 }, { s: 'amb.gust', every: [6, 14], g: [0.1, 0.2], pan: 0.7, pj: 0.1 }] },
+  'amb.z.zocak': { b: 'amb', rv: 0.4, beds: [{ n: 'b', lp: [130, 0.7], g: 0.2, lfo: [0.05, 0.4] }], ev: [{ s: 'amb.crackle', every: [0.2, 1.2], g: [0.1, 0.25], pan: 0.6, pj: 0.2 }, { s: 'amb.clink', every: [3, 9], g: [0.1, 0.24], pan: 0.6, pj: 0.06 }, { s: 'amb.drip', every: [3, 8], g: [0.06, 0.14], pan: 0.6, pj: 0.1 }] },
   'amb.icm.klan': { b: 'amb', rv: 0.25, beds: [{ n: 'b', lp: [160, 0.7], g: 0.16, lfo: [0.06, 0.4] }],
     ev: [{ s: 'amb.crackle', every: [0.3, 1.4], g: [0.1, 0.25], pan: 0.6, pj: 0.2 }, { s: 'amb.gust', every: [6, 16], g: [0.12, 0.25], pan: 0.6, pj: 0.1 }] },
   'mus.hub.ocak': { b: 'music', g: 1, rv: 0.3, fade: 2.5, seq: seq('mus.hub.ocak') },
@@ -465,8 +471,10 @@ export function actionSounds(type, r, payload) {
   if (type !== 'item.dismantle' && type !== 'item.sell') { const g = lootGrade(r); if (g >= 0) out.push([`rar.${g}`, { delay: !name ? 0 : type === 'battle.finish' ? 0.9 : name === 'ui.chest' ? 0.5 : 0.3 }]); } // ganimette eşya varsa nadirliği duyulur
   return out;
 }
+const Z = z => (typeof z === 'string' && Object.hasOwn(REG_LOOPS_Z, z) ? `amb.z.${z}` : 'amb.battle'); // P33: zindan zemini → kendi ortamı
+const REG_LOOPS_Z = { zkuyu: 1, zyarik: 1, zmuhur: 1, zkule: 1, zocak: 1 };
 // Yer → çalacak döngüler. place: 'loading' | 'title' | 'hub' | 'battle' | 'boss' | 'result' | 'none'
-export function sceneLoops({ place, faction, phase, weather, tur } = {}) {
+export function sceneLoops({ place, faction, phase, weather, tur, zemin } = {}) {
   const f = faction === 'sancak' ? 'sancak' : 'ocak', night = phase === 'night' || phase === 'dusk', wx = ['rain', 'wind', 'fog'].includes(weather) ? [`amb.wx.${weather}`] : [];
   switch (place) {
     case 'loading': return ['mus.intro'];
@@ -475,9 +483,9 @@ export function sceneLoops({ place, faction, phase, weather, tur } = {}) {
     case 'hub': return [`amb.${f}.${night ? 'night' : 'day'}`, 'amb.portal', ...wx, 'mus.tema'];
     case 'carsi': return ['amb.market', ...wx, 'mus.tema'];
     case 'icm': return [`amb.icm.${tur}`, 'mus.tema']; // P33: iç mekân (han|ahir|ors|maden|klan; tek müzik: tema sürer) // Yemin Pazarı: kalabalık uğultusu, tezgâh sesleri; ezgi oyuncunun ırkınınki
-    case 'battle': return ['amb.battle', ...wx, 'mus.battle'];
-    case 'boss': return ['amb.battle', ...wx, 'mus.boss'];
-    case 'result': return ['amb.battle', ...wx];
+    case 'battle': return [Z(zemin), ...wx, 'mus.battle'];
+    case 'boss': return [Z(zemin), ...wx, 'mus.boss'];
+    case 'result': return [Z(zemin), ...wx];
     default: return [];
   }
 }

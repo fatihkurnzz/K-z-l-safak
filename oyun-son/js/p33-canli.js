@@ -134,6 +134,14 @@ function orsSonuc(r) {
   if (r.out === 'ok' && !sakin()) for (let i = 0; i < (AYAR.efektAz ? 8 : 16); i++) { const s = document.createElement('i'); s.style.setProperty('--a', `${Math.round(R(0, 360))}deg`); s.style.setProperty('--d', `${Math.round(R(40, 110))}px`); s.style.animationDelay = `${Math.round(R(0, 120))}ms`; f.appendChild(s); }
   w.appendChild(f); setTimeout(() => f.remove(), 1300);
 }
+// Görev tamamlama, sandık/ödül paketi, unvan: gerçek başarılı sonuçtan sonra kısa şerit (ödül miktarı ve içerik değişmez; ganimet penceresi kendi ekranında)
+const SERIT = { 'quest.claim': ['Görev tamamlandı', 'Ödülün alındı', 'gorev'], 'weekly.claim': ['Haftalık görev tamamlandı', 'Ödülün alındı', 'gorev'], 'clan.quest': ['Klan görevi tamamlandı', 'Katkın yazıldı', 'gorev'],
+  'quest.bonus': ['Sandık açıldı', 'Görev sandığı', 'sandik'], 'weekly.bonus': ['Sandık açıldı', 'Haftalık sandık', 'sandik'], 'clan.claim': ['Sandık açıldı', 'Klan sandığı', 'sandik'], 'cal.claim': ['Günün ödülü', 'Takvim', 'sandik'],
+  'season.title': ['Unvan kazanıldı', 'Sezon unvanı', 'unvan'] };
+taps.add((type, payload, p) => {
+  const T = SERIT[type]; if (!T) return;
+  p.then(r => { if (r && r.ok !== false && !r.error) setTimeout(() => serit(T[0], T[1], T[2]), 250); }).catch(() => { });
+});
 taps.add((type, payload, p) => {
   if (type !== 'anvil.upgrade') return;
   const t0 = performance.now();

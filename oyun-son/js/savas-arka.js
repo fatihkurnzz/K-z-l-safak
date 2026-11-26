@@ -50,7 +50,7 @@ export const ZEMIN_TON = {
   obaavi:     { ton: [1, 0.96, 0.9],     golge: 0.55 }, // tozlu arena: ılık
 };
 /** P31-G3: o an kurulu savaş zemininin kimliği (buildBackdrop yazar). */
-export const ZEMIN = { aktif: '' };
+export const ZEMIN = { aktif: '' }; globalThis.DD_ZEMIN = ZEMIN; // P33: ses sahnesi (ui-ses.js) zindan ortamını seçer; three yüklemeden okunur
 /** P31-G3: kurulu zeminin ton/gölge satırı. */
 export const zeminTon = () => ZEMIN_TON[ZEMIN.aktif] || ZEMIN_TON._;
 /** P29: bölge (shared/zones.js ZONES id) → zemin. Bölge aşamalarının hepsi; günlük boss aşaması (kind 'boss') BOSS_BG alır. */

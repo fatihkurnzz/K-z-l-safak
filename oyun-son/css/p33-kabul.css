@@ -213,3 +213,5 @@ html[data-faction="sancak"] .p33-serit b { color: #f2f6ff; text-shadow: 0 0 12px
 :is(html.motion-less, html.p33-pil) :is(.p33-ors, .p33-ors > i, .dlg-por img, img.npc-yuz, #modal .li > .ico, #modal .chip.rw, #modal > .box, #overlay .banner.p33-uyari b) { animation: none !important; }
 :is(html.motion-less, html.p33-pil) .p33-serit { animation: none; opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .p33-ors, .p33-ors > i, img.npc-yuz, .dlg-por img, #modal > .box { animation: none !important; } }
+.p33-serit:is(.gorev, .sandik, .unvan) b { font-size: 17px; }
+.p33-serit.sandik b { color: #ffd98a; }
