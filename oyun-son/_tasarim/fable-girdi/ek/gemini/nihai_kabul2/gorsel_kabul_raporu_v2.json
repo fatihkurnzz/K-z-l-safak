@@ -1,0 +1,168 @@
+{
+  "rapor_adi": "Korant Online — Gemini Neon 2. Tur Nihai Görsel Kabul Raporu (KABUL 2)",
+  "surum_kimligi": "KORANT-v40-1dda167+P33",
+  "denetim_tarihi": "2026-11-26",
+  "denetlenen_paket": "KORANT_GEMINI_KABUL2 (8 ZIP, 1.519 dosya) + KORANT_GEMINI_KABUL2_EK (5 ZIP, 1.102 dosya) — Toplam 2.621 dosya",
+  "nihai_gorsel_karar": "KABUL (GÖRSEL OLARAK YAYINA HAZIR)",
+  "ozet_metrikler": {
+    "onceki_tur_duzeltme_kapanan": "17 / 17",
+    "onceki_tur_test_edilmedi_kapanan": "2 / 3 (N4-06 Klan Obası + N5-02 5 Zindan/4 Bölge/Boss/PvP/Oba Avı tam doğrulandı; 667×375 & 1180×820 doğrulandı)",
+    "js_hatasi": 0,
+    "bellek_sizintisi_MB": 0,
+    "kalan_kucuk_varlik_notu": "sahneler/zafer_aniti.webp depoda 512×217 görünüyor; teslim ettiğimiz 1584×672 WebP ile değiştirilmesi önerilir.",
+    "gercek_cihaz_performansi": "Test Edilmedi (masaüstü yazılım GL 60 FPS / 0 MB artış doğrulandı; gerçek Android/iOS pil ve ısınma testi yayın öncesi yapılmalı)",
+    "zafer_aniti_yuksek_cozunurluk": "Bu teslim paketinde sahneler/zafer_aniti.webp (1600×678, 152.7 KB WebP) olarak eklendi."
+  },
+  "kapanan_bulgular": [
+    {
+      "id": "N4-01",
+      "ekran": "zaferAniti (Elentha & Kragmir)",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-zaferAniti.webp — Pembe Monument iki ırkta da aktif, ortak altın çerçeve ve standart X düğmesine geçirildi (yalnız 512×217 yerine 1584×672 yüksek çözünürlüklü dosya kopyalanmalı)."
+    },
+    {
+      "id": "N4-02",
+      "ekran": "diyarMap / otag (Elentha & Kragmir)",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-diyarMap.webp & C-otag.webp — Yeni Türkçe yazılı diyar_haritasi.webp bağlandı, span.wctx kırpılması ve Elentha çizgisi giderildi, NPC replikleri eklendi."
+    },
+    {
+      "id": "N2-01",
+      "ekran": "premium (Elentha & Kragmir)",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-premium.webp — $149/$299 kaldırıldı; 'Yakında ₺149' / 'Yakında ₺299' ve 'YAKINDA' düğmeleri uygulandı."
+    },
+    {
+      "id": "N1-01",
+      "ekran": "profile + ana harita deneme rozeti",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-profile.webp & 08_SISTEM/cesitli/sonuc.json — dev0 ve store1 kiplerinde test araçları ve deneme rozeti tamamen kapalı (false)."
+    },
+    {
+      "id": "N3-01",
+      "ekran": "karakter sol vitrin (Elentha & Kragmir)",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-karakter.webp — Oyuncunun gerçek yeşil tenli kılıç+kalkan Kragmir ork savaşçısı ve Elentha savaşçısı tam boy vitrine bağlandı."
+    },
+    {
+      "id": "N6-01",
+      "ekran": "karakter (+ düğmeleri ve Toplu çakışması)",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-karakter.webp — Nitelik '+' düğmeleri ve çanta alt satır/Toplu düğmesi çakışması temizlendi."
+    },
+    {
+      "id": "N4-03",
+      "ekran": "anvil (Büyük Örs)",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-anvil.webp & 04_CANLILIK/*/ors_basari.webp — Üst sayaç taşması giderildi, sağda Büyük Örs atölyesi ve usta repliği görünüyor, başarı/başarısızlık efektleri çalışıyor."
+    },
+    {
+      "id": "N4-04",
+      "ekran": "han / ahir (Elentha & Kragmir)",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/*/C-han.webp & C-ahir.webp — Ortak pencere çerçevesine ve standart kare X düğmesine geçirildi, NPC replikleri eklendi."
+    },
+    {
+      "id": "N5-01",
+      "ekran": "D02-savas-a / 03_SAVAS_KLAN",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "03_SAVAS_KLAN/*/sonuc.json — oto_tip_var=false, oto_tip_cakisan=[], en_kucuk_dikey_bosluk_px=8."
+    },
+    {
+      "id": "N6-02..07",
+      "ekran": "quests, quick, meydan, nobet, chatOpen, karaborsa, achs",
+      "onceki": "Düzeltme",
+      "yeni_karar": "Kabul",
+      "kanit": "01_EKRANLAR_880x406/* — Nöbet alt kesilmesi, sohbet çakışması, görev/VS/meydan hizalamaları ve Elentha üst şerit çizgisi düzeltildi."
+    },
+    {
+      "id": "N4-06",
+      "ekran": "Klan Obası Dış Haritası (Elentha & Kragmir)",
+      "onceki": "Test Edilmedi",
+      "yeni_karar": "Kabul",
+      "kanit": "03_SAVAS_KLAN/*/klan_1_oba_dis_harita.webp — Her iki ırkın yeni Klan Obası haritası ve üst orta arka sur kapısındaki Işınlanma Kapısı etiketi/hotspot'ı piksel hassasiyetinde doğrulandı."
+    },
+    {
+      "id": "N5-02",
+      "ekran": "4 Bölge, 4 Boss, 5 Özgün Zindan, PvP Arena, Oba Avı Tepegöz",
+      "onceki": "Test Edilmedi",
+      "yeni_karar": "Kabul",
+      "kanit": "03_SAVAS_KLAN/*/*_2_savas.webp — Vahran, Kül Geçidi, Kızıl Bahar, Sisli Çukur, Boss Mağarası, PvP Arena, Oba Avı Arenası (Tepegöz) ve 5 özgün zindan (Dipsiz Kuyu, Yeraltı Ocağı, Gök Yarığı, Mühürlü Oda, Kül Kulesi) tamamı ayrı sahnelerde, temiz sprite zemin temasıyla doğrulandı."
+    },
+    {
+      "id": "N6-08",
+      "ekran": "667×375 Dar Telefon & 1180×820 Tablet",
+      "onceki": "Test Edilmedi",
+      "yeni_karar": "Kabul (Çözünürlük) / Test Edilmedi (Gerçek Cihaz Pil-Isı)",
+      "kanit": "05_COZUNURLUK_667/ & 05_COZUNURLUK_1180/ — 667×375 ve 1180×820 yerleşimleri görsel olarak doğrulandı; gerçek telefon pil/ısı/FPS ölçümü yayın öncesi fiziksel cihazda yapılmalı."
+    }
+  ],
+  "canlilik_ve_sistem_dogrulamalari": {
+    "gun_evreleri": "4 evre (dawn, day, dusk, night) doğal ve gece binaları karartmıyor (Kabul).",
+    "ors_ve_ganimet_efektleri": "Örs başarı (16 kıvılcım), başarısız sönümleme, görev şeridi, nadir/eşsiz ganimet parlaması doğrulandı (Kabul).",
+    "ses_kanallari": "5 kanal (master, ui, battle, amb, music) ve 5 zindan için ayrı ortam sesleri doğrulandı (Kabul).",
+    "sistem_butunlugu": "Yenileme veri koruması, çift tık koruması (Han & Tezgâh), bozuk JSON kurtarma, gece yarısı sıfırlama, EN dili ve 0 MB bellek artışı doğrulandı (Kabul)."
+  },
+  "kabul2_ek_ozeti": {
+    "kapsam": "06_EYLEM_TURU (Elentha 222 + Kragmir 222 = 444 eylem, 858 WebP) + 07_DINAMIK_DURUMLAR (Elentha 119 + Kragmir 119 = 238 dinamik durum, 238 WebP); 0 JS hatası.",
+    "istatistikler": {
+      "eylem_elentha": {
+        "kayit_sayisi": 222,
+        "js_hatasi": 0,
+        "ilk_tur_olcum_kesik": 35,
+        "ilk_tur_olcum_tasma": 0,
+        "ilk_tur_olcum_cakisma": 3,
+        "ilk_tur_olcum_kucuk": 0
+      },
+      "eylem_kragmir": {
+        "kayit_sayisi": 222,
+        "js_hatasi": 0,
+        "ilk_tur_olcum_kesik": 33,
+        "ilk_tur_olcum_tasma": 2,
+        "ilk_tur_olcum_cakisma": 3,
+        "ilk_tur_olcum_kucuk": 0
+      },
+      "dinamik_elentha": {
+        "kayit_sayisi": 119,
+        "js_hatasi": 0,
+        "ilk_tur_olcum_kesik": 0,
+        "ilk_tur_olcum_tasma": 0,
+        "ilk_tur_olcum_cakisma": 2,
+        "ilk_tur_olcum_kucuk": 0,
+        "eslesti_basarili": 111,
+        "eslesti_farkli": 8
+      },
+      "dinamik_kragmir": {
+        "kayit_sayisi": 119,
+        "js_hatasi": 0,
+        "ilk_tur_olcum_kesik": 1,
+        "ilk_tur_olcum_tasma": 1,
+        "ilk_tur_olcum_cakisma": 2,
+        "ilk_tur_olcum_kucuk": 0,
+        "eslesti_basarili": 111,
+        "eslesti_farkli": 8
+      }
+    },
+    "gozle_dogrulanan_ek_ekranlar": [
+      "Klan Karargâhı -> Oba Avı: Tepegöz (0211-av.webp): yeni Tepegöz banner'ı + Klan Karargâhı iç mekânı her iki ırkta uyumlu (Kabul).",
+      "Otağ -> Harita (0085.webp): yeni Türkçe yazılı diyar_haritasi.webp + taht salonu + ırka özgü NPC replikleri (Kabul).",
+      "Silah ve Kalkan (0071.webp), İlk Alım Paketi (0099.webp), Premium (0014.webp), Menü (0043.webp), Ustalık/Ünvan (0144/0057): kart düzeni, Yakında/TL kuralları ve ırk eşitliği temiz (Kabul).",
+      "Not: _eylem.json/_cekim.json içindeki ilk-tur ölçümleri README'de belirtildiği gibi ilk turdan kalmadır; ilk tur sonrası düzeltilenler QA_MATRISI_DOLU.json'da DUZELTILDI_ILK_TUR_SONRASI olarak kapatılmıştır."
+    ],
+    "karar": "Kabul"
+  },
+  "gpt_istek_p34_durumu": {
+    "madde_1_zafer_aniti_hi_res": "TAMAMLANDI — sahneler/zafer_aniti.webp (1600×678 WebP) bu pakette teslim edildi.",
+    "madde_2_5_hareket_maskeleri_ve_npc_goz_kirpma": "UYGULANMADI (Kasıtlı) — Kullanıcı + Claude ortak kararı gereği tek parça boyalı sahneler ve sade 2B parçacıklar korunur; ayrı saydam şehir maskesi / NPC sprite katmanı kullanılmaz.",
+    "madde_6_11_gpt_gorevleri": "KAPSAM DIŞI (GPT 6.2 / Ses-Video) — Kullanıcı talimatıyla GPT görevleri bu teslimin dışında bırakıldı."
+  }
+}

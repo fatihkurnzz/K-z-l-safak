@@ -1,0 +1,52 @@
+{
+ "race": "ocak",
+ "W": 667,
+ "H": 375,
+ "hub": {
+  "div.s2-exp > b": {
+   "css": 11,
+   "etkin": 10.7,
+   "olcek": 0.969,
+   "t": "EXP %0,00",
+   "n": 1
+  },
+  "div.cb-tabs > button.on": {
+   "css": 11,
+   "etkin": 11,
+   "olcek": 0.999,
+   "t": "Genel",
+   "n": 1
+  },
+  "div.cb-tabs > button": {
+   "css": 11,
+   "etkin": 11,
+   "olcek": 0.999,
+   "t": "Irk",
+   "n": 3
+  }
+ },
+ "bt": {
+  "div#bctl > button.rb": {
+   "css": 0,
+   "etkin": 0,
+   "olcek": 1,
+   "t": "✕",
+   "n": 1
+  },
+  "div#battleUI > div": {
+   "css": 11,
+   "etkin": 10.9,
+   "olcek": 0.99,
+   "t": "·",
+   "n": 1
+  },
+  "div.bt-bar > em": {
+   "css": 11,
+   "etkin": 10.7,
+   "olcek": 0.975,
+   "t": "16 / 16",
+   "n": 1
+  }
+ },
+ "errs": []
+}

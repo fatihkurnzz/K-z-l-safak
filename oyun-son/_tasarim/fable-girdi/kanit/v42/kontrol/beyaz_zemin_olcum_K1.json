@@ -1,0 +1,1498 @@
+{
+ "b2d-sancak/bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 30251,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 26308,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 31672,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 54245,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 44135,
+  "kenar_bagli_beyaz": 1,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 54443,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 54159,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58756,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 44004,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 61988,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58095,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 43128,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 62316,
+  "kenar_bagli_beyaz": 4,
+  "oran": 0.0001,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 60202,
+  "kenar_bagli_beyaz": 2,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58902,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 40589,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/buyucu-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 56048,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/kucuk-bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 17694,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/kucuk-bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 13369,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/kucuk-bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 18338,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/kuduz-bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 29785,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/kuduz-bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 27263,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/kuduz-bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 29370,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 60970,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 56099,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 65782,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 54594,
+  "kenar_bagli_beyaz": 21,
+  "oran": 0.0004,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 61139,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 53021,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 56379,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 74192,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 90807,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 78912,
+  "kenar_bagli_beyaz": 5,
+  "oran": 0.0001,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 51248,
+  "kenar_bagli_beyaz": 15,
+  "oran": 0.0003,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 81527,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 67028,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/savasci-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 88481,
+  "kenar_bagli_beyaz": 4,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 66277,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 57954,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 77227,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 65950,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 76128,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 61442,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 75152,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 56941,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 59621,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 63602,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58408,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58422,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 51078,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/sifaci-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 57456,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 43567,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 44607,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 41972,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 42724,
+  "kenar_bagli_beyaz": 7,
+  "oran": 0.0002,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 44304,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 38286,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 49442,
+  "kenar_bagli_beyaz": 3,
+  "oran": 0.0001,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 44412,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 45386,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 44153,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 48123,
+  "kenar_bagli_beyaz": 5,
+  "oran": 0.0001,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 46459,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 41645,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/suikastci-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 45214,
+  "kenar_bagli_beyaz": 6,
+  "oran": 0.0001,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/yaman-bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 32866,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/yaman-bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 28573,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-sancak/yaman-bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 31379,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 30251,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 26308,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 31672,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 51283,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 44776,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 53525,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 48117,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 48468,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 39178,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 51903,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 57144,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 52132,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 64533,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58312,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 62894,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 53765,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/buyucu-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 65940,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/kucuk-bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 17694,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/kucuk-bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 13369,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/kucuk-bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 18338,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/kuduz-bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 29785,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/kuduz-bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 27263,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/kuduz-bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 29370,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 101013,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 80482,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 94462,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 54016,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 80541,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 68778,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 93434,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 51876,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 52438,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58892,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 55528,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 55416,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 51359,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/savasci-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 54608,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 61612,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 60378,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 63851,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 57840,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 61165,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 54834,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 61484,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 69139,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 71076,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 68461,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 71192,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 66853,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 58186,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/sifaci-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 72339,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-erkek__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 50242,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-erkek__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 50154,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-erkek__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 51034,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-erkek__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 52407,
+  "kenar_bagli_beyaz": 33,
+  "oran": 0.0006,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-erkek__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 56815,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-erkek__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 49203,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-erkek__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 55431,
+  "kenar_bagli_beyaz": 1,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-kadin__bekleme": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 49747,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-kadin__buyu": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 50098,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-kadin__saldiri-hazirlik": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 48825,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-kadin__saldiri-vurus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 50926,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-kadin__vurulma": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 53607,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-kadin__yere-dusus": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 46238,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/suikastci-kadin__zafer": {
+  "boyut": [
+   384,
+   512
+  ],
+  "opak": 52280,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/yaman-bandikut__bekleme": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 32866,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/yaman-bandikut__saldiri": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 28573,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ },
+ "b2d-ocak/yaman-bandikut__vurulma": {
+  "boyut": [
+   384,
+   384
+  ],
+  "opak": 31379,
+  "kenar_bagli_beyaz": 0,
+  "oran": 0.0,
+  "sol_ust_alfa": 0,
+  "sag_alt_alfa": 0
+ }
+}

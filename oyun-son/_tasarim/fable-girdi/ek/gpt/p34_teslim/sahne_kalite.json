@@ -1,0 +1,87 @@
+[
+  {
+    "sahne": "baskent-elentha",
+    "olcu": [
+      1600,
+      892
+    ],
+    "eleman": 14,
+    "kare00_fark": null,
+    "gecis_rgb_mutlak_toplam": [
+      269725,
+      304690,
+      355601,
+      248135,
+      299472,
+      386887
+    ]
+  },
+  {
+    "sahne": "baskent-kragmir",
+    "olcu": [
+      1600,
+      893
+    ],
+    "eleman": 14,
+    "kare00_fark": null,
+    "gecis_rgb_mutlak_toplam": [
+      1343227,
+      1275678,
+      1279784,
+      1288120,
+      1282608,
+      1339965
+    ]
+  },
+  {
+    "sahne": "carsi",
+    "olcu": [
+      1600,
+      893
+    ],
+    "eleman": 13,
+    "kare00_fark": null,
+    "gecis_rgb_mutlak_toplam": [
+      858219,
+      825169,
+      805125,
+      801465,
+      824821,
+      874411
+    ]
+  },
+  {
+    "sahne": "klan-elentha",
+    "olcu": [
+      1376,
+      768
+    ],
+    "eleman": 14,
+    "kare00_fark": null,
+    "gecis_rgb_mutlak_toplam": [
+      539375,
+      521809,
+      525169,
+      519670,
+      515749,
+      547466
+    ]
+  },
+  {
+    "sahne": "klan-kragmir",
+    "olcu": [
+      1376,
+      768
+    ],
+    "eleman": 14,
+    "kare00_fark": null,
+    "gecis_rgb_mutlak_toplam": [
+      322411,
+      302461,
+      302947,
+      295824,
+      304217,
+      327554
+    ]
+  }
+]

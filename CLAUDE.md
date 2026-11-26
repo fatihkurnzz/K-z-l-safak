@@ -15,7 +15,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - G2 düzeltmeleri: boss uyarısı ek bekleme yok, orsSonuc pencere kimliği, expAkit son değer, LOCAL payBuy koruması, "+" 44 px genişlik, 667 savaş HUD 11 px (özgül seçici), QA özeti 113, KAB satırı yalanı düzeltildi. G2-04/05 test betiği hatasıydı (gpt_test düzeltildi).
 - **Gerileme düzeltildi:** `ui-ahir.js binaAcik` (icm-var sınıfı) → Han/Ahır yeniden çizilmiyor, Zafer "Yükleniyor…"da kalıyordu (dış sürüm v40'tan).
 - Testler (v42): p34_test ×2 GEÇTİ, bina_test, sekme_test (çoklu sekme kilidi), hafta_test (haftalık sıfırlama), gpt_test ×2 GEÇTİ, sistem_test. **savas_test ve cek115 kullanıcı isteğiyle DURDURULDU (v42'de yapılmadı).**
-- Sırada: `KORANT_FABLE_DENETIM_GIRDISI.zip` (kullanıcı 14 dosyalık yapı verdi; araçlar `_tasarim/araclar/fable/`; taslaklar scratchpad `fable/out/`). Fable denetimini KENDİN YAPMA, yayın kararı verme.
+- **Fable girdisi HAZIR:** `KORANT_FABLE_DENETIM_GIRDISI.zip` (3,5 MB, 91 dosya) kullanıcıya gönderildi; içeriği depoda `oyun-son/_tasarim/fable-girdi/`. Yeniden üretme: `_tasarim/araclar/fable/` (oyun_verisi.mjs → envanter.py, matris.py, paketle.py). Denetlenecek sürüm `KORANT-v42-b9a0b21`, oyun parmak izi 7cd7414d…. Matris 88 kayıt; açık 19 (tekil kök 14: Y5 O6 D3). Fable denetimini KENDİN YAPMA, yayın kararı verme.
 
 ## SON DURUM (26.11, 19. oturum) — P33 TAMAMLANDI, SÜRÜM 41 YAYINDA
 - **Sürüm 41 YAYINDA** (447 dosya; yayın commit'i bu notun commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç).

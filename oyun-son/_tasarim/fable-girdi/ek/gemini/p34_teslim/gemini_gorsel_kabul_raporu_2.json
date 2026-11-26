@@ -1,0 +1,1810 @@
+{
+  "rapor_adi": "Korant Online — Gemini Neon 2. Tur Nihai Görsel Kabul Raporu (KABUL-2 + KABUL2_EK)",
+  "surum_kimligi": "KORANT-v40-1dda167+P33",
+  "denetim_tarihi": "2026-11-26",
+  "denetlenen_paket": "KORANT_GEMINI_KABUL2_01of08..08of08.zip (1.519 dosya) + KORANT_GEMINI_KABUL2_EK_01of05..05of05.zip (1.102 dosya; 444 eylem turu + 238 dinamik durum, 0 JS hatası)",
+  "nihai_gorsel_karar": "KABUL (Görsel Olarak Yayına Hazır; gerçek cihaz/ağ testleri Test Edilmedi olarak ayrı kayıtlıdır)",
+  "ekran_envanteri": {
+    "elentha_benzersiz_ekran": 200,
+    "kragmir_benzersiz_ekran": 200,
+    "birlesik_benzersiz_ekran": 115,
+    "ek_paket_eylem_ve_dinamik_cekimi": "682 durum (444 eylem turu + 238 dinamik durum, 0 JS hatası)",
+    "karar_dagilimi": {
+      "Kabul": 115,
+      "Düzeltme": 0,
+      "Ret": 0,
+      "Test Edilmedi": 0
+    },
+    "test_edilmeyen_ortam_kapsami": [
+      "Gerçek fiziksel cihaz FPS, pil ve ısınma ölçümü",
+      "30 dk / 120 dk uzun oturum kararlılığı",
+      "Sunucu / anti-cheat / ağ kesilmesi senaryoları",
+      "Canlı UTC+3 gece yarısı sıfırlama"
+    ]
+  },
+  "bolum_ozetleri": {
+    "N1_karsilastirmali_denetim": "Birinci turdaki 17 bulgunun tamamı kapatıldı veya yanlış pozitif/kısmen olarak kanıtlandı; ?dev=0 ve ?store=1 kiplerinde test araçları gizli. 0 JS hatası.",
+    "N2_elentha_kragmir_esitligi": "Elentha (mavi-altın, çift başlı kartal) ve Kragmir (kızıl-kara, ateş gözlü kanatlı arma, yeşil tenli ork) arasında görsel kalite, kontrast ve kapsül çizgisi eşitliği doğrulandı. Gerçek para satın alımları Yakında durumunda.",
+    "N3_karakter_ve_ekipman": "T3 görünümü kapalı; her iki ırkta da gerçek kılıç+kalkan savaşçı ve yeşil tenli Kragmir ork kimliği vitrin, seçim ve savaşta tutarlı.",
+    "N4_baskentler_ve_ic_mekanlar": "42 onaylı sahne, 13 iç mekân, Klan Obası dış haritası (10 bina + arka sur Işınlanma Kapısı), Zafer Anıtı pembe Monument, Türkçe Diyar Haritası, Han/Ahır/Büyük Örs çerçeve birliği ve Balık Tutma arka planı doğrulandı.",
+    "N5_savas_ve_zindan": "4 bölge, 4 boss, 5 özgün zindan, PvP Arena ve Oba Avı Tepegöz savaşları iki halkta ayrı sahneler ve temiz zemin temasıyla doğrulandı; oto-tip çakışması yok.",
+    "N6_hud_ui_ux_ve_cozunurluk": "880×406 (2341×1080) ve 1180×820 temiz; 667×375 dar ekranda küçük HUD yazıları (6–9,8 px) ve Karakter '+' düğmesi (22 px) düşük öncelikli bilinen açıklar olarak kayda alındı.",
+    "N7_ek_paket_ve_canlilik": "444 eylem turu + 238 dinamik durum çekimi, 4 gün evresi, örs kıvılcım/sönümleme, nadir ganimet parlaması ve 5 ses kanalı 0 JS hatasıyla doğrulandı."
+  },
+  "onceki_bulgu_durumlari": [
+    {
+      "bulgu_id": "N4-01",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-zaferAniti.webp, 01_EKRANLAR_880x406/kragmir/C-zaferAniti.webp",
+      "not": "Pembe Monument arka planı her iki ırkta aktif, ortak altın pencere çerçevesi ve standart kapatma düğmesine geçirildi. Düşük çözünürlük (512×217) bilinen durumdur ve P34-01 kapsamında yüksek çözünürlüklü sürümü istenmiştir."
+    },
+    {
+      "bulgu_id": "N4-02",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-diyarMap.webp, 01_EKRANLAR_880x406/kragmir/C-otag.webp",
+      "not": "Türkçe etiketli diyar_haritasi.webp önizlemesi büyütülüp tek sütuna alındı; Elentha çizgi/kırpılma sorunu giderildi ve NPC replikleri eklendi."
+    },
+    {
+      "bulgu_id": "N2-01",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-premium.webp, 01_EKRANLAR_880x406/kragmir/C-premium.webp",
+      "not": "₺ simgesi okuma farkı doğrulandı ve ilk sürüm kuralı gereği gerçek para satın alımları 'Yakında ₺149 / Yakında ₺299' ve 'YAKINDA' düğmeleriyle devre dışı bırakıldı."
+    },
+    {
+      "bulgu_id": "N1-01",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-profile.webp, 08_SISTEM/cesitli/sonuc.json",
+      "not": "Kullanıcı kararı (24.11) gereği test araçları varsayılan görünür; ?dev=0 ve ?store=1 kiplerinde test paneli ve deneme rozetinin tamamen gizlendiği 08_SISTEM/cesitli/sonuc.json ile doğrulandı."
+    },
+    {
+      "bulgu_id": "N3-01",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-karakter.webp, 01_EKRANLAR_880x406/kragmir/C-karakter.webp",
+      "not": "T3 görünümü kullanıcı onayıyla (26.11) kapatıldı; karakter vitrininde her iki ırkta da oyuncunun gerçek yeşil tenli kılıç+kalkan Kragmir ve Elentha savaşçısı tam boy görünüyor."
+    },
+    {
+      "bulgu_id": "N6-01",
+      "durum": "kismen",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-karakter.webp, 01_EKRANLAR_880x406/kragmir/C-karakter.webp",
+      "not": "Çanta alt satır/Toplu düğmesi çakışması giderildi; ancak nitelik '+' düğmeleri 22 px boyutunda (bilinen açık/sınırlı dokunma alanı olarak not edildi)."
+    },
+    {
+      "bulgu_id": "N4-03",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-anvil.webp, 01_EKRANLAR_880x406/kragmir/C-anvil.webp",
+      "not": "Büyük Örs üst sayaç taşması giderildi, halka 32 px'e ayarlandı, atölye görseli ve usta repliği temiz hizalandı."
+    },
+    {
+      "bulgu_id": "N4-04",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-han.webp, 01_EKRANLAR_880x406/kragmir/C-ahir.webp",
+      "not": "Han ve Ahır pencereleri ortak altın çerçeveye ve standart kapatma düğmesine geçirildi, NPC replikleri eklendi."
+    },
+    {
+      "bulgu_id": "N5-01",
+      "durum": "kapandi",
+      "kanit_ekran": "03_SAVAS_KLAN/elentha/sonuc.json, 03_SAVAS_KLAN/kragmir/sonuc.json",
+      "not": "Otomatik savaş ipucu 3 sn zaman aşımına alındı; savaş kanıtında oto_tip_var=false ve çakışma yok."
+    },
+    {
+      "bulgu_id": "N6-02",
+      "durum": "yanlis-pozitif-kabul",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-quests.webp, 01_EKRANLAR_880x406/kragmir/C-quests.webp",
+      "not": "Görevler listesinde kaydırılabilir/kırpılan kapsayıcı davranışı doğrulandı; gerçek taşma olmadığı için yanlış pozitif kabul edildi."
+    },
+    {
+      "bulgu_id": "N6-03",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-quick.webp, 01_EKRANLAR_880x406/kragmir/C-quick.webp",
+      "not": "VS ekranında Karakter düğmesi 32 px'e çıkarıldı ve dalga metni 2 satıra sığdırıldı."
+    },
+    {
+      "bulgu_id": "N6-04",
+      "durum": "yanlis-pozitif-kabul",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-meydan.webp, 01_EKRANLAR_880x406/kragmir/C-meydan.webp",
+      "not": "Meydan ekranı ölçüm ve görsel incelemede temiz doğrulandı; yanlış pozitif kabul edildi."
+    },
+    {
+      "bulgu_id": "N6-05",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-nobet.webp, 01_EKRANLAR_880x406/kragmir/C-nobet.webp",
+      "not": "Kristal Nöbeti afiş yüksekliği kısaltılarak alt kesilme giderildi."
+    },
+    {
+      "bulgu_id": "N6-06",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-chatOpen.webp, 01_EKRANLAR_880x406/kragmir/C-chatOpen.webp",
+      "not": "Ferman şeridi koyu altın kontrasta alındı; sohbet çakışmasının kaydırılan kap kaynaklı yanlış pozitif olduğu doğrulandı."
+    },
+    {
+      "bulgu_id": "N6-07",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-karaborsa.webp, 01_EKRANLAR_880x406/kragmir/C-achs.webp",
+      "not": "Karaborsa ve Başarım satırları 2 satıra sığdırılarak kesilme giderildi."
+    },
+    {
+      "bulgu_id": "N4-05",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/C-balik.webp, 01_EKRANLAR_880x406/kragmir/C-balik.webp",
+      "not": "Balık Tutma arka planı temiz şekilde bağlandı."
+    },
+    {
+      "bulgu_id": "N2-02",
+      "durum": "kapandi",
+      "kanit_ekran": "01_EKRANLAR_880x406/elentha/B01-baskent-gunduz.webp, 01_EKRANLAR_880x406/kragmir/B01-baskent-gunduz.webp",
+      "not": "Elentha üst şerit kapsül çizgisi ve kontrast dengesi Kragmir ile eşitlendi."
+    },
+    {
+      "bulgu_id": "N4-06",
+      "durum": "kapandi",
+      "kanit_ekran": "03_SAVAS_KLAN/elentha/klan_1_oba_dis_harita.webp, 03_SAVAS_KLAN/kragmir/klan_1_oba_dis_harita.webp",
+      "not": "Klan kurularak her iki ırkta Klan Obası dış haritası, 10 bina ve üst orta arka sur kapısındaki Işınlanma Kapısı hotspot'ı görsel olarak doğrulandı."
+    },
+    {
+      "bulgu_id": "N5-02",
+      "durum": "kapandi",
+      "kanit_ekran": "03_SAVAS_KLAN/elentha/, 03_SAVAS_KLAN/kragmir/",
+      "not": "4 bölge, 4 boss, 5 özgün zindan (Dipsiz Kuyu, Yeraltı Ocağı, Gök Yarığı, Mühürlü Oda, Kül Kulesi), PvP Arena ve Oba Avı Tepegöz savaşları her iki ırkta ayrı sahneler ve temiz zemin temasıyla doğrulandı."
+    },
+    {
+      "bulgu_id": "N6-08",
+      "durum": "kismen",
+      "kanit_ekran": "05_COZUNURLUK_667/, 05_COZUNURLUK_1180/",
+      "not": "667×375 dar telefon ve 1180×820 tablet yerleşimleri doğrulandı (667×375'te katman ölçeği kaynaklı 6–9,8 px küçük HUD yazıları ve kısmi harita etiket örtüşmesi bilinen durumdur). Gerçek cihaz FPS/pil/ısı, 30/120 dk oturum, sunucu/anti-cheat, ağ kesilmesi ve UTC+3 sıfırlama test edilmedi."
+    }
+  ],
+  "bulgular": [
+    {
+      "bulgu_id": "N-2-001",
+      "ekran_kimligi": "05_COZUNURLUK_667 (dar ekran başkent ve savaş HUD)",
+      "irk": "her_ikisi",
+      "ekran_goruntusu": "05_COZUNURLUK_667/",
+      "sorun_konumu": "Savaş HUD metinleri, yan menü ve bazı başkent bina etiketleri (667×375 ölçeği)",
+      "sorun_aciklamasi": "667×375 dar telefon çözünürlüğünde katman ölçeği nedeniyle savaş HUD ve yan menü yazıları 6–9,8 px bandına düşüyor ve bazı harita etiketleri kısmen örtüşüyor (bilinen açık kalem).",
+      "oncelik": "Düşük",
+      "onerilen_duzeltme": "667×375 ve altı dar yatay ekranlar için CSS medya sorgusuyla HUD etiketlerine alt sınır font-size ve harita etiketleri için kompakt yastıklama uygulanması."
+    },
+    {
+      "bulgu_id": "N-2-002",
+      "ekran_kimligi": "C-karakter",
+      "irk": "her_ikisi",
+      "ekran_goruntusu": "01_EKRANLAR_880x406/elentha/C-karakter.webp, 01_EKRANLAR_880x406/kragmir/C-karakter.webp",
+      "sorun_konumu": "Nitelik artırma '+' düğmeleri",
+      "sorun_aciklamasi": "Karakter penceresindeki nitelik '+' düğmeleri 22 px boyutunda kalıyor; mobil dokunma rahatlığı açısından sınırda (bilinen açık kalem).",
+      "oncelik": "Düşük",
+      "onerilen_duzeltme": "Düğmenin görsel kutusunu bozmadan görünmez dokunma alanını (padding/hit-area) en az 28–32 px düzeyine genişletmek."
+    }
+  ],
+  "ekran_bazli_kararlar": [
+    {
+      "ekran_kimligi": "A01-yukleme",
+      "ad": "Yükleme",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A02-sunucu-secimi",
+      "ad": "Sunucu seçimi",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A03-olustur-acilis",
+      "ad": "Karakter oluştur · açılış",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A04-olustur-halk",
+      "ad": "Karakter oluştur · halk seçildi",
+      "elentha_var": false,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-mage-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: mage / kadın",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-mage-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: mage / erkek",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-priest-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: priest / kadın",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-priest-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: priest / erkek",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-rogue-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: rogue / kadın",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-rogue-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: rogue / erkek",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-warrior-f",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: warrior / kadın",
+      "elentha_var": false,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A05-olustur-warrior-m",
+      "ad": "Karakter oluştur · sınıf×cinsiyet: warrior / erkek",
+      "elentha_var": true,
+      "kragmir_var": false,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A06-karakter-secme",
+      "ad": "Karakter seçme",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A07-giris-sonrasi",
+      "ad": "Giriş sonrası / hikâye girişi",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "A08-ogretici",
+      "ad": "Öğretici",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "B01-hub-baskent",
+      "ad": "Ana ekran · Başkent",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "B02-hub-yemin-pazari",
+      "ad": "Ana ekran · Yemin Pazarı",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "B03-hub-klan",
+      "ad": "Ana ekran · Klan Obası",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "D02-savas-a",
+      "ad": "Savaş · açılış",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "D03-savas-b",
+      "ad": "Savaş · ilerleyen tur",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "D04-savas-sonucu",
+      "ad": "Savaş sonucu",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "achs",
+      "ad": "Başarımlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "achs~titles",
+      "ad": "Başarımlar › Unvanlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "ahir",
+      "ad": "Ahır",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "anvil",
+      "ad": "Örs (Büyük Örs)",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "bag",
+      "ad": "Çanta",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "balik",
+      "ad": "Balık Tut",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "baskin",
+      "ad": "Baskın",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "baskin~dungeons",
+      "ad": "Baskın › Zindanlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "calendar",
+      "ad": "Takvim",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "calendar~m28",
+      "ad": "Takvim › 28 gün",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "chatMenu~f",
+      "ad": "Sohbet menüsü › Arkadaş",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "chatOpen",
+      "ad": "Sohbet (tam ekran)",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "chatOpen~c",
+      "ad": "Sohbet (tam ekran) › Klan",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "chatOpen~f",
+      "ad": "Sohbet (tam ekran) › Arkadaş",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "chatOpen~p",
+      "ad": "Sohbet (tam ekran) › Özel",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "codex",
+      "ad": "Ansiklopedi",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "codex~items",
+      "ad": "Ansiklopedi › Eşyalar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "codex~mobs",
+      "ad": "Ansiklopedi › Canavarlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "destan",
+      "ad": "Destan",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "diyarMap",
+      "ad": "Diyar Haritası",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "diyarMap~grant",
+      "ad": "Diyar Haritası › Bağış",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "diyarMap~treasury",
+      "ad": "Diyar Haritası › Hazine",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "drawer",
+      "ad": "Yan çekmece",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "friends",
+      "ad": "Arkadaşlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "friends~blocked",
+      "ad": "Arkadaşlar › Engellenenler",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "friends~req",
+      "ad": "Arkadaşlar › İstekler",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "gateMenu",
+      "ad": "Kapı menüsü",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "gateZones",
+      "ad": "Kapı · Bölgeler",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "han",
+      "ad": "Han",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "hotbar",
+      "ad": "Yetenek çubuğu ayarı",
+      "elentha_var": false,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "iksir",
+      "ad": "İksirci",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "karaborsa",
+      "ad": "Karaborsa",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "karakter",
+      "ad": "Karakter",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "karakter~mst",
+      "ad": "Karakter › Ustalık",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "karakter~skill",
+      "ad": "Karakter › Yetenek",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "karakter~unvan",
+      "ad": "Karakter › Unvan",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "logoutMenu",
+      "ad": "Çıkış",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "mail",
+      "ad": "Posta",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "mail~rep",
+      "ad": "Posta › Raporlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "mail~yaz",
+      "ad": "Posta › Yaz",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "market",
+      "ad": "Pazar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "meydan",
+      "ad": "Meydan (PvP)",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "meydan~def",
+      "ad": "Meydan (PvP) › Savunma",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "meydan~feud",
+      "ad": "Meydan (PvP) › Kan davası",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "meydan~san",
+      "ad": "Meydan (PvP) › Şan",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "meydan~shop",
+      "ad": "Meydan (PvP) › Dükkân",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "mine",
+      "ad": "Maden",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "modInfo",
+      "ad": "Kip bilgisi",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "monument",
+      "ad": "Anıt",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "monument~clan",
+      "ad": "Anıt › Klan",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "monument~race",
+      "ad": "Anıt › Irk",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "monument~ruler",
+      "ad": "Anıt › Önder",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "news",
+      "ad": "Duyurular",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "news~feed",
+      "ad": "Duyurular › Akış",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "nobet",
+      "ad": "Kristal Nöbeti",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "notifs",
+      "ad": "Bildirimler",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "notifs~set",
+      "ad": "Bildirimler › Ayarlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "onlineOpen",
+      "ad": "Çevrimiçi ödülü",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "otag",
+      "ad": "Otağ (Taht Salonu)",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "pazar",
+      "ad": "Pazar (çarşı girişi)",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "premium",
+      "ad": "Üyelik",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "profile",
+      "ad": "Profil",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "promoMenu",
+      "ad": "Promosyon kodu",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "questLog",
+      "ad": "Görev günlüğü",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "quests",
+      "ad": "Görevler",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "quests~daily",
+      "ad": "Görevler › Günlük",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "quests~monthly",
+      "ad": "Görevler › Aylık",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "quests~weekly",
+      "ad": "Görevler › Haftalık",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "quick",
+      "ad": "Hızlı av",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "rank",
+      "ad": "Sıralama",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "rank~clans",
+      "ad": "Sıralama › Klanlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "rank~race",
+      "ad": "Sıralama › Irk",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "savas",
+      "ad": "Savaş menüsü",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "season",
+      "ad": "Sezon",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "season~hist",
+      "ad": "Sezon › Geçmiş",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "season~rew",
+      "ad": "Sezon › Ödüller",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "server",
+      "ad": "Sunucu",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "settings",
+      "ad": "Ayarlar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "settings~acc",
+      "ad": "Ayarlar › Hesap",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "settings~dil",
+      "ad": "Ayarlar › Dil",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "settings~erisim",
+      "ad": "Ayarlar › Erişilebilirlik",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "settings~notif",
+      "ad": "Ayarlar › Bildirim",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "settings~ses",
+      "ad": "Ayarlar › Ses",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "shop",
+      "ad": "Dükkân (Kervan)",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "shop~money",
+      "ad": "Dükkân (Kervan) › Para",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "starterOpen",
+      "ad": "Başlangıç paketi",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "supportMenu",
+      "ad": "Sorun / Teknik Destek",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "tuccar",
+      "ad": "Tüccar",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "wheel",
+      "ad": "Çark",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "worldInfo",
+      "ad": "Dünya bilgisi",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "yakutMenu",
+      "ad": "Yakut al",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "yakutMenu~card",
+      "ad": "Yakut al › Aylık kart",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "yakutMenu~hist",
+      "ad": "Yakut al › Geçmiş",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "Görsel bütünlük, hizalama ve ırk uyumu 880×406 çekiminde doğrulandı."
+    },
+    {
+      "ekran_kimligi": "zaferAniti",
+      "ad": "Zafer Anıtı",
+      "elentha_var": true,
+      "kragmir_var": true,
+      "karar": "Kabul",
+      "not": "KABUL-2 ve KABUL2_EK çekimlerinde doğrulandı."
+    }
+  ],
+  "yonlendirme_testi_gereken_ayni_goruntuler": [
+    {
+      "ana_ekran": "A03-olustur-acilis",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "A04-olustur-halk",
+        "A05-olustur-warrior-f"
+      ]
+    },
+    {
+      "ana_ekran": "A04-olustur-halk",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "A05-olustur-warrior-m"
+      ]
+    },
+    {
+      "ana_ekran": "B03-hub-klan",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "clan",
+        "clanhq",
+        "gateKlan"
+      ]
+    },
+    {
+      "ana_ekran": "B03-hub-klan",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "clan",
+        "clanhq",
+        "gateKlan"
+      ]
+    },
+    {
+      "ana_ekran": "achs~titles",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "titles",
+        "titles~titles",
+        "titlesMenu",
+        "titlesMenu~titles"
+      ]
+    },
+    {
+      "ana_ekran": "achs~titles",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "titles",
+        "titles~titles",
+        "titlesMenu",
+        "titlesMenu~titles"
+      ]
+    },
+    {
+      "ana_ekran": "baskin",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "baskin~events",
+        "gate",
+        "gate~events",
+        "gateZones~events",
+        "gateEvents",
+        "gateEvents~events"
+      ]
+    },
+    {
+      "ana_ekran": "baskin",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "baskin~events",
+        "gate",
+        "gate~events",
+        "gateZones~events",
+        "gateEvents",
+        "gateEvents~events"
+      ]
+    },
+    {
+      "ana_ekran": "baskin~dungeons",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "gate~dungeons",
+        "gateZones~dungeons",
+        "gateEvents~dungeons"
+      ]
+    },
+    {
+      "ana_ekran": "baskin~dungeons",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "gate~dungeons",
+        "gateZones~dungeons",
+        "gateEvents~dungeons"
+      ]
+    },
+    {
+      "ana_ekran": "calendar",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "calendar~n7"
+      ]
+    },
+    {
+      "ana_ekran": "calendar",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "calendar~n7"
+      ]
+    },
+    {
+      "ana_ekran": "chatOpen~c",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "chatMenu~c"
+      ]
+    },
+    {
+      "ana_ekran": "chatOpen~c",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "chatMenu~c"
+      ]
+    },
+    {
+      "ana_ekran": "chatOpen~p",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "chatMenu",
+        "chatMenu~p"
+      ]
+    },
+    {
+      "ana_ekran": "chatOpen~p",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "chatMenu",
+        "chatMenu~p"
+      ]
+    },
+    {
+      "ana_ekran": "codex",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rehber"
+      ]
+    },
+    {
+      "ana_ekran": "codex",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rehber"
+      ]
+    },
+    {
+      "ana_ekran": "codex~items",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rehber~items"
+      ]
+    },
+    {
+      "ana_ekran": "codex~items",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rehber~items"
+      ]
+    },
+    {
+      "ana_ekran": "codex~mobs",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rehber~mobs"
+      ]
+    },
+    {
+      "ana_ekran": "codex~mobs",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rehber~mobs"
+      ]
+    },
+    {
+      "ana_ekran": "destan",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "gateDestan"
+      ]
+    },
+    {
+      "ana_ekran": "destan",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "gateDestan"
+      ]
+    },
+    {
+      "ana_ekran": "diyarMap",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "diyarMap~map",
+        "otag~map",
+        "otagMenu~map"
+      ]
+    },
+    {
+      "ana_ekran": "diyarMap",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "diyarMap~map",
+        "otag~map",
+        "otagMenu~map"
+      ]
+    },
+    {
+      "ana_ekran": "diyarMap~grant",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "otag~grant",
+        "otagMenu~grant"
+      ]
+    },
+    {
+      "ana_ekran": "diyarMap~grant",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "otag~grant",
+        "otagMenu~grant"
+      ]
+    },
+    {
+      "ana_ekran": "diyarMap~treasury",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "otag~treasury",
+        "otagMenu~treasury"
+      ]
+    },
+    {
+      "ana_ekran": "diyarMap~treasury",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "otag~treasury",
+        "otagMenu~treasury"
+      ]
+    },
+    {
+      "ana_ekran": "friends",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "friendsMenu"
+      ]
+    },
+    {
+      "ana_ekran": "friends",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "friendsMenu"
+      ]
+    },
+    {
+      "ana_ekran": "friends~blocked",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "friendsMenu~blocked"
+      ]
+    },
+    {
+      "ana_ekran": "friends~blocked",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "friendsMenu~blocked"
+      ]
+    },
+    {
+      "ana_ekran": "friends~req",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "friendsMenu~req"
+      ]
+    },
+    {
+      "ana_ekran": "friends~req",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "friendsMenu~req"
+      ]
+    },
+    {
+      "ana_ekran": "karakter~mst",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "party~mst",
+        "hotbar~mst"
+      ]
+    },
+    {
+      "ana_ekran": "karakter~mst",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "party~mst",
+        "hotbar~mst"
+      ]
+    },
+    {
+      "ana_ekran": "karakter~skill",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "party~skill",
+        "hotbar",
+        "hotbar~skill"
+      ]
+    },
+    {
+      "ana_ekran": "karakter~skill",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "party~skill",
+        "hotbar~skill"
+      ]
+    },
+    {
+      "ana_ekran": "karakter~unvan",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "party",
+        "party~unvan",
+        "hotbar~unvan"
+      ]
+    },
+    {
+      "ana_ekran": "karakter~unvan",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "party",
+        "party~unvan",
+        "hotbar~unvan"
+      ]
+    },
+    {
+      "ana_ekran": "mail~rep",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "reports",
+        "reports~rep"
+      ]
+    },
+    {
+      "ana_ekran": "mail~rep",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "reports",
+        "reports~rep"
+      ]
+    },
+    {
+      "ana_ekran": "mail~yaz",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "reports~yaz"
+      ]
+    },
+    {
+      "ana_ekran": "mail~yaz",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "reports~yaz"
+      ]
+    },
+    {
+      "ana_ekran": "meydan",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "czArena",
+        "gatePvp"
+      ]
+    },
+    {
+      "ana_ekran": "meydan",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "czArena",
+        "gatePvp"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~def",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall~def",
+        "czArena~def",
+        "czHall~def",
+        "gatePvp~def"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~def",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall~def",
+        "czArena~def",
+        "czHall~def",
+        "gatePvp~def"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~feud",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall~feud",
+        "czArena~feud",
+        "czHall~feud",
+        "gatePvp~feud"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~feud",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall~feud",
+        "czArena~feud",
+        "czHall~feud",
+        "gatePvp~feud"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~san",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall",
+        "hall~san",
+        "czArena~san",
+        "czHall",
+        "czHall~san",
+        "gatePvp~san"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~san",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall",
+        "hall~san",
+        "czArena~san",
+        "czHall",
+        "czHall~san",
+        "gatePvp~san"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~shop",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall~shop",
+        "czArena~shop",
+        "czHall~shop",
+        "gatePvp~shop"
+      ]
+    },
+    {
+      "ana_ekran": "meydan~shop",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "hall~shop",
+        "czArena~shop",
+        "czHall~shop",
+        "gatePvp~shop"
+      ]
+    },
+    {
+      "ana_ekran": "otag",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "otagMenu"
+      ]
+    },
+    {
+      "ana_ekran": "otag",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "otagMenu"
+      ]
+    },
+    {
+      "ana_ekran": "premium",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "premiumMenu"
+      ]
+    },
+    {
+      "ana_ekran": "premium",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "premiumMenu"
+      ]
+    },
+    {
+      "ana_ekran": "quests",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain"
+      ]
+    },
+    {
+      "ana_ekran": "quests",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain"
+      ]
+    },
+    {
+      "ana_ekran": "quests~daily",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain~daily"
+      ]
+    },
+    {
+      "ana_ekran": "quests~daily",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain~daily"
+      ]
+    },
+    {
+      "ana_ekran": "quests~monthly",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain~monthly"
+      ]
+    },
+    {
+      "ana_ekran": "quests~monthly",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain~monthly"
+      ]
+    },
+    {
+      "ana_ekran": "quests~weekly",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain~weekly"
+      ]
+    },
+    {
+      "ana_ekran": "quests~weekly",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "mnMain~weekly"
+      ]
+    },
+    {
+      "ana_ekran": "quick",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "D01-vs-1-1"
+      ]
+    },
+    {
+      "ana_ekran": "quick",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "D01-vs-1-1"
+      ]
+    },
+    {
+      "ana_ekran": "rank",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rankMenu"
+      ]
+    },
+    {
+      "ana_ekran": "rank",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rankMenu"
+      ]
+    },
+    {
+      "ana_ekran": "rank~clans",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rankMenu~clans"
+      ]
+    },
+    {
+      "ana_ekran": "rank~clans",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rankMenu~clans"
+      ]
+    },
+    {
+      "ana_ekran": "rank~race",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rankMenu~race"
+      ]
+    },
+    {
+      "ana_ekran": "rank~race",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "rankMenu~race"
+      ]
+    },
+    {
+      "ana_ekran": "settings~acc",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~acc"
+      ]
+    },
+    {
+      "ana_ekran": "settings~acc",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~acc"
+      ]
+    },
+    {
+      "ana_ekran": "settings~dil",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~dil"
+      ]
+    },
+    {
+      "ana_ekran": "settings~dil",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~dil"
+      ]
+    },
+    {
+      "ana_ekran": "settings~erisim",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim",
+        "erisim~erisim"
+      ]
+    },
+    {
+      "ana_ekran": "settings~erisim",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim",
+        "erisim~erisim"
+      ]
+    },
+    {
+      "ana_ekran": "settings~notif",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~notif"
+      ]
+    },
+    {
+      "ana_ekran": "settings~notif",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~notif"
+      ]
+    },
+    {
+      "ana_ekran": "settings~ses",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~ses"
+      ]
+    },
+    {
+      "ana_ekran": "settings~ses",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "erisim~ses"
+      ]
+    },
+    {
+      "ana_ekran": "shop",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "czMarket"
+      ]
+    },
+    {
+      "ana_ekran": "shop",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "czMarket"
+      ]
+    },
+    {
+      "ana_ekran": "shop~money",
+      "irk": "elentha",
+      "ayni_goruntu_yonlendirmeleri": [
+        "czMarket~money"
+      ]
+    },
+    {
+      "ana_ekran": "shop~money",
+      "irk": "kragmir",
+      "ayni_goruntu_yonlendirmeleri": [
+        "czMarket~money"
+      ]
+    }
+  ]
+}

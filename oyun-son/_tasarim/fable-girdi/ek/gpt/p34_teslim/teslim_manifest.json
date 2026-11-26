@@ -1,0 +1,4617 @@
+{
+  "uzman": "GPT",
+  "surum": "KORANT-v40-1dda167+P33",
+  "paket": "P34",
+  "kalemler": [
+    {
+      "kod": "K-1",
+      "durum": "kontrol_temiz",
+      "dosyalar": [
+        {
+          "yol": "K-1/kontrol.json",
+          "sha256": "f0549efb8567b12675a83ac7b0d9daaf9aba673303a3957cfd4fb8969642f5c9"
+        }
+      ],
+      "kendi_kontrolum": "35 kaynak poz ve gömülü ölçümler karşılaştırıldı.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    },
+    {
+      "kod": "K-2",
+      "durum": "kontrol_duzeltildi",
+      "dosyalar": [
+        {
+          "yol": "K-2/kahraman-sancak-savasci-kadin-buyu.png",
+          "sha256": "87ff06ded3da57e3046f5dcaa239e3c525cb8357bb932946a5f2e1ed36d0108d",
+          "olcu": [
+            1086,
+            1448
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "K-2/kontrol.json",
+          "sha256": "1098df8602878e7379a8c181b12580974a60d0ba78bd3bb308c7a57a862b2fef"
+        }
+      ],
+      "kendi_kontrolum": "Bekleme ve zafer pozunda kalkan sol kolda. Teslimde yalnız büyü pozu düzeltildi.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    },
+    {
+      "kod": "P34-01",
+      "durum": "uretildi",
+      "dosyalar": [
+        {
+          "yol": "P34-01/zafer_aniti.webp",
+          "sha256": "f508bfabb248475fc661d581acfefbaa17636aab96a1267592c04f9360f57328",
+          "olcu": [
+            2048,
+            868
+          ],
+          "alfa": false,
+          "rol": "varlik"
+        }
+      ],
+      "kendi_kontrolum": "Önceki 2048×868 WebP korundu. Küçük kaynakla kadraj ve dört meşale karşılaştırıldı.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    },
+    {
+      "kod": "P34-02",
+      "durum": "uretildi",
+      "dosyalar": [
+        {
+          "yol": "P34-02/baskent-elentha/alev-01_00.png",
+          "sha256": "0f246a9a14ea61a72c951a466ae58e3c3c135f0dfdb7ef19074a98c2e299af28",
+          "olcu": [
+            48,
+            47
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-01_01.png",
+          "sha256": "963bb33e90bac1d5e42dcfc4f011f7992ad6d6ad9b0854d51e2574be343824ed",
+          "olcu": [
+            48,
+            47
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-01_02.png",
+          "sha256": "adbdb4eefbe47a1ae3e72a3665842aa743de1f644802d7a5cd96c776fe319228",
+          "olcu": [
+            48,
+            47
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-01_03.png",
+          "sha256": "f44f6fdaf89a58ac8779fe8b5c3bcda30bce1d7a669f185cf18b27899bed1e9f",
+          "olcu": [
+            48,
+            47
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-01_04.png",
+          "sha256": "30e1a8d62b6cd17123173187f9c88fedb0b039d3155c685a2c58566adc9de7ff",
+          "olcu": [
+            48,
+            47
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-01_05.png",
+          "sha256": "0f9e70b08b9b0784ae0122e6dc75f2bd564735cd4e2a1877d7df8e7184bc35ef",
+          "olcu": [
+            48,
+            47
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-02_00.png",
+          "sha256": "26f8fa116c15837e18b11478cf94ad93b00dd82bf285ae1d7e1c489ee2596c7f",
+          "olcu": [
+            36,
+            51
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-02_01.png",
+          "sha256": "a6bdad6f5234d424447f36cb8dddef4495a9bcfffe78a44bfcfd1c880787c525",
+          "olcu": [
+            36,
+            51
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-02_02.png",
+          "sha256": "99703e7e898fbcc64d6f436afe5f7d136b86e72901380e7aaa1dd926dc3e390a",
+          "olcu": [
+            36,
+            51
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-02_03.png",
+          "sha256": "1231538d29cb99a53ecc39d9ae2b0050b6beddca3fe878940b6b47e3805e7884",
+          "olcu": [
+            36,
+            51
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-02_04.png",
+          "sha256": "8c0b221f1dd8c8a9fd248073e41f06455041a8101cffc7c218d346dd19ef29bd",
+          "olcu": [
+            36,
+            51
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-02_05.png",
+          "sha256": "ebd64eee320bf0eada29f77a33375e0b8f9315fc72222b42a6ae48e063b19869",
+          "olcu": [
+            36,
+            51
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-03_00.png",
+          "sha256": "e80ee9086311678521f66694fa97d57fdc58daa163ee4d4e7016b5197be0492f",
+          "olcu": [
+            36,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-03_01.png",
+          "sha256": "991b0f19eb6602b2989e157f8f9ea4ec77e4710b24f6bd46fda6772e2e318490",
+          "olcu": [
+            36,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-03_02.png",
+          "sha256": "406e059a3de2cf2611587d01b0db73e839a3616c64dace5f2e58cf8b3bb40002",
+          "olcu": [
+            36,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-03_03.png",
+          "sha256": "43e6f65a0df7b4f95f416e9e44f2cbced1e3dfe4f98b01dced9d6cd5976c8ef8",
+          "olcu": [
+            36,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-03_04.png",
+          "sha256": "163d6b283f99f64a581665850df189ef89c53b15103ac0e7ffeebde63deb5096",
+          "olcu": [
+            36,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-03_05.png",
+          "sha256": "cf16d4f3810e64f28855e70ad081caf7af485194613fcbeb934fded95ed91d56",
+          "olcu": [
+            36,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-04_00.png",
+          "sha256": "a91ff7f89e2f4be853853e09ee0f73ebef231b2e208c06f8e5864fd4ff92d05e",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-04_01.png",
+          "sha256": "cf6463987dde3893ce6cd5bd7a40a4982d649d68e0c156a38ae2c0288513692a",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-04_02.png",
+          "sha256": "4eb975a93148f6264fd306d208102e32d3aec1da8edd9f02fa4fd707decca97b",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-04_03.png",
+          "sha256": "acc10b0c442d0d2683277a966d386314675f2e85e1a21ca322015f49c963bb4d",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-04_04.png",
+          "sha256": "44996985a898537d2b5668fb347ce7481f8502f38a2976e75df17af9bd43fe2d",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-04_05.png",
+          "sha256": "2fd66ca81e939dbc2b85a462eb8febfd58c2259beb16d4e14022b34f5c42871e",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-05_00.png",
+          "sha256": "a91ff7f89e2f4be853853e09ee0f73ebef231b2e208c06f8e5864fd4ff92d05e",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-05_01.png",
+          "sha256": "504213b4965b0db60a27a21758a0c2794b6c5442f4fed524b82be7e3c0286627",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-05_02.png",
+          "sha256": "703bc8dd2c9e24d7ab4a1345aeb40ca53606d2f8c4dc40023d787f1bd238ef62",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-05_03.png",
+          "sha256": "e995f8040c804f90c3eba178bfdb99fe4badac2d1f4257770692fb6bb573aa2a",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-05_04.png",
+          "sha256": "c73d9cd881257a62cdacfa7a02f45ebcd7dcff8bf0b59d9042f3af1dbbc9916a",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-05_05.png",
+          "sha256": "25bbdee5aa5c486e50003cfcdb2c55d262478e653b762360fb566ac28ef5e049",
+          "olcu": [
+            49,
+            48
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-06_00.png",
+          "sha256": "b1a655f3675989eeb3f94aa40955eee5e6286be3ff0ee2ee347087a8b9d3f57c",
+          "olcu": [
+            37,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-06_01.png",
+          "sha256": "99a5c4449c991aedd8c96a7db313e45a28f7da3f91c7b12072c0a28c2b57b111",
+          "olcu": [
+            37,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-06_02.png",
+          "sha256": "55e9382c92d27896607053436dbfda47b6b8cd0c65ef6e8e77132fcc4ca8ee45",
+          "olcu": [
+            37,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-06_03.png",
+          "sha256": "476a1dfef877e2cf6c86849903a6374fd7ebc10297d65a7d9ecf5c6a0e2031fd",
+          "olcu": [
+            37,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-06_04.png",
+          "sha256": "5ee60f8cc1d7c4c83de2c611fd91e9130cdb1c658e7a123254e6d2a8d7973aa5",
+          "olcu": [
+            37,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/alev-06_05.png",
+          "sha256": "851bfc5d4fc297735a36968cb0c2bff2f7cad7f60abd5d46f3deac1c47701caf",
+          "olcu": [
+            37,
+            49
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-01_00.png",
+          "sha256": "362b87f07fc5fcd1e5bf91ef5d5c6d0deb323894564e3edd48a79af9c3e08bb8",
+          "olcu": [
+            176,
+            112
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-01_01.png",
+          "sha256": "f3f3a732abbe15c7bf333dc7c8688ff08ec62cb1d6137b766b9180e385831dd5",
+          "olcu": [
+            176,
+            112
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-01_02.png",
+          "sha256": "b40fdad60c4d38c1e92f6feabe263f0cc9a0a74db536a07fdd6a16a2e3a82d67",
+          "olcu": [
+            176,
+            112
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-01_03.png",
+          "sha256": "a2b621eefcf850151379addd85625fa566761e760ee1070556da5fc43c80079d",
+          "olcu": [
+            176,
+            112
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-01_04.png",
+          "sha256": "95deed2579c4c9a04ed96c5bfcfde81b4587fd0aa7d96b32a99919d07cf4a5a5",
+          "olcu": [
+            176,
+            112
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-01_05.png",
+          "sha256": "21f3c72aa9019b4b7e1552fa3c3107ddcd30ffad4ac734e8828fac06ea207720",
+          "olcu": [
+            176,
+            112
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-02_00.png",
+          "sha256": "3adb95ec148e8fb297a4aad127bc6db19775079d62b8d3b32baa764026d6bfb1",
+          "olcu": [
+            41,
+            111
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-02_01.png",
+          "sha256": "39b82b7cbc3787fd6c36a66cca8e86385f224ddf01f80949f5cbd87968b07108",
+          "olcu": [
+            41,
+            111
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-02_02.png",
+          "sha256": "819eb77d2c08335a89d05b1d53503adde22157336699606f8f18426d9eba061a",
+          "olcu": [
+            41,
+            111
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-02_03.png",
+          "sha256": "557bfdaca4a07f7001ba79fac4f31f84adfe5441c2adbf639b560c56334daffd",
+          "olcu": [
+            41,
+            111
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-02_04.png",
+          "sha256": "b5f1afd968e3b53f4a3f9b51e94f740a5d901505abdbd8906a1b18ab897a57f1",
+          "olcu": [
+            41,
+            111
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-02_05.png",
+          "sha256": "80e830b22763ea4613277058efe3940fede241d4ce7fd456cc3bcb13e23fe696",
+          "olcu": [
+            41,
+            111
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-03_00.png",
+          "sha256": "403fbe0d784dc04c220d3816726e758dbf091ae334994108e3e945e3b78d1df7",
+          "olcu": [
+            42,
+            114
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-03_01.png",
+          "sha256": "540d41c07de673d850d9b384260572e0a5c67606ca2c28859537d7e43097fb62",
+          "olcu": [
+            42,
+            114
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-03_02.png",
+          "sha256": "7debb195e09aa706106cc3c70b589267064acd9739b37b3755761adb9589587d",
+          "olcu": [
+            42,
+            114
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-03_03.png",
+          "sha256": "f2a5b11c3345ab9490c0785548497cd45729f3a38de4bea2fc831641dd3666e2",
+          "olcu": [
+            42,
+            114
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-03_04.png",
+          "sha256": "5d6510d3b4df837554c056841c18c3d7c02a4d0aa90b2ad90c0561b6100e5443",
+          "olcu": [
+            42,
+            114
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-03_05.png",
+          "sha256": "919919ab96297ea8ca42c14d469f248ff0f11a4a59f55f293bf09ec4bfb186f2",
+          "olcu": [
+            42,
+            114
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-04_00.png",
+          "sha256": "889d63eaa4ce05ca561ba89c81431835eed5f57cf98b5ef3565777951400dff7",
+          "olcu": [
+            60,
+            136
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-04_01.png",
+          "sha256": "0ef7a1c551a26908928184e1c2b457779c4c8580c74302667adfca63fea8bfae",
+          "olcu": [
+            60,
+            136
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-04_02.png",
+          "sha256": "97440cdc2b770c30d3baaa4e5afed3d8dd495cb275a582462678376db436d004",
+          "olcu": [
+            60,
+            136
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-04_03.png",
+          "sha256": "30545025ffb5aaa5f0f4bc5df3410a2cc5c6f288a33b29c1a76f7c76f1d9f059",
+          "olcu": [
+            60,
+            136
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-04_04.png",
+          "sha256": "3901ad368eeffa2ea70363572c706377a5d5ccdb2164d72f97f0f960e9d1befb",
+          "olcu": [
+            60,
+            136
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-04_05.png",
+          "sha256": "be327ea568acbbfa1688933e8092bb771fc7ce6ac460e0562b80ad6b39b8d47b",
+          "olcu": [
+            60,
+            136
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-05_00.png",
+          "sha256": "2a02c1b4c5bbb73aaa714f41504cd127e062a3a43fadf8fca48ee484d6072718",
+          "olcu": [
+            59,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-05_01.png",
+          "sha256": "85e8b5c715bb8e7327216cea82ba3ac0f074118511397e8528710fedf8611ee7",
+          "olcu": [
+            59,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-05_02.png",
+          "sha256": "78645672016882879bffacc1e7da392274d1ecce56e2890d38e6e3f9673b4fe8",
+          "olcu": [
+            59,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-05_03.png",
+          "sha256": "1d7fff94a567c480ad7b6548c06320ebacb7aec8cfad3d6b419fa3e9a4644ceb",
+          "olcu": [
+            59,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-05_04.png",
+          "sha256": "dadabfcb8fe1bf18cca13762f343ae39e21b2e40441ce19b3f131c640275b0bd",
+          "olcu": [
+            59,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/sancak-05_05.png",
+          "sha256": "c26e197be5a81838b5103d635b6aeb936e9b9d3fe374b827558093a8b7927aa0",
+          "olcu": [
+            59,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-01_00.png",
+          "sha256": "bb200ddee9cbd5b8c2ac011a290728fca992e738350ecc633db77e4b93222120",
+          "olcu": [
+            45,
+            131
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-01_01.png",
+          "sha256": "0cce5d4d44dfa3a7afd9ad2157305da7165e58cb5594a47d4778887dfdf56fd4",
+          "olcu": [
+            45,
+            131
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-01_02.png",
+          "sha256": "c59bb1cd4bce23ca9bd95033d2314df3185b5271589492514d713740136c3d3a",
+          "olcu": [
+            45,
+            131
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-01_03.png",
+          "sha256": "1923e6cf91ad3a385328762af2d3c50d80c5ec5a6e6f2513ea7275f071d3311a",
+          "olcu": [
+            45,
+            131
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-01_04.png",
+          "sha256": "59101dffb78eb8ade860b0f2189aaba35c7ef28511fa87bb8ed48e1a10474e4f",
+          "olcu": [
+            45,
+            131
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-01_05.png",
+          "sha256": "5464c9c1e4dc51593d273eca6996e86b0449d0e0d93ca3622350b22e3828a4b0",
+          "olcu": [
+            45,
+            131
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-02_00.png",
+          "sha256": "f82773d5521128508cbe5bdf46090e5ab376ab37a2ce5364862af4caeead38cc",
+          "olcu": [
+            35,
+            90
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-02_01.png",
+          "sha256": "50bfef68b2773275c339675019cc2e0e99ed9e29d26a0b20931427d68bd26656",
+          "olcu": [
+            35,
+            90
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-02_02.png",
+          "sha256": "95640c9a7c85a63db44c512fb981c857d954c21f61717493b9040be4d3704a9a",
+          "olcu": [
+            35,
+            90
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-02_03.png",
+          "sha256": "8cc35918e67d161d79940ed646cd92c5cee2c548951fdd6303e7369a662c6a79",
+          "olcu": [
+            35,
+            90
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-02_04.png",
+          "sha256": "dd77cae334628faebf97eb95afea3197a446e9420067cda8585f946e991734b0",
+          "olcu": [
+            35,
+            90
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-02_05.png",
+          "sha256": "d37fa7bc56d8ec8d6f1b6f985b8bfc164de5b13d5d29b2d3b3d888ad5a93ee39",
+          "olcu": [
+            35,
+            90
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-03_00.png",
+          "sha256": "35d1882b1ea72cf31802d541efbd17240b56789a95303c08a4401d993ff13917",
+          "olcu": [
+            36,
+            81
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-03_01.png",
+          "sha256": "ea7d79cbd36fb65a9c9a076cea06d1bca52fe65a5efaa791f8cd2878af08fcbc",
+          "olcu": [
+            36,
+            81
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-03_02.png",
+          "sha256": "3369e114acad1b6fd02ad91d831699dff9d6f2de24e209b6b89321b752278ee8",
+          "olcu": [
+            36,
+            81
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-03_03.png",
+          "sha256": "24443876e87d7304343fc34a1987904ef204b6ccef0ec429d66f6dc6cb66126c",
+          "olcu": [
+            36,
+            81
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-03_04.png",
+          "sha256": "cf929793468e5aedfa7c7ba34bf17e5fe79cf000f665c23e3fa40154e412bffd",
+          "olcu": [
+            36,
+            81
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/selale-03_05.png",
+          "sha256": "e3335bd83e2146c83446fe864d9b1f644b30a80c53a68f56d27af513f12fa024",
+          "olcu": [
+            36,
+            81
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-02/baskent-elentha/yerlesim.json",
+          "sha256": "c0a2f7fef44be2d10f23327be34566a23b3c8ebedc47f6b65b7c9df8ec773f90"
+        },
+        {
+          "yol": "P34-02/onizleme/baskent-elentha_bindirme_00.png",
+          "sha256": "183a8367ab42988a50b981a33be6e9d2bc4675278c8a531a877ff48241e2b7c4",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-02/onizleme/baskent-elentha_bindirme_01.png",
+          "sha256": "2122296f34e9c6544d11fc8bc768a54d4a232a5e6dd7c52f65e0f5f09a9a70a7",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-02/onizleme/baskent-elentha_bindirme_02.png",
+          "sha256": "7bc067ae9e94c3c13182edb25da42b4f28bf468584a7484d778e99b7743a5c71",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-02/onizleme/baskent-elentha_bindirme_03.png",
+          "sha256": "fb116b62add0845b3ac97765273c84db4de737342ef164447592d94e3f20e272",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-02/onizleme/baskent-elentha_bindirme_04.png",
+          "sha256": "c1bd772dba2647679bf5aa8b18001ada78ade66ff8b1f6695245c12493eed838",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-02/onizleme/baskent-elentha_bindirme_05.png",
+          "sha256": "8c3842e0a6f29006139f28aa4b1424ae14cc2ab0298bc3d48c22335584a8fb90",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        }
+      ],
+      "kendi_kontrolum": "Yerleşim, alfa, altı kare ve birleşik kare 00 doğrulandı. Geçiş ölçümleri sahne_kalite.json içinde.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    },
+    {
+      "kod": "P34-03",
+      "durum": "uretildi",
+      "dosyalar": [
+        {
+          "yol": "P34-03/baskent-kragmir/alev-01_00.png",
+          "sha256": "e0e012e942d384fcb825c48bdf4e23f60a156cba54dff2c70360b238f4a58b27",
+          "olcu": [
+            57,
+            46
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-01_01.png",
+          "sha256": "cbc13eab26d577bcc15c016ab114b166c83114ad1ce72ccc90562f6c5d28feec",
+          "olcu": [
+            57,
+            46
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-01_02.png",
+          "sha256": "ed4d0c98d770777d0b7c6906ed53afcacdbf7c1cea7db0a71f4780ae2b584655",
+          "olcu": [
+            57,
+            46
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-01_03.png",
+          "sha256": "6ecd81738f50aea62b84b12f1732a360fb2f710acd9e497f12fff9f382e5cce4",
+          "olcu": [
+            57,
+            46
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-01_04.png",
+          "sha256": "a9259169717a655392f0dc4fb119f8fa37f4d37eaeeb4be3f0c98ff5eaba352e",
+          "olcu": [
+            57,
+            46
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-01_05.png",
+          "sha256": "aadb5686cc223fdce5f7354346943f17eed5ca962b1eb014e0f3d7aca4afc28c",
+          "olcu": [
+            57,
+            46
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-02_00.png",
+          "sha256": "0f495bd40f4907cfd822a3c3eb7b8a5165aa4438b06e9c8bc6ea1e7215752b2e",
+          "olcu": [
+            35,
+            33
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-02_01.png",
+          "sha256": "d27d1a0a5297327af4269b99d6efbd395ee72a9d5d11466b1fe8fe62d4192784",
+          "olcu": [
+            35,
+            33
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-02_02.png",
+          "sha256": "404b097b3ac1bb906ad575b820571945b7326a38e5398cdae107f4879a4fcb04",
+          "olcu": [
+            35,
+            33
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-02_03.png",
+          "sha256": "61972cdb9871c9687b8427a535e49efb2b6c639c79b93840f34f84bd46ffb9e8",
+          "olcu": [
+            35,
+            33
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-02_04.png",
+          "sha256": "3f6f8f31f2064fa9f444bd53d4c8a52be969a6e88257b1d6ba16b6cd5449d87d",
+          "olcu": [
+            35,
+            33
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-02_05.png",
+          "sha256": "fecb3b4ba130358fb316d2a967a12e9440cf1ed4b8cae67dec4f30f71e273091",
+          "olcu": [
+            35,
+            33
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-03_00.png",
+          "sha256": "153ee5492b85103779d47a7c92ddcbfc1a7e1426e337a34cbbc74d967a77a217",
+          "olcu": [
+            30,
+            31
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-03_01.png",
+          "sha256": "c85541cb1a2c93f3d12e141b2e51271e54561d839fcaf69ac622f5283283916b",
+          "olcu": [
+            30,
+            31
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-03_02.png",
+          "sha256": "465d7b72a16d4147dc62bf29b77f3c7616b1a24571aba341b175056dadbdcf62",
+          "olcu": [
+            30,
+            31
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-03_03.png",
+          "sha256": "5e51837d804f318301d0795433d9ea273007c512c0e9b90f72b6f0f3ac408b3d",
+          "olcu": [
+            30,
+            31
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-03_04.png",
+          "sha256": "b035379bd49199901ca21cb2837a4aa1201787c7e73a45ed977f6944df0516cc",
+          "olcu": [
+            30,
+            31
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-03_05.png",
+          "sha256": "1de7e79e46fda2c34871c391541931959d08a22322594f01c40e8562324cb3b9",
+          "olcu": [
+            30,
+            31
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-04_00.png",
+          "sha256": "a4b0482833515b9304ff6d4db5132b75fe2325c2016434d6ab25452962898b93",
+          "olcu": [
+            242,
+            133
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-04_01.png",
+          "sha256": "8659a331a0d7db0bcf0b7118a0d7d9102bef36b3da8a806c04d2bd6f84f9fba1",
+          "olcu": [
+            242,
+            133
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-04_02.png",
+          "sha256": "ea8d387962db573caf71e12e4367f5a7236b98797ad37402996e6cf89f7ccb51",
+          "olcu": [
+            242,
+            133
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-04_03.png",
+          "sha256": "4cf5ebada54e3598560db5c279548e85df8ab45de92a236b262e19c0f6a45339",
+          "olcu": [
+            242,
+            133
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-04_04.png",
+          "sha256": "c428a1b62f4f0b16f89734eeeceb0968d59a28d26436b7ce06d628aca6518136",
+          "olcu": [
+            242,
+            133
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-04_05.png",
+          "sha256": "3bda2b6207c31a23c338431083908eb0854bb56befce10e3bdbe35df050cb775",
+          "olcu": [
+            242,
+            133
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-05_00.png",
+          "sha256": "8262b05a299aa84b8d86cbaf9ad41434e7354df2f9cfd3c6ccd5f79d2b6f18b8",
+          "olcu": [
+            33,
+            41
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-05_01.png",
+          "sha256": "0f5d34c1a4a2ba7408c248e67e416c68da37aaf577a6bc4cf98c51e0d1778bda",
+          "olcu": [
+            33,
+            41
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-05_02.png",
+          "sha256": "602674ed74525c4003b24be45b5c32cea14e0bf8d2dc5dceb513f41496962eda",
+          "olcu": [
+            33,
+            41
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-05_03.png",
+          "sha256": "fbbb646226c993c144075539622c581773919b768b888273b5cef927444718f0",
+          "olcu": [
+            33,
+            41
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-05_04.png",
+          "sha256": "f49331ec654a00553e6a011d424164f10fa76e9b48c7fcd8b687699d91f483c3",
+          "olcu": [
+            33,
+            41
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-05_05.png",
+          "sha256": "bdf518db3fc1b6c8831fb88f3156babd006356f6de76e21c6860c4f64560da63",
+          "olcu": [
+            33,
+            41
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-06_00.png",
+          "sha256": "54816244875e4bee7f2bcfa3c70d70cfb698327551ab91b69a74e1ceb1d541d3",
+          "olcu": [
+            172,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-06_01.png",
+          "sha256": "ef143040f25f899390bb048f4b3d6ff90ea1054447ac203cce98a22bc88d2c5a",
+          "olcu": [
+            172,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-06_02.png",
+          "sha256": "28f885c53d8ff428996238053583fe490b22c110f6dbe9908419dfd70d75f01c",
+          "olcu": [
+            172,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-06_03.png",
+          "sha256": "0fc37f21459f52eeaf246981061d050ee92ccc9f7043a3438aa90b046f7a959c",
+          "olcu": [
+            172,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-06_04.png",
+          "sha256": "a40d92501c9e2c284c0e5ced1bc03cb9a2c1ab12a63c10097613a7824edcd5ea",
+          "olcu": [
+            172,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/alev-06_05.png",
+          "sha256": "122a2a3f69047678451522f5773f83b19bc0b6276b25f0df9da4b974f060dc58",
+          "olcu": [
+            172,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/duman-01_00.png",
+          "sha256": "8827ef6b9be28fea4c1f87320521e57addd74eb9967cfd84a2b798a07ef2a825",
+          "olcu": [
+            255,
+            170
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/duman-01_01.png",
+          "sha256": "6d9605886b93388522b9171de5e1fa793ba83a67fdd32a0e78d54416d81fcdd3",
+          "olcu": [
+            255,
+            170
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/duman-01_02.png",
+          "sha256": "a1c3dbeae48d114f645168a50a4c1e342d705db330a68e384f7aae23bcf72d58",
+          "olcu": [
+            255,
+            170
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/duman-01_03.png",
+          "sha256": "41154bb8668fa343124eb5b9de306aa2d5fbdf3afef1e3d5d70471c5fc691a51",
+          "olcu": [
+            255,
+            170
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/duman-01_04.png",
+          "sha256": "c02ab431f9e8b7e8db5047f3e6e697807eb8c39695a4edb44048551ac64c57fa",
+          "olcu": [
+            255,
+            170
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/duman-01_05.png",
+          "sha256": "81304a976876a9e8c55125def98d3ac69bf6336a9375b1496528a30f684e8633",
+          "olcu": [
+            255,
+            170
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-01_00.png",
+          "sha256": "654c5205ff96d75dbec1cfd7ec6a4432f44027dcf4ea8bd1a0811679a91c4a55",
+          "olcu": [
+            86,
+            113
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-01_01.png",
+          "sha256": "dfd3bb3af8fef2de7cf81f3fb942fefaa78df7bf1870f6dd08a38f17c203cf0e",
+          "olcu": [
+            86,
+            113
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-01_02.png",
+          "sha256": "d9ec5ecad96f3d2df8c12b8042a664611558cd9d8244d8e459612703ee98df3f",
+          "olcu": [
+            86,
+            113
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-01_03.png",
+          "sha256": "ce7631de95b401c6a2b4761fe29b368f384edb66b1b53f25ffc197fc42f07352",
+          "olcu": [
+            86,
+            113
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-01_04.png",
+          "sha256": "09f1f98a955e3920006c777ad7ba6140de925caca66b91015b9e4d9d73946f9e",
+          "olcu": [
+            86,
+            113
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-01_05.png",
+          "sha256": "bf777c2dc3bbd581e6e19f1ed030c7af2292e5517d324dd3dd19157359785d11",
+          "olcu": [
+            86,
+            113
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-02_00.png",
+          "sha256": "a33512dfac4fc6362434319d6d02806eeacdea2888685b2e81caf0ac99162d42",
+          "olcu": [
+            159,
+            184
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-02_01.png",
+          "sha256": "f89ac693637734e511297a90d0fe362c0c7a327caa95adad9a3a8acf2e3d3387",
+          "olcu": [
+            159,
+            184
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-02_02.png",
+          "sha256": "63190c0a71592a760642caf1fb1a51a50c49ed924b5f87a5e8ae123331abfb4e",
+          "olcu": [
+            159,
+            184
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-02_03.png",
+          "sha256": "5fd4493ec6d5254b13f7774560e9cf24a3e3bcf3a0cd45f9fbed05b4ff86dd70",
+          "olcu": [
+            159,
+            184
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-02_04.png",
+          "sha256": "c725a93c08fb3289eb623cf478886f3179f06f189206d17ed9b6a7ddf682eb8b",
+          "olcu": [
+            159,
+            184
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/lav-02_05.png",
+          "sha256": "85c8f6557edb38bd4e658e92523dfccbb0bad88b7db0a7492889eb33875d4460",
+          "olcu": [
+            159,
+            184
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-01_00.png",
+          "sha256": "5336106dbaa8f135ad3602a8f4102bc49b1e097ba3c0adb678f5c886c358fd4e",
+          "olcu": [
+            207,
+            147
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-01_01.png",
+          "sha256": "91bcb20ef594ba95d6fe0505a80788e3f43e1341351331481041d5ae771043ef",
+          "olcu": [
+            207,
+            147
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-01_02.png",
+          "sha256": "08270e1fa57b5d38e80e2bc7ddd0948f1cc92fadbc98aec42e0608eef961cc1b",
+          "olcu": [
+            207,
+            147
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-01_03.png",
+          "sha256": "148922855f8633800961102c022b65ff3e84cd2985599d56e61a209f6df6f813",
+          "olcu": [
+            207,
+            147
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-01_04.png",
+          "sha256": "12d1b6a744db2b20789db871f0d6904a1add0e30b812ac244e3d33cde57f2dde",
+          "olcu": [
+            207,
+            147
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-01_05.png",
+          "sha256": "d7e0b160d5e999ff2421b645481542157e39cd50e64484e02bc6e88276454951",
+          "olcu": [
+            207,
+            147
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-02_00.png",
+          "sha256": "0729901f656af56c81df7831894b764b93f6d0be74b4e1d5a5c6416c6490c9ec",
+          "olcu": [
+            65,
+            128
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-02_01.png",
+          "sha256": "6151a31a16e0b2aca1086924bec5614a559e0b44a99d99d3fd1bea6a8d9a80d2",
+          "olcu": [
+            65,
+            128
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-02_02.png",
+          "sha256": "f28b00ee509c46a2f4e81b80d40f5404cd4794cfe5aae68c42ff441b2315ccb5",
+          "olcu": [
+            65,
+            128
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-02_03.png",
+          "sha256": "8e09413ae97760fc29b791ec422e4de9377796cff2e114508fcae3b089337166",
+          "olcu": [
+            65,
+            128
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-02_04.png",
+          "sha256": "e555277842f11ca94a7fbc985d1431a07a862b2dd46e2a7d6fa793e121ee0e2c",
+          "olcu": [
+            65,
+            128
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-02_05.png",
+          "sha256": "c9f5ecae94862329999da53baadb4ed16905645076b550aaed3a21a426b9ec4c",
+          "olcu": [
+            65,
+            128
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-03_00.png",
+          "sha256": "a0ef8bdb5a511096fd4596d7550ef9ba4a977f5829d05b9f95fc370ae940d3da",
+          "olcu": [
+            54,
+            117
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-03_01.png",
+          "sha256": "dd9b0ed0170a6d24b2a1e48dcfb2b57749f48ab7da1596dc5ebe01fdcfebe384",
+          "olcu": [
+            54,
+            117
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-03_02.png",
+          "sha256": "65498a2a219de90ecac9b06865206689d15a76ae7d5cf4a77a710a22b1267cc7",
+          "olcu": [
+            54,
+            117
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-03_03.png",
+          "sha256": "86d8fc41bc3b7c500b7bc26dd27b2007a247fa15275e9c920fe8258af60f6b38",
+          "olcu": [
+            54,
+            117
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-03_04.png",
+          "sha256": "afdda241757cce054dc27429e25f81efdabf8f6a437f819da5d00a778fc2d94a",
+          "olcu": [
+            54,
+            117
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-03_05.png",
+          "sha256": "d10223afaf4527df8c9e645fdac018530ed9932b8057538bd2c806aac6b303a1",
+          "olcu": [
+            54,
+            117
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-04_00.png",
+          "sha256": "8c3954825ac0a4d704cea171401b677010840368b8011b14e6512a5ca0fa1708",
+          "olcu": [
+            55,
+            116
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-04_01.png",
+          "sha256": "d05b723df4f28690720da79ce452ca2dbd41cc65ad6abbf3206d5dd253eb2a14",
+          "olcu": [
+            55,
+            116
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-04_02.png",
+          "sha256": "cc3cf7fe6dd16b414fd8939e3bdabbd560c91f89202f15ecd2a934094b6de490",
+          "olcu": [
+            55,
+            116
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-04_03.png",
+          "sha256": "0bfec595bd6baec55aaaa79b0d5bff87a5b103b2d46795f6e312975a59ef5773",
+          "olcu": [
+            55,
+            116
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-04_04.png",
+          "sha256": "8da08816652571ec1e4649966d761c3eb54636f0a5e41964b09a89b30456c2f8",
+          "olcu": [
+            55,
+            116
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-04_05.png",
+          "sha256": "f4b2a0d06877ebb7648ff13add1d1c8f90df0b408cef91115faf059f15406453",
+          "olcu": [
+            55,
+            116
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-05_00.png",
+          "sha256": "a345a46487756374f96a828b45a8496ef7803fd53caf2cfb0eb6447978ac4d3a",
+          "olcu": [
+            43,
+            99
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-05_01.png",
+          "sha256": "e6f6e6c7427411853a549b53b5b66b1746413c8744211b3038273e1c4c3d770d",
+          "olcu": [
+            43,
+            99
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-05_02.png",
+          "sha256": "3abf04d3baa8f44bdc33b6ac26f019f215904910492b999a631bebedc8ad4507",
+          "olcu": [
+            43,
+            99
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-05_03.png",
+          "sha256": "c706e68a952435a1eed265f8c1a5796ea9839d5fa8572eb1e7dc1b21899343ba",
+          "olcu": [
+            43,
+            99
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-05_04.png",
+          "sha256": "61fc5605ce34b994f38c7cb14e726347733a375aafb73d3b39fbf724a9cdd51e",
+          "olcu": [
+            43,
+            99
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/sancak-05_05.png",
+          "sha256": "4789999d5ef8577d4a9746a65a08e76b58c79dfd7cb4fb7d774a29187352b710",
+          "olcu": [
+            43,
+            99
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-03/baskent-kragmir/yerlesim.json",
+          "sha256": "158b596b3f2f1309bb6b6360bf4bb3b790a735b331ae215d06f23d2c3e8c0188"
+        },
+        {
+          "yol": "P34-03/onizleme/baskent-kragmir_bindirme_00.png",
+          "sha256": "b5553e359bd459cde9359a13f305c2971bc358cb58feeccca604b8285c98d652",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-03/onizleme/baskent-kragmir_bindirme_01.png",
+          "sha256": "6097dcd19053997e8c8b2475d720b40000b731445a1a98f4379276eaca3661ab",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-03/onizleme/baskent-kragmir_bindirme_02.png",
+          "sha256": "0fcd6f3c37db119c1573ee5b13773a544fbb65f4f6a092a94ce6550bb034f388",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-03/onizleme/baskent-kragmir_bindirme_03.png",
+          "sha256": "a4a2a46fb8984ced2a3a8b24ba25b77548efdd8799e199f83915132680fdd494",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-03/onizleme/baskent-kragmir_bindirme_04.png",
+          "sha256": "e138f63283de5a5770e38f6f922bc61a4ff0e40e7285ec018d39280f92ffde09",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-03/onizleme/baskent-kragmir_bindirme_05.png",
+          "sha256": "7d16eefa12f5c0a2e884dfe0970dc469f2339f09cb62877a47942fd507d19afc",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        }
+      ],
+      "kendi_kontrolum": "Yerleşim, alfa, altı kare ve birleşik kare 00 doğrulandı. Geçiş ölçümleri sahne_kalite.json içinde.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    },
+    {
+      "kod": "P34-04",
+      "durum": "uretildi",
+      "dosyalar": [
+        {
+          "yol": "P34-04/carsi/alev-ek-01_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-01_01.png",
+          "sha256": "a01fc77182e2f73dd582b47e99ffd2e67b7dd81ccfb970101a76382f8c4e7d71",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-01_02.png",
+          "sha256": "418c24f0061bff0c62c6f4d10b04e8f5fb761310bcc7cad98658a0d740637f22",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-01_03.png",
+          "sha256": "a71cc54c37542cb69f1eaa6296b0c2cf1ef0135a05e9f78b7f8c5ca563af96ce",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-01_04.png",
+          "sha256": "698d66f80376bc759e991115dc8953021bdf36123270a86fc3dc6edc480b66ff",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-01_05.png",
+          "sha256": "834fb7a2ff4ad32fb2b9d070e65cf697ed30c16cebd95a9c51d02984483c7d19",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-02_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-02_01.png",
+          "sha256": "ceb94a2ef9e292d6009ddc24215b512969518b91b0076a93fbba46adda91d0b4",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-02_02.png",
+          "sha256": "0f19bbc1a8a0a35eb70922a15b21a66d8f0374218b0915d308e5847477d7f983",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-02_03.png",
+          "sha256": "44da6fb835dc54661f9db16222898b49b7ab5c2709e857fd3045701630f6ae80",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-02_04.png",
+          "sha256": "090381c21875ae5408362adc60c7c3461692ca641c721af9fb22457968f6185e",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-02_05.png",
+          "sha256": "200a9512d4e5792881b889716cba43f6d0d92c58ae8db971816a42341ed85b70",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-03_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-03_01.png",
+          "sha256": "d36894e9daf495ff09d29b6e973a5539015d29c7f052d505bb9df875ec9d6dfd",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-03_02.png",
+          "sha256": "9d5dcebe3a20650a69d83ef9d5d5b204547e7fdf0267214517d1cdc263cb3c79",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-03_03.png",
+          "sha256": "56cef72c3481b21968a738b93789be6fb7a7f0944beda8cb695f4389cd460490",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-03_04.png",
+          "sha256": "8460e97d74197f6cf1c6c1f7673c4245d674a7d832ba1c3984561318cf9cd111",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-03_05.png",
+          "sha256": "258c3b0af4a90a02a254d6f4b9e764f13d70c584d39e55893a6bc11e21687b2e",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-04_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-04_01.png",
+          "sha256": "96019a98add4f48b90f62891398cf577865a720deda835dc6072e29d0abddcf0",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-04_02.png",
+          "sha256": "83bafbf5da1119cd45f0b354ae35875e57194ab452dd2e14d3db7f152fd1efa0",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-04_03.png",
+          "sha256": "bc2198f3df787a008363f3f139c8afd7e94d4855fab52d9653e4762cd79336c9",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-04_04.png",
+          "sha256": "ff2e4e5e6105351f7f8a18f253b80536ebc23cb74acc2b58c932789104f14abc",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-04_05.png",
+          "sha256": "9c456c344794784278fb73e7130fecfa7412c751f2ac9bae95e4541dee4872b0",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-05_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-05_01.png",
+          "sha256": "9ec121e9bc88ae2b35d65e4119252835c1b95d57bbc335ad185c68090bc1c920",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-05_02.png",
+          "sha256": "53188a86445bbd9c6d9bedc0a5bfd3738bc3ac2ad164a4960eea249b80996b5d",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-05_03.png",
+          "sha256": "0e3b7b0c132029e562d30ea55053bd4f43f930ee6a0d48cb263ed44b433b61e6",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-05_04.png",
+          "sha256": "02cd3a5a04c377dff17c04f1f0f7c3e5c34850003067ad103f0e98fdc90cce28",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-05_05.png",
+          "sha256": "59752556d903ca2c757c8ea4355fa1ebd3216ffbc012bde02ff9a0965505e2fe",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-06_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-06_01.png",
+          "sha256": "16ea03f789478f97fdde72d9a704314bd932f315444dae28bf1503403161b971",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-06_02.png",
+          "sha256": "240a5bc285b955b4cf4f241b0ebaaed5b6d64129ef95408b3456d0c95b16bc5c",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-06_03.png",
+          "sha256": "dbea1cedcaa7b06a1d52a45901d2e6a8dd57f725abad403f639092d36d2d75fe",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-06_04.png",
+          "sha256": "0fcbfc535f309b07f6864edf81ba39298f122705892603e7db4073c81df7e782",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/alev-ek-06_05.png",
+          "sha256": "dc41dc9c3cbbb0ff59b23672e00fc21cced0e13aa689b1c727a60aa2fcb3f03e",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-06_00.png",
+          "sha256": "d5e2e57697271ef84c7856e714b1e3b595a9c1670b7d08971f0798c68e49f911",
+          "olcu": [
+            32,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-06_01.png",
+          "sha256": "9eb53e5631e1cbb1e75c25e8a4b57ab6b5cad2ecc9ac0a1df26a0ca0c16d9f72",
+          "olcu": [
+            32,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-06_02.png",
+          "sha256": "372f63607b2fe0b4d4fc0c60aed8011fa582303272823e14b9d9a43fd06c6b21",
+          "olcu": [
+            32,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-06_03.png",
+          "sha256": "4cc61475f7a286a12a8df59d347a8bcb3cbf8e85e88a1e5e3af6e7f1a0a39289",
+          "olcu": [
+            32,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-06_04.png",
+          "sha256": "47cf176b3dca74f0592c96eceab8af5f958a6c0f36020c33de26d8ed6ba7c9c1",
+          "olcu": [
+            32,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-06_05.png",
+          "sha256": "c50b40a4d2960f67fb6a9b10ea49d0c45a278943c2cf6c3ea58316d941bf19c3",
+          "olcu": [
+            32,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-07_00.png",
+          "sha256": "4bee9e307810a1994006cd4066ba673ab0b5d4bb9ee692a5123e3ded8e0d9f39",
+          "olcu": [
+            31,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-07_01.png",
+          "sha256": "15d0cde4f1ec3ae18c1de4f6e572f10c030c4209a0cc93cb2947e20d0febcf9d",
+          "olcu": [
+            31,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-07_02.png",
+          "sha256": "9febfe50d228018e31702061cbc59786a3ca6c8e30c0a5f654964c1b34a5a55c",
+          "olcu": [
+            31,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-07_03.png",
+          "sha256": "f04e688d87954abaa79ad9af9abc2784a95ecdcd7e5ad833e9af7d97cd638fe8",
+          "olcu": [
+            31,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-07_04.png",
+          "sha256": "ad79d653c0c5554a5a98fdb6067285dff593fb8f56404f4b86e8ccaf4a62a41b",
+          "olcu": [
+            31,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/sancak-07_05.png",
+          "sha256": "288face62891b33e2271f368a3fa9958d60ec0a984df20ac80870260de9a265a",
+          "olcu": [
+            31,
+            130
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-01_00.png",
+          "sha256": "964a681a0682a5a77b8be881845382009c1519f5fd805a7a4069f17da596e0da",
+          "olcu": [
+            115,
+            50
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-01_01.png",
+          "sha256": "dad7a6111d2b02652b3747f5225dd2612221857122722f22a8b91fa816fe66ac",
+          "olcu": [
+            115,
+            50
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-01_02.png",
+          "sha256": "d633f6007c6f3b3713529edd1c4adde8aa6dedab0b582e87e0483f8c5fd0d991",
+          "olcu": [
+            115,
+            50
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-01_03.png",
+          "sha256": "8687f76da9c519bfcaff72d7785c6bf5fe304eabcfc247325f460c3b0d321910",
+          "olcu": [
+            115,
+            50
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-01_04.png",
+          "sha256": "1c33c58f22f62ac9e31b231aa63701d14c79ff4dd13eed62adbc2752378c05c7",
+          "olcu": [
+            115,
+            50
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-01_05.png",
+          "sha256": "ee6b6dc47cc4b19f92766e4fb57b3d62abdcc46619d19b98a7252d61d86da8f3",
+          "olcu": [
+            115,
+            50
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-02_00.png",
+          "sha256": "3abf144291bc39c0676a4d23586a89ec1f9c36df097360d693be92be2074b794",
+          "olcu": [
+            155,
+            95
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-02_01.png",
+          "sha256": "f45429a590bb1cbbdf8271f367b3bd561ff92a693772d0cc5e1493871bd90ca5",
+          "olcu": [
+            155,
+            95
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-02_02.png",
+          "sha256": "dd2232e9159f0593d5e5a7b2daa5a27590ab59dc7e72eb8b0d65834e43f6d4bc",
+          "olcu": [
+            155,
+            95
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-02_03.png",
+          "sha256": "60a58f98857243a01c17511a00de4fdb5409cd003eda2e6829c9a15760a3cafc",
+          "olcu": [
+            155,
+            95
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-02_04.png",
+          "sha256": "cd5c665a413326091e418b4b80ddae0ee56b6710a42c48f538e5de3451a9406d",
+          "olcu": [
+            155,
+            95
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-02_05.png",
+          "sha256": "3cd7ad322e4019291294bfb61a578496908dbeb9ab51f738bd71d4a2a20e7a5d",
+          "olcu": [
+            155,
+            95
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-03_00.png",
+          "sha256": "0cb1fe48932b8c12e9dd75b849d8e821c2201611ded307fd8584f2dc1765cb90",
+          "olcu": [
+            140,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-03_01.png",
+          "sha256": "e23c7db0a2424b10807b3459a48ea47315c1c4ef65d0ee4e515a2a0b333ad66b",
+          "olcu": [
+            140,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-03_02.png",
+          "sha256": "783f1b8fea52cb81aff1052a148fe29d6b1cbe6d220b112ffc04eef10817e043",
+          "olcu": [
+            140,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-03_03.png",
+          "sha256": "433ac6d12ead6a5821c3ad28bf947edb2f6f093ac78bb35e1aa7fdf95c80fb46",
+          "olcu": [
+            140,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-03_04.png",
+          "sha256": "5a9c24387ae57b7cb0eb78a86e0cce90cdce9dc91c34f2950dc21260aee50acf",
+          "olcu": [
+            140,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-03_05.png",
+          "sha256": "7f1c59d066a2e7eecf54beb49008aca512e690aa81af8caf2d0f7efbf267fa8f",
+          "olcu": [
+            140,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-04_00.png",
+          "sha256": "a3628f526154cf1ba3c8f9958d202517f64fdded0eb7db2f1646d2729c895c80",
+          "olcu": [
+            180,
+            70
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-04_01.png",
+          "sha256": "90593d589b17353697abe332e031678f31ebc819d812a7d3950f6c7f4dfbc082",
+          "olcu": [
+            180,
+            70
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-04_02.png",
+          "sha256": "5faa736c17d2a949240604edb7d4e90c3da959c8eabf1b9d48d19293101c7c23",
+          "olcu": [
+            180,
+            70
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-04_03.png",
+          "sha256": "a7155f4b13f531bcbd69bd058db961aaccdde2e5940098209573e30581ce256d",
+          "olcu": [
+            180,
+            70
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-04_04.png",
+          "sha256": "6e83d0372ece319e7dd0a83966ac8a3f53371d9c105c3bd18dfbcac182375ac7",
+          "olcu": [
+            180,
+            70
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-04_05.png",
+          "sha256": "15d623658ec3ac34b960763575681dec6047d8cf5028b12dfaf152ed75c4c959",
+          "olcu": [
+            180,
+            70
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-05_00.png",
+          "sha256": "cd59de9ed1ff3342315c8844bca53ae33fe54321e3dfc5603986351181224b14",
+          "olcu": [
+            320,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-05_01.png",
+          "sha256": "e83cc528e08cc201ac1f7b19e6fd2189ff4aa4dc2ada74e4b38aadea016c47fc",
+          "olcu": [
+            320,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-05_02.png",
+          "sha256": "7a9cfaea586663bd03c1a3a6fc665b5319758c6855b63b0d04c2b73d7b6f0a16",
+          "olcu": [
+            320,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-05_03.png",
+          "sha256": "7fb8095cc374a3f1549f880be99010664e684ed4eb84e84b16dfbe08a62ff3cd",
+          "olcu": [
+            320,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-05_04.png",
+          "sha256": "8491372e857b320dd638d1c2e32387a28dce82ca82450a6695ba690dd9b99546",
+          "olcu": [
+            320,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/tente-05_05.png",
+          "sha256": "0ee7969833420ce29e5d05d9d1a172885ee65cc98fae979e835743e724ef8799",
+          "olcu": [
+            320,
+            135
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/carsi/yerlesim.json",
+          "sha256": "f884d03e0716d4bb3c46ac1df50c868bc5bbc6f839e864bd762c18c6d6fb3af2"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-01_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-01_01.png",
+          "sha256": "f968456cb2bb08d742c8d12ba28d81d650005d0ada639d0c4548dd61bc3928b4",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-01_02.png",
+          "sha256": "47041a54e46817d793795c242f178b8a2abb0f112465e211848e9fb520d45a1a",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-01_03.png",
+          "sha256": "c146d52d52803f5f81495c92fd4d4cfc2dfb970e45ddaf342cb572751894f3d6",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-01_04.png",
+          "sha256": "87483cd57e5cd48820ca5cc7dd3905ee926d2bcc013ee8b85c3ad8ef3f7b980a",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-01_05.png",
+          "sha256": "ae9fdc24e23db506e0019cf13eb516448539feb3ecea4614134706f415d88859",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-02_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-02_01.png",
+          "sha256": "2cb54133403f128411e230b7443a1163b53cc9cc3e4e4523163573973f6c48cb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-02_02.png",
+          "sha256": "e11da4758e951fa890c23ea36a9849914e346fda8509a38faac04405b98fee16",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-02_03.png",
+          "sha256": "285bc590eb9ee293460f084eef91e82e1a44651004a43d95ddc2cbba88bae4c4",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-02_04.png",
+          "sha256": "3a5c85e5809e4088abff34f4eec79ef0aae0ed5f49c6f70d6571dac05e8eb416",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-02_05.png",
+          "sha256": "4e436ab69ab8fc08e5cc9308f9e13e501f2f0b0ce4c45ac6d7f2f1302180ad74",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-03_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-03_01.png",
+          "sha256": "5f670931a4dc1e277e551002324bf676c33eaec119a45eab4431a48a3500a69f",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-03_02.png",
+          "sha256": "a1e89bd7c628800514e776882595b76864bbb878bcbb0cb74ece7e05fa98dd69",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-03_03.png",
+          "sha256": "0cb3991f448b87472db8eb3d608c1a826a585065dd8067694b91dd8e060c6b13",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-03_04.png",
+          "sha256": "3cf664a8aece055f10a74638f00912e41a22321d9d16b82c200be783f286a29b",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-03_05.png",
+          "sha256": "d79b8b5bfb6dabbdd6605ab8fd48bfa3a2fbd3d3929dc0ef327147813a6213c6",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-04_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-04_01.png",
+          "sha256": "97eb51393de815ad96a4f16152ab7bf1cbe9806e3d6da378c7e4d839ea4391eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-04_02.png",
+          "sha256": "0b2f2d2d8da856f313c137964ec1c98e940b6ff6e1118c1ae6b2619247e75a65",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-04_03.png",
+          "sha256": "6a9c7fc1e5d738534b4f6ad0781858c60348921c2190e9bc49a9cb108ac32c8f",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-04_04.png",
+          "sha256": "9d94ddf1f6eab778bdf6f4e1e1220fc9d82a738edbe17d9cc8cc587c92e67bae",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-04_05.png",
+          "sha256": "b332a4f8bd9c98e0fc58d695d54413f84d88955f5d3d81c540bd59b02b4eccc0",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-05_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-05_01.png",
+          "sha256": "71637e551a88aba216b22b4408c5489bd8d47a09ba39640656810b7c055a5144",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-05_02.png",
+          "sha256": "54f831fd3b86c96cf3911dabaacf52fb705b0502399acadb6a935695bb243145",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-05_03.png",
+          "sha256": "38256012dce68f6b2d9f2cfdf718414a4c3d012d3c667db0f93fae04477391d9",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-05_04.png",
+          "sha256": "231533b1bae0ae21043b8141a34e0181a5f2c0d93417f46b6106f5a0a59ed1cd",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-05_05.png",
+          "sha256": "e3ff1f4b7686491306a5c4b09bc2095988391df4b559a3a370ccad8a8a46e2d0",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-06_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-06_01.png",
+          "sha256": "78b456f30adf40b44bd0bf1f065ebefe1dceda6f3951cef184c1bebc72e73526",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-06_02.png",
+          "sha256": "c935395fa2c270a945e8a4c8df8aa0531800dd11355cca32d85a8e6f64ed1236",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-06_03.png",
+          "sha256": "307927271d7acac9c52073daa4f737d4d1ee33f714299f5aa4023804f3d222d0",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-06_04.png",
+          "sha256": "316f18d309935a86246a05630fdb361d19aaee51eda95f263c02eeda79a8515a",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-06_05.png",
+          "sha256": "be0d207fcf4824d2bf55aa6e76f8494ef9932947ec99d48a42a732177473a9a1",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-07_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-07_01.png",
+          "sha256": "f618fcc342b80c75fc3616e1d8fcd3a3c0a4d7820cd4102825e0eb0c42a569eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-07_02.png",
+          "sha256": "cebd2d18411b379b18a8ae3bc815012438f3af83ddde4ff6d08e7d1593fe4cea",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-07_03.png",
+          "sha256": "73eae2aa98d4136af7ed0e7882df582e2d04359a3ba39bd0009e719be1d93a7f",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-07_04.png",
+          "sha256": "1346bc2f357186b0ef254a67b907c7e4d1f777aebe1ba8059ae2a64b40a01f55",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/alev-ek-07_05.png",
+          "sha256": "d9c16b8004bb220be50e2325d3cfeafea932f614a8b8b121f9060c09ea8fd0a1",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-01_00.png",
+          "sha256": "c77acf6f107685fa5c80b5b91af7c5fd03834f826f583a7aeb4878f3ea8afa50",
+          "olcu": [
+            115,
+            80
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-01_01.png",
+          "sha256": "ffa2bcf50b873d0ca286c3c5eb7759fc60d24d6f2b77133eacdb1d1aaae28b90",
+          "olcu": [
+            115,
+            80
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-01_02.png",
+          "sha256": "a6e6220cb79e083be2af9df5fa04bb7d1a12d9977117c069da41c6b31a1147b8",
+          "olcu": [
+            115,
+            80
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-01_03.png",
+          "sha256": "2dc55a9bedb88467ad6cd653aaf633908d518c6a74b2208ce5903a72cf7993ed",
+          "olcu": [
+            115,
+            80
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-01_04.png",
+          "sha256": "38258ae8a5ae4d2d3a242cacf09045b18e75283dd8d504126718046b7130217a",
+          "olcu": [
+            115,
+            80
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-01_05.png",
+          "sha256": "5ddb6f0f02cf082ee72cd44e86c6962e285a90c54722c6660aea153f5fc13245",
+          "olcu": [
+            115,
+            80
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-02_00.png",
+          "sha256": "d9a8129ed6998d4144b563097dbdbfd1c317424c3ebde6b64f27afa147119482",
+          "olcu": [
+            35,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-02_01.png",
+          "sha256": "392fa474ed93b1cb370f1341ab7c4f77e123386970d416d28f1693ccdf62c702",
+          "olcu": [
+            35,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-02_02.png",
+          "sha256": "bc81c3a02f10408d7b9e8c0755a7cdf458327cf643658eccd518ea787d1fddd1",
+          "olcu": [
+            35,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-02_03.png",
+          "sha256": "cb0d337affeb4285cda1abcbd4450458605711bde4172eaddbe3e2506b1ac2d1",
+          "olcu": [
+            35,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-02_04.png",
+          "sha256": "12ad64446c4bcf93355f0708744dd012e8588403e7b22f9948c524375c900276",
+          "olcu": [
+            35,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-02_05.png",
+          "sha256": "abdbc020b3f145d2b4d22795ff36b4d214e18bea9ab1d19547c632c54ffad8ef",
+          "olcu": [
+            35,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-03_00.png",
+          "sha256": "c19e8a2639a9c07a11c923314d10332109ab7106aa03cad5c30f991e8870bf61",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-03_01.png",
+          "sha256": "a08cb20df3021ab44a332b614efde290b5e816534207f89d34283cd2a3e459ae",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-03_02.png",
+          "sha256": "4f216bcd6db8a6b7b61acbd575448450a8feb8266188c7672613d449805eaa6c",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-03_03.png",
+          "sha256": "3d6f49400516bd77b81df82e49089f45fde31de75f66bcbba52f323d6b135d4f",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-03_04.png",
+          "sha256": "571d13e1949e18b6ed490b0d17b0b6651a843fe1c331dad160b3c652231b7e41",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-03_05.png",
+          "sha256": "6d2791e02eca693fafc21f04be20e99f01934497a8b04c25ece8dae502334436",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-04_00.png",
+          "sha256": "7e26dbbfdf794fa967c006c0850aa8acb130898711bcf0598f176e12f7a29ff2",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-04_01.png",
+          "sha256": "6df76b824826993a5b9e72ddd37d8cc02ec569dfec60a50e201ee979a9620943",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-04_02.png",
+          "sha256": "41cae698c28533f45e1e9961ddf34b1c6c199589cf7504b3daea00acb5c3a2d4",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-04_03.png",
+          "sha256": "2b1081349600b730975c08e778d94ea3652cfceb4221ad0bd7bc5d8a3355b60c",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-04_04.png",
+          "sha256": "6faa1c19fb1335b67e94cc604c8ddf0ac102cea3a34989da3aebc2e0de8996f0",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-04_05.png",
+          "sha256": "2bf985145e11b4ef40daebf315f6d1af327c40e04d10707377f6e675fc5ebbf8",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-05_00.png",
+          "sha256": "b29da37c6a07f6813a50b27e58b852cb45adc57878fc84d36d6a685f9056fc5f",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-05_01.png",
+          "sha256": "d3e6005524f5b86520040e2b1695135bd6b89ab32c469b7a5529eb28a178bdfb",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-05_02.png",
+          "sha256": "098c40880a60044692a2f656b2e2fe5a85cf734016554da922c515debfd56a69",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-05_03.png",
+          "sha256": "cfdd050e3694860a8d4c2e9f757cf9ecc306d2e6160968ca60bf2fca5b0fdaa0",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-05_04.png",
+          "sha256": "8dccb97bc3d3a2616b2fdb88be855bab8f0778cb8ec2b8fc9650610f58caf506",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-05_05.png",
+          "sha256": "3c9d76678ca5080629c23c59bae16f71598b3bf7d4567a6497219035d0787cda",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-06_00.png",
+          "sha256": "05a99b969b8c37566081df6ff7a2b2ba5fc9aa464a7f89fc5f53c436a4ff48f3",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-06_01.png",
+          "sha256": "56ec176243346b8a4f548c3109ae8323f53c711e41dbc172a07f0e55fe4c6d1f",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-06_02.png",
+          "sha256": "690efb72b7bf7b613e72656ec210a526f5fc496fd9df461461c0ec82ea3d62d4",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-06_03.png",
+          "sha256": "cdc87b7330eaa23c480c2974ba64a988b6bb7f8b7e08d364407f46a12c80433c",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-06_04.png",
+          "sha256": "0d35636c871814b51dc9aa97a3c12d3cf15b927a2373840ce6cbc4dfdfc5691e",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/sancak-06_05.png",
+          "sha256": "d6759f04f745aecefc33d2ae487fe082856b8f8f263401333e3a59967a66bef1",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/selale-07_00.png",
+          "sha256": "fa6165703f925aaed738d1f6b13c7f884acc098265f78519142254e0df65be8c",
+          "olcu": [
+            175,
+            115
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/selale-07_01.png",
+          "sha256": "558760a4ed11c09eb6af010132274defd2fe68c862da25abf319caee2d19e012",
+          "olcu": [
+            175,
+            115
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/selale-07_02.png",
+          "sha256": "13a93fc8051896632366bb7e808e62427bec0b65e44eabbe502610dc6c018eea",
+          "olcu": [
+            175,
+            115
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/selale-07_03.png",
+          "sha256": "908f5708c3c9b27e5f92dfe4e8ccbff4e4259ac89cd25f5e88099fcd43c8ef59",
+          "olcu": [
+            175,
+            115
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/selale-07_04.png",
+          "sha256": "f8907eed79af0fa4d67ff5ea8e92036313cbf0ddec9fe01509ba3b6e543fc299",
+          "olcu": [
+            175,
+            115
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/selale-07_05.png",
+          "sha256": "cb7dde47eb429d1771d2cef5fb5dc0e3b00572d6bc51301275100cbb5f437438",
+          "olcu": [
+            175,
+            115
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-elentha/yerlesim.json",
+          "sha256": "5abfc388fea42eaefff0e49fd01c64e4f4e3b65538b92f19a68862ed61aeb90b"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-01_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-01_01.png",
+          "sha256": "e287a0f72f4f82b8c908be837f045806f7c457b907fe2dc1b655c8d3ea52884a",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-01_02.png",
+          "sha256": "7a605ee5200ee54e30d8b6126516bccb85301919eb4479ba93187e4eb3aeb331",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-01_03.png",
+          "sha256": "175a5409cfa5154c002123ddb8699a2dc175ed5873406815009beae243cb0763",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-01_04.png",
+          "sha256": "497bb86559aa7331bfc1ab6b9d2b88f81efbc5611a281f6eb385b80c7d4d12c5",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-01_05.png",
+          "sha256": "a4828701fb9e75d3e24256015d363b318cbf138f8c3de5c200d954988a002c48",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-02_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-02_01.png",
+          "sha256": "13f68f61c5b07e9f59d56164cbf6c8e1657efa1c9408b7e42b5398a8e87a3e68",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-02_02.png",
+          "sha256": "52c2ad046f719738af9c1a42fb642a1d9deb44febb9fcf6b27cbea780e7825bd",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-02_03.png",
+          "sha256": "0c5756da983ea3deee88408e4c7b99cbbf5b3bb60fd1e79aa8c180a9363113d5",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-02_04.png",
+          "sha256": "7e2f3044c5292fc58bf0d09f63d3b458c6bc226b5d7060d6cfcedc0a728d325c",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-02_05.png",
+          "sha256": "4017fbde254161c43c0ef7b51926107b3860c55885b142de128370b3219fa5d8",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-03_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-03_01.png",
+          "sha256": "276c32c3057e06d1710ad57f420f0999ed4688986826e2d0cede4105a6376220",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-03_02.png",
+          "sha256": "082d18b3da9bbd860e6e9b68efb0594e5051a7cbbae86b5aefa3e462a058d0d9",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-03_03.png",
+          "sha256": "6788786372dbf666ce432fae9a43709660140bfc009919a262dd360290e74755",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-03_04.png",
+          "sha256": "6713e54bf2e6e354934543cdba6f8e020c3ef5a4f9f587afafa1c6bbab94ac1f",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-03_05.png",
+          "sha256": "0dffccf6920efe0f2fe43433fef11904661b264a19a0035bd4b68e260a4a68c4",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-04_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-04_01.png",
+          "sha256": "ac03664c6c28ef421f25b55bfc61836d858b2d29d2250362b8b316a4dff095e7",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-04_02.png",
+          "sha256": "0d79131e2e7086e065adfe3fbf1763b4a72c3295d085ebb1a2251ee94cb8e618",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-04_03.png",
+          "sha256": "96a2b97a42b304a60c9752467a4d18a6b54598e8fa56cacda13603bf497058e6",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-04_04.png",
+          "sha256": "52577c7db8fabb3ca592fa1f19a4177d1f01b9061971f4740eb10485ddaafe0a",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-04_05.png",
+          "sha256": "7c86a332e0c1ccb821707b5b859126cf1e1b79c1dbdc62befec88327d047a036",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-05_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-05_01.png",
+          "sha256": "5bfd2fdeb2367a2805946d6c70753160bd7825023b1c013119eddd78c3ec2a7c",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-05_02.png",
+          "sha256": "856b369d488b54f533cfe0c8c1db35a5b6cb3dace7dadc9a20b97032d9d26ef1",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-05_03.png",
+          "sha256": "7451e0421fddd64f003b7c5f704417bb9b9422fedd7c103bda18d1ccce0ed9c5",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-05_04.png",
+          "sha256": "fb7a48e5329c21754958cacfd34f38beca000eb71f56d2adb3a37ae2ffb2c625",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-05_05.png",
+          "sha256": "aee8422d27a672de41fa1e156c142c7eea1a7e13ddc6a4e687d280797303cca9",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-06_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-06_01.png",
+          "sha256": "bd75317d540a954e4177e1a83ca7d5975a71387c028b0b790d0c2eb250abd7d2",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-06_02.png",
+          "sha256": "21fb999e387b0b34f16d8fe12c17f980887bef7193f9c7fc368f3a0c42bd908d",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-06_03.png",
+          "sha256": "4a756b792b8c3e18216a3d51e52584c59ca8427084a421080460617e673ca320",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-06_04.png",
+          "sha256": "2d9891faa418e34fc26554073c4a4b550c9bdc023bf4c02b727a4c19c3cb7ef4",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-06_05.png",
+          "sha256": "7d8d321cf05b03edf1348770a7223f05cb87b941bab33b3dc388a9ebd1edcf76",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-07_00.png",
+          "sha256": "8d17caafcee0062a0dc944d470c2851a2702ca11e9afa1b6b1960d7e10b212eb",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-07_01.png",
+          "sha256": "66556dfb707ddaec061ffc08675ec6a91e6d0e36cd159bf0354aefeeadb2a9fc",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-07_02.png",
+          "sha256": "3d0b781edbf114b107f401724837692f0420447d747dc8b7d523cf199065809d",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-07_03.png",
+          "sha256": "d574797335691f4ded7b157164bdfdff904d23b20baec57477ae9f764bc4ddf0",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-07_04.png",
+          "sha256": "5eef41f3d513ca1946eabce0c8f4a0296440f886d13ea7151f0d725d92ef1c3c",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/alev-ek-07_05.png",
+          "sha256": "df558862fadd8ff4d5d50afb09dc45d4f2ed2aaa0cf29595499d72c5637f29af",
+          "olcu": [
+            38,
+            40
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/lav-07_00.png",
+          "sha256": "b7fe7f76cb06ebe4d10db58d44b86c35fa80ed2b94320a97dc41b47b44b646de",
+          "olcu": [
+            120,
+            175
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/lav-07_01.png",
+          "sha256": "71ccae41fd4536a38d081df45b40bc67657223a2bb8de5d0a2b69329d03ac7f7",
+          "olcu": [
+            120,
+            175
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/lav-07_02.png",
+          "sha256": "b7eb78bf17ba8c62e5f422eb699bdb738d1b2d9732c59d8d78ab00dec7d9be2a",
+          "olcu": [
+            120,
+            175
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/lav-07_03.png",
+          "sha256": "84a40a7edd422cb24586b878483178211767a2af89ca10ace695c66355703c21",
+          "olcu": [
+            120,
+            175
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/lav-07_04.png",
+          "sha256": "94e4fc3547b3c221741e169cbc082bda4b3d42f34ccccb6e621e5e3bd8ffaba8",
+          "olcu": [
+            120,
+            175
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/lav-07_05.png",
+          "sha256": "7f3ae291777624d9c46b5339600e953651d914ce5db3c8d93697429c037c76af",
+          "olcu": [
+            120,
+            175
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-01_00.png",
+          "sha256": "928d1c9447f2ba07a95cee43f88dd1ad4a2b0ea1a7c0e3b8ba212beab8491c78",
+          "olcu": [
+            110,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-01_01.png",
+          "sha256": "f05770e1e4ad4c0117c1fcfefdde095502f11a5e418a941e340153c203f8e9ba",
+          "olcu": [
+            110,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-01_02.png",
+          "sha256": "3db0ec2c269af6f4cb348f4766d594428f86a59698173bb377a192cb7c7dcd01",
+          "olcu": [
+            110,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-01_03.png",
+          "sha256": "9cdc1fba455dc2105a3ac715b17c62e4e1e34cdb6a6d92941aa8799abd1a6720",
+          "olcu": [
+            110,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-01_04.png",
+          "sha256": "f8b8bfc628244f3780fe3e980ccb78efa6a6ab7a7ffcde42dcf45ec0f50fafc9",
+          "olcu": [
+            110,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-01_05.png",
+          "sha256": "16ad5dbd366dea84eebcbc799e6862c3094a107b8c3af349cb3682234913431c",
+          "olcu": [
+            110,
+            85
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-02_00.png",
+          "sha256": "f1025d63ad026cec8f0a06f129e8bf9d98d1d8e73c2276a712e3e14e62bcd1b6",
+          "olcu": [
+            35,
+            60
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-02_01.png",
+          "sha256": "55f8070dc16f834a52f512b6307706c4640eda7d40a11e89e9b0d60ec2cf5aeb",
+          "olcu": [
+            35,
+            60
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-02_02.png",
+          "sha256": "7487ef94be728cdb7db413a85e193c340c894cf2da7d6148d61efe4e0bf2377f",
+          "olcu": [
+            35,
+            60
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-02_03.png",
+          "sha256": "52af3cf83b4e2cc59b1dfcf3fafc09f74913b01ae1a33988790fd8ea516099ed",
+          "olcu": [
+            35,
+            60
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-02_04.png",
+          "sha256": "e6349391616d1dda2fc4902fbd37782a2d4e0ae10eec6acfd00ef6fbce185718",
+          "olcu": [
+            35,
+            60
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-02_05.png",
+          "sha256": "2e8407504d11265447c5d1d04523642e33c0f3ebe2adb50315dd2263deb94f94",
+          "olcu": [
+            35,
+            60
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-03_00.png",
+          "sha256": "3f0b8802c8fdfdbff4c2d61a4730bff9ccd2b143a1f0952a86b7f82ee5732614",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-03_01.png",
+          "sha256": "99a927394f5146d7f0bb54c4ae83b953fffbfa90d89f19185de21538ff92ded8",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-03_02.png",
+          "sha256": "326af18dc6e137453d374dbca7bb55519834ecc16dd233da3034b9398a4d0a2e",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-03_03.png",
+          "sha256": "79c3904733c1d9d138c8fc5132b6d5cc03b8a9d65dd00eed64b01208e18f3673",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-03_04.png",
+          "sha256": "aa3fb7eae0b0d6e567e90d4bd5a3abacb5c28c788e02c4f128e5e4c4eafb1835",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-03_05.png",
+          "sha256": "6d6d95e3358274af6a913927465822137a5382f0022e7fd5024c0b2fbdc5a27c",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-04_00.png",
+          "sha256": "61c5983f5824af8f2984379e490c6337992fd7ebd4d8d9e8d1921603bb7369bf",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-04_01.png",
+          "sha256": "10440fe0da2f73bbcf3214deaf95cbbd6c8165d8894bab375d8b42069193c420",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-04_02.png",
+          "sha256": "b8595fa968a07df9434e545c59c96a189134695d1d8ad107e48c2c25cff80951",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-04_03.png",
+          "sha256": "0b8181ac7b3aec39327b28bfb2c13099e67eb0424545b4110263a207401570e9",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-04_04.png",
+          "sha256": "5536854bd6bf8f4e8a7dd7de0d8165d2bf994eb356573f954b3653d997ca6c5d",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-04_05.png",
+          "sha256": "9a97f4c046d1d23278aa3d2747a6b0bfdfc9045e4713cefdc465784cc6354240",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-05_00.png",
+          "sha256": "1846268c29a317cfdd587b3d023e8c3ded09144d20a2750f5cf8fe42abd4a2fb",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-05_01.png",
+          "sha256": "d335085dfcb2c2506f50948ff92167c72800dbe5a9e4b416ce64bb4addf3a6ad",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-05_02.png",
+          "sha256": "145c1a1f81708afe78667416927902d3798d60207abe0e9f3a14132f2aac161b",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-05_03.png",
+          "sha256": "751eaf5fa86353bf4b99669bee4aaedffe7eb64bceb6a44ce985ea352572c138",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-05_04.png",
+          "sha256": "49ea48d6f11328e12053e966130a39e839895d258f55d00a9c1ddde6fddc099c",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-05_05.png",
+          "sha256": "1cc76533ac8c15dae219fcda65a84f5880202aa6e4b4d2a2d28c6c3c4f475140",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-06_00.png",
+          "sha256": "c60874a51fcee33b1dab9ab3ef3ab01185737d00744c73008a309a9b0c28a9e2",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-06_01.png",
+          "sha256": "e47ffd8d6d82503850ca99ba97d8272864dac89345b2d19396a7001b0895373c",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-06_02.png",
+          "sha256": "c8b7dbdad45bdc919c3c27b5ab086b533229a1d088fd8598470293c31281d28a",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-06_03.png",
+          "sha256": "7c2b7b8d2d92d7a5d07522281d4de942d540df64b8bf8989b1076f6bdf32f473",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-06_04.png",
+          "sha256": "50d65e94a4610496c8a10f4e13f5116dfe5a5aa92c792ebca800ecc6eb1d69a1",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/sancak-06_05.png",
+          "sha256": "9b24f59fc966ce3bff868918b2cbb0ae87ce227cb7d86b68aa43b2b3a2a842ca",
+          "olcu": [
+            30,
+            65
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-04/klan-kragmir/yerlesim.json",
+          "sha256": "b0965b18fc807b7c00f4efd3ad876db6333e654321f56ca196b14d62bb5662d0"
+        },
+        {
+          "yol": "P34-04/onizleme/carsi_bindirme_00.png",
+          "sha256": "c3bbaefa1642231d9fc3be41261ae1319caf06a784d867ef39dde87eb16d7714",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/carsi_bindirme_01.png",
+          "sha256": "937afd7dadd604d583af9d45b7829f3a9f3dcfdcbe9b09d141c3e6292287b473",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/carsi_bindirme_02.png",
+          "sha256": "476f9316c7821f1e078b9e88a95539ec786959962b11ee269ac76fdb2322c25b",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/carsi_bindirme_03.png",
+          "sha256": "99308fb984cec02ffe5d3b3c22aa0778f6ffdb6b9b1eb40cdf83e55cf1754b58",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/carsi_bindirme_04.png",
+          "sha256": "8dcbbd95dc58f2d2f9fb023c3234e6b54e08d922737643072a3b6e336bff4d18",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/carsi_bindirme_05.png",
+          "sha256": "8238c591853b9384c9f77eadc5558b267a2aedd7afc56ce964aea7161e3e1a42",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-elentha_bindirme_00.png",
+          "sha256": "5b1007d5b2812f94fb81639f9720b04f5458a8d02df6f939c94c40b4392b9846",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-elentha_bindirme_01.png",
+          "sha256": "fe041363862aa15ab2cd8fa2bd1728bfd4ae0b8b209732e7931b5c051372a911",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-elentha_bindirme_02.png",
+          "sha256": "f87e08eb05d9b5df75e02e62ca77457b8f7d8f0444bee9c33c116c480f053d04",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-elentha_bindirme_03.png",
+          "sha256": "85dd4a1aa04da91d7d314a801f3a0585660482ec1a4f5b02aa10bd0cf9cc2ce6",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-elentha_bindirme_04.png",
+          "sha256": "df85b0142857047e5a876b297fa272c4222e26934eb3410cf63bc40a0af1204b",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-elentha_bindirme_05.png",
+          "sha256": "e1738bb71aff3b6aa62fc5492505875d43101be599f3efed04fa258cbc93a03e",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-kragmir_bindirme_00.png",
+          "sha256": "1618519c6f4aa3aaee791290aa846c5b890937e152e9ccae8803835f7f7fc40a",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-kragmir_bindirme_01.png",
+          "sha256": "a7f97e10695e2240cf99277157e5648e0f8c51c1f61c3fc6bb71a44e08c42017",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-kragmir_bindirme_02.png",
+          "sha256": "12714b069ca0aa432a2ff0c9fbe41bb1b351243a47d8887a58ee793ab1624255",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-kragmir_bindirme_03.png",
+          "sha256": "fe8ad8575c13f14df0b85a20770c8dfb32ba7e70e27e4ef5af2ad59c8a849a86",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-kragmir_bindirme_04.png",
+          "sha256": "dc554c44038f04882679b2af6e680d66fe2b3cf116251c5fc88fc7c9e9928435",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        },
+        {
+          "yol": "P34-04/onizleme/klan-kragmir_bindirme_05.png",
+          "sha256": "6b3554bb4c223faa31cdbd92f64792b7cd2493f92823c040bc5329fa32217fc9",
+          "olcu": [
+            640,
+            357
+          ],
+          "alfa": false,
+          "rol": "onizleme"
+        }
+      ],
+      "kendi_kontrolum": "Yerleşim, alfa, altı kare ve birleşik kare 00 doğrulandı. Geçiş ölçümleri sahne_kalite.json içinde.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    },
+    {
+      "kod": "P34-08",
+      "durum": "uretildi",
+      "dosyalar": [
+        {
+          "yol": "P34-08/kragmir_erkek_yuz_5.png",
+          "sha256": "e9d95d714b638df7e0ef4a17246ecc65a11b9fb8ef828a85d1fa327b41952365",
+          "olcu": [
+            512,
+            512
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        }
+      ],
+      "kendi_kontrolum": "Önceki 512×512 RGBA erkek yüzü korundu.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    },
+    {
+      "kod": "P34-09",
+      "durum": "uretildi",
+      "dosyalar": [
+        {
+          "yol": "P34-09/bran-yuz.webp",
+          "sha256": "6b9b0ffa2d92a3bf82492906e9492267050f5e95115dec446a29474706be5ef8",
+          "olcu": [
+            192,
+            192
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-09/bran.webp",
+          "sha256": "49d21105319daf05e0e5080dad347c025cf3e645110329cbf55c5cd8f5f7a724",
+          "olcu": [
+            528,
+            704
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-09/nessa-yuz.webp",
+          "sha256": "999b92256925e8f7be2c572cc1fde03c6610bcf1a9979f9bfb0f54f4b2680e32",
+          "olcu": [
+            192,
+            192
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        },
+        {
+          "yol": "P34-09/nessa.webp",
+          "sha256": "f88531c91874a6d84eade2c08dff162ac337fb03c5405a8bb291c9d6db7e9948",
+          "olcu": [
+            528,
+            704
+          ],
+          "alfa": true,
+          "rol": "varlik"
+        }
+      ],
+      "kendi_kontrolum": "İki tam portre 528×704, iki baş-omuz kırpımı 192×192. Gri zemin üstünde konturlar incelendi.",
+      "varsayimlar": "Oyun içi kabul Opus entegrasyonunda.",
+      "gerekce": ""
+    }
+  ]
+}

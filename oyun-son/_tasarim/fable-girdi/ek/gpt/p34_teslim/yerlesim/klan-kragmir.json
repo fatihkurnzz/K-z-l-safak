@@ -1,0 +1,318 @@
+{
+  "sahne": "klan-kragmir",
+  "tuval": [
+    1376,
+    768
+  ],
+  "elemanlar": [
+    {
+      "kimlik": "sancak-01",
+      "tur": "sancak",
+      "x": 310,
+      "y": 15,
+      "w": 110,
+      "h": 85,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-01_00.png",
+        "sancak-01_01.png",
+        "sancak-01_02.png",
+        "sancak-01_03.png",
+        "sancak-01_04.png",
+        "sancak-01_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-02",
+      "tur": "sancak",
+      "x": 425,
+      "y": 130,
+      "w": 35,
+      "h": 60,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-02_00.png",
+        "sancak-02_01.png",
+        "sancak-02_02.png",
+        "sancak-02_03.png",
+        "sancak-02_04.png",
+        "sancak-02_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-03",
+      "tur": "sancak",
+      "x": 610,
+      "y": 100,
+      "w": 30,
+      "h": 65,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-03_00.png",
+        "sancak-03_01.png",
+        "sancak-03_02.png",
+        "sancak-03_03.png",
+        "sancak-03_04.png",
+        "sancak-03_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-04",
+      "tur": "sancak",
+      "x": 770,
+      "y": 100,
+      "w": 30,
+      "h": 65,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-04_00.png",
+        "sancak-04_01.png",
+        "sancak-04_02.png",
+        "sancak-04_03.png",
+        "sancak-04_04.png",
+        "sancak-04_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-05",
+      "tur": "sancak",
+      "x": 565,
+      "y": 255,
+      "w": 30,
+      "h": 65,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-05_00.png",
+        "sancak-05_01.png",
+        "sancak-05_02.png",
+        "sancak-05_03.png",
+        "sancak-05_04.png",
+        "sancak-05_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-06",
+      "tur": "sancak",
+      "x": 820,
+      "y": 255,
+      "w": 30,
+      "h": 65,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-06_00.png",
+        "sancak-06_01.png",
+        "sancak-06_02.png",
+        "sancak-06_03.png",
+        "sancak-06_04.png",
+        "sancak-06_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "lav-07",
+      "tur": "lav",
+      "x": 1180,
+      "y": 45,
+      "w": 120,
+      "h": 175,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "lav-07_00.png",
+        "lav-07_01.png",
+        "lav-07_02.png",
+        "lav-07_03.png",
+        "lav-07_04.png",
+        "lav-07_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "alev-ek-01",
+      "tur": "alev",
+      "x": 378,
+      "y": 221,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-01_00.png",
+        "alev-ek-01_01.png",
+        "alev-ek-01_02.png",
+        "alev-ek-01_03.png",
+        "alev-ek-01_04.png",
+        "alev-ek-01_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-02",
+      "tur": "alev",
+      "x": 466,
+      "y": 185,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-02_00.png",
+        "alev-ek-02_01.png",
+        "alev-ek-02_02.png",
+        "alev-ek-02_03.png",
+        "alev-ek-02_04.png",
+        "alev-ek-02_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-03",
+      "tur": "alev",
+      "x": 611,
+      "y": 404,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-03_00.png",
+        "alev-ek-03_01.png",
+        "alev-ek-03_02.png",
+        "alev-ek-03_03.png",
+        "alev-ek-03_04.png",
+        "alev-ek-03_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-04",
+      "tur": "alev",
+      "x": 758,
+      "y": 404,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-04_00.png",
+        "alev-ek-04_01.png",
+        "alev-ek-04_02.png",
+        "alev-ek-04_03.png",
+        "alev-ek-04_04.png",
+        "alev-ek-04_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-05",
+      "tur": "alev",
+      "x": 1107,
+      "y": 401,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-05_00.png",
+        "alev-ek-05_01.png",
+        "alev-ek-05_02.png",
+        "alev-ek-05_03.png",
+        "alev-ek-05_04.png",
+        "alev-ek-05_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-06",
+      "tur": "alev",
+      "x": 319,
+      "y": 510,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-06_00.png",
+        "alev-ek-06_01.png",
+        "alev-ek-06_02.png",
+        "alev-ek-06_03.png",
+        "alev-ek-06_04.png",
+        "alev-ek-06_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-07",
+      "tur": "alev",
+      "x": 1093,
+      "y": 568,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-07_00.png",
+        "alev-ek-07_01.png",
+        "alev-ek-07_02.png",
+        "alev-ek-07_03.png",
+        "alev-ek-07_04.png",
+        "alev-ek-07_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    }
+  ],
+  "atlananlar": []
+}

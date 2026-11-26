@@ -1,0 +1,31 @@
+{
+ "GPT": {
+  "manifestte": 458,
+  "sha_eslesen": 458,
+  "sha_farkli": 0,
+  "eksik": [],
+  "manifestte_olmayan_dosya": 3,
+  "ornek": [
+   "varlik_eslestirmeleri.json",
+   "OPUS_ENTEGRASYON.md",
+   "sahne_kalite.json"
+  ]
+ },
+ "Gemini": {
+  "manifestte": 18,
+  "sha_eslesen": 18,
+  "sha_farkli": 0,
+  "eksik": [],
+  "manifestte_olmayan_dosya": 62,
+  "ornek": [
+   "P34-KABUL-2/gemini_gorsel_kabul_raporu_2.json",
+   "P34-07/tepegoz__vurulma2.png",
+   "P34-07/dev-solucan__bekleme2.png",
+   "P34-07/kul-agasi-karadun__bekleme2.png",
+   "P34-07/lav-yurek__vurulma2.png",
+   "P34-07/lav-yurek__saldiri2.png",
+   "P34-07/kristal-muhafizi__saldiri2.png",
+   "P34-07/dev-solucan__vurulma2.png"
+  ]
+ }
+}

@@ -1,0 +1,90 @@
+{
+ "yenileme": {
+  "once": {
+   "lvl": 53,
+   "akce": 5051500,
+   "yakut": 530,
+   "energy": 120,
+   "items": 106,
+   "ad": "Denetci"
+  },
+  "sonra": {
+   "lvl": 53,
+   "akce": 5051500,
+   "yakut": 530,
+   "energy": 120,
+   "items": 106,
+   "ad": "Denetci"
+  },
+  "ayni": true,
+  "js_hata": []
+ },
+ "cift_tik_han": {
+  "once": 5051500,
+  "sonra": 5050900,
+  "dusen": 600,
+  "beklenen_tek_bedel": 600,
+  "tek_islem": true
+ },
+ "cift_tik_tezgah": {
+  "urun": "warrior",
+  "once": {
+   "lvl": 53,
+   "akce": 5050900,
+   "yakut": 530,
+   "energy": 120,
+   "items": 106,
+   "ad": "Denetci"
+  },
+  "sonra": {
+   "lvl": 53,
+   "akce": 5049385,
+   "yakut": 530,
+   "energy": 120,
+   "items": 109,
+   "ad": "Denetci"
+  },
+  "alinan_esya": 3,
+  "dusen_akce": 1515,
+  "not": "üç hızlı tık; her alım ayrı ve ücretli olmalı, stok sınırı (günlük 3) aşılmamalı"
+ },
+ "bozuk_kayit": {
+  "js_hata": [],
+  "yukleme_hata_mesaji": null,
+  "sunucu_secimi_acildi": true,
+  "kayit_sonra": "{bozuk json"
+ },
+ "en_dili": {
+  "lang": "en",
+  "han_balonu": null,
+  "ipucu": "",
+  "perde_metni": null,
+  "premium_fiyat": [
+   "500 Yakut",
+   "Coming soon ₺149",
+   "Coming soon ₺299"
+  ],
+  "gecti": true
+ },
+ "sifirlama": {
+  "saat_once": "23:58 UTC+3",
+  "ilk": "kabul",
+  "ikinci_ayni_gun": "red:claimed",
+  "gece_yarisi_sonrasi": "kabul",
+  "tekrar": "red:claimed",
+  "gecti": true
+ },
+ "bellek": {
+  "yigin_MB_her_30sn": [
+   133,
+   133,
+   133,
+   133,
+   133,
+   133
+  ],
+  "artis_MB": 0,
+  "rAF_hizi_ana_ust": 60,
+  "not": "masaüstü Chromium (yazılım GL); gerçek cihaz pil/ısı/FPS ölçümü DEĞİL"
+ }
+}

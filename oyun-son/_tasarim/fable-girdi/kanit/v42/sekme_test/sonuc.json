@@ -1,0 +1,20 @@
+{
+ "hatalar": [],
+ "A_once": {
+  "akce": 5051500,
+  "kilit": null
+ },
+ "B_secim": {
+  "sunucu": true,
+  "gir": true,
+  "oyunda": true
+ },
+ "A_sonra": {
+  "kilit": {
+   "kind": "session",
+   "message": "Hesabın başka bir cihazda açıldı."
+  },
+  "ekranda": true
+ },
+ "A_islem": "beklemede (kilitli)"
+}

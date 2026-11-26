@@ -1,0 +1,205 @@
+{
+ "surum": "KORANT-v42-b9a0b21",
+ "aciklama": "P34 talebi başına son durum. \"Kabul\" sütunu Opus’un entegrasyon testidir; bağımsız nihai kabul Fable’ındır. Kanıt yolları paket içi (kanit/...) ya da depo yoludur.",
+ "ozet": {
+  "talep": 11,
+  "kapsam_disi": 1,
+  "tam_entegre": 8,
+  "kismen": 1,
+  "teslim_edilmedi": 1
+ },
+ "talepler": [
+  {
+   "kimlik": "P34-01",
+   "talep": "sahneler/zafer_aniti.webp yüksek çözünürlük (aynı kadraj)",
+   "sorumlu": "GPT",
+   "uretim": "ÜRETİLDİ (GPT 2048×868). Not: Gemini de 1600×678 sürüm gönderdi; kullanıcı Gemini sürümünü KABUL ETMEDİ.",
+   "teslim": "TESLİM EDİLDİ (KORANT_GPT_P34_NIHAI_TESLIM; sha256 manifestle eşleşti)",
+   "entegrasyon": "ENTEGRE",
+   "yollar": [
+    "oyun-son/sahneler/zafer_aniti.webp",
+    "oyun-son/js/ic-mekan.js (MEKAN.zafer; oran 512/217 = 2048/868 aynı)"
+   ],
+   "test": "GEÇTİ: tarayıcıda doğal ölçü 2048×868, iki halkta iç mekân arka planı (kanit/v42/p34_test/*/sonuc.json › zafer). Küçültülmüş hâli orijinalle ortalama 0,93/255 fark (Opus ölçümü; reddedilen Gemini 1600×678 sürümünün farkı 3,85: kanit/v42/kontrol/zafer_kiyas_gemini_1600.jpg).",
+   "kabul": "Opus entegrasyon testi geçti; uzman dışı bağımsız görsel kabul YOK (Fable).",
+   "acik": []
+  },
+  {
+   "kimlik": "P34-02",
+   "talep": "Elentha başkent hareket katmanları (sancak, şelale, meşale)",
+   "sorumlu": "GPT",
+   "uretim": "ÜRETİLDİ: 14 eleman (5 sancak, 3 şelale, 6 alev), 6 kare, 10 kare/sn",
+   "teslim": "TESLİM EDİLDİ",
+   "entegrasyon": "ENTEGRE",
+   "yollar": [
+    "oyun-son/js/p34-katman-png.js › baskent-elentha",
+    "oyun-son/js/p34-katman.js",
+    "oyun-son/js/p33-canli.js (zerreKur → katmanKur)",
+    "oyun-son/css/p33-kabul.css (.p34-katman)"
+   ],
+   "test": "GEÇTİ (masaüstü Chromium): tuval fotoğraf kutusunu birebir kaplıyor, pointer-events none, hareket var, etiket üstte, DOM sırası s2-bg → p34-katman → p33-ton → p33-zerre; dd_canli=0 / dd_pil=1 / hareketi azalt kaldırır, geri açınca kurulur (kanit/v42/p34_test/sancak/sonuc.json). Kare 00 = fotoğraf kırpımı (ölçüm 0,0 fark).",
+   "kabul": "Opus testi geçti; görsel doğallık bağımsız kabulü YOK.",
+   "acik": [
+    "GPT atladı: uzak şelale kolları (\"ilk taslakta işlenmedi\"; yerlesim.json atlananlar)",
+    "Gerçek cihazda FPS/pil etkisi test edilmedi"
+   ]
+  },
+  {
+   "kimlik": "P34-03",
+   "talep": "Kragmir başkent hareket katmanları (lav, alev, duman, sancak)",
+   "sorumlu": "GPT",
+   "uretim": "ÜRETİLDİ: 14 eleman (5 sancak, 2 lav, 1 duman, 6 alev)",
+   "teslim": "TESLİM EDİLDİ",
+   "entegrasyon": "ENTEGRE",
+   "yollar": [
+    "oyun-son/js/p34-katman-png.js › baskent-kragmir"
+   ],
+   "test": "GEÇTİ (kanit/v42/p34_test/ocak/sonuc.json)",
+   "kabul": "Opus testi geçti; bağımsız görsel kabul YOK.",
+   "acik": [
+    "GPT atladı: sağ uzak lav (\"kesin ayrıştırılmadı\")"
+   ]
+  },
+  {
+   "kimlik": "P34-04",
+   "talep": "Yemin Pazarı tente/kumaş + iki Klan Obası sancak katmanları",
+   "sorumlu": "GPT",
+   "uretim": "ÜRETİLDİ: çarşı 13, klan-elentha 14 (çeşme dahil), klan-kragmir 14 (lav dahil)",
+   "teslim": "TESLİM EDİLDİ",
+   "entegrasyon": "ENTEGRE",
+   "yollar": [
+    "oyun-son/js/p34-katman-png.js › carsi, klan-elentha, klan-kragmir"
+   ],
+   "test": "GEÇTİ iki halkta (kanit/v42/p34_test/*/sonuc.json › katman_carsi, katman_klan). Klan sahnesi test için doğrudan kuruldu (klan üyeliği olmadan, hub2d.show2d).",
+   "kabul": "Opus testi geçti; bağımsız görsel kabul YOK.",
+   "acik": [
+    "Klan Obası katmanı gerçek klan akışında (klan kurup girerek) v42’de çekilmedi"
+   ]
+  },
+  {
+   "kimlik": "P34-05",
+   "talep": "NPC göz kırpma / konuşma kareleri (8 G4 portresi)",
+   "sorumlu": "Gemini",
+   "uretim": "ÜRETİLDİ: 8 NPC × 3 kare (göz-yarı, göz-kapalı, ağız-açık); isteğe bağlı ağız-yarı gelmedi",
+   "teslim": "TESLİM EDİLDİ ama teslim manifestinde YOK (Gemini manifesti yalnız P34-07’nin 18 dosyasını listeliyor)",
+   "entegrasyon": "ENTEGRE (yalnız değişen bölgenin kırpımı gömüldü; tam kare tarayıcıda üretilir)",
+   "yollar": [
+    "oyun-son/js/npc-kare-png.js",
+    "oyun-son/js/ui-diyalog.js (canlan)"
+   ],
+   "test": "GEÇTİ: 8 NPC’de diyalog portresi 7 sn içinde 2–4 farklı kare gösterdi (göz kırpma rastgele 2,5–6 sn), hareketi azalt açıkken 1 kare (kanit/v42/p34_test/*/sonuc.json › npc_kare). Kareler yalnız göz/ağız bölgesinde değişiyor (ölçüm: değişen piksel 93–297).",
+   "kabul": "Opus entegrasyon testi geçti; görsel kalite bağımsız kabulü YOK.",
+   "acik": [
+    "Gözü kapalı karelerde göz kapağı bölgesi yumuşak/bulanık görünüyor (Opus gözlemi, kanit/v42/kontrol/npc_kare_kontrol.jpg)",
+    "Pencere başlığındaki küçük NPC yüzlerinde (192 px) kare yok; yalnız diyalog portresi"
+   ]
+  },
+  {
+   "kimlik": "P34-06",
+   "talep": "13 kayıtlı yaratık çiziminin saldırı/vurulma pozları",
+   "sorumlu": "Gemini",
+   "uretim": "ÜRETİLDİ: kullanılan 11 tür × 2 = 22 (dragon_earth ve dragon_poison hiçbir yaratıkta kullanılmadığı için istenmedi)",
+   "teslim": "TESLİM EDİLDİ ama teslim manifestinde YOK",
+   "entegrasyon": "KISMEN: 8 tür (16 görsel) entegre; lamia, snake_queen, dragon_lightning (6 görsel) KİMLİK SAPMASI nedeniyle ENTEGRE EDİLMEDİ (bekleme pozuyla renk/desen farkı; savaşta poz değişiminde göze batar)",
+   "yollar": [
+    "oyun-son/js/b2d-y1.js (rabbit)",
+    "oyun-son/js/b2d-y3.js (falcon, gargoyle, hornet, leader_of_barbarian)",
+    "oyun-son/js/b2d-yb.js (dragon_fire, dragon_ice, dragon_shadow)"
+   ],
+   "test": "GEÇTİ (veri): tarayıcıda 384×384 çözülüyor (kanit/v42/p34_test/*/sonuc.json › veri.pozlar). Gerçek savaşta bu türlerle poz geçişi v42’de ÇEKİLMEDİ (savaş regresyonu durduruldu).",
+   "kabul": "Opus görsel kontrolü: 8 tür tutarlı; 3 tür reddedildi (kanit/v42/kontrol/yaratik_kontrol.jpg). Bağımsız kabul YOK.",
+   "acik": [
+    "lamia, snake_queen, dragon_lightning için kimliği bekleme pozuyla aynı yeni saldırı/vurulma çizimi gerekli",
+    "leader_of_barbarian ve gargoyle renkleri bekleme pozundan biraz farklı (kabul edildi, Fable değerlendirmeli)"
+   ]
+  },
+  {
+   "kimlik": "P34-07",
+   "talep": "Boss 2. evre özgün dönüşüm çizimleri",
+   "sorumlu": "Gemini",
+   "uretim": "ÜRETİLDİ: A (5 ana boss) 15 + B (Marven, Adsız) 6 + C (4 ejder) 12 = 33 zorunlu; D (12 aile bossu, isteğe bağlı) ÜRETİLMEDİ",
+   "teslim": "TESLİM EDİLDİ (manifest yalnız B+C 18 dosyayı listeliyor; A 15 dosya manifestte yok)",
+   "entegrasyon": "ENTEGRE (33/33). Aile bossları eski evre-2 çizimiyle kaldı.",
+   "yollar": [
+    "oyun-son/js/b2d-yb.js (5 ana boss + 4 ejder)",
+    "oyun-son/js/b2d-y4.js (maresal-marven, adsiz)",
+    "oyun-son/js/savas-birim2d.js (evre-2 geçişi: can ≤ %50 / evre / öfke; DEĞİŞMEDİ)"
+   ],
+   "test": "GEÇTİ (veri): 33 görsel tarayıcıda çözülüyor; ejderlerde evre-2 artık var (kanit/v42/p34_test/*/sonuc.json). Gerçek boss savaşında evre geçişi v42’de ÇEKİLMEDİ.",
+   "kabul": "Opus görsel kontrolü: kimlik korunmuş, Tepegöz tek göz (kanit/v42/kontrol/boss_kontrol.jpg). Bağımsız kabul YOK.",
+   "acik": [
+    "D katmanı (12 aile bossu) isteğe bağlıydı, gelmedi",
+    "dragon_lightning evre-2 çizimi beyaz-mor bekleme pozundan mavi-altına dönüyor (dönüşüm olarak kabul edildi)"
+   ]
+  },
+  {
+   "kimlik": "P34-08",
+   "talep": "Kragmir ERKEK 5. yüz (yuva 4 aynaydı)",
+   "sorumlu": "GPT",
+   "uretim": "ÜRETİLDİ (512×512 alfa)",
+   "teslim": "TESLİM EDİLDİ",
+   "entegrasyon": "ENTEGRE (176×176, diğer yuvalar gibi koyu zemine oturtuldu)",
+   "yollar": [
+    "oyun-son/js/karakter-png-veri.js › yuz.ocak.m.4"
+   ],
+   "test": "GEÇTİ (veri): 5 yuva çözülüyor, yeni yüz özgün (kanit/v42/p34_test/*/08_veri_kontakt.webp). Karakter oluşturma ekranında seçimi v42’de çekilmedi.",
+   "kabul": "Bağımsız kabul YOK.",
+   "acik": [
+    "Kragmir kadın yuva 4 ayna değil (ölçüldü) → istenmedi"
+   ]
+  },
+  {
+   "kimlik": "P34-09",
+   "talep": "Bran ve Nessa portreleri (G4 biçimi)",
+   "sorumlu": "GPT",
+   "uretim": "ÜRETİLDİ (2 × 528×704 + 2 × 192×192)",
+   "teslim": "TESLİM EDİLDİ",
+   "entegrasyon": "ENTEGRE",
+   "yollar": [
+    "oyun-son/js/gorsel-png.js › bran, bran-yuz, nessa, nessa-yuz",
+    "oyun-son/js/ui-ogretici.js (Bran diyalogları kim=bran; kurtarma kartı rescueArt)",
+    "oyun-son/css/p33-kabul.css (.resc-por)"
+   ],
+   "test": "GEÇTİ: Bran diyalog portresi, kurtarma kartında iki portre (kanit/v42/p34_test/*/05_bran_diyalog, 06_kurtarma_karti). Öğretici akışının içinde (gerçek adım) v42’de çekilmedi; test doğrudan çağrıyla.",
+   "kabul": "Bağımsız kabul YOK.",
+   "acik": [
+    "Nessa’nın göz/ağız kareleri yok (P34-05 kapsamı dışında kaldı)"
+   ]
+  },
+  {
+   "kimlik": "P34-10",
+   "talep": "Mini Dizi 10 video",
+   "sorumlu": "—",
+   "uretim": "KAPSAM DIŞI (kullanıcı kararı 26.11)",
+   "teslim": "—",
+   "entegrasyon": "—",
+   "yollar": [
+    "oyun-son/shared/minidizi.js",
+    "oyun-son/video/README.txt (korunuyor)"
+   ],
+   "test": "—",
+   "kabul": "Başarısızlık sayılmaz.",
+   "acik": []
+  },
+  {
+   "kimlik": "P34-11",
+   "talep": "Özgün müzik, ortam sesleri, NPC seslendirmesi",
+   "sorumlu": "Gemini",
+   "uretim": "ÜRETİLMEDİ / TESLİM EDİLMEDİ (Gemini teslim manifesti \"ses\": [], pakette P34-11 klasörü yok). Gemini’nin ilk P34 yanıtında madde 6–11 \"GPT görevleri / kapsam dışı\" diye reddedilmişti.",
+   "teslim": "TESLİM EDİLMEDİ",
+   "entegrasyon": "YOK (oyunda yalnız mevcut 4 müzik + 131 sentez ses; NPC kanalı yok)",
+   "yollar": [
+    "oyun-son/js/sfx.js",
+    "oyun-son/js/audio.js",
+    "oyun-son/js/npc-soz.js"
+   ],
+   "test": "Uygulanamaz",
+   "kabul": "—",
+   "acik": [
+    "MUS-01 normal savaş müziği (zorunluydu)",
+    "17 zorunlu ortam döngüsü",
+    "45 zorunlu NPC selamlama seslendirmesi"
+   ]
+  }
+ ]
+}

@@ -12,7 +12,7 @@ P34 = [
       uretim='ÜRETİLDİ (GPT 2048×868). Not: Gemini de 1600×678 sürüm gönderdi; kullanıcı Gemini sürümünü KABUL ETMEDİ.',
       teslim='TESLİM EDİLDİ (KORANT_GPT_P34_NIHAI_TESLIM; sha256 manifestle eşleşti)', entegrasyon='ENTEGRE',
       yollar=['oyun-son/sahneler/zafer_aniti.webp', 'oyun-son/js/ic-mekan.js (MEKAN.zafer; oran 512/217 = 2048/868 aynı)'],
-      test=f'GEÇTİ: tarayıcıda doğal ölçü 2048×868, iki halkta iç mekân arka planı ({KV}/p34_test/*/sonuc.json › zafer). Küçültülmüş hâli orijinalle ortalama 0,93/255 fark ({KV}/kontrol/zafer_kiyas.jpg Gemini sürümü için 3,85).',
+      test=f'GEÇTİ: tarayıcıda doğal ölçü 2048×868, iki halkta iç mekân arka planı ({KV}/p34_test/*/sonuc.json › zafer). Küçültülmüş hâli orijinalle ortalama 0,93/255 fark (Opus ölçümü; reddedilen Gemini 1600×678 sürümünün farkı 3,85: {KV}/kontrol/zafer_kiyas_gemini_1600.jpg).',
       kabul='Opus entegrasyon testi geçti; uzman dışı bağımsız görsel kabul YOK (Fable).', acik=[]),
  dict(kimlik='P34-02', talep='Elentha başkent hareket katmanları (sancak, şelale, meşale)', sorumlu='GPT',
       uretim='ÜRETİLDİ: 14 eleman (5 sancak, 3 şelale, 6 alev), 6 kare, 10 kare/sn', teslim='TESLİM EDİLDİ',
@@ -109,7 +109,7 @@ G2 = [
  ('G2-13', 'Özgün 32 maddelik görev listesi yok', 'Kapsam belgesi', 'Orta', 'Bulunamadı; kapsam özgün kaynaklardan (AAA planı vb.) YENİDEN KURULDU — özgün belge değildir', 'AÇIK (belge yok)', f'{K}/KAPSAM_MATRISI.md, KAPSAM_KAYNAK_AAA.txt', '—'),
 ]
 for k, a, s, o, c, d, kn, t in G2:
-    r(k, 'GPT (2. teknik kabul)', a, s, o, 'Opus', c, d, kn, t, 'Hayır' if k != 'G2-10' else 'Evet — Play Store paketi DD_STORE’u açmadan yayımlanırsa test paneli görünür', None)
+    r(k, 'GPT (2. teknik kabul)', a, s, o, 'Opus', c, d, kn, t, 'Hayır' if k != 'G2-10' else 'Evet — Play Store paketi DD_STORE’u açmadan yayımlanırsa test paneli görünür', {'G2-07': 'dokunma-hedefi', 'G2-08': '667-okunurluk', 'G2-13': 'kapsam-belgesi', 'G2-04': 'test-betigi', 'G2-05': 'test-betigi', 'G2-09': 'qa-belgesi', 'G2-11': 'qa-belgesi'}.get(k))
 
 # Opus P33 bulguları (BUL) — KAPSAM_MATRISI §14
 for k, a, d in [('A1', 'Zafer Anıtı penceresi dokunuşları kapatıyor', 'YANLIŞ POZİTİF'), ('A2', 'Başkent hep Yashka diyaloğu', 'YANLIŞ POZİTİF'), ('A3', 'Kurt üstünde kırmızı çubuklar', 'YANLIŞ POZİTİF'),
@@ -131,9 +131,8 @@ YENI = [
  ('P34-B08', 'Opus', 'Gemini ilk P34 yanıtında P34-05 (NPC kareleri) "kullanıcı + Claude ortak kararıyla uygulanmadı" diye reddedildi — böyle bir karar yoktu; sonra P34 girdi paketiyle üretildi', 'Süreç', 'Düşük', 'Gemini', '—', 'KAPANDI', 'ek/gemini/nihai_kabul2/', '—', 'Hayır', None),
  ('P34-B09', 'Opus', 'GPT ikinci kabul raporu P34 görsellerini Gemini’ye yönlendirmeyi ve canavar park kararını korumayı öneriyordu; kullanıcı kararı farklı (görev bölüşümü kullanıcıdan, canavar işi yeniden açıldı)', 'Süreç', 'Düşük', '—', 'Kullanıcı kararı uygulandı', 'KAPANDI', 'ek/gpt/ikinci_kabul/', '—', 'Hayır', None),
  ('P34-B10', 'Opus', 'Telif/lisans: AI üretimi görsellerin kullanım koşulları, müzik dosyalarının lisans belgesi, EN dilinde başka bir MMO’dan alınmış görünen eşya adları', 'Hukuki', 'Yüksek', 'Kullanıcı', 'Yok', 'AÇIK', 'KULLANICI_KARARLARI_VE_STANDARTLAR.md §D', '—', 'Olası — mağaza yayını öncesi', None),
- ('P34-B11', 'Opus', 'Gerçek cihaz (Android), FPS/pil/ısı, 30/120 dk oturum, ağ kesilmesi, Play Store paketi test edilmedi; sunucu yok', 'Performans/yayın', 'Yüksek', 'Kullanıcı/Fable', 'Yok', 'TEST EDİLMEDİ', '—', '—', 'Evet — mağaza yayını için gerekli', None),
+ ('P34-B11', 'Opus', 'Gerçek cihaz (Android), FPS/pil/ısı, 30/120 dk oturum, ağ kesilmesi, Play Store paketi test edilmedi; sunucu yok', 'Performans/yayın', 'Yüksek', 'Kullanıcı/Fable', 'Yok', 'TEST EDİLMEDİ', '—', '—', 'Evet — mağaza yayını için gerekli', 'gercek-cihaz'),
  ('P34-B13', 'Opus (sistem testi v42)', 'Bozuk kayıt (localStorage JSON bozuk) yüklenince oyun çökmüyor, sunucu seçimine dönüyor; ama bozuk kayıt KURTARILMIYOR ve yedek yok (oyuncu ilerlemesini kaybeder). GPT G2-12: SYS-SAVE kurtarma kanıtı değildir.', 'Veri bütünlüğü', 'Orta', 'Opus/kullanıcı (karar)', 'Yok (mekanik/kayıt biçimi değişikliği gerektirir; izinsiz yapılmadı)', 'AÇIK', 'kanit/v42/sistem_test/sonuc.json › bozuk_kayit', 'Çökme yok: GEÇTİ; kurtarma: YOK', 'Olası — Play Store için yedek/kurtarma önerilir', None),
- ('P34-B12', 'Opus', 'Kapsam belgesi: 32 maddelik özgün liste bulunamadı (G2-13 ile aynı)', 'Belge', 'Orta', 'Kullanıcı', '—', 'AÇIK', '—', '—', 'Hayır', None),
 ]
 for x in YENI: r(*x)
 
@@ -161,6 +160,8 @@ acik = [x for x in M if x['durum'].startswith(('AÇIK', 'KISMEN', 'TEST EDİLMED
 onem = collections.Counter(x['onem'] for x in acik)
 json.dump(dict(surum=SURUM, aciklama='GPT, Gemini ve Opus bulguları tek matriste; önceki kimlikler korunmuştur. "durum" kanıta dayalı Opus kaydıdır; uzmanların kendi kabul beyanları "tekrar_test" alanında ayrıca belirtilir ve Fable’ın bağımsız kabulü değildir. KAB-* satırları karar değil, kanıt eşlemesidir.',
                ozet=dict(kayit=len(M), durum_dagilimi=dict(say), acik_kismen_testedilmedi_KAB_haric=len(acik), onem_dagilimi_acik=dict(onem),
+                         acik_tekil_kok_neden=len({x['kok_neden'] or x['kimlik'] for x in acik}),
+                         acik_tekil_kok_onem={k: v for k, v in collections.Counter(max((y['onem'] for y in acik if (y['kok_neden'] or y['kimlik']) == kk), key=['Düşük', 'Orta', 'Yüksek'].index) for kk in {x['kok_neden'] or x['kimlik'] for x in acik}).items()},
                          yayina_engel_olasi=[x['kimlik'] for x in M if str(x['yayina_engel']).startswith(('Evet', 'Olası', 'Belirsiz'))]),
                kayitlar=M), open(os.path.join(OUT, 'BIRLESIK_HATA_VE_GOREV_MATRISI.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print('P34', tamam, 'tam entegre; matris', len(M), 'kayıt', dict(say), 'açık', len(acik), dict(onem))

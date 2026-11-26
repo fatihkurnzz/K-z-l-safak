@@ -1,0 +1,12 @@
+{
+ "hatalar": [],
+ "once": {
+  "hafta_anahtari_istemci": 2969,
+  "S_weekly": "{\"week\":2969,\"q\":{},\"done\":{}}"
+ },
+ "sonra": {
+  "hafta_anahtari_istemci": 2970,
+  "S_weekly": "{\"week\":2970,\"q\":{},\"done\":{}}"
+ },
+ "gecti": true
+}

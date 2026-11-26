@@ -1,0 +1,296 @@
+{
+  "sahne": "carsi",
+  "tuval": [
+    1600,
+    893
+  ],
+  "elemanlar": [
+    {
+      "kimlik": "tente-01",
+      "tur": "tente",
+      "x": 235,
+      "y": 455,
+      "w": 115,
+      "h": 50,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "tente-01_00.png",
+        "tente-01_01.png",
+        "tente-01_02.png",
+        "tente-01_03.png",
+        "tente-01_04.png",
+        "tente-01_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "tente-02",
+      "tur": "tente",
+      "x": 370,
+      "y": 485,
+      "w": 155,
+      "h": 95,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "tente-02_00.png",
+        "tente-02_01.png",
+        "tente-02_02.png",
+        "tente-02_03.png",
+        "tente-02_04.png",
+        "tente-02_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "tente-03",
+      "tur": "tente",
+      "x": 535,
+      "y": 490,
+      "w": 140,
+      "h": 85,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "tente-03_00.png",
+        "tente-03_01.png",
+        "tente-03_02.png",
+        "tente-03_03.png",
+        "tente-03_04.png",
+        "tente-03_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "tente-04",
+      "tur": "tente",
+      "x": 930,
+      "y": 490,
+      "w": 180,
+      "h": 70,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "tente-04_00.png",
+        "tente-04_01.png",
+        "tente-04_02.png",
+        "tente-04_03.png",
+        "tente-04_04.png",
+        "tente-04_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "tente-05",
+      "tur": "tente",
+      "x": 1270,
+      "y": 390,
+      "w": 320,
+      "h": 135,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "tente-05_00.png",
+        "tente-05_01.png",
+        "tente-05_02.png",
+        "tente-05_03.png",
+        "tente-05_04.png",
+        "tente-05_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-06",
+      "tur": "sancak",
+      "x": 275,
+      "y": 265,
+      "w": 32,
+      "h": 130,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-06_00.png",
+        "sancak-06_01.png",
+        "sancak-06_02.png",
+        "sancak-06_03.png",
+        "sancak-06_04.png",
+        "sancak-06_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-07",
+      "tur": "sancak",
+      "x": 420,
+      "y": 290,
+      "w": 31,
+      "h": 130,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-07_00.png",
+        "sancak-07_01.png",
+        "sancak-07_02.png",
+        "sancak-07_03.png",
+        "sancak-07_04.png",
+        "sancak-07_05.png"
+      ],
+      "zorunlu": true,
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "alev-ek-01",
+      "tur": "alev",
+      "x": 278,
+      "y": 406,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-01_00.png",
+        "alev-ek-01_01.png",
+        "alev-ek-01_02.png",
+        "alev-ek-01_03.png",
+        "alev-ek-01_04.png",
+        "alev-ek-01_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-02",
+      "tur": "alev",
+      "x": 429,
+      "y": 422,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-02_00.png",
+        "alev-ek-02_01.png",
+        "alev-ek-02_02.png",
+        "alev-ek-02_03.png",
+        "alev-ek-02_04.png",
+        "alev-ek-02_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-03",
+      "tur": "alev",
+      "x": 981,
+      "y": 422,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-03_00.png",
+        "alev-ek-03_01.png",
+        "alev-ek-03_02.png",
+        "alev-ek-03_03.png",
+        "alev-ek-03_04.png",
+        "alev-ek-03_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-04",
+      "tur": "alev",
+      "x": 1068,
+      "y": 418,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-04_00.png",
+        "alev-ek-04_01.png",
+        "alev-ek-04_02.png",
+        "alev-ek-04_03.png",
+        "alev-ek-04_04.png",
+        "alev-ek-04_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-05",
+      "tur": "alev",
+      "x": 1191,
+      "y": 431,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-05_00.png",
+        "alev-ek-05_01.png",
+        "alev-ek-05_02.png",
+        "alev-ek-05_03.png",
+        "alev-ek-05_04.png",
+        "alev-ek-05_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-ek-06",
+      "tur": "alev",
+      "x": 1255,
+      "y": 525,
+      "w": 38,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "zorunlu": true,
+      "dosyalar": [
+        "alev-ek-06_00.png",
+        "alev-ek-06_01.png",
+        "alev-ek-06_02.png",
+        "alev-ek-06_03.png",
+        "alev-ek-06_04.png",
+        "alev-ek-06_05.png"
+      ],
+      "not": "Kare 00 katkısız ışık; screen."
+    }
+  ],
+  "atlananlar": []
+}

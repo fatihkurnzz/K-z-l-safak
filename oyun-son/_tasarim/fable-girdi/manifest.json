@@ -1,0 +1,522 @@
+{
+ "paket": "KORANT_FABLE_DENETIM_GIRDISI",
+ "surum": "KORANT-v42-b9a0b21",
+ "komit": "b9a0b21",
+ "onceki_surum": "KORANT-v40-1dda167+P33 (komit 1e17c80, yayın 41)",
+ "olusturma": "2026-11-26",
+ "hazirlayan": "Claude Opus 5.5 (entegrasyon kaydı; kabul kararı değildir)",
+ "surum_parmak_izi": {
+  "yontem": "sha256( her satır: '<oyun-son göreli yol> <dosya sha256>\\n', yola göre sıralı ); kapsam: git'teki oyun-son dosyaları, _tasarim hariç",
+  "dosya_sayisi": 467,
+  "sha256": "7cd7414d61266b5c87c7a89959d86fb65fb14d35e46a0796e407046836146b79",
+  "yayin_notu": "Yayın (claude.ai artefakt sürüm 42) 450 dosyadır: depoda olup yayına konmayanlar models/test/Xbot.glb.js, video/README.txt, img/items3d/*, bazı img/kd/simge3 dosyaları vb. (CLAUDE.md \"Yayın\")."
+ },
+ "ana_dosyalar": {
+  "README_FABLE.md": "Giriş, okuma sırası, durum dili",
+  "GPT_NIHAI_TESLIM_VE_KABUL.md": "GPT bütün işleri",
+  "GEMINI_NIHAI_TESLIM_VE_KABUL.md": "Gemini bütün işleri",
+  "OPUS_NIHAI_ENTEGRASYON.md": "Opus geliştirme/entegrasyon, teknik borç, riskler",
+  "P34_NIHAI_DURUM.json": "11 P34 talebi",
+  "BIRLESIK_HATA_VE_GOREV_MATRISI.json": "Birleşik bulgu matrisi",
+  "GUNCEL_OYUN_ENVANTERI.json": "Güncel envanter (kaynak koddan)",
+  "TEST_KANITLARI_VE_SONUCLARI.md": "Testler",
+  "ESKI_YENI_SURUM_KIYASLAMASI.md": "v41 → v42",
+  "KULLANICI_KARARLARI_VE_STANDARTLAR.md": "Kararlar + telif",
+  "ACIK_SORUNLAR_VE_YAYIN_RISKLERI.md": "Açık sorunlar",
+  "CALISTIRMA_VE_TEST_TALIMATI.md": "Çalıştırma/test",
+  "KANIT_DOSYALARI_INDEKSI.json": "Kanıt indeksi"
+ },
+ "ozet": {
+  "p34": {
+   "talep": 11,
+   "kapsam_disi": 1,
+   "tam_entegre": 8,
+   "kismen": 1,
+   "teslim_edilmedi": 1
+  },
+  "matris": {
+   "kayit": 88,
+   "durum_dagilimi": {
+    "KAPANDI": 32,
+    "KULLANICI KARARI": 2,
+    "KISMEN": 17,
+    "YANLIŞ POZİTİF": 10,
+    "AÇIK": 9,
+    "TEST EDİLMEDİ": 9,
+    "KANITLI": 5,
+    "v41 KANITLI": 4
+   },
+   "acik_kismen_testedilmedi_KAB_haric": 19,
+   "onem_dagilimi_acik": {
+    "Orta": 8,
+    "Yüksek": 7,
+    "Düşük": 4
+   },
+   "acik_tekil_kok_neden": 14,
+   "acik_tekil_kok_onem": {
+    "Orta": 6,
+    "Yüksek": 5,
+    "Düşük": 3
+   },
+   "yayina_engel_olasi": [
+    "N5-02",
+    "N6-08",
+    "G2-10",
+    "P34-B06",
+    "P34-B10",
+    "P34-B11",
+    "P34-B13"
+   ]
+  }
+ },
+ "dosya_sayisi": 90,
+ "toplam_bayt": 4025854,
+ "dosyalar": [
+  {
+   "yol": "ACIK_SORUNLAR_VE_YAYIN_RISKLERI.md",
+   "bayt": 2968,
+   "sha256": "fad51a358fb757da5863cde269453b29a889ea9ccb74a5329ccfc5d4f59ededb"
+  },
+  {
+   "yol": "BIRLESIK_HATA_VE_GOREV_MATRISI.json",
+   "bayt": 46052,
+   "sha256": "061c0289bc5043faf736d7f9445036551fbdb5fb093dc6a485c498dfcb0c7240"
+  },
+  {
+   "yol": "CALISTIRMA_VE_TEST_TALIMATI.md",
+   "bayt": 5838,
+   "sha256": "0bb5c844d6aa1e2e9710690a924c91aef7fdda44f93fee9c82a0a3a63190fde3"
+  },
+  {
+   "yol": "ESKI_YENI_SURUM_KIYASLAMASI.md",
+   "bayt": 2782,
+   "sha256": "0ea9813f94c78ba1a5e62a7d10524de210255b188f64dc87625a97b68b674698"
+  },
+  {
+   "yol": "GEMINI_NIHAI_TESLIM_VE_KABUL.md",
+   "bayt": 6772,
+   "sha256": "16a380129a9ec7a17f09358ff24018e6716f8a54cb78c31a1a9f4a9f632ced12"
+  },
+  {
+   "yol": "GPT_NIHAI_TESLIM_VE_KABUL.md",
+   "bayt": 7540,
+   "sha256": "656ec234aa861f125491ef5cd313cf33999d4418b13e509aae5f201b9540902d"
+  },
+  {
+   "yol": "GUNCEL_OYUN_ENVANTERI.json",
+   "bayt": 93274,
+   "sha256": "0fe86f8927a711b967a5ebcf009fc3696162ffee4afdcf80580d0c1a30ad97e1"
+  },
+  {
+   "yol": "KANIT_DOSYALARI_INDEKSI.json",
+   "bayt": 21734,
+   "sha256": "ea585bc74acc0bd4b600bdf132ae489e73f41bd5038ba41b4acdaa698bfc6608"
+  },
+  {
+   "yol": "KULLANICI_KARARLARI_VE_STANDARTLAR.md",
+   "bayt": 5732,
+   "sha256": "b924e3f88018a2cb0200df064e6edd68b355b23e4c9c92bdfc51144ee800d668"
+  },
+  {
+   "yol": "OPUS_NIHAI_ENTEGRASYON.md",
+   "bayt": 8899,
+   "sha256": "a0ee4d2b61a2582f908c3e41bad78cda4c5ec50c3aca1e4f20d2a52d6d021055"
+  },
+  {
+   "yol": "P34_NIHAI_DURUM.json",
+   "bayt": 10144,
+   "sha256": "fcaacc3824172f844e1a436fd14327c80df03bc20804a0ea679aaaccaabdad6f"
+  },
+  {
+   "yol": "README_FABLE.md",
+   "bayt": 4019,
+   "sha256": "69b42c1a9a7dce18c5c14cca4fbd7f2887fcb7296bd3164fd5e23f7902589294"
+  },
+  {
+   "yol": "TEST_KANITLARI_VE_SONUCLARI.md",
+   "bayt": 7540,
+   "sha256": "8978ff2b319e561358208e9e216cec4a9919cb69102f2823976a38edb7bfa920"
+  },
+  {
+   "yol": "ek/gemini/nihai_kabul2/gorsel_kabul_raporu_v2.json",
+   "bayt": 8938,
+   "sha256": "f644ba95b6f8dfd49f7904921b2814e19c639b446ca38d02631a1cec4ec4162b"
+  },
+  {
+   "yol": "ek/gemini/nihai_kabul2/gorsel_kabul_raporu_v2.md",
+   "bayt": 6076,
+   "sha256": "dd0a97ddf1dcc585006171734d131d9aafa001376b0ec52ed1c2199f863a40af"
+  },
+  {
+   "yol": "ek/gemini/p34_teslim/gemini_gorsel_kabul_raporu_2.json",
+   "bayt": 54248,
+   "sha256": "d3870322a291ea927ec025bec57fcc972114138b19fb5dbdaf56db12b91ce36f"
+  },
+  {
+   "yol": "ek/gemini/p34_teslim/teslim_manifest.json",
+   "bayt": 5059,
+   "sha256": "357ebc6ad93cc7772a49265479bb19752ec7468c2e3733757ee1d23ef20f59cc"
+  },
+  {
+   "yol": "ek/gpt/ikinci_kabul/GPT_IKINCI_KABUL_RAPORU.md",
+   "bayt": 3984,
+   "sha256": "ae7f415a302a121aaf4f3ac3ed3d408debce662bbb7a5bd34bfa249917b51524"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/K-1_kontrol.json",
+   "bayt": 23000,
+   "sha256": "f0549efb8567b12675a83ac7b0d9daaf9aba673303a3957cfd4fb8969642f5c9"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/K-2_kontrol.json",
+   "bayt": 483,
+   "sha256": "1098df8602878e7379a8c181b12580974a60d0ba78bd3bb308c7a57a862b2fef"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/OPUS_ENTEGRASYON.md",
+   "bayt": 1769,
+   "sha256": "4bb95eb59f40452fd9952d704f9ac0ff1418fddebd09a4714c4c62f41e293a3c"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/sahne_kalite.json",
+   "bayt": 1237,
+   "sha256": "d9c21ae7f64f7071b82534335c2e5d48a51b9dd465747b8a336b08b46174821e"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/teslim_manifest.json",
+   "bayt": 130181,
+   "sha256": "ec7f49ef2182492842c26e8e71da820d7598abd13288f33495ebc65060f29fdf"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/varlik_eslestirmeleri.json",
+   "bayt": 1226,
+   "sha256": "a88262b52a108563289c1ab7be7604f9ee891707518d06d1040f1cbcd2053b91"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/yerlesim/baskent-elentha.json",
+   "bayt": 6918,
+   "sha256": "c0a2f7fef44be2d10f23327be34566a23b3c8ebedc47f6b65b7c9df8ec773f90"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/yerlesim/baskent-kragmir.json",
+   "bayt": 7848,
+   "sha256": "158b596b3f2f1309bb6b6360bf4bb3b790a735b331ae215d06f23d2c3e8c0188"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/yerlesim/carsi.json",
+   "bayt": 6405,
+   "sha256": "f884d03e0716d4bb3c46ac1df50c868bc5bbc6f839e864bd762c18c6d6fb3af2"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/yerlesim/klan-elentha.json",
+   "bayt": 6927,
+   "sha256": "5abfc388fea42eaefff0e49fd01c64e4f4e3b65538b92f19a68862ed61aeb90b"
+  },
+  {
+   "yol": "ek/gpt/p34_teslim/yerlesim/klan-kragmir.json",
+   "bayt": 6904,
+   "sha256": "b0965b18fc807b7c00f4efd3ad876db6333e654321f56ca196b14d62bb5662d0"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GEMINI_P34_GIRDI/GEMINI_GOREVLERI.md",
+   "bayt": 10660,
+   "sha256": "503e52f34e002314c5ecb783ade697c5fb716a59071ea6956033c0bf25fa2a2a"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GEMINI_P34_GIRDI/IKINCI_KABUL.md",
+   "bayt": 4437,
+   "sha256": "b89d09c1883b26c187c8666566eacdb589623c3036cc4ef486495a537328663f"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GEMINI_P34_GIRDI/KORUNACAK_VARLIKLAR.md",
+   "bayt": 2146,
+   "sha256": "7791709427fc4e8632236ae478c72bbe95a806404b0e25f28a29c9d2537ed762"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GEMINI_P34_GIRDI/ORTAK_KURALLAR.md",
+   "bayt": 5086,
+   "sha256": "d41ad2e239d0b321164c06ad0bd1968726d60a2c80d2273ea0fb46eaaa4bcec1"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GEMINI_P34_GIRDI/README.md",
+   "bayt": 1992,
+   "sha256": "ddb33608382b77e281741ae12082d1b057c43c3c216e85138d282efdcb601225"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GEMINI_P34_GIRDI/SES_SISTEMI.md",
+   "bayt": 9543,
+   "sha256": "e66aa862272716999ccd7f549e27c28aac01508ecc37562968d853a255efa85c"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GPT_P34_GIRDI/GPT_GOREVLERI.md",
+   "bayt": 13968,
+   "sha256": "888ab9dbc1a727e05bd52e4b93f26db8f1a55c7cb461898a8753ec5e61bdffd3"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GPT_P34_GIRDI/KORUNACAK_VARLIKLAR.md",
+   "bayt": 2146,
+   "sha256": "7791709427fc4e8632236ae478c72bbe95a806404b0e25f28a29c9d2537ed762"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GPT_P34_GIRDI/ORTAK_KURALLAR.md",
+   "bayt": 5086,
+   "sha256": "d41ad2e239d0b321164c06ad0bd1968726d60a2c80d2273ea0fb46eaaa4bcec1"
+  },
+  {
+   "yol": "ek/opus/p34_girdi_paketleri/KORANT_GPT_P34_GIRDI/README.md",
+   "bayt": 1600,
+   "sha256": "98b8f6a798cd8799965ec467d663dacffc0bb1af92b7d3eab1404798cc330525"
+  },
+  {
+   "yol": "kanit/v42/bina_test/ocak/ahir.webp",
+   "bayt": 60430,
+   "sha256": "144ad75a093c310d1697032fd5769a2ef96f1b54a6d7497d103e215b983d5c69"
+  },
+  {
+   "yol": "kanit/v42/bina_test/ocak/han.webp",
+   "bayt": 61028,
+   "sha256": "66b0a40fdd89cda0e7a333a97bef94e0e322e778e95f67b9ce5b1415cc29f8fe"
+  },
+  {
+   "yol": "kanit/v42/bina_test/ocak/sonuc.json",
+   "bayt": 396,
+   "sha256": "55a58a457625ddcef4542f80b4b551620dffe2d626f12f05b08d91ae0713672a"
+  },
+  {
+   "yol": "kanit/v42/bina_test/ocak/zaferAniti.webp",
+   "bayt": 40434,
+   "sha256": "6cbf2ebf2e5fd68e881d7b5b00114aff9520417222a3cdeafc5d0e731311a8dc"
+  },
+  {
+   "yol": "kanit/v42/gpt_test/ocak/sonuc.json",
+   "bayt": 868,
+   "sha256": "09514931bbd6b0c378b683170d09c07278756b0362792344486f13bd52beb66f"
+  },
+  {
+   "yol": "kanit/v42/gpt_test/sancak/sonuc.json",
+   "bayt": 911,
+   "sha256": "73b05f73de605f20db3da1a4f6dcdb73e443befb31368b01139de37d9b9e9899"
+  },
+  {
+   "yol": "kanit/v42/hafta_test/sonuc.json",
+   "bayt": 239,
+   "sha256": "aac91ee90bb538a5f0b5dde9f541e4b9b7e9f5b2e9d82b136eb261c8f5158863"
+  },
+  {
+   "yol": "kanit/v42/kontrol/beyaz_zemin_olcum_K1.json",
+   "bayt": 24029,
+   "sha256": "0dae39611ba49677a67a69a147ff8484990d42b5bbe16a6da8e5ae58c81bfee3"
+  },
+  {
+   "yol": "kanit/v42/kontrol/boss_kontrol.jpg",
+   "bayt": 286142,
+   "sha256": "0a9f8c9d1c1ee1ba2fec9fddde9586c95ca5660be2f1023cd41acf291bfbe9d1"
+  },
+  {
+   "yol": "kanit/v42/kontrol/buyu_kontrol_K2_onceki.png",
+   "bayt": 612407,
+   "sha256": "5ae2d4dd33ab79fe89a8fed3059a1def116f0bfefdcbeadbc8d072189118793e"
+  },
+  {
+   "yol": "kanit/v42/kontrol/gpt_kontrol.jpg",
+   "bayt": 186000,
+   "sha256": "36699d494bd16a7aed8a7cb005a5638b95776de503d501fe1b93d2f4dbbb6c15"
+  },
+  {
+   "yol": "kanit/v42/kontrol/katman_kare.jpg",
+   "bayt": 151952,
+   "sha256": "3242be0edc66addca1f984d140cd2b41e5b2de9c20f11ea219d6dc9992cd84c1"
+  },
+  {
+   "yol": "kanit/v42/kontrol/npc_kare_kontrol.jpg",
+   "bayt": 232683,
+   "sha256": "f11418a88e291678f246da00b7b03feb165d9dc9d3114d8a394afd8334860316"
+  },
+  {
+   "yol": "kanit/v42/kontrol/tepegoz_bas.jpg",
+   "bayt": 15091,
+   "sha256": "ac096c4972b861ddbc21b86a44e6091aae56cd76fab7b06563349fb44cc48c57"
+  },
+  {
+   "yol": "kanit/v42/kontrol/yaratik_kontrol.jpg",
+   "bayt": 169777,
+   "sha256": "81863f7bc4e0a7ec986eaf6111e9f6b0e256e268cfad1ad967352feddd033b4c"
+  },
+  {
+   "yol": "kanit/v42/kontrol/zafer_kiyas_gemini_1600.jpg",
+   "bayt": 340958,
+   "sha256": "41840671622257901ccfc2179e2392e7e93f1a158a4872f8278ce5a0c81d729e"
+  },
+  {
+   "yol": "kanit/v42/koruma.json",
+   "bayt": 453,
+   "sha256": "138e27906fade429da21338ac234b982605bccb46bd4e8a05ae0f7caa16a76c9"
+  },
+  {
+   "yol": "kanit/v42/olcum/etkin-ocak-667_once.json",
+   "bayt": 1381,
+   "sha256": "3ca523d378ace6503a0e7fc245a198248a22e77d00ebfbc768030fd9aa2085cb"
+  },
+  {
+   "yol": "kanit/v42/olcum/etkin-ocak-667c.json",
+   "bayt": 722,
+   "sha256": "bbed2eb60272997bd566afe069d65c96c2b78d39e604ec826478b9c4390484ed"
+  },
+  {
+   "yol": "kanit/v42/olcum/etkin-sancak-667c.json",
+   "bayt": 505,
+   "sha256": "b1118ea875038bb8296554691b13c8fd781b8110953b549cb47e678af21ca1a8"
+  },
+  {
+   "yol": "kanit/v42/olcum/etkin-savas-ocak-667.webp",
+   "bayt": 34960,
+   "sha256": "d5c93753a7c466a7789f579406884c0e16ee7c6307191b6be479d3d63cab81fb"
+  },
+  {
+   "yol": "kanit/v42/olcum/etkin-savas-sancak-667.webp",
+   "bayt": 34244,
+   "sha256": "ff3db98cbcf8ddfec64a3ccf6795dfa40060dd0db09b0453d2a3df330175af71"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/01_baskent_katman_a.webp",
+   "bayt": 89240,
+   "sha256": "c34f93c0e0371a7daf41002dd9a4d25471267ac3bf6116a3db1d255a42da1a40"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/01_baskent_katman_b.webp",
+   "bayt": 89084,
+   "sha256": "514f79a3374b6dedafbe69aa89480493fa0f444af2afe31878934d82d08c3aa1"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/02_carsi_katman.webp",
+   "bayt": 96738,
+   "sha256": "96fd66898cf7b856ee9c92f9ac57a95aa923157c2bc73100dfad1db4295f5135"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/03_klan_katman.webp",
+   "bayt": 77830,
+   "sha256": "f2c81d0f6315a68b2aadb43e2c2d4e84d70713675b36d7f555c817d8f1ccaa4b"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/04_dlg_halvor.webp",
+   "bayt": 26254,
+   "sha256": "31c1ba35cd9ef17d4668567832bb1faba8dcb78aaf35a3822751897ff99693ec"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/04_dlg_thrak.webp",
+   "bayt": 27082,
+   "sha256": "f0dd06a392dd6438669e897d2148156cbf61b361365b838564d8c1652228f5b5"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/05_bran_diyalog.webp",
+   "bayt": 17210,
+   "sha256": "adae9daffdf95e943ded8734400a914fb08fb378c21be321fc4ad218a3c6a75a"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/06_kurtarma_karti.webp",
+   "bayt": 36300,
+   "sha256": "e9027216fed93720357a12f486a55b33b64a7289d2c7c7fb9e7655078de5abd8"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/07_zafer.webp",
+   "bayt": 25836,
+   "sha256": "d593c4a513badd7dccaf9bf946af8a611d6f76fdce686530d2b34c3a6feaedbd"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/08_veri_kontakt.webp",
+   "bayt": 51800,
+   "sha256": "467dc03d67c19733b4ebf65fddc98ef1a5be285fc3bef5c841ff3c6eb15a0e4e"
+  },
+  {
+   "yol": "kanit/v42/p34_test/ocak/sonuc.json",
+   "bayt": 7169,
+   "sha256": "67ace2c5fcdfffc8fa13a8df7d682fc7735c82d5fc155214ba987bf856c6f36d"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/01_baskent_katman_a.webp",
+   "bayt": 105340,
+   "sha256": "07632f650e2711e71d3977164b101cd35b1024c8bdc52c0c83ba0cd42c562736"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/01_baskent_katman_b.webp",
+   "bayt": 103608,
+   "sha256": "c8f1127a91457099bbf7dde92274fbd867b93d02a4e98a059ee5889debfcd11d"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/02_carsi_katman.webp",
+   "bayt": 98918,
+   "sha256": "52d85390d8fa3502adf709de147b849250e4a2511a84cf23368f18043b174954"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/03_klan_katman.webp",
+   "bayt": 48038,
+   "sha256": "57bd6f155bd47517d0701d15391fa8629392d6560dc80576350f17e20f761d6d"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/04_dlg_halvor.webp",
+   "bayt": 28168,
+   "sha256": "3af944fadec44b468273c824f59a3b67cb0113449c3c37137573acec21f21862"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/04_dlg_thrak.webp",
+   "bayt": 28948,
+   "sha256": "a0e7af224435069b05715e315c73bd599ed33741cd7aadade4219322df89926b"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/05_bran_diyalog.webp",
+   "bayt": 18702,
+   "sha256": "1d1eec115cd335f91aca0251708ffa12a587eedf525c089ca23d7308711e4f53"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/06_kurtarma_karti.webp",
+   "bayt": 40366,
+   "sha256": "a0d8170fe797efd3721845b5cb2588838fc96b56ef1de3fa1ce39f2b7f925795"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/07_zafer.webp",
+   "bayt": 29742,
+   "sha256": "6750aa73cd549c8dfb266ea9656f459d2cdc671aaffc67f67b7d5e92a614b6c5"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/08_veri_kontakt.webp",
+   "bayt": 51800,
+   "sha256": "467dc03d67c19733b4ebf65fddc98ef1a5be285fc3bef5c841ff3c6eb15a0e4e"
+  },
+  {
+   "yol": "kanit/v42/p34_test/sancak/sonuc.json",
+   "bayt": 7177,
+   "sha256": "62bf4700f82d65cc61013b55207fe689b3c674ebdc8f8798b144a9f77397271e"
+  },
+  {
+   "yol": "kanit/v42/sekme_test/A_kilit.webp",
+   "bayt": 13816,
+   "sha256": "de0b57c0193c836991227803c04b5da1f9ea1834cb8bc4d17b1d9f3b826f7be5"
+  },
+  {
+   "yol": "kanit/v42/sekme_test/sonuc.json",
+   "bayt": 304,
+   "sha256": "560a1ca221042da6fc1aeb894f1f80472efb0b3e649537efdfc4591544cd2feb"
+  },
+  {
+   "yol": "kanit/v42/sistem_test/bozuk_kayit.webp",
+   "bayt": 70766,
+   "sha256": "45304527114e21ac8220e5eacd8f153060b114caf7bb4b6071dd24d3e7d24024"
+  },
+  {
+   "yol": "kanit/v42/sistem_test/en_premium.webp",
+   "bayt": 26538,
+   "sha256": "9ece72cfebc19065e08364109a91334da478950aca8a843610b136d23e6c4b88"
+  },
+  {
+   "yol": "kanit/v42/sistem_test/sonuc.json",
+   "bayt": 1614,
+   "sha256": "3470e134f2a36247bb27b29d07a08607339b2bcdd3ba248dc5ef4ac9d4af9805"
+  },
+  {
+   "yol": "kanit/v42/teslim_butunluk.json",
+   "bayt": 695,
+   "sha256": "81e82c97bd1042b139a1f493217c6821e9ac9e8f23056fcbe17b6ca8d83a2d01"
+  }
+ ],
+ "kapsam_disi": "Oyun kaynak kodu, görseller, sesler ve önceki ekran görüntüsü paketleri pakete konmadı (depodan erişilir)."
+}

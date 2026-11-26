@@ -1,0 +1,13 @@
+{
+ "karsilastirma": "git diff 1e17c80 (sürüm 41) → sürüm 42 çalışma ağacı",
+ "degisen": [
+  "M\toyun-son/sahneler/zafer_aniti.webp"
+ ],
+ "sayilar": {
+  "sahneler": 29,
+  "interiors": 13,
+  "shared": 73,
+  "audio": 4
+ },
+ "sonuc": "Tek değişen onaylı görsel sahneler/zafer_aniti.webp (P34-01, aynı kadraj yüksek çözünürlük; kullanıcı kararı). shared/ (mekanik/ekonomi/denge), interiors/, audio/, diğer 28 sahne DEĞİŞMEDİ."
+}

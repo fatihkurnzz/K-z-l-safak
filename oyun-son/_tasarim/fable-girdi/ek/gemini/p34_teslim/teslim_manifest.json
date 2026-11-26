@@ -1,0 +1,179 @@
+{
+  "uzman": "Gemini",
+  "surum": "KORANT-v40-1dda167+P33",
+  "paket": "P34",
+  "kalemler": [
+    {
+      "kod": "P34-07",
+      "durum": "uretildi",
+      "dosyalar": [
+        {
+          "yol": "P34-07/adsiz__bekleme2.png",
+          "olcu": [
+            1536,
+            1536
+          ],
+          "sha256": "b89fae5ce9c22bf2ffa5f9a4beabf04904ff13d0b4077ec624a917ac2f8ede84",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/adsiz__saldiri2.png",
+          "olcu": [
+            1536,
+            1536
+          ],
+          "sha256": "72784409a82a2984320ca1dc8bb340c9cac5ac4714af5c153ed453fef130c877",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/adsiz__vurulma2.png",
+          "olcu": [
+            1536,
+            1536
+          ],
+          "sha256": "3909486ef29f2d8c2e4bfd4d0477d60403ef62b7d69253ddff0f6351ace7c874",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_fire__bekleme2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "9173cf2b774bbb4651b940e5e711f1349fcb14beac591de3ac1a9ae223e1c92b",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_fire__saldiri2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "a17561800e1a625e1a4ff994b1129fb7d3d44d6672ae7417ccc0ad5c3ae63f49",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_fire__vurulma2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "5708aa7348480b73fe7b9b47b2d312f86174a458d4c126838e6516d876dcfb30",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_ice__bekleme2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "b0fd5398ff1b3750f307d3456552b19becd641c4f67553d6566e352be5c01f46",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_ice__saldiri2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "a03ed1da3ed549dae60e98e8df8d011afb33dd25095bc60e99e0b1aaf4dfe072",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_ice__vurulma2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "522aadb085f86ff4f37865f804c0438754f685169e26f85eebabdc0aed12d8ab",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_lightning__bekleme2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "562aa58d711ed71e253989400c3e1d0d837543e896ff88736a1714da267f09c9",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_lightning__saldiri2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "079d2c1b134acc7c4b59962f15a5a21ab29ec0501a28ac922e386202c2f972b6",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_lightning__vurulma2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "d3fa57b1586e9c267fc1779363b80935a098096942469e2de06b117a0915dddf",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_shadow__bekleme2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "15d7915f2791f78040a55c2e9ad72b2850b7e1d475420bc37c4d095b420d2042",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_shadow__saldiri2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "249136ac9a66752655eff336e6025f4988bb7aff57e94f57fe262e9620930f3e",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/dragon_shadow__vurulma2.png",
+          "olcu": [
+            1024,
+            1024
+          ],
+          "sha256": "4085a8d76f90278595fb1fe2b68743837ac74cd98506c6bd97ed1bc0979171e6",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/maresal-marven__bekleme2.png",
+          "olcu": [
+            1536,
+            1536
+          ],
+          "sha256": "267363f6edeac5da09d7e7e77c3d651d125afb5965c23cb5f25f05d5117edd3e",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/maresal-marven__saldiri2.png",
+          "olcu": [
+            1536,
+            1536
+          ],
+          "sha256": "f2f99a3fd7c12718c97cfbd6ec6323140680c50db134d4f64a4a479ab21ab83a",
+          "alfa": true
+        },
+        {
+          "yol": "P34-07/maresal-marven__vurulma2.png",
+          "olcu": [
+            1536,
+            1536
+          ],
+          "sha256": "24811e18a85686dbe500caa1881a2d3b7c346423aa68f02efc3fc27352b92a9d",
+          "alfa": true
+        }
+      ],
+      "kendi_kontrolum": "Zorunlu Katman B (2 boss × 3 = 6 adet 1536×1536, alttan 72 px) + Katman C (4 ejder × 3 = 12 adet 1024×1024, alttan 48 px) = 18 gerçek alfa PNG.",
+      "varsayimlar": "İsteğe bağlı Katman D (12 aile bossu) ayrı istenirse üretilebilir.",
+      "gerekce": ""
+    }
+  ],
+  "ses": []
+}

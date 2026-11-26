@@ -1,0 +1,1057 @@
+{
+  "durum": "temiz",
+  "kaynak_sayisi": 35,
+  "yontem": "Alfa >127, RGB minimum >225, kanal farkı <17. Alfa <16 komşuluğuna bağlı açık bileşenler sayıldı. Gri zeminde 35 poz incelendi. Metal vurguları tek başına zemin sayılmadı.",
+  "pozlar": [
+    {
+      "set": "sancak-buyucu-kadin",
+      "poz": "bekleme",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-buyucu-kadin-bekleme.png",
+      "sha256": "724e7c315302ff5dafa287f6ca4ae06d3ab3f053f29c7e5b635b185d398313e1",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 451423,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 58095,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-buyucu-kadin",
+      "poz": "buyu",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-buyucu-kadin-buyu.png",
+      "sha256": "c90bd64fdd647bacf97fb853ab706192e0deecc52fcf84af69b9aac850dd5154",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 331906,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 43128,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-buyucu-kadin",
+      "poz": "saldiri-hazirlik",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-buyucu-kadin-saldiri-hazirlik.png",
+      "sha256": "b017433e1cb4e53334978bc7e0ccdfadf404012e9b9141f2a6ea61f990cfa8c1",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 483271,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 62316,
+        "kenar_bagli_beyaz": 4,
+        "oran": 0.0001,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-buyucu-kadin",
+      "poz": "saldiri-vurus",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-buyucu-kadin-saldiri-vurus.png",
+      "sha256": "c462fe621763f487bf204917bdd78d623c928eea7728022cf1355ae7cfcd99b8",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 469808,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 60202,
+        "kenar_bagli_beyaz": 2,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-buyucu-kadin",
+      "poz": "vurulma",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-buyucu-kadin-vurulma.png",
+      "sha256": "d5d5e6c1eb971cf9820a04cd51b39f03d9f21243cef355ec557d7cc372f2084f",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 458611,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 58902,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-buyucu-kadin",
+      "poz": "yere-dusus",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-buyucu-kadin-yere-dusus.png",
+      "sha256": "616dc019168ca5cb816f96101a5a87111d54ae2d75449692914173ffa50f6b82",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 315996,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 40589,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-buyucu-kadin",
+      "poz": "zafer",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-buyucu-kadin-zafer.png",
+      "sha256": "5e603f178d7c37892c63fbb9902eeb3406728833b3615ac811ca307e800b854c",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 437287,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 56048,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-savasci-erkek",
+      "poz": "bekleme",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-savasci-erkek-bekleme.png",
+      "sha256": "a87bb72e0e71c88c909c7132f730746d5dbf90e39287952712fc4ee95c48eea6",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 480128,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 60970,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-savasci-erkek",
+      "poz": "buyu",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-savasci-erkek-buyu.png",
+      "sha256": "034c83e978a177adda4a9aba66ddac24c54bf6876bd947ce1fa71af5e34249ed",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 440200,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 56099,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-savasci-erkek",
+      "poz": "saldiri-hazirlik",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-savasci-erkek-saldiri-hazirlik.png",
+      "sha256": "05b5976a4533e71e416523ac4359639eb842d1114c496a52552741067cf6bead",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 516110,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 65782,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-savasci-erkek",
+      "poz": "saldiri-vurus",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-sancak-savasci-erkek-saldiri-vurus.png",
+      "sha256": "87d3d8f4031c6648fa0b87c36ccaeb562ce451079480fa6f7e55eac3458d7e4b",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 136,
+      "opak": 428068,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 54594,
+        "kenar_bagli_beyaz": 21,
+        "oran": 0.0004,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-savasci-erkek",
+      "poz": "vurulma",
+      "arsiv": "Korant_Online_Duzeltmeler_03.zip",
+      "dosya": "kahraman-sancak-savasci-erkek-vurulma.png",
+      "sha256": "4a7ae8f721179e096d65646e3d44b0926534385c3157bb242d0e2692d464c67a",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 480781,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 61139,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-savasci-erkek",
+      "poz": "yere-dusus",
+      "arsiv": "Korant_Online_Duzeltmeler_03.zip",
+      "dosya": "kahraman-sancak-savasci-erkek-yere-dusus.png",
+      "sha256": "980fb8c4c1f9de1c76dcb48cf14c6e7848de0956258d245b48fd61441d5649d2",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 416661,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 53021,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "sancak-savasci-erkek",
+      "poz": "zafer",
+      "arsiv": "Korant_Online_Duzeltmeler_03.zip",
+      "dosya": "kahraman-sancak-savasci-erkek-zafer.png",
+      "sha256": "5d95a9f328be794ca825c8500007320f245a763ddddb4608e99d842d9483d8b2",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 442246,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 56379,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-savasci-kadin",
+      "poz": "bekleme",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-savasci-kadin-bekleme.png",
+      "sha256": "d241d314790ccd842960de9e76857f42d82b24a07f55ccb4ece53e67f10a7fb9",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 403812,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 51876,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-savasci-kadin",
+      "poz": "buyu",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-savasci-kadin-buyu.png",
+      "sha256": "59982740cf71539cec538e999f2ff645e1e88dd3e3a56f554ec0e757ebe8abf3",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 406390,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 52438,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-savasci-kadin",
+      "poz": "saldiri-hazirlik",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-savasci-kadin-saldiri-hazirlik.png",
+      "sha256": "50477ff742680dabfa5dcb1435ffde7718be968d7cddd9c17120af798b94df1f",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 456877,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 58892,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-savasci-kadin",
+      "poz": "saldiri-vurus",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-savasci-kadin-saldiri-vurus.png",
+      "sha256": "b6de2eb302ce79e6f62426732d53a3df030199354fa8b076422c7083708bf8ee",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 429466,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 55528,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-savasci-kadin",
+      "poz": "vurulma",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-savasci-kadin-vurulma.png",
+      "sha256": "09a2de31fea34236f87d540d6781ed22ea66daffe19b47a3991895b37c35c8b3",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 429087,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 55416,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-savasci-kadin",
+      "poz": "yere-dusus",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-savasci-kadin-yere-dusus.png",
+      "sha256": "f83ca2548b989336ac59a36483dfa11869c38eb2301ef4ff148bcb57635e2336",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 401098,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 51359,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-savasci-kadin",
+      "poz": "zafer",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-savasci-kadin-zafer.png",
+      "sha256": "404b249e29f1844c8c03fa29f205a00ed122cce03f93d027846116e6062ce26f",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 422177,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 54608,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-sifaci-erkek",
+      "poz": "bekleme",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-sifaci-erkek-bekleme.png",
+      "sha256": "7ba4ebde40456250f2044d8abe0e297061f87799245d399875c545e7b7f04065",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 484623,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 61612,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-sifaci-erkek",
+      "poz": "buyu",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-sifaci-erkek-buyu.png",
+      "sha256": "0e2973c7c4c7552b79c901becb0db3c083de37f484dae59a9b7ea9a6e963fdfa",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 474206,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 60378,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-sifaci-erkek",
+      "poz": "saldiri-hazirlik",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-sifaci-erkek-saldiri-hazirlik.png",
+      "sha256": "66cb6d2664a37e38d7e70868e5d96bf0e98df0b8d1697e4344d15e5d074601b1",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 501008,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 63851,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-sifaci-erkek",
+      "poz": "saldiri-vurus",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-sifaci-erkek-saldiri-vurus.png",
+      "sha256": "e1f0fb8e9742283b17f860370eaa52005b7e5fb8020ecd14ea37ea12d3e2551a",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 453118,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 57840,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-sifaci-erkek",
+      "poz": "vurulma",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-sifaci-erkek-vurulma.png",
+      "sha256": "31a92a2fa8531a63b697850625a50c82a984684286814bfe2a38d1d3df17b77b",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 481070,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 61165,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-sifaci-erkek",
+      "poz": "yere-dusus",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-sifaci-erkek-yere-dusus.png",
+      "sha256": "85cb7c9de5b66db88107664a2e492d4c6ea99fda752f187259fd5c2b139a9f00",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 429425,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 54834,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-sifaci-erkek",
+      "poz": "zafer",
+      "arsiv": "Korant_Online_Duzeltmeler_01.zip",
+      "dosya": "kahraman-ocak-sifaci-erkek-zafer.png",
+      "sha256": "1723c7f0075eb8bb9b0237d0a0782077ddeb9b1831e873cb6fe5f1fa852d66bc",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 481814,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 61484,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-suikastci-kadin",
+      "poz": "bekleme",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-ocak-suikastci-kadin-bekleme.png",
+      "sha256": "3f0e044eec777a4f8e83234d2d4c824d77d1bf2a6cd89a707e02b4d5f643c99b",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 383627,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 49747,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-suikastci-kadin",
+      "poz": "buyu",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-ocak-suikastci-kadin-buyu.png",
+      "sha256": "23c5edd4d0b425c6bd8b4564f2c5b06b29135f0ae501a0edbfe451928a5b9e96",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 386373,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 50098,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-suikastci-kadin",
+      "poz": "saldiri-hazirlik",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-ocak-suikastci-kadin-saldiri-hazirlik.png",
+      "sha256": "96bdaef5f37a9bac90de37ffdbbf735e500eaadafb2e8bb997ea4b0c0e556bfe",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 376572,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 48825,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-suikastci-kadin",
+      "poz": "saldiri-vurus",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-ocak-suikastci-kadin-saldiri-vurus.png",
+      "sha256": "5e05f9e3ce7b57479b91dca3d5a604ce42e2d6c057ff9cf2c5b7db6885a27eff",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 391655,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 50926,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-suikastci-kadin",
+      "poz": "vurulma",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-ocak-suikastci-kadin-vurulma.png",
+      "sha256": "e387c78bd27c9ffbb40a19b11677b42e11d7a5e4cd15fec55e7a81dafeb6dcab",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 413492,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 53607,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-suikastci-kadin",
+      "poz": "yere-dusus",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-ocak-suikastci-kadin-yere-dusus.png",
+      "sha256": "5a1062479cb0daed834d6e6c46f9866277f57532de391baac7d9f065d7a2a5fc",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 357602,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 46238,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    },
+    {
+      "set": "ocak-suikastci-kadin",
+      "poz": "zafer",
+      "arsiv": "Korant_Online_Duzeltmeler_02.zip",
+      "dosya": "kahraman-ocak-suikastci-kadin-zafer.png",
+      "sha256": "9a8fe94d8e8b0575172182b497fc7fd3c8ae1f5095238004a970af367354068e",
+      "olcu": [
+        1086,
+        1448
+      ],
+      "kose": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "kenar_acik": 0,
+      "opak": 402650,
+      "gomulu": {
+        "boyut": [
+          384,
+          512
+        ],
+        "opak": 52280,
+        "kenar_bagli_beyaz": 0,
+        "oran": 0.0,
+        "sol_ust_alfa": 0,
+        "sag_alt_alfa": 0
+      }
+    }
+  ]
+}

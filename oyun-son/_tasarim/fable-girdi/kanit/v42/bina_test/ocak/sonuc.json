@@ -1,0 +1,23 @@
+{
+ "race": "ocak",
+ "hatalar": [],
+ "zaferAniti": {
+  "acik": "korant-modal-monument",
+  "yukleniyor": false,
+  "icerik_uzunlugu": 238
+ },
+ "han": {
+  "acik": "korant-modal-tavern",
+  "yukleniyor": false,
+  "icerik_uzunlugu": 418
+ },
+ "ahir": {
+  "acik": "korant-modal-stable",
+  "yukleniyor": false,
+  "icerik_uzunlugu": 432
+ },
+ "han_islem": {
+  "dugme": "hanIc",
+  "yeniden_cizildi": true
+ }
+}

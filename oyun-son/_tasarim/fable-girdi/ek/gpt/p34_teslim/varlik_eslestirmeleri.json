@@ -1,0 +1,50 @@
+[
+  {
+    "kaynak": "P34-01/zafer_aniti.webp",
+    "hedef": "sahneler/zafer_aniti.webp • js/ic-mekan.js MEKAN.zafer"
+  },
+  {
+    "kaynak": "P34-08/kragmir_erkek_yuz_5.png",
+    "hedef": "yuz_ocak_m_4.webp (176×176)"
+  },
+  {
+    "kaynak": "P34-09/bran.webp",
+    "hedef": "NPC.child • G4 diyalog portresi"
+  },
+  {
+    "kaynak": "P34-09/bran-yuz.webp",
+    "hedef": "NPC.child • G4 yüz"
+  },
+  {
+    "kaynak": "P34-09/nessa.webp",
+    "hedef": "NPC.sibling • G4 diyalog portresi"
+  },
+  {
+    "kaynak": "P34-09/nessa-yuz.webp",
+    "hedef": "NPC.sibling • G4 yüz"
+  },
+  {
+    "kaynak": "K-2/kahraman-sancak-savasci-kadin-buyu.png",
+    "hedef": "js/b2d-sancak.js • savasci-kadin__buyu"
+  },
+  {
+    "kaynak": "P34-02/baskent-elentha/yerlesim.json",
+    "hedef": "baskent-elentha • js/hub2d.js"
+  },
+  {
+    "kaynak": "P34-03/baskent-kragmir/yerlesim.json",
+    "hedef": "baskent-kragmir • js/hub2d.js"
+  },
+  {
+    "kaynak": "P34-04/klan-kragmir/yerlesim.json",
+    "hedef": "klan-kragmir • js/hub2d.js"
+  },
+  {
+    "kaynak": "P34-04/carsi/yerlesim.json",
+    "hedef": "carsi • js/hub2d.js"
+  },
+  {
+    "kaynak": "P34-04/klan-elentha/yerlesim.json",
+    "hedef": "klan-elentha • js/hub2d.js"
+  }
+]

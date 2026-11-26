@@ -1,0 +1,94 @@
+{
+ "race": "ocak",
+ "W": 667,
+ "H": 375,
+ "hub": {
+  "div.s2-exp > b": {
+   "css": 11,
+   "etkin": 10.7,
+   "olcek": 0.969,
+   "t": "EXP %0,00",
+   "n": 1
+  },
+  "div.cb-tabs > button.on": {
+   "css": 11,
+   "etkin": 11,
+   "olcek": 0.999,
+   "t": "Genel",
+   "n": 1
+  },
+  "div.cb-tabs > button": {
+   "css": 11,
+   "etkin": 11,
+   "olcek": 0.999,
+   "t": "Irk",
+   "n": 3
+  }
+ },
+ "bt": {
+  "div#bctl > button.rb": {
+   "css": 0,
+   "etkin": 0,
+   "olcek": 1,
+   "t": "✕",
+   "n": 1
+  },
+  "div#bctl2 > button.rb": {
+   "css": 8.55128,
+   "etkin": 8.6,
+   "olcek": 1,
+   "t": "1x",
+   "n": 2
+  },
+  "div#bctl2 > button.rb.on": {
+   "css": 6.05716,
+   "etkin": 6.1,
+   "olcek": 1.011,
+   "t": "Oto İksir",
+   "n": 1
+  },
+  "div#battleUI > div": {
+   "css": 11,
+   "etkin": 10.9,
+   "olcek": 0.99,
+   "t": "·",
+   "n": 1
+  },
+  "button.skill > i.mpc": {
+   "css": 9,
+   "etkin": 9,
+   "olcek": 1,
+   "t": "40",
+   "n": 1
+  },
+  "button.skill > i.pn": {
+   "css": 10,
+   "etkin": 10,
+   "olcek": 1,
+   "t": "2",
+   "n": 2
+  },
+  "div.yb > b": {
+   "css": 9.26389,
+   "etkin": 8.9,
+   "olcek": 0.963,
+   "t": "3682 / 3682",
+   "n": 2
+  },
+  "div.bt-bar > em": {
+   "css": 9.26389,
+   "etkin": 9,
+   "olcek": 0.975,
+   "t": "16 / 16",
+   "n": 1
+  },
+  "div.bt-info > small": {
+   "css": 7.83868,
+   "etkin": 7.7,
+   "olcek": 0.98,
+   "t": "Sv. 1",
+   "n": 1
+  }
+ },
+ "errs": []
+}

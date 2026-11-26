@@ -1,0 +1,539 @@
+{
+ "race": "sancak",
+ "viewport": [
+  880,
+  406
+ ],
+ "hatalar": [],
+ "testler": {
+  "katman_baskent": {
+   "var": true,
+   "bg": "sahneler/baskent_elentha.webp",
+   "kutu_ayni": true,
+   "pointer_events": "none",
+   "dolu_ornek": 2906,
+   "hareket_var": true,
+   "etiket_ustte": "etiket",
+   "dom_sirasi": [
+    "s2-bg",
+    "p34-katman",
+    "p33-ton",
+    "p33-zerre"
+   ]
+  },
+  "katman_carsi": {
+   "var": true,
+   "bg": "sahneler/yemin_pazari.webp",
+   "kutu_ayni": true,
+   "pointer_events": "none",
+   "dolu_ornek": 5840,
+   "hareket_var": true,
+   "etiket_ustte": "etiket",
+   "dom_sirasi": [
+    "s2-bg",
+    "p34-katman",
+    "p33-ton",
+    "p33-zerre"
+   ]
+  },
+  "katman_klan": {
+   "var": true,
+   "bg": "sahneler/klan_obasi_elentha.webp",
+   "kutu_ayni": true,
+   "pointer_events": "none",
+   "dolu_ornek": 3101,
+   "hareket_var": true,
+   "etiket_ustte": "btn red ybuy",
+   "dom_sirasi": [
+    "s2-bg",
+    "p34-katman",
+    "p33-ton",
+    "p33-zerre"
+   ]
+  },
+  "npc_kare": {
+   "halvor": {
+    "farkli_kare": 4
+   },
+   "maelis": {
+    "farkli_kare": 4
+   },
+   "corin": {
+    "farkli_kare": 4
+   },
+   "thrak": {
+    "farkli_kare": 4
+   },
+   "edran": {
+    "farkli_kare": 2
+   },
+   "volgar": {
+    "farkli_kare": 4
+   },
+   "yashka": {
+    "farkli_kare": 4
+   },
+   "lira": {
+    "farkli_kare": 2
+   }
+  },
+  "npc_kare_hareket_azalt": 1,
+  "bran_diyalog": true,
+  "kurtarma_karti": true,
+  "zafer": {
+   "img": [
+    2048,
+    868
+   ],
+   "arka_plan": true,
+   "yukleniyor_kaldi": true
+  },
+  "veri": {
+   "yuz_ocak_m": [
+    [
+     176,
+     176
+    ],
+    [
+     176,
+     176
+    ],
+    [
+     176,
+     176
+    ],
+    [
+     176,
+     176
+    ],
+    [
+     176,
+     176
+    ]
+   ],
+   "k2_buyu": [
+    384,
+    512
+   ],
+   "pozlar": {
+    "rabbit": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": null,
+     "saldiri2": null,
+     "vurulma2": null
+    },
+    "falcon": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": null,
+     "saldiri2": null,
+     "vurulma2": null
+    },
+    "gargoyle": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": null,
+     "saldiri2": null,
+     "vurulma2": null
+    },
+    "hornet": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": null,
+     "saldiri2": null,
+     "vurulma2": null
+    },
+    "leader_of_barbarian": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": null,
+     "saldiri2": null,
+     "vurulma2": null
+    },
+    "lamia": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": null,
+     "vurulma": null,
+     "bekleme2": null,
+     "saldiri2": null,
+     "vurulma2": null
+    },
+    "snake_queen": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": null,
+     "vurulma": null,
+     "bekleme2": null,
+     "saldiri2": null,
+     "vurulma2": null
+    },
+    "maresal-marven": {
+     "bekleme": [
+      448,
+      448
+     ],
+     "saldiri": [
+      448,
+      448
+     ],
+     "vurulma": [
+      448,
+      448
+     ],
+     "bekleme2": [
+      448,
+      448
+     ],
+     "saldiri2": [
+      448,
+      448
+     ],
+     "vurulma2": [
+      448,
+      448
+     ]
+    },
+    "adsiz": {
+     "bekleme": [
+      448,
+      448
+     ],
+     "saldiri": [
+      448,
+      448
+     ],
+     "vurulma": [
+      448,
+      448
+     ],
+     "bekleme2": [
+      448,
+      448
+     ],
+     "saldiri2": [
+      448,
+      448
+     ],
+     "vurulma2": [
+      448,
+      448
+     ]
+    },
+    "dragon_fire": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": [
+      384,
+      384
+     ],
+     "saldiri2": [
+      384,
+      384
+     ],
+     "vurulma2": [
+      384,
+      384
+     ]
+    },
+    "dragon_ice": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": [
+      384,
+      384
+     ],
+     "saldiri2": [
+      384,
+      384
+     ],
+     "vurulma2": [
+      384,
+      384
+     ]
+    },
+    "dragon_shadow": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": [
+      384,
+      384
+     ],
+     "vurulma": [
+      384,
+      384
+     ],
+     "bekleme2": [
+      384,
+      384
+     ],
+     "saldiri2": [
+      384,
+      384
+     ],
+     "vurulma2": [
+      384,
+      384
+     ]
+    },
+    "dragon_lightning": {
+     "bekleme": [
+      384,
+      384
+     ],
+     "saldiri": null,
+     "vurulma": null,
+     "bekleme2": [
+      384,
+      384
+     ],
+     "saldiri2": [
+      384,
+      384
+     ],
+     "vurulma2": [
+      384,
+      384
+     ]
+    },
+    "dev-solucan": {
+     "bekleme": [
+      448,
+      448
+     ],
+     "saldiri": [
+      448,
+      448
+     ],
+     "vurulma": [
+      448,
+      448
+     ],
+     "bekleme2": [
+      448,
+      448
+     ],
+     "saldiri2": [
+      448,
+      448
+     ],
+     "vurulma2": [
+      448,
+      448
+     ]
+    },
+    "tepegoz": {
+     "bekleme": [
+      448,
+      448
+     ],
+     "saldiri": [
+      448,
+      448
+     ],
+     "vurulma": [
+      448,
+      448
+     ],
+     "bekleme2": [
+      448,
+      448
+     ],
+     "saldiri2": [
+      448,
+      448
+     ],
+     "vurulma2": [
+      448,
+      448
+     ]
+    },
+    "kristal-muhafizi": {
+     "bekleme": [
+      448,
+      448
+     ],
+     "saldiri": [
+      448,
+      448
+     ],
+     "vurulma": [
+      448,
+      448
+     ],
+     "bekleme2": [
+      448,
+      448
+     ],
+     "saldiri2": [
+      448,
+      448
+     ],
+     "vurulma2": [
+      448,
+      448
+     ]
+    },
+    "lav-yurek": {
+     "bekleme": [
+      448,
+      448
+     ],
+     "saldiri": [
+      448,
+      448
+     ],
+     "vurulma": [
+      448,
+      448
+     ],
+     "bekleme2": [
+      448,
+      448
+     ],
+     "saldiri2": [
+      448,
+      448
+     ],
+     "vurulma2": [
+      448,
+      448
+     ]
+    },
+    "kul-agasi-karadun": {
+     "bekleme": [
+      448,
+      448
+     ],
+     "saldiri": [
+      448,
+      448
+     ],
+     "vurulma": [
+      448,
+      448
+     ],
+     "bekleme2": [
+      448,
+      448
+     ],
+     "saldiri2": [
+      448,
+      448
+     ],
+     "vurulma2": [
+      448,
+      448
+     ]
+    }
+   }
+  },
+  "kapatma": {
+   "once": {
+    "katman": true,
+    "sahne": true
+   },
+   "canli_kapali": {
+    "katman": false,
+    "sahne": true
+   },
+   "canli_kapali_geri": {
+    "katman": true,
+    "sahne": true
+   },
+   "pil": {
+    "katman": false,
+    "sahne": true
+   },
+   "pil_geri": {
+    "katman": true,
+    "sahne": true
+   },
+   "hareket_azalt": {
+    "katman": false,
+    "sahne": true
+   },
+   "hareket_azalt_geri": {
+    "katman": true,
+    "sahne": true
+   }
+  }
+ }
+}

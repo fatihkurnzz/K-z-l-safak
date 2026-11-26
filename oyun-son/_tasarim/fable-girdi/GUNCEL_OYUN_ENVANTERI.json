@@ -1,0 +1,5046 @@
+{
+ "kaynak_kod_eylemleri": {
+  "yontem": "_tasarim/araclar/kabul-26kas/act_tara.py (js/*.js içindeki ACT.<ad> = tanımları; gömülü görsel dosyaları hariç)",
+  "act_tanimi": 456,
+  "ayri_eylem": 440,
+  "ekran_acan_gelistirici_haric": 208,
+  "gelistirici_eylemi": 15,
+  "ekran_acanlar": [
+   {
+    "eylem": "ormanFight",
+    "acar": [
+     "startBattle",
+     "toast"
+    ],
+    "kaynak": [
+     "js/orman.js:204"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "ahir",
+    "acar": [
+     "binaAc"
+    ],
+    "kaynak": [
+     "js/ui-ahir.js:97"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "ahirAc",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-ahir.js:99"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "ahirKusan",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-ahir.js:101"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "ahirBesle",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-ahir.js:103"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "quests",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-anagorev.js:90",
+     "js/ui-kalicilik.js:235",
+     "js/ui-town.js:417"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "yashka",
+    "acar": [
+     "diyalog"
+    ],
+    "kaynak": [
+     "js/ui-anit.js:11"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "anit",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-anit.js:17"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "anitGo",
+    "acar": [
+     "startBattle"
+    ],
+    "kaynak": [
+     "js/ui-anit.js:32"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "ayCopy",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-ayarlar.js:156"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "ayEmek",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-ayarlar.js:157"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "settings",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-ayarlar.js:191"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "drawer",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-ayarlar.js:196",
+     "js/ui-hub.js:489",
+     "js/ui-hub.js:494"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "balik",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-balik.js:70"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "balikGo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-balik.js:76"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "balikRod",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-balik.js:105"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "balikSat",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-balik.js:109"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "balikDefter",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-balik.js:115"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "baskinGo",
+    "acar": [
+     "startBattle"
+    ],
+    "kaynak": [
+     "js/ui-baskin.js:54"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "gate",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:39",
+     "js/ui-meydan.js:125"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "stage",
+    "acar": [
+     "ACT.stage",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:72"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "wormGo",
+    "acar": [
+     "openVs"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:124"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "vsCoef",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:165"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "vsStart",
+    "acar": [
+     "startBattle"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:166"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "vsReturn",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:169"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "sweep",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:170"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "exchange",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:184"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "exchangeDo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:189"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mode",
+    "acar": [
+     "openVs"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:203"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "arenaVs",
+    "acar": [
+     "openVs"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:204"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "liveFind",
+    "acar": [
+     "openVs"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:205"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "again",
+    "acar": [
+     "showModal",
+     "startBattle"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:249"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "next",
+    "acar": [
+     "showModal",
+     "startBattle"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:250"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "backPvp",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:251"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "backClan",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-battle.js:252"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "onlineOpen",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-cevrimici.js:79"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "onlineClaim",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-cevrimici.js:80"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "tab",
+    "acar": [
+     "ACT.tab"
+    ],
+    "kaynak": [
+     "js/ui-core.js:360",
+     "js/ui-kaplama.js:25"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "destan",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-destan.js:22"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "destanGo",
+    "acar": [
+     "startBattle"
+    ],
+    "kaynak": [
+     "js/ui-destan.js:27"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "destanMemory",
+    "acar": [
+     "showModal",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-destan.js:29"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "destanPick",
+    "acar": [
+     "startBattle",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-destan.js:44"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "news",
+    "acar": [
+     "ACT.tab",
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-destek.js:27",
+     "js/ui-duyuru.js:269"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "supportMenu",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-destek.js:84"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "spSend",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-destek.js:94"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "spSay",
+    "acar": [
+     "say"
+    ],
+    "kaynak": [
+     "js/ui-destek.js:100"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "spClose",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-destek.js:105"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "worldInfo",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:109"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "otag",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:132"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "rVote",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:173"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "rVoteGo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:175"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "rRun",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:176"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "rDecree",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:215"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "rGrant",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:219"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "rGrantGo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-dunya.js:227"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "notifs",
+    "acar": [
+     "ACT.tab",
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-duyuru.js:264",
+     "js/ui-kalicilik.js:129"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "bag",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-envanter.js:62"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "bagOne",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-envanter.js:72"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "aeTog",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-erisim.js:45"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "upPrev",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-esya.js:87"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "codex",
+    "acar": [
+     "ACT.tab",
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-esya.js:127",
+     "js/ui-rehber.js:279"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mob",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-esya.js:135"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "goStage",
+    "acar": [
+     "ACT.goStage"
+    ],
+    "kaynak": [
+     "js/ui-esya.js:150"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "cxItem",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-esya.js:176"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "han",
+    "acar": [
+     "binaAc"
+    ],
+    "kaynak": [
+     "js/ui-han.js:45"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "hsInvite",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hisar.js:73"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "hsSend",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hisar.js:77"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "hsAccept",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hisar.js:78"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "hsLeave",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hisar.js:80"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "hsAsk",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hisar.js:81"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "hsHelp",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hisar.js:82"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "npcKing",
+    "acar": [
+     "diyalog"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:90"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "goKlan",
+    "acar": [
+     "ACT.goKlan",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:103"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "goCarsi",
+    "acar": [
+     "ACT.goCarsi"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:105"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "travel",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:108"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "gateMenu",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:111"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "portalMenu",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:128"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "gateCapital",
+    "acar": [
+     "ACT.goCapital"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:144"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "gateCarsi",
+    "acar": [
+     "ACT.goCarsi"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:145"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "gateKlan",
+    "acar": [
+     "ACT.goKlan"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:146"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "gateCz",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:147"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "goCapital",
+    "acar": [
+     "ACT.goCapital",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:148"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "savas",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:352"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "questLog",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:367"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "czpk",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:477",
+     "js/ui-meydan.js:126"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "building",
+    "acar": [
+     "ACT.building",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:481"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "quick",
+    "acar": [
+     "ACT.stage"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:484"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "logoutMenu",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:513"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "fullscreen",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:516"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mnFish",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:528"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "mnHisar",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:530"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "promoMenu",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:545"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "promoDo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:548"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "profile",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:552",
+     "js/ui-hub.js:581",
+     "js/ui-kalicilik.js:293"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "avatarPick",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-hub.js:610"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "kxPick",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-kahraman.js:84"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "kxEquip",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-kahraman.js:85"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "kxUnequip",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-kahraman.js:86"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "kxSell",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-kahraman.js:88"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "calendar",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-kalicilik.js:174"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "calInfo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-kalicilik.js:229"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "achs",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-kalicilik.js:255"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "titleSet",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-kalicilik.js:288"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "titleLock",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-kalicilik.js:289"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "titlePick",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-kalicilik.js:298"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "karaborsa",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-karaborsa.js:38"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "kbBuy",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-karaborsa.js:48"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "tkEnter",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-karakter.js:129"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "clan",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:47"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "clanhq",
+    "acar": [
+     "ACT.goKlan",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:63"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "clanCreate",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:93"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "clanJoin",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:94"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "clanApply",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:95"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "klDonate",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:142"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "klNotice",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:146"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "klAccept",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:170"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "klMember",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:173"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "klKick",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:185"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "klTransfer",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:186"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "clanLeave",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:187"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "klBannerSave",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:236"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "klInvite",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:267"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "klHunt",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:269"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "klFac",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-klan.js:355"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "meydan",
+    "acar": [
+     "openWin",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-meydan.js:21"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mzBuy",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-meydan.js:110"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "hall",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-meydan.js:127",
+     "js/ui-town.js:343"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "seriesLocked",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-minidizi.js:19"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "seriesPlay",
+    "acar": [
+     "say"
+    ],
+    "kaynak": [
+     "js/ui-minidizi.js:24"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "seriesDone",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-minidizi.js:49"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "nobet",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-nobet.js:52"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "nbJoin",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-nobet.js:56"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "nbLeave",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-nobet.js:57"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "nbGo",
+    "acar": [
+     "confirmBox",
+     "showModal",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-nobet.js:68"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "nbClaim",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-nobet.js:87"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "yakutAl",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:105"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "payBuy",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:138"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "shop",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:210"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "shopBuy",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:218"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "friends",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:293"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "frRemoveAsk",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:303"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "blockAsk",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:309"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "block",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:311"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "msgMenu",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:315"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "repSend",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-odeme.js:336"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "npcMerchant",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-ogretici.js:29"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "npcBuy",
+    "acar": [
+     "say",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-ogretici.js:35"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "npcChild",
+    "acar": [
+     "say"
+    ],
+    "kaynak": [
+     "js/ui-ogretici.js:44"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "npcWorm",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-ogretici.js:52"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "olzCreate",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-olustur.js:214"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "party",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-party.js:27"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mstReset",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-party.js:79"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "skillReset",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-party.js:154"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "skill",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-party.js:155"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "statReset",
+    "acar": [
+     "confirmBox"
+    ],
+    "kaynak": [
+     "js/ui-party.js:174"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "tierInfo",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-pvp.js:61"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "tier",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-pvp.js:76"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "modInfo",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-pvp.js:91"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "depthFloors",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-pvp.js:118"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "depthSweep",
+    "acar": [
+     "confirmBox",
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-pvp.js:128"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "season",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-pvp.js:159"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "seasonTitle",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-pvp.js:171"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "repLog",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-rapor.js:75"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "bakimBuy",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-rapor.js:134"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "rhGo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-rehber.js:269"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "sandikOpen",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-sandik.js:32"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "sandikClaim",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-sandik.js:38"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "pathPick",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-sinif.js:96"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "pathGo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-sinif.js:109"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "cbSend",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-social.js:70"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "emoPick",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-social.js:90"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "chatOpen",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-social.js:103"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "chSend",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-social.js:155"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "pcard",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-social.js:165"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "rank",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-social.js:204"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "rkClaim",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-social.js:220"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "rkRewards",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-social.js:227"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "frameSel",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-social.js:230"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "clanPage",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-social.js:237"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "cpGo",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-social.js:249"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "monument",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-social.js:275"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "server",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-sunucu.js:60"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "anvil",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:40"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "breakWin",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:42"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "reforge",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:49"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "dismantle",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:62"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "sell",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:63"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "mine",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:74"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mineCollect",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:86"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "market",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:138"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "marketSell",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:171"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "marketBuy",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:174"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "tcBuy",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:239"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "tcPot",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:240"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "tcSell",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:243"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "tcPlain",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:244"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "iksir",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:284"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "ikScroll",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:287"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mail",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:296"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mailTo",
+    "acar": [
+     "ACT.tab"
+    ],
+    "kaynak": [
+     "js/ui-town.js:329"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "mailSend",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:330"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "wheel",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:365"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "premium",
+    "acar": [
+     "openWin"
+    ],
+    "kaynak": [
+     "js/ui-town.js:387"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "premBuy",
+    "acar": [
+     "confirmBox",
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-town.js:401"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "yeminGo",
+    "acar": [
+     "showModal"
+    ],
+    "kaynak": [
+     "js/ui-yemin.js:19"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "ytAuto",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-yetenek.js:72"
+    ],
+    "parametreli": true
+   },
+   {
+    "eylem": "zaferAniti",
+    "acar": [
+     "binaAc"
+    ],
+    "kaynak": [
+     "js/ui-zafer.js:49"
+    ],
+    "parametreli": false
+   },
+   {
+    "eylem": "zaferAl",
+    "acar": [
+     "toast"
+    ],
+    "kaynak": [
+     "js/ui-zafer.js:58"
+    ],
+    "parametreli": false
+   }
+  ]
+ },
+ "cekim_turu_p33_surum41": {
+  "kaynak": "QA_MATRISI_DOLU.json UI-* satırları (cek115.js; 880×406, dpr 2,66; ilk tur)",
+  "toplam_cekim": 226,
+  "benzersiz_ekran": 115,
+  "yalniz_elentha": [
+   "A05-olustur-warrior-m"
+  ],
+  "yalniz_kragmir": [
+   "A04-olustur-halk",
+   "A05-olustur-warrior-f",
+   "hotbar"
+  ],
+  "iki_halkta": 111,
+  "ekranlar": [
+   "A01-yukleme",
+   "A02-sunucu-secimi",
+   "A03-olustur-acilis",
+   "A04-olustur-halk",
+   "A05-olustur-mage-f",
+   "A05-olustur-mage-m",
+   "A05-olustur-priest-f",
+   "A05-olustur-priest-m",
+   "A05-olustur-rogue-f",
+   "A05-olustur-rogue-m",
+   "A05-olustur-warrior-f",
+   "A05-olustur-warrior-m",
+   "A06-karakter-secme",
+   "A07-giris-sonrasi",
+   "A08-ogretici",
+   "B01-hub-baskent",
+   "B02-hub-yemin-pazari",
+   "B03-hub-klan",
+   "D02-savas-a",
+   "D03-savas-b",
+   "D04-savas-sonucu",
+   "achs",
+   "achs~titles",
+   "ahir",
+   "anvil",
+   "bag",
+   "balik",
+   "baskin",
+   "baskin~dungeons",
+   "calendar",
+   "calendar~m28",
+   "chatMenu~f",
+   "chatOpen",
+   "chatOpen~c",
+   "chatOpen~f",
+   "chatOpen~p",
+   "codex",
+   "codex~items",
+   "codex~mobs",
+   "destan",
+   "diyarMap",
+   "diyarMap~grant",
+   "diyarMap~treasury",
+   "drawer",
+   "friends",
+   "friends~blocked",
+   "friends~req",
+   "gateMenu",
+   "gateZones",
+   "han",
+   "hotbar",
+   "iksir",
+   "karaborsa",
+   "karakter",
+   "karakter~mst",
+   "karakter~skill",
+   "karakter~unvan",
+   "logoutMenu",
+   "mail",
+   "mail~rep",
+   "mail~yaz",
+   "market",
+   "meydan",
+   "meydan~def",
+   "meydan~feud",
+   "meydan~san",
+   "meydan~shop",
+   "mine",
+   "modInfo",
+   "monument",
+   "monument~clan",
+   "monument~race",
+   "monument~ruler",
+   "news",
+   "news~feed",
+   "nobet",
+   "notifs",
+   "notifs~set",
+   "onlineOpen",
+   "otag",
+   "pazar",
+   "premium",
+   "profile",
+   "promoMenu",
+   "questLog",
+   "quests",
+   "quests~daily",
+   "quests~monthly",
+   "quests~weekly",
+   "quick",
+   "rank",
+   "rank~clans",
+   "rank~race",
+   "savas",
+   "season",
+   "season~hist",
+   "season~rew",
+   "server",
+   "settings",
+   "settings~acc",
+   "settings~dil",
+   "settings~erisim",
+   "settings~notif",
+   "settings~ses",
+   "shop",
+   "shop~money",
+   "starterOpen",
+   "supportMenu",
+   "tuccar",
+   "wheel",
+   "worldInfo",
+   "yakutMenu",
+   "yakutMenu~card",
+   "yakutMenu~hist",
+   "zaferAniti"
+  ]
+ },
+ "dinamik_durumlar_p33": {
+  "kaynak": "ekran_envanteri.json (tara.js, derinlik 3, sürüm 41)",
+  "halk_basina": {
+   "elentha": 120,
+   "kragmir": 120
+  },
+  "toplam": 240,
+  "sekmeler": {
+   "elentha": 45,
+   "kragmir": 45
+  },
+  "not_": "v42 değişiklikleri yeni ekran eklemedi (yalnız görsel katman, diyalog karesi, kurtarma kartı portresi); tarama v42’de tekrarlanmadı."
+ },
+ "eylem_turu_p33": {
+  "kaynak": "QA ENV-* satırları",
+  "satir": 444
+ },
+ "ic_mekanlar": {
+  "klasor": [
+   "interiors/elentha/ahir",
+   "interiors/elentha/han",
+   "interiors/elentha/karaborsa",
+   "interiors/elentha/klan-karargahi",
+   "interiors/elentha/maden",
+   "interiors/elentha/taht-salonu",
+   "interiors/kragmir/ahir",
+   "interiors/kragmir/han",
+   "interiors/kragmir/karaborsa",
+   "interiors/kragmir/klan-karargahi",
+   "interiors/kragmir/maden",
+   "interiors/kragmir/taht-salonu",
+   "interiors/yemin-pazari/ors"
+  ],
+  "sayi": 13,
+  "kod_tanimlari": [
+   [
+    "han",
+    "Han"
+   ],
+   [
+    "ahir",
+    "Ahır"
+   ],
+   [
+    "taht",
+    "Taht Salonu"
+   ],
+   [
+    "karaborsa",
+    "Karaborsa"
+   ],
+   [
+    "maden",
+    "Maden"
+   ],
+   [
+    "klan",
+    "Klan Karargâhı"
+   ],
+   [
+    "ors",
+    "Büyük Örs"
+   ],
+   [
+    "zafer",
+    "Zafer Anıtı"
+   ]
+  ]
+ },
+ "sahneler": {
+  "sayi": 29,
+  "dosyalar": [
+   "banner_dunya_baskini.webp",
+   "banner_karaborsa.webp",
+   "banner_karakaya_hisari.webp",
+   "banner_kervan.webp",
+   "banner_kristal_nobeti.webp",
+   "banner_oba_avi_tepegoz.webp",
+   "baskent_elentha.webp",
+   "baskent_kragmir.webp",
+   "diyar_haritasi.webp",
+   "karakter_secim_elentha.webp",
+   "karakter_secim_kragmir.webp",
+   "klan_obasi_elentha.webp",
+   "klan_obasi_kragmir.webp",
+   "sahne_balik_tutma.webp",
+   "savas_boss_magarasi.webp",
+   "savas_kizil_bahar.webp",
+   "savas_kul_gecidi.webp",
+   "savas_oba_avi_arena.webp",
+   "savas_pvp_arena.webp",
+   "savas_sisli_cukur.webp",
+   "savas_sonuc_arkaplan.webp",
+   "savas_vahran_ovasi.webp",
+   "yemin_pazari.webp",
+   "zafer_aniti.webp",
+   "zindan_dipsiz_kuyu.webp",
+   "zindan_gok_yarigi.webp",
+   "zindan_kul_kulesi.webp",
+   "zindan_muhurlu_oda.webp",
+   "zindan_yeralti_ocagi.webp"
+  ],
+  "onayli_toplam": "29 sahneler/ + 13 interiors/ = 42 (kullanıcı kararı: değişmez; P34-01 yalnız zafer_aniti çözünürlüğü)"
+ },
+ "haritalar": {
+  "varsayilan_gorunum": "sahneler/baskent_elentha.webp, baskent_kragmir.webp, yemin_pazari.webp, klan_obasi_*.webp (js/hub2d.js S2_BG / S2_CARSI_BG / S2_KLAN_BG)",
+  "eski_kip": "img/kd/sehir/*/sahne.webp (yalnız ?sehir=0 / dd_sehir=0)",
+  "diyar_haritasi": "sahneler/diyar_haritasi.webp",
+  "hareket_katmani": "js/p34-katman.js + js/p34-katman-png.js (P34-02/03/04)"
+ },
+ "bolgeler": [
+  {
+   "id": 1,
+   "ad": "Vahran Ovası",
+   "seviye": [
+    1,
+    20
+   ],
+   "asama_sayisi": 5
+  },
+  {
+   "id": 2,
+   "ad": "Kül Geçidi",
+   "seviye": [
+    20,
+    40
+   ],
+   "asama_sayisi": 5
+  },
+  {
+   "id": 3,
+   "ad": "Kızıl Bahar Meydanı",
+   "seviye": [
+    40,
+    60
+   ],
+   "asama_sayisi": 5
+  },
+  {
+   "id": 4,
+   "ad": "Sisli Çukur",
+   "seviye": [
+    60,
+    65
+   ],
+   "asama_sayisi": 5
+  }
+ ],
+ "npc": {
+  "oyun_npc_kayitlari": {
+   "merchant": "Tüccar Halvor",
+   "child": "Küçük Bran",
+   "sibling": "Nessa",
+   "apothecary": "İksirci Maelis"
+  },
+  "g4_portreli": [
+   "bran",
+   "corin",
+   "edran",
+   "halvor",
+   "lira",
+   "maelis",
+   "nessa",
+   "thrak",
+   "volgar",
+   "yashka"
+  ],
+  "goz_konusma_kareli": [
+   "corin",
+   "edran",
+   "halvor",
+   "lira",
+   "maelis",
+   "thrak",
+   "volgar",
+   "yashka"
+  ],
+  "replik_baglamlari": [
+   "han:sancak",
+   "ahir:sancak",
+   "otag:sancak",
+   "karaborsa:sancak",
+   "clanhq:sancak",
+   "han:ocak",
+   "ahir:ocak",
+   "otag:ocak",
+   "karaborsa:ocak",
+   "clanhq:ocak",
+   "anvil:ortak",
+   "c_silah:ortak",
+   "c_zirh:ortak",
+   "c_taki:ortak",
+   "merchant:sancak"
+  ]
+ },
+ "halklar": {
+  "ocak": {
+   "name": "Kragmir",
+   "motto": "Toprak, çekice boyun eğer.",
+   "color": "#c2321e",
+   "desc": "Dağın kalbindeki salonlarda örs başında büyüyen orklar; Kral Volgar Demirdiş’in halkı."
+  },
+  "sancak": {
+   "name": "Elentha",
+   "motto": "Çelik bile bir gün paslanır.",
+   "color": "#3d6fb6",
+   "desc": "Beyaz taştan kuleleri ve mavi sancaklarıyla ovanın insan krallığı; Kral Edran’ın halkı."
+  }
+ },
+ "siniflar": {
+  "warrior": {
+   "ad": "Savaşçı"
+  },
+  "rogue": {
+   "ad": "Suikastçı"
+  },
+  "priest": {
+   "ad": "Şifacı",
+   "ad_halka_gore": {
+    "ocak": "Şaman",
+    "sancak": "Şifacı"
+   }
+  },
+  "mage": {
+   "ad": "Büyücü"
+  }
+ },
+ "baskentler": {
+  "ocak": "Kragmir Dağ Salonları",
+  "sancak": "Elentha Ak Kuleleri"
+ },
+ "oyun": {
+  "name": "Korant Online",
+  "hub": "Vahran Sınırı",
+  "maxLevel": 65
+ },
+ "yaratiklar": {
+  "toplam": 146,
+  "iki_boyutlu_cizim": 146,
+  "cizimsiz": [],
+  "poz_kapsami": {
+   "adsiz": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "agac-hayaleti": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "agac-hayaleti-krali": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "akrep": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "alev-kayasi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "azman-kurt": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "bandikut": null,
+   "bozkir-kilic-disi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "camur-adam": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "cehennem-tazisi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "col-golemi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "curuk-goz": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "curumus-zombi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "dev-golem": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "dev-kaya": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "dev-solucan": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "dragon_fire": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "dragon_ice": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "dragon_lightning": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri2",
+    "vurulma2"
+   ],
+   "dragon_shadow": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "ejder-kulu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "falcon": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "firtina-harpisi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "gargoyle": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "gece-kisragi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "gliptodon": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "goblin": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "goblin-fedai": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "goblin-hokkabaz": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "goblin-olucu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "harpi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "harpi-kralicesi": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "hayalet": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "hobgoblin": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "hornet": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "igneli": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "iskelet": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "iskelet-er-basi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "iskelet-savasci": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "iskelet-sovalye": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kabus-ati": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kan-solucani": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kapkacci": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kara-agac-hayaleti": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kara-kisrak": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kara-sovalye": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kara-tas": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "karadul": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kasvet-tazisi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kaya-trolu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kemik-buyucusu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kertenkele-adam": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kertenkele-savasci": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kertenkele-yuzbasi": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "kilic-dis": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kiskacli-akrep": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kizil-harpi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kizil-kilic-dis": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kobold": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kristal-muhafizi": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "kucuk-bandikut": null,
+   "kuduz-bandikut": null,
+   "kul-agasi-karadun": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "kul-ejder-kulu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kul-muhafizi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kul-sovalye": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kum-adam": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kurt-tazisi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "kurtadam": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "lamia": [
+    "bekleme",
+    "portre"
+   ],
+   "lanetli-sovalye": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "lav-yurek": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "leader_of_barbarian": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "lescil-bandikut": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "lic": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "magara-sulugu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "mana-avcisi": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "mantikor": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "maresal-marven": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "mastodon": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "maymun": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "megantereon": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "minotor": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "ocu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "olmeyen": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "olu-buyucu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "olum-sovalyesi": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "orman-sulugu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "pul-fanatigi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "rabbit": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "sentor": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "sentor-mizrakci": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "sentor-okcu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "sentor-yuzbasi": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "sis-hayaleti": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "snake_queen": [
+    "bekleme",
+    "portre"
+   ],
+   "solucan": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "tarantula": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "tarikat-kahini": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "tas-golem": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "tepegoz": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "titan": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "toprak-solucani": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "trol": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "trol-krali": [
+    "bekleme",
+    "bekleme2",
+    "portre",
+    "saldiri",
+    "saldiri2",
+    "vurulma",
+    "vurulma2"
+   ],
+   "trol-savasci": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "uyusturan": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "volkan-kayasi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "yaman-bandikut": null,
+   "yamyam-bandikut": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "yanan-iskelet": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "yas-ruhu": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ],
+   "zombi": [
+    "bekleme",
+    "portre",
+    "saldiri",
+    "vurulma"
+   ]
+  },
+  "liste": [
+   {
+    "id": "devsolucan",
+    "ad": "Dev Solucan",
+    "bolge": 1,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "erlik",
+    "ad": "Mareşal Marven",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "bozdag",
+    "ad": "Adsız, Tarikat Lideri",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "tepegoz",
+    "ad": "Tepegöz",
+    "bolge": 1,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "kristalbekci",
+    "ad": "Kristal Muhafızı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": true
+   },
+   {
+    "id": "lavyurek",
+    "ad": "Lav Yürek",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "karaduman",
+    "ad": "Kül Ağası Karadun",
+    "bolge": 1,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "small_bandicoot",
+    "ad": "Küçük Bandikut",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "bandicoot",
+    "ad": "Bandikut",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "wild_bandicoot",
+    "ad": "Yaban Bandikut",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "rabid_bandicoot",
+    "ad": "Kuduz Bandikut",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "scavenger_bandicoot",
+    "ad": "Leşçil Bandikut",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "cannibal_bandicoot",
+    "ad": "Yamyam Bandikut",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": true
+   },
+   {
+    "id": "worm",
+    "ad": "Solucan",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "earth_worm",
+    "ad": "Toprak Solucanı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "blood_worm",
+    "ad": "Kan Solucanı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "cave_leech",
+    "ad": "Mağara Sülüğü",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "wood_leech",
+    "ad": "Orman Sülüğü",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "snatcher",
+    "ad": "Kapkaççı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": true
+   },
+   {
+    "id": "goblin",
+    "ad": "Goblin",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "goblin_bouncer",
+    "ad": "Goblin Fedai",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "goblin_necromancer",
+    "ad": "Goblin Ölücü",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "kobold",
+    "ad": "Kobold",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "goblin_juggler",
+    "ad": "Goblin Hokkabaz",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "bugbear",
+    "ad": "Öcü",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "hobgoblin",
+    "ad": "Hobgoblin",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": true
+   },
+   {
+    "id": "skeleton",
+    "ad": "İskelet",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "skeleton_warrior",
+    "ad": "İskelet Savaşçı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "burning_skeleton",
+    "ad": "Yanan İskelet",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "skeleton_knight",
+    "ad": "İskelet Şövalye",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "skeleton_champion",
+    "ad": "İskelet Er Başı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": true
+   },
+   {
+    "id": "dire_wolf",
+    "ad": "Azman Kurt",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "wolfhound",
+    "ad": "Kurt Tazısı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "gloom_hound",
+    "ad": "Kasvet Tazısı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "hell_hound",
+    "ad": "Cehennem Tazısı",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "werewolf",
+    "ad": "Kurtadam",
+    "bolge": 1,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "tarantula",
+    "ad": "Tarantula",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "pincers_scorpion",
+    "ad": "Kıskaçlı Akrep",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "black_widow",
+    "ad": "Karadul",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "scorpion",
+    "ad": "Akrep",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "paralyzer",
+    "ad": "Uyuşturan",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "stinger",
+    "ad": "İğneli",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": true
+   },
+   {
+    "id": "zombie",
+    "ad": "Zombi",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "undying",
+    "ad": "Ölmeyen",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "rotten_eyes",
+    "ad": "Çürük Göz",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "decayed_zombie",
+    "ad": "Çürümüş Zombi",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "man_eating_tarantula",
+    "ad": "Yamyam Tarantula",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "ash_knight",
+    "ad": "Kül Şövalye",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": true
+   },
+   {
+    "id": "lizardman",
+    "ad": "Kertenkele Adam",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "lizardman_warrior",
+    "ad": "Kertenkele Savaşçı",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "mudman",
+    "ad": "Çamur Adam",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "sand_man",
+    "ad": "Kum Adam",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "lizardman_captain",
+    "ad": "Kertenkele Yüzbaşı",
+    "bolge": 2,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "flame_rock",
+    "ad": "Alev Kayası",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "stone_golem",
+    "ad": "Taş Golem",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "volcanic_rock",
+    "ad": "Volkan Kayası",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "giant_rock",
+    "ad": "Dev Kaya",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "dark_stone",
+    "ad": "Kara Taş",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "giant_golem",
+    "ad": "Dev Golem",
+    "bolge": 2,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "tree_ghost",
+    "ad": "Ağaç Hayaleti",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "tree_ghost_variant",
+    "ad": "Kara Ağaç Hayaleti",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "titan_sapling",
+    "ad": "Titan",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "desert_golem",
+    "ad": "Çöl Golemi",
+    "bolge": 2,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "tree_ghost_king",
+    "ad": "Ağaç Hayaleti Kralı",
+    "bolge": 2,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "smilodon",
+    "ad": "Smilodon",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "wild_smilodon",
+    "ad": "Yaban Smilodon",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "saber_tooth",
+    "ad": "Kılıç Diş",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "machairodus",
+    "ad": "Mahirodus",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "meganthereon",
+    "ad": "Megantereon",
+    "bolge": 3,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "troll",
+    "ad": "Trol",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "troll_warrior",
+    "ad": "Trol Savaşçı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "troll_shaman",
+    "ad": "Trol Kamı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "troll_witch_doctor",
+    "ad": "Trol Otacısı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "troll_berserker",
+    "ad": "Trol Gözü Dönmüş",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "half_troll_warrior",
+    "ad": "Yarı Trol Savaşçı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "troll_captain",
+    "ad": "Trol Yüzbaşı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "half_troll_captain",
+    "ad": "Yarı Trol Yüzbaşı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "troll_king",
+    "ad": "Trol Kralı",
+    "bolge": 3,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "centaur",
+    "ad": "Sentor",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "centaur_ranger",
+    "ad": "Sentor İzci",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "centaur_archer",
+    "ad": "Sentor Okçu",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "centaur_sniper",
+    "ad": "Sentor Keskin Nişancı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "centaur_captain",
+    "ad": "Sentor Yüzbaşı",
+    "bolge": 3,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "falcon",
+    "ad": "Doğan",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "crimson_wing",
+    "ad": "Al Kanat",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "hornet",
+    "ad": "Eşek Arısı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "harpy",
+    "ad": "Harpi",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "raven_harpy",
+    "ad": "Kuzgun Harpi",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "gargoyle",
+    "ad": "Gargoyl",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "harpy_queen",
+    "ad": "Harpi Kraliçesi",
+    "bolge": 3,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "ape",
+    "ad": "Maymun",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "glyptodont",
+    "ad": "Gliptodon",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "twin_ape",
+    "ad": "İkiz Maymun",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "stegodon",
+    "ad": "Stegodon",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "mastodon",
+    "ad": "Mastodon",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "lycan",
+    "ad": "Likan",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "loup_garou",
+    "ad": "Kurt Kılıklı",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "minotaur",
+    "ad": "Minotor",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "leader_of_barbarian",
+    "ad": "Barbar Önderi",
+    "bolge": 3,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "manticore",
+    "ad": "Mantikor",
+    "bolge": 3,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "ghost",
+    "ad": "Hayalet",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "ghost_warrior",
+    "ad": "Hayalet Savaşçı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "specter",
+    "ad": "Hortlak",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "wraith",
+    "ad": "Gölge Ruh",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "phantom",
+    "ad": "Hayal",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "shadow",
+    "ad": "Gölge",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "red_ghost",
+    "ad": "Kızıl Hayalet",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "wandering_spectre",
+    "ad": "Gezgin Hortlak",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "shadow_spectre",
+    "ad": "Gölge Hortlak",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "mana_spectre",
+    "ad": "Mana Hortlağı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "mage_ghost",
+    "ad": "Büyücü Hayalet",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "wandering_knight_ghost",
+    "ad": "Gezgin Şövalye Hayaleti",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "mana_predator",
+    "ad": "Mana Avcısı",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "dark_soldier",
+    "ad": "Kara Asker",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "black_guard",
+    "ad": "Kara Muhafız",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "doom_soldier",
+    "ad": "Kıyamet Askeri",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "dark_knight",
+    "ad": "Kara Şövalye",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "shade_knight",
+    "ad": "Gölge Şövalye",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "shadow_knight",
+    "ad": "Karanlık Şövalye",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "dread_knight",
+    "ad": "Dehşet Şövalyesi",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "doom_knight",
+    "ad": "Kıyamet Şövalyesi",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "revenge_knight",
+    "ad": "İntikam Şövalyesi",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "death_knight",
+    "ad": "Ölüm Şövalyesi",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "evil_wizard",
+    "ad": "Kötü Büyücü",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "skeleton_lord",
+    "ad": "İskelet Bey",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "death_wizard",
+    "ad": "Ölüm Büyücüsü",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "reaper",
+    "ad": "Orakçı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "screamer",
+    "ad": "Çığlıkçı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "lamentation",
+    "ad": "Ağıtçı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "lich",
+    "ad": "Liç",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "dark_mare",
+    "ad": "Kara Kısrak",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "shade_mare",
+    "ad": "Gölge Kısrak",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "death_mare",
+    "ad": "Ölüm Kısrağı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "dread_mare",
+    "ad": "Dehşet Kısrağı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "lamia",
+    "ad": "Lamia",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "nightmare",
+    "ad": "Karabasan",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "dragon_servant",
+    "ad": "Ejder Hizmetkârı",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "dragon_knight",
+    "ad": "Ejder Şövalyesi",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "snake_queen",
+    "ad": "Yılan Kraliçe",
+    "bolge": 4,
+    "boss": false,
+    "kaptan": false
+   },
+   {
+    "id": "red_dragon_hatchling",
+    "ad": "Kızıl Ejder Yavrusu",
+    "bolge": 3,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "bone_dragon",
+    "ad": "Kemik Ejder",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "blue_dragon",
+    "ad": "Mavi Ejder",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "dark_dragon",
+    "ad": "Kara Ejder",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "gold_dragon",
+    "ad": "Altın Ejder",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "red_dragon",
+    "ad": "Kızıl Ejder",
+    "bolge": 4,
+    "boss": true,
+    "kaptan": false
+   },
+   {
+    "id": "rabbit",
+    "ad": "Tavşan",
+    "bolge": 1,
+    "boss": false,
+    "kaptan": false
+   }
+  ],
+  "orman": [
+   "rabbit",
+   "small_bandicoot",
+   "wood_leech"
+  ]
+ },
+ "bosslar": {
+  "liste": [
+   {
+    "id": "devsolucan",
+    "ad": "Dev Solucan",
+    "bolge": 1,
+    "olay": true,
+    "evre_metni": 1
+   },
+   {
+    "id": "erlik",
+    "ad": "Mareşal Marven",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "bozdag",
+    "ad": "Adsız, Tarikat Lideri",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 2
+   },
+   {
+    "id": "tepegoz",
+    "ad": "Tepegöz",
+    "bolge": 1,
+    "olay": true,
+    "evre_metni": 0
+   },
+   {
+    "id": "lavyurek",
+    "ad": "Lav Yürek",
+    "bolge": 4,
+    "olay": true,
+    "evre_metni": 2
+   },
+   {
+    "id": "karaduman",
+    "ad": "Kül Ağası Karadun",
+    "bolge": 1,
+    "olay": true,
+    "evre_metni": 2
+   },
+   {
+    "id": "werewolf",
+    "ad": "Kurtadam",
+    "bolge": 1,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "lizardman_captain",
+    "ad": "Kertenkele Yüzbaşı",
+    "bolge": 2,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "giant_golem",
+    "ad": "Dev Golem",
+    "bolge": 2,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "tree_ghost_king",
+    "ad": "Ağaç Hayaleti Kralı",
+    "bolge": 2,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "meganthereon",
+    "ad": "Megantereon",
+    "bolge": 3,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "troll_king",
+    "ad": "Trol Kralı",
+    "bolge": 3,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "centaur_captain",
+    "ad": "Sentor Yüzbaşı",
+    "bolge": 3,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "harpy_queen",
+    "ad": "Harpi Kraliçesi",
+    "bolge": 3,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "manticore",
+    "ad": "Mantikor",
+    "bolge": 3,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "mana_predator",
+    "ad": "Mana Avcısı",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "death_knight",
+    "ad": "Ölüm Şövalyesi",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "lich",
+    "ad": "Liç",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "red_dragon_hatchling",
+    "ad": "Kızıl Ejder Yavrusu",
+    "bolge": 3,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "bone_dragon",
+    "ad": "Kemik Ejder",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "blue_dragon",
+    "ad": "Mavi Ejder",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "dark_dragon",
+    "ad": "Kara Ejder",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "gold_dragon",
+    "ad": "Altın Ejder",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   },
+   {
+    "id": "red_dragon",
+    "ad": "Kızıl Ejder",
+    "bolge": 4,
+    "olay": false,
+    "evre_metni": 1
+   }
+  ],
+  "dunya_bosslari": [
+   "red_dragon_hatchling",
+   "bone_dragon",
+   "blue_dragon",
+   "dark_dragon",
+   "gold_dragon",
+   "red_dragon"
+  ],
+  "kaptanlar": [
+   {
+    "id": "kristalbekci",
+    "ad": "Kristal Muhafızı",
+    "bolge": 3
+   },
+   {
+    "id": "cannibal_bandicoot",
+    "ad": "Yamyam Bandikut",
+    "bolge": 1
+   },
+   {
+    "id": "snatcher",
+    "ad": "Kapkaççı",
+    "bolge": 1
+   },
+   {
+    "id": "hobgoblin",
+    "ad": "Hobgoblin",
+    "bolge": 1
+   },
+   {
+    "id": "skeleton_champion",
+    "ad": "İskelet Er Başı",
+    "bolge": 1
+   },
+   {
+    "id": "stinger",
+    "ad": "İğneli",
+    "bolge": 2
+   },
+   {
+    "id": "ash_knight",
+    "ad": "Kül Şövalye",
+    "bolge": 2
+   }
+  ],
+  "ikinci_evre_cizimi": {
+   "devsolucan": true,
+   "erlik": true,
+   "bozdag": true,
+   "tepegoz": true,
+   "lavyurek": true,
+   "karaduman": true,
+   "werewolf": true,
+   "lizardman_captain": true,
+   "giant_golem": true,
+   "tree_ghost_king": true,
+   "meganthereon": true,
+   "troll_king": true,
+   "centaur_captain": true,
+   "harpy_queen": true,
+   "manticore": true,
+   "mana_predator": true,
+   "death_knight": true,
+   "lich": true,
+   "red_dragon_hatchling": true,
+   "bone_dragon": true,
+   "blue_dragon": true,
+   "dark_dragon": true,
+   "gold_dragon": true,
+   "red_dragon": true
+  }
+ },
+ "oyun_sistemleri": {
+  "not_": "shared/ = mekanik/ekonomi/denge (P33 ve P34’te DEĞİŞMEDİ; sha kanıtı TEST_KANITLARI)",
+  "dosyalar": [
+   {
+    "dosya": "shared/account.js",
+    "aciklama": "Hesap ve karakter yerleri (sürüm 12). Hesap (account) en çok CHAR.slots karakter taşır; her karakter depoda AYRI bir oyuncu"
+   },
+   {
+    "dosya": "shared/ahir.js",
+    "aciklama": "Ahır: halk yoldaşları (P28; şartname docs/referans/p28-ahir-han-anit/TALIMAT.md §3.1–3.3)."
+   },
+   {
+    "dosya": "shared/anagorev.js",
+    "aciklama": "Ana Görevler: oyunu öğreten ve ilerleten 64 adımlık görev ağacı (16 bölüm × 4; 7–16 hikâye bölümleri). Kural burada; arayüz js/ui-anagorev.js."
+   },
+   {
+    "dosya": "shared/anit.js",
+    "aciklama": "Anıt Savaşı (19 Kas, kullanıcı: sınır savunma savaşı uyarlaması; özgün ad ve kurgu): iki ırkın birer partisi karşı karşıya,"
+   },
+   {
+    "dosya": "shared/badwords.js",
+    "aciklama": "Sohbet süzgecinin sözcük listesi (veri). Kurallar chatfilter.js'tedir; buraya yalnızca sözcük eklenir/çıkarılır."
+   },
+   {
+    "dosya": "shared/balik.js",
+    "aciklama": "Balık tutma (Yemin Pazarı göleti). Sunucu-otoriter: atışın sonucunu (tür, nadirlik, ağırlık, bekleme süresi) sunucu belirler"
+   },
+   {
+    "dosya": "shared/baskin.js",
+    "aciklama": "Dünya Baskını: \"Küllerin Tarikatı\" (hafta sonu PvE zirvesi). Hafta içi Meydan'da çekişen iki ırk, cumartesi 00:00 -"
+   },
+   {
+    "dosya": "shared/battle.js",
+    "aciklama": "Belirlenimci sıra tabanlı savaş motoru. 3D'den ve ağdan bağımsızdır; istemci animasyon için,"
+   },
+   {
+    "dosya": "shared/bestiary.js",
+    "aciklama": "Canavar ansiklopedisi (VAHRAN, 18.11.2026). Adlar kullanıcının verdiği canavar listesinden telif taramasını geçmiş güvenli"
+   },
+   {
+    "dosya": "shared/bots.js",
+    "aciklama": "Yapay oyuncular: meydan rakibi, Sancak Savaşı müttefiki/rakibi, kuşatma muhafızı, klan üyesi ve deneme sürümünün \"dünyası\"."
+   },
+   {
+    "dosya": "shared/calc.js",
+    "aciklama": "Hem kuralların hem arayüzün kullandığı saf hesaplar (birikim, görev ilerlemesi, kilitler)."
+   },
+   {
+    "dosya": "shared/chatfilter.js",
+    "aciklama": "Sohbet süzgeci: küfür maskeleme (mesaj engellenmez, sözcük yıldızlanır), bağlantı ve telefon numarası ayıklama."
+   },
+   {
+    "dosya": "shared/clan.js",
+    "aciklama": "Klan içeriği: seviyeler, rütbeler ve yetkiler, klan görevleri, Oba Dükkânı, bağış, Oba Avı kademeleri ve"
+   },
+   {
+    "dosya": "shared/clanrules.js",
+    "aciklama": "Klan kuralları (world.js'in clan.* işlemleri): seviye, rütbe ve yetkiler, başvuru ve davet, bağış, klan görevleri,"
+   },
+   {
+    "dosya": "shared/content.js",
+    "aciklama": "Korant Online — oyun kimliği, taraflar, sınıflar ve temel kurallar."
+   },
+   {
+    "dosya": "shared/coop.js",
+    "aciklama": "Ortak savaş (19 Kas): aynı partideki oyuncular AYNI savaşta, yan yana, eş zamanlı oynar (Kristal Nöbeti partileri)."
+   },
+   {
+    "dosya": "shared/daily.js",
+    "aciklama": "Savaş dışı sistemler: Maden, Çırak (çevrimdışı kazanç), günlük görevler, Kervan, Şan Divanı, Kader Çarkı, su verme."
+   },
+   {
+    "dosya": "shared/destan.js",
+    "aciklama": "Destan: \"VAHRAN: Tarihin Külleri\"nin sekiz bölümü oynanabilir (20 Kas, kullanıcının belgesi \"Destanı oynanabilir kılmak\")."
+   },
+   {
+    "dosya": "shared/destekdata.js",
+    "aciklama": "Duyuru panosu ve Sorun / Teknik Destek: istemciyle ortak sabitler (kurallar destekops.js'te, o istemciye sunulmaz)."
+   },
+   {
+    "dosya": "shared/destekops.js",
+    "aciklama": "Duyuru panosu ve Sorun / Teknik Destek kuralları (sunucu-otoriter). Oyuncu işlemleri world.js'teki WORLD tablosuna,"
+   },
+   {
+    "dosya": "shared/drops.js",
+    "aciklama": "Drop tabloları. Yalnızca sunucu (ve çevrimdışı deneme sürümü) içe aktarır; istemci arayüzü oranları"
+   },
+   {
+    "dosya": "shared/duyuru.js",
+    "aciklama": "Sunucu duyuru şeridi: herkesin ekranının üstünden geçen sarı yazı ve genel sohbetin üstündeki sabit duyuru."
+   },
+   {
+    "dosya": "shared/game.js",
+    "aciklama": "Oyunun yetkili kuralları. Oyuncu kaydı (p) üzerinde bir işlemi uygular; depolama ve ağ bilmez."
+   },
+   {
+    "dosya": "shared/gorunus.js",
+    "aciklama": "Karakter görünüşü seçenek tabloları (sürüm 12). Yalnızca veri: sunucu (roster.js normLook) ve istemci (js/gorunus.js,"
+   },
+   {
+    "dosya": "shared/guard.js",
+    "aciklama": "Hile koruması: ihlal kaydı, puan ve yasak; savaş süresi tabanı; istek biçimi, pazar fiyatı ve meydan sınırları."
+   },
+   {
+    "dosya": "shared/han.js",
+    "aciklama": "Han: içecek buff'ları ve Sıcak Çorba (P28; şartname TALIMAT.md §4.1–4.2)."
+   },
+   {
+    "dosya": "shared/hero.js",
+    "aciklama": "Kahraman kuralları: nitelik/yetenek puanları, açık yetenekler, türetilmiş statlar, savaş birimi."
+   },
+   {
+    "dosya": "shared/hisar.js",
+    "aciklama": "Hisar Kuşatması, vergi paylaşımı ve ittifak yardımı: saf hesaplar (sunucu ve arayüz aynı sayıyı kullanır)."
+   },
+   {
+    "dosya": "shared/hisarops.js",
+    "aciklama": "Hisar Kuşatması (haftalık), hisar vergisinin üçe bölünmesi, Irklar Arası Vergi Havuzu, klan ittifakı ve ittifak yardımı."
+   },
+   {
+    "dosya": "shared/items-var.js",
+    "aciklama": "Eşya varyantları (esya3): aynı tür ve kademede asıl tabanın yanına gelen ek adlar. Adlar kullanıcının listesinden telif"
+   },
+   {
+    "dosya": "shared/items.js",
+    "aciklama": "Eşya tablosu: 13 yuva, 8 kademe, 3 nadirlik (Standart, Nadir, Eşsiz). Görünen eşya adları kullanıcının verdiği listeden telif taramasını"
+   },
+   {
+    "dosya": "shared/karaborsa.js",
+    "aciklama": "Karaborsa (19 Kas, kullanıcı isteği): Yemin Pazarı'nda yakutla alınan 9 eşya. Raf 8 saatte bir değişir; her rafın fiyatı"
+   },
+   {
+    "dosya": "shared/kule.js",
+    "aciklama": "Kül Kulesi (20 Kas, kullanıcı): bölgeler 65. seviyede bitiyor (Sisli Çukur, 60–65); sonrası için sonsuz katlı kule."
+   },
+   {
+    "dosya": "shared/mana.js",
+    "aciklama": "Mana (MP) ve savaş iksirleri (sürüm 12). Saf tablolar ve hesaplar: sunucu, savaş motoru ve arayüz aynı sayıları okur."
+   },
+   {
+    "dosya": "shared/mastery.js",
+    "aciklama": "Ustalık: 60. seviyeden sonraki uzun vadeli güçlenme yolu."
+   },
+   {
+    "dosya": "shared/memstore.js",
+    "aciklama": "Bellek içi depo. Testlerde, geliştirme sunucusunda (FileStore bunu genişletir) ve çevrimdışı deneme"
+   },
+   {
+    "dosya": "shared/meta.js",
+    "aciklama": "Kalıcılık katmanının içeriği ve saf hesapları: haftalık görevler, giriş takvimleri, başarımlar ve unvanlar,"
+   },
+   {
+    "dosya": "shared/metaops.js",
+    "aciklama": "Kalıcılık katmanının kuralları: haftalık görevler, giriş takvimleri, unvan seçimi, öğretici, bildirim merkezi."
+   },
+   {
+    "dosya": "shared/minidizi.js",
+    "aciklama": "Mini Dizi: oyunun hikâyesini anlatan 10 bölüm. Her bölüm izlenince küçük bir ödül, bölüm başına bir kez. Eylem: series.watch {ep}"
+   },
+   {
+    "dosya": "shared/modes.js",
+    "aciklama": "Savaş modları. Her mod iki işlev verir:"
+   },
+   {
+    "dosya": "shared/nobet.js",
+    "aciklama": "Kristal Nöbeti (19 Kas; 2. sürüm): iki ırkın, 15 dakika boyunca dalga dalga gelen yaratıklara karşı Sönmüş Mabet'in"
+   },
+   {
+    "dosya": "shared/npc.js",
+    "aciklama": "Yemin Pazarı NPC'leri: Tüccar (akçeyle temel silah, zırh ve malzeme satar; çantadaki eşyayı alır). Öğreticide ilk alışveriş"
+   },
+   {
+    "dosya": "shared/nufus.js",
+    "aciklama": "Nüfus dengesi: ırk sayımı, azınlık ırkına \"Bereket\" ve kalabalık ırka yeni hesap kapama."
+   },
+   {
+    "dosya": "shared/paths.js",
+    "aciklama": "Uzmanlık yolları: her sınıfın iki yolu, yolun seçildiği seviye ve yol değiştirme bedeli. Saf tablolar ve hesaplar;"
+   },
+   {
+    "dosya": "shared/pay.js",
+    "aciklama": "Gerçek parayla satın alma: ürün kataloğu ve oyuncu kaydına etkisi (yakut verme, Yakut Kartı, iade)."
+   },
+   {
+    "dosya": "shared/promo.js",
+    "aciklama": "Promosyon kodları: her kod hesap başına bir kez kullanılır (p.promo[kod özeti] = zaman). Kodlar düz yazı olarak"
+   },
+   {
+    "dosya": "shared/pvp.js",
+    "aciklama": "\"pvp\" paketi: meydan eşleştirmesi ve sezonu, zorluk kademeleri, aylık Yeraltı Ocağı, haftalık zindan düzenleri ve"
+   },
+   {
+    "dosya": "shared/pvpcalc.js",
+    "aciklama": "\"pvp\" paketinin bölge, eşya ve yetenek tablolarına dayanan saf hesapları: Nöbet (uzun oto-farm) birikimi ve"
+   },
+   {
+    "dosya": "shared/pvpops.js",
+    "aciklama": "\"pvp\" paketinin kuralları (istemciye sunulmaz): eşya seviyesine göre eşleştirme, meydan sezonu (sıralama dökümü, ödül"
+   },
+   {
+    "dosya": "shared/rankper.js",
+    "aciklama": "Dönemlik sıralamalar (günlük, haftalık, aylık; UTC): dönem puanı, dönem sonu ödülü ve birincilere çerçeve."
+   },
+   {
+    "dosya": "shared/realm.js",
+    "aciklama": "Irk ve diyar: Irk Hazinesi, Başbuğ seçimi, ulufe, bölge hâkimiyeti, gün/gece ve hava."
+   },
+   {
+    "dosya": "shared/realmops.js",
+    "aciklama": "Irk ve diyar kuralları: Irk Hazinesi, Başbuğ seçimi, ulufe ve ulufe defteri, ferman, bölge hâkimiyeti."
+   },
+   {
+    "dosya": "shared/reasons.js",
+    "aciklama": "Şikâyet nedenleri (anahtar → oyuncuya gösterilen ad). İstemciye de sunulur: şikâyet penceresi buradan okur,"
+   },
+   {
+    "dosya": "shared/reklam.js",
+    "aciklama": "Ödüllü reklam yerleri: günlük sınırlar, izlemeler arası bekleme ve ödüller. Kural tarafıdır; reklamın kendisi"
+   },
+   {
+    "dosya": "shared/report.js",
+    "aciklama": "Savaş raporu: savaş motorunun olay akışından (battle.js: events) birim başına toplamları ve tur tur kaydı üretir."
+   },
+   {
+    "dosya": "shared/reportops.js",
+    "aciklama": "Savaş raporlarının saklanması ve okunması. Rapor oyuncu kaydına yazılmaz (her yanıtla taşınmasın): paylaşılan depoda"
+   },
+   {
+    "dosya": "shared/rng.js",
+    "aciklama": "Belirlenimci rastgele sayı üreteci (mulberry32). Savaş motoru yalnızca bunu kullanır:"
+   },
+   {
+    "dosya": "shared/roster.js",
+    "aciklama": "Tek karakter (sürüm 12). Oyuncu kaydı (p) bir KARAKTERDİR; karakterin tek kahramanı vardır ve kimliği sabittir: MAIN ('h0')."
+   },
+   {
+    "dosya": "shared/rules.js",
+    "aciklama": "Arayüzün oyuncuya SAYIYLA söylediği mod kuralları (ödül, bedel, puan, oran). Tek kaynak burasıdır: sunucu kuralları"
+   },
+   {
+    "dosya": "shared/rutbe.js",
+    "aciklama": "Şan rütbeleri: ömür boyu kazanılan Şan'a göre (harcamak rütbeyi düşürmez). Adın yanında nişan olarak görünür."
+   },
+   {
+    "dosya": "shared/sandik.js",
+    "aciklama": "Çevrimdışı ödül sandığı: oyuncu yokken dolar, 12 saatte tamamen dolar (daha fazla birikmez). Eylem: ofc.claim"
+   },
+   {
+    "dosya": "shared/settings.js",
+    "aciklama": "Oyuncu ayarlarının sunucuda saklanan bölümü (p.settings). Şimdilik yalnızca dil: sunucunun ürettiği metin (ileride"
+   },
+   {
+    "dosya": "shared/sinks.js",
+    "aciklama": "Akçe giderleri (paket \"rapor\"). Ekonomi modeli (tools/economy.js, docs/ekonomi.md) akçenin tek büyük gider kapısının"
+   },
+   {
+    "dosya": "shared/skills.js",
+    "aciklama": "Yetenek tablosu: 4 sınıf × 3 ağaç × 8 düğüm + temel saldırılar, başlangıç yetenekleri,"
+   },
+   {
+    "dosya": "shared/social.js",
+    "aciklama": "Sohbet denetimi ve arkadaşlık: susturma, spam ve yeni hesap sınırları, şikâyet, engel listesi, arkadaş istekleri."
+   },
+   {
+    "dosya": "shared/solo.js",
+    "aciklama": "Tek kahraman dengesi (sürüm 12). Modların kurduğu dalgalar dört kişilik partiye göreydi; savaş başlarken (modes.js:"
+   },
+   {
+    "dosya": "shared/state.js",
+    "aciklama": "Oyuncu kaydının biçimi: yeni hesap, eski kayıtları güncelleme, enerji ve günlük/haftalık sıfırlamalar."
+   },
+   {
+    "dosya": "shared/util.js",
+    "aciklama": "Kural modüllerinin ortak yardımcıları: hata türü, doğrulama, çantaya ekleme, ganimet verme, günlük sayaçlar."
+   },
+   {
+    "dosya": "shared/world.js",
+    "aciklama": "Oyuncular arası (paylaşılan) işlemler: posta, pazar, meydan listesi, klan, kuşatma, sefer, akın tablosu."
+   },
+   {
+    "dosya": "shared/yemin.js",
+    "aciklama": "Ortak baskın \"Taş Yemini\" (20 Kas, kullanıcı): haftada bir, iki halktan kahramanların aynı grupta girdiği tek baskın."
+   },
+   {
+    "dosya": "shared/zafer.js",
+    "aciklama": "Zafer Anıtı: son halk savaşının sonucu ve günlük ödül (P28; şartname TALIMAT.md §5.1–5.2)."
+   },
+   {
+    "dosya": "shared/zones.js",
+    "aciklama": "Bölgeler, yaratıklar ve stage üretimi. Bir bölge 5 bloktur: 4 yaratık aşaması + 1 kapı aşaması (5, 10, 15, 20, 25)."
+   }
+  ]
+ },
+ "varlik_yollari": {
+  "klasorler": {
+   "sahneler": {
+    "dosya": 29,
+    "bayt": 4026130
+   },
+   "interiors": {
+    "dosya": 13,
+    "bayt": 1831694
+   },
+   "img": {
+    "dosya": 69,
+    "bayt": 8247498
+   },
+   "audio": {
+    "dosya": 4,
+    "bayt": 9173404
+   },
+   "video": {
+    "dosya": 1,
+    "bayt": 45
+   },
+   "models": {
+    "dosya": 52,
+    "bayt": 10471949
+   },
+   "css": {
+    "dosya": 42,
+    "bayt": 1849498
+   },
+   "js": {
+    "dosya": 151,
+    "bayt": 49594804
+   },
+   "shared": {
+    "dosya": 73,
+    "bayt": 936666
+   }
+  },
+  "gomulu_gorsel_js": [
+   {
+    "dosya": "js/amblem-png.js",
+    "bayt": 164178,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/gom.py) — elle düzenleme. GPT G8 Korant Online logosu ve halk amblemleri"
+   },
+   {
+    "dosya": "js/b2d-ocak.js",
+    "bayt": 3119034,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/b2d-gom.py) — elle düzenleme. ocak kahramanları (7 poz, 384x512, zemin alttan 64/1448) + yaratıklar (3 poz + portre, 384x384, zemi"
+   },
+   {
+    "dosya": "js/b2d-sancak.js",
+    "bayt": 3105988,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/b2d-gom.py) — elle düzenleme. sancak kahramanları (7 poz, 384x512, zemin alttan 64/1448) + yaratıklar (3 poz + portre, 384x384, ze"
+   },
+   {
+    "dosya": "js/b2d-y1.js",
+    "bayt": 2033197,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/b2d-g3-gom.py) — elle düzenleme. G3 bolge1_vahran: yaratıklar (3 poz + portre, 384) ve bosslar (2 evre × 3 poz + portre, 448)"
+   },
+   {
+    "dosya": "js/b2d-y2.js",
+    "bayt": 2717602,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/b2d-g3-gom.py) — elle düzenleme. G3 bolge2_kul_gecidi: yaratıklar (3 poz + portre, 384) ve bosslar (2 evre × 3 poz + portre, 448)"
+   },
+   {
+    "dosya": "js/b2d-y3.js",
+    "bayt": 2738435,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/b2d-g3-gom.py) — elle düzenleme. G3 bolge3_kizil_bahar: yaratıklar (3 poz + portre, 384) ve bosslar (2 evre × 3 poz + portre, 448)"
+   },
+   {
+    "dosya": "js/b2d-y4.js",
+    "bayt": 2447897,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/b2d-g3-gom.py) — elle düzenleme. G3 bolge4_sisli_cukur: yaratıklar (3 poz + portre, 384) ve bosslar (2 evre × 3 poz + portre, 448)"
+   },
+   {
+    "dosya": "js/b2d-yb.js",
+    "bayt": 2223668,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/b2d-g3-gom.py) — elle düzenleme. G3 ana_bosslar: yaratıklar (3 poz + portre, 384) ve bosslar (2 evre × 3 poz + portre, 448)"
+   },
+   {
+    "dosya": "js/esya-png-veri.js",
+    "bayt": 674948,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (esya-png.js'ten ayrıldı, P26 O15) — elle düzenleme. GPT Paket 2 eşya simgeleri (WebP base64)."
+   },
+   {
+    "dosya": "js/esya-png.js",
+    "bayt": 10395,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/esya-gom.py) — elle düzenleme. GPT Paket 2 eşya simgeleri (VAHRAN Çanta ve Kervan)."
+   },
+   {
+    "dosya": "js/esya2-silah.js",
+    "bayt": 1099111,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (tools/simge-paketle.py) — elle düzenleme. 213 boyalı silah simgesi, 128 px WebP, base64 (ön eksiz)."
+   },
+   {
+    "dosya": "js/esya2-taki.js",
+    "bayt": 1448596,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (tools/simge-paketle.py) — elle düzenleme. 209 boyalı taki simgesi, 128 px WebP, base64 (ön eksiz)."
+   },
+   {
+    "dosya": "js/esya2-zirh.js",
+    "bayt": 2080287,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (tools/simge-paketle.py) — elle düzenleme. 280 boyalı zirh simgesi, 128 px WebP, base64 (ön eksiz)."
+   },
+   {
+    "dosya": "js/glif-png.js",
+    "bayt": 94115,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/gom.py) — elle düzenleme. Gemini M3 C sınıfı arayüz glifleri (96×96 tek renk; CSS maskesiyle boyanır)"
+   },
+   {
+    "dosya": "js/gorsel-png.js",
+    "bayt": 4357812,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/gom.py) — elle düzenleme. GPT G4 NPC portreleri (ad, ad-yuz) + G5 sahneler ve Mini Dizi kapakları + G6 yetenek simgeleri "
+   },
+   {
+    "dosya": "js/grafik5-png.js",
+    "bayt": 132265,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/p345-gom.py) — elle düzenleme. GPT Paket 5 nesne grafikleri (örs, pusula, defter, mektup, makara, fener, flamalar, Kader "
+   },
+   {
+    "dosya": "js/hikaye-png.js",
+    "bayt": 1085731,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/hikaye-gom.py) — elle düzenleme. GPT 2340 teslimi: kral portreleri, dört hikâye karesi"
+   },
+   {
+    "dosya": "js/hub2d-data.js",
+    "bayt": 40682,
+    "ilk_satir": "// OTOMATİK ÜRETİLDİ (_tasarim/araclar/sahne.py): tek parça boyanmış GPT şehir sahneleri (21 Kas)."
+   },
+   {
+    "dosya": "js/karakter-png-veri.js",
+    "bayt": 1770839,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (karakter-png.js'ten ayrıldı, P26 O15) — elle düzenleme. 16 tam boy + 20 yüz portresi (WebP base64)."
+   },
+   {
+    "dosya": "js/karakter-png.js",
+    "bayt": 2973,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/karakter-gom.py) — elle düzenleme. GPT \"VAHRAN Claude Devir\" karakter paketi:"
+   },
+   {
+    "dosya": "js/kd-png.js",
+    "bayt": 1907909,
+    "ilk_satir": "// Kül ve Demir arayüz görselleri (tools/kd-paketle.py ile üretildi; elle düzenleme). Anahtar → WebP base64 (data: öneki yok)."
+   },
+   {
+    "dosya": "js/npc-kare-png.js",
+    "bayt": 28915,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/p34-gom.py) — elle düzenleme. P34-05 (Gemini): G4 NPC portrelerinin göz kırpma / konuşma kareleri."
+   },
+   {
+    "dosya": "js/p23-anaekran-png.js",
+    "bayt": 81241,
+    "ilk_satir": "// OTOMATİK: tools/p23-anaekran-paketle.py. P23 ana ekran çerçeveleri, simgeler, menü glifleri (WebP base64)."
+   },
+   {
+    "dosya": "js/p23-giris-png.js",
+    "bayt": 95473,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (tools/p23-giris-paketle.py) — elle düzenleme. P23 A1 işaret, A3 başlık levhası, A2 zemin mührü (WebP, düz base64)."
+   },
+   {
+    "dosya": "js/p23-maden-png.js",
+    "bayt": 1266211,
+    "ilk_satir": "// P23 şehir görselleri (tools/p23-sehir-paketle.py ile üretildi; elle düzenleme). Anahtar → WebP base64 (data: öneki yok)."
+   },
+   {
+    "dosya": "js/p23-npc-png.js",
+    "bayt": 405748,
+    "ilk_satir": "// P23 şehir görselleri (tools/p23-sehir-paketle.py ile üretildi; elle düzenleme). Anahtar → WebP base64 (data: öneki yok)."
+   },
+   {
+    "dosya": "js/p23-profil-png.js",
+    "bayt": 49995,
+    "ilk_satir": "// OTOMATİK: tools/p23-anaekran-paketle.py. P23 profil arka planları (tembel yüklenir)."
+   },
+   {
+    "dosya": "js/p23-sehir2-ocak.js",
+    "bayt": 241406,
+    "ilk_satir": "// Şehir2 görsel paketi (otomatik üretim: tools/anaekran-kes.py)"
+   },
+   {
+    "dosya": "js/p23-sehir2-sancak.js",
+    "bayt": 284394,
+    "ilk_satir": "// Şehir2 görsel paketi (otomatik üretim: tools/anaekran-kes.py)"
+   },
+   {
+    "dosya": "js/p23-sunucu-png.js",
+    "bayt": 493671,
+    "ilk_satir": "// Sunucu seçim ekranı görselleri (tools/p23-sunucu-paketle.py); düz WebP base64"
+   },
+   {
+    "dosya": "js/p23-taht-png.js",
+    "bayt": 87281,
+    "ilk_satir": "// P23 şehir görselleri (tools/p23-sehir-paketle.py ile üretildi; elle düzenleme). Anahtar → WebP base64 (data: öneki yok)."
+   },
+   {
+    "dosya": "js/p24-ekran-png.js",
+    "bayt": 1696582,
+    "ilk_satir": "// P24 ekran paketi (tools/p24-ekran-paketle.py ile üretildi; elle düzenleme). Anahtar → WebP base64 (data: öneki yok). Yükleme: ui-kaplama.js p24Img."
+   },
+   {
+    "dosya": "js/p26-orman-png.js",
+    "bayt": 503652,
+    "ilk_satir": "// OTOMATİK: tools/p26-orman-paketle.py üretir (kaynak P26 paket100/egitim_ormani). Elle düzenleme."
+   },
+   {
+    "dosya": "js/p26-savas-png.js",
+    "bayt": 727702,
+    "ilk_satir": "// P26 savaş görselleri (tools/p26-savas-paketle.py üretir; elle düzenleme). Tembel yüklenir: yaratik2d.js p26Paket()."
+   },
+   {
+    "dosya": "js/p34-katman-png.js",
+    "bayt": 550327,
+    "ilk_satir": "// OTOMATİK (_tasarim/araclar/p34-gom.py) — elle düzenleme. P34-02/03/04 (GPT): başkent, Yemin Pazarı ve Klan Obası hareket katmanları."
+   },
+   {
+    "dosya": "js/portre-png.js",
+    "bayt": 670070,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/p345-gom.py) — elle düzenleme. GPT Paket 3 kahraman portreleri (sınıf × halk)."
+   },
+   {
+    "dosya": "js/savas-arka-png.js",
+    "bayt": 4092116,
+    "ilk_satir": "// OTOMATİK: _tasarim/araclar/savas-arka-gom.py üretir (kaynak _tasarim/gelen/savas-arka/webp). Elle düzenleme."
+   },
+   {
+    "dosya": "js/skill-icons.js",
+    "bayt": 262537,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR — elle düzenleme. Kaynak: tools/skill-icons.map.json; üretim: node tools/build-skill-icons.js <game-icons deposu>"
+   },
+   {
+    "dosya": "js/ui-acilis.js",
+    "bayt": 8286,
+    "ilk_satir": "// Açılış ekranı (Korant Online, 19 Kas): yükleme çubuğu %100 olunca altta sunucu seçimi ve giriş düğmesi çıkar."
+   },
+   {
+    "dosya": "js/vfx-png.js",
+    "bayt": 2170446,
+    "ilk_satir": "// OTOMATİK ÜRETİLİR (_tasarim/araclar/p345-gom.py) — elle düzenleme. GPT Paket 4 savaş efekt şeritleri (12 kare × 24 fps); 23 Kas: 10 şerit GPT G7 (vfx-g7-gom."
+   }
+  ],
+  "ses": [
+   "audio/arka-plan.mp3",
+   "audio/boss.mp3",
+   "audio/intro.mp3",
+   "audio/kizil-goz.mp3"
+  ],
+  "not_": "Görsellerin çoğu WebP base64 olarak js/*-png.js, js/b2d-*.js, js/*-veri.js içine gömülüdür; çıkarma aracı _tasarim/araclar/paket-26kas/cikar.py"
+ },
+ "karsilastirma_115_226": {
+  "once": "P33 (sürüm 41) çekim turu: 226 çekim, 115 benzersiz ekran kimliği (Elentha 112, Kragmir 114). Kullanıcının andığı \"157 ekran\" sayısı hiçbir kayıtla doğrulanamadı.",
+  "simdi": "Kaynak kodda geliştirici araçları hariç 208 ekran açan eylem; çekim turunda 115 benzersiz ekran kimliği. Bu iki sayı farklı şeyleri sayar (eylem ≠ benzersiz görüntü: birçok eylem aynı pencereye/sekmeye gider, parametreli eylemler bağlam ister).",
+  "hedefe_uydurma": "yok"
+ }
+}

@@ -1,0 +1,337 @@
+{
+  "sahne": "baskent-kragmir",
+  "tuval": [
+    1600,
+    893
+  ],
+  "elemanlar": [
+    {
+      "kimlik": "sancak-01",
+      "tur": "sancak",
+      "x": 418,
+      "y": 305,
+      "w": 207,
+      "h": 147,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-01_00.png",
+        "sancak-01_01.png",
+        "sancak-01_02.png",
+        "sancak-01_03.png",
+        "sancak-01_04.png",
+        "sancak-01_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-02",
+      "tur": "sancak",
+      "x": 843,
+      "y": 43,
+      "w": 65,
+      "h": 128,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-02_00.png",
+        "sancak-02_01.png",
+        "sancak-02_02.png",
+        "sancak-02_03.png",
+        "sancak-02_04.png",
+        "sancak-02_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-03",
+      "tur": "sancak",
+      "x": 702,
+      "y": 132,
+      "w": 54,
+      "h": 117,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-03_00.png",
+        "sancak-03_01.png",
+        "sancak-03_02.png",
+        "sancak-03_03.png",
+        "sancak-03_04.png",
+        "sancak-03_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-04",
+      "tur": "sancak",
+      "x": 994,
+      "y": 133,
+      "w": 55,
+      "h": 116,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-04_00.png",
+        "sancak-04_01.png",
+        "sancak-04_02.png",
+        "sancak-04_03.png",
+        "sancak-04_04.png",
+        "sancak-04_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "sancak-05",
+      "tur": "sancak",
+      "x": 510,
+      "y": 166,
+      "w": 43,
+      "h": 99,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "sancak-05_00.png",
+        "sancak-05_01.png",
+        "sancak-05_02.png",
+        "sancak-05_03.png",
+        "sancak-05_04.png",
+        "sancak-05_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "lav-01",
+      "tur": "lav",
+      "x": 270,
+      "y": 195,
+      "w": 86,
+      "h": 113,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "lav-01_00.png",
+        "lav-01_01.png",
+        "lav-01_02.png",
+        "lav-01_03.png",
+        "lav-01_04.png",
+        "lav-01_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "lav-02",
+      "tur": "lav",
+      "x": 576,
+      "y": 0,
+      "w": 159,
+      "h": 184,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "lav-02_00.png",
+        "lav-02_01.png",
+        "lav-02_02.png",
+        "lav-02_03.png",
+        "lav-02_04.png",
+        "lav-02_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "duman-01",
+      "tur": "duman",
+      "x": 300,
+      "y": 34,
+      "w": 255,
+      "h": 170,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "normal",
+      "dongu": true,
+      "dosyalar": [
+        "duman-01_00.png",
+        "duman-01_01.png",
+        "duman-01_02.png",
+        "duman-01_03.png",
+        "duman-01_04.png",
+        "duman-01_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Periyodik yer değiştirme taslağı.",
+      "not": "Kaynak piksel koordinatlarında yerel döngü."
+    },
+    {
+      "kimlik": "alev-01",
+      "tur": "alev",
+      "x": 453,
+      "y": 309,
+      "w": 57,
+      "h": 46,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "dosyalar": [
+        "alev-01_00.png",
+        "alev-01_01.png",
+        "alev-01_02.png",
+        "alev-01_03.png",
+        "alev-01_04.png",
+        "alev-01_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Teknik taslak; alevler normal karışımda, screen dönüşümü bekliyor.",
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-02",
+      "tur": "alev",
+      "x": 672,
+      "y": 311,
+      "w": 35,
+      "h": 33,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "dosyalar": [
+        "alev-02_00.png",
+        "alev-02_01.png",
+        "alev-02_02.png",
+        "alev-02_03.png",
+        "alev-02_04.png",
+        "alev-02_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Teknik taslak; alevler normal karışımda, screen dönüşümü bekliyor.",
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-03",
+      "tur": "alev",
+      "x": 1038,
+      "y": 313,
+      "w": 30,
+      "h": 31,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "dosyalar": [
+        "alev-03_00.png",
+        "alev-03_01.png",
+        "alev-03_02.png",
+        "alev-03_03.png",
+        "alev-03_04.png",
+        "alev-03_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Teknik taslak; alevler normal karışımda, screen dönüşümü bekliyor.",
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-04",
+      "tur": "alev",
+      "x": 194,
+      "y": 461,
+      "w": 242,
+      "h": 133,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "dosyalar": [
+        "alev-04_00.png",
+        "alev-04_01.png",
+        "alev-04_02.png",
+        "alev-04_03.png",
+        "alev-04_04.png",
+        "alev-04_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Teknik taslak; alevler normal karışımda, screen dönüşümü bekliyor.",
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-05",
+      "tur": "alev",
+      "x": 767,
+      "y": 540,
+      "w": 33,
+      "h": 41,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "dosyalar": [
+        "alev-05_00.png",
+        "alev-05_01.png",
+        "alev-05_02.png",
+        "alev-05_03.png",
+        "alev-05_04.png",
+        "alev-05_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Teknik taslak; alevler normal karışımda, screen dönüşümü bekliyor.",
+      "not": "Kare 00 katkısız ışık; screen."
+    },
+    {
+      "kimlik": "alev-06",
+      "tur": "alev",
+      "x": 780,
+      "y": 267,
+      "w": 172,
+      "h": 40,
+      "kare": 6,
+      "fps": 10,
+      "karisim": "screen",
+      "dongu": true,
+      "dosyalar": [
+        "alev-06_00.png",
+        "alev-06_01.png",
+        "alev-06_02.png",
+        "alev-06_03.png",
+        "alev-06_04.png",
+        "alev-06_05.png"
+      ],
+      "zorunlu": true,
+      "not_": "Teknik taslak; alevler normal karışımda, screen dönüşümü bekliyor.",
+      "not": "Kare 00 katkısız ışık; screen."
+    }
+  ],
+  "atlananlar": [
+    {
+      "tur": "lav",
+      "gerekce": "Sağ uzak lav kesin ayrıştırılmadı."
+    }
+  ]
+}
