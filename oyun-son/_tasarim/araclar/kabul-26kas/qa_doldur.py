@@ -26,13 +26,14 @@ for t in T:
     i = t['test_id']
     if i.startswith('UI-'):
         r = HALK[t['halk']]; ad = t['ekran']; d = cek[r]
-        png = os.path.join(SON, f'cek115-{r}', ad + '.png')
+        nm = ad if os.path.exists(os.path.join(SON, f'cek115-{r}', ad + '.png')) else 'C-' + ad
+        png = os.path.join(SON, f'cek115-{r}', nm + '.png')
         png = png if os.path.exists(png) else None
-        o = (d or {}).get('olcumler', {}).get(ad)
+        o = (d or {}).get('olcumler', {}).get(nm)
         t['durum'], t['gerceklesen'] = karar(o, png); t['kanit'] = rel(png)
         sk = []
         for s in t.get('sekmeler') or []:
-            sp = os.path.join(SON, f'cek115-{r}', f'{ad}~{s}.png')
+            sp = os.path.join(SON, f'cek115-{r}', f'{nm}~{s}.png')
             if os.path.exists(sp): sk.append(rel(sp))
         if sk: t['kanit_sekmeler'] = sk
         if not d: t['durum'], t['gerceklesen'] = 'TEST_EDILMEDI', 'çekim turu tamamlanmadı'

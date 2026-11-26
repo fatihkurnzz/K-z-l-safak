@@ -31,7 +31,7 @@ const log = []; const L = (n, d) => { log.push(n + '\t' + d); console.log(n, d);
   const DENETCI = require('./denetci.js');
   const olc = async () => ({ ...(await p.evaluate(DENETCI)), tur: await p.evaluate(() => document.querySelector('#p28bina') ? 'bina' : !document.querySelector('#win').hidden ? 'pencere' : !document.querySelector('#modal').hidden ? 'modal' : 'yok'), sekme: await p.evaluate(() => [...document.querySelectorAll('#win:not([hidden]) nav.tabs button')].map(x => x.dataset.id)) });
   const sonuc = [];
-  await p.goto('http://localhost:8765/' + (process.env.Q || '?gfx=high&store=1')); await p.waitForTimeout(1200); await shot('A01-yukleme'); L('A01-yukleme', 'ok');
+  await p.goto('http://localhost:' + (process.env.PORT || 8765) + '/' + (process.env.Q || '?gfx=high&store=1')); await p.waitForTimeout(1200); await shot('A01-yukleme'); L('A01-yukleme', 'ok');
   await p.waitForSelector('.sv-go', { timeout: 20000 }); await p.waitForTimeout(1200); await shot('A02-sunucu-secimi'); L('A02-sunucu-secimi', 'ok');
   await tk('.sv-go'); await p.waitForTimeout(1500); await p.waitForSelector('[data-o="race"]', { timeout: 20000 }); await p.waitForTimeout(1500);
   await shot('A03-olustur-acilis'); L('A03-olustur-acilis', 'ok');
