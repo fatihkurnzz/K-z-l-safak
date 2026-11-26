@@ -48,7 +48,9 @@ export function binaKapat() {
   hooks.sfx?.('modalClose'); hooks.hud();
 }
 /** Hangi bina açık: kök sınıf ya da null. */
-export const binaAcik = () => (ov ? ov.className.replace('korant-modal ', '') : null);
+// P34 düzeltme (P33 gerilemesi): iç mekân kabuğu kök öğeye 'icm-var' sınıfı ekleyince className karşılaştırması tutmuyordu →
+// Han/Ahır işlem sonrası yeniden çizilmiyor, Zafer Anıtı 'Yükleniyor…'da kalıyordu. Artık yalnız korant-modal-* sınıfı döner.
+export const binaAcik = () => (ov ? [...ov.classList].find(c => c.startsWith('korant-modal-')) || null : null);
 ACT.binaKapat = binaKapat;
 // Esc ve geri: katman açıksa yalnız onu kapatır (alttaki pencere/modal açık kalır)
 window.addEventListener('keydown', e => { if (ov && e.key === 'Escape') { e.stopImmediatePropagation(); binaKapat(); } }, true);

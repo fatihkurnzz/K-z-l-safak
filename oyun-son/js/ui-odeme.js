@@ -136,6 +136,7 @@ async function settled(order, r, proof, quiet) {
   if (!quiet) toast(r.status === 'refunded' || r.status === 'chargeback' ? 'Bu satın alma iade edilmiş.' : 'Satın alma tamamlanamadı.');
 }
 ACT.payBuy = async d => {
+  if (LOCAL) return; // G2-06 (P34): ilk sürüm yerel kayıt, gerçek parayla satın alma yok (kullanıcı kararı); sağlayıcı zaten yok, açık koruma
   const D = cur()?.data?.products ? cur().data : Y.D, P = D?.products?.find(x => x.sku === d.sku), prov = D && provOf(D);
   if (!P || !prov || Y.busy) return;
   Y.busy = P.sku; redraw(); starterRedraw();

@@ -2,7 +2,7 @@
  {
   "eylem": "icmGizle",
   "dosya": "js/ic-mekan.js",
-  "satir": 117,
+  "satir": 135,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -13,7 +13,7 @@
  {
   "eylem": "icmAc",
   "dosya": "js/ic-mekan.js",
-  "satir": 118,
+  "satir": 136,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -24,7 +24,7 @@
  {
   "eylem": "icmCik",
   "dosya": "js/ic-mekan.js",
-  "satir": 119,
+  "satir": 137,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -49,7 +49,7 @@
  {
   "eylem": "binaKapat",
   "dosya": "js/ui-ahir.js",
-  "satir": 50,
+  "satir": 52,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -60,7 +60,7 @@
  {
   "eylem": "ahir",
   "dosya": "js/ui-ahir.js",
-  "satir": 95,
+  "satir": 97,
   "acar": [
    "binaAc"
   ],
@@ -73,7 +73,7 @@
  {
   "eylem": "ahirAc",
   "dosya": "js/ui-ahir.js",
-  "satir": 97,
+  "satir": 99,
   "acar": [
    "toast"
   ],
@@ -83,12 +83,12 @@
   ],
   "parametre": true,
   "dev": false,
-  "ozet": "ACT.ahirAc = async d => { const r = await run('ahir.unlock', { id: d.id, pay: d.pay }); if (r) toast(`${COMPANIONS[d.id].name} artık ahırında.`); ahirRedraw(); "
+  "ozet": "ACT.ahirAc = async d => { const r = await run('ahir.unlock', { id: d.id, pay: d.pay }); icmSoz(r ? 'basari' : 'basarisizlik'); if (r) toast(`${COMPANIONS[d.id]."
  },
  {
   "eylem": "ahirKusan",
   "dosya": "js/ui-ahir.js",
-  "satir": 99,
+  "satir": 101,
   "acar": [
    "toast"
   ],
@@ -98,12 +98,12 @@
   ],
   "parametre": true,
   "dev": false,
-  "ozet": "ACT.ahirKusan = async d => { const r = await run('ahir.equip', { id: d.id }); if (r) toast(r.active ? `${COMPANIONS[d.id].name} yanında savaşacak.` : `${COMPANI"
+  "ozet": "ACT.ahirKusan = async d => { const r = await run('ahir.equip', { id: d.id }); icmSoz(r ? 'basari' : 'basarisizlik'); if (r) toast(r.active ? `${COMPANIONS[d.id]"
  },
  {
   "eylem": "ahirBesle",
   "dosya": "js/ui-ahir.js",
-  "satir": 101,
+  "satir": 103,
   "acar": [
    "toast"
   ],
@@ -113,7 +113,7 @@
   ],
   "parametre": true,
   "dev": false,
-  "ozet": "ACT.ahirBesle = async d => { const r = await run('ahir.feed', { id: d.id }); if (r) toast(r.up ? `${COMPANIONS[d.id].name} seviye atladı: Sv. ${r.lv}` : `${COMP"
+  "ozet": "ACT.ahirBesle = async d => { const r = await run('ahir.feed', { id: d.id }); icmSoz(r ? 'basari' : 'basarisizlik'); if (r) toast(r.up ? `${COMPANIONS[d.id].name"
  },
  {
   "eylem": "quests",
@@ -223,7 +223,7 @@
  {
   "eylem": "aySetGfx",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 89,
+  "satir": 94,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -234,7 +234,7 @@
  {
   "eylem": "ayMotion",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 90,
+  "satir": 95,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -243,9 +243,20 @@
   "ozet": "ACT.ayMotion = () => { setMotion(!motionLess()); redraw(); };"
  },
  {
+  "eylem": "ayP33",
+  "dosya": "js/ui-ayarlar.js",
+  "satir": 96,
+  "acar": [],
+  "okuma": [],
+  "yazma": [],
+  "parametre": true,
+  "dev": false,
+  "ozet": "ACT.ayP33 = d => { const on = { canli: !AYAR.canli, efekt: !AYAR.efektAz, fps: !AYAR.fps30, pil: !AYAR.pil }[d.k]; if (on === undefined) return; ayarla(d.k, d.k"
+ },
+ {
   "eylem": "ayMute",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 102,
+  "satir": 108,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -256,7 +267,7 @@
  {
   "eylem": "ayTest",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 103,
+  "satir": 109,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -267,7 +278,7 @@
  {
   "eylem": "ayLang",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 126,
+  "satir": 132,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -278,7 +289,7 @@
  {
   "eylem": "ayNotifs",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 136,
+  "satir": 142,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -289,7 +300,7 @@
  {
   "eylem": "ayCopy",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 150,
+  "satir": 156,
   "acar": [
    "toast"
   ],
@@ -302,7 +313,7 @@
  {
   "eylem": "ayEmek",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 151,
+  "satir": 157,
   "acar": [
    "showModal"
   ],
@@ -315,7 +326,7 @@
  {
   "eylem": "ayProfile",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 155,
+  "satir": 161,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -326,7 +337,7 @@
  {
   "eylem": "ayFragman",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 156,
+  "satir": 162,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -337,7 +348,7 @@
  {
   "eylem": "settings",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 185,
+  "satir": 191,
   "acar": [
    "openWin"
   ],
@@ -350,7 +361,7 @@
  {
   "eylem": "drawer",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 190,
+  "satir": 196,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -361,7 +372,7 @@
  {
   "eylem": "gfx",
   "dosya": "js/ui-ayarlar.js",
-  "satir": 197,
+  "satir": 203,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -1055,7 +1066,7 @@
  {
   "eylem": "dlgNext",
   "dosya": "js/ui-diyalog.js",
-  "satir": 39,
+  "satir": 74,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -1066,13 +1077,13 @@
  {
   "eylem": "dlgClose",
   "dosya": "js/ui-diyalog.js",
-  "satir": 40,
+  "satir": 75,
   "acar": [],
   "okuma": [],
   "yazma": [],
   "parametre": false,
   "dev": false,
-  "ozet": "ACT.dlgClose = () => { D.s = null; closeModal(); };"
+  "ozet": "ACT.dlgClose = () => { D.s = null; durdur(); closeModal(); };"
  },
  {
   "eylem": "worldInfo",
@@ -1521,7 +1532,7 @@
  {
   "eylem": "han",
   "dosya": "js/ui-han.js",
-  "satir": 44,
+  "satir": 45,
   "acar": [
    "binaAc"
   ],
@@ -1534,7 +1545,7 @@
  {
   "eylem": "hanIc",
   "dosya": "js/ui-han.js",
-  "satir": 46,
+  "satir": 47,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -1545,7 +1556,7 @@
  {
   "eylem": "hanOnay",
   "dosya": "js/ui-han.js",
-  "satir": 52,
+  "satir": 53,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -1556,7 +1567,7 @@
  {
   "eylem": "hanVazgec",
   "dosya": "js/ui-han.js",
-  "satir": 53,
+  "satir": 54,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -2966,7 +2977,7 @@
  {
   "eylem": "karaborsa",
   "dosya": "js/ui-karaborsa.js",
-  "satir": 37,
+  "satir": 38,
   "acar": [
    "openWin"
   ],
@@ -2981,7 +2992,7 @@
  {
   "eylem": "kbBuy",
   "dosya": "js/ui-karaborsa.js",
-  "satir": 47,
+  "satir": 48,
   "acar": [
    "confirmBox",
    "toast"
@@ -3771,7 +3782,7 @@
  {
   "eylem": "shop",
   "dosya": "js/ui-odeme.js",
-  "satir": 209,
+  "satir": 210,
   "acar": [
    "openWin"
   ],
@@ -3784,7 +3795,7 @@
  {
   "eylem": "shopBuy",
   "dosya": "js/ui-odeme.js",
-  "satir": 217,
+  "satir": 218,
   "acar": [
    "toast"
   ],
@@ -3797,7 +3808,7 @@
  {
   "eylem": "starterOpen",
   "dosya": "js/ui-odeme.js",
-  "satir": 251,
+  "satir": 252,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -3808,7 +3819,7 @@
  {
   "eylem": "starterLater",
   "dosya": "js/ui-odeme.js",
-  "satir": 252,
+  "satir": 253,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -3819,7 +3830,7 @@
  {
   "eylem": "friends",
   "dosya": "js/ui-odeme.js",
-  "satir": 292,
+  "satir": 293,
   "acar": [
    "openWin"
   ],
@@ -3834,7 +3845,7 @@
  {
   "eylem": "friendsMenu",
   "dosya": "js/ui-odeme.js",
-  "satir": 294,
+  "satir": 295,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -3845,7 +3856,7 @@
  {
   "eylem": "frAdd",
   "dosya": "js/ui-odeme.js",
-  "satir": 297,
+  "satir": 298,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -3858,7 +3869,7 @@
  {
   "eylem": "frAccept",
   "dosya": "js/ui-odeme.js",
-  "satir": 298,
+  "satir": 299,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -3871,7 +3882,7 @@
  {
   "eylem": "frDecline",
   "dosya": "js/ui-odeme.js",
-  "satir": 299,
+  "satir": 300,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -3884,7 +3895,7 @@
  {
   "eylem": "frCancel",
   "dosya": "js/ui-odeme.js",
-  "satir": 300,
+  "satir": 301,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -3897,7 +3908,7 @@
  {
   "eylem": "frRemove",
   "dosya": "js/ui-odeme.js",
-  "satir": 301,
+  "satir": 302,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -3910,7 +3921,7 @@
  {
   "eylem": "frRemoveAsk",
   "dosya": "js/ui-odeme.js",
-  "satir": 302,
+  "satir": 303,
   "acar": [
    "showModal"
   ],
@@ -3923,7 +3934,7 @@
  {
   "eylem": "blockAsk",
   "dosya": "js/ui-odeme.js",
-  "satir": 308,
+  "satir": 309,
   "acar": [
    "showModal"
   ],
@@ -3936,7 +3947,7 @@
  {
   "eylem": "block",
   "dosya": "js/ui-odeme.js",
-  "satir": 310,
+  "satir": 311,
   "acar": [
    "toast"
   ],
@@ -3951,7 +3962,7 @@
  {
   "eylem": "unblock",
   "dosya": "js/ui-odeme.js",
-  "satir": 311,
+  "satir": 312,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -3964,7 +3975,7 @@
  {
   "eylem": "msgMenu",
   "dosya": "js/ui-odeme.js",
-  "satir": 314,
+  "satir": 315,
   "acar": [
    "showModal"
   ],
@@ -3977,7 +3988,7 @@
  {
   "eylem": "quoteMsg",
   "dosya": "js/ui-odeme.js",
-  "satir": 318,
+  "satir": 319,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -3988,7 +3999,7 @@
  {
   "eylem": "reportAsk",
   "dosya": "js/ui-odeme.js",
-  "satir": 333,
+  "satir": 334,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -3999,7 +4010,7 @@
  {
   "eylem": "repReason",
   "dosya": "js/ui-odeme.js",
-  "satir": 334,
+  "satir": 335,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -4010,7 +4021,7 @@
  {
   "eylem": "repSend",
   "dosya": "js/ui-odeme.js",
-  "satir": 335,
+  "satir": 336,
   "acar": [
    "toast"
   ],
@@ -4572,7 +4583,7 @@
  {
   "eylem": "sesToggle",
   "dosya": "js/ui-ses.js",
-  "satir": 148,
+  "satir": 151,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -4947,7 +4958,7 @@
  {
   "eylem": "anvil",
   "dosya": "js/ui-town.js",
-  "satir": 39,
+  "satir": 40,
   "acar": [
    "openWin"
   ],
@@ -4960,7 +4971,7 @@
  {
   "eylem": "breakWin",
   "dosya": "js/ui-town.js",
-  "satir": 41,
+  "satir": 42,
   "acar": [
    "openWin"
   ],
@@ -4973,7 +4984,7 @@
  {
   "eylem": "reforge",
   "dosya": "js/ui-town.js",
-  "satir": 48,
+  "satir": 49,
   "acar": [
    "toast"
   ],
@@ -4986,7 +4997,7 @@
  {
   "eylem": "pick",
   "dosya": "js/ui-town.js",
-  "satir": 59,
+  "satir": 60,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -4997,7 +5008,7 @@
  {
   "eylem": "pickGrade",
   "dosya": "js/ui-town.js",
-  "satir": 60,
+  "satir": 61,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5008,7 +5019,7 @@
  {
   "eylem": "dismantle",
   "dosya": "js/ui-town.js",
-  "satir": 61,
+  "satir": 62,
   "acar": [
    "toast"
   ],
@@ -5021,7 +5032,7 @@
  {
   "eylem": "sell",
   "dosya": "js/ui-town.js",
-  "satir": 62,
+  "satir": 63,
   "acar": [
    "toast"
   ],
@@ -5034,7 +5045,7 @@
  {
   "eylem": "craft",
   "dosya": "js/ui-town.js",
-  "satir": 70,
+  "satir": 71,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5045,7 +5056,7 @@
  {
   "eylem": "mine",
   "dosya": "js/ui-town.js",
-  "satir": 73,
+  "satir": 74,
   "acar": [
    "openWin"
   ],
@@ -5058,7 +5069,7 @@
  {
   "eylem": "mineCollect",
   "dosya": "js/ui-town.js",
-  "satir": 85,
+  "satir": 86,
   "acar": [
    "toast"
   ],
@@ -5071,7 +5082,7 @@
  {
   "eylem": "mineUp",
   "dosya": "js/ui-town.js",
-  "satir": 88,
+  "satir": 89,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5082,7 +5093,7 @@
  {
   "eylem": "mineTrade",
   "dosya": "js/ui-town.js",
-  "satir": 89,
+  "satir": 90,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5093,7 +5104,7 @@
  {
   "eylem": "market",
   "dosya": "js/ui-town.js",
-  "satir": 134,
+  "satir": 138,
   "acar": [
    "openWin"
   ],
@@ -5109,7 +5120,7 @@
  {
   "eylem": "pazar",
   "dosya": "js/ui-town.js",
-  "satir": 139,
+  "satir": 143,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5120,7 +5131,7 @@
  {
   "eylem": "tuccar",
   "dosya": "js/ui-town.js",
-  "satir": 149,
+  "satir": 153,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5131,7 +5142,7 @@
  {
   "eylem": "npcSilah",
   "dosya": "js/ui-town.js",
-  "satir": 154,
+  "satir": 158,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5142,7 +5153,7 @@
  {
   "eylem": "npcZirh",
   "dosya": "js/ui-town.js",
-  "satir": 155,
+  "satir": 159,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5153,7 +5164,7 @@
  {
   "eylem": "npcTaki",
   "dosya": "js/ui-town.js",
-  "satir": 156,
+  "satir": 160,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5164,7 +5175,7 @@
  {
   "eylem": "tuccarSub",
   "dosya": "js/ui-town.js",
-  "satir": 158,
+  "satir": 162,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5175,7 +5186,7 @@
  {
   "eylem": "marketKindOpen",
   "dosya": "js/ui-town.js",
-  "satir": 159,
+  "satir": 163,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5186,7 +5197,7 @@
  {
   "eylem": "marketSub",
   "dosya": "js/ui-town.js",
-  "satir": 160,
+  "satir": 164,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5197,7 +5208,7 @@
  {
   "eylem": "marketKind",
   "dosya": "js/ui-town.js",
-  "satir": 161,
+  "satir": 165,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5208,7 +5219,7 @@
  {
   "eylem": "marketRar",
   "dosya": "js/ui-town.js",
-  "satir": 162,
+  "satir": 166,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5219,7 +5230,7 @@
  {
   "eylem": "marketCls",
   "dosya": "js/ui-town.js",
-  "satir": 163,
+  "satir": 167,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5230,7 +5241,7 @@
  {
   "eylem": "marketSort",
   "dosya": "js/ui-town.js",
-  "satir": 164,
+  "satir": 168,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5241,7 +5252,7 @@
  {
   "eylem": "marketPick",
   "dosya": "js/ui-town.js",
-  "satir": 165,
+  "satir": 169,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5252,7 +5263,7 @@
  {
   "eylem": "pzSet",
   "dosya": "js/ui-town.js",
-  "satir": 166,
+  "satir": 170,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5263,7 +5274,7 @@
  {
   "eylem": "marketSell",
   "dosya": "js/ui-town.js",
-  "satir": 167,
+  "satir": 171,
   "acar": [
    "toast"
   ],
@@ -5278,7 +5289,7 @@
  {
   "eylem": "marketBuy",
   "dosya": "js/ui-town.js",
-  "satir": 170,
+  "satir": 174,
   "acar": [
    "toast"
   ],
@@ -5293,7 +5304,7 @@
  {
   "eylem": "marketCancel",
   "dosya": "js/ui-town.js",
-  "satir": 171,
+  "satir": 175,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -5306,7 +5317,7 @@
  {
   "eylem": "tcSub",
   "dosya": "js/ui-town.js",
-  "satir": 233,
+  "satir": 237,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5317,7 +5328,7 @@
  {
   "eylem": "tcCls",
   "dosya": "js/ui-town.js",
-  "satir": 234,
+  "satir": 238,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5328,7 +5339,7 @@
  {
   "eylem": "tcBuy",
   "dosya": "js/ui-town.js",
-  "satir": 235,
+  "satir": 239,
   "acar": [
    "toast"
   ],
@@ -5338,12 +5349,12 @@
   ],
   "parametre": true,
   "dev": false,
-  "ozet": "ACT.tcBuy = async d => { const r = await run('npc.buy', { id: d.id }); if (!r) return; toast(r.mat ? 'Satın alındı.' : `${itemBase(r.b).name} çantana girdi.`); "
+  "ozet": "ACT.tcBuy = async d => { const r = await run('npc.buy', { id: d.id }); tezgahSoz(!!r); if (!r) return redraw(); toast(r.mat ? 'Satın alındı.' : `${itemBase(r.b)"
  },
  {
   "eylem": "tcPot",
   "dosya": "js/ui-town.js",
-  "satir": 236,
+  "satir": 240,
   "acar": [
    "toast"
   ],
@@ -5358,7 +5369,7 @@
  {
   "eylem": "tcPick",
   "dosya": "js/ui-town.js",
-  "satir": 237,
+  "satir": 241,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5369,7 +5380,7 @@
  {
   "eylem": "tcPickG",
   "dosya": "js/ui-town.js",
-  "satir": 238,
+  "satir": 242,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5380,7 +5391,7 @@
  {
   "eylem": "tcSell",
   "dosya": "js/ui-town.js",
-  "satir": 239,
+  "satir": 243,
   "acar": [
    "toast"
   ],
@@ -5390,12 +5401,12 @@
   ],
   "parametre": false,
   "dev": false,
-  "ozet": "ACT.tcSell = async () => { const r = await run('npc.sell', { ids: [...TV.pick] }); if (r) { TV.pick.clear(); toast(`+${fmt(r.akce)} akçe`); redraw(); } };"
+  "ozet": "ACT.tcSell = async () => { const r = await run('npc.sell', { ids: [...TV.pick] }); tezgahSoz(!!r); if (!r) redraw(); if (r) { TV.pick.clear(); toast(`+${fmt(r.a"
  },
  {
   "eylem": "tcPlain",
   "dosya": "js/ui-town.js",
-  "satir": 240,
+  "satir": 244,
   "acar": [
    "confirmBox",
    "toast"
@@ -5411,7 +5422,7 @@
  {
   "eylem": "iksir",
   "dosya": "js/ui-town.js",
-  "satir": 280,
+  "satir": 284,
   "acar": [
    "openWin"
   ],
@@ -5424,7 +5435,7 @@
  {
   "eylem": "ikScroll",
   "dosya": "js/ui-town.js",
-  "satir": 283,
+  "satir": 287,
   "acar": [
    "toast"
   ],
@@ -5439,7 +5450,7 @@
  {
   "eylem": "mail",
   "dosya": "js/ui-town.js",
-  "satir": 292,
+  "satir": 296,
   "acar": [
    "openWin"
   ],
@@ -5455,7 +5466,7 @@
  {
   "eylem": "mailTo",
   "dosya": "js/ui-town.js",
-  "satir": 325,
+  "satir": 329,
   "acar": [
    "ACT.tab"
   ],
@@ -5468,7 +5479,7 @@
  {
   "eylem": "mailSend",
   "dosya": "js/ui-town.js",
-  "satir": 326,
+  "satir": 330,
   "acar": [
    "toast"
   ],
@@ -5485,7 +5496,7 @@
  {
   "eylem": "mailOpen",
   "dosya": "js/ui-town.js",
-  "satir": 334,
+  "satir": 338,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5496,7 +5507,7 @@
  {
   "eylem": "mailBack",
   "dosya": "js/ui-town.js",
-  "satir": 335,
+  "satir": 339,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5507,7 +5518,7 @@
  {
   "eylem": "mailClaim",
   "dosya": "js/ui-town.js",
-  "satir": 336,
+  "satir": 340,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -5520,7 +5531,7 @@
  {
   "eylem": "hall",
   "dosya": "js/ui-town.js",
-  "satir": 339,
+  "satir": 343,
   "acar": [
    "openWin"
   ],
@@ -5533,7 +5544,7 @@
  {
   "eylem": "hallUp",
   "dosya": "js/ui-town.js",
-  "satir": 341,
+  "satir": 345,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5544,7 +5555,7 @@
  {
   "eylem": "wheel",
   "dosya": "js/ui-town.js",
-  "satir": 361,
+  "satir": 365,
   "acar": [
    "openWin"
   ],
@@ -5557,7 +5568,7 @@
  {
   "eylem": "wheelBack",
   "dosya": "js/ui-town.js",
-  "satir": 370,
+  "satir": 374,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5568,7 +5579,7 @@
  {
   "eylem": "spin",
   "dosya": "js/ui-town.js",
-  "satir": 371,
+  "satir": 375,
   "acar": [],
   "okuma": [],
   "yazma": [
@@ -5581,7 +5592,7 @@
  {
   "eylem": "devPremium",
   "dosya": "js/ui-town.js",
-  "satir": 380,
+  "satir": 384,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5592,7 +5603,7 @@
  {
   "eylem": "premium",
   "dosya": "js/ui-town.js",
-  "satir": 383,
+  "satir": 387,
   "acar": [
    "openWin"
   ],
@@ -5605,7 +5616,7 @@
  {
   "eylem": "premBuy",
   "dosya": "js/ui-town.js",
-  "satir": 397,
+  "satir": 401,
   "acar": [
    "confirmBox",
    "toast"
@@ -5619,7 +5630,7 @@
  {
   "eylem": "quests",
   "dosya": "js/ui-town.js",
-  "satir": 413,
+  "satir": 417,
   "acar": [
    "openWin"
   ],
@@ -5632,7 +5643,7 @@
  {
   "eylem": "questGo",
   "dosya": "js/ui-town.js",
-  "satir": 431,
+  "satir": 435,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5643,7 +5654,7 @@
  {
   "eylem": "gift",
   "dosya": "js/ui-town.js",
-  "satir": 432,
+  "satir": 436,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5654,7 +5665,7 @@
  {
   "eylem": "questClaim",
   "dosya": "js/ui-town.js",
-  "satir": 433,
+  "satir": 437,
   "acar": [],
   "okuma": [],
   "yazma": [],
@@ -5665,7 +5676,7 @@
  {
   "eylem": "questBonus",
   "dosya": "js/ui-town.js",
-  "satir": 434,
+  "satir": 438,
   "acar": [],
   "okuma": [],
   "yazma": [],

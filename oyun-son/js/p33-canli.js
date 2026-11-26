@@ -11,6 +11,7 @@ import { taps, onState, now } from './api.js';
 import { phaseOf } from '../shared/realm.js';
 import { S2 } from './hub2d.js';
 import { ANVIL_TENSION_MS } from './sfx.js';
+import { katmanKur, katmanKaldir } from './p34-katman.js'; // P34: sahne hareket katmanları (aynı aç/kapa kuralları)
 
 const LS = { get: k => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch { } } };
 const root = document.documentElement, Q = new URLSearchParams(location.search);
@@ -67,8 +68,8 @@ function tonKur() {
 function yerOf() { const h = root.dataset.hub2d || ''; return h === 'klan' ? 'klan' : h === 'carsi' ? 'carsi' : root.dataset.faction === 'sancak' ? 'sancak' : 'ocak'; }
 function zerreKur() {
   kutu = document.querySelector('#hub2d .s2-box.s2-foto');
-  if (!kutu) return dur();
-  tonKur();
+  if (!kutu) { katmanKaldir(); return dur(); }
+  tonKur(); katmanKur(kutu);
   const ac = AYAR.canli && !sakin();
   if (!ac) { cv?.remove(); cv = ctx = null; return dur(); }
   if (!cv || !kutu.contains(cv)) { cv = document.createElement('canvas'); cv.className = 'p33-zerre'; cv.setAttribute('aria-hidden', 'true'); kutu.appendChild(cv); ctx = cv.getContext('2d'); P = []; }
@@ -127,8 +128,11 @@ function serit(ust, alt, tur) { // seviye / başarım şeridi: 2,2 sn, dokunulma
   d.innerHTML = '<b></b><small></small>'; d.firstChild.textContent = ust; d.lastChild.textContent = alt;
   document.body.appendChild(d); setTimeout(() => d.remove(), 2400);
 }
-function orsSonuc(r) {
-  const w = document.querySelector('#win:not([hidden]) .frame') || document.querySelector('#win:not([hidden])'); if (!w || !r?.out) return;
+// G2-02 (P34): sonuç yalnız işlemin başlatıldığı pencerede gösterilir; pencere kapandı/değiştiyse (başka ekran) çizilmez
+const orsPencere = () => { const w = document.querySelector('#win:not([hidden])'); return w ? { w, scr: w.dataset.scr || '' } : null; };
+function orsSonuc(r, P0) {
+  const w0 = document.querySelector('#win:not([hidden])'); if (!P0 || !w0 || w0 !== P0.w || (w0.dataset.scr || '') !== P0.scr || !r?.out) return;
+  const w = w0.querySelector('.frame') || w0;
   const k = r.out === 'ok' ? (r.plus >= 7 ? 'ok buyuk' : 'ok') : r.out === 'break' ? 'kirik' : r.out === 'safe' ? 'korundu' : 'sondu';
   const f = document.createElement('div'); f.className = 'p33-ors ' + k; f.setAttribute('aria-hidden', 'true');
   if (r.out === 'ok' && !sakin()) for (let i = 0; i < (AYAR.efektAz ? 8 : 16); i++) { const s = document.createElement('i'); s.style.setProperty('--a', `${Math.round(R(0, 360))}deg`); s.style.setProperty('--d', `${Math.round(R(40, 110))}px`); s.style.animationDelay = `${Math.round(R(0, 120))}ms`; f.appendChild(s); }
@@ -144,8 +148,8 @@ taps.add((type, payload, p) => {
 });
 taps.add((type, payload, p) => {
   if (type !== 'anvil.upgrade') return;
-  const t0 = performance.now();
-  p.then(r => setTimeout(() => orsSonuc(r), Math.max(0, ANVIL_TENSION_MS - (performance.now() - t0)))).catch(() => { });
+  const t0 = performance.now(), P0 = orsPencere();
+  p.then(r => setTimeout(() => orsSonuc(r, P0), Math.max(0, ANVIL_TENSION_MS - (performance.now() - t0)))).catch(() => { });
 });
 let lv = null, ad = null, ach = null;
 onState(s => {
@@ -179,7 +183,8 @@ function akit(el, key) {
   };
   requestAnimationFrame(adim);
 }
-function expAkit(i) { const w = parseFloat(i.style.width), e = onceki.get('exp'); onceki.set('exp', w); if (e === undefined || e === w || sakin() || !(w >= e)) return; i.style.transition = 'none'; i.style.width = e + '%'; requestAnimationFrame(() => requestAnimationFrame(() => { i.style.transition = 'width 380ms cubic-bezier(.2,.8,.2,1)'; i.style.width = w + '%'; })); }
+// G2-03 (P34): üst üste güncellemede son değer kazanır (eski çift rAF geri yazmaz)
+function expAkit(i) { const w = parseFloat(i.style.width), e = onceki.get('exp'); onceki.set('exp', w); const n = (i._p33n = (i._p33n || 0) + 1); if (e === undefined || e === w || sakin() || !(w >= e)) return; i.style.transition = 'none'; i.style.width = e + '%'; requestAnimationFrame(() => requestAnimationFrame(() => { if (i._p33n !== n) return; i.style.transition = 'width 380ms cubic-bezier(.2,.8,.2,1)'; i.style.width = onceki.get('exp') + '%'; })); }
 function hudBak() {
   for (const k of ['akce', 'yakut']) { const b = document.querySelector(`#hud .s2-cap-${k} > b`); if (b) akit(b, k); }
   const i = document.querySelector('#hud .s2-exp i'); if (i && i.dataset.p33x !== i.style.width) { i.dataset.p33x = i.style.width; expAkit(i); }

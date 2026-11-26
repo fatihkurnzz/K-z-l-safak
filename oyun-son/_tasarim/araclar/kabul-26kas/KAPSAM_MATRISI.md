@@ -104,7 +104,8 @@ Kanıtı olmayan hiçbir satır KABUL sayılmaz; nihai kabul QA matrisindedir (`
 | AAA-12.2 | Uzun oturum: bellek, FPS, ısı, pil, bağlantı, veri kaybı, kapanma | TEST_EDİLMEDİ | Gerçek cihaz yok. Veri kaybı: kayıt uyumluluğu testi VAR (`kanit/kayit-uyumlulugu/`) |
 | AAA-12.3 | Denge (ırk, sınıf, eşya, ekonomi) | RAPOR | Değer değiştirilmedi; denge incelemesi bu teslimin kapsamında değil, onaysız değişiklik yasak |
 
-## 12. AAA §14 · 25 kabul ölçütü → QA matrisi `KAB-01…KAB-25` satırları
+## 12. AAA §14 · 25 kabul ölçütü
+**DÜZELTME (G2-09, P34):** Bu satır önceden "QA matrisinde KAB-01…KAB-25 satırları var" diyordu; YANLIŞTI, satırlar matriste hiç yoktu. 25 ölçüt sürüm 42 için `BIRLESIK_HATA_VE_GOREV_MATRISI.json` (Fable girdisi) içinde KAB-01…KAB-25 olarak, kanıtlı ya da TEST_EDİLMEDİ durumuyla eşlendi.
 
 ## 13. AAA §15 · Yasaklar — uyum
 Sıfırdan tasarım YOK · harita/bina/sancak/arma DEĞİŞMEDİ (sha) · karakter/silah çizimi DEĞİŞMEDİ · HUD yeniden tasarlanmadı (yalnız yazı 11 px, KUL kararı) · yeni bina/harita/zindan YOK · mekanik/ekonomi/ödül DEĞİŞMEDİ (shared/ sha aynı) · efektler kapatılabilir · test edilmeyen "tamam" denmedi.

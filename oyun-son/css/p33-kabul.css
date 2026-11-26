@@ -52,7 +52,7 @@ html[data-faction] #win .tier .price .p33-tl { font-size: 11px; font-weight: 600
 /* ---- N6-01: Karakter: nitelik "+" 17→22 px (satır 21, dokunma alanı 34×22; sütun yüksekliği daha büyüğüne izin vermiyor), süzgeç sekmeleri 28 px, çanta ızgarası Toplu satırının altına girmesin ---- */
 html[data-faction] #win .kx-stats .kx-a { min-height: 21px !important; align-items: center !important; }
 html[data-faction] #win .kx-stats .kx-plus { width: 22px !important; height: 22px !important; min-width: 22px !important; position: relative; font-size: 14px !important; }
-html[data-faction] #win .kx-stats .kx-plus::after { content: ''; position: absolute; inset: 0 -6px; }
+html[data-faction] #win .kx-stats .kx-plus::after { content: ''; position: absolute; inset: 0 -11px; } /* G2-07 (P34): dokunma genişliği 44 px; yükseklik satır aralığıyla (21 px) sınırlı, komşu satırın düğmesini örtmesin */
 html[data-faction] #win .kx-stats .kx-reset { min-height: 28px !important; height: 28px !important; margin-top: 0 !important; margin-bottom: 0 !important; }
 html[data-faction] #win .kx-ftabs { min-height: 28px !important; }
 html[data-faction] #win .kx-ftabs > button { min-height: 28px !important; height: 28px !important; }
@@ -254,3 +254,16 @@ html[data-faction] #modal :is(.pc-kv small, .kv > div > small), html[data-factio
 /* Çözünürlük + dinamik tur: her ölçüde 11 px altında kalan pencere yazıları (karakter Unvan/Yetenek sekmeleri, baskın zindan puanı, yan menü, sonuç satırları) */
 html[data-faction] #win :is(.tgrid .tbtn > small, .chip, .chip.yw), html[data-faction] #win[data-scr] .page small, html[data-faction] #win .page b:not([class]),
 html[data-faction] :is(#drawer, .drawer, #modal.drawer, #modal .drawer) small, html[data-faction] #modal .box.p25bres :is(.p25r-tp, .p25r-ek, .p25r-ek b) { font-size: max(11px, 1em) !important; }
+
+/* ===== P34 (26 Kas): GPT/Gemini teslimleri ===== */
+/* P34-02/03/04: sahne hareket katmanı fotoğrafın hemen üstünde, gün evresi tonu ve zerrelerin altında; dokunma almaz */
+#hub2d .s2-box .p34-katman { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+/* P34-09: kurtarma kartında Bran ve Nessa'nın boyalı portreleri (SVG illüstrasyon yerine) */
+.tcard.resc .resc-por { display: flex; justify-content: center; align-items: flex-end; gap: 2%; height: min(46vh, 230px); margin-bottom: 8px; border-radius: 12px; border: 3px solid #8a6430; box-shadow: 0 6px 16px #0007; background: radial-gradient(circle at 50% 35%, #ffcf8a 0, #e8946a 45%, #7a4a5a 100%); overflow: hidden; }
+.tcard.resc .resc-por img { height: 100%; width: auto; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 4px 8px #0008); }
+.tcard.resc .resc-por img:last-child { height: 88%; animation: rescRise 1.6s cubic-bezier(.2,1.2,.4,1) both; }
+:is(html.motion-less, html.p33-pil) .tcard.resc .resc-por img { animation: none !important; }
+/* G2-08 / N-2-001 (P34): 667×375 sınıfında savaş HUD'u 6–10 px ölçüldü (yukarıdaki 11 px kuralı v31 şablonunun daha özgül !important kuralına yeniliyordu).
+   Daha özgül seçiciyle her ölçüde en az 11 px; düğme kutuları değişmez, yazı sığmazsa satır kırılmaz, kutu içinde ortalanır. */
+html[data-faction]:root body #game#game#game #battleUI#battleUI :is(#bctl2 .rb, #skills .skill > i.mpc, #skills .skill > i.pn, #btgt .bt-info small, .yb > b, .bt-bar > em),
+html[data-faction]:root body #overlay#overlay#overlay .hud > i.lv { font-size: 11px !important; line-height: 1.1 !important; }

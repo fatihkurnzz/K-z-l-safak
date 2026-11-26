@@ -3,11 +3,13 @@ const { chromium } = require('playwright'); const fs = require('fs'); const giri
 const [, , race, out] = process.argv; fs.mkdirSync(out, { recursive: true }); const R = {};
 (async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 880, height: 406 }, deviceScaleFactor: 2 });
   // açılış ipucu: yükleme ekranı sürerken
-  await p.goto('http://localhost:8765/?gfx=low&dev=0'); await p.waitForTimeout(600);
+  await p.goto('http://localhost:8765/?gfx=low&dev=0');
+  // G2-05 (P34): ipucu yükleme perdesine eklenene dek bekle (600 ms sabit bekleme bazen erken okuyordu)
+  await p.waitForSelector('#loading .ld-ipucu', { timeout: 8000 }).catch(() => { });
   R.acilis_ipucu = await p.evaluate(() => document.querySelector('#loading .ld-ipucu')?.textContent || null); await p.screenshot({ path: out + '/01_acilis_ipucu.png' });
   await giris(p, race);
   R.ses_dongu_kayitli = await p.evaluate(async () => { const A = await import('/js/audio.js'); return ['han', 'ahir', 'ors', 'maden', 'klan'].map(t => [t, A.hasLoop('amb.icm.' + t)]); });
-  R.ses_sahne_listesi = await p.evaluate(async () => { const X = await import('/js/sfx.js'); return { han: X.sceneLoops({ place: 'icm', tur: 'han' }), hub: X.sceneLoops({ place: 'hub', faction: 'ocak', phase: 'day' }) }; });
+  R.ses_sahne_listesi = await p.evaluate(async () => { const X = await import('/js/sfx.js'); return { han: X.sceneLoops({ place: 'icm', tur: 'han' }), hub: X.sceneLoops({ place: 'hub', faction: document.documentElement.dataset.faction, phase: 'day' }), halk: document.documentElement.dataset.faction }; });
   // Han: selamlama balonu, sonra içecek iç → başarı satırı (gerçek sonuç)
   await p.evaluate(async () => { const C = await import('/js/ui-core.js'); await C.ACT.han({}) }); await p.waitForTimeout(1500);
   R.han_selamlama = await p.evaluate(() => document.querySelector('#p28bina .icm-soz')?.textContent || null); await p.screenshot({ path: out + '/02_han_selamlama.png' });

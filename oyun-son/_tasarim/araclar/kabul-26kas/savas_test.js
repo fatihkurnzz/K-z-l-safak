@@ -21,7 +21,7 @@ const R = { race, savaslar: [], klan: {} };
     return { dusman_hud: hs.length, en_kucuk_dikey_bosluk_px: min, oto_tip_var: !!tr, oto_tip_cakisan: tipCak };
   });
   const savas = async (ad, ac) => {
-    const K = { ad, durum: 'başlamadı' }; R.savaslar.push(K);
+    const K = { ad, durum: 'başlamadı' }; R.savaslar.push(K); fs.writeFileSync(`${out}/sonuc.json`, JSON.stringify(R, null, 1)); // P34: her savaştan önce ara sonuç (zaman aşımında kayıp olmasın)
     try {
       await hub(); await ev(ac.f, ac.a); await p.waitForTimeout(2200);
       const vs = await ev(() => !!document.querySelector('#win[data-scr="vs"]:not([hidden]) [data-a="vsStart"]'));

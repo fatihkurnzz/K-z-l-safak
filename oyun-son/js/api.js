@@ -16,7 +16,8 @@ export let ACC = null;    // hesap: { chars: [kart], max, cur } (char.list sonuc
 export let DEV = false;   // test komutları açık mı
 // Test araçları ve deneme rozeti yalnız geliştiriciye görünür (denetim Y4): ?dev=1 ya da localStorage dd_dev='1'.
 // Komutlar (ACT.dev*) yine çalışır; denetim betikleri onları doğrudan çağırır.
-// 24 Kas (P26 Y4/N10): varsayılan derlemede GİZLİ; yalnız ?dev=1 ya da localStorage dd_dev='1' açar. Play Store (?store=1 / DD_STORE) her durumda gizli.
+// 24 Kas kullanıcı kararı: web derlemesinde test paneli VARSAYILAN GÖRÜNÜR; ?dev=0 ya da localStorage dd_dev='0' gizler.
+// Play Store (yayın) profili: window.DD_STORE = true ya da ?store=1 → her durumda gizli, ?dev=1 / dd_dev AÇAMAZ (G2-10). DD_STORE'u Play Store paketi ayarlar (henüz paket yok).
 /** Mağaza (Play Store) derlemesi mi: window.DD_STORE = true ya da ?store=1. */
 export const storeBuild = () => window.DD_STORE === true || params.get('store') === '1';
 /** Tek kapı: test araçları ve DENEME rozeti görünsün mü (yalnız ?dev=1 / dd_dev='1', mağaza derlemesinde asla). Yalnız GÖRÜNÜR arayüzü yönetir; dev.* eylemleri yerel kipte çalışmaya devam eder. */

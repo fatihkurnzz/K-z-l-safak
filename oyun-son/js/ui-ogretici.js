@@ -9,7 +9,7 @@ import { NPC, merchantStock } from '../shared/npc.js';
 import { itemBase, minPlus } from '../shared/items.js';
 import { clsOf } from '../shared/roster.js';
 import { ri } from './icons.js';
-import { npcBas } from './sahne.js';
+import { npcBas, sahneUrl } from './sahne.js';
 
 const step = () => (S?.tut && !S.tut.end ? TUT_STEPS[S.tut.s] : null);
 // Çocuk ancak öğreticinin hikâye adımlarında meydanda durur; sonrasında kardeşiyle birlikte görünür
@@ -18,7 +18,7 @@ export const childHere = () => ['child', 'worm', 'rescue'].includes(step());
 // ---- Portreler (özgün, sade çizimler) ----
 export const MERCHANT_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#3a2a14"/><path d="M8 64c3-14 12-19 24-19s21 5 24 19z" fill="#7a2a4a"/><path d="M20 52h24" stroke="#e7c75a" stroke-width="3"/><ellipse cx="32" cy="30" rx="12" ry="13" fill="#d8a878"/><path d="M18 24c2-10 8-14 14-14s12 4 14 14c-4-3-9-4-14-4s-10 1-14 4z" fill="#e8dcc0"/><path d="M18 22h28" stroke="#c9a23a" stroke-width="3"/><circle cx="27" cy="30" r="1.6" fill="#2a1a08"/><circle cx="37" cy="30" r="1.6" fill="#2a1a08"/><path d="M24 37q8 7 16 0" fill="#5a3a20"/><path d="M27 40q5 2 10 0" stroke="#fff" stroke-width="1.2" fill="none"/></svg>';
 export const CHILD_SVG = '<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="8" fill="#20304a"/><path d="M12 64c2-11 9-15 20-15s18 4 20 15z" fill="#4a7a3a"/><ellipse cx="32" cy="32" rx="12" ry="13" fill="#e8b88a"/><path d="M19 30c0-11 6-16 13-16s13 5 13 16c-3-5-8-8-13-8s-10 3-13 8z" fill="#6a3a1a"/><circle cx="27" cy="33" r="1.8" fill="#1a1008"/><circle cx="37" cy="33" r="1.8" fill="#1a1008"/><path d="M27 41q5-3 10 0" stroke="#7a3a2a" stroke-width="1.6" fill="none"/><path d="M25 36l-1 4M39 36l1 4" stroke="#7fc8ff" stroke-width="1.6" stroke-linecap="round"/><circle cx="26" cy="37" r="2.2" fill="#ff9a8a" opacity=".5"/><circle cx="38" cy="37" r="2.2" fill="#ff9a8a" opacity=".5"/></svg>';
-// 23 Kas (C8): görsel roman diyaloğu (ui-diyalog.js). kim = G4 portre anahtarı; portresi olmayan (Bran) yedek SVG ile çıkar.
+// 23 Kas (C8): görsel roman diyaloğu (ui-diyalog.js). kim = G4 portre anahtarı; P34-09: Bran da G4 portreli (kim 'bran'); portre inmemişse yedek SVG.
 // son: [{ t, a, ana }] — eski düğme HTML'i yerine. Satırlarda <b> olabildiği için html: true.
 const say = async (svg, name, lines, son, kim = '', unvan = '') => {
   const { diyalog } = await import('./ui-diyalog.js');
@@ -43,11 +43,11 @@ ACT.npcBuy = async d => {
 // ---- Küçük Bran ve Dev Solucan ----
 ACT.npcChild = () => {
   const s = step();
-  if (s === 'rescue') return say(CHILD_SVG, NPC.child.name, [`Usta! ${NPC.sibling} burada, yanımda! Solucanın karnından nasıl çıktı hâlâ inanamıyorum.`, 'Yemin Pazarı herkese anlatıyor seni. Al, babamın sakladığı bu keseyi de sen kullan.'], [{ t: 'Rica ederim', a: 'closeModal', ana: true }]);
+  if (s === 'rescue') return say(CHILD_SVG, NPC.child.name, [`Usta! ${NPC.sibling} burada, yanımda! Solucanın karnından nasıl çıktı hâlâ inanamıyorum.`, 'Yemin Pazarı herkese anlatıyor seni. Al, babamın sakladığı bu keseyi de sen kullan.'], [{ t: 'Rica ederim', a: 'closeModal', ana: true }], 'bran');
   if (s === 'child' || s === 'worm') return say(CHILD_SVG, NPC.child.name, ['Usta! Usta, bekle! Yeni silahını gördüm… Yeni silahınla yeni keşiflere gitmen lazım, ama önce bana yardım et!',
     `Kardeşim ${NPC.sibling} değirmenin arkasındaki sazlıkta oynuyordu. Topraktan <b>Dev Solucan</b> çıktı ve onu bir lokmada yuttu!`, 'Hâlâ yaşıyor, biliyorum! Solucanın karnını yararsan kurtulur. Lütfen…'],
-    [{ t: 'Birazdan', a: 'closeModal' }, { t: 'Göreve çık', a: 'npcWorm', ana: true }]);
-  return say(CHILD_SVG, NPC.child.name, [`Kardeşim ${NPC.sibling} seni hiç unutmayacak, usta!`], [{ t: 'Kendine iyi bak', a: 'closeModal', ana: true }]);
+    [{ t: 'Birazdan', a: 'closeModal' }, { t: 'Göreve çık', a: 'npcWorm', ana: true }], 'bran');
+  return say(CHILD_SVG, NPC.child.name, [`Kardeşim ${NPC.sibling} seni hiç unutmayacak, usta!`], [{ t: 'Kendine iyi bak', a: 'closeModal', ana: true }], 'bran');
 };
 ACT.npcWorm = async () => {
   closeModal();
@@ -78,7 +78,9 @@ export const RESCUE_SVG = `<svg viewBox="0 0 400 230" class="resc-art" aria-hidd
   <g class="resc-stars" fill="#fff6c8">${[[150, 80], [170, 62], [110, 70], [92, 96], [184, 90]].map(([x, y]) => `<path d="M${x} ${y - 6} l2 4 4 2 -4 2 -2 4 -2 -4 -4 -2 4 -2z"/>`).join('')}</g>
 </svg>`;
 // Öğretici katmanı (ui-kalicilik.js) solucan yenilince bu kartı gösterir
-export const rescueCard = () => `<div class="tscrim"></div><div class="tcard resc"><h2>${NPC.sibling} kurtuldu!</h2><div class="tin">${RESCUE_SVG}
+// P34-09 (GPT): Bran ve Nessa'nın boyalı G4 portreleri (gorsel-png.js) hazırsa SVG illüstrasyonun yerine ikisi yan yana; değilse eski SVG.
+const rescueArt = () => { const b = sahneUrl('bran'), n = sahneUrl('nessa'); return b && n ? `<div class="resc-por" aria-hidden="true"><img src="${b}" alt="" draggable="false"><img src="${n}" alt="" draggable="false"></div>` : RESCUE_SVG; };
+export const rescueCard = () => `<div class="tscrim"></div><div class="tcard resc"><h2>${NPC.sibling} kurtuldu!</h2><div class="tin">${rescueArt()}
   <p>Dev Solucan son kez kıvranıp yere serildi. Yarılan karnından önce minik bir el, sonra sırılsıklam ama gülümseyen ${NPC.sibling} çıktı. ${NPC.child.name} sazlığın içinden koşarak kardeşine sarıldı.</p>
   <div class="tb"><button class="btn red" data-t="rescue">Onları Yemin Pazarı’na götür</button></div></div></div>`;
 hooks.childHere = childHere;

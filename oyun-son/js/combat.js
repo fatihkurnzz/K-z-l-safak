@@ -604,7 +604,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     if (special) {
       const master = !!(S.master || S.pm); // usta yetenek: daha yakın, daha uzun kamera ve kenar karartması
       // P33 (AAA plan 7): boss yeteneğinden önce okunur uyarı (yalnız sunum; sıra, hasar, süre değişmez)
-      if (A.unit.boss && A.unit.side === 'B') { showBanner(`⚠ ${S.name}`, `${A.unit.name} güçlü bir yetenek hazırlıyor`, 'B'); overlay.lastElementChild?.classList?.add('p33-uyari'); await wait(0.35); }
+      if (A.unit.boss && A.unit.side === 'B') { showBanner(`⚠ ${S.name}`, `${A.unit.name} güçlü bir yetenek hazırlıyor`, 'B'); overlay.lastElementChild?.classList?.add('p33-uyari'); } // G2-01 (P34): ek bekleme yok; uyarı mevcut yetenek beklemesiyle (aşağıda) birlikte görünür, savaş süresi değişmez
       else showBanner(S.name, master ? `${A.unit.name} · Usta yetenek` : A.unit.name, A.unit.side);
       if (master) { const v = document.createElement('div'); v.className = 'mvig ' + A.unit.side; overlay.appendChild(v); setTimeout(() => v.remove(), 1400); }
       // 22 Kas: yakın çekim artık animasyonu beklemez ve kesmez; kamera vuranla hedeflerine birlikte yumuşakça odaklanır

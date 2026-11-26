@@ -16290,7 +16290,8 @@
   "KABUL": 782,
   "KISMEN": 27,
   "DUZELTILDI_ILK_TUR_SONRASI": 52,
-  "TEST_EDILMEDI": 128
+  "TEST_EDILMEDI": 113
  },
- "not": "EKRAN GÖRÜNTÜLERİ VE ÖLÇÜMLER İLK TURDAN (kullanıcı kararı 26.11): ilk turdan sonra yalnız 11 px altı yazılar düzeltildi (DUZELTILDI_ILK_TUR_SONRASI satırları; görüntüde eski küçük yazı görünebilir). KABUL = kanıtlı otomatik ölçüm + ekran görüntüsü; bağımsız görsel kabul Gemini/GPT ikinci denetiminde. TEST_EDILMEDI satırlarının gerekçesi gerceklesen alanında."
+ "not": "EKRAN GÖRÜNTÜLERİ VE ÖLÇÜMLER İLK TURDAN (kullanıcı kararı 26.11): ilk turdan sonra yalnız 11 px altı yazılar düzeltildi (DUZELTILDI_ILK_TUR_SONRASI satırları; görüntüde eski küçük yazı görünebilir). KABUL = kanıtlı otomatik ölçüm + ekran görüntüsü; bağımsız görsel kabul Gemini/GPT ikinci denetiminde. TEST_EDILMEDI satırlarının gerekçesi gerceklesen alanında.",
+ "ozet_kaynagi": "G2-11 (P34): özet satırlardan otomatik sayıldı (önceki elle yazılmış özette TEST_EDILMEDI 128 yazıyordu; doğrusu 113). Toplam 974."
 }
