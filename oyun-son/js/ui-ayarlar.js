@@ -13,6 +13,7 @@ import { replayFragman } from './ui-fragman.js';
 import { ICON_AUTHORS } from './item-icons.js';
 import { SKILL_ICON_AUTHORS } from './skill-icons.js';
 import { pageErisim } from './ui-erisim.js';
+import { AYAR, ayarla } from './p33-canli.js'; // P33: çevre animasyonları, efekt yoğunluğu, kare hızı, pil tasarrufu
 import { LANGS, LANG_KEYS, lang, setLang, savedLang, onLang, t, fmtDate, protectName, errText } from './i18n.js';
 // Dil düğmelerindeki bayraklar (emoji bayraklar her cihazda görünmediği için çizim): Türkçe → Türkiye, English → Birleşik Krallık
 const FLAG = {
@@ -83,20 +84,25 @@ function pageGfx() {
     <p class="mut aynow pa-foot">${TIER_NAMES[g.tier]}: çözünürlük en çok ×${String(T.dpr).replace('.', ',')} · ${T.shadow ? `gölge ${T.shadow} piksel` : 'zemin lekesi'} · ${T.post ? 'ışıma açık' : 'ışıma kapalı'} · ${T.rigged ? 'ayrıntılı karakterler' : 'hafif karakterler'}${g.forced ? ' · adres çubuğundan zorlanmış' : ''}</p>
     ${wantReload() ? `<div class="hint ayrel"><span>Karakter modelleri oyun yeniden açılınca ${T.rigged ? 'ayrıntılı (yaklaşık 3,5 MB indirilir)' : 'hafif'} olur.</span><button class="btn sm" data-a="gfxReload">Yeniden aç</button></div>` : ''}
     <div class="row">${med('timer', less ? 'green' : '')}<div class="grow"><b>Hareketi azalt</b><br><span class="mut">Geçişleri, parlamaları ve döngülü süslemeleri durdurur.${sysCalm() ? ' Cihazının kendi ayarı zaten açık.' : ''}</span></div>${sw(less, 'ayMotion')}</div>
+    <div class="row">${med('buff', AYAR.canli ? 'green' : '')}<div class="grow"><b>Çevre animasyonları</b><br><span class="mut">Haritalarda süzülen kor ve ışık zerreleri, Işınlanma Kapısı parçacıkları, uzak kuşlar. Gün evresi rengi her zaman görünür.</span></div>${sw(AYAR.canli, 'ayP33', 'data-k="canli"' + (AYAR.pil ? ' disabled' : ''))}</div>
+    <div class="row">${med('bolt', AYAR.efektAz ? 'green' : '')}<div class="grow"><b>Efekt yoğunluğu: Az</b><br><span class="mut">Savaş ve harita parçacıkları yarıya iner. Hasar, sıra ve süreler değişmez.</span></div>${sw(AYAR.efektAz, 'ayP33', 'data-k="efekt"' + (AYAR.pil ? ' disabled' : ''))}</div>
+    <div class="row">${med('timer', AYAR.fps30 ? 'green' : '')}<div class="grow"><b>Kare hızı sınırı: 30</b><br><span class="mut">Savaşta da en çok 30 kare/sn. Telefon daha az ısınır.</span></div>${sw(AYAR.fps30, 'ayP33', 'data-k="fps"' + (AYAR.pil ? ' disabled' : ''))}</div>
+    <div class="row">${med('energy', AYAR.pil ? 'green' : '')}<div class="grow"><b>Pil tasarrufu</b><br><span class="mut">Çevre animasyonlarını kapatır, efektleri azaltır, kare hızını 30'a (ana üste 20'ye) indirir, geri bildirim hareketlerini durdurur.</span></div>${sw(AYAR.pil, 'ayP33', 'data-k="pil"')}</div>
     <div class="row">${med('timer', 'blue')}<div class="grow"><b>Oyun Denetçisi</b><br><span class="mut">Kare hızını (FPS), kare süresini, belleği ve çizim yükünü köşede gösterir; 30 saniyelik ölçüm özeti alır.</span></div><button class="btn sm" data-a="denetci">Aç / kapat</button></div>
     <p class="mut">Telefon ısınmasın diye kare hızı sınırlıdır: savaşta 60 (Düşük kademede 30), ana üste 30, açık pencerenin arkasında 15. Otomatik kademe takılmayı kendisi giderir.</p>`;
 }
 ACT.aySetGfx = d => { setGfx(d.t); redraw(); };
 ACT.ayMotion = () => { setMotion(!motionLess()); redraw(); };
+ACT.ayP33 = d => { const on = { canli: !AYAR.canli, efekt: !AYAR.efektAz, fps: !AYAR.fps30, pil: !AYAR.pil }[d.k]; if (on === undefined) return; ayarla(d.k, d.k === 'canli' ? on : on); redraw(); };
 
 // ---- Ses ----
-const BUS_NOTE = { ui: 'Düğme, pencere, ödül ve örs sesleri', battle: 'Vuruş, büyü ve savaş sonu', amb: 'Ortam sesleri ve ezgi' };
-const BUS_TEST = { ui: ['reward.coin', 'ui.toggle'], battle: ['hit.sword', 'bt.crit'], amb: ['amb.chime', 'amb.clink'] };
+const BUS_NOTE = { ui: 'Düğme, pencere, ödül ve örs sesleri', battle: 'Vuruş, büyü ve savaş sonu', amb: 'Şehir, iç mekân ve savaş ortamı', music: 'Bölge ve savaş müzikleri' };
+const BUS_TEST = { ui: ['reward.coin', 'ui.toggle'], battle: ['hit.sword', 'bt.crit'], amb: ['amb.chime', 'amb.clink'], music: [] };
 const slider = (bus, v, off) => `<label class="aysl ${off ? 'off' : ''}"><input type="range" min="0" max="100" step="5" value="${Math.round(v * 100)}" data-sl="${bus}" aria-label="${bus === 'master' ? 'Ana ses' : BUSES[bus]}"><output data-so="${bus}">${pctText(v)}</output></label>`;
 function pageSes() {
   const a = getAudio(), all = !a.on;
   return `<div class="row aymaster">${med('send', all ? '' : 'green')}<div class="grow"><b>Ana ses</b><br><span class="mut">Bütün sesleri birlikte kısar ya da kapatır.</span>${slider('master', a.master, all)}</div>${sw(!all, 'ayMute')}</div>
-    ${BUS_KEYS.map(b => `<div class="row">${med(b === 'ui' ? 'menu' : b === 'battle' ? 'battle' : 'buff', a.mute[b] || all ? '' : 'green')}<div class="grow"><b>${BUSES[b]}</b><br><span class="mut">${BUS_NOTE[b]}</span>${slider(b, a.vol[b], a.mute[b] || all)}</div><div class="qb"><button class="btn sm" data-a="ayTest" data-b="${b}" ${all || a.mute[b] ? 'disabled' : ''}>Dene</button>${sw(!a.mute[b], 'ayMute', `data-b="${b}"`)}</div></div>`).join('')}
+    ${BUS_KEYS.map(b => `<div class="row">${med(b === 'ui' ? 'menu' : b === 'battle' ? 'battle' : b === 'music' ? 'quest' : 'buff', a.mute[b] || all ? '' : 'green')}<div class="grow"><b>${BUSES[b]}</b><br><span class="mut">${BUS_NOTE[b]}</span>${slider(b, a.vol[b], a.mute[b] || all)}</div><div class="qb"><button class="btn sm" data-a="ayTest" data-b="${b}" ${all || a.mute[b] ? 'disabled' : ''}>Dene</button>${sw(!a.mute[b], 'ayMute', `data-b="${b}"`)}</div></div>`).join('')}
     <p class="mut">Ses ayarları bu cihazda saklanır. Telefonun sessize alındıysa ya da başka bir uygulama ses çalıyorsa oyun sesi duyulmayabilir.</p>`;
 }
 ACT.ayMute = d => { if (d.b) mute(!getAudio().mute[d.b], d.b); else mute(!isMuted()); redraw(); if (!isMuted()) play('ui.toggle'); };
@@ -110,7 +116,7 @@ win.addEventListener('input', e => {
   const o = win.querySelector(`[data-so="${b}"]`); if (o) o.textContent = pctText(v);
   el.style.setProperty('--v', `${v * 100}%`);
 });
-win.addEventListener('change', e => { const b = e.target.dataset?.sl; if (b && b !== 'amb' && b !== 'master') ACT.ayTest({ b }); else if (b === 'master') play('ui.toggle'); });
+win.addEventListener('change', e => { const b = e.target.dataset?.sl; if (b && b !== 'amb' && b !== 'music' && b !== 'master') ACT.ayTest({ b }); else if (b === 'master') play('ui.toggle'); });
 onAudio(() => { if (cur() === AY && AY.tab === 'ses' && !win.querySelector('[data-sl]:active')) syncSes(); });
 function syncSes() { const a = getAudio(); for (const el of win.querySelectorAll('[data-sl]')) { const v = el.dataset.sl === 'master' ? a.master : a.vol[el.dataset.sl]; el.style.setProperty('--v', `${v * 100}%`); } }
 

@@ -1,0 +1,6 @@
+const { chromium } = require('playwright'); const giris = require('/home/user/K-z-l-safak/oyun-son/_tasarim/araclar/kabul-26kas/giris.js');
+(async () => { const race = process.argv[2] || 'ocak', W = +(process.argv[3] || 880), H = +(process.argv[4] || 406); const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 2 });
+  await giris(p, race); await p.evaluate(() => { for (const b of document.querySelectorAll('#modal button')) if (/Anladım|Tamam/i.test(b.textContent)) b.click(); const m = document.querySelector('#modal'); if (m) { m.hidden = true; m.innerHTML = ''; } });
+  await p.waitForTimeout(1200); await p.screenshot({ path: `hud-${race}-${W}.png` });
+  const ov = await p.evaluate(() => { const r = []; const els = [...document.querySelectorAll('#hud .s2hud .s2-m span:not(.badge)')].map(e => { const g = document.createRange(); g.selectNodeContents(e); return { textContent: e.textContent, getBoundingClientRect: () => g.getBoundingClientRect() }; }); for (let i = 1; i < els.length; i++) { const a = els[i - 1].getBoundingClientRect(), c = els[i].getBoundingClientRect(); if (a.right > c.left + 0.5) r.push([els[i - 1].textContent, els[i].textContent, +(a.right - c.left).toFixed(1)]); } return r; });
+  console.log(JSON.stringify(ov)); await b.close(); })();

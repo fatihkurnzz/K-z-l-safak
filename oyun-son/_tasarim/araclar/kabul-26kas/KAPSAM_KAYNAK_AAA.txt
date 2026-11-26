@@ -1,0 +1,574 @@
+Ne kadar sürer?  KORANT ONLINE — AAA KALİTE GELİŞTİRME VE NİHAİ OYUNCU DENEYİMİ PLANI
+
+1. Temel hedef
+
+Korant Online'ın mevcut görsel harmonisi, sanat yönetimi, ana haritaları, karakter tasarımları, iç mekânları, HUD sistemi ve oyun mekanikleri korunarak profesyonel oyuncu deneyimi geliştirilecek.
+
+Oyun yeniden tasarlanmayacak. Bundan sonraki çalışmalar oyunun canlılığına, atmosferine, animasyonlarına, ses tasarımına, etkileşim kalitesine ve teknik performansına odaklanacak.
+
+Mevcut başarılı sistemler korunacak. Aşağıdaki önerilerden hâlihazırda uygulanmış olanlar yeniden yapılmayacak.
+
+2. Dinamik çevre ve canlı haritalar
+
+Elentha Başkent
+
+- Sancakların doğal rüzgâr hareketleri.
+- Şelalelerin ve su kaynaklarının akış animasyonları.
+- Su yüzeylerinde doğal yansımalar.
+- Meşalelerin ve şöminelerin ateş animasyonları.
+- Hafif atmosferik sis.
+- Gökyüzünde doğal kuş hareketleri.
+- Ağaçların ve bitkilerin hafif rüzgâr hareketleri.
+- Muhafızların ve mevcut NPC'lerin doğal animasyonları.
+- Işınlanma kapısında mavi ve altın büyü parçacıkları.
+- Ortama uygun hareketli ışık ve gölgeler.
+
+Kragmir Başkent
+
+- Sancakların doğal ve daha güçlü rüzgâr hareketleri.
+- Lav akış animasyonları.
+- Ateş ocaklarında gerçekçi alev hareketleri.
+- Havada hafif kül ve kor parçacıkları.
+- Doğal duman hareketleri.
+- Ortama uygun sıcak hava dalgalanmaları.
+- Ork muhafızlarının ve mevcut NPC'lerin doğal animasyonları.
+- Işınlanma kapısında kızıl ve mor büyü parçacıkları.
+- Siyah demir ve taş yüzeylerde doğal ateş yansımaları.
+- Mimari detayları kaybettirmeyen dinamik ışıklandırma.
+
+Yemin Pazarı
+
+- Tüccarların doğal hareketleri.
+- Kumaşların ve pazar tentelerinin rüzgâr animasyonları.
+- Ticaret ortamına uygun çevresel hareketler.
+- Demirci ocağında ateş ve kıvılcım efektleri.
+- Mevcut NPC'lerin bekleme animasyonları.
+- Ortama uygun kalabalık hissi.
+
+Klan Obaları
+
+- Klan sancaklarının hareketleri.
+- Meşale ve ateş efektleri.
+- Muhafız animasyonları.
+- Klan kimliğine uygun çevresel detaylar.
+
+Ortak kurallar
+
+- Mevcut ana haritaların orijinalliği kesinlikle korunacak.
+- Binaların konumları ve mimarileri değiştirilmeyecek.
+- Mevcut sancaklar ve armalar korunacak.
+- Görseller yeniden üretilmeyecek.
+- Hareketli öğeler bağımsız katmanlar olarak entegre edilecek.
+- Görsel efektler abartılmayacak.
+- Genel kontrast ve mevcut renk dengesi bozulmayacak.
+- Animasyonlar mobil performansa uygun olacak.
+- Görsel efektler işlevsel etkileşim alanlarını kapatmayacak.
+
+3. Dinamik gece ve gündüz sistemi
+
+Mevcut haritalar korunarak dört farklı atmosfer oluşturulması değerlendirilecek:
+
+1. Sabah
+2. Gündüz
+3. Akşam
+4. Gece
+
+Değişebilecek çevresel unsurlar
+
+- Gökyüzü.
+- Güneş ve ay ışığı.
+- Çevresel ışıklandırma.
+- Doğal gölgeler.
+- Pencerelerden gelen ışıklar.
+- Meşaleler.
+- Şömineler.
+- Su ve lav yansımaları.
+- Atmosferik sis.
+- Ortam sesleri.
+
+Kurallar
+
+- Bina konumları değiştirilmeyecek.
+- Haritaların orijinal mimarisi korunacak.
+- Elentha ve Kragmir'in görsel kimlikleri bozulmayacak.
+- Gece atmosferinde önemli yapılar görünmez hâle gelmeyecek.
+- HUD okunabilirliği etkilenmeyecek.
+- Geçişler yumuşak ve doğal olacak.
+- Gece ve gündüz sistemi mevcut oyun mekaniklerini değiştirmeyecek.
+- Performans açısından uygun değilse bu özellik zorunlu tutulmayacak.
+
+4. Profesyonel ses tasarımı
+
+Her bölge kendisine özgü müzik ve çevresel ses kimliğine sahip olacak.
+
+Bölgesel ses tasarımları
+
+Elentha
+
+- Asil ve epik orkestra müzikleri.
+- Hafif çan sesleri.
+- Akan su ve şelale sesleri.
+- Kuş ve doğal rüzgâr sesleri.
+
+Kragmir
+
+- Ağır savaş davulları.
+- Karanlık orkestral müzikler.
+- Metal ve demir sesleri.
+- Ateş ve lav sesleri.
+- Güçlü rüzgâr atmosferi.
+
+Yemin Pazarı
+
+- Tüccar ve kalabalık ortam sesleri.
+- Ticaret atmosferine uygun müzikler.
+- Hafif metal ve ahşap sesleri.
+
+Han
+
+- Şömine sesleri.
+- Bardak ve masa sesleri.
+- Hafif Orta Çağ müzikleri.
+- Ortama uygun konuşma uğultuları.
+
+Ahır
+
+- Hayvan sesleri.
+- Ahşap ve saman hareketleri.
+- Doğal çevre sesleri.
+
+Örs
+
+- Çekiç darbeleri.
+- Metal işleme sesleri.
+- Demirci ocağı.
+- Kıvılcım ve ateş sesleri.
+
+Maden
+
+- Kazma sesleri.
+- Mağara yankıları.
+- Kaya ve cevher sesleri.
+
+Klan Karargâhı
+
+- Ağır ve otoriter orkestra.
+- Irka özgü atmosferik sesler.
+
+Zindanlar
+
+- Her zindana özgü çevresel sesler.
+- Gizem ve gerilim müzikleri.
+- Ortama uygun yankılar.
+
+Boss karşılaşmaları
+
+- Dinamik epik savaş müzikleri.
+- Boss kimliğine özgü sesler.
+- Mevcut savaş aşamalarına uygun müzik yoğunluğu.
+
+Savaş sonucu
+
+- Zafer müziği.
+- Mağlubiyet müziği.
+- Irka özgü kısa sonuç temaları.
+
+Ses entegrasyon kuralları
+
+- Bölge değişimlerinde müzikler aniden kesilmeyecek.
+- Yumuşak ses geçişleri uygulanacak.
+- Ses efektleri birbirini bastırmayacak.
+- Tekrarlanan sesler rahatsız edici olmayacak.
+- Müzik, çevre, efekt ve NPC sesleri ayrı ayrı ayarlanabilecek.
+- Ses dosyaları optimize edilecek.
+- Telif hakları uygun veya özgün ses varlıkları kullanılacak.
+- Mevcut başarılı sesler gereksiz yere değiştirilmeyecek.
+
+5. NPC animasyonları ve karakter kimliği
+
+Mevcut NPC'lerin yalnızca bir arayüz açan sabit görseller gibi görünmesi önlenecek.
+
+NPC animasyonları
+
+- Doğal nefes alma.
+- Göz kırpma.
+- Hafif baş hareketleri.
+- Hafif el hareketleri.
+- Bekleme animasyonları.
+- Konuşma animasyonları.
+- İşlem başarı ve başarısızlık tepkileri.
+- NPC'nin görevine uygun hareketler.
+
+NPC kişilikleri
+
+- NPC'ye özgü karşılama replikleri.
+- Irka özgü konuşma tarzları.
+- Önemli NPC'lere özgü seslendirmeler.
+- Tüccarlara uygun ticaret replikleri.
+- Muhafızlara uygun disiplinli davranışlar.
+- Kral ve önemli hikâye karakterlerine özgü sinematik sunum.
+
+Kurallar
+
+- Mevcut NPC tasarımları korunacak.
+- Kragmir orklarının yeşil tenli karakter kimliği korunacak.
+- NPC'lerin yüzleri, kıyafetleri ve ekipmanları gereksiz yere değiştirilmeyecek.
+- Mevcut diyaloglar ve hikâye bütünlüğü korunacak.
+- Animasyonlar doğal olacak.
+- Sık yapılan işlemlerde oyuncu gereksiz yere bekletilmeyecek.
+
+6. Eşya kazanma, geliştirme ve ödül deneyimi
+
+Mevcut eşya, ekonomi, geliştirme ve ödül mekanikleri değiştirilmeden görsel ve işitsel geri bildirimler geliştirilecek.
+
+Eşya kazanma
+
+- Normal eşyalarda hafif parlama.
+- Nadir eşyalarda nadirlik seviyesine uygun ışık efektleri.
+- Efsanevi eşyalarda özel kısa animasyonlar.
+- Eşya nadirliğine uygun ses efektleri.
+- Mevcut eşya ikonlarının korunması.
+
+Eşya geliştirme
+
+- Başarılı geliştirmede metal kıvılcımları.
+- Eşyaya uygun enerji efektleri.
+- Başarısız geliştirmede sönümlenen enerji.
+- Yeniden dövme işleminde demirci atmosferine uygun efektler.
+- Parçalama işleminde kontrollü görsel ve işitsel geri bildirim.
+- Mevcut geliştirme oranlarının ve işlem sonuçlarının korunması.
+
+Ödül ve ilerleme
+
+- Sandık açılış animasyonları.
+- Seviye atlama efektleri.
+- Ünvan kazanma sunumu.
+- Başarım tamamlama animasyonları.
+- Görev tamamlama efektleri.
+- Mevcut etkinlik ödüllerine uygun kısa animasyonlar.
+- Önemli ödüllerin görsel olarak diğerlerinden ayrılması.
+
+Kurallar
+
+- Animasyonlar işlem sonucunu gizlemeyecek.
+- Mevcut eşya nadirlik sistemi korunacak.
+- Ödül miktarları değiştirilmeyecek.
+- Geliştirme oranları değiştirilmeyecek.
+- Gereksiz parlama ve efekt yoğunluğundan kaçınılacak.
+- Tekrarlanan animasyonlar gerektiğinde atlanabilecek.
+- Oyuncunun işlem yapma hızı düşürülmeyecek.
+
+7. Savaş hissinin profesyonelleştirilmesi
+
+Mevcut savaş sistemi, karakter sınıfları, yetenekler ve hasar mekanikleri korunacak.
+
+Görsel iyileştirmeler
+
+- Silaha özgü darbe efektleri.
+- Kritik vuruşlara özgü görsel geri bildirim.
+- Kalkanla engelleme efektleri.
+- Büyülerin çevreye yansıyan ışıkları.
+- Hasar alındığında kısa karakter tepkileri.
+- Sınıflara özgü savaş duruşları.
+- Doğal saldırı ve savunma geçişleri.
+- Karakterlerin zemine doğru oturması.
+- Temas gölgelerinin korunması.
+- Kontrollü ekran sarsıntıları.
+- Canavarlara özgü ölüm animasyonları.
+- Boss karşılaşmalarına özgü görsel sunumlar.
+- Boss yeteneklerinden önce anlaşılır görsel uyarılar.
+- Zafer ve mağlubiyet animasyonları.
+
+İşitsel iyileştirmeler
+
+- Silah türlerine özgü darbe sesleri.
+- Kritik vuruş sesleri.
+- Kalkan engelleme sesleri.
+- Büyü ve yetenek sesleri.
+- Canavar saldırı sesleri.
+- Boss yeteneklerine özgü sesler.
+- Zafer ve mağlubiyet sesleri.
+
+Kurallar
+
+- Mevcut savaş HUD'u korunacak.
+- Mevcut hasar hesaplamaları değiştirilmeyecek.
+- Yetenek süreleri ve bekleme süreleri değiştirilmeyecek.
+- Savaş dengesi bozulmayacak.
+- Silahların orijinal tasarımları korunacak.
+- Görsel efektler karakterleri ve düşmanları gizlemeyecek.
+- Efekt yoğunluğu ayarlanabilir olacak.
+- Savaşın okunabilirliği her zaman korunacak.
+
+8. Elentha ve Kragmir kimliklerinin güçlendirilmesi
+
+İki ırkın farklılıkları yalnızca mavi ve kırmızı renklerden ibaret olmayacak.
+
+Özellik| Elentha| Kragmir
+Büyü enerjisi| Mavi ve altın| Kızıl ve mor
+Zafer atmosferi| Asalet ve ihtişam| Güç ve hâkimiyet
+Bildirim sesleri| Kristal ve çan| Davul ve metal
+Portal geçişleri| Işık parçacıkları| Kor parçacıkları
+Şehir atmosferi| Düzen ve disiplin| Savaşçı kültürü
+NPC hareketleri| Kontrollü hareketler| Ağır ve güçlü hareketler
+Sancak atmosferi| Asil dokumalar| Savaşta yıpranmış kumaşlar
+
+Ortak kurallar
+
+- İki ırk aynı grafik kalitesine sahip olacak.
+- Aynı kamera ve perspektif standartları kullanılacak.
+- HUD yerleşimleri eşdeğer olacak.
+- Mevcut oyun mekanikleri korunacak.
+- Bir ırka diğerinden daha fazla görsel özen gösterilmeyecek.
+- Mevcut armalar ve sancak tasarımları korunacak.
+- Irklara özgü detaylar ortak sanat yönetimini bozmayacak.
+
+9. Mikro animasyonlar ve arayüz etkileşimleri
+
+Mevcut arayüzlerin profesyonellik hissini artırmak için kısa ve doğal mikro animasyonlar uygulanacak.
+
+Etkileşim| Önerilen süre
+Butona basma| 80–120 ms
+Sekme değiştirme| 120–180 ms
+Panel açılması| 150–250 ms
+Panel kapanması| 150–250 ms
+Harita geçişi| 200–350 ms
+İç mekân geçişi| 200–350 ms
+Eşya seçimi| 100–150 ms
+Ödül bildirimi| 300–500 ms
+Para miktarı güncellemesi| 200–400 ms
+
+Uygulanacak detaylar
+
+- Butona basıldığında kısa fiziksel tepki.
+- Seçili eşyalarda kontrollü vurgulama.
+- Sekmeler arasında yumuşak geçiş.
+- Panellerin doğal açılıp kapanması.
+- Sağlık ve mana göstergelerinin akıcı güncellenmesi.
+- Deneyim çubuğunun akıcı ilerlemesi.
+- Para miktarlarının doğal güncellenmesi.
+- Başarılı ve başarısız işlemlere uygun geri bildirim.
+- Bildirimlerin düzenli şekilde görünmesi ve kaybolması.
+
+Kurallar
+
+- Mevcut HUD yeniden tasarlanmayacak.
+- Animasyonlar kullanıcıyı bekletmeyecek.
+- Gereksiz hareket ve dikkat dağıtıcı efekt kullanılmayacak.
+- Animasyonlar gerektiğinde azaltılabilecek veya kapatılabilecek.
+- Arayüz tepkileri oyun performansını düşürmeyecek.
+- Belirtilen süreler başlangıç hedefidir; gerçek cihaz testlerine göre ayarlanacak.
+
+10. Profesyonel yükleme ekranları
+
+Mevcut yükleme sistemi korunarak bölgeye özgü profesyonel sunum oluşturulacak.
+
+- Girilecek bölgeye özgü yükleme görselleri.
+- Bölge hakkında kısa hikâye bilgileri.
+- Oyun ipuçları.
+- Gerçek yükleme durumunu gösteren ilerleme çubuğu.
+- Irka özgü yükleme animasyonları.
+- Zindanlara özgü atmosferik yükleme ekranları.
+- Mevcut kaliteli görsellerin yeniden kullanılması.
+- Gereksiz yükleme ekranlarının kaldırılması.
+- Kısa geçişlerin doğrudan gerçekleştirilmesi.
+- Yükleme tamamlandığında gereksiz bekleme oluşturulmaması.
+
+Sahte ilerleme göstergeleri veya yapay bekleme süreleri kullanılmayacak.
+
+11. Teknik performans ve grafik ayarları
+
+Dört farklı grafik profili oluşturulması değerlendirilecek.
+
+Özellik| Düşük| Orta| Yüksek| Ultra
+FPS hedefi| 30| 60| 60| 60–120
+Doku kalitesi| Düşük| Orta| Yüksek| Maksimum
+Çevre animasyonları| Kapalı| Hafif| Açık| Açık
+Parçacık efektleri| Düşük| Orta| Yüksek| Maksimum
+Gölgeler| Minimum| Orta| Yüksek| Maksimum
+Dinamik ışık| Kapalı| Hafif| Açık| Açık
+
+FPS değerleri cihaz kapasitesine bağlı performans hedefleridir. Ölçülmeden garanti edilmeyecek.
+
+Performans optimizasyonları
+
+- Lazy loading.
+- Görsel önbellekleme.
+- Bellek yönetimi.
+- Kullanılmayan varlıkların bellekten kaldırılması.
+- Gereksiz render işlemlerinin önlenmesi.
+- Görsel dosyaların kalite korunarak optimize edilmesi.
+- Ses dosyalarının optimize edilmesi.
+- Animasyonların ekran görünürlüğüne göre yönetilmesi.
+- Gereksiz arka plan işlemlerinin durdurulması.
+- Cihaz kapasitesine uygun grafik seçenekleri.
+- Uzun süreli oyun oturumlarında bellek sızıntısı kontrolü.
+- Pil tüketimi ve cihaz ısınması kontrolü.
+- Düşük donanımlı cihazlarda kararlı çalışma.
+- Farklı ekran oranlarına uyumluluk.
+
+Kullanıcı ayarları
+
+- FPS sınırı.
+- Grafik kalitesi.
+- Efekt yoğunluğu.
+- Gölge kalitesi.
+- Çevre animasyonları.
+- Ekran sarsıntısını açma ve kapatma.
+- Hareket azaltma seçeneği.
+- Müzik ses seviyesi.
+- Efekt ses seviyesi.
+- NPC ses seviyesi.
+- Çevre ses seviyesi.
+- Pil tasarrufu modu.
+- Güvenli yeniden bağlanma.
+
+12. Gerçek oyuncu deneyimi denetimi
+
+Oyun yalnızca ekran görüntüleri üzerinden değerlendirilmeyecek. Gerçek oyun oturumları ve kullanıcı testleri gerçekleştirilecek.
+
+İlk 5 dakika
+
+- Oyuncu oyunun temel mekaniklerini anlayabiliyor mu?
+- Karakter oluşturma anlaşılır mı?
+- Eğitim sistemi yeterli mi?
+- Ana haritadaki etkileşim noktaları kolay bulunabiliyor mu?
+
+İlk 30 dakika
+
+- Oyun akıcı mı?
+- Navigasyon anlaşılır mı?
+- Gereksiz tıklamalar bulunuyor mu?
+- Oyuncu mevcut ilerleme sistemlerini anlayabiliyor mu?
+- Arayüzler yeterince hızlı açılıyor mu?
+
+İlk 2 saat
+
+- Tekrar hissi oluşuyor mu?
+- Mevcut içerikler yeterince ilgi çekici mi?
+- Ödül ve ilerleme hissi yeterli mi?
+- Savaş deneyimi tatmin edici mi?
+- Oyuncu hangi işlemlerde zorlanıyor?
+
+Uzun süreli oturumlar
+
+- Bellek kullanımı.
+- FPS kararlılığı.
+- Cihaz ısınması.
+- Pil tüketimi.
+- Bağlantı sorunları.
+- Arayüz gecikmeleri.
+- Veri kaybı.
+- İşlem tekrarları.
+- Beklenmeyen kapanmalar.
+
+Oyun dengesi
+
+- Elentha ve Kragmir arasındaki eşitlik.
+- Mevcut sınıfların dengesi.
+- Eşya ve ödül dengesi.
+- Ekonomi ve fiyat dengesi.
+- Mevcut ilerleme sistemlerinin sağlığı.
+
+Denge sorunları tespit edilirse raporlanacak. Onay alınmadan mevcut oyun dengesi ve ekonomi değerleri değiştirilmeyecek.
+
+13. Uygulama sırası ve öncelikler
+
+Grup| Çalışma| Öncelik
+G1| Dinamik çevre efektleri| Çok yüksek
+G2| Profesyonel ses tasarımı| Çok yüksek
+G3| Savaş animasyonları ve geri bildirim| Çok yüksek
+G4| Eşya ve ödül animasyonları| Yüksek
+G5| NPC animasyonları ve seslendirme| Yüksek
+G6| Mikro animasyonlar| Yüksek
+G7| Teknik optimizasyon| Çok yüksek
+G8| Irklara özgü kimlik detayları| Orta
+G9| Gece ve gündüz sistemi| İsteğe bağlı
+G10| Profesyonel yükleme ekranları| Orta
+G11| Gerçek oyuncu ve kabul testleri| Zorunlu
+
+Teknik optimizasyon yalnızca G7 aşamasında değil, bütün geliştirme süreci boyunca uygulanacak.
+
+Bu grup isimleri mevcut geliştirme gruplarıyla çakışıyorsa ayrı bir final polish çalışma serisi olarak adlandırılacak.
+
+14. Nihai kabul denetimi
+
+Tüm geliştirmeler tamamlandığında aşağıdaki kriterler kontrol edilecek:
+
+1. Mevcut ana haritaların orijinalliği.
+2. Mevcut bina mimarilerinin korunması.
+3. Elentha ve Kragmir görsel kalite eşitliği.
+4. Çevre animasyonlarının doğallığı.
+5. Ses tasarımının profesyonelliği.
+6. Bölgesel ses ve müzik uyumu.
+7. NPC animasyonlarının kalitesi.
+8. Savaş efektlerinin okunabilirliği.
+9. Karakter ve çevre bütünlüğü.
+10. Eşya kazanma deneyimi.
+11. Geliştirme animasyonlarının kalitesi.
+12. Ödül sunumlarının kalitesi.
+13. HUD tutarlılığı.
+14. Mikro animasyonların akıcılığı.
+15. Harita ve iç mekân geçişleri.
+16. Yükleme ekranlarının doğruluğu.
+17. Mobil cihaz performansı.
+18. Bellek yönetimi.
+19. FPS kararlılığı.
+20. Pil tüketimi.
+21. Cihaz ısınması.
+22. Bağlantı kararlılığı.
+23. Veri bütünlüğü.
+24. Mevcut oyun mekaniklerinin korunması.
+25. Mevcut 157 ekran durumu ve yeni iç mekânların regresyon testi.
+
+Her kriter için kabul, düzeltme veya ret kararı verilecek.
+
+Tespit edilen sorunlar giderilecek ve doğrulanabilir test sonuçları raporlanacak.
+
+15. Kesinlikle yapılmayacak işlemler
+
+- Oyunu sıfırdan tasarlamak.
+- Ana haritaların orijinalliğini bozmak.
+- Binaların konumlarını değiştirmek.
+- Başarılı iç mekânları gereksiz yere yeniden üretmek.
+- Mevcut karakter tasarımlarını değiştirmek.
+- Silahların orijinal tasarımlarını bozmak.
+- HUD sistemini gerekçesiz yeniden tasarlamak.
+- Mevcut sancakları ve armaları değiştirmek.
+- Yeni ve gereksiz binalar eklemek.
+- Gereksiz haritalar ve zindanlar oluşturmak.
+- Mevcut oyun mekaniklerini değiştirmek.
+- Ekonomi ve ödül sistemlerine izinsiz müdahale etmek.
+- Görsel efektleri abartmak.
+- Oyunun genel kontrastını gereksiz yere azaltmak.
+- Optimizasyon bahanesiyle görsel kaliteyi gereksiz düşürmek.
+- Oyuncuyu uzun animasyonlarla bekletmek.
+- Gereksiz yükleme ekranları oluşturmak.
+- Test edilmemiş özellikleri tamamlanmış olarak raporlamak.
+- Hâlihazırda başarılı şekilde uygulanmış çalışmaları tekrarlamak.
+
+16. Temel uygulama talimatı
+
+Korant Online artık sürekli yeniden tasarım aşamasından çıkarılmalı ve nihai profesyonel kalite geliştirme aşamasına geçirilmelidir.
+
+Öncelikle mevcut güncel kaynak kodu, görsel varlıklar, ses dosyaları ve oyun sistemleri incelenecek. Yukarıdaki maddelerden hangilerinin zaten uygulanmış olduğu belirlenecek.
+
+Yalnızca eksik olan veya gerçekten iyileştirilmesi gereken özellikler üzerinde çalışılacak.
+
+Her geliştirme öncesinde mevcut durum korunacak, değişiklik sonrasında görsel ve işlevsel karşılaştırma yapılacak.
+
+Bu çalışma yeni içerik üretme yarışı değil; mevcut içeriğin kalitesini, atmosferini, canlılığını, akıcılığını ve oyuncuya verdiği hissi profesyonel seviyeye çıkarma çalışmasıdır.
+
+Güncellenmiş oyun sürümü üzerinde doğrulanmamış öneriler kesin kusur olarak değerlendirilmeyecek. Teknik hedefler gerçek cihaz testleriyle doğrulanacak.
+
+MEVCUT OYUNU KORU.
+
+BAŞARILI OLAN HİÇBİR ŞEYİ BOZMA.
+
+EKSİKLERİ TAMAMLA.
+
+OYUNUN CANLILIĞINI VE ATMOSFERİNİ GÜÇLENDİR.
+
+PERFORMANSI VE OYUNCU DENEYİMİNİ İYİLEŞTİR.
+
+NİHAİ HEDEF: AAA GÖRSEL KALİTE, PROFESYONEL SES TASARIMI, AKICI ETKİLEŞİMLER, GÜÇLÜ OYUN ATMOSFERİ VE KARARLI TEKNİK PERFORMANS.  Önerir misin bunları? 

@@ -9,6 +9,7 @@ import { preloadModels } from './skinned.js';
 import { ACT } from './ui-core.js';
 import './adlar-tr.js'; // Türkçe eşya/yetenek adları (dil katmanı, M5)
 import './ui.js';
+import './p33-canli.js'; // P33: harita canlılığı, gün evresi tonu, örs/seviye/ganimet geri bildirimi, performans ayarları (yalnız sunum)
 import { loadPortraitOverrides } from './portraits.js';
 import { gfx } from './gfx.js';
 import { initI18n } from './i18n.js';

@@ -201,7 +201,7 @@ export function clearFx() { for (const s of slots) { s.on = false; s.mesh.visibl
 // ---------- Yardımcılar ----------
 const v0 = new THREE.Vector3(), v1 = new THREE.Vector3(), v2 = new THREE.Vector3();
 const rnd = (a, b) => a + Math.random() * (b - a);
-const N = n => Math.max(1, Math.round(n * (gfx.T.fx === 2 ? 1 : 0.6))); // parçacık sayısı kademeye göre
+const N = n => Math.max(1, Math.round(n * (gfx.T.fx === 2 ? 1 : 0.6) * (globalThis.DD_EFEKT ?? 1))); // parçacık sayısı kademeye göre; P33: Ayarlar → Efekt yoğunluğu (Az = 0,5)
 // Yönlü kıvılcım: dir yönünde koni içinde saçılır
 function sparks(p, dir, S, count, color = S.color, k = 1) {
   const n = N(count);

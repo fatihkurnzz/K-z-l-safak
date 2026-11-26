@@ -345,14 +345,14 @@ export const LOOPS = {
     ev: [{ s: 'amb.drip', every: [0.8, 3], g: [0.12, 0.3], pan: 0.7, pj: 0.1 }, { s: 'amb.clink', every: [4, 12], g: [0.12, 0.3], pan: 0.6, pj: 0.06 }] },
   'amb.icm.klan': { b: 'amb', rv: 0.25, beds: [{ n: 'b', lp: [160, 0.7], g: 0.16, lfo: [0.06, 0.4] }],
     ev: [{ s: 'amb.crackle', every: [0.3, 1.4], g: [0.1, 0.25], pan: 0.6, pj: 0.2 }, { s: 'amb.gust', every: [6, 16], g: [0.12, 0.25], pan: 0.6, pj: 0.1 }] },
-  'mus.hub.ocak': { b: 'amb', g: 1, rv: 0.3, fade: 2.5, seq: seq('mus.hub.ocak') },
-  'mus.hub.sancak': { b: 'amb', g: 0.9, rv: 0.3, fade: 2.5, seq: seq('mus.hub.sancak') },
+  'mus.hub.ocak': { b: 'music', g: 1, rv: 0.3, fade: 2.5, seq: seq('mus.hub.ocak') },
+  'mus.hub.sancak': { b: 'music', g: 0.9, rv: 0.3, fade: 2.5, seq: seq('mus.hub.sancak') },
   // 22 Kas: kullanıcının verdiği parça ("Under the Crimson Eye"): şehir/pazar ezgisi ve fragman müziği (dosyadan, döngüde)
-  'mus.intro': { b: 'amb', g: 0.7, rv: 0, fade: 1, url: INTRO_URL }, // yükleme ekranı; ana ekrana geçince çapraz solar
-  'mus.tema': { b: 'amb', g: 0.62, rv: 0, fade: 2.5, url: HUB_URL },
-  'mus.fragman': { b: 'amb', g: 0.8, rv: 0, fade: 0.4, url: MUSIC_URL },
-  'mus.battle': { b: 'amb', g: 1.15, rv: 0.2, fade: 0.8, seq: seq('mus.battle') },
-  'mus.boss': { b: 'amb', g: 0.8, rv: 0, fade: 0.8, url: BOSS_URL }, // dosyadan; seq('mus.boss') üreteci artık kullanılmıyor
+  'mus.intro': { b: 'music', g: 0.7, rv: 0, fade: 1, url: INTRO_URL }, // yükleme ekranı; ana ekrana geçince çapraz solar
+  'mus.tema': { b: 'music', g: 0.62, rv: 0, fade: 2.5, url: HUB_URL },
+  'mus.fragman': { b: 'music', g: 0.8, rv: 0, fade: 0.4, url: MUSIC_URL },
+  'mus.battle': { b: 'music', g: 1.15, rv: 0.2, fade: 0.8, seq: seq('mus.battle') },
+  'mus.boss': { b: 'music', g: 0.8, rv: 0, fade: 0.8, url: BOSS_URL }, // dosyadan; seq('mus.boss') üreteci artık kullanılmıyor
 };
 register({ patches: PATCHES, loops: LOOPS });
 // P28 yuk-2: müzik önden indirilmez; çalınacağı an audio.js akışla (HTMLAudioElement, Range) çalar, yalnız o parça iner.

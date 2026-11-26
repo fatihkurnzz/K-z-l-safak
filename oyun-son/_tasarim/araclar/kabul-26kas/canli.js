@@ -1,0 +1,15 @@
+const { chromium } = require('playwright'); const giris = require('/home/user/K-z-l-safak/oyun-son/_tasarim/araclar/kabul-26kas/giris.js');
+(async () => { const race = process.argv[2] || 'ocak', tod = process.argv[3] || 'night'; const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 880, height: 406 }, deviceScaleFactor: 2 });
+  const errs = []; p.on('pageerror', e => errs.push(String(e))); p.on('console', m => { if (m.type() === 'error') errs.push('c:' + m.text()); });
+  await giris(p, race, `?gfx=high&dev=0&tod=${tod}`);
+  await p.evaluate(() => { for (const b of document.querySelectorAll('#modal button')) if (/Anladım|Tamam/i.test(b.textContent)) b.click(); const m = document.querySelector('#modal'); if (m) { m.hidden = true; m.innerHTML = ''; } });
+  await p.waitForTimeout(2500);
+  const st = await p.evaluate(() => ({ cv: !!document.querySelector('#hub2d .p33-zerre'), ton: document.querySelector('#hub2d .p33-ton')?.dataset.evre, bus: Object.keys(JSON.parse(localStorage.dd_audio || '{}').vol || {}), efekt: globalThis.DD_EFEKT }));
+  await p.screenshot({ path: `canli-${race}-${tod}.png` });
+  await p.evaluate(async () => { const C = await import('/js/ui-core.js'); C.ACT.ayarlar ? C.ACT.ayarlar({}) : C.ACT.settings?.({}); });
+  await p.waitForTimeout(1200); await p.screenshot({ path: `ayar-${race}.png` });
+  await p.evaluate(() => document.querySelector('#win .frame .body, #win .frame')?.scrollBy?.(0, 400)); await p.evaluate(() => { for (const e of document.querySelectorAll('#win *')) if (e.scrollHeight > e.clientHeight + 20 && getComputedStyle(e).overflowY !== 'visible') e.scrollTop = 9999; }); await p.waitForTimeout(400); await p.screenshot({ path: `ayar2-${race}.png` });
+  await p.evaluate(async () => { const C = await import('/js/ui-core.js'); C.ACT.ayP33({ k: 'pil' }); }); await p.waitForTimeout(500);
+  const st2 = await p.evaluate(async () => ({ pil: document.documentElement.classList.contains('p33-pil'), efekt: globalThis.DD_EFEKT, cap: (await import('/js/engine3d.js')).FPS_CAP }));
+  await p.evaluate(async () => { const C = await import('/js/ui-core.js'); C.ACT.ayP33({ k: 'pil' }); });
+  console.log(JSON.stringify({ st, st2, errs })); await b.close(); })();

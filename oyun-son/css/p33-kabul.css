@@ -141,3 +141,75 @@ html[data-faction] :is(#win, #modal, #p28bina) :is(
   .elc, .pz-nm .cf, .pz-nm .rar, .yload span, .kx-ilv, .ayopt small, .chip.p23-oy, .tgold small, .ors-grid small, .pp-lv, .pp-xp small, .pp-met small,
   .ivc small, .icard small, .cxtypes button span, .ilv, .ilv b, .yrib, .ysub, .cal7 .kc small, .cal28 .kc small, .kc .kr i, .ivhead .rar, .pz-top .rar
 ) { font-size: 11px !important; }
+
+/* ---- KULLANICI KARARI (26 Kas, 19. oturum): HUD'da da en küçük yazı 11 px. Ölçüm: 880×406 ana ekranda 6–10,5 px bulunan 17 seçici
+        (kanıt _tasarim/araclar/kabul-26kas/kanit/hud11-*.json). Konum, renk, simge DEĞİŞMEDİ; yalnız yazı boyu ve rozet kabı. ---- */
+html.sehir2 #game #hud > .s2hud :is(.s2-lv, .s2-bar span, .s2-prem > b, .s2-enr, .s2-cap > b, .ph-t > b, .s2-sv > b, .s2-sv > small, .s2-exp > b) { font-size: 11px !important; line-height: 1.1 !important; }
+html.sehir2 #game #hud > .s2hud .s2-m span:not(.badge) { font-size: 11px !important; line-height: 12px !important; left: -14% !important; right: -14% !important; white-space: nowrap; }
+html.sehir2 #game #hud > .s2hud .badge { font-size: 11px !important; line-height: 15px !important; min-width: 15px !important; height: 15px !important; }
+html.sehir2 #game #hud > .s2hud .ph-srv { font-size: 11px !important; }
+html.sehir2[data-sehir2] #game #chatbar :is(.cb-tabs button, .cb-msgs .cl, .cb-msgs .cl b) { font-size: 11px !important; }
+#game #hud .dock .dbtn > span:not(.badge), html.p23 #game #hud :is(.lrail, .krail) .lbtn > span:not(.badge) { font-size: 11px !important; }
+html.sehir2 #game #hud > .s2hud :is(.s2-sv > b, .s2-sv > small) { line-height: .92 !important; }
+
+/* ======================= P33 · CANLILIK VE GERİ BİLDİRİM (js/p33-canli.js; AAA planı 2, 3, 5, 6, 7, 9) — yalnız sunum ======================= */
+/* Harita: zerre tuvali ve gün evresi tonu fotoğrafın ÜSTÜNDE, etiketlerin ALTINDA; dokunmayı geçirir */
+#hub2d .s2-box .p33-ton { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply; transition: background 4s ease; }
+#hub2d .s2-box .p33-ton[data-evre="dawn"], #hub2d .s2-box .p33-ton[data-evre="dusk"] { mix-blend-mode: soft-light; }
+#hub2d .s2-box .p33-zerre { position: absolute; left: 0; top: 0; pointer-events: none; }
+html.p33-canli-yok #hub2d .p33-zerre { display: none; }
+/* Gece: başkentin pencere ve ocak ışıkları sönmesin diye ton yalnız gölgeleri koyulaştırır (multiply); etiket yazısı ışıltılı kalır */
+html[data-p33-evre="night"] #game .blabel, html[data-p33-evre="night"] #hud .s2-lbl { text-shadow: 0 0 6px #000, 0 1px 2px #000; }
+
+/* G6 mikro animasyonlar: basma 90 ms (bağımsız "scale" özelliği; mevcut transform konumlarını bozmaz), sekme 150 ms, pencere/modal 200 ms */
+:is(#win, #modal, #hud, #p28bina, #battleUI, .icm) button:not([disabled]) { transition: scale 90ms ease-out, filter 120ms ease-out; }
+:is(#win, #modal, #hud, #p28bina, #battleUI, .icm) button:not([disabled]):active { scale: .96; }
+#win nav.tabs button { transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease, scale 90ms ease-out; }
+@keyframes p33-acil { from { opacity: 0; scale: .97; } to { opacity: 1; scale: 1; } }
+#modal:not([hidden]) > .box { animation: p33-acil 200ms cubic-bezier(.2,.8,.2,1); }
+#hud .s2-cap > b { transition: color 250ms ease, text-shadow 250ms ease; }
+#hud .s2-cap > b.p33-art { color: #ffe9a8; text-shadow: 0 0 8px rgba(255, 214, 120, .7); }
+#hud .s2-cap > b.p33-azal { color: #ffc2b4; }
+
+/* G4 ganimet: nadirliğe göre parlama (Standart yok, Nadir hafif mavi, Eşsiz altın; 2 kez, sonra durur — sonuç gizlenmez) */
+@keyframes p33-nadir { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 50% { box-shadow: 0 0 12px 2px rgba(74, 163, 255, .75); } }
+@keyframes p33-essiz { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 50% { box-shadow: 0 0 16px 4px rgba(255, 181, 46, .85); } }
+#modal .li.g1 > .ico { animation: p33-nadir 900ms ease-in-out 2; }
+#modal .li.g2 > .ico { animation: p33-essiz 1100ms ease-in-out 3; }
+#modal :is(.chip.rw.g1, .p25bres .g1 > .ico) { animation: p33-nadir 900ms ease-in-out 2; }
+#modal :is(.chip.rw.g2, .p25bres .g2 > .ico) { animation: p33-essiz 1100ms ease-in-out 3; }
+
+/* G4 örs sonucu: başarı = metal kıvılcımı + altın halka, büyük başarı (+7 ve üstü) daha parlak; başarısızlık = sönen ışık; kırılma = kızıl çatlak */
+.p33-ors { position: absolute; left: 50%; top: 46%; width: 0; height: 0; pointer-events: none; z-index: 30; }
+.p33-ors::before { content: ""; position: absolute; left: -70px; top: -70px; width: 140px; height: 140px; border-radius: 50%; opacity: 0; }
+.p33-ors.ok::before { background: radial-gradient(circle, rgba(255, 220, 140, .55), rgba(255, 160, 60, .18) 45%, transparent 70%); animation: p33-halka 700ms ease-out forwards; }
+.p33-ors.ok.buyuk::before { background: radial-gradient(circle, rgba(255, 240, 180, .75), rgba(255, 170, 60, .3) 45%, transparent 72%); animation-duration: 1000ms; }
+.p33-ors.sondu::before { background: radial-gradient(circle, rgba(160, 170, 190, .35), transparent 65%); animation: p33-son 800ms ease-in forwards; }
+.p33-ors.korundu::before { background: radial-gradient(circle, rgba(140, 200, 255, .45), transparent 65%); animation: p33-halka 800ms ease-out forwards; }
+.p33-ors.kirik::before { background: radial-gradient(circle, rgba(230, 50, 30, .5), transparent 68%); animation: p33-son 900ms ease-in forwards; }
+.p33-ors > i { position: absolute; left: -2px; top: -2px; width: 4px; height: 4px; border-radius: 50%; background: #ffe7a6; box-shadow: 0 0 6px 1px #ffb03a; animation: p33-kivilcim 650ms ease-out forwards; opacity: 0; }
+@keyframes p33-halka { 0% { opacity: 0; transform: scale(.4); } 25% { opacity: 1; } 100% { opacity: 0; transform: scale(1.3); } }
+@keyframes p33-son { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(.5); } }
+@keyframes p33-kivilcim { 0% { opacity: 1; transform: rotate(var(--a)) translateX(0); } 100% { opacity: 0; transform: rotate(var(--a)) translateX(var(--d)) translateY(14px); } }
+
+/* G4 seviye ve başarım şeridi: üst bantta 2,2 sn, dokunulmaz (işlem sonucunu ve düğmeleri örtmez) */
+.p33-serit { position: fixed; left: 50%; top: calc(var(--sat, 0px) + 56px); translate: -50% 0; z-index: 9000; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 6px 30px 7px; background: linear-gradient(90deg, transparent, rgba(16, 12, 10, .9) 18%, rgba(16, 12, 10, .9) 82%, transparent); animation: p33-serit 2.3s ease forwards; }
+.p33-serit b { font: 800 20px/1.1 Cinzel, Georgia, serif; letter-spacing: 2px; color: #ffe2a0; text-shadow: 0 0 12px rgba(255, 190, 80, .6), 0 2px 0 #000; }
+.p33-serit small { font: 600 12px/1.2 Inter, sans-serif; color: #e8dcc6; }
+html[data-faction="sancak"] .p33-serit b { color: #f2f6ff; text-shadow: 0 0 12px rgba(120, 180, 255, .7), 0 2px 0 #000; }
+.p33-serit.basarim b { font-size: 16px; }
+@keyframes p33-serit { 0% { opacity: 0; translate: -50% -8px; } 12% { opacity: 1; translate: -50% 0; } 82% { opacity: 1; } 100% { opacity: 0; } }
+
+/* G3 boss uyarısı: yetenekten önce kızıl, iki kez nabız atan başlık (okunurluk: yalnız başlık, karakterleri örtmez) */
+#overlay .banner.p33-uyari b { animation: p33-nabiz 350ms ease-in-out 2; color: #ffd2c2; }
+@keyframes p33-nabiz { 50% { text-shadow: 0 0 26px rgba(255, 40, 20, 1), 0 2px 0 #000; scale: 1.04; } }
+
+/* G5 NPC: konuşma portresinde hafif nefes (4,5 sn; yüz, kıyafet, çizim değişmez) */
+@keyframes p33-nefes { 0%, 100% { scale: 1; } 50% { scale: 1.012; } }
+:is(.dlg-por, .npc-yuz) img, img.npc-yuz { transform-origin: 50% 100%; animation: p33-nefes 4.5s ease-in-out infinite; }
+
+/* Hareketi azalt / pil tasarrufu: bu katmanın bütün hareketleri durur (sonuç bilgisi kalır) */
+:is(html.motion-less, html.p33-pil) :is(.p33-ors, .p33-ors > i, .dlg-por img, img.npc-yuz, #modal .li > .ico, #modal .chip.rw, #modal > .box, #overlay .banner.p33-uyari b) { animation: none !important; }
+:is(html.motion-less, html.p33-pil) .p33-serit { animation: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .p33-ors, .p33-ors > i, img.npc-yuz, .dlg-por img, #modal > .box { animation: none !important; } }

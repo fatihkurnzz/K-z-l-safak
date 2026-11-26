@@ -57,3 +57,18 @@ temiz ekran görüntüleri, doldurulmuş QA matrisi, değişiklik raporu, test k
 4. DEGISIKLIK_RAPORU.md (kök neden gruplarıyla), TEST_KANITLARI, temiz ekranlar (WebP q92, çözünürlük aynı).
 5. İkinci kabul paketleri: KORANT_GPT_KABUL2 (QA matrisi, rapor, standart uyumu, envanter) ve KORANT_GEMINI_KABUL2 (temiz ekranlar önce/sonra, savaş/klan/çözünürlük kanıtları), ≤30 MB parçalar, README+manifest, sürüm kimliği `KORANT-v40-1dda167+P33`.
 6. Commit + yayın (sürüm 41; 443+3 dosya) + CLAUDE.md güncelle. Kullanıcıya: HUD 11 px kararı, T3 kapatma onayı, zafer_aniti düşük çözünürlük, 32 madde belgesi sorusu.
+
+## KULLANICI KARARLARI (26 Kas, 19. oturum)
+- HUD'da da 11 px altı metinler BÜYÜTÜLECEK. T3 görünümü KAPALI kalır. zafer_aniti yüksek çözünürlük GPT/Gemini'den İSTENECEK (paket notuna yaz).
+- "32 madde" = GPT talimatındaki 23 ana görev + C24–C32 tamamlayıcı. Metni hiçbir dosyada/oturum kaydında yok → kapsam özgün kaynaklardan kuruldu:
+  AAA planı (kullanıcı 25.11 22:56 mesajı, bölüm 2–16; kopya `KAPSAM_KAYNAK_AAA.txt`), 25.11 bulgularım A1–A10/B/C, Gemini 17 bulgu, GPT talimatı 1–10, QA matrisi.
+- Hepsi TEK uygulama + TEK nihai teslim. Tamamlanmışı tekrar yapma, hiçbir gereksinimi dışarıda bırakma (yapılamayan → gerekçeli TEST_EDILMEDI/KAPSAM DIŞI).
+
+## 19. OTURUM İLERLEME
+- YAPILDI (commit'li): HUD 11 px (p33-kabul.css sonu; ölçüm hud11.js → kanit/hud11-ocak.json = 0 seçici <11px), yeni `js/p33-canli.js`
+  (harita zerreleri+portal parçacığı+uzak kuş, gün evresi tonu ?tod=, örs sonucu kıvılcım/sönme, seviye/başarım şeridi, akçe/yakut sayaç akışı, EXP akışı,
+  ayarlar: dd_canli / dd_efekt=az / dd_fps=30 / dd_pil=1 → FPS_CAP + DD_EFEKT), audio.js `music` kanalı (mus.* → music; Ayarlar→Ses'te Müzik kaydırıcısı),
+  fx.js N() × DD_EFEKT, combat.js boss uyarısı (⚠ başlık + 0,35 sn, yalnız boss B tarafı), CSS: basma 90ms (scale), modal 200ms, ganimet nadirlik parlaması,
+  NPC portresi nefes. Deneme: canli.js (gece/akşam, ayarlar, pil) 0 hata.
+- KAPSAM DIŞI (gerekçe raporda): iç mekân NPC'leri boyalı arka planın parçası (ayrı sprite yok → göz kırpma/el hareketi için GPT kare çizimi gerekir);
+  seslendirme (VO) dosyası yok → NPC ses kanalı eklenmedi; yansıma/ısı dalgası/gerçek dinamik gölge boyalı 2B'de yok; şelale/lav/sancak akışı için ayrı katman çizimi gerek.

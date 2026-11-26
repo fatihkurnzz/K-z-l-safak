@@ -14,10 +14,10 @@
 //  - Ayarlar tek anahtarda saklanır (localStorage: dd_audio). getAudio / setAudio / setVolume / mute / onAudio ayarlar
 //    menüsünün kullanacağı arayüzdür.
 
-export const BUSES = { ui: 'Arayüz', battle: 'Savaş', amb: 'Ortam ve müzik' };
+export const BUSES = { ui: 'Arayüz', battle: 'Savaş', amb: 'Ortam', music: 'Müzik' }; // P33 (AAA plan 4): müzik ortamdan ayrı kanal
 export const BUS_KEYS = Object.keys(BUSES);
 export const AUDIO_KEY = 'dd_audio';
-export const AUDIO_DEFAULTS = Object.freeze({ v: 1, on: true, master: 0.7, vol: Object.freeze({ ui: 0.8, battle: 0.8, amb: 0.5 }), mute: Object.freeze({ ui: false, battle: false, amb: false }) });
+export const AUDIO_DEFAULTS = Object.freeze({ v: 1, on: true, master: 0.7, vol: Object.freeze({ ui: 0.8, battle: 0.8, amb: 0.5, music: 0.5 }), mute: Object.freeze({ ui: false, battle: false, amb: false, music: false }) });
 
 // ---------- Ayarlar (saf) ----------
 const own = (o, k) => (o && typeof o === 'object' && !Array.isArray(o) && Object.hasOwn(o, k) ? o[k] : undefined);
@@ -38,7 +38,7 @@ export function saveSettings(storage, s) { try { storage.setItem(AUDIO_KEY, JSON
 export class Gate {
   constructor(o = {}) {
     this.cap = o.cap ?? 20;
-    this.busCap = { ui: 7, battle: 12, amb: 10, ...o.busCap };
+    this.busCap = { ui: 7, battle: 12, amb: 10, music: 4, ...o.busCap };
     this.rate = { ui: 14, battle: 16, amb: 12, ...o.rate };   // saniyede dolan jeton
     this.burst = { ui: 6, battle: 8, amb: 8, ...o.burst };    // kovanın boyu
     this.last = new Map(); this.tok = {}; this.at = {}; this.voices = [];
@@ -531,7 +531,7 @@ export async function renderOffline(name, { v = 0, raw = false, sr = 44100, seco
   const OAC = globalThis.OfflineAudioContext || globalThis.webkitOfflineAudioContext;
   // Sıkıştırıcı ilk anlarda kazancını sıfırdan toplar (canlıda bağlam açılırken olur biter); ölçüm bunu beklemeden başlamaz
   const many = Array.isArray(name), lead = raw ? 0.01 : 0.6, isLoop = many || (!hasSound(name) && hasLoop(name)), dur = lead + (isLoop ? seconds || 8 : patchDur(name, v) + tail);
-  const ctx = new OAC(2, Math.ceil(dur * sr), sr), full = { ...cleanSettings(null), master: 1, vol: { ui: 1, battle: 1, amb: 1 } };
+  const ctx = new OAC(2, Math.ceil(dur * sr), sr), full = { ...cleanSettings(null), master: 1, vol: { ui: 1, battle: 1, amb: 1, music: 1 } };
   const g = buildGraph(ctx, raw || loud ? full : cleanSettings(null), raw);
   g.rand = xs(977);
   const sts = [], made = [], todo = [...mix].sort((x, y) => x[1] - y[1]);
