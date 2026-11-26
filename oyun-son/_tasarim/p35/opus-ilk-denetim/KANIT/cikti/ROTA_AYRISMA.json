@@ -1,0 +1,195 @@
+[
+ {
+  "bolge": 1,
+  "ad": "Vahran Ovası",
+  "seviye": [
+   1,
+   20
+  ],
+  "olcum_lvl": 25,
+  "havuz": 24,
+  "A": {
+   "n": 12,
+   "hp": 680,
+   "atk": 343,
+   "def": 56,
+   "spd": 101,
+   "zayif": {
+    "fire": 10,
+    "bolt": 2
+   },
+   "ad": [
+    "Küçük Bandikut",
+    "Yaban Bandikut",
+    "Kuduz Bandikut",
+    "Bandikut",
+    "Leşçil Bandikut",
+    "Solucan"
+   ]
+  },
+  "B": {
+   "n": 12,
+   "hp": 660,
+   "atk": 374,
+   "def": 52,
+   "spd": 102,
+   "zayif": {
+    "bolt": 4,
+    "fire": 8
+   },
+   "ad": [
+    "Goblin Ölücü",
+    "Kobold",
+    "Goblin Hokkabaz",
+    "Öcü",
+    "İskelet",
+    "İskelet Savaşçı"
+   ]
+  }
+ },
+ {
+  "bolge": 2,
+  "ad": "Kül Geçidi",
+  "seviye": [
+   20,
+   40
+  ],
+  "olcum_lvl": 38,
+  "havuz": 23,
+  "A": {
+   "n": 12,
+   "hp": 1246,
+   "atk": 562,
+   "def": 78,
+   "spd": 101,
+   "zayif": {
+    "fire": 10,
+    "ice": 2
+   },
+   "ad": [
+    "Tarantula",
+    "Kıskaçlı Akrep",
+    "Karadul",
+    "Akrep",
+    "Uyuşturan",
+    "Zombi"
+   ]
+  },
+  "B": {
+   "n": 11,
+   "hp": 1233,
+   "atk": 580,
+   "def": 76,
+   "spd": 102,
+   "zayif": {
+    "ice": 7,
+    "fire": 4
+   },
+   "ad": [
+    "Çamur Adam",
+    "Kum Adam",
+    "Alev Kayası",
+    "Taş Golem",
+    "Volkan Kayası",
+    "Dev Kaya"
+   ]
+  }
+ },
+ {
+  "bolge": 3,
+  "ad": "Kızıl Bahar Meydanı",
+  "seviye": [
+   40,
+   60
+  ],
+  "olcum_lvl": 58,
+  "havuz": 31,
+  "A": {
+   "n": 16,
+   "hp": 1948,
+   "atk": 994,
+   "def": 115,
+   "spd": 102,
+   "zayif": {
+    "ice": 8,
+    "fire": 8
+   },
+   "ad": [
+    "Smilodon",
+    "Yaban Smilodon",
+    "Mahirodus",
+    "Kılıç Diş",
+    "Trol",
+    "Trol Savaşçı"
+   ]
+  },
+  "B": {
+   "n": 15,
+   "hp": 2092,
+   "atk": 983,
+   "def": 123,
+   "spd": 101,
+   "zayif": {
+    "bolt": 6,
+    "fire": 9
+   },
+   "ad": [
+    "Doğan",
+    "Al Kanat",
+    "Harpi",
+    "Eşek Arısı",
+    "Kuzgun Harpi",
+    "Gargoyl"
+   ]
+  }
+ },
+ {
+  "bolge": 4,
+  "ad": "Sisli Çukur",
+  "seviye": [
+   60,
+   65
+  ],
+  "olcum_lvl": 63,
+  "havuz": 36,
+  "A": {
+   "n": 18,
+   "hp": 1798,
+   "atk": 970,
+   "def": 118,
+   "spd": 102,
+   "zayif": {
+    "fire": 12,
+    "bolt": 6
+   },
+   "ad": [
+    "Hayalet",
+    "Hayalet Savaşçı",
+    "Hortlak",
+    "Gölge Ruh",
+    "Hayal",
+    "Gölge"
+   ]
+  },
+  "B": {
+   "n": 18,
+   "hp": 1828,
+   "atk": 977,
+   "def": 119,
+   "spd": 102,
+   "zayif": {
+    "bolt": 3,
+    "fire": 6,
+    "ice": 9
+   },
+   "ad": [
+    "Karanlık Şövalye",
+    "Dehşet Şövalyesi",
+    "Kıyamet Şövalyesi",
+    "Ağıtçı",
+    "İskelet Bey",
+    "Kötü Büyücü"
+   ]
+  }
+ }
+]

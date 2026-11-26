@@ -1,0 +1,20 @@
+﻿baslik,konu,durum,mevcut_kanit,eksik_kanit,gerekli_gercek_test,ilgili_bulgular
+P35-01,Destan medya,ADAY · KARAR BEKLİYOR,184/184 kaynak testi (tekrar); 16 medya anahtarı oyunda mevcut; yama çakışmasız,880×406 ve 667×375 gerçek çekim; iki halk; IV/VII bulmaca öncesi görsel yok; hata/lazy-load; OP35-05 kararı,Tarayıcı: 8 bölüm × 2 halk × intro/outro/memory çekimi; görsel yokken metin kesintisiz; EN geçişi,"OP35-01..05,23"
+P35-02,Ana görev 64,ADAY · KAYNAKTA KANITLI,"274/274 (tekrar); dispatch T0–T2 iki halk geçti (klan, Örs başarısızlığı)","Tarayıcıda Görev Defteri (Git pasif/aktif, seviye bilgisi), 2 halk × 4 sınıf sefer akışı, eski kayıt (m43/m56) migrasyonu",Eski kayıt yükle → çift ödül 0; yeni hesap Sv.1→ m25 akışı; mqTrack/mqGo,"OP35-06,07,09,10"
+P35-02,D06/D07 dönem,ENGELLİ (üretim yaması yok),Yalnız saf model ve şartname,"Gerçek dispatch: tick snapshot, bonuslar, dailyBonus, kalıcı başarım ayrımı, iki sekme, F-001",H-06; çoklu sekme; dönem geçişi; Sv.11 oyuncu günlük sandık,OP35-08
+P35-03,İçerik bütünlüğü + D09,ADAY · KAYNAKTA KANITLI,40/40 (tekrar); 6 yaratık doğum yolu (kaynak verisi); 20 zırh katalogda; D09 dükkân anahtarı doğru,PAPER_IDS satın alma; Kragmir tüccar ekranında replik görünümü; EN'de NPC sözü null davranışı,Tarayıcı: Kragmir Halvor dükkânı; satın alma başarılı/başarısız repliği,OP35-11
+P35-04,Oyuncu deneyimi,GÖZLEM KISMİ,Yazılım GL 5 dk koşusu (F-024 klasörü); Savaşçı başlangıç dispatch kanıtı,Gerçek cihazda ilk 5/30/120 dk; geri dönen oyuncu; düşük zamanlı,İnsan oyuncu gözlemi; H-04,OP35-12
+P35-05A,Koleksiyon,MODEL ADAY · TASARIM KARARI,1718 model kontrolü (tekrar); katalog kırılımı,"Gerçek ekleme yolları (addItem, items.push, market, başlangıç, geri yükleme); dolu çanta; F-002; sanal liste performansı",H-05; 880×406 filtre; 1247 kart DOM ölçümü,"OP35-15,16"
+P35-05B,Avcı Seferi,MODEL ADAY · TASARIM KARARI,414 model kontrolü (tekrar); rota ayrışma ölçümü,"Gerçek savaş: kısmi temizleme, XP/akçe, haftalık mod; hak harcama/geri alma; sekme çakışması; ad kararı","H-01, H-02; eski Kuyu ile aynı tohum karşılaştırması","OP35-13,14"
+P35-06,Arayüz 240/122,ENGELLİ (Gemini finali yok),"Envanter 226+14 satır yolları doğrulanmış (GPT); 122 eylem sınıflaması (Opus, sezgisel)","Her satır için gerçek çekim (667/880/1180, TR/EN, iki halk); boş/hata/yükleme durumları","Satır başına: görsel, commit, viewport, veri, eylem, sonuç","OP35-19,20"
+P35-07,Sanat uyumu,ENGELLİ,3 referans + 6 arma SHA kilidi (GPT); rubrik önerisi (Opus),Gemini tam çözünürlük adaylar; kullanıcı onayı,Rubrik tablosu (DENETIM §7) her ekran için,"OP35-17,18"
+P35-08,Varlık/performans,ENGELLİ,"Mevcut ağ ölçümü 294 istek 26,9 MB (rt.mjs, yerel, sıkıştırmasız); gömülü 37,5 MB",Yeni varlık bütçesi ≤8 MB; önce/sonra ağ; decode/bellek; gerçek cihaz FPS (F-014),varlik_kontrol.py ek kontrolleriyle; rt.mjs önce/sonra,"OP35-21,22"
+P35-09,Bağımsız kabul,İLK TUR TAMAM · NİHAİ YOK,Bu paket,Opus entegre dalı; Fable ikinci tur,Regresyon listesi aşağıda,—
+
+REGRESYON_KONTROL_LISTESI
+REG-01,"Savaş: 1-1 zafer, 2-10 yenilgi, boss 1-10, Meydan, 5 zindan VS (EKRAN_EKSIGI çekimleri ile karşılaştır)"
+REG-02,"Kayıt: eski kayıt yükle, iki sekme kilidi (F-021), bozuk kayıt yedeği (F-001)"
+REG-03,"Ödül: mq.claim tekrar reddi, dönem bonusu tekliği"
+REG-04,Dil: TR/EN geçişinde yeni görev ve NPC metinleri (F-004)
+REG-05,Yerleşim: 11 px / 44 px ölçümü rt.mjs (F-005/F-006) 880 ve 667
+REG-06,"Hikâye: Destan 8 bölüm kilit zinciri, anı açılışı"

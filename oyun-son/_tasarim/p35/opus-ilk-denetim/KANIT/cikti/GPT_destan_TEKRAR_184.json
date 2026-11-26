@@ -1,0 +1,744 @@
+{
+  "scope": "P35-01 kaynak modülleri; sentetik kayıt; savaş dengesi/regresyonu ve tarayıcı testi yok",
+  "total": 184,
+  "passed": 184,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "8 bölüm, sıra, seviyeler ve türler",
+      "pass": true
+    },
+    {
+      "name": "Mini Dizi ayrı, 10 bölüm",
+      "pass": true
+    },
+    {
+      "name": "ocak/I anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/I seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/I eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/I ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/I gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/I sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/I medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/I medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/I medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/I medya/memory",
+      "pass": true
+    },
+    {
+      "name": "ocak/II anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/II seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/II önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "ocak/II eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/II ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/II gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/II sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/II medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/II medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/II medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/II medya/memory",
+      "pass": true
+    },
+    {
+      "name": "ocak/III anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/III seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/III önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "ocak/III eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/III ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/III gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/III sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/III medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/III medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/III medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/III medya/memory",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV yanlış cevap ödül/veri yazmaz",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV doğru çözüm",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV savaş eylemi reddedilir",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/IV medya/memory",
+      "pass": true
+    },
+    {
+      "name": "ocak/V anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/V seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/V önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "ocak/V eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/V ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/V yanlış cevap ödül/veri yazmaz",
+      "pass": true
+    },
+    {
+      "name": "ocak/V doğru çözüm",
+      "pass": true
+    },
+    {
+      "name": "ocak/V savaş eylemi reddedilir",
+      "pass": true
+    },
+    {
+      "name": "ocak/V medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/V medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/V medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/V medya/memory",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/VI medya/memory",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII yanlış cevap ödül/veri yazmaz",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII doğru çözüm",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/VII medya/memory",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII anlatılar",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII medya/intro",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII medya/outro",
+      "pass": true
+    },
+    {
+      "name": "ocak/VIII medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/I anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/I seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/I eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/I ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/I gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/I sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/I medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/I medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/I medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/I medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/II anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/II seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/II önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "sancak/II eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/II ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/II gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/II sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/II medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/II medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/II medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/II medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/III anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/III seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/III önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "sancak/III eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/III ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/III gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/III sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/III medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/III medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/III medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/III medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV yanlış cevap ödül/veri yazmaz",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV doğru çözüm",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV savaş eylemi reddedilir",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/IV medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/V anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/V seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/V önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "sancak/V eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/V ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/V yanlış cevap ödül/veri yazmaz",
+      "pass": true
+    },
+    {
+      "name": "sancak/V doğru çözüm",
+      "pass": true
+    },
+    {
+      "name": "sancak/V savaş eylemi reddedilir",
+      "pass": true
+    },
+    {
+      "name": "sancak/V medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/V medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/V medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/V medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/VI medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII yanlış cevap ödül/veri yazmaz",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII doğru çözüm",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/VII medya/memory",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII anlatılar",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII seviyeden önce kilitli",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII önceki bölüm gerekli",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII eşikte açılır",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII ilk ödül ve tekrar idempotansı (doğrudan bölüm sonlandırma)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII gerçek savaş kurulumu (simülasyon değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII sentetik zafer/yenilgi ödül yönlendirmesi (gerçek savaş değil)",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII medya/intro",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII medya/puzzle",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII medya/outro",
+      "pass": true
+    },
+    {
+      "name": "sancak/VIII medya/memory",
+      "pass": true
+    }
+  ]
+}

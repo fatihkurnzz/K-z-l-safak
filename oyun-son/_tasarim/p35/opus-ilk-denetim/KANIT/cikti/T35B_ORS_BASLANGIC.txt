@@ -1,0 +1,8 @@
+ocak warrior akçe 1500 taş [8,0,0] eşya 1 → no-stone 1 adet İnce Bileği Taşı gerekli. | m05 0
+ocak rogue akçe 1500 taş [8,0,0] eşya 3 → deneme OK ok | m05 1
+ocak mage akçe 1500 taş [8,0,0] eşya 2 → deneme OK ok | m05 1
+ocak priest akçe 1500 taş [8,0,0] eşya 3 → deneme OK ok | m05 1
+sancak warrior akçe 1500 taş [8,0,0] eşya 1 → no-stone 1 adet İnce Bileği Taşı gerekli. | m05 0
+sancak rogue akçe 1500 taş [8,0,0] eşya 3 → deneme OK ok | m05 1
+sancak mage akçe 1500 taş [8,0,0] eşya 2 → deneme OK ok | m05 1
+sancak priest akçe 1500 taş [8,0,0] eşya 3 → deneme OK ok | m05 1

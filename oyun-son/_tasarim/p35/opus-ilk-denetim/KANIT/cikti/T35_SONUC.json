@@ -1,0 +1,60 @@
+{
+ "kaynak": "/tmp/claude-0/-home-user-K-z-l-safak/44302d19-2e36-5a51-807e-4d1ad7192527/scratchpad/p35test/patched",
+ "tohumlar": [
+  351,
+  352
+ ],
+ "not": "Yerel kural katmanı (MemoryStore, bots:true, dev:true). Tarayıcı/gerçek oyuncu değildir.",
+ "sonuclar": [
+  {
+   "id": "ocak T0 yeni oyuncu ilk ana hedef",
+   "sonuc": "GECTI",
+   "not": "mqNextMain=m01"
+  },
+  {
+   "id": "ocak T1a Sv.20 klan listesi",
+   "sonuc": "GECTI",
+   "not": "3 klan; ilk: {\"id\":\"bot-ocak-0\",\"name\":\"Yalın Akıncıları\",\"faction\":\"ocak\",\"lvl\":3,\"banner\":{\"a\":3,\"s\":\"ors\",\"c\":3},\"members\":8,\"max\":24,\"open\":true,\"minPower\":0,\"applied\":f"
+  },
+  {
+   "id": "ocak T1b açık klana katılım (akçe harcamadan)",
+   "sonuc": "GECTI",
+   "not": "sonuç bot-ocak-0; m15 ilerleme 1/1"
+  },
+  {
+   "id": "ocak T1c klandan ayrılınca m15 ilerlemesi korunur",
+   "sonuc": "GECTI",
+   "not": "ayrılma ok; p.clan=false; ach.c.clan=1; ilerleme 1"
+  },
+  {
+   "id": "ocak T2 başarısız Örs denemesi m05 ilerlemesini doldurur",
+   "sonuc": "GECTI",
+   "not": "2 deneme; upOk 1 upFail 1; m05 1/1; son drop"
+  },
+  {
+   "id": "sancak T0 yeni oyuncu ilk ana hedef",
+   "sonuc": "GECTI",
+   "not": "mqNextMain=m01"
+  },
+  {
+   "id": "sancak T1a Sv.20 klan listesi",
+   "sonuc": "GECTI",
+   "not": "3 klan; ilk: {\"id\":\"bot-sancak-0\",\"name\":\"Sarp Akıncıları\",\"faction\":\"sancak\",\"lvl\":3,\"banner\":{\"a\":4,\"s\":\"gunes\",\"c\":4},\"members\":8,\"max\":24,\"open\":true,\"minPower\":0,\"appli"
+  },
+  {
+   "id": "sancak T1b açık klana katılım (akçe harcamadan)",
+   "sonuc": "GECTI",
+   "not": "sonuç bot-sancak-0; m15 ilerleme 1/1"
+  },
+  {
+   "id": "sancak T1c klandan ayrılınca m15 ilerlemesi korunur",
+   "sonuc": "GECTI",
+   "not": "ayrılma ok; p.clan=false; ach.c.clan=1; ilerleme 1"
+  },
+  {
+   "id": "sancak T2 başarısız Örs denemesi m05 ilerlemesini doldurur",
+   "sonuc": "GECTI",
+   "not": "1 deneme; upOk 0 upFail 1; m05 1/1; son fail"
+  }
+ ]
+}

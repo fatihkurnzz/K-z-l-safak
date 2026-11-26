@@ -1,0 +1,2447 @@
+{
+  "tests": [
+    {
+      "name": "64 unique identities",
+      "ok": true
+    },
+    {
+      "name": "m01 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m01 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m02 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m02 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m03 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m03 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m04 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m04 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m05 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m05 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m06 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m06 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m07 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m07 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m08 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m08 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m09 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m09 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m10 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m10 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m11 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m11 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m12 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m12 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m13 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m13 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m14 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m14 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m15 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m15 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m16 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m16 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m17 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m17 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m18 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m18 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m19 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m19 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m20 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m20 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m21 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m21 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m22 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m22 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m23 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m23 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m24 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m24 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m25 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m25 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m26 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m26 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m27 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m27 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m28 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m28 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m29 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m29 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m30 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m30 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m31 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m31 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m32 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m32 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m33 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m33 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m34 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m34 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m35 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m35 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m36 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m36 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m37 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m37 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m38 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m38 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m39 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m39 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m40 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m40 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m41 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m41 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m42 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m42 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m43 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m43 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m44 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m44 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m45 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m45 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m46 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m46 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m47 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m47 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m48 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m48 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m49 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m49 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m50 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m50 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m51 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m51 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m52 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m52 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m53 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m53 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m54 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m54 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m55 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m55 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m56 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m56 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m57 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m57 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m58 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m58 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m59 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m59 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m60 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m60 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m61 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m61 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m62 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m62 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m63 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m63 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "m64 reward and position unchanged",
+      "ok": true
+    },
+    {
+      "name": "m64 graph acyclic",
+      "ok": true
+    },
+    {
+      "name": "final requires m05",
+      "ok": true
+    },
+    {
+      "name": "final requires m13",
+      "ok": true
+    },
+    {
+      "name": "final requires m15",
+      "ok": true
+    },
+    {
+      "name": "final requires m17",
+      "ok": true
+    },
+    {
+      "name": "final requires m26",
+      "ok": true
+    },
+    {
+      "name": "final requires m46",
+      "ok": true
+    },
+    {
+      "name": "final not gated by m16",
+      "ok": true
+    },
+    {
+      "name": "final not gated by m27",
+      "ok": true
+    },
+    {
+      "name": "final not gated by m42",
+      "ok": true
+    },
+    {
+      "name": "final not gated by m54",
+      "ok": true
+    },
+    {
+      "name": "final not gated by m64",
+      "ok": true
+    },
+    {
+      "name": "final not gated by m34",
+      "ok": true
+    },
+    {
+      "name": "final not gated by m55",
+      "ok": true
+    },
+    {
+      "name": "m26 target",
+      "ok": true
+    },
+    {
+      "name": "m46 target",
+      "ok": true
+    },
+    {
+      "name": "m61 target",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage unsuccessful forge counts",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage PvP loss counts, victory not required",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage clan proof and level",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage final gates actually checked",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage old already-claimed reward never reopens",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage real mq.claim once",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage kill progress cumulative",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage Destan gate and completed earlier",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage main next outranks optional reward",
+      "ok": true
+    },
+    {
+      "name": "stegodon dynamic zone pool",
+      "ok": true
+    },
+    {
+      "name": "shadow_spectre dynamic zone pool",
+      "ok": true
+    },
+    {
+      "name": "mana_spectre dynamic zone pool",
+      "ok": true
+    },
+    {
+      "name": "mage_ghost dynamic zone pool",
+      "ok": true
+    },
+    {
+      "name": "wandering_knight_ghost dynamic zone pool",
+      "ok": true
+    },
+    {
+      "name": "dread_knight dynamic zone pool",
+      "ok": true
+    },
+    {
+      "name": "sancak 1 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "sancak 20 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "sancak 40 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "sancak 65 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_hp_helm",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_hp_chest",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_hp_legs",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_hp_gloves",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_hp_boots",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_mp_helm",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_mp_chest",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_mp_legs",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_mp_gloves",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:linen_mp_boots",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_hp_helm",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_hp_chest",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_hp_legs",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_hp_gloves",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_hp_boots",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_mp_helm",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_mp_chest",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_mp_legs",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_mp_gloves",
+      "ok": true
+    },
+    {
+      "name": "sancak buy u:wool_mp_boots",
+      "ok": true
+    },
+    {
+      "name": "ocak 1 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "ocak 20 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "ocak 40 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "ocak 65 all paper items on shelves",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_hp_helm",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_hp_chest",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_hp_legs",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_hp_gloves",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_hp_boots",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_mp_helm",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_mp_chest",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_mp_legs",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_mp_gloves",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:linen_mp_boots",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_hp_helm",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_hp_chest",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_hp_legs",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_hp_gloves",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_hp_boots",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_mp_helm",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_mp_chest",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_mp_legs",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_mp_gloves",
+      "ok": true
+    },
+    {
+      "name": "ocak buy u:wool_mp_boots",
+      "ok": true
+    },
+    {
+      "name": "last boss name",
+      "ok": true
+    },
+    {
+      "name": "Marven at stage 20",
+      "ok": true
+    },
+    {
+      "name": "achievement kill tiers unchanged",
+      "ok": true
+    }
+  ],
+  "passed": 274,
+  "total": 274,
+  "groups": {
+    "sefer": 22,
+    "rehber": 10,
+    "istege_bagli": 30,
+    "destan_baglantisi": 2
+  },
+  "natural": [
+    {
+      "stage": "1-25",
+      "cumulative": 217
+    },
+    {
+      "stage": "2-5",
+      "cumulative": 262
+    },
+    {
+      "stage": "2-15",
+      "cumulative": 346
+    },
+    {
+      "stage": "4-1",
+      "cumulative": 628
+    },
+    {
+      "stage": "4-8",
+      "cumulative": 685
+    },
+    {
+      "stage": "4-25",
+      "cumulative": 814
+    }
+  ],
+  "creatures": [
+    {
+      "id": "stegodon",
+      "zones": [
+        3
+      ]
+    },
+    {
+      "id": "shadow_spectre",
+      "zones": [
+        4
+      ]
+    },
+    {
+      "id": "mana_spectre",
+      "zones": [
+        4
+      ]
+    },
+    {
+      "id": "mage_ghost",
+      "zones": [
+        4
+      ]
+    },
+    {
+      "id": "wandering_knight_ghost",
+      "zones": [
+        4
+      ]
+    },
+    {
+      "id": "dread_knight",
+      "zones": [
+        4
+      ]
+    }
+  ],
+  "paper": [
+    "u:linen_hp_helm",
+    "u:linen_hp_chest",
+    "u:linen_hp_legs",
+    "u:linen_hp_gloves",
+    "u:linen_hp_boots",
+    "u:linen_mp_helm",
+    "u:linen_mp_chest",
+    "u:linen_mp_legs",
+    "u:linen_mp_gloves",
+    "u:linen_mp_boots",
+    "u:wool_hp_helm",
+    "u:wool_hp_chest",
+    "u:wool_hp_legs",
+    "u:wool_hp_gloves",
+    "u:wool_hp_boots",
+    "u:wool_mp_helm",
+    "u:wool_mp_chest",
+    "u:wool_mp_legs",
+    "u:wool_mp_gloves",
+    "u:wool_mp_boots"
+  ],
+  "graph": [
+    {
+      "id": "m01",
+      "ch": 1,
+      "pos": "a",
+      "ad": "İlk Kan",
+      "acik": "Bir savaş kazan.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 300
+        }
+      ],
+      "go": "gate",
+      "pre": [],
+      "group": "sefer"
+    },
+    {
+      "id": "m02",
+      "ch": 1,
+      "pos": "b",
+      "ad": "Donan",
+      "acik": "Çanta’dan bir eşya kuşan; eşya gücü artırır.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 20
+        }
+      ],
+      "go": "party",
+      "pre": [
+        "m01"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m03",
+      "ch": 1,
+      "pos": "c",
+      "ad": "Yetenek Puanı",
+      "acik": "Karakter ekranında bir yetenek ağacına puan harca.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 400
+        }
+      ],
+      "go": "party",
+      "pre": [
+        "m01"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m04",
+      "ch": 1,
+      "pos": "d",
+      "ad": "İlk Kapı",
+      "acik": "Vahran Ovası’nın 5. aşamasındaki kapı kaptanını yen.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 10
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m01"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m05",
+      "ch": 2,
+      "pos": "a",
+      "ad": "Örs’ün Sesi",
+      "acik": "Örs’te bir geliştirme denemesi yap; başarı gerekmez.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 0,
+          "n": 2
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m04"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m06",
+      "ch": 2,
+      "pos": "b",
+      "ad": "Hurda Ayıkla",
+      "acik": "Örs’te 5 eşya parçala ya da sat; toz ve akçe kazan.",
+      "need": 5,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 500
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m04"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m07",
+      "ch": 2,
+      "pos": "c",
+      "ad": "Cevher Topla",
+      "acik": "Maden’de biriken cevheri topla.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 25
+        }
+      ],
+      "go": "mine",
+      "pre": [
+        "m04"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m08",
+      "ch": 2,
+      "pos": "d",
+      "ad": "Derin Damar",
+      "acik": "Maden’i 2. seviyeye çıkar; kazanç artar.",
+      "need": 2,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 10
+        }
+      ],
+      "go": "mine",
+      "pre": [
+        "m04"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m09",
+      "ch": 3,
+      "pos": "a",
+      "ad": "Yol Görmüş",
+      "acik": "Seviyeni 10’a çıkar.",
+      "need": 10,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 800
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m04",
+        "m05"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m10",
+      "ch": 3,
+      "pos": "b",
+      "ad": "Sözünü Tut",
+      "acik": "Günlük görevlerden birinin ödülünü al.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 30
+        }
+      ],
+      "go": "quests",
+      "pre": [
+        "m09"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m11",
+      "ch": 3,
+      "pos": "c",
+      "ad": "Baş Avı",
+      "acik": "Bir Boss yen; kapı kaptanları ve Boss’lar günde bir kez ödül verir.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 0,
+          "n": 3
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m01"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m12",
+      "ch": 3,
+      "pos": "d",
+      "ad": "Vahran Fatihi",
+      "acik": "Vahran Ovası’nı bitir: 25. aşamanın Boss’unu yen.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 20
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m09"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m13",
+      "ch": 4,
+      "pos": "a",
+      "ad": "Meydana Çık",
+      "acik": "Meydan’da bir dövüş yap (12. seviyede açılır).",
+      "need": 1,
+      "reward": [
+        {
+          "t": "san",
+          "n": 60
+        }
+      ],
+      "go": "meydan",
+      "pre": [
+        "m09"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m14",
+      "ch": 4,
+      "pos": "b",
+      "ad": "Pazar Gezen",
+      "acik": "Pazar’dan bir eşya satın al.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 1500
+        }
+      ],
+      "go": "market",
+      "pre": [
+        "m12"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m15",
+      "ch": 4,
+      "pos": "c",
+      "ad": "Oba Ateşi",
+      "acik": "Bir klana katıl ya da klan kur (20. seviyede açılır).",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 2000
+        }
+      ],
+      "go": "clan",
+      "pre": [
+        "m12",
+        "m13"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m16",
+      "ch": 4,
+      "pos": "d",
+      "ad": "Artının Peşinde",
+      "acik": "Bir eşyayı +5 yap; bileği taşı ve emek ister.",
+      "need": 5,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 1,
+          "n": 1
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m12"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m17",
+      "ch": 5,
+      "pos": "a",
+      "ad": "Meydan Eri",
+      "acik": "Meydan’da toplam 3 dövüş tamamla; zafer şart değil.",
+      "need": 3,
+      "reward": [
+        {
+          "t": "san",
+          "n": 100
+        }
+      ],
+      "go": "meydan",
+      "pre": [
+        "m13"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m18",
+      "ch": 5,
+      "pos": "b",
+      "ad": "Şan Divanı",
+      "acik": "Şan Divanı’nda bir seviye al (25. seviyede açılır).",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 20
+        }
+      ],
+      "go": "hall",
+      "pre": [
+        "m13"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m19",
+      "ch": 5,
+      "pos": "c",
+      "ad": "Dipsiz Kuyu",
+      "acik": "Dipsiz Kuyu’da 5 dalga temizle (25. seviye, Kapı → Zindanlar).",
+      "need": 5,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 1,
+          "n": 2
+        }
+      ],
+      "go": "dungeons",
+      "pre": [
+        "m12"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m20",
+      "ch": 5,
+      "pos": "d",
+      "ad": "Kader Çeviren",
+      "acik": "Kader Çarkı’nı bir kez çevir.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 40
+        }
+      ],
+      "go": "wheel",
+      "pre": [
+        "m12"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m21",
+      "ch": 6,
+      "pos": "a",
+      "ad": "Uzmanlık Yolu",
+      "acik": "Uzmanlık yolunu seç (10. seviyede açılır).",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 30
+        }
+      ],
+      "go": "partyPath",
+      "pre": [
+        "m09"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m22",
+      "ch": 6,
+      "pos": "b",
+      "ad": "Mühür Kıran",
+      "acik": "Mühürlü Oda’yı bir kez kazan (Kapı → Zindanlar).",
+      "need": 1,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 1
+        }
+      ],
+      "go": "dungeons",
+      "pre": [
+        "m12"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m23",
+      "ch": 6,
+      "pos": "c",
+      "ad": "Sözünün Eri",
+      "acik": "Bir gün bütün günlük görevleri bitir ve sandığı aç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 30
+        }
+      ],
+      "go": "quests",
+      "pre": [
+        "m12"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m24",
+      "ch": 6,
+      "pos": "d",
+      "ad": "Kül Geçidi",
+      "acik": "Kül Geçidi’ni bitir: 2. bölgenin son Boss’unu yen.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 60
+        },
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 2
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m28"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m25",
+      "ch": 7,
+      "pos": "a",
+      "ad": "Küldeki Ayak İzleri",
+      "acik": "Thrak/Bran sınır karakolunda gri cübbeli gölgeler görmüş. Kül Geçidi’nin 5. aşamasına ulaş.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 3000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m12",
+        "m13",
+        "m15"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m26",
+      "ch": 7,
+      "pos": "b",
+      "ad": "Sessiz Kılıçlar",
+      "acik": "Gölgelerin peşindeki yaratıkları sustur: toplam 100 düşman devir.",
+      "need": 100,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 40
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m25"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m27",
+      "ch": 7,
+      "pos": "c",
+      "ad": "Demiri Bile",
+      "acik": "Gölgelere karşı silahın keskin olsun: bir eşyayı +6 yap.",
+      "need": 6,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 1,
+          "n": 2
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m25"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m28",
+      "ch": 7,
+      "pos": "d",
+      "ad": "Cübbenin Sahibi",
+      "acik": "Kül Geçidi’nin 15. aşamasını geç; cübbelilerin izini sür.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 25
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m25",
+        "m26",
+        "m17"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m29",
+      "ch": 8,
+      "pos": "a",
+      "ad": "Şamanın Çağrısı",
+      "acik": "Yashka seni bekliyor: seviyeni 25’e çıkar.",
+      "need": 25,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 4000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m25"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m30",
+      "ch": 8,
+      "pos": "b",
+      "ad": "Kemik Fal",
+      "acik": "Yashka’nın falı için 3 farklı Boss türü yen.",
+      "need": 3,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 1,
+          "n": 2
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m25"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m31",
+      "ch": 8,
+      "pos": "c",
+      "ad": "Derinden Gelen Ses",
+      "acik": "Dipsiz Kuyu’da 10 dalga temizle; ses aşağıdan geliyor.",
+      "need": 10,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 50
+        }
+      ],
+      "go": "dungeons",
+      "pre": [
+        "m25"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m32",
+      "ch": 8,
+      "pos": "d",
+      "ad": "Kehanetin Kapısı",
+      "acik": "Destan IV — Sözün Bedeli bölümünü tamamla.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 40
+        }
+      ],
+      "go": "destan",
+      "pre": [
+        "m24"
+      ],
+      "group": "destan_baglantisi"
+    },
+    {
+      "id": "m33",
+      "ch": 9,
+      "pos": "a",
+      "ad": "Kızıl Bahar’a Adım",
+      "acik": "İki ordunun çarpıştığı meydana gir: Kızıl Bahar Meydanı’nın 1. aşamasını geç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 6000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m24"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m34",
+      "ch": 9,
+      "pos": "b",
+      "ad": "Meydanın Tozu",
+      "acik": "Meydan’da 10 zafer kazan; ordunun gözü sende.",
+      "need": 10,
+      "reward": [
+        {
+          "t": "san",
+          "n": 200
+        }
+      ],
+      "go": "meydan",
+      "pre": [
+        "m33"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m35",
+      "ch": 9,
+      "pos": "c",
+      "ad": "Kırık Mızraklar",
+      "acik": "Toplam 20 eşya parçala ya da sat.",
+      "need": 20,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 5000
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m33"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m36",
+      "ch": 9,
+      "pos": "d",
+      "ad": "Bahar Komutanı",
+      "acik": "Kızıl Bahar Meydanı’nın 10. aşamasını geç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 40
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m33"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m37",
+      "ch": 10,
+      "pos": "a",
+      "ad": "Çatlak Dikilitaş",
+      "acik": "Taş Yemini çatlıyor: seviyeni 40’a çıkar.",
+      "need": 40,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 8000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m24"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m38",
+      "ch": 10,
+      "pos": "b",
+      "ad": "Yemin Pazarı’nda Fısıltı",
+      "acik": "Pazar’da 5 eşya sat; tüccarlar söylentileri satar.",
+      "need": 5,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 50
+        }
+      ],
+      "go": "market",
+      "pre": [
+        "m36"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m39",
+      "ch": 10,
+      "pos": "c",
+      "ad": "Mühürlerin Ardı",
+      "acik": "Mühürlü Oda’yı 3 kez kazan.",
+      "need": 3,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 1
+        }
+      ],
+      "go": "dungeons",
+      "pre": [
+        "m36"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m40",
+      "ch": 10,
+      "pos": "d",
+      "ad": "Barışın Bekçisi",
+      "acik": "Kızıl Bahar Meydanı’nın 20. aşamasını geç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 50
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m36"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m41",
+      "ch": 11,
+      "pos": "a",
+      "ad": "Taht Salonu",
+      "acik": "Kral seni huzuruna çağırıyor: Kızıl Bahar Meydanı’nı bitir.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 60
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m40"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m42",
+      "ch": 11,
+      "pos": "b",
+      "ad": "Kralın Kılıcı",
+      "acik": "Krala layık ol: bir eşyayı +7 yap.",
+      "need": 7,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 1
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m41"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m43",
+      "ch": 11,
+      "pos": "c",
+      "ad": "Kızıl Bahar’ın Ardından",
+      "acik": "Destan VI — Kızıl Bahar bölümünü tamamla.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 10000
+        }
+      ],
+      "go": "destan",
+      "pre": [
+        "m41"
+      ],
+      "group": "destan_baglantisi"
+    },
+    {
+      "id": "m44",
+      "ch": 11,
+      "pos": "d",
+      "ad": "Buyruk",
+      "acik": "Seviyeni 50’ye çıkar; buyruk seni Sisli Çukur’a yollar.",
+      "need": 50,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 60
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m41"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m45",
+      "ch": 12,
+      "pos": "a",
+      "ad": "Sisin Eşiği",
+      "acik": "Sisli Çukur’un 1. aşamasını geç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 12000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m41"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m46",
+      "ch": 12,
+      "pos": "b",
+      "ad": "Kemik Yığını",
+      "acik": "Toplam 250 düşman devir; çukur dolu.",
+      "need": 250,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 60
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m45"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m47",
+      "ch": 12,
+      "pos": "c",
+      "ad": "Yerin Dibi",
+      "acik": "Kor katlarında 25. kata in.",
+      "need": 25,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 2
+        }
+      ],
+      "go": "dungeons",
+      "pre": [
+        "m45"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m48",
+      "ch": 12,
+      "pos": "d",
+      "ad": "Ateşsiz Kazanın Kokusu",
+      "acik": "Sisli Çukur’un 8. aşamasını geç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 70
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m45",
+        "m46"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m49",
+      "ch": 13,
+      "pos": "a",
+      "ad": "Tarikatın Kapısı",
+      "acik": "Seviyeni 58’e çıkar; tarikat güçlüye kapı açar.",
+      "need": 58,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 15000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m41"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m50",
+      "ch": 13,
+      "pos": "b",
+      "ad": "Gri Cübbeler",
+      "acik": "Sisli Çukur’un 14. aşamasını geç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 70
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m48"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m51",
+      "ch": 13,
+      "pos": "c",
+      "ad": "Nadide Sandık",
+      "acik": "Bir Eşsiz eşyaya sahip ol.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 2
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m48"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m52",
+      "ch": 13,
+      "pos": "d",
+      "ad": "Kazanın Bekçisi",
+      "acik": "Sisli Çukur’un 20. aşamasını geç.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 80
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m50"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m53",
+      "ch": 14,
+      "pos": "a",
+      "ad": "Mareşalin Gölgesi",
+      "acik": "Seviyeni 62’ye çıkar.",
+      "need": 62,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 20000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m52"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m54",
+      "ch": 14,
+      "pos": "b",
+      "ad": "Usta Demirci",
+      "acik": "Bir eşyayı +8 yap.",
+      "need": 8,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 3
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m52"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m55",
+      "ch": 14,
+      "pos": "c",
+      "ad": "Meydan Ustası",
+      "acik": "Meydan’da 50 zafer kazan.",
+      "need": 50,
+      "reward": [
+        {
+          "t": "san",
+          "n": 400
+        }
+      ],
+      "go": "meydan",
+      "pre": [
+        "m52"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m56",
+      "ch": 14,
+      "pos": "d",
+      "ad": "Adsız",
+      "acik": "Sisli Çukur’u bitir: 25. aşamadaki Adsız karşılaşmasını kazan.",
+      "need": 1,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 120
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m52",
+        "m05",
+        "m13",
+        "m15",
+        "m17",
+        "m26",
+        "m46"
+      ],
+      "group": "sefer"
+    },
+    {
+      "id": "m57",
+      "ch": 15,
+      "pos": "a",
+      "ad": "Külden Doğan",
+      "acik": "Azami seviyeye (65) ulaş.",
+      "need": 65,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 100
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m52"
+      ],
+      "group": "rehber"
+    },
+    {
+      "id": "m58",
+      "ch": 15,
+      "pos": "b",
+      "ad": "Mühür Efendisi",
+      "acik": "Mühürlü Oda’yı 10 kez kazan.",
+      "need": 10,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 3
+        }
+      ],
+      "go": "dungeons",
+      "pre": [
+        "m56"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m59",
+      "ch": 15,
+      "pos": "c",
+      "ad": "Bilge Gezgin",
+      "acik": "Ansiklopedide 25 kayıt aç.",
+      "need": 25,
+      "reward": [
+        {
+          "t": "akce",
+          "n": 30000
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m56"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m60",
+      "ch": 15,
+      "pos": "d",
+      "ad": "Diyar Fatihi",
+      "acik": "Normal bölge aşamalarından toplam 150 yıldız kazan.",
+      "need": 150,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 120
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m56"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m61",
+      "ch": 16,
+      "pos": "a",
+      "ad": "Bin Kesen",
+      "acik": "Toplam 500 düşman devir.",
+      "need": 500,
+      "reward": [
+        {
+          "t": "energy",
+          "n": 100
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m56"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m62",
+      "ch": 16,
+      "pos": "b",
+      "ad": "Hazine Bekçisi",
+      "acik": "Aynı anda 5 farklı Eşsiz eşyaya sahip ol.",
+      "need": 5,
+      "reward": [
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 4
+        }
+      ],
+      "go": "gate",
+      "pre": [
+        "m56"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m63",
+      "ch": 16,
+      "pos": "c",
+      "ad": "Derin Yürüyen",
+      "acik": "Kor katlarında 50. kata in.",
+      "need": 50,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 100
+        }
+      ],
+      "go": "dungeons",
+      "pre": [
+        "m56"
+      ],
+      "group": "istege_bagli"
+    },
+    {
+      "id": "m64",
+      "ch": 16,
+      "pos": "d",
+      "ad": "Taşa Kazınan Ad",
+      "acik": "Bir eşyayı +10 yap; adın Taş Yemini’ne kazınsın.",
+      "need": 10,
+      "reward": [
+        {
+          "t": "yakut",
+          "n": 200
+        },
+        {
+          "t": "stone",
+          "g": 2,
+          "n": 5
+        }
+      ],
+      "go": "anvil",
+      "pre": [
+        "m56"
+      ],
+      "group": "istege_bagli"
+    }
+  ]
+}

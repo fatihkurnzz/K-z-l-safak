@@ -1,0 +1,72 @@
+{
+  "hazirlayan": "Opus 5.5 ilk tur; Astra'nın mevcut görevlerine EK, kopya simülasyon değil",
+  "kaynak": "V42 oyun-son @ bae239e + P35_02_04, D09, P35_01 yamaları (KAYNAK_ENVANTERI ile 466/467 aynı)",
+  "hipotezler": [
+    {
+      "id": "H-01",
+      "p35": "P35-05B",
+      "soru": "Zayıflık temelli rota (R1), tamamlama oranını uzmanlığa göre anlamlı biçimde değiştiriyor mu? Mevcut yarı/yarı rota değiştiriyor mu?",
+      "giris": "modes.js well build (mevcut) ile aday plan; 25/40/65 seviye; temel/orta/üst ekipman; 8 uzmanlık × 2 ırk; rota: aday 8 kombinasyon ve R1 2 seçenek",
+      "olcut": "tam temizleme oranı, ortalama temizlenen dalga, tur sayısı",
+      "esik_onerisi": "Aynı uzmanlıkta iki R1 seçeneği arasında temizleme oranı farkı ≥10 puan ise seçim 'karar' sayılır; aday rotalarda <3 puan bekleniyor. Eşik kullanıcıya önerilir, zorunlu değil.",
+      "ornek": "her hücre ≥100 tohum",
+      "gerekce": "OP35-13: kaynak verisinde iki yarı arasında ≤%9 stat farkı, ödül birebir aynı",
+      "oncelik": "Yüksek"
+    },
+    {
+      "id": "H-02",
+      "p35": "P35-05B",
+      "soru": "10. dalgaya mevcut bossFor() kapı kaptanı (B1) eklenirse 9→10 geçiş başarısı ve kısmi ödül dağılımı nasıl değişir? 65 usta (U1) hangi ekipmanla geçilebilir?",
+      "giris": "B1: son dalga = bossFor(rand,lvl) mevcut ölçek; U1: lvl 65, tüm dalgalar 'e'",
+      "olcut": "10. dalga temizleme oranı; ortalama taş (4/4/2 dağılımına göre); süre (tur)",
+      "esik_onerisi": "Yok (kullanıcı belirler); rapor yüzdelik dağılımla",
+      "ornek": "8 uzmanlık × 2 ırk × 3 ekipman × ≥100 tohum",
+      "gerekce": "Gerçek boss modelde yok; onaysız zorluk sayısı konamaz",
+      "oncelik": "Orta"
+    },
+    {
+      "id": "H-03",
+      "p35": "P35-03 / P35-05A",
+      "soru": "Aşamalarda hiç doğmayan 6 yaratık için normal oynanışta beklenen ilk karşılaşma süresi nedir?",
+      "giris": "KANIT/cikti/ALTI_YARATIK_DOGUM.json; rastgele dalga kuran modlar (well, depth, seal, akin, destan); günlük hak sınırları",
+      "olcut": "ilk karşılaşmaya kadar oyun günü (ortanca, %90)",
+      "esik_onerisi": "Kullanıcı belirler; öneri: her biri ≤7 oyun günü (ortanca)",
+      "ornek": "≥1000 sanal oyuncu-günü, tohum kayıtlı",
+      "gerekce": "OP35-11: erişilebilir ama şansa bağlı; Koleksiyon tamamlanabilirliği",
+      "oncelik": "Orta"
+    },
+    {
+      "id": "H-04",
+      "p35": "P35-02 / P35-04",
+      "soru": "Öğreticiyi atlayan Savaşçı (silahsız) 1-1…1-5 aşamalarını ve m01/m04'ü öbür sınıflara göre ne kadar geç tamamlar?",
+      "giris": "newPlayer + tut.skip; 4 sınıf × 2 ırk; geliştirici eylemi yok",
+      "olcut": "ilk zafer, ilk silah kuşanma ve m04 tamamlama için savaş sayısı",
+      "esik_onerisi": "Savaşçı farkı ≤ 2 savaş ise kabul edilebilir (öneri)",
+      "ornek": "her hücre ≥100 tohum",
+      "gerekce": "OP35-12; kullanıcı kararı (19 Kas) korunurken etkinin ölçülmesi",
+      "oncelik": "Orta"
+    },
+    {
+      "id": "H-05",
+      "p35": "P35-05A / P35-03",
+      "soru": "1247 Koleksiyon kaydının her birinin oyunda en az bir gerçek edinim yolu var mı (düşme, dükkân, çark, pazar botu, ödül)?",
+      "giris": "items.allBases(), drops.js, npc.js merchantShelves, daily.js çark, bots.js pazar; 20 u:linen/wool zırhı ve PAPER_IDS ayrıca işaretlenir",
+      "olcut": "edinim yolu olmayan kayıt sayısı; yalnız tek yoldan (ör. yalnız etkinlik) gelen kayıt sayısı",
+      "esik_onerisi": "Yolu olmayan kayıt 0 olmalı; olmayanlar koleksiyon hedefinden çıkarılır (silinmez)",
+      "ornek": "statik + ≥10.000 düşme simülasyonu",
+      "gerekce": "OP35-16; 'erişilebilir' iddiası bağımsız doğrulanmadı",
+      "oncelik": "Yüksek"
+    },
+    {
+      "id": "H-06",
+      "p35": "P35-02 (D06/D07)",
+      "soru": "A politikası gerçek dispatch'te uygulandığında Sv.1–11 oyuncu günlük sandığı alır mı; dailyall/weeklyall kalıcı başarımları eskisiyle aynı hızda mı ilerler; çift ödül var mı?",
+      "giris": "Opus entegrasyon dalı; 30 günlük takvim; 6 profil; dönem geçişi, iki sekme, eski kayıt",
+      "olcut": "profil başına net yakut/muska/kor farkı; dailyAll/weeklyAll sayaç farkı; çift ödül sayısı",
+      "esik_onerisi": "Çift ödül 0; dailyAll farkı 0 (tam günler); net fark R4 modelinden ±%20 sapmazsa rapor, sapma varsa kullanıcıya",
+      "ornek": "6 profil × ≥200 tohum",
+      "gerekce": "OP35-08: kalıcı can/savunma başarımına dokunan en riskli entegrasyon",
+      "oncelik": "Yüksek"
+    }
+  ]
+}

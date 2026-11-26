@@ -1,0 +1,734 @@
+[
+ {
+  "eylem": "aeSes",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-erisim.js"
+ },
+ {
+  "eylem": "again",
+  "gpt_tur": "modal",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "anit",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-anit.js"
+ },
+ {
+  "eylem": "anitGo",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-anit.js"
+ },
+ {
+  "eylem": "arenaVs",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "avatarPick",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "avatarSet",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "ayEmek",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-ayarlar.js"
+ },
+ {
+  "eylem": "ayProfile",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-ayarlar.js"
+ },
+ {
+  "eylem": "backClan",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "backPvp",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "bagBreak",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-pvp.js"
+ },
+ {
+  "eylem": "bagGo",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-envanter.js"
+ },
+ {
+  "eylem": "bagMarket",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-pvp.js"
+ },
+ {
+  "eylem": "bagOne",
+  "gpt_tur": "onay penceresi",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-envanter.js"
+ },
+ {
+  "eylem": "balikDefter",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-balik.js"
+ },
+ {
+  "eylem": "balikRod",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-balik.js"
+ },
+ {
+  "eylem": "baskinGo",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-baskin.js"
+ },
+ {
+  "eylem": "blockAsk",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-odeme.js"
+ },
+ {
+  "eylem": "breakWin",
+  "gpt_tur": "pencere",
+  "opus_sinif": "yeni pencere",
+  "kaynak": "js/ui-town.js"
+ },
+ {
+  "eylem": "cbFull",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "cbSend",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "chBack",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "chConv",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "clanApply",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "clanCreate",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "clanHisar",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hisar.js"
+ },
+ {
+  "eylem": "clanJoin",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "clanLeave",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "clanPage",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "cpGo",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "cxItem",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-esya.js"
+ },
+ {
+  "eylem": "czpk",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-meydan.js"
+ },
+ {
+  "eylem": "depthFloors",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-pvp.js"
+ },
+ {
+  "eylem": "depthSweep",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-pvp.js"
+ },
+ {
+  "eylem": "destanBack",
+  "gpt_tur": "pencere",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-destan.js"
+ },
+ {
+  "eylem": "destanGo",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-destan.js"
+ },
+ {
+  "eylem": "destanMemory",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-destan.js"
+ },
+ {
+  "eylem": "destanPick",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-destan.js"
+ },
+ {
+  "eylem": "devAsk",
+  "gpt_tur": "modal",
+  "opus_sinif": "gelistirici (F-002; kabul dışı)",
+  "kaynak": "js/ui-kalicilik.js"
+ },
+ {
+  "eylem": "devReset",
+  "gpt_tur": "onay penceresi",
+  "opus_sinif": "gelistirici (F-002; kabul dışı)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "exchange",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "feudGo",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-meydan.js"
+ },
+ {
+  "eylem": "frRemoveAsk",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-odeme.js"
+ },
+ {
+  "eylem": "frameSel",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "frameSet",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "gfx",
+  "gpt_tur": "pencere",
+  "opus_sinif": "diger/belirsiz",
+  "kaynak": "js/ui-isik.js"
+ },
+ {
+  "eylem": "hsInvite",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-hisar.js"
+ },
+ {
+  "eylem": "hsLeave",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-hisar.js"
+ },
+ {
+  "eylem": "kbBuy",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-karaborsa.js"
+ },
+ {
+  "eylem": "klFac",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "klHq",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "klHunt",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "klKick",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "klMember",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "klNotice",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "klTransfer",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-klan.js"
+ },
+ {
+  "eylem": "klanTab",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "kxPick",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-kahraman.js"
+ },
+ {
+  "eylem": "kxSell",
+  "gpt_tur": "onay penceresi",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-kahraman.js"
+ },
+ {
+  "eylem": "kxUp",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-kahraman.js"
+ },
+ {
+  "eylem": "liveFind",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "mailTo",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-town.js"
+ },
+ {
+  "eylem": "marketKindOpen",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-town.js"
+ },
+ {
+  "eylem": "mnBaskin",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-baskin.js"
+ },
+ {
+  "eylem": "mnFish",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "mnFree",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "mnHisar",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "mob",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-esya.js"
+ },
+ {
+  "eylem": "mode",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "msgMenu",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-odeme.js"
+ },
+ {
+  "eylem": "mstReset",
+  "gpt_tur": "onay penceresi",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-party.js"
+ },
+ {
+  "eylem": "mzBackDef",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-meydan.js"
+ },
+ {
+  "eylem": "nbGo",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-nobet.js"
+ },
+ {
+  "eylem": "nbJoin",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-nobet.js"
+ },
+ {
+  "eylem": "nbLeave",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-nobet.js"
+ },
+ {
+  "eylem": "next",
+  "gpt_tur": "modal",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "npcBuy",
+  "gpt_tur": "NPC diyaloğu",
+  "opus_sinif": "islem; sonuc toast/yeniden cizim (ayri ekran yok)",
+  "kaynak": "js/ui-ogretici.js"
+ },
+ {
+  "eylem": "npcChild",
+  "gpt_tur": "NPC diyaloğu",
+  "opus_sinif": "diger/belirsiz",
+  "kaynak": "js/ui-ogretici.js"
+ },
+ {
+  "eylem": "npcKing",
+  "gpt_tur": "NPC diyaloğu",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "npcMerchant",
+  "gpt_tur": "pencere",
+  "opus_sinif": "yeni pencere",
+  "kaynak": "js/ui-ogretici.js"
+ },
+ {
+  "eylem": "npcWorm",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-ogretici.js"
+ },
+ {
+  "eylem": "onlineClaim",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-cevrimici.js"
+ },
+ {
+  "eylem": "ormanFight",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/orman.js"
+ },
+ {
+  "eylem": "partyPath",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-party.js"
+ },
+ {
+  "eylem": "pathPick",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-sinif.js"
+ },
+ {
+  "eylem": "pcard",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "pm",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "portalMenu",
+  "gpt_tur": "modal",
+  "opus_sinif": "diger/belirsiz",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "premBuy",
+  "gpt_tur": "onay penceresi",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-town.js"
+ },
+ {
+  "eylem": "rGrant",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-dunya.js"
+ },
+ {
+  "eylem": "rVote",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-dunya.js"
+ },
+ {
+  "eylem": "repLog",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-rapor.js"
+ },
+ {
+  "eylem": "rkRewards",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-social.js"
+ },
+ {
+  "eylem": "sandikOpen",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-sandik.js"
+ },
+ {
+  "eylem": "seasonBack",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-pvp.js"
+ },
+ {
+  "eylem": "seriesPlay",
+  "gpt_tur": "NPC diyaloğu",
+  "opus_sinif": "diger/belirsiz",
+  "kaynak": "js/ui-minidizi.js"
+ },
+ {
+  "eylem": "skillReset",
+  "gpt_tur": "onay penceresi",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-party.js"
+ },
+ {
+  "eylem": "spSay",
+  "gpt_tur": "NPC diyaloğu",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-destek.js"
+ },
+ {
+  "eylem": "stage",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "diger/belirsiz",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "statReset",
+  "gpt_tur": "onay penceresi",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-party.js"
+ },
+ {
+  "eylem": "sub",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-party.js"
+ },
+ {
+  "eylem": "svCz",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "svDivan",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "svQuick",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-hub.js"
+ },
+ {
+  "eylem": "sweep",
+  "gpt_tur": "modal",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "tcPlain",
+  "gpt_tur": "onay penceresi + veri yazar",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-town.js"
+ },
+ {
+  "eylem": "tierInfo",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-pvp.js"
+ },
+ {
+  "eylem": "titlePick",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-kalicilik.js"
+ },
+ {
+  "eylem": "titlePickSet",
+  "gpt_tur": "modal",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-kalicilik.js"
+ },
+ {
+  "eylem": "tuccarSub",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-town.js"
+ },
+ {
+  "eylem": "upPrev",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-esya.js"
+ },
+ {
+  "eylem": "vsBack",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "vsCoef",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "vsForm",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "vsReturn",
+  "gpt_tur": "pencere",
+  "opus_sinif": "yeni pencere",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "vsStart",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "wormGo",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "savas/VS akisi",
+  "kaynak": "js/ui-battle.js"
+ },
+ {
+  "eylem": "yakutAl",
+  "gpt_tur": "pencere",
+  "opus_sinif": "yeni pencere",
+  "kaynak": "js/ui-odeme.js"
+ },
+ {
+  "eylem": "yashkaNobet",
+  "gpt_tur": "pencere",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-anit.js"
+ },
+ {
+  "eylem": "yeminGo",
+  "gpt_tur": "modal",
+  "opus_sinif": "modal/onay",
+  "kaynak": "js/ui-yemin.js"
+ },
+ {
+  "eylem": "yeminRite",
+  "gpt_tur": "savaş / VS",
+  "opus_sinif": "baska ekrana yonlendirir (varyant)",
+  "kaynak": "js/ui-yemin.js"
+ }
+]

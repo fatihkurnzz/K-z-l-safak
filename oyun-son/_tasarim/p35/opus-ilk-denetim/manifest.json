@@ -1,0 +1,186 @@
+{
+ "paket": "KORANT_P35_OPUS_ILK_DENETIM",
+ "hazirlayan": "Claude Opus 5.5 (ilk tur)",
+ "tarih": "2026-11-26",
+ "kaynak": {
+  "depo_commit": "bae239e",
+  "kaynak_envanteri_eslesme": "466/467 (fark: css/p33-kabul.css, V42 F-005)",
+  "girdi_paketi": "KORANT_P35_FABLE_PARALEL_GOREV-1.zip"
+ },
+ "testler": {
+  "tekrar_gpt": {
+   "kabul": "274/274",
+   "r5": "40/40",
+   "destan": "184/184",
+   "p35_05": "1718+414"
+  },
+  "yeni_dispatch": "10/10 (t35) + t35b/t35c gözlem",
+  "tarayici": "yapılmadı",
+  "gercek_cihaz": "yapılmadı"
+ },
+ "engeller": [
+  "Gemini nihai varlıkları yok",
+  "Opus entegre dalı yok",
+  "tarayıcı/gerçek cihaz testi yok",
+  "savaş sonucu simülasyonu yapılmadı (P36 başlatılmadı)",
+  "PAPER_IDS ve 1247 kaydın edinim yolu doğrulanmadı",
+  "122 eylem sınıflaması sezgisel"
+ ],
+ "dosyalar": [
+  {
+   "dosya": "00_ONCE_OKU.md",
+   "bayt": 670,
+   "sha256": "dcf1ceb5e455eb1bcb42e0255bb4c85961c254041229494986fa6be1dcee3919"
+  },
+  {
+   "dosya": "FABLE_P35_ASTRA_HIPOTEZLER.json",
+   "bayt": 4701,
+   "sha256": "e050fca2faad7163e57f0b63d147bf7a57a8b80f05140832973dceb64f357db0"
+  },
+  {
+   "dosya": "FABLE_P35_AVCI_KOLEKSIYON_KARAR.md",
+   "bayt": 7190,
+   "sha256": "4ade1790496a51c77ea804f3a4fdaf0a810f498a0e7b43e9ed41e2d65340c41c"
+  },
+  {
+   "dosya": "FABLE_P35_BULGULAR.csv",
+   "bayt": 19066,
+   "sha256": "c7cb3ce1f0986e0f24bf3c8b1b6813fdc707b1d128d35365413044ade91f97de"
+  },
+  {
+   "dosya": "FABLE_P35_DENETIM.md",
+   "bayt": 13626,
+   "sha256": "21d529e2fa1a9f9da4e0e265bc2edc5e68fda80fab97560a67b92b76a7996482"
+  },
+  {
+   "dosya": "FABLE_P35_KABUL_MATRISI.csv",
+   "bayt": 3755,
+   "sha256": "62d1faadd536ccdb13d2cb4a92e3b8beba396afbe7b4325fa5313e935d13744e"
+  },
+  {
+   "dosya": "FABLE_P35_OPUS_ONERILERI.md",
+   "bayt": 2296,
+   "sha256": "5c01babf65b7e4fd9c4993b7c2ac0afe94acb3cf95a8168bc670d728ae5d94e5"
+  },
+  {
+   "dosya": "KANIT/README.md",
+   "bayt": 1955,
+   "sha256": "02be229060fec34d4eea89e698777fe6303811e53c061d88c3fb3ecbc223d06c"
+  },
+  {
+   "dosya": "KANIT/test/alti.mjs",
+   "bayt": 796,
+   "sha256": "8e7ce3f02ffafd736aeadd2d898b84446f0292bc663423f0dee6118e6a4f7070"
+  },
+  {
+   "dosya": "KANIT/test/h.mjs",
+   "bayt": 1383,
+   "sha256": "3abc1e34fe247c23f1335248f6f5b83a5140ab45abaf899ad5fc81d9ae787686"
+  },
+  {
+   "dosya": "KANIT/test/kat.mjs",
+   "bayt": 340,
+   "sha256": "1ea8bb6baaf4f241ce95dc3a4badaaf9d6b9f627d3b8d82d002f5380715167c8"
+  },
+  {
+   "dosya": "KANIT/test/kontrol.mjs",
+   "bayt": 491,
+   "sha256": "e358ba39762752586ffce438a0b40b95976afbddd18bfb0f96b9444988acb568"
+  },
+  {
+   "dosya": "KANIT/test/rota.mjs",
+   "bayt": 1112,
+   "sha256": "2761c11d5f5534bf99c7e65fb57968e1d0bc7f257afba5dc7636d863e6fd46a3"
+  },
+  {
+   "dosya": "KANIT/test/t35.mjs",
+   "bayt": 2746,
+   "sha256": "6cf983ef81e3973e079e666e5e5a97572e33756c6fbc535ab59441ad0ca81678"
+  },
+  {
+   "dosya": "KANIT/test/t35b.mjs",
+   "bayt": 878,
+   "sha256": "492ee729d67a11bcb5daea62b5af5a38493684313e367c5f3e550df6a4ce96ce"
+  },
+  {
+   "dosya": "KANIT/test/t35c.mjs",
+   "bayt": 478,
+   "sha256": "7d8e16211167444cdd16054f03deb24e65ba96934b129dd5ba15310d7bd9c02b"
+  },
+  {
+   "dosya": "KANIT/cikti/ALTI_YARATIK_DOGUM.json",
+   "bayt": 809,
+   "sha256": "1247d667787350b525e30df9ba10762b2275dc38074e6b3498d0e613f88cc349"
+  },
+  {
+   "dosya": "KANIT/cikti/EYLEM_122_SINIF.json",
+   "bayt": 15288,
+   "sha256": "7d482a2589004f27f9ec857279b7483a25761ab40640542574b09163c9ba3979"
+  },
+  {
+   "dosya": "KANIT/cikti/GPT_destan_TEKRAR_184.json",
+   "bayt": 15768,
+   "sha256": "caa27c209d70d1e1ed1e634dc6b199b1c6be79fdbc6eaeff294f009b3f44163b"
+  },
+  {
+   "dosya": "KANIT/cikti/GPT_kabul_TEKRAR_274.json",
+   "bayt": 45992,
+   "sha256": "d2b08652d0d81870453a75155d2256ccd49516c67167415fa707e75542057ca5"
+  },
+  {
+   "dosya": "KANIT/cikti/GPT_p05_ektest_TEKRAR.json",
+   "bayt": 239,
+   "sha256": "e611327762bcccd99f3897292c628957f3337867c6c32686aab592554c2df55e"
+  },
+  {
+   "dosya": "KANIT/cikti/GPT_p05_test_TEKRAR.json",
+   "bayt": 211,
+   "sha256": "337d7ecae91e199d09b8aafd25fb5c76c8c765d782712a0756e554f4066ed280"
+  },
+  {
+   "dosya": "KANIT/cikti/GPT_r5_TEKRAR_40.json",
+   "bayt": 3385,
+   "sha256": "4c8fd0db712829bc003702d642f011fb2a552abf2964aa887007e7f3f7b609e5"
+  },
+  {
+   "dosya": "KANIT/cikti/KATALOG_KIRILIM.txt",
+   "bayt": 231,
+   "sha256": "75192452c564d8764475a845bd330ed9be0ca83630af61bf08d1cd444e787659"
+  },
+  {
+   "dosya": "KANIT/cikti/ROTA_AYRISMA.json",
+   "bayt": 2569,
+   "sha256": "8a59aa55c378aeba721b2c9964591392ce986f24d703ccba4d7bdba89a0a8ac4"
+  },
+  {
+   "dosya": "KANIT/cikti/T35B_ORS_BASLANGIC.txt",
+   "bayt": 622,
+   "sha256": "2e2a1f18713d1648d80551438783dc87ceebd201054fadd0a66ac781541998ed"
+  },
+  {
+   "dosya": "KANIT/cikti/T35C_SAVASCI_BASLANGIC.txt",
+   "bayt": 375,
+   "sha256": "6061296f6683f1a776cf87ccdb153cb9f3b54839ff9972b34d7ab0fa477d56e5"
+  },
+  {
+   "dosya": "KANIT/cikti/T35_SONUC.json",
+   "bayt": 1994,
+   "sha256": "e6d430b84855f77f27dbf7acec784a0c84f02c23b9e9247e2c3acbc1c7353c36"
+  },
+  {
+   "dosya": "KANIT/gorsel/MEVCUT_MEDYA_KONTAK.jpg",
+   "bayt": 135366,
+   "sha256": "b697112014554865389d14fa9bcb1c1428f474430d885c81d1b915310010e77f"
+  },
+  {
+   "dosya": "KANIT/gorsel/gem_kontak.jpg",
+   "bayt": 623614,
+   "sha256": "2efc0c20f30df809eba777f59d55bf1a49b8441d5729bf2e10de9e34232c8d43"
+  },
+  {
+   "dosya": "KANIT/gorsel/ref_kontak.jpg",
+   "bayt": 295514,
+   "sha256": "cd39cc6834ef65f8c3da97f4c5b868eaefd39f85352069b4b4dee97e7aefd1f8"
+  }
+ ]
+}

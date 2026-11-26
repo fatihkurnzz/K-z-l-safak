@@ -1,0 +1,11 @@
+{
+  "checks": 1718,
+  "passed": 1718,
+  "catalog": 1247,
+  "bases": 698,
+  "unique": 149,
+  "mobs": 145,
+  "bosses": 23,
+  "routeCases": 328,
+  "scope": "saf model; gerçek savaş/ödül/arayüz testi değil"
+}

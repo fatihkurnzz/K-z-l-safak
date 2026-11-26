@@ -1,0 +1,56 @@
+{
+ "stegodon": {
+  "tanimli": true,
+  "ad": "Stegodon",
+  "aile_bolge": 3,
+  "normal_havuz": [
+   3
+  ],
+  "asama": []
+ },
+ "shadow_spectre": {
+  "tanimli": true,
+  "ad": "Gölge Hortlak",
+  "aile_bolge": 4,
+  "normal_havuz": [
+   4
+  ],
+  "asama": []
+ },
+ "mana_spectre": {
+  "tanimli": true,
+  "ad": "Mana Hortlağı",
+  "aile_bolge": 4,
+  "normal_havuz": [
+   4
+  ],
+  "asama": []
+ },
+ "mage_ghost": {
+  "tanimli": true,
+  "ad": "Büyücü Hayalet",
+  "aile_bolge": 4,
+  "normal_havuz": [
+   4
+  ],
+  "asama": []
+ },
+ "wandering_knight_ghost": {
+  "tanimli": true,
+  "ad": "Gezgin Şövalye Hayaleti",
+  "aile_bolge": 4,
+  "normal_havuz": [
+   4
+  ],
+  "asama": []
+ },
+ "dread_knight": {
+  "tanimli": true,
+  "ad": "Dehşet Şövalyesi",
+  "aile_bolge": 4,
+  "normal_havuz": [
+   4
+  ],
+  "asama": []
+ }
+}

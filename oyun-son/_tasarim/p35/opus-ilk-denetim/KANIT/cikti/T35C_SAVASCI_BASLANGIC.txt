@@ -1,0 +1,6 @@
+warrior [{"id":1,"b":"a:warrior:0:helm","p":1,"nt":1,"g":1}] kuşam {}
+   a:warrior:0:helm Leather Cap g 1 p 1
+rogue [{"id":1,"b":"w:dagger:0","p":1,"nt":1,"g":0},{"id":2,"b":"w:dagger:0","p":1,"nt":1,"g":0},{"id":3,"b":"a:rogue:0:helm","p":1,"nt":1,"g":1}] kuşam {"wr":1,"wl":2}
+   w:dagger:0 Dagger g 0 p 1
+   w:dagger:0 Dagger g 0 p 1
+   a:rogue:0:helm Rogue Cap g 1 p 1

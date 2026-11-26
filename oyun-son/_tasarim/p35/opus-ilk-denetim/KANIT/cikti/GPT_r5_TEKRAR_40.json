@@ -1,0 +1,168 @@
+{
+  "firstBoss": "1-25",
+  "arenaUnlock": 12,
+  "tests": [
+    {
+      "name": "NPC all previous roles unchanged",
+      "ok": true
+    },
+    {
+      "name": "existing Halvor identity unchanged",
+      "ok": true
+    },
+    {
+      "name": "Kragmir TR selamlama",
+      "ok": true
+    },
+    {
+      "name": "Elentha TR selamlama",
+      "ok": true
+    },
+    {
+      "name": "EN existing fallback selamlama",
+      "ok": true
+    },
+    {
+      "name": "Kragmir TR basari",
+      "ok": true
+    },
+    {
+      "name": "Elentha TR basari",
+      "ok": true
+    },
+    {
+      "name": "EN existing fallback basari",
+      "ok": true
+    },
+    {
+      "name": "Kragmir TR basarisizlik",
+      "ok": true
+    },
+    {
+      "name": "Elentha TR basarisizlik",
+      "ok": true
+    },
+    {
+      "name": "EN existing fallback basarisizlik",
+      "ok": true
+    },
+    {
+      "name": "sancak/warrior structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "sancak/rogue structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "sancak/mage structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "sancak/priest structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "ocak/warrior structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "ocak/rogue structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "ocak/mage structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "ocak/priest structural eligibility actual stage gate",
+      "ok": true
+    },
+    {
+      "name": "daily locked tasks only excluded",
+      "ok": true
+    },
+    {
+      "name": "daily no bypass of available forge",
+      "ok": true
+    },
+    {
+      "name": "daily no bypass of available PvP",
+      "ok": true
+    },
+    {
+      "name": "daily no repeat bonus",
+      "ok": true
+    },
+    {
+      "name": "daily legacy strict",
+      "ok": true
+    },
+    {
+      "name": "daily empty set cannot claim",
+      "ok": true
+    },
+    {
+      "name": "weekly locked tasks only excluded",
+      "ok": true
+    },
+    {
+      "name": "weekly no bypass of available forge",
+      "ok": true
+    },
+    {
+      "name": "weekly no bypass of available PvP",
+      "ok": true
+    },
+    {
+      "name": "weekly no repeat bonus",
+      "ok": true
+    },
+    {
+      "name": "weekly legacy strict",
+      "ok": true
+    },
+    {
+      "name": "weekly empty set cannot claim",
+      "ok": true
+    },
+    {
+      "name": "monthly locked tasks only excluded",
+      "ok": true
+    },
+    {
+      "name": "monthly no bypass of available forge",
+      "ok": true
+    },
+    {
+      "name": "monthly no bypass of available PvP",
+      "ok": true
+    },
+    {
+      "name": "monthly no repeat bonus",
+      "ok": true
+    },
+    {
+      "name": "monthly legacy strict",
+      "ok": true
+    },
+    {
+      "name": "monthly empty set cannot claim",
+      "ok": true
+    },
+    {
+      "name": "partial bonus does not grant permanent daily milestone",
+      "ok": true
+    },
+    {
+      "name": "strict daily completion after partial bonus counts once",
+      "ok": true
+    },
+    {
+      "name": "weekly strict needs five strict daily completions",
+      "ok": true
+    }
+  ],
+  "total": 40,
+  "passed": 40
+}

@@ -1,0 +1,9 @@
+698 {"w:weapon":154,"w:shield":13,"a:armor":220,"j:jewel":162,"u:weapon":38,"u:jewel":47,"u:shield":4,"u:armor":60}
+[
+  'u:sazkiran',
+  'u:camuryaran',
+  'u:ilkkivilcim',
+  'u:demirhukum',
+  'u:beykemeri',
+  'u:bataklikmuhru'
+] 20
