@@ -36,5 +36,19 @@ const ozet = p => p.evaluate(async () => { const { S } = await import('/js/api.j
     const premium = await p.evaluate(async () => { (await import('/js/ui-ahir.js')).binaKapat(); const C = await import('/js/ui-core.js'); await C.ACT.premium({}); await new Promise(r => setTimeout(r, 1200)); return [...document.querySelectorAll('#win .tier .price')].map(e => e.textContent.trim()); });
     R.en_dili = { lang: dil, han_balonu: balon, ipucu: ip, perde_metni: pm, premium_fiyat: premium, gecti: dil === 'en' && !balon && !ip && !pm };
     await p.screenshot({ path: out + '/en_premium.png' }); await c.close(); }
+  // 5) SYS-RESET: UTC+3 gece yarısı (yerel kip saatiyle). 23:58'de günlük hediye al, tekrar dene (red), 3 dk ilerlet, yeniden al (kabul), tekrar (red)
+  { const c = await b.newContext({ viewport: { width: 880, height: 406 } }); const p = await c.newPage();
+    await p.clock.install({ time: new Date('2026-11-26T20:58:00Z') }); await giris(p, 'ocak', '?gfx=low&store=1');
+    const dene = () => p.evaluate(async () => { const A = await import('/js/api.js'); try { await A.act('daily.gift', {}); return 'kabul'; } catch (e) { return 'red:' + (e?.code || e?.message || e); } });
+    const r1 = await dene(), r2 = await dene(); await p.clock.fastForward('03:00'); await p.waitForTimeout(500); const r3 = await dene(), r4 = await dene();
+    R.sifirlama = { saat_once: '23:58 UTC+3', ilk: r1, ikinci_ayni_gun: r2, gece_yarisi_sonrasi: r3, tekrar: r4, gecti: r1 === 'kabul' && r2.startsWith('red') && r3 === 'kabul' && r4.startsWith('red') };
+    await c.close(); }
+  // 6) SYS-PERF (masaüstü Chromium, yazılım çizimi): ana üste 3 dk bekleme + 6 pencere aç/kapa döngüsü; JS yığın belleği eğilimi
+  { const c = await b.newContext({ viewport: { width: 880, height: 406 } }); const p = await c.newPage(); await giris(p, 'sancak', '?gfx=mid&store=1');
+    const yigin = () => p.evaluate(() => performance.memory ? Math.round(performance.memory.usedJSHeapSize / 1048576) : null); const olc = [];
+    for (let i = 0; i < 6; i++) { await p.evaluate(async () => { const C = await import('/js/ui-core.js'); for (const a of ['bag', 'party', 'quests', 'settings', 'codex', 'rank']) { try { await C.ACT[a]?.({}); } catch { } await new Promise(r => setTimeout(r, 400)); C.closeWin(true); } }); await p.waitForTimeout(30000); await p.evaluate(() => window.gc?.()); olc.push(await yigin()); }
+    const fps = await p.evaluate(() => new Promise(res => { let n = 0; const t0 = performance.now(); const f = () => { n++; if (performance.now() - t0 < 5000) requestAnimationFrame(f); else res(Math.round(n / 5)); }; requestAnimationFrame(f); }));
+    R.bellek = { yigin_MB_her_30sn: olc, artis_MB: olc.length ? olc[olc.length - 1] - olc[0] : null, rAF_hizi_ana_ust: fps, not: 'masaüstü Chromium (yazılım GL); gerçek cihaz pil/ısı/FPS ölçümü DEĞİL' };
+    await c.close(); }
   fs.writeFileSync(out + '/sonuc.json', JSON.stringify(R, null, 1)); console.log(JSON.stringify(R, null, 1)); await b.close();
 })().catch(e => { console.log('FATAL', e.stack); process.exit(1) });

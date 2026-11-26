@@ -8,7 +8,13 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (26.11, 18. oturum) — P33 GPT+GEMINI KABUL İŞİ (YARIDA, clear sonrası devam)
+## SON DURUM (26.11, 19. oturum) — P33 TEK KAPSAMLI UYGULAMA (devam ediyor)
+- **ÖNCE OKU: `oyun-son/_tasarim/araclar/kabul-26kas/DEVIR.md`** (sonundaki "19. OTURUM" bölümleri) + `KAPSAM_MATRISI.md` (AAA planı + bulgular + Gemini + GPT birleşik, her satır durumlu).
+- Kullanıcı kararları 26.11: HUD'da da 11 px (YAPILDI), T3 kapalı kalır, zafer_aniti yüksek çözünürlük istensin (`GPT_ISTEK_P34.md`), "32 madde" = GPT talimatındaki 23+C24–C32 = kullanıcının 25.11 AAA planı (metni `KAPSAM_KAYNAK_AAA.txt`).
+- Yeni kod (commit'li, yayın YOK): `js/p33-canli.js` (harita zerre/portal/kuş, gün evresi tonu, örs/şerit/sayaç, ayarlar dd_canli/dd_efekt/dd_fps/dd_pil), audio `music` kanalı, 5 zindan ortam sesi, boss uyarısı, fx DD_EFEKT, karşılama yazısı diyaloğu bekler. Yayında 4 yeni dosya: p33-kabul.css, npc-soz.js, yukleme-metin.js, p33-canli.js (443+4).
+- Sıradaki: çekimler (scratchpad son/), `qa_doldur.py` → QA_MATRISI_DOLU.json, TEST_KANITLARI.md, kabul paketleri (KORANT_GPT_KABUL2 / KORANT_GEMINI_KABUL2 ≤30 MB), yayın 41 (`git diff --name-status 1dda167 HEAD -- oyun-son`, _tasarim hariç).
+
+## ÖNCEKİ DURUM (26.11, 18. oturum) — P33 GPT+GEMINI KABUL İŞİ (YARIDA, clear sonrası devam)
 - **ÖNCE OKU: `oyun-son/_tasarim/araclar/kabul-26kas/DEVIR.md`** (yapılanlar, kanıtlar, sıradaki 6 adım, betikler aynı klasörde; GPT teslimi `gelen/`, Gemini raporu `gelen/gemini_gorsel_kabul_raporu.json`).
 - Kod değişiklikleri commit'li (yayın YOK; sürüm 40 yayında). Yeni: `css/p33-kabul.css`, `js/npc-soz.js`, `js/yukleme-metin.js`. shared/ değişmedi.
 - Kullanıcı bu iş için TEST İSTİYOR (eski "TEST YAPMA" kuralı bu iş için geçersiz). Kanıtsız KABUL yok.

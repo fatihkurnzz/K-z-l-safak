@@ -1,0 +1,16 @@
+# Statik güvenlik taraması (26 Kas, P33) — yetkili sızma testi DEĞİLDİR
+
+## Gizli anahtar kalıpları (js/, shared/, index.html, sw.js)
+(boşsa bulgu yok)
+
+## eval / new Function / document.write
+(boşsa bulgu yok)
+
+## Sohbet/oyuncu adı kaçışı: esc/escH/protectName kullanım sayısı
+    449 esc(
+     15 escH(
+      2 protectName(
+
+## Dış ağ adresleri (http/https)
+     22 http://www.w3.org
+      3 https://creativecommons.org
