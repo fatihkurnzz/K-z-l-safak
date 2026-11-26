@@ -1,0 +1,381 @@
+{
+ "ocak": {
+  "goruntu": 198,
+  "benzersiz_gorsel_durum": 112,
+  "grup_sayisi": 47,
+  "gruptaki_giris": 133,
+  "grup_fazlasi_giris": 86,
+  "tek_kimlik_esleme": {
+   "A04-olustur-halk": [
+    "A05-olustur-warrior-m"
+   ],
+   "B03-hub-klan": [
+    "C-clan",
+    "C-clanhq",
+    "C-gateKlan"
+   ],
+   "C-achs~titles": [
+    "C-titles",
+    "C-titlesMenu",
+    "C-titlesMenu~titles",
+    "C-titles~titles"
+   ],
+   "C-baskin": [
+    "C-baskin~events",
+    "C-gate",
+    "C-gateEvents",
+    "C-gateEvents~events",
+    "C-gateZones~events",
+    "C-gate~events"
+   ],
+   "C-baskin~dungeons": [
+    "C-gateEvents~dungeons",
+    "C-gateZones~dungeons",
+    "C-gate~dungeons"
+   ],
+   "C-calendar": [
+    "C-calendar~n7"
+   ],
+   "C-chatMenu": [
+    "C-chatMenu~p",
+    "C-chatOpen~p"
+   ],
+   "C-chatMenu~c": [
+    "C-chatOpen~c"
+   ],
+   "C-chatMenu~f": [
+    "C-chatOpen~f"
+   ],
+   "C-codex": [
+    "C-rehber"
+   ],
+   "C-codex~items": [
+    "C-rehber~items"
+   ],
+   "C-codex~mobs": [
+    "C-rehber~mobs"
+   ],
+   "C-czArena": [
+    "C-gatePvp",
+    "C-meydan"
+   ],
+   "C-czArena~def": [
+    "C-czHall~def",
+    "C-gatePvp~def",
+    "C-hall~def",
+    "C-meydan~def"
+   ],
+   "C-czArena~feud": [
+    "C-czHall~feud",
+    "C-gatePvp~feud",
+    "C-hall~feud",
+    "C-meydan~feud"
+   ],
+   "C-czArena~san": [
+    "C-czHall",
+    "C-czHall~san",
+    "C-gatePvp~san",
+    "C-hall",
+    "C-hall~san",
+    "C-meydan~san"
+   ],
+   "C-czArena~shop": [
+    "C-czHall~shop",
+    "C-gatePvp~shop",
+    "C-hall~shop",
+    "C-meydan~shop"
+   ],
+   "C-czMarket": [
+    "C-shop"
+   ],
+   "C-czMarket~money": [
+    "C-shop~money"
+   ],
+   "C-destan": [
+    "C-gateDestan"
+   ],
+   "C-diyarMap": [
+    "C-diyarMap~map",
+    "C-otagMenu~map",
+    "C-otag~map"
+   ],
+   "C-diyarMap~grant": [
+    "C-otagMenu~grant",
+    "C-otag~grant"
+   ],
+   "C-diyarMap~treasury": [
+    "C-otagMenu~treasury",
+    "C-otag~treasury"
+   ],
+   "C-erisim": [
+    "C-erisim~erisim",
+    "C-settings~erisim"
+   ],
+   "C-erisim~acc": [
+    "C-settings~acc"
+   ],
+   "C-erisim~dil": [
+    "C-settings~dil"
+   ],
+   "C-erisim~notif": [
+    "C-settings~notif"
+   ],
+   "C-erisim~ses": [
+    "C-settings~ses"
+   ],
+   "C-friends": [
+    "C-friendsMenu"
+   ],
+   "C-friendsMenu~blocked": [
+    "C-friends~blocked"
+   ],
+   "C-friendsMenu~req": [
+    "C-friends~req"
+   ],
+   "C-hotbar": [
+    "C-hotbar~skill",
+    "C-karakter~skill",
+    "C-party~skill"
+   ],
+   "C-hotbar~mst": [
+    "C-karakter~mst",
+    "C-party~mst"
+   ],
+   "C-hotbar~unvan": [
+    "C-karakter~unvan",
+    "C-party",
+    "C-party~unvan"
+   ],
+   "C-mail~rep": [
+    "C-reports",
+    "C-reports~rep"
+   ],
+   "C-mail~yaz": [
+    "C-reports~yaz"
+   ],
+   "C-market": [
+    "C-pazar"
+   ],
+   "C-mnMain": [
+    "C-quests"
+   ],
+   "C-mnMain~daily": [
+    "C-quests~daily"
+   ],
+   "C-mnMain~monthly": [
+    "C-quests~monthly"
+   ],
+   "C-mnMain~weekly": [
+    "C-quests~weekly"
+   ],
+   "C-otag": [
+    "C-otagMenu"
+   ],
+   "C-premium": [
+    "C-premiumMenu"
+   ],
+   "C-quick": [
+    "D01-vs-1-1"
+   ],
+   "C-rank": [
+    "C-rankMenu"
+   ],
+   "C-rankMenu~clans": [
+    "C-rank~clans"
+   ],
+   "C-rankMenu~race": [
+    "C-rank~race"
+   ]
+  }
+ },
+ "sancak": {
+  "goruntu": 198,
+  "benzersiz_gorsel_durum": 111,
+  "grup_sayisi": 47,
+  "gruptaki_giris": 134,
+  "grup_fazlasi_giris": 87,
+  "tek_kimlik_esleme": {
+   "A03-olustur-acilis": [
+    "A04-olustur-halk",
+    "A05-olustur-warrior-f"
+   ],
+   "B03-hub-klan": [
+    "C-clan",
+    "C-clanhq",
+    "C-gateKlan"
+   ],
+   "C-achs~titles": [
+    "C-titles",
+    "C-titlesMenu",
+    "C-titlesMenu~titles",
+    "C-titles~titles"
+   ],
+   "C-baskin": [
+    "C-baskin~events",
+    "C-gate",
+    "C-gateEvents",
+    "C-gateEvents~events",
+    "C-gateZones~events",
+    "C-gate~events"
+   ],
+   "C-baskin~dungeons": [
+    "C-gateEvents~dungeons",
+    "C-gateZones~dungeons",
+    "C-gate~dungeons"
+   ],
+   "C-calendar": [
+    "C-calendar~n7"
+   ],
+   "C-chatMenu": [
+    "C-chatMenu~p",
+    "C-chatOpen~p"
+   ],
+   "C-chatMenu~c": [
+    "C-chatOpen~c"
+   ],
+   "C-chatMenu~f": [
+    "C-chatOpen~f"
+   ],
+   "C-codex": [
+    "C-rehber"
+   ],
+   "C-codex~items": [
+    "C-rehber~items"
+   ],
+   "C-codex~mobs": [
+    "C-rehber~mobs"
+   ],
+   "C-czArena": [
+    "C-gatePvp",
+    "C-meydan"
+   ],
+   "C-czArena~def": [
+    "C-czHall~def",
+    "C-gatePvp~def",
+    "C-hall~def",
+    "C-meydan~def"
+   ],
+   "C-czArena~feud": [
+    "C-czHall~feud",
+    "C-gatePvp~feud",
+    "C-hall~feud",
+    "C-meydan~feud"
+   ],
+   "C-czArena~san": [
+    "C-czHall",
+    "C-czHall~san",
+    "C-gatePvp~san",
+    "C-hall",
+    "C-hall~san",
+    "C-meydan~san"
+   ],
+   "C-czArena~shop": [
+    "C-czHall~shop",
+    "C-gatePvp~shop",
+    "C-hall~shop",
+    "C-meydan~shop"
+   ],
+   "C-czMarket": [
+    "C-shop"
+   ],
+   "C-czMarket~money": [
+    "C-shop~money"
+   ],
+   "C-destan": [
+    "C-gateDestan"
+   ],
+   "C-diyarMap": [
+    "C-diyarMap~map",
+    "C-otagMenu~map",
+    "C-otag~map"
+   ],
+   "C-diyarMap~grant": [
+    "C-otagMenu~grant",
+    "C-otag~grant"
+   ],
+   "C-diyarMap~treasury": [
+    "C-otagMenu~treasury",
+    "C-otag~treasury"
+   ],
+   "C-erisim": [
+    "C-erisim~erisim",
+    "C-settings~erisim"
+   ],
+   "C-erisim~acc": [
+    "C-settings~acc"
+   ],
+   "C-erisim~dil": [
+    "C-settings~dil"
+   ],
+   "C-erisim~notif": [
+    "C-settings~notif"
+   ],
+   "C-erisim~ses": [
+    "C-settings~ses"
+   ],
+   "C-friends": [
+    "C-friendsMenu"
+   ],
+   "C-friendsMenu~blocked": [
+    "C-friends~blocked"
+   ],
+   "C-friendsMenu~req": [
+    "C-friends~req"
+   ],
+   "C-hotbar": [
+    "C-hotbar~skill",
+    "C-karakter~skill",
+    "C-party~skill"
+   ],
+   "C-hotbar~mst": [
+    "C-karakter~mst",
+    "C-party~mst"
+   ],
+   "C-hotbar~unvan": [
+    "C-karakter~unvan",
+    "C-party",
+    "C-party~unvan"
+   ],
+   "C-mail~rep": [
+    "C-reports",
+    "C-reports~rep"
+   ],
+   "C-mail~yaz": [
+    "C-reports~yaz"
+   ],
+   "C-market": [
+    "C-pazar"
+   ],
+   "C-mnMain": [
+    "C-quests"
+   ],
+   "C-mnMain~daily": [
+    "C-quests~daily"
+   ],
+   "C-mnMain~monthly": [
+    "C-quests~monthly"
+   ],
+   "C-mnMain~weekly": [
+    "C-quests~weekly"
+   ],
+   "C-otag": [
+    "C-otagMenu"
+   ],
+   "C-premium": [
+    "C-premiumMenu"
+   ],
+   "C-quick": [
+    "D01-vs-1-1"
+   ],
+   "C-rank": [
+    "C-rankMenu"
+   ],
+   "C-rankMenu~clans": [
+    "C-rank~clans"
+   ],
+   "C-rankMenu~race": [
+    "C-rank~race"
+   ]
+  }
+ }
+}

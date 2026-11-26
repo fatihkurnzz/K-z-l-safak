@@ -58,9 +58,39 @@
    "not": "{\"listings\":[],\"slots\":8,\"used\":0}"
   },
   {
+   "ad": "ikinci takas edilebilir eşya (alıcıda)",
+   "sonuc": "GECTI",
+   "not": "id 3, baz w:axe2:6"
+  },
+  {
+   "ad": "B: ilan aç",
+   "sonuc": "GECTI",
+   "not": "ücret 376; eşya 107→106; akçe 5032092→5031716"
+  },
+  {
+   "ad": "ilan iptal: eşya geri döner, ücret iade edilmez",
+   "sonuc": "GECTI",
+   "not": "eşya 107→107; akçe 5032092→5031716 (ücret 376)"
+  },
+  {
+   "ad": "iptali ikinci kez (eşya çoğalır mı?)",
+   "sonuc": "GECTI",
+   "not": "no-listing"
+  },
+  {
+   "ad": "iptal edilmiş ilanı alma",
+   "sonuc": "GECTI",
+   "not": "no-listing"
+  },
+  {
+   "ad": "iptal sonrası ilan yuvası",
+   "sonuc": "GECTI",
+   "not": "{\"listings\":[],\"slots\":8,\"used\":0}"
+  },
+  {
    "ad": "klan kur",
    "sonuc": "GECTI",
-   "not": "{\"id\":\"3d50659474f5eb1a\"}"
+   "not": "{\"id\":\"0d8027104a258f18\"}"
   },
   {
    "ad": "açık klana katılma",
@@ -125,12 +155,17 @@
   {
    "ad": "bağış 1000",
    "sonuc": "BILGI",
-   "not": "kabul: akçe 5032092→5031092"
+   "not": "kabul: akçe 5031716→5030716"
   },
   {
    "ad": "bağış 1000",
    "sonuc": "BILGI",
-   "not": "kabul: akçe 5031092→5030092"
+   "not": "kabul: akçe 5030716→5029716"
+  },
+  {
+   "ad": "günlük bağış sınırı",
+   "sonuc": "GECTI",
+   "not": "1 bağış kabul, sonra daily-limit; akçe 5029716→5009716 (düşen 20000); hazine 2000→22000"
   },
   {
    "ad": "üye ayrılır",

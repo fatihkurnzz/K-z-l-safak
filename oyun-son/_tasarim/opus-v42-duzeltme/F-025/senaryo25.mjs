@@ -29,9 +29,15 @@ if (it) {
     { const ml = (await A.dene('mail.list', {})).r.mail.find(x => x.text.startsWith('Satıldı')); const a0 = A.S.akce; const cl = await A.dene('mail.claim', { id: ml.id }); const net = ml.give[0].n; kay('satıcı ödemeyi postadan alır', cl.ok && A.S.akce - a0 === net && net === fiyat - Math.floor(fiyat * 0.05) ? 'GECTI' : 'INCELE', cl.ok ? `akçe ${a0}→${A.S.akce} (+${A.S.akce - a0}); posta ${net}; fiyat ${fiyat}; vergi ${fiyat - net}` : cl.code); const cl2 = await A.dene('mail.claim', { id: ml.id }); kay('postayı ikinci kez alma', cl2.ok ? 'BULGU' : 'GECTI', cl2.ok ? 'İKİ KEZ ÖDENDİ' : cl2.code); const m2 = await A.dene('market.mine', {}); kay('ödeme sonrası ilan yuvası boşalır', m2.ok && m2.r.used === 0 ? 'GECTI' : 'INCELE', JSON.stringify(m2.r).slice(0, 80)); }
     // toplam kontrol: B'nin akçesi -fiyat, A'nın akçesi şimdilik -ücret (ödeme postada)
   }
-  // ikinci ilan: açıp iptal et
-  const it2 = serbest(A)[0];
-  if (it2) { const n0 = A.S.items.length; const s2 = await A.dene('market.sell', { id: it2.id, price: fiyat }); if (s2.ok) { const c2 = await A.dene('market.cancel', { id: s2.r.id }); kay('ilan aç → iptal: eşya geri döner', c2.ok && A.S.items.length === n0 ? 'GECTI' : 'BULGU', `eşya ${n0}→${A.S.items.length}; ücret iade edilmez (beklenen)`); const c3 = await A.dene('market.cancel', { id: s2.r.id }); kay('iptali ikinci kez', c3.ok ? 'BULGU' : 'GECTI', c3.ok ? 'İKİ KEZ GERİ ALINDI (eşya çoğalır)' : c3.code); const b3 = await B.dene('market.buy', { id: s2.r.id }); kay('iptal edilmiş ilanı alma', b3.ok ? 'BULGU' : 'GECTI', b3.ok ? 'ALINDI' : b3.code); } }
+  // ikinci ilan: alıcıdaki (B) takas edilebilir eşya ile aç → iptal et → iptal edileni al/iptali tekrarla
+  const it2 = serbest(B).find(x => x.id !== it.id) || serbest(B)[0];
+  kay('ikinci takas edilebilir eşya (alıcıda)', it2 ? 'GECTI' : 'INCELE', it2 ? `id ${it2.id}, baz ${it2.b}` : 'yok');
+  if (it2) { const n0 = B.S.items.length, k0 = B.S.akce; const f2 = GD.priceBounds(it2).min; const s2 = await B.dene('market.sell', { id: it2.id, price: f2 });
+    kay('B: ilan aç', s2.ok ? 'GECTI' : 'BULGU', s2.ok ? `ücret ${s2.r.fee}; eşya ${n0}→${B.S.items.length}; akçe ${k0}→${B.S.akce}` : `${s2.code} ${s2.msg}`);
+    if (s2.ok) { const c2 = await B.dene('market.cancel', { id: s2.r.id }); kay('ilan iptal: eşya geri döner, ücret iade edilmez', c2.ok && B.S.items.length === n0 && B.S.akce === k0 - s2.r.fee ? 'GECTI' : 'INCELE', `eşya ${n0}→${B.S.items.length}; akçe ${k0}→${B.S.akce} (ücret ${s2.r.fee})`);
+      const c3 = await B.dene('market.cancel', { id: s2.r.id }); kay('iptali ikinci kez (eşya çoğalır mı?)', c3.ok ? 'BULGU' : 'GECTI', c3.ok ? `İKİ KEZ GERİ ALINDI: eşya ${B.S.items.length}` : c3.code);
+      const b3 = await A.dene('market.buy', { id: s2.r.id }); kay('iptal edilmiş ilanı alma', b3.ok ? 'BULGU' : 'GECTI', b3.ok ? 'ALINDI' : b3.code);
+      const m3 = await B.dene('market.mine', {}); kay('iptal sonrası ilan yuvası', m3.ok && m3.r.used === 0 ? 'GECTI' : 'INCELE', JSON.stringify(m3.r).slice(0, 80)); } }
 }
 // ---- KLAN ----
 const cr = await A.dene('clan.create', { name: 'Senaryo Klani' }); kay('klan kur', cr.ok ? 'GECTI' : 'BILGI', cr.ok ? JSON.stringify(cr.r).slice(0, 100) : `${cr.code} ${cr.msg}`);
@@ -39,6 +45,9 @@ if (cr.ok) {
   const cid = cr.r.id ?? A.S.clan?.id; const ap = await B.dene('clan.join', { id: cid }); kay('açık klana katılma', ap.ok ? 'GECTI' : 'BULGU', ap.ok ? 'ok' : `${ap.code} ${ap.msg}`);
   for (const [ad, k, t, a] of [['üye yetkisiz: klan atma (lideri)', B, 'clan.kick', { id: A.pid }], ['üye yetkisiz: devir', B, 'clan.transfer', { id: B.pid }], ['üye yetkisiz: rütbe', B, 'clan.rank', { id: B.pid, rank: 3 }], ['üye yetkisiz: ayar', B, 'clan.settings', { notice: 'x' }], ['üye yetkisiz: sancak', B, 'clan.banner', { a: 1, s: 1, c: 1 }], ['üye yetkisiz: davet', B, 'clan.invite', { id: 999 }]]) { const r = await k.dene(t, a); kay(ad, r.ok ? 'BULGU' : 'GECTI', r.ok ? 'KABUL EDİLDİ' : r.code); }
   const adim = (await imp('clan.js')).CLAN_DONATE.steps; for (const n of [0, -50, 1.5, 1e12, 100, adim[0], adim[0]]) { const a0 = B.S.akce; const r = await B.dene('clan.donate', { n }); kay('bağış ' + n, 'BILGI', r.ok ? `kabul: akçe ${a0}→${B.S.akce}` : `${r.code}`); }
+  { const v0 = await B.dene('clan.view', {}); const tre0 = v0.ok ? JSON.stringify(v0.r).match(/"tre":(\d+)/)?.[1] : null; const a0 = B.S.akce; let kabul = 0, ret = null; for (let i = 0; i < 60; i++) { const r = await B.dene('clan.donate', { n: 20000 }); if (!r.ok) { ret = r.code; break; } kabul++; }
+    const v1 = await B.dene('clan.view', {}); const tre1 = v1.ok ? JSON.stringify(v1.r).match(/"tre":(\d+)/)?.[1] : null;
+    kay('günlük bağış sınırı', ret === 'daily-limit' ? 'GECTI' : 'INCELE', `${kabul} bağış kabul, sonra ${ret}; akçe ${a0}→${B.S.akce} (düşen ${a0 - B.S.akce}); hazine ${tre0}→${tre1}`); }
   const lv = await B.dene('clan.leave', {}); kay('üye ayrılır', lv.ok ? 'GECTI' : 'BILGI', lv.ok ? 'ok' : lv.code);
   const rj = await B.dene('clan.join', { id: cid }); kay('ayrıldıktan sonra yeniden katılma (bekleme?)', 'BILGI', rj.ok ? 'hemen katıldı' : rj.code);
 }
