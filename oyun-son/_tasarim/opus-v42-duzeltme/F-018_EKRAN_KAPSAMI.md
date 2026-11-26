@@ -7,6 +7,7 @@ Araç: `arac/cap.mjs` (rt.mjs'in çıkış akışı + çekim kipleri). Yerel kip
 | Normal savaş (VS, savaş ortası, Zafer sonucu) | VAR, iki halk | `*_zafer_*` (880×406, Sv.53 geliştirici karakteriyle 1-1) |
 | Yenilgi ekranı | VAR, iki halk | `*_yenilgi_*` (Sv.1 karakter, Kül Geçidi 10 · Kül Şövalye) |
 | Zindan / Kapı / Meydan / Nöbet / Baskın girişleri | VAR (açılış ekranları), iki halk | `*_gatePvp`, `*_czArena`, `*_gateZones`, `*_gateEvents`, `*_nobet`, `*_baskin` |
+| Zindan savaşları (Dipsiz Kuyu, Gök Yarığı, Mühürlü Oda, Kül Kulesi, Yeraltı Ocağı) | ERTELENDİ (kullanıcı kararı, 26.11) | Yayın öncesi test aşamasında çekilecek; `arac/cap.mjs` `zindan` kipi hazır (`node cap.mjs <halk> 880x406 tr <çıktı> zindan`). Yapılmayacak değil, ertelendi |
 | Boss ve PvP **savaşının kendisi** | YOK | yalnız giriş ekranları çekildi; boss/PvP savaşı çekilmedi |
 | İç mekân (bina pencereleri) | VAR | `*_bina_*` (Örs, İksir, Maden, Kader Çarkı, Taş Yemini, Çarşı, Pazar, Kral); `king`, bazı halk/bina çiftlerinde başlıksız açıldı — bkz. `log_*_ic.json` |
 | İngilizce | KISMEN | 880×406 EN, 14 ana ekran, iki halk |

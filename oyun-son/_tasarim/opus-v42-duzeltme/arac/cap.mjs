@@ -34,4 +34,14 @@ if(mod==='savas'||mod==='yenilgi'){
   await W(2500);await shot('sonuc');log.sonuc=await baslik();}
 }
 if(mod==='pvp'){for(const a of ['gatePvp','czArena','gateZones','gateEvents','nobet','baskin'])await dene(a,`A['${a}']&&A['${a}']({})`);}
+
+const savasDongu=async(ad)=>{const ok=await pg.evaluate(()=>!!document.querySelector('[data-a="vsStart"]'));log[ad+'_vsStart']=ok;if(!ok)return;await K('[data-a="vsAuto"]');await W(300);await K('[data-a="vsStart"]');await W(6000);await shot(ad+'_savas_ortasi');
+  for(let i=0;i<40;i++){await W(3000);for(let h=0;h<2;h++)await pg.evaluate(()=>{const s=[...document.querySelectorAll('#battleUI button')].find(b=>/^[123]x$/.test(b.textContent.trim()));if(s&&s.textContent.trim()!=='3x')s.click()});if(await pg.evaluate(()=>!!document.querySelector('#modal .p25bres, .bres, #modal .rz2')))break;}
+  await W(2500);await shot(ad+'_sonuc');log[ad+'_sonuc']=await baslik();await J("C.closeWin(); C.closeModal();");await W(1500);};
+if(mod==='tam'){for(const a of ACTS)await dene('t_'+a,`if(!A['${a}'])return; A['${a}']({})`,1100);}
+if(mod==='boss'){for(const id of ['1-10','2-10','3-10','4-10']){await dene('boss_'+id+'_vs',`A.stage({id:'${id}'})`,1800);await savasDongu('boss_'+id);}}
+if(mod==='pvp2'){await dene('meydan_liste',`A.meydan({})`,2500);await dene('arenaVs',`A.arenaVs({i:0})`,2000);await savasDongu('pvp');}
+if(mod==='zindan'){for(const m of ['well','rift','seal','kule','depth']){await dene('zindan_'+m+'_vs',`A.mode({m:'${m}'})`,1800);await savasDongu('zindan_'+m);}}
+if(mod==='goz'){for(const a of ['anvil','iksir','mine','wheel','monument']){await dene('goz_'+a+'_once',`A.building({id:'${a}'})`,1800);await K('[data-a="icmGizle"]');await W(1200);await shot('goz_'+a+'_mekan_gorunur');log['goz_'+a]=await pg.evaluate(()=>!!document.querySelector('.icm'));}}
+if(mod==='sandik'){await J("C.closeWin();");await W(3000);const v=await pg.evaluate(async()=>{const C=await import('/js/ui-core.js');return typeof C.ACT.sandikOpen});log.sandikTip=v;await dene('sandik',`A.sandikOpen&&A.sandikOpen()`,1500);}
 fs.writeFileSync(cikti+`/log_${irk}_${boyut}_${dil}_${mod}.json`,JSON.stringify({log,hatalar:R.hatalar},null,1));await b.close();console.log(mod,irk,boyut,dil,JSON.stringify(log).slice(0,600));
