@@ -1,0 +1,422 @@
+{
+"A01-yukleme": [
+"Yükleme",
+"Açılış resmi ve yükleme çubuğu (img/korant-acilis.jpg, değişmez)."
+],
+"A02-sunucu-secimi": [
+"Sunucu seçimi",
+"Sunucu kartı (Ares), giriş düğmesi .sv-go."
+],
+"A03-olustur-acilis": [
+"Karakter oluştur · açılış",
+"Halk (ırk) seçimi, sınıf, cinsiyet, ad."
+],
+"A04-olustur-halk": [
+"Karakter oluştur · halk seçildi",
+"Seçilen halkın varsayılan sınıfı/cinsiyeti, 2B tam boy önizleme."
+],
+"A05-olustur": [
+"Karakter oluştur · sınıf×cinsiyet",
+"4 sınıf × 2 cinsiyet önizlemesi (2B tam boy + sınıf açıklaması)."
+],
+"A06-karakter-secme": [
+"Karakter seçme",
+"Oluşturulan karakterler, 2B tam boy, Giriş (#tkenter)."
+],
+"A07-giris-sonrasi": [
+"Giriş sonrası / hikâye girişi",
+"Krallık yemini/destan girişi (Geç düğmesi)."
+],
+"A08-ogretici": [
+"Öğretici",
+"Kemikli Koru öğretici savaşı ve anlatıcı (atlanabilir)."
+],
+"B01-hub-baskent": [
+"Ana ekran · Başkent",
+"Halkın boyalı başkenti (2B), binalar, HUD, dock, sohbet, Savaş düğmesi."
+],
+"B02-hub-yemin-pazari": [
+"Ana ekran · Yemin Pazarı",
+"Ortak çarşı: silah/zırh/sarf/takı tezgâhları, pazar, karaborsa, Yashka, iskele (Balık Tut)."
+],
+"B03-hub-klan": [
+"Ana ekran · Klan Obası",
+"Klan toprağı: salon, karargâh, hazine, dükkân, hisar, av, görev, sancak."
+],
+"bag": [
+"Çanta",
+"Envanter: eşya kuşanma, satma, parçalama, kilit."
+],
+"karakter": [
+"Karakter",
+"Kahraman 2B tam boy, ekipman yuvaları, nitelikler; sekmeler: yetenek, ustalık, unvan."
+],
+"party": [
+"Takım / Kahraman",
+"Karakter penceresinin takım girişi (aynı sekmeler)."
+],
+"quests": [
+"Görevler",
+"Günlük/haftalık/aylık görevler ve ödülleri."
+],
+"shop": [
+"Dükkân (Kervan)",
+"Yakutla erzak, bilet, muska; para sekmesi (Yakında)."
+],
+"clan": [
+"Klan",
+"Klan bilgisi / kurma / katılma."
+],
+"mail": [
+"Posta",
+"Gelen posta, raporlar, yazma."
+],
+"market": [
+"Pazar",
+"Oyuncular arası alım satım ilanları."
+],
+"pazar": [
+"Pazar (çarşı girişi)",
+"Pazar penceresinin çarşı kısayolu."
+],
+"settings": [
+"Ayarlar",
+"Hesap, dil, erişilebilirlik, bildirim, ses; Emeği Geçenler."
+],
+"rank": [
+"Sıralama",
+"Oyuncu/klan/ırk sıralamaları."
+],
+"friends": [
+"Arkadaşlar",
+"Arkadaş listesi, istekler, engellenenler."
+],
+"notifs": [
+"Bildirimler",
+"Bildirim akışı ve ayarları."
+],
+"calendar": [
+"Takvim",
+"Günlük giriş ödülleri (7 gün / 28 gün)."
+],
+"codex": [
+"Ansiklopedi",
+"Eşya ve canavar ansiklopedisi (G3 çizimleri)."
+],
+"rehber": [
+"Rehber",
+"Oyun sistemleri rehberi; eşya/canavar sekmeleri."
+],
+"achs": [
+"Başarımlar",
+"Başarımlar ve unvanlar."
+],
+"titles": [
+"Unvanlar",
+"Kazanılan unvanlar, seçim."
+],
+"premium": [
+"Üyelik",
+"Bronz/Gümüş/Altın üyelik avantajları."
+],
+"profile": [
+"Profil",
+"Oyuncu profili, istatistik, amblem."
+],
+"server": [
+"Sunucu",
+"Sunucu bilgisi ve kuralları."
+],
+"wheel": [
+"Çark",
+"Yakutla şans çarkı."
+],
+"anvil": [
+"Örs (Büyük Örs)",
+"Eşya yükseltme +1…+10, parçalama; iç mekân yemin-pazari/ors."
+],
+"mine": [
+"Maden",
+"Saatlik cevher, yükseltme, takas; iç mekân maden."
+],
+"iksir": [
+"İksirci",
+"İksir ve sarf satın alma (Maelis / Kragmir iksircisi)."
+],
+"monument": [
+"Anıt",
+"Irk/klan/önder anıtları (Lira)."
+],
+"karaborsa": [
+"Karaborsa",
+"Gizli tüccar; iç mekân karaborsa."
+],
+"tuccar": [
+"Tüccar",
+"Silah/zırh/takı tezgâhı (Halvor / Kragmir tüccarı)."
+],
+"yashka": [
+"Şaman Yashka",
+"Kemik okuma diyaloğu (Nöbet/Anıt yönlendirme)."
+],
+"meydan": [
+"Meydan (PvP)",
+"Rakip seçimi, savunma takımı, kan davası, şan dükkânı."
+],
+"nobet": [
+"Kristal Nöbeti",
+"Dalga savunma etkinliği."
+],
+"baskin": [
+"Baskın",
+"Dünya Baskını ve zindan kartları."
+],
+"destan": [
+"Destan",
+"8 bölümlük hikâye savaşları."
+],
+"diyarMap": [
+"Diyar Haritası",
+"Diyar haritası, hazine, bağış (Otağ sekmeleri)."
+],
+"gate": [
+"Kapı (Bölge seçimi)",
+"Bölge haritası ve aşamalar; zindan/etkinlik sekmeleri."
+],
+"hall": [
+"Salon (Divan)",
+"Kalıcı nitelik yükseltmeleri; meydan sekmeleri."
+],
+"balik": [
+"Balık Tut",
+"Balık tutma mini oyunu (şelale/iskele)."
+],
+"savas": [
+"Savaş menüsü",
+"Savaş giriş kartları (Sefer, Hızlı Av, Meydan, Şan Divanı)."
+],
+"season": [
+"Sezon",
+"Sezon ödülleri ve geçmişi."
+],
+"reports": [
+"Raporlar",
+"Savaş raporları, şikâyet yazma."
+],
+"news": [
+"Duyurular",
+"Oyun haberleri akışı."
+],
+"skill": [
+"Yetenek (doğrudan)",
+"Parametresiz çağrıda sessiz döner (C13)."
+],
+"onlineOpen": [
+"Çevrimiçi ödülü",
+"Çevrimiçi kalma sandığı."
+],
+"sandikOpen": [
+"Sandık",
+"Sandık açma (bu sürümde ACT yok)."
+],
+"starterOpen": [
+"Başlangıç paketi",
+"İlk alım paketi teklifi."
+],
+"yakutMenu": [
+"Yakut al",
+"Yakut paketleri (Yakında), aylık kart, geçmiş."
+],
+"premiumMenu": [
+"Üyelik menüsü",
+"Üyelik ekranının menü girişi."
+],
+"supportMenu": [
+"Sorun / Teknik Destek",
+"Destek bileti."
+],
+"logoutMenu": [
+"Çıkış",
+"Çıkış onayı."
+],
+"rankMenu": [
+"Sıralama menüsü",
+"Sıralamanın menü girişi."
+],
+"titlesMenu": [
+"Unvan menüsü",
+"Unvan seçimi menü girişi."
+],
+"friendsMenu": [
+"Arkadaş menüsü",
+"Arkadaşların menü girişi."
+],
+"gateMenu": [
+"Kapı menüsü",
+"Bölge/etkinlik seçim menüsü."
+],
+"otag": [
+"Otağ (Taht Salonu)",
+"Kral otağı: harita, hazine, bağış; iç mekân taht-salonu."
+],
+"clanhq": [
+"Klan Karargâhı",
+"Klan yönetimi; iç mekân klan-karargahi."
+],
+"erisim": [
+"Erişilebilirlik",
+"Ayarlar → erişilebilirlik sekmesi."
+],
+"questLog": [
+"Görev günlüğü",
+"Ana görev (64 adım) ilerlemesi."
+],
+"monthlyBonus": [
+"Aylık ödül",
+"Aylık giriş ödülü."
+],
+"weeklyBonus": [
+"Haftalık ödül",
+"Haftalık ödül."
+],
+"promoMenu": [
+"Promosyon kodu",
+"Kod girme."
+],
+"chatOpen": [
+"Sohbet (tam ekran)",
+"Kanallar: genel, klan, fısıltı."
+],
+"drawer": [
+"Yan çekmece",
+"Menü çekmecesi."
+],
+"msgMenu": [
+"Mesaj menüsü",
+"Parametresiz çağrıda sessiz döner."
+],
+"otagMenu": [
+"Otağ menüsü",
+"Otağın menü girişi."
+],
+"mnMain": [
+"Görev ana menüsü",
+"Görevler penceresinin ana girişi."
+],
+"arenaRefresh": [
+"Meydan yenile",
+"Rakip listesini yenileme (eylem)."
+],
+"czArena": [
+"Çarşı · Meydan",
+"Yemin Pazarı'ndan Meydan girişi."
+],
+"czHall": [
+"Çarşı · Şan Divanı",
+"Yemin Pazarı'ndan Divan girişi."
+],
+"czMarket": [
+"Çarşı · Dükkân",
+"Yemin Pazarı'ndan dükkân girişi."
+],
+"gateZones": [
+"Kapı · Bölgeler",
+"Kapının bölge sekmesi."
+],
+"gatePvp": [
+"Kapı · Meydan",
+"Kapının PvP girişi."
+],
+"gateEvents": [
+"Kapı · Etkinlikler",
+"Kapının etkinlik girişi."
+],
+"gateDestan": [
+"Kapı · Destan",
+"Kapının destan girişi."
+],
+"gateKlan": [
+"Kapı · Klan",
+"Kapının klan girişi."
+],
+"hotbar": [
+"Yetenek çubuğu ayarı",
+"Savaş yetenek yuvaları (Karakter → Yetenek)."
+],
+"modInfo": [
+"Kip bilgisi",
+"Oyun kipi açıklaması."
+],
+"worldInfo": [
+"Dünya bilgisi",
+"Diyar/bölge açıklaması."
+],
+"tierInfo": [
+"Kademe bilgisi",
+"Eşya kademe tablosu."
+],
+"calInfo": [
+"Takvim bilgisi",
+"Takvim açıklaması."
+],
+"chatMenu": [
+"Sohbet menüsü",
+"Sohbet kanal menüsü."
+],
+"emoOpen": [
+"Emoji paneli",
+"36 emoji."
+],
+"gift": [
+"Hediye",
+"Hediye gönderme."
+],
+"exchange": [
+"Takas",
+"Parametresiz çağrıda sessiz döner."
+],
+"tp": [
+"Işınlanma",
+"Başkent / Yemin Pazarı / Klan geçişi."
+],
+"spin": [
+"Çark çevir",
+"Çark eylemi."
+],
+"charSwitchMenu": [
+"Karakter değiştir",
+"Karakter seçmeye dönüş."
+],
+"quick": [
+"Hızlı av",
+"Son açık aşamanın VS ekranını doğrudan açar (D01 ile aynı görüntü)."
+],
+"han": [
+"Han",
+"Hancı ve içecekler; iç mekân han."
+],
+"ahir": [
+"Ahır",
+"Yoldaş hayvanlar; iç mekân ahır."
+],
+"zaferAniti": [
+"Zafer Anıtı",
+"Haftalık zafer sandığı ve bayraklar."
+],
+"D01-vs-1-1": [
+"VS ekranı (1-1)",
+"Savaş öncesi: kahraman, ana düşman, yıldız koşulları, dalgalar, Oto, Başla."
+],
+"D02-savas-a": [
+"Savaş · açılış",
+"Sıra tabanlı savaş HUD'u (can/mana, yetenekler, iksirler, OTO, hız)."
+],
+"D03-savas-b": [
+"Savaş · ilerleyen tur",
+"Vuruş/VFX anı."
+],
+"D04-savas-sonucu": [
+"Savaş sonucu",
+"Zafer/yenilgi, 3 yıldız, ödüller, amblem."
+]
+}

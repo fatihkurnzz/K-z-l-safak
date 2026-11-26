@@ -8,7 +8,14 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (25.11, 16. oturum) — DIŞ SÜRÜM ÇEKİLDİ
+## SON DURUM (26.11, 17. oturum) — GPT/GEMINI GÖREV PAKETLERİ
+- Kullanıcı istedi: KORANT_GPT.zip + KORANT_GEMINI.zip (kod/görsel DEĞİŞMEDİ). Sürüm kimliği `KORANT-v40-1dda167` (oyun dosyaları yayın 40 ile aynı).
+- Çıktı scratchpad `paket/`: KORANT_GPT.zip (13 MB, 181 dosya) + KORANT_GEMINI_01..05of05.zip (her biri <30 MB, 1898 dosya). Kullanıcıya gönderildi.
+- Araçlar ve yeniden üretme sırası: `oyun-son/_tasarim/araclar/paket-26kas/OKU.md` (gömülü görsel çıkarma, katalog, ekran çekimi dpr 2,66, ekran↔varlık ölçümü, belge üretimi, paketleme).
+- Ölçülen: ayrı ekran Elentha 112, Kragmir 114 (birleşik kimlik 115); kullanıcının “157 ekran” sayısı doğrulanamadı → README'de açıkça yazıldı. 42 sahne = 29 `sahneler/` + 13 `interiors/`. 18 kolaj = 9+9.
+- ÇEKİM DERSLERİ: öğretici artık `.p26o-x` («Öğreticiyi atla») + «Evet, atla» ile geçilir; `ACT.charSwitchMenu` karakter seçmeye döner ve sonraki ekranları kirletir (listeden çıkar); savaş sonucu `#modal .p25bres`; OTO düğmesi savaşlar arasında açık kalır (ikinci kez basma).
+
+## ÖNCEKİ DURUM (25.11, 16. oturum) — DIŞ SÜRÜM ÇEKİLDİ
 - Kullanıcı başka modellerle (P23–P32) ilerletilmiş son hali verdi: https://claude.ai/artifact/Xgt9b5UzmwMEXw6U9TVL21 (kuruluş dışı, okunur, YAYIMLANAMAZ; sürüm 1795639850-dc98, 443 dosya). **Bundan devam ediliyor.**
 - `oyun-son/` bu sürümle birebir eşitlendi: 84 değişen + 140 yeni dosya (css/p23…p32, d23-*, js/p2x-*-png.js, ic-mekan.js, ui-ahir/han/zafer, shared/ahir/han/zafer/config/storePrices, interiors/, sahneler/, img/p27–p28, audio/arka-plan|boss|intro). shared/ de değişti (dış sürümün mekaniği geçerli). Artık başvurulmayan 192 `img/kd/*` dosyası silindi (kd-png.js'e gömülü). Yerelde kalan yayın dışı: img/items3d, img/icons/*-512, models/test, video/README.
 - Tüm JS `node --check` (.mjs) geçti. Tarayıcıda denenmedi. Önceki notlardaki dosya/CSS düzeni (v26–v33, duzen.css sonu kuralı) bu sürümde p2x CSS'leriyle genişledi; yeni CSS'i nereye ekleyeceğine index.html sırasına bakarak karar ver.
