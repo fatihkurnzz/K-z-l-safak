@@ -1,0 +1,6 @@
+const { chromium } = require('playwright'); const giris = require('/home/user/K-z-l-safak/oyun-son/_tasarim/araclar/kabul-26kas/giris.js'); const D = require('/home/user/K-z-l-safak/oyun-son/_tasarim/araclar/kabul-26kas/denetci.js');
+(async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 880, height: 406 }, deviceScaleFactor: 2.66 }); await giris(p, 'ocak', '?gfx=high&store=1');
+  for (const steps of [[['building', { id: 'monument' }], ['pcard', { id: 'bot:7013:65:50' }]], [['codex', {}], ['tab', { id: 'items' }], ['cxItem', { b: 'u:kuldilimi', g: '2' }]], [['codex', {}], ['tab', { id: 'items' }], ['cxItem', { b: 'u:hanguk', g: '2' }]]]) {
+    await p.evaluate(async st => { const C = await import('/js/ui-core.js'); const m = document.querySelector('#modal'); if (m) { m.hidden = true; m.innerHTML = ''; } C.closeWin(true); for (const [a, d] of st) { await C.ACT[a](d); await new Promise(r => setTimeout(r, 900)); } }, steps); await p.waitForTimeout(1000);
+    const o = await p.evaluate(D); console.log(steps.at(-1)[0], JSON.stringify({ k: o.kucukYazi, kes: o.kesik, tas: o.tasma, cak: o.cakisma })); await p.screenshot({ path: `dyn2-${steps.at(-1)[0]}.png` }); }
+  await b.close(); })();

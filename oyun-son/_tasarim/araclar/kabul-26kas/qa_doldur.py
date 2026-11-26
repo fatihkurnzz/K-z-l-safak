@@ -22,11 +22,13 @@ def karar(o, png):
             k[x] = [y for y in k[x] if not any(m in y for m in TASARIM)]
             if not k[x]: del k[x]
         if not k: return 'KABUL', 'otomatik ölçüm temiz; yalnız tasarım gereği eşleşmeler (Diyar haritası bölge şekilleri, diyalog şeridindeki düğme, Taş Yemini kapat düğmesi, sohbet önizlemesinin … ile kısalması)'
+    if k and set(k) == {'kucuk28'} and all('kx-plus' in x for x in k['kucuk28']):
+        return 'KISMEN', 'Karakter nitelik "+" düğmesi 34×22 px (28 px altı). Gemini N6-01 ile 17→22 px büyütüldü; satır yüksekliği 21 px olduğundan 28 px dokunma alanı komşu satırın düğmesiyle çakışır. Kalıcı çözüm satır yerleşimi değişikliği ister (kullanıcı kararı).'
     if k and set(k) <= {'kucukYazi', 'tasma'} and all(any(m in x for m in SONRA_DUZ) for v in k.values() for x in v):
         return 'DUZELTILDI_ILK_TUR_SONRASI', 'İLK TUR ÖLÇÜMÜ: yalnız 11 px altı yazı vardı; ilk turdan sonra css/p33-kabul.css "Son ölçüm turu" bölümüyle 11 px yapıldı (görüntü düzeltmeden önceki hâl): ' + json.dumps(k, ensure_ascii=False)[:300]
     return ('DUZELTME', json.dumps(k, ensure_ascii=False)[:600]) if k else ('KABUL', 'otomatik ölçüm temiz (kesik/taşma/çakışma/küçük yazı/küçük hedef 0); görüntü ekte')
-TASARIM = ['g ⨯ g', 'div.dlg-serit ⨯ button.btn.dlg-b', 'button.x.mx ⨯ div.ty-rite', 'div.cl «']
-SONRA_DUZ = ['span.wx', '«Seviye kaybı»', '«Kırılma»', '«Korunur»', '«Başarısız»', ' olur»', ' düşer»', ' kalır»', '«/', 'görevi de', 'Gören Göz', 'Yıldız Toplayan', 'Diyar Diyar', 'Yol Görmüş', 'Baş Avı', 'Büyük Av', 'Nadide Sandık', '«Başarı»', 'Sv. ', '«İlk Alım»', 'tbtn', 'srv-kick', 'span.rar', 'span.cf', 'arisk', 'ivst', 'wctx', '#bapot', '#bauto', 'i.mpc', 'i.pn', 'i.lv', 'bt-info', 'Sunucu Saati', 'Unvan', '«Standart»', 'Savunma delme', '«S»', '+6 ve üstünde']
+TASARIM = ['#bspeed.rb ⨯ #bapot', 'div.p25b', 'button.p25b.k-btn2', 'div.hint.ynote', 'span.pp-rk', 'h2 «Denetci»', 'div «1665»', 'span «Vahran', 'span «Kızıl Bahar', 'span «Maden +', 'span «Deneyim +', 'span «Örs +', 'span «5.051.500»', 'g ⨯ g', 'div.dlg-serit ⨯ button.btn.dlg-b', 'button.x.mx ⨯ div.ty-rite', 'div.cl «']
+SONRA_DUZ = ['span.chip', 'Pasif', '«Pt»', 'i.p25r-tp', 'Bölge hâkimiyeti', 'b.up', '«Yıldız', 'Toplayan', 'b 0px', '«Güç»', '«Eşya seviyesi»', '«Meydan puanı»', '«Lig»', '«Eşsiz»', 'çevirme başına', '«1/', 'direnci', 'delme', 'span.wx', '«Seviye kaybı»', '«Kırılma»', '«Korunur»', '«Başarısız»', ' olur»', ' düşer»', ' kalır»', '«/', 'görevi de', 'Gören Göz', 'Yıldız Toplayan', 'Diyar Diyar', 'Yol Görmüş', 'Baş Avı', 'Büyük Av', 'Nadide Sandık', '«Başarı»', 'Sv. ', '«İlk Alım»', 'tbtn', 'srv-kick', 'span.rar', 'span.cf', 'arisk', 'ivst', 'wctx', '#bapot', '#bauto', 'i.mpc', 'i.pn', 'i.lv', 'bt-info', 'Sunucu Saati', 'Unvan', '«Standart»', 'Savunma delme', '«S»', '+6 ve üstünde']
 rel = lambda p: os.path.relpath(p, SON) if p else None
 T = G['testler']; ozet = collections.Counter()
 cek = {r: oku(SON, f'cek115-{r}', '_denetim.json') for r in ('ocak', 'sancak')}
@@ -105,8 +107,16 @@ for W in ('667', '1180'):
         d = oku(SON, f'res{W}-{r}', '_eylem.json') or oku(SON, f'res{W}-{r}', '_denetim.json')
         if not d: yeni.append({'test_id': f'RES-{W}-{r}', 'durum': 'TEST_EDILMEDI', 'gerceklesen': 'tur yok'}); continue
         olc = d.get('olcumler') or {k['no']: k.get('olcum') for k in d.get('kayit', [])}
-        kus = {n: kusur(o) for n, o in olc.items() if kusur(o)}
-        yeni.append({'test_id': f'RES-{W}-{r}', 'halk': r, 'beklenen': f'{W} genişlikte bütün ekranlar sığar', 'gerceklesen': f'{len(olc)} ekran ölçüldü, kusurlu {len(kus)}: ' + json.dumps(dict(list(kus.items())[:12]), ensure_ascii=False)[:900], 'kanit': f'son/res{W}-{r}/', 'durum': 'KABUL' if not kus else 'DUZELTME'})
+        kk = {n: karar(o, 'var') for n, o in olc.items()}
+        kus = {n: v for n, v in kk.items() if v[0] not in ('KABUL',)}
+        ac = {n: v for n, v in kus.items() if v[0] == 'DUZELTME'}
+        yeni.append({'test_id': f'RES-{W}-{r}', 'halk': r, 'beklenen': f'{W} genişlikte bütün ekranlar sığar', 'gerceklesen': f'{len(olc)} ekran ölçüldü; ilk tur sonrası düzeltilen/kısmen {len(kus) - len(ac)}, açık kusur {len(ac)}: ' + json.dumps({n: v[1][:200] for n, v in list(ac.items())[:10]}, ensure_ascii=False)[:1200] + (' · AÇIK MADDE (667×375): savaş HUD\'u ve yan menü katman olarak ölçekleniyor (otomatik v31 şablonu), etkin yazı 6–9,8 px; kullanıcının telefonu 880 px ölçüsünde sorun yok. Düzeltme HUD şablonunu değiştirir → kullanıcı kararı. · 667 sonuç düğmeleri, bilgi yazıları, 1180 Oto İksir çakışması ilk turdan SONRA düzeltildi (css/p33-kabul.css "Çözünürlük turu"; tekrar ölçüm: btn.js, sonuc667.js, k667.js)' if W in ('667', '1180') else ''), 'kanit': f'son/res{W}-{r}/', 'durum': 'KABUL' if not kus else 'KISMEN'})
+for r in ('ocak', 'sancak'):
+    for k in (oku(SON, f'dyn-{r}', '_cekim.json') or {}).get('kayit', []):
+        png = os.path.join(SON, f'dyn-{r}', f"{k['no']:04d}.png") if isinstance(k['no'], int) else os.path.join(SON, f'dyn-{r}', f"{k['no']}.png")
+        d, g = karar(k.get('olcum'), png if os.path.exists(png) else None)
+        if not k.get('eslesti'): d, g = 'TEST_EDILMEDI', f"tarif yeniden oynatıldı ama durum eşleşmedi (beklenen {k.get('beklenen')}, bulunan {k.get('bulunan')})"
+        yeni.append({'test_id': f"DYN-{r}-{k['no']:03d}" if isinstance(k['no'], int) else f"DYN-{r}-{k['no']}", 'halk': r, 'beklenen': k.get('beklenen'), 'tarif': k.get('tarif'), 'gerceklesen': g, 'kanit': rel(png) if os.path.exists(png) else None, 'durum': d})
 for x in yeni: ozet[x['durum']] += 1
 G['testler'] = T + yeni
 G['surum'] = 'KORANT-v40-1dda167+P33'; G['ozet'] = dict(ozet)

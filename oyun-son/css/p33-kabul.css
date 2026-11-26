@@ -249,3 +249,8 @@ html.narrow #win .zonerow > button > span { white-space: normal !important; text
 html.narrow :is(#win, #modal) .wfc .wslot > span { white-space: normal !important; text-overflow: clip !important; line-height: 1.1 !important; }
 html.narrow #win .kx-bag .kx-foot { flex-wrap: wrap !important; row-gap: 2px !important; min-width: 0; }
 html.narrow #win .kx-bag .kx-foot > span { min-width: 0; }
+/* Dinamik durum turu (26 Kas): oyuncu kartı etiketleri, Ansiklopedi eşya kutusu (düşme olasılığı, nadirlik, alt nitelik) 9–10 px → 11 px */
+html[data-faction] #modal :is(.pc-kv small, .kv > div > small), html[data-faction] #modal.cxbox :is(small, .rar, .cf), html[data-faction] #modal .box.cxbox :is(small, .rar, .cf) { font-size: 11px !important; }
+/* Çözünürlük + dinamik tur: her ölçüde 11 px altında kalan pencere yazıları (karakter Unvan/Yetenek sekmeleri, baskın zindan puanı, yan menü, sonuç satırları) */
+html[data-faction] #win :is(.tgrid .tbtn > small, .chip, .chip.yw), html[data-faction] #win[data-scr] .page small, html[data-faction] #win .page b:not([class]),
+html[data-faction] :is(#drawer, .drawer, #modal.drawer, #modal .drawer) small, html[data-faction] #modal .box.p25bres :is(.p25r-tp, .p25r-ek, .p25r-ek b) { font-size: max(11px, 1em) !important; }
