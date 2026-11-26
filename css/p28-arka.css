@@ -1,0 +1,5 @@
+/* P28 — arka. Kurallar ekran/duruma kapsamli; important bildirimi YOK. */
+/* P28 M10 (yuk): karakter penceresi kaide zemini = karakter seçim fotoğrafı (eski p24 stage_* yerine). Pencere açılınca iner.
+   p24-ekranlar.css .kx-model.kx-2b background: var(--kx-stage) 50% 100% / cover; P29: sahneler/karakter_secim_*.webp; dairesel kaide merkezi yüksekliğin ~%77'sinde, figür ayağı alttan %22 (= %78). */
+html[data-faction="sancak"] #win[data-scr="karakter"] .kx-model.kx-2b { --kx-stage: url(../sahneler/karakter_secim_elentha.webp); }
+html[data-faction="ocak"] #win[data-scr="karakter"] .kx-model.kx-2b { --kx-stage: url(../sahneler/karakter_secim_kragmir.webp); }

@@ -1,0 +1,70 @@
+/* P26-duzelt — 100 puan paketi (docs/referans/p26-100-puan/TALIMAT.md). Kurallar ekran kapsamlı; !important yok. */
+
+/* D8 — Karakter seçimi seviye rozeti: Cinzel'in "1" rakamı roma "I" gibi okunuyordu; sayılar açık rakamlı yazıyla, "Sv." küçük harfle. */
+#tksel.ks .ks-lv small { text-transform: none; letter-spacing: 0; font-size: 9px; }
+#tksel.ks .ks-lv b { font-family: Inter, system-ui, sans-serif; font-weight: 800; font-variant-numeric: lining-nums tabular-nums; }
+#tksel.ks .ks-pl-meta em { font-family: Inter, system-ui, sans-serif; font-style: normal; font-weight: 800; font-variant-numeric: lining-nums tabular-nums; }
+
+/* N4 — Kapı / Işınlanma Kapısı modalında başlıktaki kırmızı "!" rozeti (h2::before) haritadaki kapı rozetiyle çift görünüyordu: tek kalsın. */
+html[data-faction] #modal .box.gatemenu > h2::before { display: none; }
+
+/* D2 — Halk kartındaki "Bereket +%15 XP · +%10 Akçe" rozeti başlığın üstüne biniyordu: başlık ve alt yazının altında ayrı, okunur bir satır. */
+.vz .vz-ban:has(> small.vz-bl), .vz .vz-ban:has(> small.vz-nf) { padding-bottom: calc(7 * var(--U)); }
+.vz .vz-ban > small.vz-bl, .vz .vz-ban > small.vz-nf { position: relative; top: auto; margin-top: calc(3 * var(--U)); max-width: 94%; width: auto; white-space: normal; line-height: 1.2; font-size: calc(7.5 * var(--U)); padding: calc(1 * var(--U)) calc(4 * var(--U)); background: #000c; border: 1px solid #ffd27a66; border-radius: calc(3 * var(--U)); }
+
+/* O6 — Kristal Nöbeti "Lav Yürek geldi" duyurusu sayaç yazısının (.nb-st b, 30 px) boyunu alıp kutudan taşıyordu: duyuru kendi boyunda, sarılır. */
+html[data-faction] #win .nb-st .nb-boss { flex-wrap: wrap; row-gap: 2px; max-width: 100%; }
+html[data-faction] #win .nb-st .nb-boss b { font: 800 15px/1.2 Cinzel, Georgia, serif; letter-spacing: .04em; color: #ffb07a; text-shadow: 0 0 8px #ff6a2a66; flex: 0 1 auto; min-width: 0; white-space: normal; }
+html[data-faction] #win .nb-st .nb-boss span { white-space: normal; }
+html[data-faction] #win .nb-st em, html[data-faction] #win .nb-hd p { overflow-wrap: anywhere; }
+
+/* D4 — sol kenardaki "İlk Alım" simgesinde sabit "1" rozeti gereksiz kırmızı tekrar (paket zaten simgede): rozet gizli. */
+html[data-faction] #hud .srail [data-a="starterOpen"] .badge { display: none; }
+
+/* O3 — ilk yükleme ekranı: geniş-kısa telefonda (880x406, 740x360) "cover" kaplama logonun "ONLINE" yazısını yükleme çubuğunun altına itiyordu.
+   Yüklenirken görsel alttaki çubuğa yer bırakacak boyda tam görünür (K-05: logo/amblem aynen), yanlar aynı görselin bulanık uzantısı. */
+@media (min-aspect-ratio: 17/9) {
+  html.giris2 #loading:not(.ready) .ld-art { background: linear-gradient(transparent 80%, rgba(5,3,6,.6)), url(../img/korant-acilis.jpg) center top / auto calc(100% - 58px) no-repeat; }
+  html.giris2 #loading:not(.ready) .ld-blur { display: block; position: absolute; inset: -4%; background: url(../img/korant-acilis.jpg) center / cover no-repeat; filter: blur(22px) brightness(.45); }
+}
+
+/* D10 — sunucu seçimi paneli: satır yazıları 8 px idi; 880x406'da ≥12 px, sütun başlıkları okunur. Panel biraz genişler. */
+html.giris2 #loading { --pw: min(calc(var(--W) * .34), calc(var(--H) * .48)); }
+html.giris2 #loading .sv-row { font-size: max(12px, 5.6cqw); }
+html.giris2 #loading .sv-row b { left: 19%; letter-spacing: 0; }
+html.giris2 #loading .sv-row :is(.sv-st, .sv-pop) { font: 700 max(12px, 5.2cqw) / 1 Inter, system-ui, sans-serif; letter-spacing: 0; }
+html.giris2 #loading .sv-st { left: 54%; }
+html.giris2 #loading .sv-pop { left: 82%; }
+
+/* D9 — Karaborsa: döndürülmüş indirim şeridi (.kb-off) kart çerçevesinin dışına taşıp kesiliyordu: çerçeve içinde sağ üstte düz rozet. */
+html.k24[data-faction] #win .kb-card .kb-off { left: auto; right: 9px; top: 9px; width: auto; transform: none; padding: 0 7px; border-radius: 3px; font: 800 11px/18px Inter, system-ui, sans-serif; letter-spacing: 0; white-space: nowrap; }
+html.k24[data-faction] #win .kb-card :is(.kb-name, .kb-sub) { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 6px; box-sizing: border-box; }
+
+/* O8 — Işınlanma Kapısı: kırmızı düğme listesi yerine yer başına P24 kit kartı (harita önizlemesi + ad + açıklama). */
+html[data-faction] #modal .box.portalm { width: min(640px, calc(100vw - 40px)); max-width: none; }
+html[data-faction] #modal .portalm .pt-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+html[data-faction] #modal .portalm .pt-card { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 0; min-width: 0; margin: 0; padding: 0; color: var(--u-t1, #efe4cc); text-align: left; cursor: pointer; font: inherit; }
+html[data-faction] #modal .portalm .pt-img { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0b0809 center / cover no-repeat; border-radius: 2px; box-shadow: inset 0 0 0 1px #c9a45c55, inset 0 -18px 24px -10px #000c; }
+html[data-faction] #modal .portalm .pt-tx { display: flex; flex-direction: column; gap: 2px; padding: 6px 2px 0; min-width: 0; }
+html[data-faction] #modal .portalm .pt-tx b { font: 700 13px/1.15 Cinzel, Georgia, serif; color: #f4e6c3; letter-spacing: .02em; }
+html[data-faction] #modal .portalm .pt-tx small { font: 500 12px/1.25 Inter, system-ui, sans-serif; color: #d6c9ae; }
+html[data-faction] #modal .portalm .pt-tx em { align-self: flex-start; margin-top: 3px; padding: 1px 6px; border-radius: 3px; font: 700 11px/16px Inter, system-ui, sans-serif; font-style: normal; color: #1a1208; background: #e8c468; }
+html[data-faction] #modal .portalm .pt-tx em.pt-lk { color: #efe4cc; background: #0009; border: 1px solid #ffffff33; display: inline-flex; align-items: center; gap: 4px; }
+html[data-faction] #modal .portalm .pt-tx em.pt-lk svg { width: 11px; height: 11px; }
+html[data-faction] #modal .portalm .pt-card:disabled { cursor: default; opacity: 1; }
+html[data-faction] #modal .portalm .pt-card.lock .pt-img { filter: grayscale(.85) brightness(.55); }
+html[data-faction] #modal .portalm .pt-card.here .pt-img { filter: brightness(.7); }
+html[data-faction] #modal .portalm .pt-card:not(:disabled):active { transform: translateY(1px); filter: brightness(1.1); }
+@media (max-height: 380px) { html[data-faction] #modal .portalm .pt-img { aspect-ratio: 2 / 1; } html[data-faction] #modal .portalm .pt-tx small { font-size: 11.5px; } }
+
+/* P25 kalanı (a) — dar ekranda (740 px) pencere başlığındaki kaynak kapsülleri X düğmesinin altına uzuyordu: band X'e kadar sınırlı,
+   kapsüller sıkışır; yine de sığmazsa taşan kısım (soldaki binaya özgü kapsüller) gizlenir, Enerji/Akçe/Yakut sağda hep görünür. */
+html.k24[data-faction] #win .frame > header .wres { flex: 1 1 0; min-width: 0; overflow: hidden; margin-right: 36px; }
+@media (max-width: 900px) {
+  html.k24[data-faction] #win .frame > header .wres { gap: 3px; }
+  html.k24[data-faction] #win .frame > header .wres > span { padding: 0 7px 0 6px; gap: 3px; font-size: 11.5px; }
+  html.k24[data-faction="sancak"] #win .frame > header .wres > span { padding-left: 24px; }
+}
+/* D8 ek — 740 px'te "OYUNA GİR" iki satıra kırılıyordu. */
+#tksel.ks .ks-enter { white-space: nowrap; }
+@media (max-width: 780px) { #tksel.ks .ks-enter { letter-spacing: .1em; font-size: 18px; } }

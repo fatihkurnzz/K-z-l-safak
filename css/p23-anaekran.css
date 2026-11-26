@@ -1,0 +1,285 @@
+/* P23 anaekran — eski görünüşe dönüş: ?p23=0 ya da localStorage dd_p23=0 (giriş için ?giris=0). Kurallar html.p23 / html.giris2 altında. */
+/* ===== P23 K4 ana ekran parçaları (maket: gem1/N3, 880x406) ===== */
+html.p23[data-faction="ocak"] { --fr-oy:var(--p23-cerceve-oyuncu-karti-kragmir); --fr-gv:var(--p23-cerceve-gorevler-kragmir); --fr-hv:var(--p23-cerceve-hava-kragmir); --fr-pr:var(--p23-cerceve-premium-kragmir); --p23-ac:#c2552b; }
+html.p23[data-faction="sancak"] { --fr-oy:var(--p23-cerceve-oyuncu-karti-elentha); --fr-gv:var(--p23-cerceve-gorevler-elentha); --fr-hv:var(--p23-cerceve-hava-elentha); --fr-pr:var(--p23-cerceve-premium-elentha); --p23-ac:#4d8cc9; }
+html.p23 #game #hud :is(.wclock, .wsrv, .wterr) { display:none !important; }
+/* oyuncu kartı 168x58 (8,8) */
+html.p23 #game #hud .pcard.uf { left:8px !important; top:8px !important; width:168px !important; height:58px !important; box-sizing:border-box; padding:9px 0 0 0 !important; display:block !important; background:none !important; box-shadow:none !important;
+  border:4px solid transparent !important; border-width:4px 6px 4px 46px !important; border-radius:0 !important; border-image:var(--fr-oy) 8 12 8 92 fill / 4px 6px 4px 46px stretch !important; filter:drop-shadow(0 4px 6px #000a); text-align:left; }
+html.p23 #game #hud .pcard.uf > img, html.p23 #game #hud .pcard.uf > .ava, html.p23 #game #hud .pcard.uf > :first-child:not(.uf-info) { position:absolute !important; left:-41px !important; top:1px !important; width:34px !important; height:34px !important; border:0 !important; border-radius:50% !important; box-shadow:none !important; object-fit:cover; }
+html.p23 #game #hud .pcard.uf .uf-info { display:flex !important; flex-direction:column !important; gap:2px !important; width:100% !important; padding:0 2px 0 0 !important; margin:0 !important; position:static; }
+html.p23 #game #hud .pcard.uf .uf-nm { display:block !important; font:700 11px/12px Cinzel, Georgia, serif !important; color:#e9e1d3 !important; margin:0 !important; width:100%; }
+html.p23 #game #hud .pcard.uf .uf-nm * { font-size:inherit !important; line-height:inherit !important; }
+html.p23 #game #hud .pcard.uf .uf-nm em { position:absolute !important; left:-39px !important; top:34px !important; display:block !important; font:800 9px/11px Inter, sans-serif !important; color:#e9e1d3 !important; background:#0e0b10; border:1px solid #c9a45c; border-radius:6px; padding:0 4px; margin:0 !important; }
+html.p23 #game #hud .pcard.uf .uf-bar { height:5px !important; min-height:0 !important; width:100% !important; margin:0 !important; display:block !important; border-radius:3px; }
+html.p23 #game #hud .pcard.uf .uf-bar s { display:none !important; }
+/* hava kutusu 246x40 (186,8) ve balon */
+html.p23 #game #hud .p23-hv { position:absolute; left:186px; top:8px; width:246px; height:40px; box-sizing:border-box; z-index:6; border:7px solid transparent; border-width:7px 8px; border-image:var(--fr-hv) 14 16 fill / 7px 8px stretch; filter:drop-shadow(0 4px 6px #000a); font:700 11px/13px Inter, sans-serif; color:#e9e1d3; }
+html.p23 #game #hud .p23-hv .ph-main { position:absolute; inset:-3px -4px; display:flex; align-items:center; gap:6px; padding:0 52px 0 6px; background:none; border:0; color:inherit; text-align:left; font:inherit; cursor:pointer; min-width:0; }
+html.p23 #game #hud .p23-hv .ph-ico { flex:none; width:20px; height:20px; background:center/contain no-repeat; }
+html.p23 #game #hud .p23-hv .ph-t { display:flex; flex-direction:column; min-width:0; }
+html.p23 #game #hud .p23-hv .ph-t b { font-weight:700; white-space:nowrap; }
+html.p23 #game #hud .p23-hv .ph-e { font:600 10px/12px Inter, sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#8d8790; }
+html.p23 #game #hud .p23-hv .ph-e .b { color:#5fbf78; } html.p23 #game #hud .p23-hv .ph-e .c { color:#e0a030; } html.p23 #game #hud .p23-hv .ph-e .c::before { content:' · '; color:#8d8790; }
+html.p23 #game #hud .p23-hv .ph-srv { position:absolute; right:-3px; top:-4px; height:22px; min-width:44px; padding:0 6px; background:none; border:0; color:#8d8790; font:700 11px/22px Inter, sans-serif; }
+html.p23 #game #hud .p23-hv .ph-tip { display:none; position:absolute; left:-8px; top:calc(100% + 6px); width:246px; box-sizing:border-box; padding:7px 10px 8px; background:rgba(14,11,16,.96); border:1px solid #c9a45c; border-radius:6px; box-shadow:0 8px 20px #000c; flex-direction:column; gap:4px; font:400 11px/14px Inter, sans-serif; color:#e9e1d3; }
+html.p23 #game #hud .p23-hv .ph-tip b { color:#c9a45c; font-weight:700; } html.p23 #game #hud .p23-hv .ph-tip em { font-style:normal; color:#8d8790; border-top:1px solid #ffffff1f; padding-top:4px; }
+html.p23 #game #hud .p23-hv.open .ph-tip { display:flex; }
+/* kaynak şeridi (440,8; 248x36) */
+html.p23 #game #hud .res { left:auto !important; right:192px !important; top:8px !important; width:248px !important; height:36px; box-sizing:border-box; transform:none !important; display:flex !important; flex-direction:row !important; flex-wrap:nowrap !important; gap:5px; align-items:center; padding:3px 4px; background:rgba(14,11,16,.88); border:1px solid #ffffff22; border-radius:5px; }
+html.p23 #game #hud .res .pill { flex:1 1 0; min-width:0; height:30px; font:700 11px/1 Inter, sans-serif; color:#e9e1d3; }
+/* premium 126x40 (696,8) */
+html.p23 #game #hud .premrow.p23prem { left:auto !important; right:58px !important; top:8px !important; width:126px !important; height:40px !important; transform:none !important; display:block !important; padding:0 !important; background:none !important; border:0 !important; }
+html.p23 #game #hud .p23prem .prem { position:relative !important; width:126px !important; height:40px !important; min-height:0 !important; box-sizing:border-box; display:grid !important; grid-template-columns:20px 1fr; grid-template-rows:1fr 1fr; align-items:center; column-gap:5px; padding:0 8px 0 9px !important; background:none !important; box-shadow:0 0 12px rgba(201,164,92,.32) !important; border:7px solid transparent !important; border-width:7px 8px !important; border-image:var(--fr-pr) 14 16 fill / 7px 8px stretch !important; border-radius:0 !important; color:#e9e1d3; text-align:left; margin:0; padding:0 !important; animation:p23glow 6s ease-in-out infinite; }
+html.p23 #game #hud .p23prem .prem.t1, html.p23 #game #hud .p23prem .prem.t2, html.p23 #game #hud .p23prem .prem.t3 { animation:none; }
+html.p23 #game #hud .p23prem .prem i { grid-row:1 / 3; width:20px; height:20px; background:center/contain no-repeat; margin:0; }
+html.p23 #game #hud .p23prem .prem i svg { display:none; }
+html.p23 #game #hud .p23prem .prem b { display:block !important; font:800 11px/12px Cinzel, Georgia, serif !important; color:#f3d98b !important; align-self:end; white-space:nowrap; }
+html.p23 #game #hud .p23prem .prem small { display:block !important; font:600 10px/12px Inter, sans-serif !important; color:#e9e1d3 !important; align-self:start; white-space:nowrap; }
+html.p23 #game #hud .p23prem .prem::after { inset:-4px; }
+@keyframes p23glow { 0%,100% { filter:brightness(1); } 50% { filter:brightness(1.18); } }
+@media (prefers-reduced-motion:reduce) { html.p23 #game #hud .p23prem .prem { animation:none; } }
+/* görevler kutusu 232x54 (246, alt) */
+html.p23 #game #hud .qtrk { left:270px !important; right:auto !important; top:auto !important; bottom:10px !important; width:232px !important; box-sizing:border-box; padding:0 !important; background:none !important; box-shadow:none !important; border:8px solid transparent !important; border-image:var(--fr-gv) 16 fill / 8px stretch !important; border-radius:0 !important; filter:drop-shadow(0 4px 6px #000a); }
+html.p23 #game #hud .qtrk:not(.open) { height:54px !important; }
+html.p23 #game #hud .qtrk .qt-hd { font:700 11px/12px Cinzel, Georgia, serif !important; color:#c9a45c !important; border:0 !important; padding:0 !important; margin:-3px 0 1px; letter-spacing:.04em; text-transform:uppercase; }
+html.p23 #game #hud .qtrk .qt-top { padding:0 !important; }
+html.p23 #game #hud .qtrk .qt-row { font:600 12px/16px Inter, sans-serif !important; color:#e9e1d3; background:none !important; border:0 !important; padding:0 !important; min-height:0 !important; }
+html.p23 #game #hud .qtrk .qt-row em { color:#c9a45c; font-weight:700; font-style:normal; }
+html.p23 #game #hud .qtrk .qt-tog { top:-4px !important; right:-3px !important; width:22px; height:22px; border-radius:5px; }
+/* sol 4 kare düğme (8,74; 46x44) ve sağ ray (44x42): etiketler tam görünür */
+html.p23 #game #hud :is(.lrail, .krail) { gap:5px !important; }
+html.p23 #game #hud .lrail { left:8px !important; top:74px !important; }
+html.p23 #game #hud .krail { right:8px !important; left:auto !important; top:8px !important; flex-direction:column !important; width:auto !important; }
+html.p23 #game #hud :is(.lrail, .krail) .lbtn { display:flex !important; flex-direction:column; align-items:center; justify-content:center; gap:1px; padding:0 !important; min-width:0; box-sizing:border-box; background:rgba(14,11,16,.82) !important; border:1px solid rgba(201,164,92,.35) !important; border-radius:5px !important; overflow:visible; }
+html.p23 #game #hud .lrail .lbtn { width:46px !important; height:44px !important; }
+html.p23 #game #hud .krail .lbtn { width:44px !important; height:42px !important; }
+html.p23 #game #hud :is(.lrail, .krail) .lbtn i { width:17px !important; height:17px !important; flex:none; }
+html.p23 #game #hud :is(.lrail, .krail) .lbtn > span:not(.badge) { display:block !important; font:600 10px/11px Inter, sans-serif; color:#e9e1d3; max-width:100%; white-space:nowrap; letter-spacing:-.01em; }
+html.p23 #game #hud :is(.lrail, .krail) .lbtn:active { transform:scale(.97); border-color:#e8c468 !important; }
+html.p23 #game #hud .dev { top:52px !important; font-size:10px; }
+html.narrow.p23 #game #hud .p23-hv { width:196px; } html.narrow.p23 #game #hud .p23-hv .ph-tip { width:230px; }
+html.narrow.p23 #game #hud .premrow.p23prem, html.narrow.p23 #game #hud .p23prem .prem { width:108px !important; }
+html.narrow.p23 #game #hud .qtrk { width:190px !important; }
+
+/* ===== P23 K5 menü (maket: gem1/N4) ===== */
+html.p23 #modal .box.p23m { position:relative; width:min(608px,94vw); max-width:none; padding:0; overflow:hidden; background:linear-gradient(180deg,#171a26,#10121b); border:1px solid rgba(201,164,92,.55); border-radius:8px; box-shadow:0 16px 40px #000d; }
+html.p23[data-faction="ocak"] #modal .box.p23m { background:linear-gradient(180deg,#241613,#150f0f); }
+html.p23 #modal .box.p23m > .x { position:absolute !important; right:12px !important; top:4px !important; width:40px !important; height:40px !important; border-radius:5px !important; background:rgba(14,11,16,.7) !important; border:1px solid rgba(201,164,92,.55) !important; color:#e9e1d3 !important; font-size:16px; }
+html.p23 .p23m-hd { height:48px; box-sizing:border-box; display:flex; align-items:center; gap:12px; padding:0 64px 0 16px; background:rgba(14,11,16,.45); border-bottom:1px solid #ffffff1a; }
+html.p23 .p23m-hd h2 { margin:0; font:700 16px/1 Cinzel, Georgia, serif; letter-spacing:.1em; color:#e9e1d3; text-transform:uppercase; }
+html.p23 .p23m-srv { height:24px; display:flex; align-items:center; gap:6px; padding:0 8px; background:rgba(14,11,16,.65); border:1px solid #ffffff22; border-radius:4px; color:#c9d3dc; font:400 11px/1 Inter, sans-serif; }
+html.p23 .p23m-srv b { color:#e9e1d3; } html.p23 .p23m-srv i, html.p23 .p23m-alt i { width:14px; height:14px; background:var(--g) center/contain no-repeat; display:block; }
+html.p23 .p23m-grid { display:grid; grid-template-columns:1fr 1fr; grid-auto-rows:52px; gap:8px 10px; padding:12px 16px 8px; }
+html.p23 .p23m-grid .mc { position:relative; display:flex; align-items:center; gap:10px; padding:0 12px 0 10px; height:52px; background:linear-gradient(180deg,#ffffff0d,#ffffff05); border:1px solid #ffffff22; border-radius:5px; color:#e9e1d3; text-align:left; min-width:0; }
+html.p23 .p23m-grid .mc:active { border-color:#c9a45c; filter:brightness(1.1); transform:scale(.985); }
+html.p23 .mc-g { flex:none; width:34px; height:34px; background:var(--g) center/20px no-repeat, rgba(14,11,16,.62); border:1px solid rgba(201,164,92,.42); border-radius:5px; opacity:.92; }
+html.p23 .mc-t { display:flex; flex-direction:column; min-width:0; gap:2px; }
+html.p23 .mc-t b { font:700 13px/15px Inter, sans-serif; } html.p23 .mc-t small { font:400 11px/13px Inter, sans-serif; color:#8d8790; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+html.p23 .mc-dot { position:absolute; right:12px; top:22px; width:8px; height:8px; border-radius:50%; background:#d94848; box-shadow:0 0 6px #d94848; }
+html.p23 .p23m-ft { display:flex; gap:8px; padding:0 16px 16px; }
+html.p23 .p23m-alt { flex:1; height:40px; display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(14,11,16,.62); border:1px solid #8d8790; border-radius:5px; color:#e9e1d3; font:700 13px/1 Inter, sans-serif; }
+html.p23 .p23m-alt i { width:18px; height:18px; }
+
+/* ===== P23 K10b profil (maket: gem2/N8) + K10a test araçları ===== */
+html.p23 #modal .box.p23p { position:relative; width:min(744px,95vw); max-width:none; box-sizing:border-box; padding:14px 16px; display:flex; flex-direction:column; gap:10px; overflow-y:auto; max-height:calc(100vh - 16px); color:#e9e1d3;
+  background:var(--p23-pbg, none) center/cover no-repeat, #14100f; border:1px solid rgba(201,164,92,.55); border-radius:8px; box-shadow:0 16px 42px #000e; }
+html.p23 #modal .box.p23p > .x { position:absolute !important; right:16px !important; top:20px !important; width:38px !important; height:38px !important; border-radius:5px !important; background:rgba(14,11,16,.72) !important; border:1px solid rgba(201,164,92,.55) !important; color:#e9e1d3 !important; font-size:16px; }
+html.p23 .pp-gear { position:absolute; right:60px; top:20px; width:38px; height:38px; background:rgba(14,11,16,.72); border:1px solid rgba(201,164,92,.55); border-radius:5px; display:grid; place-items:center; z-index:2; }
+html.p23 .pp-gear i { width:18px; height:18px; background:var(--g) center/contain no-repeat; }
+html.p23 .pp-id { display:flex; align-items:center; gap:12px; height:76px; padding-right:196px; border-bottom:1px solid #ffffff1a; box-sizing:border-box; padding-bottom:8px; position:relative; }
+html.p23 .pp-ava { position:relative; flex:none; width:58px; height:58px; padding:0; border:2px solid #c9a45c; border-radius:6px; background:#0e0b10; overflow:visible; }
+html.p23 .pp-ava img, html.p23 .pp-ava .ava { width:100% !important; height:100% !important; border-radius:4px !important; object-fit:cover; display:block; }
+html.p23 .pp-lv { position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); font:800 10px/12px Inter, sans-serif; background:#0e0b10; border:1px solid #c9a45c; border-radius:6px; padding:0 6px; white-space:nowrap; }
+html.p23 .pp-who { flex:1; min-width:0; display:flex; flex-direction:column; gap:4px; }
+html.p23 .pp-nm { display:flex; align-items:center; gap:8px; } html.p23 .pp-nm h2 { margin:0; font:900 20px/22px Cinzel, Georgia, serif; color:#e9e1d3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+html.p23 .pp-ttl { flex:none; height:24px; padding:0 8px; background:rgba(201,164,92,.14); border:1px solid #c9a45c; border-radius:4px; color:#e9e1d3; font:600 11px/1 Inter, sans-serif; }
+html.p23 .pp-tags { display:flex; align-items:center; gap:8px; font:400 11px/14px Inter, sans-serif; color:#8d8790; white-space:nowrap; overflow:hidden; } html.p23 .pp-tags b { color:#e9e1d3; }
+html.p23 .pp-fac { padding:0 6px; border-radius:3px; background:color-mix(in srgb, var(--p23-ac) 35%, #0e0b10); border:1px solid var(--p23-ac); color:#fff; font-weight:700; }
+html.p23 .pp-rk { color:#e0a030; overflow:hidden; text-overflow:ellipsis; }
+html.p23 .pp-xp .pp-bar { display:block; height:8px; border-radius:4px; background:#0e0b10; overflow:hidden; } html.p23 .pp-bar i { display:block; height:100%; background:linear-gradient(90deg,var(--p23-ac),#c9a45c); }
+html.p23 .pp-xp small { display:flex; justify-content:space-between; font:400 10px/13px Inter, sans-serif; color:#8d8790; margin-top:1px; max-width:340px; }
+html.p23 .pp-met { position:absolute; right:98px; top:0; display:flex; gap:10px; } html.p23 .pp-met > div { width:86px; height:52px; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; background:rgba(14,11,16,.65); border:1px solid rgba(201,164,92,.55); border-radius:6px; }
+html.p23 .pp-met small { font:600 10px/12px Inter, sans-serif; color:#8d8790; } html.p23 .pp-met b { font:900 20px/24px Cinzel, Georgia, serif; } html.p23 .pp-met .g b { color:#c9a45c; }
+html.p23 .pp-strip { display:grid; grid-template-columns:130px 140px 1fr; gap:8px; }
+html.p23 .pp-chip { min-height:50px; box-sizing:border-box; padding:8px 10px; display:flex; flex-direction:column; justify-content:center; gap:2px; text-align:left; background:rgba(20,16,15,.72); border:1px solid #ffffff22; border-radius:6px; color:#e9e1d3; min-width:0; }
+html.p23 .pp-chip small { font:400 11px/13px Inter, sans-serif; color:#8d8790; } html.p23 .pp-chip.g small { color:#c9a45c; font-weight:700; } html.p23 .pp-chip b { font:700 12px/14px Inter, sans-serif; }
+html.p23 .pp-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+html.p23 .pp-tile { height:66px; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; background:rgba(14,11,16,.56); border:1px solid #ffffff22; border-radius:6px; }
+html.p23 .pp-tile small { font:400 11px/13px Inter, sans-serif; color:#8d8790; } html.p23 .pp-tile b { font:800 18px/20px Inter, sans-serif; } html.p23 .pp-tile em { font:700 11px/1 Inter, sans-serif; font-style:normal; color:#5fbf78; margin-left:5px; }
+html.p23 .pp-dev { margin-top:auto; padding:8px 10px; background:rgba(224,160,48,.08); border:1px dashed rgba(224,160,48,.55); border-radius:6px; }
+html.p23 .pp-dh { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; } html.p23 .pp-dh b { font:700 11px/13px Inter, sans-serif; color:#e0a030; } html.p23 .pp-dh small { font:400 11px/13px Inter, sans-serif; color:#8d8790; }
+html.p23 .pp-dev .mbtns { display:flex; flex-wrap:wrap; gap:6px; margin:0; } html.p23 .pp-dev .btn { height:32px; flex:1 1 auto; font:600 11px/1 Inter, sans-serif; color:#e9e1d3; }
+html.p23 #modal .box.p23p.nodev { margin-bottom:0; }
+@media (max-width:760px) { html.p23 .pp-tile b { font-size:16px; } html.p23 .pp-id { padding-right:0; } html.p23 .pp-met { position:static; } }
+
+/* ----- düzeltmeler (ilk ekran görüntüsü sonrası) ----- */
+html.p23 #game #hud .pcard.uf { overflow:visible !important; }
+html.p23 #game #hud .pcard.uf .uf-nm { text-align:left !important; }
+html.p23 #game #hud .pcard.uf > * { visibility:visible; }
+html.p23 #game #hud .res .pill { gap:3px; padding:0 4px !important; overflow:hidden; font-size:10.5px; }
+html.p23 #game #hud .res .pill small { display:none !important; }
+html.p23 #game #hud .res .pill > button { flex:none; width:15px !important; height:15px !important; min-width:0; padding:0 !important; font-size:12px; line-height:13px; margin-left:auto; }
+html.p23 #game #hud .p23prem .prem i { display:block !important; }
+html.p23 #modal .box:is(.p23m, .p23p) { border-image:none !important; border:1px solid rgba(201,164,92,.55) !important; }
+html.p23 #modal .box:is(.p23m, .p23p)::before, html.p23 #modal .box:is(.p23m, .p23p)::after { display:none !important; }
+html.p23 #modal .box:is(.p23m, .p23p) h2 { background:none !important; border:0 !important; border-image:none !important; box-shadow:none !important; filter:none !important; padding:0 !important; width:auto !important; height:auto !important; min-width:0 !important; clip-path:none !important; text-shadow:none !important; letter-spacing:.1em; }
+html.p23 #modal .box:is(.p23m, .p23p) h2::before, html.p23 #modal .box:is(.p23m, .p23p) h2::after { display:none !important; }
+html.p23 #modal .box:is(.p23m, .p23p) > .x { font:16px/1 Inter, sans-serif !important; text-indent:0 !important; color:#e9e1d3 !important; display:grid !important; place-items:center; background-image:none !important; }
+html.p23 #modal .box:is(.p23m, .p23p) > .x::before { content:none !important; } /* P28 dokunma-2: ::after saydam dokunma alani */
+html.p23 #modal .box.p23p .pp-nm h2 { letter-spacing:0; font:900 20px/22px Cinzel, Georgia, serif !important; }
+
+/* ----- v32/duzen (html[data-hub2d][data-faction] ... !important) oyuncu kartını eziyordu: özgüllük yükseltildi ----- */
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf { left:8px !important; top:8px !important; width:168px !important; height:58px !important; box-sizing:border-box; padding:9px 0 0 0 !important; display:block !important; background:none !important; box-shadow:none !important;
+  border:4px solid transparent !important; border-width:4px 6px 4px 46px !important; border-radius:0 !important; border-image:var(--fr-oy) 8 12 8 92 fill / 4px 6px 4px 46px stretch !important; filter:drop-shadow(0 4px 6px #000a); text-align:left; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf > img, html.p23 #game #hud .pcard.uf > .ava, html.p23 #game #hud .pcard.uf > :first-child:not(.uf-info) { position:absolute !important; left:-41px !important; top:1px !important; width:34px !important; height:34px !important; border:0 !important; border-radius:50% !important; box-shadow:none !important; object-fit:cover; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf .uf-info { display:flex !important; flex-direction:column !important; gap:2px !important; width:100% !important; padding:0 2px 0 0 !important; margin:0 !important; position:static; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf .uf-nm { display:block !important; font:700 11px/12px Cinzel, Georgia, serif !important; color:#e9e1d3 !important; margin:0 !important; width:100%; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf .uf-nm * { font-size:inherit !important; line-height:inherit !important; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf .uf-nm em { position:absolute !important; left:-39px !important; top:34px !important; display:block !important; font:800 9px/11px Inter, sans-serif !important; color:#e9e1d3 !important; background:#0e0b10; border:1px solid #c9a45c; border-radius:6px; padding:0 4px; margin:0 !important; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf .uf-bar { height:5px !important; min-height:0 !important; width:100% !important; margin:0 !important; display:block !important; border-radius:3px; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf .uf-bar s { display:none !important; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf { overflow:visible !important; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf .uf-nm { text-align:left !important; }
+html.p23[data-hub2d][data-faction] #game #hud .pcard.uf > * { visibility:visible; }
+/* kaynak şeridi: değerler kırpılmasın (120/120) */
+html.p23 #game #hud .res { gap:3px; padding:3px 3px; }
+html.p23 #game #hud .res .pill { flex:1 1 auto; gap:2px; padding:0 3px !important; font-size:10px; letter-spacing:-.02em; white-space:nowrap; }
+html.p23 #game #hud .res .pill .ri { flex:none; width:14px !important; height:14px !important; }
+html.p23 #game #hud .res .pill > button { width:14px !important; height:14px !important; margin-left:2px; }
+/* eski metal pencere çerçevesi (arka plan görseli) menü ve profilde kapatılır */
+html.p23[data-faction][data-faction][data-faction] #modal .box.p23m { background:linear-gradient(180deg,#171a26,#10121b) !important; box-shadow:0 16px 40px #000d !important; }
+html.p23[data-faction="ocak"][data-faction][data-faction] #modal .box.p23m { background:linear-gradient(180deg,#241613,#150f0f) !important; }
+html.p23[data-faction][data-faction][data-faction] #modal .box.p23p { background:var(--p23-pbg, none) center/cover no-repeat, #14100f !important; box-shadow:0 16px 42px #000e !important; }
+
+/* ===== Düzeltme 23 Kas: sohbet / görev kutusu çakışması, Duyuru noktası ===== */
+/* görev kutusu sohbet şeridinin sağında */
+html.p23[data-hub2d][data-faction] #game #hud .qtrk { left:286px !important; }
+html.narrow.p23[data-hub2d][data-faction] #game #chatbar { width:210px !important; }
+html.narrow.p23[data-hub2d][data-faction] #game #hud .qtrk { left:226px !important; width:178px !important; }
+/* Duyuru "yeni" göstergesi: boş kare yerine küçük yuvarlak nokta */
+html.p23[data-hub2d][data-faction] #game #hud .krail .lbtn .badge.dot { width:9px !important; height:9px !important; min-width:0 !important; padding:0 !important; border-radius:50% !important; border:1.5px solid #1c110a !important; box-sizing:content-box; top:2px !important; right:3px !important; font-size:0 !important; }
+
+/* ===== Yeni başkent ana ekranı (html.sehir2; ?sehir=0 kapatır) — js/ui-hub.js s2Html, parçalar --s2-* (p23-sehir2-<irk>.js) =====
+   Yalnızca ana başkent görünümünde (data-hub2d=ocak|sancak). Ölçü: --s2u = 1 referans pikseli (2000x1116 kompozisyon); ui-hub.js hud boyundan yazar. */
+/* Ölçü birimi --s2u = 1 referans pikseli (referans 1376x768; HUD boyu yüksekliğe bağlı, dar-uzun ekranda genişliğe de). Değerler olcu.md ölçümleri. */
+html.sehir2 { --s2u:min(.130208vh, .072674vw); }
+html.sehir2[data-faction="ocak"] { --s2-panel:rgba(24,15,13,.88); --s2-m1:#9c6b3b; --s2-m2:#c89b54; --s2-ac1:#8b1e1e; --s2-ac2:#c62828; --s2-tx:#f5e9d3; --s2-tx2:#c7b299; --s2-exp:linear-gradient(90deg,#7f1d1d,#dc2626 60%,#f59e0b); --s2-glow:#ff3b30; }
+html.sehir2[data-faction="sancak"] { --s2-panel:rgba(14,26,43,.88); --s2-m1:#c9a24b; --s2-m2:#e8c872; --s2-ac1:#1d4e89; --s2-ac2:#2b6cb0; --s2-tx:#f4f7fc; --s2-tx2:#b8c7dc; --s2-exp:linear-gradient(90deg,#1e3a8a,#2563eb 60%,#38bdf8); --s2-glow:#38bdf8; }
+html.sehir2 .s2hud { display:none; }
+html.sehir2[data-sehir2] #game #hud > :not(#blabels):not(.s2hud):not(.srail):not(.dev) { display:none !important; }
+html.sehir2[data-sehir2] #game #hud > .s2hud { display:block; position:absolute; inset:0; pointer-events:none; z-index:30; font-family:Inter, system-ui, sans-serif; color:var(--s2-tx); }
+html.sehir2[data-sehir2] #game #hud > .s2hud :is(button, .s2-bar, .s2-nm, .s2-exp, .s2-hv) { pointer-events:auto; }
+html.sehir2[data-sehir2] #game #hud > .s2hud :is(.s2-sancak, .s2-nm, .s2-bar, .s2-exp) { pointer-events:none; }
+/* sohbet çubuğu da aynı görünümde (hud dışında) */
+html.sehir2[data-sehir2] #game #hud > .srail { position:absolute !important; left:calc(var(--sal,0px) + calc(var(--s2u)*15)) !important; top:calc(var(--s2u)*454) !important; right:auto !important; bottom:auto !important; }
+html.sehir2 #game #hud > .s2hud button { font:inherit; color:inherit; background:none; border:0; padding:0; margin:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+html.sehir2 #game #hud > .s2hud .badge { position:absolute; top:0; right:0; min-width:calc(var(--s2u)*19); height:calc(var(--s2u)*19); padding:0 2px; box-sizing:border-box; border-radius:99px; background:#d62b2b; border:1px solid #ffd9d0; color:#fff; font:800 max(6px, calc(var(--s2u)*12))/calc(var(--s2u)*17) Inter, sans-serif; text-align:center; box-shadow:0 1px 3px #000a }
+html.sehir2 #game #hud > .s2hud .s2-pf { position:absolute; left:calc(var(--sal,0px) + calc(var(--s2u)*17)); top:calc(var(--s2u)*1); width:calc(var(--s2u)*109); height:calc(var(--s2u)*115); background:var(--s2-portre) center/100% 100% no-repeat; filter:drop-shadow(0 3px 5px #000a) }
+html.sehir2 #game #hud > .s2hud .s2-av { position:absolute; left:12%; top:7%; width:76%; aspect-ratio:1; border-radius:50%; overflow:hidden; background:#0008 }
+html.sehir2 #game #hud > .s2hud .s2-av > * { width:100% !important; height:100% !important; object-fit:cover; display:block; border:0 !important; border-radius:0 !important }
+html.sehir2 #game #hud > .s2hud .s2-lv { position:absolute; left:14%; right:14%; bottom:6%; text-align:center; font:700 max(7px, calc(var(--s2u)*15))/1.1 Cinzel, Georgia, serif; color:var(--s2-tx); text-shadow:0 1px 2px #000 }
+html.sehir2 #game #hud > .s2hud .s2-nm { position:absolute; left:calc(var(--sal,0px) + calc(var(--s2u)*133)); top:calc(var(--s2u)*7); max-width:calc(var(--s2u)*200); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font:500 max(8px, calc(var(--s2u)*24))/1.1 Cinzel, Georgia, serif; text-transform:uppercase; color:var(--s2-tx); text-shadow:0 1px 3px #000, 0 0 6px #000 }
+html.sehir2 #game #hud > .s2hud .s2-nm * { font:inherit !important; color:inherit !important }
+html.sehir2 #game #hud > .s2hud .s2-bar { position:absolute; left:calc(var(--sal,0px) + calc(var(--s2u)*124)); width:calc(var(--s2u)*214); display:flex; align-items:center; justify-content:center; padding-right:calc(var(--s2u)*10); box-sizing:border-box; background:center/100% 100% no-repeat }
+html.sehir2 #game #hud > .s2hud .s2-hp { top:calc(var(--s2u)*37); height:calc(var(--s2u)*27); background-image:var(--s2-bar-can) }
+html.sehir2 #game #hud > .s2hud .s2-mp { top:calc(var(--s2u)*64); height:calc(var(--s2u)*26); background-image:var(--s2-bar-mana) }
+html.sehir2 #game #hud > .s2hud .s2-bar span { font:400 max(7px, calc(var(--s2u)*15))/1 Inter, sans-serif; color:#fff; text-shadow:0 1px 2px #000, 0 0 3px #000 }
+html.sehir2 #game #hud > .s2hud .s2-prem { position:absolute; left:calc(var(--sal,0px) + calc(var(--s2u)*111)); top:calc(var(--s2u)*92); width:calc(var(--s2u)*260); height:calc(var(--s2u)*50); background:var(--s2-premium) center/100% 100% no-repeat; display:flex; align-items:center; justify-content:flex-start; gap:calc(var(--s2u)*10); padding:0 calc(var(--s2u)*22) 0 calc(var(--s2u)*24); box-sizing:border-box }
+html.sehir2 #game #hud > .s2hud .s2-prem::before { content:""; flex:none; width:calc(var(--s2u)*24); height:calc(var(--s2u)*18); background:var(--s2-m2); -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 18'><path d='M2 15l-1-11 6 5 5-8 5 8 6-5-1 11z'/></svg>") center/contain no-repeat; mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 18'><path d='M2 15l-1-11 6 5 5-8 5 8 6-5-1 11z'/></svg>") center/contain no-repeat }
+html.sehir2 #game #hud > .s2hud .s2-prem b { flex:1; text-align:center; font:400 max(7px, calc(var(--s2u)*16))/1 Inter, sans-serif; text-transform:none; letter-spacing:0; color:var(--s2-tx2); white-space:nowrap; text-shadow:0 1px 2px #000 }
+html.sehir2 #game #hud > .s2hud .s2-prem i { font-style:normal; font-size:max(8px, calc(var(--s2u)*24)); color:var(--s2-m2); line-height:1 }
+html.sehir2 #game #hud > .s2hud .s2-sancak { position:absolute; left:calc(var(--sal,0px) + calc(var(--s2u)*347)); top:calc(var(--s2u)*-3); width:calc(var(--s2u)*58); height:calc(var(--s2u)*118); background:var(--s2-sancak) center top/100% 100% no-repeat; transform-origin:50% 0; animation:s2sway 5.5s ease-in-out infinite; filter:drop-shadow(0 4px 5px #0008); z-index:-1 }
+html.sehir2 #game #hud > .s2hud .s2-lr { position:absolute; left:calc(var(--sal,0px) + calc(var(--s2u)*15)); top:calc(var(--s2u)*151); display:flex; flex-direction:column; gap:calc(var(--s2u)*3) }
+html.sehir2 #game #hud > .s2hud .s2-rb { position:relative; width:calc(var(--s2u)*57); height:calc(var(--s2u)*57); background:center/100% 100% no-repeat; filter:drop-shadow(0 2px 4px #000a); transition:transform .15s }
+html.sehir2 #game #hud > .s2hud .s2-rb .badge { top:calc(var(--s2u)*1); right:calc(var(--s2u)*-2) }
+html.sehir2 #game #hud > .s2hud .s2-res { position:absolute; right:calc(var(--sar,0px) + calc(var(--s2u)*11)); top:calc(var(--s2u)*12); display:flex; flex-direction:column; align-items:flex-end; gap:calc(var(--s2u)*12) }
+html.sehir2 #game #hud > .s2hud .s2-caps { display:flex; gap:calc(var(--s2u)*12); margin-right:calc(var(--s2u)*9) }
+html.sehir2 #game #hud > .s2hud .s2-cap { position:relative; width:calc(var(--s2u)*160); height:calc(var(--s2u)*37); display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0 calc(var(--s2u)*2) 0 calc(var(--s2u)*6); border:solid transparent; border-width:0 calc(var(--s2u)*29); border-image:var(--s2-kap-enerji) 0 36 0 36 fill / 0 calc(var(--s2u)*29) / 0 stretch; filter:drop-shadow(0 2px 4px #000a) }
+html.sehir2 #game #hud > .s2hud .s2-cap:first-child { width:calc(var(--s2u)*166); }
+html.sehir2 #game #hud > .s2hud .s2-cap:nth-child(2) { width:calc(var(--s2u)*150); }
+html.sehir2 #game #hud > .s2hud .s2-cap-akce { border-image-source:var(--s2-kap-akce) }
+html.sehir2 #game #hud > .s2hud .s2-cap-yakut { border-image-source:var(--s2-kap-yakut) }
+html.sehir2 #game #hud > .s2hud .s2-cap b { font:400 max(8px, calc(var(--s2u)*20))/1 Inter, sans-serif; color:var(--s2-tx); text-shadow:0 1px 2px #000; white-space:nowrap }
+html.sehir2 #game #hud > .s2hud .s2-cap-enerji b { color:#8be58f }
+html.sehir2 #game #hud > .s2hud .s2-cap em { position:absolute; right:calc(var(--s2u)*8); top:50%; transform:translateY(-50%); font:500 max(9px, calc(var(--s2u)*28))/1 Inter, sans-serif; font-style:normal; color:var(--s2-m2); text-shadow:0 1px 2px #000 }
+html.sehir2 #game #hud > .s2hud .s2-hv { --hh:calc(var(--s2u)*39); --c:calc(var(--hh)*.3); position:relative; width:calc(var(--s2u)*409); height:var(--hh); box-sizing:border-box; display:flex; align-items:stretch; background:none; border:0; border-radius:0; box-shadow:none; filter:drop-shadow(0 2px 4px #000a) }
+html.sehir2 #game #hud > .s2hud .s2-hv::before { content:""; position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg, var(--s2-m2), var(--s2-m1)); clip-path:polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c)); pointer-events:none }
+html.sehir2 #game #hud > .s2hud .s2-hv::after { content:""; position:absolute; inset:1px; z-index:-1; background:linear-gradient(var(--s2-panel), var(--s2-panel)); clip-path:polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c)); pointer-events:none }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-main { flex:1; min-width:0; display:flex; align-items:center; gap:calc(var(--s2u)*12); padding:0 calc(var(--s2u)*8) 0 calc(var(--s2u)*18); text-align:left }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-ico { flex:none; width:calc(var(--s2u)*38); height:calc(var(--s2u)*32); background:center/contain no-repeat }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-t { min-width:0 }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-t b { font:400 max(8px, calc(var(--s2u)*19))/1 Inter, sans-serif; color:var(--s2-tx); white-space:nowrap }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-e { display:none }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-srv { flex:none; display:flex; align-items:center; gap:calc(var(--s2u)*10); padding:0 calc(var(--s2u)*46) 0 calc(var(--s2u)*24); margin:calc(var(--s2u)*7) 0; border-left:1px solid var(--s2-m1) !important; color:var(--s2-tx2); font-size:max(7px, calc(var(--s2u)*14)) }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-srv::before { content:''; flex:none; width:calc(var(--s2u)*30); height:calc(var(--s2u)*24); background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'><g fill='none' stroke='%23c9a45c' stroke-width='1.6'><rect x='2' y='2' width='20' height='7' rx='1'/><rect x='2' y='11' width='20' height='7' rx='1'/></g><g fill='%23c9a45c'><circle cx='6' cy='5.5' r='1.1'/><circle cx='6' cy='14.5' r='1.1'/></g></svg>") center/contain no-repeat }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-srv .s2-sv { display:flex; flex-direction:column; text-align:left; line-height:1.05 }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-srv b { color:var(--s2-tx); font-size:max(7px, calc(var(--s2u)*15)) }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-srv small { font-size:max(6px, calc(var(--s2u)*11)); color:var(--s2-tx2) }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-tip { display:none; position:absolute; right:0; top:calc(100% + 5px); width:max(220px, calc(var(--s2u)*300)); box-sizing:border-box; padding:7px 10px 8px; background:var(--s2-panel); border:1px solid var(--s2-m2); border-radius:6px; box-shadow:0 8px 20px #000c; flex-direction:column; gap:4px; font:400 11px/14px Inter, sans-serif; color:var(--s2-tx); z-index:5 }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-tip b { color:var(--s2-m2) }
+html.sehir2 #game #hud > .s2hud .s2-hv .ph-tip em { font-style:normal; color:var(--s2-tx2); border-top:1px solid #ffffff1f; padding-top:4px }
+html.sehir2 #game #hud > .s2hud .s2-hv.open .ph-tip { display:flex }
+html.sehir2 #game #hud > .s2hud .s2-dock { position:absolute; right:calc(var(--sar,0px) + calc(var(--s2u)*291)); bottom:calc(var(--s2u)*46); display:flex; gap:calc(var(--s2u)*10); align-items:flex-end }
+html.sehir2 #game #hud > .s2hud .s2-m { position:relative; width:calc(var(--s2u)*85); height:calc(var(--s2u)*90) }
+html.sehir2 #game #hud > .s2hud .s2-m i { position:absolute; left:0; right:0; top:0; height:calc(var(--s2u)*80); background:center/contain no-repeat; filter:drop-shadow(0 3px 4px #000b); transition:transform .15s }
+html.sehir2 #game #hud > .s2hud .s2-m span:not(.badge) { position:absolute; left:-8%; right:-8%; bottom:0; text-align:center; font:400 max(8px, calc(var(--s2u)*17))/calc(var(--s2u)*17) Inter, sans-serif; text-transform:none; letter-spacing:0; color:var(--s2-tx2); text-shadow:0 1px 2px #000, 0 0 4px #000, 0 0 7px #000a; white-space:nowrap }
+html.sehir2 #game #hud > .s2hud .s2-m .badge { top:calc(var(--s2u)*10); right:calc(var(--s2u)*11) }
+html.sehir2 #game #hud > .s2hud .s2-savas { position:absolute; right:calc(var(--sar,0px) + calc(var(--s2u)*11)); bottom:calc(var(--s2u)*46); width:calc(var(--s2u)*268); height:calc(var(--s2u)*87); background:var(--s2-savas) center/100% 100% no-repeat; animation:s2breath 2.8s ease-in-out infinite; transition:transform .18s; display:flex; align-items:center; justify-content:center; padding-left:calc(var(--s2u)*76); box-sizing:border-box }
+html.sehir2 #game #hud > .s2hud .s2-savas b { font:600 max(10px, calc(var(--s2u)*34))/1 Cinzel, Georgia, serif; letter-spacing:.04em; color:#fff3d6; text-shadow:0 2px 3px #000, 0 0 10px var(--s2-glow) }
+html.sehir2 #game #hud > .s2hud .s2-exp { position:absolute; left:calc(var(--sal,0px) + calc(var(--s2u)*15)); right:calc(var(--sar,0px) + calc(var(--s2u)*15)); bottom:calc(var(--s2u)*10); height:calc(var(--s2u)*32); display:flex; align-items:center }
+html.sehir2 #game #hud > .s2hud .s2-exp b { --c:calc(var(--s2u)*9); position:relative; flex:none; width:calc(var(--s2u)*135); height:100%; display:flex; align-items:center; justify-content:center; font:400 max(7px, calc(var(--s2u)*17))/1 Inter, sans-serif; color:var(--s2-tx); text-shadow:0 1px 2px #000; box-sizing:border-box; white-space:nowrap; z-index:0 }
+html.sehir2 #game #hud > .s2hud .s2-exp b::before { content:""; position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg, var(--s2-m2), var(--s2-m1)); clip-path:polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% 50%, calc(100% - var(--c)) 100%, var(--c) 100%, 0 50%) }
+html.sehir2 #game #hud > .s2hud .s2-exp b::after { content:""; position:absolute; inset:1px; z-index:-1; background:var(--s2-panel); clip-path:polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% 50%, calc(100% - var(--c)) 100%, var(--c) 100%, 0 50%) }
+html.sehir2 #game #hud > .s2hud .s2-exp span { flex:1; height:calc(var(--s2u)*21); margin-left:calc(var(--s2u)*-3); background:#0009; border:1px solid var(--s2-m1); border-radius:0 calc(var(--s2u)*8) calc(var(--s2u)*8) 0; overflow:hidden; position:relative; box-shadow:inset 0 1px 3px #000; box-sizing:border-box; padding:calc(var(--s2u)*3) calc(var(--s2u)*3) }
+html.sehir2 #game #hud > .s2hud .s2-exp i { display:block; height:100%; background:var(--s2-exp); border-radius:99px; box-shadow:0 0 10px var(--s2-glow); animation:s2exp 3s ease-in-out infinite }
+html.sehir2 #game #hud > .s2hud .s2-rb:active { transform:scale(.94); }
+html.sehir2 #game #hud > .s2hud .s2-rb:hover { filter:drop-shadow(0 2px 4px #000a) brightness(1.2); }
+html.sehir2 #game #hud > .s2hud .s2-rb-menu { background-image:var(--s2-b-menu); }
+html.sehir2 #game #hud > .s2hud .s2-rb-duyuru { background-image:var(--s2-b-duyuru); }
+html.sehir2 #game #hud > .s2hud .s2-rb-posta { background-image:var(--s2-b-posta); }
+html.sehir2 #game #hud > .s2hud .s2-rb-rehber { background-image:var(--s2-b-rehber); }
+html.sehir2 #game #hud > .s2hud .s2-rb-harita { background-image:var(--s2-b-harita); }
+html.sehir2 #game #hud > .s2hud .s2-m:hover i { transform:scale(1.07); }
+html.sehir2 #game #hud > .s2hud .s2-m:active i { transform:scale(.95); }
+html.sehir2 #game #hud > .s2hud .s2-m-karakter i { background-image:var(--s2-m-karakter); }
+html.sehir2 #game #hud > .s2hud .s2-m-yetenek i { background-image:var(--s2-m-yetenek); }
+html.sehir2 #game #hud > .s2hud .s2-m-canta i { background-image:var(--s2-m-canta); }
+html.sehir2 #game #hud > .s2hud .s2-m-gorev i { background-image:var(--s2-m-gorev); }
+html.sehir2 #game #hud > .s2hud .s2-m-klan i { background-image:var(--s2-m-klan); }
+html.sehir2 #game #hud > .s2hud .s2-m-kervan i { background-image:var(--s2-m-kervan); }
+html.sehir2 #game #hud > .s2hud .s2-savas:hover,
+html.sehir2 #game #hud > .s2hud .s2-savas:focus-visible { transform:scale(1.05); }
+html.sehir2 #game #hud > .s2hud .s2-savas:active { transform:scale(.97); }
+@keyframes s2sway { 0%,100% { transform:rotate(-2.2deg); } 50% { transform:rotate(2.2deg); } }
+@keyframes s2breath { 0%,100% { filter:drop-shadow(0 0 4px var(--s2-glow)); } 50% { filter:drop-shadow(0 0 14px var(--s2-glow)) brightness(1.12); } }
+@keyframes s2exp { 0%,100% { filter:brightness(1); } 50% { filter:brightness(1.35); } }
+@media (prefers-reduced-motion:reduce) { html.sehir2 .s2-sancak, html.sehir2 .s2-savas, html.sehir2 .s2-exp i { animation:none !important; } }
+/* sohbet: 4 sekme + son mesaj satırı + büyütme oku (tam sohbet cbFull) */
+html.sehir2[data-sehir2] #game #chatbar:not([hidden]) { display:block !important; left:calc(var(--sal,0px) + calc(var(--s2u)*17)) !important; right:auto !important; bottom:calc(var(--sab,0px) + calc(var(--s2u)*53)) !important; top:auto !important; width:calc(var(--s2u)*483) !important; min-width:0; padding:0 !important; border:0 !important; border-image:none !important; background:none !important; box-shadow:none !important; border-radius:0 !important; z-index:31; }
+html.sehir2[data-sehir2] #game #chatbar :is(.cb-in, .cb-min) { display:none !important; }
+html.sehir2[data-sehir2] #game #chatbar .cb-tabs { display:flex !important; gap:0; width:calc(var(--s2u)*336); min-width:0; height:calc(var(--s2u)*33); margin:0 0 -1px calc(var(--s2u)*45); padding:0 !important; border:0 !important; }
+html.sehir2[data-sehir2] #game #chatbar .cb-tabs button { position:relative; flex:1; height:100%; min-height:0; padding:0 !important; border:0 !important; border-radius:0; background:var(--s2-sohbet-sekme) 0 0/400% 100% no-repeat !important; box-shadow:none !important; color:var(--s2-tx2) !important; font:400 max(7px, calc(var(--s2u)*17))/1 Inter, sans-serif !important; }
+html.sehir2[data-sehir2] #game #chatbar .cb-tabs button:nth-child(2) { background-position:33.333% 0 !important; } html.sehir2[data-sehir2] #game #chatbar .cb-tabs button:nth-child(3) { background-position:66.666% 0 !important; } html.sehir2[data-sehir2] #game #chatbar .cb-tabs button:nth-child(4) { background-position:100% 0 !important; }
+html.sehir2[data-sehir2] #game #chatbar .cb-tabs button.on { color:var(--s2-tx) !important; }
+html.sehir2[data-sehir2] #game #chatbar .cb-tabs button.on::after { content:""; position:absolute; inset:0 3px 0 3px; background:linear-gradient(var(--s2-ac2), var(--s2-ac1)); opacity:.55; mix-blend-mode:screen; pointer-events:none; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs { position:relative; height:calc(var(--s2u)*58); max-height:none !important; box-sizing:border-box; padding:0 calc(var(--s2u)*50) 0 calc(var(--s2u)*65) !important; display:flex !important; justify-content:flex-start !important; align-items:center; overflow:hidden; background:var(--s2-sohbet) center/100% 100% no-repeat !important; border:0 !important; border-image:none !important; box-shadow:none !important; cursor:pointer; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs > * { display:none; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs > :last-child { display:block; flex:1 1 0; min-width:0; max-width:100%; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font:400 max(7px, calc(var(--s2u)*16))/1.2 Inter, sans-serif; color:var(--s2-tx); text-shadow:0 1px 2px #000; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs > :last-child * { display:inline; font:inherit; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs > :last-child :is(img, svg, time, .cav, .cmore) { display:none; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs::before { content:""; position:absolute; left:calc(var(--s2u)*17); top:50%; width:calc(var(--s2u)*30); height:calc(var(--s2u)*25); transform:translateY(-50%); background:var(--s2-m2); -webkit-mask:var(--s2-chat-ico) center/contain no-repeat; mask:var(--s2-chat-ico) center/contain no-repeat; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs::after { content:""; position:absolute; right:calc(var(--s2u)*21); top:50%; width:calc(var(--s2u)*12); height:calc(var(--s2u)*12); border:solid var(--s2-tx); border-width:calc(var(--s2u)*3) 0 0 calc(var(--s2u)*3); transform:translateY(-30%) rotate(45deg); }
+html.sehir2 { --s2-chat-ico:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 20'><path d='M2 2h20v13H12l-6 4v-4H2z'/></svg>"); }
+
+/* Menü: sağ raydan taşınan kısayolların SVG simgeleri */
+html.sehir2 .mc-g.s2i { display:flex; align-items:center; justify-content:center; background:rgba(14,11,16,.62); }
+html.sehir2 .mc-g.s2i svg { width:20px; height:20px; fill:#c9a45c; }
+/* 23 Kas: sehir2'de deneme/test rozeti sol üstte, Premium plakasının sağında (etiket/sohbet/EXP örtmesin) */
+html.sehir2[data-sehir2] #game #hud > .dev { left:calc(var(--sal,0px) + calc(var(--s2u)*410)) !important; right:auto !important; bottom:auto !important; top:calc(var(--s2u)*104) !important; transform:none !important; font-size:9px; padding:1px 6px; opacity:.85; z-index:31; pointer-events:none; }
+html.sehir2 #game #hud > .dev span { display:none; }
+/* 24 Kas: sehir2 HUD'u referans pikselinde ölçülür; temel.css'in genel #hud > * zoom'u (.95) devre dışı */
+html.sehir2[data-sehir2] #game :is(#hud > .s2hud, #hud > .dev, #hud > .srail, #chatbar) { zoom:1; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs { overflow:hidden; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs > :not(:last-child) { display:none !important; }
+html.sehir2[data-sehir2] #game #chatbar .cb-msgs > :last-child { align-self:center; line-height:calc(var(--s2u)*58) !important; height:calc(var(--s2u)*58); margin:0 !important; padding:0 !important; position:static !important; transform:none !important; }

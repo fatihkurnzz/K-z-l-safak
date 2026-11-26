@@ -1,0 +1,59 @@
+/* P27 A+ görsel yenileme — kabuk (docs/referans/p27-a-plus/TALIMAT.md). Kurallar ekran/duruma kapsamlı; !important yok. */
+
+/* ---- Bölüm 2: bağlamsal üst şerit — durum etiketi (ui-core.js CTX/MODAL_CTX; .wctx) ---- */
+html[data-faction] #win .frame > header .wres > span.wctx,
+html[data-faction] #modal .box > .mctx > span.wctx {
+  display: block; min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding: 0 4px; height: auto; background: none; border: 0; box-shadow: none; border-radius: 0;
+  font: 600 12px/1.2 var(--kd-serif, 'Cinzel', Georgia, serif); letter-spacing: .04em; color: #cbb07a;
+  text-shadow: 0 1px 2px #000c; pointer-events: none;
+}
+html.k24[data-faction] #win .frame > header .wres > span.wctx,
+html.k24[data-faction="sancak"] #win .frame > header .wres > span.wctx { padding: 0 4px; background: none; border: 0; }
+html[data-faction] #win .frame > header .wres.wtag { justify-content: flex-end; }
+html[data-faction] #win .frame > header .wres.wtag::before {
+  content: ''; flex: 0 1 34px; min-width: 10px; height: 1px; margin-right: 6px;
+  background: linear-gradient(90deg, transparent, #cbb07a99);
+}
+/* Modal başlığı yanında (Kapı: Enerji kapsülü; Işınlanma, Mini Dizi, Çevrimiçi Ödülleri: etiket) */
+html[data-faction] #modal .box { position: relative; }
+html[data-faction] #modal .box > .mctx {
+  position: absolute; top: 12px; right: 48px; max-width: 46%; z-index: 4;
+  display: flex; align-items: center; justify-content: flex-end; gap: 6px; pointer-events: none;
+}
+html[data-faction] #modal .box > .mctx > span.wg {
+  display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 9px; border-radius: 11px;
+  background: linear-gradient(#2a2016e6, #140f0ae6); border: 1px solid #cbb07a88; color: #f3e6c4;
+  font: 700 12px/1 var(--kd-sans, 'Inter', sans-serif); white-space: nowrap;
+}
+html[data-faction] #modal .box > .mctx .ri { width: 14px; height: 14px; }
+
+/* ---- 3.4/2: sol sekme ikon dili — sıcak antika altın, aktifte açık altın + sıcak ışıma ---- */
+html[data-faction] #win .frame nav.tabs button .tico { color: #cbb07a; }
+/* renk eski kurallarda !important ile beyaza zorlanıyor → svg dolgusu doğrudan verilir (currentColor değil) */
+html[data-faction] #win .frame nav.tabs button .tico svg { fill: #cbb07a; }
+html[data-faction] #win .frame nav.tabs button.on .tico svg { fill: #fff3d1; }
+html[data-faction] #win .frame nav.tabs button.on .tico { filter: drop-shadow(0 0 3px #e9b9618c) drop-shadow(0 1px 1px #000a); }
+/* Menü (modal): simge kareleri aynı dil — SVG altın dolgu, glif resimleri sıcak altına çekilir */
+html.p23[data-faction] #modal .p23m .mc-g.s2i svg { fill: #cbb07a; }
+/* glif resimli kareler (koyu zeminli): beyaz glif → ~#cbb07a; alt satır (Ayarlar, Tam Ekran, Karakter Değiştir) glifleri zeminsiz → tam hedef renk */
+html.p23[data-faction] #modal .p23m .mc-g:not(.s2i) { filter: brightness(.7) sepia(1) saturate(1.5) brightness(.8); }
+html.p23[data-faction] #modal .p23m .p23m-alt > i { filter: brightness(0) invert(.573) sepia(1) saturate(1.3); }
+html.p23[data-faction] #modal .p23m .p23m-alt:is(:hover, :focus-visible) > i { filter: brightness(0) invert(.79) sepia(1) saturate(.8) drop-shadow(0 0 3px #e9b9618c); }
+html.p23[data-faction] #modal .p23m .mc:hover .mc-g.s2i svg, html.p23[data-faction] #modal .p23m .mc:focus-visible .mc-g.s2i svg { fill: #fff3d1; }
+
+/* ---- 4.1: parlak altın aktif sekmede koyu, kalın yazı (iç alt sekmeler dahil) ----
+   Eski kurallar rengi !important ile beyaza zorluyor (p24 G2 .pz-sub, kul-demir .sub); !important yazmadan
+   -webkit-text-fill-color ile boyanan yazı rengi ezilir. */
+html[data-faction] #win .sub > button.on,
+html.k24[data-faction] #win .sub.pz-sub > button.on {
+  -webkit-text-fill-color: #14100c; font-weight: 800; text-shadow: 0 1px 0 #ffe9b866;
+}
+html[data-faction] #win .sub > button.on :is(span, b, small, em) { -webkit-text-fill-color: #14100c; }
+/* Ayarlar: sekme simgesi resim karonun içinde (svg gizli, beyaz glif) → filtreyle sıcak antika altına çekilir */
+/* Ayarlar: SVG simgeler (Erişilebilirlik, Dil, Hesap) yalnız dolguyla boyanır (renk filtresi yok). Grafik/Ses/Bildirimler simgesi
+   v26-gpt4'te !important arka plan resmi (svg gizli; resim koyu karo + açık gri glif ~#c4c4c4): glif → ~#cbac71 (pasif), ~#fff3c6 (aktif) + sıcak altın ışıma. */
+html[data-faction] #win[data-scr="ayarlar"] .frame nav.tabs button .tico { filter: none; }
+html[data-faction] #win[data-scr="ayarlar"] .frame nav.tabs button.on .tico { filter: drop-shadow(0 0 3px #e9b9618c) drop-shadow(0 1px 1px #000a); }
+html[data-faction] #win[data-scr="ayarlar"] .frame nav.tabs button:is([data-id="gfx"], [data-id="ses"], [data-id="notif"]) .tico { filter: brightness(.7) sepia(1) saturate(1.5) brightness(1.04); }
+html[data-faction] #win[data-scr="ayarlar"] .frame nav.tabs button.on:is([data-id="gfx"], [data-id="ses"], [data-id="notif"]) .tico { filter: brightness(.78) sepia(.9) brightness(1.35) drop-shadow(0 0 3px #e9b9618c) drop-shadow(0 1px 1px #000a); }

@@ -1,0 +1,877 @@
+/* C11 (23 Kas): 5 eski katman yükleme sırasıyla tek dosyada birleşti (v21-kul-demir.css, v22-merkez.css, v23-ekranlar.css, v24-asama5.css, v25-cila.css). İçerik birebir aynıdır; bölüm başlıkları eski dosya adlarıdır. */
+/* ==================== eski v21-kul-demir.css ==================== */
+/* DEMİR DİYARI · "KÜL VE DEMİR" tema katmanı (20 Kas; pilot paket tema.css + kd-tokens.css'in oyuna uyarlanmış hâli).
+   Zincirin EN SONUNDA yüklenir. Yerleşim, olay ve data-* davranışı değişmez; yalnız renk/malzeme değişkenleri ve
+   yüzeyler. Tokenlar css/kd-tokens.css'te (bu dosyadan önce yüklenir). Halk: html[data-faction="ocak"|"sancak"].
+   Ölçek: js/orient.js --s (yükseklik/1080, en çok 1) ve --dp yayınlar; yeni ölçüler calc(n * var(--dp)) yazılabilir. */
+
+:root { --dp:calc(var(--s, .5) * 1px); }
+
+/* ---------- 1. Kabuk malzemesi: kaplama değişkenleri (--kp-*) KD paletine bağlanır ----------
+   Bütün pencereler, düğmeler, sekmeler ve çipler bu değişkenlerden boyandığı için tek yerden iki tema kurulur. */
+html[data-faction="ocak"] {
+  /* Kara Demir · Dövme Demir · Ocak Koru · Erimiş Demir · Pas · Kemik Rün */
+  --kp-i0:#0e0b10; --kp-i1:#1a1519; --kp-i2:#2b2622; --kp-i3:#4a423b; --kp-i4:#6a4a34; --kp-hi:#a66a39;
+  --kp-acc:#ff7a1a; --kp-acc2:#8a3b1e; --kp-accg:rgba(255,122,26,.5);
+  --kp-on:#e9e1d3; --kp-on2:#c9b9a0; --kp-title:#ffb347;
+  --plate1:#ffb347; --plate2:#c2471e; --kp-plate-ink:#1e0a02;
+  --hud1:#2b2622f2; --hud2:#0e0b10f7; --rail1:#6a4a34; --rail2:#1a1519;
+  --gold:#e2b44e; --line:rgba(255,122,26,.45); --bg:#0e0b10;
+}
+html[data-faction="sancak"] {
+  /* Gece Mavisi · Kraliyet Laciverti · Gümüş Çelik · Telkari Altın · Gök Mine · Sancak Beyazı */
+  --kp-i0:#070b16; --kp-i1:#0f1a3a; --kp-i2:#17264d; --kp-i3:#22386b; --kp-i4:#53677e; --kp-hi:#aeb8c4;
+  --kp-acc:#d9b04a; --kp-acc2:#3e7be0; --kp-accg:rgba(217,176,74,.45);
+  --kp-on:#f7f5ef; --kp-on2:#c6cfda; --kp-title:#f7f5ef;
+  --plate1:#f0d488; --plate2:#b89234; --kp-plate-ink:#1a1204;
+  --hud1:#17264df0; --hud2:#070b16f7; --rail1:#53677e; --rail2:#0f1a3a;
+  --gold:#d9b04a; --line:rgba(217,176,74,.45); --bg:#070b16;
+}
+
+/* ---------- 2. Pencere çerçevesi: pilot paketin büyük paneli (9 dilim, kenar 48 px) ---------- */
+html[data-faction="ocak"] .frame { border-image:var(--kdg-panel-buyuk-ocak) 48 / 14px / 0 stretch; }
+html[data-faction="sancak"] .frame { border-image:var(--kdg-panel-buyuk-sancak) 48 / 14px / 0 stretch; }
+html[data-faction] .frame { border-width:14px; }
+html[data-faction] .frame h2 { font-family:Cinzel, Georgia, serif; }
+
+/* ---------- 3. Düğmeler: ikincil = dövme demir / lacivert çelik · birincil (.green) = kor / telkari altın · tehlike (.red) = kan ---------- */
+html[data-faction="ocak"] .btn { --b1:#74401f; --b2:#2b1a10; --b3:#0e0805; --bt:#f3e2c8; text-shadow:0 1px 0 rgba(0,0,0,.6); }
+html[data-faction="sancak"] .btn { --b1:#3b5c7d; --b2:#14223a; --b3:#060c18; --bt:#eef3fa; text-shadow:0 1px 0 rgba(0,0,0,.6); }
+html[data-faction="ocak"] .btn.green { --b1:#ffb347; --b2:#c2471e; --b3:#4a1606; --bt:#1e0a02; text-shadow:none; }
+html[data-faction="sancak"] .btn.green { --b1:#f0d488; --b2:#b89234; --b3:#4a3a0e; --bt:#1a1204; text-shadow:none; }
+html[data-faction] .btn.red { --b1:#c2471e; --b2:#9e1b1b; --b3:#3e0808; --bt:#fff; }
+html[data-faction] .btn.blue { --b1:#3e8ef0; --b2:#1c3c9c; --b3:#0b1a44; --bt:#fff; }
+html[data-faction] .btn:disabled, html[data-faction] .btn.green:disabled, html[data-faction] .btn.red:disabled { --b1:#4a464c; --b2:#2a2328; --b3:#0e0b10; --bt:#8d8790; text-shadow:none; }
+@media (hover:hover) { html[data-faction] .btn:not(:disabled):hover { filter:brightness(1.12); } }
+html[data-faction] .btn:not(:disabled):active { transform:scale(.96); transition:transform 80ms ease-out; }
+#game button:focus-visible, #win button:focus-visible, #modal button:focus-visible { outline:2px solid var(--kd-focus); outline-offset:2px; }
+
+/* ---------- 4. Ekran katmanlarının kendi renk değişkenleri tokenlara bağlanır (v17 merkez, v18 savaş, v19 karakter) ---------- */
+html[data-faction="ocak"] {
+  --h17-bg:linear-gradient(180deg,#2b2622f2,#0e0b10f5); --h17-bd:#8a5a34; --h17-gold:#ffb347;
+  --b18-bg:linear-gradient(180deg,#2b2622f2,#0e0b10f5); --b18-bd:#8a5a34; --b18-gold:#ffb347;
+  --k19-bg:linear-gradient(180deg,#2b2622f2,#0e0b10f7); --k19-bd:#8a5a34; --k19-gold:#ffb347; --k19-acc:#ff7a1a;
+}
+html[data-faction="sancak"] {
+  --h17-bg:linear-gradient(180deg,#17264df0,#070b16f5); --h17-bd:#6f8299; --h17-gold:#e2c475;
+  --b18-bg:linear-gradient(180deg,#17264df0,#070b16f5); --b18-bd:#6f8299; --b18-gold:#e2c475;
+  --k19-bg:linear-gradient(180deg,#17264df0,#070b16f7); --k19-bd:#6f8299; --k19-gold:#e2c475; --k19-acc:#3e7be0;
+}
+/* yüzey malzemesi (20 Kas, halka özel kaplama çizgisi): Kragmir = dövme demir (çekiç izi) + alttan kor ışıması;
+   Elentha = mermer (ince damar) + mine (üstte cam parlaklığı). Son katman ekranın kendi zemin rengidir. */
+html[data-faction="ocak"] { --kd-mat:radial-gradient(circle at 30% 35%, rgba(255,255,255,.04) 0 1.4px, transparent 2.4px), radial-gradient(circle at 62% 68%, rgba(0,0,0,.3) 0 1.8px, transparent 2.8px), radial-gradient(130% 70% at 50% 115%, rgba(255,122,26,.13), transparent 62%); --kd-mat-size:17px 15px, 23px 21px, 100% 100%; }
+html[data-faction="sancak"] { --kd-mat:linear-gradient(118deg, transparent 0 38%, rgba(255,255,255,.055) 38.4%, transparent 39.3% 61%, rgba(255,255,255,.035) 61.3%, transparent 62.1%), linear-gradient(62deg, transparent 0 70%, rgba(240,212,136,.06) 70.3%, transparent 71%), linear-gradient(180deg, rgba(255,255,255,.08), transparent 24%); --kd-mat-size:100% 100%, 100% 100%, 100% 100%; }
+html[data-faction] #game #hud .uf, html[data-faction] #game #hud .qtrk, html[data-faction] #game #hud .dock .dbtn, html[data-faction] #game #hud .lrail .lbtn, html[data-faction] #game #hud .krail .lbtn, html[data-faction] #game #chatbar,
+html[data-faction] body #game #battleUI #ystat .ybars, html[data-faction] body #game #battleUI #bwave, html[data-faction] body #game #battleUI #btgt .bt-info, html[data-faction] body #game #battleUI #skills .yrow, html[data-faction] body #game #battleUI #bparty {
+  background-image:var(--kd-mat), var(--h17-bg, var(--b18-bg)) !important; background-size:var(--kd-mat-size), 100% 100% !important;
+}
+html[data-faction] .kx > div, html[data-faction] .yt-det, html[data-faction] .yt-bar, html[data-faction] .yt-cls:not(.on) { background-image:var(--kd-mat), var(--k19-bg) !important; background-size:var(--kd-mat-size), 100% 100% !important; }
+/* pencere gövdesi de aynı malzemeyi taşır (index.html .frame: var(--kp-bg-iron)) */
+html[data-faction] .frame { background:var(--kd-mat), var(--kp-bg-iron) !important; background-size:var(--kd-mat-size), auto, auto, auto !important; } /* --kp-bg-iron 3 katman: boyutları açık yazılır (liste kısa kalırsa tekrarlanır) */
+/* Kragmir: kenarda içten yanan kor çizgisi · Elentha: üstte ince telkari altın çizgi */
+html[data-faction="ocak"] #game #hud .uf, html[data-faction="ocak"] #game #hud .mmap, html[data-faction="ocak"] #game #hud .qtrk, html[data-faction="ocak"] #game #hud .hotbar,
+html[data-faction="ocak"] body #game #battleUI #skills .yrow, html[data-faction="ocak"] .kx > div { box-shadow:inset 0 0 0 1px #000c, inset 0 -2px 0 rgba(255,122,26,.35), 0 3px 10px #000a !important; }
+html[data-faction="sancak"] #game #hud .uf, html[data-faction="sancak"] #game #hud .mmap, html[data-faction="sancak"] #game #hud .qtrk, html[data-faction="sancak"] #game #hud .hotbar,
+html[data-faction="sancak"] body #game #battleUI #skills .yrow, html[data-faction="sancak"] .kx > div { box-shadow:inset 0 0 0 1px #000c, inset 0 1px 0 rgba(217,176,74,.45), 0 3px 10px #000a !important; }
+
+/* ---------- 5. Çubuklar: can kırmızı, mana mavi, XP altın (iki temada aynı anlam) ---------- */
+#game #hud .uf-bar i, body #game #battleUI #ystat .yb.hp i, body #game #battleUI #btgt .bt-bar i { background:linear-gradient(180deg,#f16a55,#a51d18 58%,#5c0c0b) !important; }
+#game #hud .uf-bar.mp i, body #game #battleUI #ystat .yb.mp i { background:linear-gradient(180deg,#79baff,#2869c5 58%,#14346e) !important; }
+#game #hud .expbar span i { background:linear-gradient(180deg,#f3cf72,#e2b44e 45%,#8a6418) !important; }
+
+/* ---------- 6. Ana merkez simgeleri: pilot paketin PNG simgeleri (CSS ile; SVG yedek olarak DOM'da kalır) ---------- */
+#game #hud .dock .dbtn > i, #game #hud .lrail .lbtn > i, #game #hud .krail .lbtn > i { background:var(--kdi, none) center / contain no-repeat; }
+#game #hud [data-a="party"]    { --kdi:var(--kdg-simge-karakter); }
+#game #hud [data-a="bag"]      { --kdi:var(--kdg-simge-canta); }
+#game #hud [data-a="quests"]   { --kdi:var(--kdg-simge-gorev); }
+#game #hud [data-a="clan"]     { --kdi:var(--kdg-simge-klan); }
+#game #hud [data-a="shop"]     { --kdi:var(--kdg-simge-kervan); }
+#game #hud [data-a="savas"]    { --kdi:var(--kdg-simge-savas); }
+#game #hud [data-a="mail"]     { --kdi:var(--kdg-simge-posta); }
+#game #hud [data-a="codex"]    { --kdi:var(--kdg-simge-ansiklopedi); }
+#game #hud [data-a="drawer"]   { --kdi:var(--kdg-simge-ayarlar); }
+#game #hud [data-a="notifs"]   { --kdi:var(--kdg-simge-bildirim); }
+#game #hud [data-a="calendar"] { --kdi:var(--kdg-simge-takvim); }
+#game #hud [data-a="achs"]     { --kdi:var(--kdg-simge-basarim); }
+#game #hud [data-a="news"]     { --kdi:var(--kdg-simge-duyuru); }
+#game #hud .lrail [data-a="diyarMap"] { --kdi:var(--kdg-simge-harita); }
+/* SVG yalnızca PNG'si olan düğmelerde gizlenir (eşlemede olmayan düğme eski simgesiyle kalır) */
+#game #hud :is([data-a="party"],[data-a="bag"],[data-a="quests"],[data-a="clan"],[data-a="shop"],[data-a="savas"],[data-a="mail"],[data-a="codex"],[data-a="drawer"],[data-a="notifs"],[data-a="calendar"],[data-a="achs"],[data-a="news"],.lrail [data-a="diyarMap"]) > i > svg { visibility:hidden; }
+#game #hud .dock .dbtn > i { width:calc(28px * var(--h17-s, 1)) !important; height:calc(28px * var(--h17-s, 1)) !important; }
+#game #hud .mm-ft span { background:var(--kdg-simge-harita) center / contain no-repeat; width:14px; height:14px; } #game #hud .mm-ft span svg { visibility:hidden; }
+
+/* ---------- 7. Savaş: hedef/sıra vurgusu tokenlarla ---------- */
+html[data-faction="ocak"] body #game #battleUI #skills .skill.sel { box-shadow:inset 0 0 0 2px #ffb347, 0 0 10px rgba(255,122,26,.7) !important; }
+html[data-faction="sancak"] body #game #battleUI #skills .skill.sel { box-shadow:inset 0 0 0 2px #f0d488, 0 0 10px rgba(217,176,74,.7) !important; }
+html[data-faction="ocak"] body #game #battleUI #bparty .bp.now { box-shadow:0 0 0 1.5px #000, 0 0 0 3px #ff7a1a, 0 0 10px #ff7a1a; }
+html[data-faction="sancak"] body #game #battleUI #bparty .bp.now { box-shadow:0 0 0 1.5px #000, 0 0 0 3px #d9b04a, 0 0 10px #d9b04a; }
+
+/* ---------- 8. Hareket azaltma ---------- */
+@media (prefers-reduced-motion:reduce) {
+  #game *, #win *, #modal * { transition-duration:.01ms !important; animation-duration:.01ms !important; }
+}
+
+/* ---------- 9. Düzeltmeler ---------- */
+/* sohbet şeridi gizliyken görünmesin (v17'deki display:flex [hidden]'ı eziyordu: karakter seçiminde arkada görünüyordu) */
+#game #chatbar[hidden] { display:none !important; }
+/* raylardaki simge kutusu blok olsun (PNG arka planı boyut alsın) */
+#game #hud .lrail .lbtn > i, #game #hud .krail .lbtn > i { display:block; width:64% !important; height:64% !important; }
+/* Otomatik açıkken: kor (Kragmir) / telkari altın (Elentha) dolgu, koyu yazı (eski hâlde açık yazı altın üstünde kayboluyordu) */
+html[data-faction="ocak"] body #game #battleUI #bctl2 .rb.on { background:linear-gradient(180deg,#ffb347,#c2471e) !important; color:#1e0a02 !important; box-shadow:inset 0 0 0 1px #000, 0 0 10px rgba(255,122,26,.6) !important; }
+html[data-faction="sancak"] body #game #battleUI #bctl2 .rb.on { background:linear-gradient(180deg,#f0d488,#b89234) !important; color:#1a1204 !important; box-shadow:inset 0 0 0 1px #000, 0 0 10px rgba(217,176,74,.6) !important; }
+
+/* ---------- 10. Karakter oluşturma (.olz) ve seçme (.ks): halk seçilince malzeme ona geçer; seçilmemişse nötr altın-bronz kalır ---------- */
+html[data-faction="ocak"] .olz, html[data-faction="ocak"] .ks {
+  --k-gold:#ffb347; --k-gold2:#8a3b1e; --k-ink:#e9e1d3; --k-mut:#bfa98c; --k-line:rgba(255,122,26,.24);
+  --k-glass:linear-gradient(180deg, rgba(43,38,34,.86), rgba(14,11,16,.9));
+  --k-edge:linear-gradient(180deg, #ffb347, #8a3b1e 38%, #2b2622 62%, #c2471e); --k-corner:#ff7a1a; }
+html[data-faction="sancak"] .olz, html[data-faction="sancak"] .ks {
+  --k-gold:#e2c475; --k-gold2:#53677e; --k-ink:#f7f5ef; --k-mut:#aeb8c4; --k-line:rgba(217,176,74,.24);
+  --k-glass:linear-gradient(180deg, rgba(23,38,77,.86), rgba(7,11,22,.9));
+  --k-edge:linear-gradient(180deg, #f0d488, #53677e 38%, #17264d 62%, #d9b04a); --k-corner:#d9b04a; }
+
+/* ---------- 11. Çanta penceresi ve eşya kartı: karakter ekranıyla aynı koyu deri/demir zemin (eski: açık parşömen) ---------- */
+#win:has(.ivbag) #page { background:radial-gradient(130% 100% at 40% 0%, var(--kp-i2) 0%, var(--kp-i1) 55%, var(--kp-i0) 100%) !important; color:var(--kp-on); border-radius:8px; }
+#win:has(.ivbag) .ivinfo, #modal .box:has(.kx-card) .ivinfo { background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.35)); border:1px solid color-mix(in srgb, var(--kp-hi) 45%, transparent); color:var(--kp-on); }
+#win:has(.ivbag) .mut, #modal .box:has(.kx-card) .mut { color:var(--kp-on2) !important; }
+#win:has(.ivbag) .chip, #modal .box:has(.kx-card) .chip { background:rgba(0,0,0,.4); color:var(--kp-on); border-color:color-mix(in srgb, var(--kp-hi) 50%, transparent); }
+#win:has(.ivbag) .ivtop b { color:var(--kp-on); }
+#win:has(.ivbag) .ivc.nil { background:radial-gradient(#211a12,#0a0705); box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--kp-hi) 35%, transparent), inset 0 0 8px #000; }
+/* koyu zeminde nadirlik adları: Standart kemik, Nadir açık mavi, Eşsiz kor-altın (biçim işareti ◆ korunur; renk tek başına anlam taşımaz) */
+#win:has(.ivbag) .gn.g0, #modal .box:has(.kx-card) .gn.g0 { color:#e9e1d3; }
+#win:has(.ivbag) .gn.g1, #modal .box:has(.kx-card) .gn.g1 { color:#9fd0ff; text-shadow:none; }
+#win:has(.ivbag) :is(.gn.g2,.gn.g3), #modal .box:has(.kx-card) :is(.gn.g2,.gn.g3) { color:#ffcf7a; text-shadow:0 0 6px rgba(255,140,40,.55); }
+#win:has(.ivbag) :is(.gn.g2,.gn.g3)::before, #modal .box:has(.kx-card) :is(.gn.g2,.gn.g3)::before { color:#ff9a3a; }
+
+/* ---------- 12. Savaş kare düğmesi: öne çıkan eylem (kor / telkari altın zemin + simge); v14'ün kırmızı yuvarlağını ezer ---------- */
+html[data-faction="ocak"] #game #hud .dock .dbtn.savas-d > i { background:var(--kdi) center / 78% no-repeat, radial-gradient(120% 90% at 50% 25%, #c2471e, #5c1a08 72%, #1e0a02) !important; border-color:#ffb347 !important; border-radius:50%; }
+html[data-faction="sancak"] #game #hud .dock .dbtn.savas-d > i { background:var(--kdi) center / 78% no-repeat, radial-gradient(120% 90% at 50% 25%, #3b5c7d, #17264d 72%, #070b16) !important; border-color:#d9b04a !important; border-radius:50%; }
+/* rayların simge kutusundaki eski yuvarlak süs (i::before) PNG'nin üstüne biniyordu: PNG'li düğmelerde kapalı */
+#game #hud :is([data-a="party"],[data-a="bag"],[data-a="quests"],[data-a="clan"],[data-a="shop"],[data-a="mail"],[data-a="codex"],[data-a="drawer"],[data-a="notifs"],[data-a="calendar"],[data-a="achs"],[data-a="news"],.lrail [data-a="diyarMap"]) > i::before { display:none !important; }
+/* sekmedeki bekleyen puan noktası yazının üstüne biniyordu: köşeye, küçük */
+nav.tabs .tdot { top:2px; right:2px; width:8px; height:8px; border-width:1.5px; }
+
+/* ---------- 13. Dar ekran (≤760 px mantıksal genişlik; döndürülmüş kipte de doğru ölçülsün diye kap sorgusu) ---------- */
+#hud { container:kdhud / size; }
+#battleUI { container:kdbat / inline-size; }
+/* yetenek çubuğu sağ alttaki hız/Otomatik düğmeleriyle çakışıyordu: çubuk sola kayar */
+@container kdbat (max-width:760px) {
+  body #game #battleUI #skills { left:calc(50% - 44px) !important; }
+}
+
+/* ---------- 14. Ana merkez düzeni (20 Kas, kullanıcı: alt yetenek çubuğu ve mini harita kalktı) ----------
+   Sol üst: kahraman çerçevesi, kaynaklar, Premium, sol ray (Menü, Posta, Ansiklopedi, Harita).
+   Üst orta: saat + sunucu. Sağ üst: bildirim rayı ekranın sağ kenarına yaslı, altında Görevler paneli.
+   Alt: solda sohbet, sağda 6'lı düğme sırası; orta boş (sahne görünür). En altta TP şeridi. */
+#game #hud .hotbar, #game #hud .mmap { display:none !important; }
+#game #hud .krail { right:var(--h17-sr) !important; }
+#game #hud .qtrk { top:calc(16px + 40px * var(--h17-s)) !important; max-height:calc(100% - 40px * var(--h17-s) - 44px * var(--h17-s) - 70px) !important; }
+
+/* ---------- 15. Element zayıflığı (20 Kas, yalnız PvE) ---------- */
+#overlay .float.weak { color:#7dffb0; -webkit-text-stroke:1px #04301a; text-shadow:0 2px 0 #021a0e, 0 0 12px rgba(80,255,160,.85); }
+#overlay .float.weak.crit { color:#b6ffd4; }
+.vs .elcs { display:flex; flex-wrap:wrap; gap:2px; justify-content:center; margin-top:2px; }
+.vs .elc { font:700 9px/1.4 Inter, sans-serif; font-style:normal; padding:0 4px; border-radius:6px; background:rgba(0,0,0,.55); border:1px solid currentColor; white-space:nowrap; }
+.vs .elc.r { opacity:.75; }
+.vs .elc.el-fire { color:#ff8a4a; } .vs .elc.el-ice { color:#8fd6ff; } .vs .elc.el-bolt { color:#ffe066; }
+
+/* ---------- 16. Kül, oynanışta (20 Kas): Tarikat düşmanı sahadayken savaş sahnesi solar (combat.js ashScene) ---------- */
+#stage canvas { transition:filter 1.4s ease; }
+#stage.kul canvas { filter:saturate(.28) contrast(1.06) brightness(.94); }
+@media (prefers-reduced-motion:reduce) { #stage canvas { transition:none; } }
+/* açılmamış bölgeler haritada küllü: renk açıldıkça geri gelir (ui-dunya.js zAsh) */
+.mzf.ash { filter:grayscale(1) brightness(.62) contrast(.9); }
+.zcard.ash { filter:grayscale(.92) brightness(.78); position:relative; }
+.zcard .zc-ash { position:absolute; right:6px; bottom:4px; font:700 9px/1.3 Inter, sans-serif; color:#cfc6b6; background:rgba(0,0,0,.55); padding:1px 6px; border-radius:6px; letter-spacing:.04em; }
+.zonerow button:disabled { filter:grayscale(1) brightness(.7); }
+
+/* ---------- 17. Taş Yemini ortak baskını (20 Kas): kart, giriş töreni, kaplama çerçevesi ---------- */
+.avf.rf-ty { --f1:#f3ead8; --f2:#c2471e; --f3:#17264d; --fj:#fff3d6; --fg:#d9b04a99; }
+.ty-card .ty-stone { position:relative; flex:none; width:54px; height:54px; border-radius:12px 12px 6px 6px; background:linear-gradient(90deg,#4a423b 0 50%,#53677e 50%); box-shadow:inset 0 0 0 2px #0008, inset 0 -8px 12px #0006; }
+.ty-stone .h, .ty-big .h { position:absolute; width:34%; height:42%; top:28%; border-radius:40% 40% 30% 30%; }
+.ty-stone .h.a, .ty-big .h.a { left:12%; background:#ff7a1a; box-shadow:0 0 10px #ff7a1a; }
+.ty-stone .h.b, .ty-big .h.b { right:12%; background:#d9b04a; box-shadow:0 0 10px #d9b04a; }
+#modal .box.ty-box { background:radial-gradient(120% 100% at 50% 0%, #2b2622, #070b16) !important; color:#f3ead8; text-align:center; }
+.ty-rite { cursor:pointer; padding:10px 6px 4px; }
+.ty-rite h2 { font-family:Cinzel, Georgia, serif; color:#f0d488; margin:10px 0 4px; letter-spacing:.08em; }
+.ty-big { position:relative; width:120px; height:120px; margin:0 auto; border-radius:22px 22px 10px 10px; background:linear-gradient(90deg, color-mix(in srgb, var(--ca) 35%, #2b2622) 0 50%, color-mix(in srgb, var(--cb) 35%, #17264d) 50%); box-shadow:inset 0 0 0 3px #0009, 0 0 0 2px #d9b04a66; animation:tyGlow 2.6s ease-in forwards; }
+.ty-big .h { opacity:0; animation:tyHand .9s ease-out forwards; } .ty-big .h.b { animation-delay:.35s; }
+.ty-big .h.a { background:var(--ca); box-shadow:0 0 14px var(--ca); } .ty-big .h.b { background:var(--cb); box-shadow:0 0 14px var(--cb); }
+.ty-big .rune { position:absolute; left:50%; top:6%; transform:translateX(-50%); font-size:26px; color:#fff3d6; opacity:0; animation:tyRune 1s 1.1s ease-out forwards; text-shadow:0 0 12px #ffe9b0; }
+@keyframes tyHand { from { opacity:0; transform:translateY(18px) scale(.8); } to { opacity:1; transform:none; } }
+@keyframes tyRune { to { opacity:1; } }
+@keyframes tyGlow { 70% { box-shadow:inset 0 0 0 3px #0009, 0 0 0 2px #d9b04a66; } 100% { box-shadow:inset 0 0 0 3px #0009, 0 0 28px 6px #ffe9b088; } }
+
+/* ---------- 18. Destan (20 Kas): bölüm listesi, sahne, bulmaca ---------- */
+.ds-head { display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:8px; }
+.ds-head b { font-family:Cinzel, Georgia, serif; color:var(--kp-title, #ffb347); letter-spacing:.05em; }
+.ds-list { display:grid; gap:6px; }
+.ds-ch { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:8px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.35)); border:1px solid color-mix(in srgb, var(--kp-hi, #d9b04a) 35%, transparent); }
+.ds-ch.lock { filter:grayscale(1) brightness(.7); }
+.ds-ch.ok { border-color:color-mix(in srgb, var(--kp-acc, #ff7a1a) 60%, transparent); }
+.ds-rom { flex:none; width:44px; height:44px; display:grid; place-items:center; border-radius:50%; font:900 15px Cinzel, Georgia, serif; color:#1a1204; background:radial-gradient(circle at 35% 30%, #fff3d6, var(--kp-acc, #d9b04a) 70%); box-shadow:0 0 0 2px #0008, 0 0 10px color-mix(in srgb, var(--kp-acc, #d9b04a) 60%, transparent); }
+.ds-ch.lock .ds-rom { background:#4a423b; color:#bfa98c; box-shadow:none; }
+.ds-kind { margin-left:6px; font:700 10px Inter, sans-serif; color:var(--kp-on2, #bfa98c); text-transform:uppercase; letter-spacing:.06em; }
+.ds-btns { display:flex; flex-direction:column; gap:4px; flex:none; }
+#modal .box.ds-box { background:radial-gradient(120% 100% at 50% 0%, #2b2622, #0e0b10) !important; color:#f3ead8; max-width:min(560px, 92vw); }
+html[data-faction="sancak"] #modal .box.ds-box { background:radial-gradient(120% 100% at 50% 0%, #17264d, #070b16) !important; }
+.ds-scene, .ds-pz { text-align:center; padding:6px 4px; }
+.ds-scene small, .ds-pz small { color:var(--fc, #d9b04a); font:700 10px Inter, sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+.ds-scene h2, .ds-pz h2 { font-family:Cinzel, Georgia, serif; color:#f0d488; margin:6px 0 8px; }
+.ds-scene p { margin:6px auto; max-width:46ch; line-height:1.5; opacity:0; animation:dsLine .8s ease-out forwards; }
+@keyframes dsLine { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+.ds-q { font-family:Cinzel, Georgia, serif; font-size:1.05em; color:#fff3d6; margin:10px auto; max-width:40ch; }
+.ds-opts { display:grid; gap:6px; max-width:380px; margin:0 auto; }
+.ds-msg { color:#ffb347; font-weight:700; }
+@media (prefers-reduced-motion:reduce) { .ds-scene p { animation:none; opacity:1; } }
+#modal .box.ds-box, #modal .box.ty-box { max-height:calc(var(--lh, 100vh) - 16px); overflow:auto; }
+.short .ds-scene p { margin:4px auto; line-height:1.38; font-size:.94em; }
+/* Görevler panelinde sıradaki Destan bölümü (20 Kas) */
+#game #hud .qtrk .qt-ds { cursor:pointer; border-top:1px solid color-mix(in srgb, var(--kp-hi, #d9b04a) 25%, transparent); margin-top:3px; padding-top:3px; }
+#game #hud .qtrk .qt-dsn { font:600 calc(10px * var(--h17-s, 1)) Inter, sans-serif; color:#f3ead8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#game #hud .qtrk .qt-dsn b { color:var(--kp-acc, #ffb347); }
+
+/* ---------- 19. Aşama 1 (sanat yönetimi onayı, 20 Kas): panel, birincil düğme, pano renkleri ----------
+   Kaynak docs/kd/asama1 (MANIFEST.md). Oyundaki kopyalarda panelin ortadaki dikilitaşı ve kenar yayları, düğmenin elması ve
+   okları silindi (9 dilimde uzayıp bozulmasın, yazının altında kalmasın); asıl dosyalar belge klasöründe duruyor.
+   İki halk aynı ölçü ve aynı alfa sınırı: tema değişince yerleşim kaymaz. Yerleşim kenarı (border-width) değişmedi; çizim dışarı taşar (outset). */
+html[data-faction="ocak"] {
+  --kp-acc:#f27717; --kp-acc2:#7b3124; --kp-i3:#47362e; --kd-ash:#6a6a68; --kd-blood:#7b3124;
+  --kd-panel-fill:linear-gradient(180deg,#221c18,#1f1916 50%,#1c1614);
+  --kd-btn1:var(--kdg-dugme-birincil-normal-ocak); --kd-btn1p:var(--kdg-dugme-birincil-basili-ocak);
+}
+html[data-faction="sancak"] {
+  --kp-i4:#3f5675; --kp-acc:#d39a53; --kp-on2:#c5b9ab; --gold:#d39a53; --kd-gold:#d39a53;
+  --kd-panel-fill:linear-gradient(180deg,#212e46,#1f2b42 50%,#1b273b);
+  --kd-btn1:var(--kdg-dugme-birincil-normal-sancak); --kd-btn1p:var(--kdg-dugme-birincil-basili-sancak);
+}
+html[data-faction] .frame, html[data-faction] .box { background:var(--kd-mat), var(--kd-panel-fill) !important; background-size:var(--kd-mat-size), auto, auto, auto !important; }
+/* (birincil düğme kuralları §20'ye taşındı) */
+
+/* ---------- 20. Aşama 2 UI kit (revize, 20 Kas; kullanıcı: "bağla", nadirlik Standart→sıradan, Nadir→nadir, Eşsiz→efsanevi) ----------
+   Kaynak docs/kd/asama2 (MANIFEST). Oyundaki kopyalarda panel/sekme/sayaç kenarındaki başıboş çizikler silindi (9 dilimde uzamasın).
+   Yalnız görünüş: data-a eylemleri, yerleşim kenarları ve oyun kuralları aynı. Kitte olmayan durum (seçili sekme kitte çok silik) CSS ile belirginleşir. */
+html[data-faction="ocak"] { --u-xps:var(--kdg-dugme-kapat-basili-ocak); --u-pb:var(--kdg-panel-buyuk-ocak); --u-po:var(--kdg-panel-orta-ocak); --u-b1n:var(--kdg-dugme-birincil-normal-ocak); --u-b1p:var(--kdg-dugme-birincil-basili-ocak); --u-b1x:var(--kdg-dugme-birincil-pasif-ocak); --u-b2n:var(--kdg-dugme-ikincil-normal-ocak); --u-b2p:var(--kdg-dugme-ikincil-basili-ocak); --u-b2x:var(--kdg-dugme-ikincil-pasif-ocak); --u-b3n:var(--kdg-dugme-tehlike-normal-ocak); --u-b3p:var(--kdg-dugme-tehlike-basili-ocak); --u-b3x:var(--kdg-dugme-tehlike-pasif-ocak); --u-xn:var(--kdg-dugme-kapat-normal-ocak); --u-xp:var(--kdg-cubuk-xp-dolgu-ocak); --u-bkn:var(--kdg-dugme-geri-normal-ocak); --u-bkp:var(--kdg-dugme-geri-basili-ocak); --u-tv:var(--kdg-sekme-dikey-normal-ocak); --u-tvs:var(--kdg-sekme-dikey-secili-ocak); --u-th:var(--kdg-sekme-yatay-normal-ocak); --u-ths:var(--kdg-sekme-yatay-secili-ocak); --u-s0:var(--kdg-esya-yuvasi-siradan-normal-ocak); --u-s0s:var(--kdg-esya-yuvasi-siradan-secili-ocak); --u-s1:var(--kdg-esya-yuvasi-nadir-normal-ocak); --u-s1s:var(--kdg-esya-yuvasi-nadir-secili-ocak); --u-s2:var(--kdg-esya-yuvasi-efsanevi-normal-ocak); --u-s2s:var(--kdg-esya-yuvasi-efsanevi-secili-ocak); --u-se:var(--kdg-esya-yuvasi-bos-normal-ocak); --u-ses:var(--kdg-esya-yuvasi-bos-secili-ocak); --u-barb:var(--kdg-cubuk-can-bos-ocak); --u-barm:var(--kdg-cubuk-mana-bos-ocak); --u-barx:var(--kdg-cubuk-xp-bos-ocak); --u-can:var(--kdg-cubuk-can-dolgu-ocak); --u-mana:var(--kdg-cubuk-mana-dolgu-ocak); --u-say:var(--kdg-kaynak-sayaci-akce-ocak); --u-toast:var(--kdg-toast-ocak); }
+html[data-faction="sancak"] { --u-xps:var(--kdg-dugme-kapat-basili-sancak); --u-pb:var(--kdg-panel-buyuk-sancak); --u-po:var(--kdg-panel-orta-sancak); --u-b1n:var(--kdg-dugme-birincil-normal-sancak); --u-b1p:var(--kdg-dugme-birincil-basili-sancak); --u-b1x:var(--kdg-dugme-birincil-pasif-sancak); --u-b2n:var(--kdg-dugme-ikincil-normal-sancak); --u-b2p:var(--kdg-dugme-ikincil-basili-sancak); --u-b2x:var(--kdg-dugme-ikincil-pasif-sancak); --u-b3n:var(--kdg-dugme-tehlike-normal-sancak); --u-b3p:var(--kdg-dugme-tehlike-basili-sancak); --u-b3x:var(--kdg-dugme-tehlike-pasif-sancak); --u-xn:var(--kdg-dugme-kapat-normal-sancak); --u-xp:var(--kdg-cubuk-xp-dolgu-sancak); --u-bkn:var(--kdg-dugme-geri-normal-sancak); --u-bkp:var(--kdg-dugme-geri-basili-sancak); --u-tv:var(--kdg-sekme-dikey-normal-sancak); --u-tvs:var(--kdg-sekme-dikey-secili-sancak); --u-th:var(--kdg-sekme-yatay-normal-sancak); --u-ths:var(--kdg-sekme-yatay-secili-sancak); --u-s0:var(--kdg-esya-yuvasi-siradan-normal-sancak); --u-s0s:var(--kdg-esya-yuvasi-siradan-secili-sancak); --u-s1:var(--kdg-esya-yuvasi-nadir-normal-sancak); --u-s1s:var(--kdg-esya-yuvasi-nadir-secili-sancak); --u-s2:var(--kdg-esya-yuvasi-efsanevi-normal-sancak); --u-s2s:var(--kdg-esya-yuvasi-efsanevi-secili-sancak); --u-se:var(--kdg-esya-yuvasi-bos-normal-sancak); --u-ses:var(--kdg-esya-yuvasi-bos-secili-sancak); --u-barb:var(--kdg-cubuk-can-bos-sancak); --u-barm:var(--kdg-cubuk-mana-bos-sancak); --u-barx:var(--kdg-cubuk-xp-bos-sancak); --u-can:var(--kdg-cubuk-can-dolgu-sancak); --u-mana:var(--kdg-cubuk-mana-dolgu-sancak); --u-say:var(--kdg-kaynak-sayaci-akce-sancak); --u-toast:var(--kdg-toast-sancak); }
+html[data-faction="ocak"] { --u-t1:#f6e3c6; --u-t2:#ece4d6; --u-tsel:#ffb347; }
+html[data-faction="sancak"] { --u-t1:#f3ecd8; --u-t2:#eef1f5; --u-tsel:#f0d488; }
+/* paneller: pencere = büyük (9 dilim 64), kutu = orta (48); yerleşim kenarı aynı, çizim dışa taşar */
+html[data-faction] .frame { border-image:var(--u-pb) 64 / 22px / 8px stretch; }
+html[data-faction] .box { border-image:var(--u-po) 48 / 18px / 6px stretch; }
+/* düğmeler: birincil (.green), ikincil (.btn, .blue), tehlike (.red); basılı ve pasif ayrı görsel; uçlar sabit, orta uzar */
+html[data-faction] .btn::before { clip-path:none !important; background:none !important; box-shadow:none !important; border:0 solid transparent; border-image:var(--u-b2n) 50% 64 fill / 50% 18px / 0 stretch; filter:none; }
+html[data-faction] .btn:not(:disabled):active::before { border-image-source:var(--u-b2p); }
+html[data-faction] .btn:disabled::before { border-image-source:var(--u-b2x); }
+html[data-faction] .btn.green::before { border-image-source:var(--u-b1n); }
+html[data-faction] .btn.green:not(:disabled):active::before { border-image-source:var(--u-b1p); }
+html[data-faction] .btn.green:disabled::before { border-image-source:var(--u-b1x); }
+html[data-faction] .btn.red::before { border-image-source:var(--u-b3n); }
+html[data-faction] .btn.red:not(:disabled):active::before { border-image-source:var(--u-b3p); }
+html[data-faction] .btn.red:disabled::before { border-image-source:var(--u-b3x); }
+html[data-faction] .btn, html[data-faction] .btn.blue { --bt:var(--u-t2); color:var(--bt); text-shadow:0 1px 1px #000; }
+html[data-faction] .btn.green { --bt:var(--u-t1); color:var(--bt); text-shadow:0 1px 1px #000; }
+html[data-faction] .btn.red { --bt:#fff; color:#fff; }
+html[data-faction] .btn:disabled, html[data-faction] .btn.green:disabled, html[data-faction] .btn.red:disabled { --bt:#8d8790; color:#8d8790; opacity:1; }
+html[data-faction] .btn:not(:disabled):active { transform:translateY(1px); }
+/* kapat ve geri: kitteki ✕ / ok görseli; yazı gizlenir, dokunma alanı aynı */
+html[data-faction] .x { clip-path:none !important; background:var(--u-xn) center / contain no-repeat !important; box-shadow:none !important; color:transparent !important; font-size:0 !important; }
+html[data-faction] .x:active { background-image:var(--u-xps) !important; }
+html[data-faction] .x > * { visibility:hidden; }
+html[data-faction] .x.bk { background-image:var(--u-bkn) !important; } html[data-faction] .x.bk:active { background-image:var(--u-bkp) !important; }
+/* sekmeler: pencere sol listesi dikey, yan pencere ve alt sekmeler yatay; seçili = kit seçili + parlak yazı ve iç ışık */
+html[data-faction] nav.tabs button, html[data-faction] .sub button { background:none !important; box-shadow:none !important; clip-path:none !important; border:0 solid transparent !important; border-image:var(--u-tv) 50% 60 fill / 50% 16px / 0 stretch !important; color:var(--u-t2) !important; }
+html[data-faction] .win.side nav.tabs button, html[data-faction] .sub button { border-image-source:var(--u-th) !important; }
+html[data-faction] nav.tabs button.on { border-image-source:var(--u-tvs) !important; color:var(--u-tsel) !important; filter:brightness(1.3) saturate(1.15); text-shadow:0 0 8px color-mix(in srgb, var(--u-tsel) 60%, transparent); }
+html[data-faction] .win.side nav.tabs button.on, html[data-faction] .sub button.on { border-image-source:var(--u-ths) !important; color:var(--u-tsel) !important; filter:brightness(1.3) saturate(1.15); }
+/* eşya kareleri: kit yuvası (kenar = nadirlik) arkada, eşya simgesi içte; artı ısınması (p7/p9 hale) duruyor */
+html[data-faction] .ico.it::before, html[data-faction] .ico.empty::before { inset:-2px; clip-path:none; background:var(--u-s0) center / 100% 100% no-repeat !important; }
+html[data-faction] .ico.it.g1::before { background-image:var(--u-s1) !important; }
+html[data-faction] .ico.it.g2::before, html[data-faction] .ico.it.g3::before { background-image:var(--u-s2) !important; }
+html[data-faction] .ico.empty::before { background-image:var(--u-se) !important; } html[data-faction] .ico.empty::after { content:none; } html[data-faction] .ico.empty { opacity:.85; }
+html[data-faction] .ico.it .ig { inset:9%; clip-path:none; background:none !important; box-shadow:none !important; }
+html[data-faction] :is(.ivc.sel, .ds.sel, .kx-slot.sel) .ico.it::before { background-image:var(--u-s0s) !important; }
+html[data-faction] :is(.ivc.sel, .ds.sel, .kx-slot.sel) .ico.it.g1::before { background-image:var(--u-s1s) !important; }
+html[data-faction] :is(.ivc.sel, .ds.sel, .kx-slot.sel) :is(.ico.it.g2, .ico.it.g3)::before { background-image:var(--u-s2s) !important; }
+html[data-faction] :is(.ivc.sel, .ds.sel, .kx-slot.sel) .ico.empty::before { background-image:var(--u-ses) !important; }
+/* çubuklar: çerçeve (boş) ile dolgu ayrı (kitteki 'dolu' görsel çerçeve + yarım dolgu örneğiydi: dolgu ondan kesilip ayrı dosya yapıldı, cubuk-*-dolgu-*.png); ana ekran birim çerçevesi, EXP şeridi, savaş kahraman çerçevesi */
+html[data-faction] #game #hud .uf-bar, html[data-faction] body #game #battleUI #ystat .yb { background:none !important; box-shadow:none !important; border:0 solid transparent !important; border-radius:0 !important; overflow:visible !important; border-image:var(--u-barb) 50% 48 fill / 50% 8px / 0 stretch !important; }
+html[data-faction] #game #hud .uf-bar.mp, html[data-faction] body #game #battleUI #ystat .yb.mp { border-image-source:var(--u-barm) !important; }
+html[data-faction] #game #hud .uf-bar i, html[data-faction] body #game #battleUI #ystat .yb.hp i { background:var(--u-can) center / 100% 100% no-repeat !important; box-shadow:none !important; border-radius:0; }
+html[data-faction] #game #hud .uf-bar.mp i, html[data-faction] body #game #battleUI #ystat .yb.mp i { background:var(--u-mana) center / 100% 100% no-repeat !important; box-shadow:none !important; border-radius:0; }
+html[data-faction] #game #hud .expbar span { border-image:var(--u-barx) 50% 48 fill / 50% 8px / 0 stretch; }
+html[data-faction] #game #hud .expbar span i { background:var(--u-xp) center / 100% 100% no-repeat !important; box-shadow:none !important; border-radius:0; }
+/* kaynak sayaçları (enerji, akçe, yakut): kit sayaç zemini; oyunun kendi simgeleri duruyor */
+html[data-faction] #game #hud .res .pill { background:none !important; box-shadow:none !important; border:0 solid transparent !important; border-radius:0 !important; border-image:var(--u-say) 50% 64 fill / 50% 14px / 0 stretch !important; }
+/* bildirim (toast) */
+html[data-faction] #toast { background:none !important; box-shadow:none !important; border:0 solid transparent !important; border-image:var(--u-toast) 50% 96 fill / 50% 22px / 0 stretch !important; }
+
+/* ==================== eski v22-merkez.css ==================== */
+/* ==================== v22 · Aşama 3 ana merkez (20 Kas) ====================
+   2B başkent katmanı (js/hub2d.js): şehir resmi + görünmez bina dokunma alanları; HUD üstte kalır. Büyük SAVAŞ düğmesi sağ altta
+   (dock'taki küçük Savaş kare gizlenir). Menü simgeleri Aşama 3 revize seti (halka göre). Kaynak docs/kd/asama3. */
+#hub2d { position:fixed; inset:0; z-index:0; display:none; overflow:hidden; background:#0b0907; touch-action:none; cursor:grab; -webkit-tap-highlight-color:transparent; }
+html[data-hub2d] #hub2d { display:block; }
+html[data-hub2d] #stage { visibility:hidden; }
+/* 21 Kas: sahne kaplar ve kayar (js/hub2d.js); .h2-wrap sahne pikselinde, translate+scale ile ekrana oturur */
+#hub2d .h2-wrap { position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform; }
+#hub2d .h2-img { position:absolute; inset:0; width:100%; height:100%; display:block; max-width:none; user-select:none; -webkit-user-drag:none; pointer-events:none; }
+/* basılan bina: sahneden kesilmiş kendi resmi parlatılıp hafifçe kaldırılır */
+#hub2d .h2-glow { position:absolute; display:block; background-repeat:no-repeat; pointer-events:none; opacity:0; transform-origin:50% 100%; transition:opacity .12s, transform .12s, filter .12s; }
+#hub2d .h2-glow.on { opacity:1; transform:translateY(-3px) scale(1.025); filter:brightness(1.28) saturate(1.1) drop-shadow(0 0 3px rgba(255,214,140,.95)) drop-shadow(0 0 14px rgba(255,150,60,.7)); }
+html[data-hub2d="sancak"] #hub2d .h2-glow.on, html[data-hub2d="carsi"] #hub2d .h2-glow.on { filter:brightness(1.2) drop-shadow(0 0 3px rgba(255,246,214,.95)) drop-shadow(0 0 14px rgba(120,180,255,.75)); }
+#hub2d .h2-fx { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+/* kenar karartması: HUD okunurluğu için üst ve alt şeritte hafif gölge */
+#hub2d::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom, rgba(0,0,0,.42), transparent 18%, transparent 78%, rgba(0,0,0,.45)); }
+/* 2B başkentte karakter yok: oyuncu ad levhası gizli (profil sol üstteki birim çerçevesinden) */
+html[data-hub2d] #game #hud .blabel.me { display:none !important; }
+/* büyük SAVAŞ: dock'un sağında; dock sola kayar */
+html[data-hub2d] #game #hud .dock .dbtn.savas-d { display:none !important; }
+html[data-hub2d] #game #hud .dock { right:calc(var(--h17-sr) + 160px * var(--h17-s) + 8px) !important; }
+#game #hud .savas2d { position:absolute; right:var(--h17-sr); bottom:calc(var(--h17-sab) + 12px); width:calc(156px * var(--h17-s)); height:calc(52px * var(--h17-s)); padding:0; border:0; pointer-events:auto;
+  background:var(--sv2-n) center / 100% 100% no-repeat; filter:drop-shadow(0 4px 8px rgba(0,0,0,.6)); }
+#game #hud .savas2d:active { background-image:var(--sv2-p); transform:translateY(1px); }
+#game #hud .savas2d span { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+html[data-faction="ocak"] { --sv2-n:var(--kdg-dugme-savas-normal-ocak); --sv2-p:var(--kdg-dugme-savas-basili-ocak); }
+html[data-faction="sancak"] { --sv2-n:var(--kdg-dugme-savas-normal-sancak); --sv2-p:var(--kdg-dugme-savas-basili-sancak); }
+/* menü simgeleri (Aşama 3 revize, halka göre madalyon) */
+html[data-faction="ocak"] #game #hud [data-a="party"] { --kdi:var(--kdg-simge-karakter-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="bag"] { --kdi:var(--kdg-simge-canta-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="quests"] { --kdi:var(--kdg-simge-gorevler-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="clan"] { --kdi:var(--kdg-simge-klan-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="shop"] { --kdi:var(--kdg-simge-kervan-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="savas"] { --kdi:var(--kdg-simge-savas-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="mail"] { --kdi:var(--kdg-simge-posta-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="codex"] { --kdi:var(--kdg-simge-ansiklopedi-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="drawer"] { --kdi:var(--kdg-simge-menu-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="notifs"] { --kdi:var(--kdg-simge-bildirim-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="calendar"] { --kdi:var(--kdg-simge-takvim-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="achs"] { --kdi:var(--kdg-simge-basarim-ocak); }
+html[data-faction="ocak"] #game #hud [data-a="news"] { --kdi:var(--kdg-simge-duyuru-ocak); }
+html[data-faction="ocak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:var(--kdg-simge-diyar-haritasi-ocak); }
+html[data-faction="sancak"] #game #hud [data-a="party"] { --kdi:var(--kdg-simge-karakter-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="bag"] { --kdi:var(--kdg-simge-canta-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="quests"] { --kdi:var(--kdg-simge-gorevler-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="clan"] { --kdi:var(--kdg-simge-klan-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="shop"] { --kdi:var(--kdg-simge-kervan-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="savas"] { --kdi:var(--kdg-simge-savas-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="mail"] { --kdi:var(--kdg-simge-posta-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="codex"] { --kdi:var(--kdg-simge-ansiklopedi-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="drawer"] { --kdi:var(--kdg-simge-menu-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="notifs"] { --kdi:var(--kdg-simge-bildirim-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="calendar"] { --kdi:var(--kdg-simge-takvim-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="achs"] { --kdi:var(--kdg-simge-basarim-sancak); }
+html[data-faction="sancak"] #game #hud [data-a="news"] { --kdi:var(--kdg-simge-duyuru-sancak); }
+html[data-faction="sancak"] #game #hud .lrail [data-a="diyarMap"] { --kdi:var(--kdg-simge-diyar-haritasi-sancak); }
+
+/* ==================== eski v23-ekranlar.css ==================== */
+/* ==================== v23 · Aşama 4 kritik ekranlar (20 Kas) ====================
+   Kaynak docs/kd/asama4 (yerleşim maketleri). Yalnız görünüş; düğmelerin işlevleri ve savaş kuralları aynı.
+   Kullanıcı kararları: sıra şeridi geri geldi; boss yüzde çubuğu (çizgiler bossun gerçek evre eşikleri); 3x kaldı;
+   sonuçta ana üs düğmesi en son bulunulan yere döner; maketteki başlık çubuğu konmadı. */
+html[data-faction="ocak"] { --a4-acc:#f27717; --a4-gold:#e2b44e; --a4-edge:#8a4a22; --a4-glow:rgba(242,119,23,.55); }
+html[data-faction="sancak"] { --a4-acc:#6fa8ff; --a4-gold:#d39a53; --a4-edge:#3f5675; --a4-glow:rgba(111,168,255,.5); }
+
+/* ---------- Savaş: sıra şeridi (dalga levhasının altında, ortada) ---------- */
+body #game #battleUI #border { display:flex !important; position:absolute; left:50%; top:calc(10px + 38px * var(--b18-s)); transform:translateX(-50%); z-index:3; pointer-events:none;
+  gap:calc(4px * var(--b18-s)); padding:calc(4px * var(--b18-s)) calc(8px * var(--b18-s)); border-radius:8px;
+  background:linear-gradient(180deg, rgba(14,11,16,.9), rgba(14,11,16,.72)); box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--a4-gold) 55%, transparent), 0 4px 12px rgba(0,0,0,.5); }
+body #game #battleUI #border:empty { display:none !important; }
+body #game #battleUI #border .bo { width:calc(28px * var(--b18-s)); height:calc(28px * var(--b18-s)); border-radius:6px; }
+body #game #battleUI #border .bo.now { width:calc(36px * var(--b18-s)); height:calc(36px * var(--b18-s)); margin-right:calc(4px * var(--b18-s)); box-shadow:0 0 0 2px #0a0709, 0 0 0 3.5px var(--a4-gold), 0 0 14px var(--a4-glow); }
+body #game #battleUI.bossf #border { top:calc(14px + 84px * var(--b18-s)); }
+
+/* ---------- Boss: büyük can çubuğu (yüzde) ve aşama ---------- */
+body #game #battleUI #bboss { position:absolute; left:50%; top:calc(10px + 38px * var(--b18-s)); transform:translateX(-50%); z-index:3; pointer-events:none;
+  width:min(40vw, calc(520px * var(--b18-s))); padding:calc(4px * var(--b18-s)) calc(10px * var(--b18-s)) calc(6px * var(--b18-s)); border-radius:8px;
+  background:linear-gradient(180deg, rgba(40,8,8,.92), rgba(14,8,10,.85)); box-shadow:inset 0 0 0 1px rgba(226,90,60,.7), 0 0 18px rgba(200,40,20,.35), 0 4px 12px rgba(0,0,0,.6); }
+body #game #battleUI #bboss[hidden] { display:none; }
+#battleUI #bboss .bb-top { display:flex; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:3px; }
+#battleUI #bboss .bb-top b { font:700 calc(12px * var(--b18-s))/1.1 Cinzel, Georgia, serif; color:#ffd9b8; letter-spacing:.4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+#battleUI #bboss .bb-ph { font:800 calc(10px * var(--b18-s))/1 Inter, sans-serif; color:#ffb37a; text-transform:uppercase; letter-spacing:1px; }
+#battleUI #bboss[data-ph="1"] .bb-ph { color:#ff8a4a; } #battleUI #bboss[data-ph="2"] .bb-ph { color:#ff5a3a; text-shadow:0 0 8px rgba(255,80,40,.8); }
+#battleUI #bboss .bb-bar { position:relative; height:calc(14px * var(--b18-s)); border-radius:3px; overflow:hidden; background:#0a0506; box-shadow:inset 0 0 0 1px #000, inset 0 2px 4px #000; }
+#battleUI #bboss .bb-bar s, #battleUI #bboss .bb-bar i { position:absolute; left:0; top:0; bottom:0; }
+#battleUI #bboss .bb-bar s { background:#ffe2a8; opacity:.55; transition:width .8s ease-out .3s; }
+#battleUI #bboss .bb-bar i { background:linear-gradient(180deg, #ff7a5a, #c0261a 55%, #6a0d08); transition:width .2s ease-out; }
+#battleUI #bboss .bb-bar u { position:absolute; top:0; bottom:0; width:2px; margin-left:-1px; background:rgba(255,230,190,.75); box-shadow:0 0 4px #000; }
+#battleUI #bboss .bb-bar em { position:absolute; inset:0; text-align:center; font:800 calc(10px * var(--b18-s))/calc(14px * var(--b18-s)) Inter, sans-serif; font-style:normal; color:#fff; text-shadow:0 1px 2px #000, 0 0 3px #000; }
+/* ---------- Savaş: Çekil kontrollerin yanına (sağ alt, hız/oto düğmelerinin üstünde) ---------- */
+body #game #battleUI #bctl { top:auto !important; bottom:calc(var(--sab,0px) + 14px + 34px * var(--b18-s)) !important; right:max(8px,var(--sar)) !important; left:auto !important; }
+body #game #battleUI #bctl #bexit { width:auto !important; min-width:0; height:calc(28px * var(--b18-s)) !important; padding:0 calc(10px * var(--b18-s)) !important; border-radius:14px !important;
+  font:700 calc(11px * var(--b18-s))/1 Cinzel, Georgia, serif !important; color:#f3d6c8 !important; background:linear-gradient(180deg, #5a2018, #2a0c08) !important; box-shadow:inset 0 0 0 1px #b8483a, 0 3px 8px rgba(0,0,0,.5) !important; }
+body #game #battleUI #bctl #bexit::before { content:'Çekil '; }
+
+/* ---------- Sonuç ekranı: başlık, amblem, ödül kartları, döküm şeridi ---------- */
+#modal .box.bres > h2 { font:700 clamp(26px, 5.2vh, 44px)/1.05 Cinzel, Georgia, serif !important; letter-spacing:4px; color:var(--a4-gold) !important; text-shadow:0 0 18px color-mix(in srgb, var(--a4-gold) 55%, transparent), 0 2px 0 #000; background:none !important; }
+#modal .box.bres.lose > h2 { color:#e8604a !important; text-shadow:0 0 18px rgba(232,96,74,.55), 0 2px 0 #000; }
+#modal .box.bres.win > h2 { animation:rzIn .6s ease-out; }
+@keyframes rzIn { from { opacity:0; transform:scale(1.3); letter-spacing:12px; } to { opacity:1; transform:none; } }
+#modal .box.bres .rz-head { display:flex; align-items:center; gap:12px; margin:2px 0 8px; }
+#modal .box.bres .rz-emb { flex:none; width:clamp(40px, 8vh, 64px); height:clamp(40px, 8vh, 64px); border-radius:50%; display:grid; place-items:center; color:var(--a4-gold);
+  background:radial-gradient(circle at 50% 35%, #2e2620, #120d0a); box-shadow:0 0 0 3px var(--a4-gold), 0 0 18px color-mix(in srgb, var(--a4-gold) 45%, transparent); }
+#modal .box.bres.lose .rz-emb { color:#d0402e; box-shadow:0 0 0 3px #a83226, 0 0 16px rgba(200,50,30,.45); }
+#modal .box.bres .rz-emb svg { width:62%; height:62%; }
+#modal .box.bres .rz-head p { margin:0; } #modal .box.bres .rz-sub { font-size:12px; color:var(--kp-on2, #c9b9a0); } #modal .box.bres .rz-name b { font-size:14px; }
+#modal .box.bres .rz-cards { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; margin:4px 0 8px; }
+#modal .box.bres .rz-card { min-width:0; padding:6px 9px 7px; border-radius:7px; background:rgba(0,0,0,.35); box-shadow:inset 0 0 0 1.5px var(--rc, #8a7a5a); }
+#modal .box.bres .rz-card small { display:block; font:800 9.5px/1.2 Inter, sans-serif; letter-spacing:.8px; text-transform:uppercase; color:var(--rc); margin-bottom:3px; }
+#modal .box.bres .rz-card b { display:flex; align-items:center; gap:5px; font-size:15px; color:#f3ead8; white-space:nowrap; }
+#modal .box.bres .rz-card em { display:block; font-style:normal; font-size:10px; color:var(--kp-on2, #c9b9a0); margin-top:2px; }
+#modal .box.bres .rz-card.ak { --rc:#e2b44e; } #modal .box.bres .rz-card.xp { --rc:#5a9cf0; } #modal .box.bres .rz-card.es { --rc:#5fcb7a; }
+#modal .box.bres .rz-card .loot { margin:0; max-height:76px; overflow:auto; }
+#modal .box.bres .rz-card .rz-none { font-size:12px; color:var(--kp-on2, #c9b9a0); font-weight:600; }
+#modal .box.bres .rz-strip { display:flex; flex-wrap:wrap; align-items:center; gap:4px 14px; margin:6px 0 4px; padding:6px 10px; border-radius:6px; background:rgba(0,0,0,.3); box-shadow:inset 0 0 0 1px rgba(160,130,90,.45); font-size:11.5px; color:var(--kp-on2, #c9b9a0); }
+#modal .box.bres .rz-strip b { font:700 11px/1 Cinzel, Georgia, serif; color:var(--a4-gold); letter-spacing:.5px; }
+#modal .box.bres .rz-strip i { font-style:normal; font-weight:800; color:#f3ead8; }
+@media (max-height:430px) { #modal .box.bres .rz-cards { gap:5px; } #modal .box.bres .rz-card b { font-size:13px; } #modal .box.bres .rz-head { margin:0 0 4px; } }
+
+/* ---------- Karakter oluşturma: sınıf kutuları sol sütunda (2×2), alt çubukta seçim özeti ---------- */
+.olz .olz-clsl { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin:2px 0 6px; }
+.olz .olz-clsl .olz-cls { min-width:0; display:flex; align-items:center; gap:5px; padding:6px 6px; border-radius:6px; font:700 11px/1.1 Cinzel, Georgia, serif; }
+.olz .olz-clsl .olz-cls b { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+@media (max-height:430px) { .olz .olz-clsl .olz-cls { font-size:9.5px; padding:5px 4px; gap:3px; letter-spacing:0; } .olz .olz-clsl .olz-cls .olz-ic { width:13px; height:13px; } }
+.olz .olz-clsl .olz-cls .olz-ic { width:18px; height:18px; flex:none; }
+.olz .olz-pick { display:flex; align-items:center; gap:5px; height:100%; padding:0 10px; font:600 13px/1.2 Inter, sans-serif; color:var(--k-dim, #c9b9a0); white-space:nowrap; }
+.olz .olz-pick b { font:700 13px/1 Cinzel, Georgia, serif; color:var(--a4-gold); }
+
+/* ==================== eski v24-asama5.css ==================== */
+/* Aşama 5 (20 Kas): Çanta, Karakter, Yetenek Ağacı, Görevler, Klan — Kül ve Demir sanat yönetimiyle (Aşama 1–2 kit).
+   Yalnız görünüm: bütün düğmeler, sekmeler, data-a eylemleri ve veriler aynı. Yerleşim iki halkta aynı; malzeme, renk, ışık
+   ve süsleme halka göre (--a5-*). Pencere kimliği #win[data-scr] (ui-core.js drawWin SCR), büyük ekran ölçeği --wz (orient.js). */
+
+/* ---------- 1. Halk malzemeleri ---------- */
+html[data-faction="ocak"] {
+  /* Kragmir: dövme demir, kara taş, kızıl toprak, kemik/boynuz, köz ışığı */
+  --a5-bg:linear-gradient(180deg,#221a16,#140f0d);
+  --a5-card:linear-gradient(180deg,#2c231e,#1b1512 70%,#171210);
+  --a5-cardh:linear-gradient(180deg,#3a2c23,#221914);
+  --a5-line:#5e4434; --a5-line2:#8a5a34; --a5-hi:#ffb347; --a5-acc:#f27717; --a5-acc2:#7b3124;
+  --a5-ink:#efe2cb; --a5-mut:#b5a28a; --a5-bone:#d9c9a8; --a5-glow:rgba(255,110,20,.22);
+  --a5-ok:#7fcf6a; --a5-lock:#5b524b;
+  --a5-orn:linear-gradient(90deg,transparent,#8a5a34 12%,#ffb347 50%,#8a5a34 88%,transparent);
+  --a5-ember:radial-gradient(120% 60% at 50% 120%,rgba(242,119,23,.22),transparent 60%);
+}
+html[data-faction="sancak"] {
+  /* Elentha: ak mermer, gümüş çelik, kraliyet laciverti, altın telkari, beyaz sancak */
+  --a5-bg:linear-gradient(180deg,#1b2742,#0f1729);
+  --a5-card:linear-gradient(180deg,#22314f,#18233b 70%,#141d33);
+  --a5-cardh:linear-gradient(180deg,#2c3f64,#1c2944);
+  --a5-line:#4d6080; --a5-line2:#8a9ab2; --a5-hi:#f0d488; --a5-acc:#d9b04a; --a5-acc2:#3e7be0;
+  --a5-ink:#eef1f5; --a5-mut:#a9b6c8; --a5-bone:#f3ecd8; --a5-glow:rgba(240,212,136,.16);
+  --a5-ok:#8fd6a0; --a5-lock:#4a5568;
+  --a5-orn:linear-gradient(90deg,transparent,#8a9ab2 12%,#f0d488 50%,#8a9ab2 88%,transparent);
+  --a5-ember:radial-gradient(120% 60% at 50% -20%,rgba(240,212,136,.14),transparent 60%);
+}
+
+/* ---------- 2. Büyük ekran: pencere ekranı doldurur (2340×1080, 1440×1080); telefonda değişmez (--wz = 1) ---------- */
+@media (min-height:600px) {
+  #win[data-scr="canta"] .frame, #win[data-scr="karakter"] .frame, #win[data-scr="gorev"] .frame, #win[data-scr="klan"] .frame {
+    zoom:var(--wz,1); width:min(1240px,calc(var(--lw) * .95 / var(--wz,1))) !important; height:min(760px,calc((var(--lh) - 40px) / var(--wz,1))) !important;
+  }
+}
+
+/* ---------- 3. Ortak bileşenler (beş ekran) ---------- */
+#win[data-scr]:not([data-scr=""]) .page { color:var(--a5-ink); }
+#win[data-scr]:not([data-scr=""]) .page h3, #win[data-scr]:not([data-scr=""]) .page h4 { color:var(--a5-hi); }
+#win[data-scr]:not([data-scr=""]) .page .mut { color:var(--a5-mut); }
+#win[data-scr]:not([data-scr=""]) .page .row, #win[data-scr="gorev"] .page .hint, #win[data-scr="klan"] .page .hint {
+  background:var(--a5-ember),var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; box-shadow:inset 0 1px 0 #ffffff0d,0 2px 6px #0007; border-radius:8px;
+}
+/* pasif düğmeler: koyu zeminde okunur yazı (kit pasif görseli açık renk; eski koyu yazı okunmuyordu) */
+html[data-faction] #win[data-scr] .btn:disabled, html[data-faction] #modal .btn:disabled { color:#cbbfae !important; text-shadow:0 1px 1px #000; }
+html[data-faction="sancak"] #win[data-scr] .btn:disabled { color:#c7d0dc !important; }
+/* üst sekme şeridi (Klan): seçili sekmenin yazısı açık ve altında halk rengi */
+html[data-faction] #win.ttop[data-scr] nav.tabs button.on { color:var(--a5-hi) !important; text-shadow:0 1px 2px #000; }
+html[data-faction] #win.ttop[data-scr] nav.tabs button.on span { color:var(--a5-hi) !important; }
+html[data-faction] #win.ttop[data-scr] nav.tabs button.on::after { content:""; position:absolute; left:14%; right:14%; bottom:2px; height:2px; background:var(--a5-orn); }
+html[data-faction] #win.ttop[data-scr] nav.tabs button { position:relative; }
+/* bölüm başlığı süsü */
+.a5-orn, #win[data-scr] .ql-sec h3::after { content:""; display:block; height:1px; background:var(--a5-orn); }
+
+/* ---------- 4. Çanta ---------- */
+#win[data-scr="canta"] .ivbag { gap:10px; }
+#win[data-scr="canta"] .ivside, #win[data-scr="canta"] .ivmain { background:var(--a5-ember),var(--a5-bg); border:1px solid var(--a5-line); border-radius:10px; box-shadow:inset 0 0 0 1px #0008,0 3px 10px #0008; }
+#win[data-scr="canta"] .ivside { padding:8px; }
+#win[data-scr="canta"] .ivmain { padding:8px 10px; }
+#win[data-scr="canta"] .ivtop { display:flex; align-items:center; gap:10px; padding-bottom:6px; margin-bottom:6px; border-bottom:1px solid var(--a5-line); }
+#win[data-scr="canta"] .ivtop > b { font-size:14px; color:var(--a5-hi); } #win[data-scr="canta"] .ivtop > b.warn { color:#ff6a50; }
+#win[data-scr="canta"] .ivbulk { margin-left:auto; }
+#win[data-scr="canta"] .ivbulk .ri, .kx-bulk .ri { width:14px; height:14px; margin-right:4px; vertical-align:-2px; }
+#win[data-scr="canta"] .ivg { gap:5px; }
+.ivinfo .cmpl { margin:6px 0 2px; padding:6px 8px; border-radius:7px; font-size:11.5px; line-height:1.45; background:#0006; border:1px solid var(--a5-line,#5e4434); color:var(--a5-ink,#efe2cb); }
+.ivinfo .cmpl b { color:var(--a5-hi,#ffb347); margin-right:4px; } .ivinfo .cmpl span { margin-right:8px; white-space:nowrap; }
+.ivinfo .cmpl .up { color:#7fdc6a; } .ivinfo .cmpl .dn { color:#ff7a62; }
+#win[data-scr="canta"] .ivinfo .ivhead, #modal .kx-card .ivinfo .ivhead { padding-bottom:6px; border-bottom:1px solid var(--a5-line); margin-bottom:4px; }
+#win[data-scr="canta"] .ivacts, #modal .kx-card .ivacts { display:flex; flex-wrap:wrap; gap:5px; padding-top:6px; border-top:1px solid var(--a5-line); }
+
+/* ---------- 5. Karakter ---------- */
+#win[data-scr="karakter"] .kx-hero, #win[data-scr="karakter"] .kx-stats, #win[data-scr="karakter"] .kx-bag {
+  background:var(--a5-ember),var(--a5-bg) !important; border:1px solid var(--a5-line) !important; box-shadow:inset 0 0 0 1px #0008,0 3px 10px #0008 !important;
+}
+#win[data-scr="karakter"] .kx-model { background:radial-gradient(ellipse 60% 55% at 50% 62%,var(--a5-glow),transparent 70%),radial-gradient(ellipse 45% 8% at 50% 92%,#0009,transparent 70%) !important; }
+#win[data-scr="karakter"] .kx-model .h3d { -webkit-mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,#000 55%,transparent 100%); mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,#000 55%,transparent 100%); }
+#win[data-scr="karakter"] .kx-head b em { color:var(--a5-hi); font-style:normal; }
+#win[data-scr="karakter"] .kx-stats h4 { display:flex; align-items:center; gap:6px; color:var(--a5-hi); }
+#win[data-scr="karakter"] .kx-stats h4::before, #win[data-scr="karakter"] .kx-stats h4::after { content:""; flex:1; height:1px; background:var(--a5-orn); }
+#win[data-scr="karakter"] .kx-pow { background:var(--a5-cardh) !important; border:1px solid var(--a5-line2) !important; }
+#win[data-scr="karakter"] .kx-pow b { color:var(--a5-hi) !important; }
+#win[data-scr="karakter"] .kx-r:nth-child(odd), #win[data-scr="karakter"] .kx-a:nth-child(odd) { background:#ffffff06; }
+#win[data-scr="karakter"] .kx-a.main span { color:var(--a5-hi); }
+#win[data-scr="karakter"] .kx-free b.on { color:var(--a5-ok); }
+#win[data-scr="karakter"] .kx-cls { border-top:1px solid var(--a5-line) !important; }
+#win[data-scr="karakter"] .kx-trees span.on { color:var(--a5-hi); }
+#win[data-scr="karakter"] .kx-foot { display:flex; align-items:center; gap:8px; }
+.kx-bulk { margin:0 auto; padding:2px 9px; min-height:24px; border-radius:6px; font:inherit; font-size:11px; font-weight:700; cursor:pointer; color:var(--a5-ink,#efe2cb); background:var(--a5-card); border:1px solid var(--a5-line2,#8a5a34); }
+.kx-bulk:active { filter:brightness(1.3); }
+/* Unvan sekmesi (Başarımlar penceresinin Unvan görünümü) */
+#win[data-scr="karakter"] .chx-unvan { display:flex; flex-direction:column; gap:6px; overflow:auto; }
+#win[data-scr="karakter"] .chx-unvan .hint { background:var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; }
+#win[data-scr="karakter"] .chx-unvan .kbon > div, #win[data-scr="karakter"] .chx-unvan .tbtn { background:var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; }
+#win[data-scr="karakter"] .chx-unvan .tbtn.on { border-color:var(--a5-hi) !important; box-shadow:0 0 0 1px var(--a5-hi),0 0 10px var(--a5-glow); }
+#win[data-scr="karakter"] .chx-unvan .tbtn b { color:var(--a5-hi); } #win[data-scr="karakter"] .chx-unvan .tbtn.lock { opacity:.55; }
+
+/* ---------- 6. Yetenek ağacı ---------- */
+#win[data-scr="karakter"] .yt-left, #win[data-scr="karakter"] .yt-det, #win[data-scr="karakter"] .yt-bar {
+  background:var(--a5-ember),var(--a5-bg) !important; border:1px solid var(--a5-line) !important;
+}
+#win[data-scr="karakter"] .yt-tree { box-shadow:inset 0 0 0 1px #0009,0 3px 10px #0008; }
+#win[data-scr="karakter"] .yt-n.lk img, #win[data-scr="karakter"] .yt-n.lk svg { opacity:.62; }
+#win[data-scr="karakter"] .yt-shut { background:#000a !important; color:var(--a5-bone) !important; border:1px solid var(--a5-line); border-radius:6px; padding:4px 8px; text-shadow:0 1px 2px #000; }
+#win[data-scr="karakter"] .yt-det h3, #win[data-scr="karakter"] .yt-dh b { color:var(--a5-hi); }
+#win[data-scr="karakter"] .yt-pts b { color:var(--a5-ok); }
+
+/* ---------- 7. Görevler, Görev Defteri, Takvim (parşömen yerine koyu malzeme) ---------- */
+#win[data-scr="gorev"] .qb2-card { background:var(--a5-ember),var(--a5-card) !important; color:var(--a5-ink) !important; border:1px solid var(--a5-line) !important; border-top:3px solid var(--c,var(--a5-acc)) !important; box-shadow:0 3px 8px #0008 !important; }
+#win[data-scr="gorev"] .qb2-card.ready { border-color:var(--a5-hi) !important; box-shadow:0 0 0 1px var(--a5-hi),0 0 14px var(--a5-glow) !important; }
+#win[data-scr="gorev"] .qb2-card.done { filter:saturate(.6) brightness(.85); }
+#win[data-scr="gorev"] .qb2-name { color:var(--a5-ink) !important; }
+#win[data-scr="gorev"] .qb2-rw { background:#0007 !important; color:var(--a5-ink) !important; border:1px solid var(--a5-line); }
+#win[data-scr="gorev"] .qb2-rw small, #win[data-scr="gorev"] .qb2-wait { color:var(--a5-mut) !important; }
+#win[data-scr="gorev"] .qb2-got { color:var(--a5-ok) !important; }
+#win[data-scr="gorev"] .qb2-ring b { color:var(--a5-ink) !important; }
+#win[data-scr="gorev"] .qb2-track { background:var(--a5-bg) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; }
+#win[data-scr="gorev"] .qx-band { box-shadow:inset 0 -1px 0 #ffffff22,0 2px 6px #0008; }
+/* ana görev ağacı */
+#win[data-scr="gorev"] .mq-tree { border:1px solid var(--a5-line) !important; background:var(--a5-ember),var(--a5-bg) !important; }
+#win[data-scr="gorev"] .mq-n { background:var(--a5-cardh) !important; color:var(--a5-ink) !important; border:2px solid var(--a5-line2) !important; box-shadow:0 3px 0 #0009,0 5px 8px #0008 !important; }
+#win[data-scr="gorev"] .mq-n.open { border-color:var(--a5-hi) !important; box-shadow:0 0 0 1px var(--a5-hi),0 0 12px var(--a5-glow),0 3px 0 #0009 !important; }
+#win[data-scr="gorev"] .mq-n.ready { border-color:var(--a5-hi) !important; }
+#win[data-scr="gorev"] .mq-n.done { background:linear-gradient(180deg,#24402a,#15281a) !important; border-color:#4f8a3a !important; }
+#win[data-scr="gorev"] .mq-n.locked { background:linear-gradient(180deg,#2a2826,#1a1918) !important; border-color:var(--a5-lock) !important; color:#9c958b !important; }
+#win[data-scr="gorev"] .mq-n.sel { outline:2px solid var(--a5-hi) !important; }
+#win[data-scr="gorev"] .mq-lines path { stroke:var(--a5-line2); } #win[data-scr="gorev"] .mq-lines path.on { stroke:var(--a5-hi); }
+#win[data-scr="gorev"] .mq-chh b { color:var(--a5-hi) !important; } #win[data-scr="gorev"] .mq-chh small { color:var(--a5-mut) !important; }
+#win[data-scr="gorev"] .mq-det { background:var(--a5-ember),var(--a5-card) !important; color:var(--a5-ink) !important; border:1px solid var(--a5-line2) !important; }
+#win[data-scr="gorev"] .mq-det h3 { color:var(--a5-hi) !important; } #win[data-scr="gorev"] .mq-ch { color:var(--a5-mut) !important; }
+#win[data-scr="gorev"] .mq-det.ready { border-color:var(--a5-hi) !important; box-shadow:0 0 12px var(--a5-glow) !important; }
+#win[data-scr="gorev"] .mq-prog b, #win[data-scr="gorev"] .mq-pr b { color:var(--a5-ink) !important; }
+/* görev defteri */
+#win[data-scr="gorev"] .ql-sec h3 { display:block; color:var(--a5-hi) !important; } #win[data-scr="gorev"] .ql-sec h3 small { color:var(--a5-mut) !important; margin-left:8px; }
+#win[data-scr="gorev"] .ql-row { background:var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; }
+#win[data-scr="gorev"] .ql-row b small { color:var(--a5-mut) !important; }
+#win[data-scr="gorev"] .ql-row em { color:var(--a5-mut) !important; }
+#win[data-scr="gorev"] .ql-row.rdy { border-color:var(--a5-hi) !important; background:var(--a5-cardh) !important; } #win[data-scr="gorev"] .ql-row.rdy em { color:var(--a5-ok) !important; }
+#win[data-scr="gorev"] .ql-bar { background:#0008 !important; border:1px solid var(--a5-line); }
+/* takvim (Yedi Gün / Aylık / Etkinlikler) */
+#win[data-scr="gorev"] .calx .kc { background:var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; }
+#win[data-scr="gorev"] .calx .kc.now { border-color:var(--a5-hi) !important; box-shadow:0 0 0 1px var(--a5-hi),0 0 12px var(--a5-glow) !important; }
+#win[data-scr="gorev"] .calx .kc.got { filter:saturate(.5) brightness(.8); }
+
+/* ---------- 8. Klan ---------- */
+#win[data-scr="klan"] .kl-head { background:var(--a5-ember),var(--a5-cardh) !important; border:1px solid var(--a5-line2) !important; color:var(--a5-ink) !important; }
+#win[data-scr="klan"] .kl-head b, #win[data-scr="klan"] .kl-name { color:var(--a5-hi); }
+/* arma çerçevesi halka göre: Kragmir dövme demir kalkan yuvası + boynuz kıvrımları, Elentha gümüş telkari + altın taç çizgisi */
+#win[data-scr="klan"] .kl-head > .bnr, #win[data-scr="klan"] .hq-ban, #win[data-scr="klan"] .kl-prev .bnr { position:relative; padding:6px; border-radius:10px; }
+html[data-faction="ocak"] #win[data-scr="klan"] .kl-head > .bnr, html[data-faction="ocak"] #win[data-scr="klan"] .hq-ban {
+  background:radial-gradient(circle at 50% 30%,#3a2a20,#120d0b 72%); border:2px solid #6b4a34;
+  box-shadow:inset 0 0 0 2px #1a1210,inset 0 0 14px rgba(242,119,23,.28),0 0 0 1px #000,0 3px 10px #000a; filter:drop-shadow(0 0 6px rgba(242,119,23,.25));
+}
+html[data-faction="sancak"] #win[data-scr="klan"] .kl-head > .bnr, html[data-faction="sancak"] #win[data-scr="klan"] .hq-ban {
+  background:radial-gradient(circle at 50% 25%,#2c3f64,#0f1729 72%); border:2px solid #8a9ab2;
+  box-shadow:inset 0 0 0 2px #0c1220,inset 0 0 0 3px rgba(240,212,136,.55),0 0 0 1px #000,0 3px 10px #000a; filter:drop-shadow(0 0 6px rgba(240,212,136,.22));
+}
+#win[data-scr="klan"] .hq-ban .bnr { position:relative; }
+#win[data-scr="klan"] .kl-don { gap:6px; }
+#win[data-scr="klan"] .kl-rk { border:1px solid var(--a5-line2); }
+#win[data-scr="klan"] .kl-steps > *, #win[data-scr="klan"] .kl-rw { background:var(--a5-card) !important; border-color:var(--a5-line) !important; color:var(--a5-ink) !important; }
+#win[data-scr="klan"] .hq-fac { background:var(--a5-ember),var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; }
+#win[data-scr="klan"] .hq-fac b { color:var(--a5-hi); }
+
+/* ---------- 9. Sayfa zemini ve seçili sekme (sonradan) ---------- */
+/* parşömen zemin yerine halk malzemesi: Görevler, Görev Defteri, Takvim, Çanta, Klan */
+html[data-faction] #win[data-scr="gorev"] #page, html[data-faction] #win[data-scr="canta"] #page, html[data-faction] #win[data-scr="klan"] #page, html[data-faction] #win[data-scr="karakter"] #page:has(.chx) {
+  background:var(--kd-mat),var(--a5-ember),var(--a5-bg) !important; background-size:var(--kd-mat-size,17px),100% 100%,100% 100% !important;
+  border:1px solid var(--a5-line); border-radius:10px; box-shadow:inset 0 0 40px #000a !important; color:var(--a5-ink);
+}
+#win[data-scr="gorev"] .calx-band { box-shadow:inset 0 0 0 1px var(--a5-line2),0 2px 8px #0009; }
+html[data-faction="ocak"] #win[data-scr="gorev"] .calx-band { background:linear-gradient(90deg,#4a2a18,#2a1a12 60%,#1a1210) !important; }
+html[data-faction="sancak"] #win[data-scr="gorev"] .calx-band { background:linear-gradient(90deg,#24386a,#18264a 60%,#121c36) !important; }
+/* sol sekme şeridinde seçili sekme yazısı: açık renk, koyu gölge (altın zeminde okunur) */
+html[data-faction] #win[data-scr]:not(.ttop) nav.tabs button.on, html[data-faction] #win[data-scr]:not(.ttop) nav.tabs button.on span { color:#fff6e0 !important; text-shadow:0 1px 2px #000,0 0 6px #000a; }
+html[data-faction] #win[data-scr]:not(.ttop) nav.tabs button.on small { color:#f3e2bf !important; }
+/* Klan dükkânı kartları ve rütbe çipleri (açık taş kart ve okunmayan rütbe yazısı yerine) */
+#win[data-scr="klan"] .kl-shop .card { background:var(--a5-ember),var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; box-shadow:0 3px 8px #0008 !important; }
+#win[data-scr="klan"] .kl-shop .card b { color:var(--a5-hi) !important; } #win[data-scr="klan"] .kl-shop .card .mut { color:var(--a5-mut) !important; }
+#win[data-scr="klan"] .kl-shop .card.soon { filter:saturate(.5) brightness(.8); }
+#win[data-scr="klan"] .chip.kl-rk { background:var(--a5-cardh) !important; color:var(--a5-bone) !important; min-width:44px; text-align:center; }
+#win[data-scr="klan"] .chip.kl-rk.reis { background:linear-gradient(180deg,#a4331f,#6a1c10) !important; color:#fff2e0 !important; }
+html[data-faction="sancak"] #win[data-scr="klan"] .chip.kl-rk.reis { background:linear-gradient(180deg,#c9a64a,#8a6a1e) !important; color:#14102a !important; }
+/* Yetenek ağacı sayfa zemini halka göre (v20 sıcak kahve zemin yerine) */
+html[data-faction] #win[data-scr="karakter"]:has(.yt) #page { background:var(--a5-ember),var(--a5-bg) !important; }
+html[data-faction="sancak"] #win[data-scr="karakter"]:has(.yt) .frame, html[data-faction="sancak"] #win[data-scr="karakter"]:has(.kx) .frame { background:linear-gradient(180deg,#121a2e,#090e1a) !important; }
+html[data-faction="sancak"] #win[data-scr="karakter"]:has(.yt) nav.tabs button { background:linear-gradient(#1c2744,#0f1629) !important; box-shadow:inset 0 0 0 1px #4d6080 !important; color:#e6ebf2 !important; }
+html[data-faction="sancak"] #win[data-scr="karakter"]:has(.yt) nav.tabs button.on { background:linear-gradient(90deg,#8a6a1e,#24386a) !important; box-shadow:inset 0 0 0 1px #f0d488,0 0 10px #f0d48855 !important; }
+/* Klan listeleri (.board: seviye ayrıcalıkları, üyeler, sıralama) halk malzemesinde */
+html[data-faction] #win[data-scr="klan"] .board > div { background:var(--a5-card) !important; border:1px solid var(--a5-line) !important; color:var(--a5-ink) !important; }
+html[data-faction] #win[data-scr="klan"] .board > div.me { background:var(--a5-cardh) !important; border-color:var(--a5-hi) !important; box-shadow:0 0 8px var(--a5-glow); }
+html[data-faction] #win[data-scr="klan"] .board > div.kl-past { opacity:.7; }
+html[data-faction] #win[data-scr="klan"] .board > div span { color:var(--a5-mut) !important; }
+/* Klan satırlarındaki ikincil düğmeler (Düzenle, Rütbe, Başvuruya çevir): açık yazı */
+html[data-faction] #win[data-scr="klan"] .page .btn.sm:not(.green):not(.red):not(:disabled) { color:var(--u-t2) !important; text-shadow:0 1px 1px #000 !important; }
+
+/* ==================== eski v25-cila.css ==================== */
+/* Cila (20 Kas gece): bütün pencereler ve kutular tek malzemede, büyük ekranda ölçekli; Aşama 1–5 kitinin kalan parçaları.
+   Yalnız görünüm. En son yüklenir. Pencere kimliği #win[data-scr] (ui-core SCR; diğerleri 'genel'), ölçek --wz (orient.js). */
+
+/* ---------- 1. Kit kalanları: halk başına görsel değişkenleri ---------- */
+html[data-faction="ocak"] {
+  --c-tgl0:var(--kdg-acma-kapama-kapali-ocak); --c-tgl1:var(--kdg-acma-kapama-acik-ocak);
+  --c-chk0:var(--kdg-onay-kutusu-kapali-ocak); --c-chk1:var(--kdg-onay-kutusu-acik-ocak);
+  --c-pb0:var(--kdg-cubuk-ilerleme-bos-ocak); --c-pb1:var(--kdg-cubuk-ilerleme-dolgu-ocak);
+  --c-bdg:var(--kdg-rozet-sayi-zemini-ocak); --c-dot:var(--kdg-rozet-bildirim-noktasi-ocak);
+  --c-ayr:var(--kdg-ayrac-catlak-dikilitas-ocak); --c-pk:var(--kdg-panel-kucuk-ocak);
+  --c-pbs:var(--kdg-panel-baslik-seridi-ocak); --c-yv0:var(--kdg-dugme-yuvarlak-normal-ocak); --c-yv1:var(--kdg-dugme-yuvarlak-basili-ocak);
+  --c-st1:var(--kdg-rozet-yildiz-1-ocak); --c-st2:var(--kdg-rozet-yildiz-2-ocak); --c-st3:var(--kdg-rozet-yildiz-3-ocak);
+  --c-lock:var(--kdg-rozet-kilit-ocak); --c-lv:var(--kdg-rozet-seviye-ocak); --c-new:var(--kdg-rozet-yeni-zemini-ocak);
+  --c-say-energy:var(--kdg-kaynak-sayaci-enerji-ocak); --c-say-gem:var(--kdg-kaynak-sayaci-yakut-ocak); --c-say-san:var(--kdg-kaynak-sayaci-san-ocak);
+  --c-mod:var(--kdg-modal-arkasi-ocak); --c-sheet:var(--kdg-alt-sayfa-ocak);
+  --c-levha:var(--kdg-levha-bina-adi-ocak); --c-kervan:var(--kdg-dugme-kervan-ocak);
+  --c-toz:var(--kdg-simge-ors-tozu-ocak);
+  --c-parch:#2a211c; --c-parch2:#1d1714; --c-ink:#efe2cb; --c-ink2:#b5a28a;
+}
+html[data-faction="sancak"] {
+  --c-tgl0:var(--kdg-acma-kapama-kapali-sancak); --c-tgl1:var(--kdg-acma-kapama-acik-sancak);
+  --c-chk0:var(--kdg-onay-kutusu-kapali-sancak); --c-chk1:var(--kdg-onay-kutusu-acik-sancak);
+  --c-pb0:var(--kdg-cubuk-ilerleme-bos-sancak); --c-pb1:var(--kdg-cubuk-ilerleme-dolgu-sancak);
+  --c-bdg:var(--kdg-rozet-sayi-zemini-sancak); --c-dot:var(--kdg-rozet-bildirim-noktasi-sancak);
+  --c-ayr:var(--kdg-ayrac-catlak-dikilitas-sancak); --c-pk:var(--kdg-panel-kucuk-sancak);
+  --c-pbs:var(--kdg-panel-baslik-seridi-sancak); --c-yv0:var(--kdg-dugme-yuvarlak-normal-sancak); --c-yv1:var(--kdg-dugme-yuvarlak-basili-sancak);
+  --c-st1:var(--kdg-rozet-yildiz-1-sancak); --c-st2:var(--kdg-rozet-yildiz-2-sancak); --c-st3:var(--kdg-rozet-yildiz-3-sancak);
+  --c-lock:var(--kdg-rozet-kilit-sancak); --c-lv:var(--kdg-rozet-seviye-sancak); --c-new:var(--kdg-rozet-yeni-zemini-sancak);
+  --c-say-energy:var(--kdg-kaynak-sayaci-enerji-sancak); --c-say-gem:var(--kdg-kaynak-sayaci-yakut-sancak); --c-say-san:var(--kdg-kaynak-sayaci-san-sancak);
+  --c-mod:var(--kdg-modal-arkasi-sancak); --c-sheet:var(--kdg-alt-sayfa-sancak);
+  --c-levha:var(--kdg-levha-bina-adi-sancak); --c-kervan:var(--kdg-dugme-kervan-sancak);
+  --c-toz:var(--kdg-simge-ors-tozu-sancak);
+  --c-parch:#22314f; --c-parch2:#18233b; --c-ink:#eef1f5; --c-ink2:#a9b6c8;
+}
+
+/* ---------- 2. Büyük ekran: bütün pencereler ve kutular ölçekli (telefonda --wz = 1, değişmez) ---------- */
+@media (min-height:600px) {
+  html[data-faction] #win.win.full .frame { zoom:var(--wz,1); width:min(1240px,calc(var(--lw) * .95 / var(--wz,1))) !important; height:min(760px,calc((var(--lh) - 40px) / var(--wz,1))) !important; }
+  html[data-faction] #modal .box { zoom:var(--wz,1); max-width:calc(var(--lw) * .94 / var(--wz,1)) !important; max-height:calc((var(--lh) - 30px) / var(--wz,1)) !important; }
+}
+
+/* ---------- 3. Parşömen yerine halk malzemesi: bütün pencere ve kutu içleri ---------- */
+html[data-faction] #win, html[data-faction] #modal {
+  --parch:var(--c-parch); --parch2:var(--c-parch2); --ink:var(--c-ink); --ink2:var(--c-ink2);
+}
+html[data-faction] #win .page {
+  background:var(--kd-mat),var(--a5-ember),var(--a5-bg) !important; background-size:var(--kd-mat-size,17px),100% 100%,100% 100% !important;
+  border:1px solid var(--a5-line) !important; border-radius:10px !important; box-shadow:inset 0 0 40px #000a !important; color:var(--a5-ink);
+}
+html[data-faction] #win .page .card, html[data-faction] #modal .box .card {
+  background:var(--a5-ember),var(--a5-card) !important; color:var(--a5-ink) !important; border:1px solid var(--a5-line) !important; box-shadow:0 3px 8px #0008 !important;
+}
+html[data-faction] #win .page .card b, html[data-faction] #modal .card b { color:var(--a5-hi); }
+html[data-faction] #win .page .chip, html[data-faction] #modal .chip { background:#0007; color:var(--a5-ink); border:1px solid var(--a5-line); }
+html[data-faction] #win .page .chip.up, html[data-faction] #modal .chip.up { color:var(--a5-ok); }
+html[data-faction] #win .page input:not([type=checkbox]):not([type=range]), html[data-faction] #win .page textarea, html[data-faction] #win .page select,
+html[data-faction] #modal input:not([type=checkbox]):not([type=range]), html[data-faction] #modal textarea, html[data-faction] #modal select {
+  background:#0009 !important; color:var(--a5-ink) !important; border:1px solid var(--a5-line2) !important; border-radius:6px;
+}
+html[data-faction] #win .page input::placeholder, html[data-faction] #modal input::placeholder, html[data-faction] #win .page textarea::placeholder { color:var(--a5-mut); }
+html[data-faction] #win .page a, html[data-faction] #modal a { color:var(--a5-hi); }
+html[data-faction] #win .page .mut, html[data-faction] #modal .mut { color:var(--a5-mut) !important; }
+html[data-faction] #win .page .up { color:var(--a5-ok); }
+
+/* ---------- 4. Bölüm başlıkları: kit ayracı (çatlak + dikilitaş) ---------- */
+html[data-faction] #win .page h3 { color:var(--a5-hi); }
+html[data-faction] #win .page > h3, html[data-faction] #win .page > div > h3, html[data-faction] #win .page section > h3 {
+  padding-bottom:7px; background:var(--c-ayr) left bottom / 100% 5px no-repeat; border-bottom:0 !important;
+}
+/* kutu başlığı: kit başlık şeridi */
+html[data-faction] #modal .box > h2 { background:var(--c-pbs) center / 100% 100% no-repeat; padding:6px 14px 8px; margin:0 0 6px; color:var(--a5-hi); text-shadow:0 1px 2px #000; }
+
+/* ---------- 5. Açma-kapama, onay kutusu ---------- */
+html[data-faction] .tgl { width:52px; height:26px; border:0 !important; border-radius:0 !important; background:var(--c-tgl0) center / contain no-repeat !important; box-shadow:none !important; }
+html[data-faction] .tgl.on { background-image:var(--c-tgl1) !important; }
+html[data-faction] .tgl i { display:none !important; }
+html[data-faction] #win input[type=checkbox], html[data-faction] #modal input[type=checkbox] {
+  appearance:none; -webkit-appearance:none; width:44px; height:22px; margin:0 4px; flex:none; vertical-align:middle; cursor:pointer;
+  background:var(--c-chk0) center / contain no-repeat; border:0;
+}
+html[data-faction] #win input[type=checkbox]:checked, html[data-faction] #modal input[type=checkbox]:checked { background-image:var(--c-chk1); }
+
+/* ---------- 6. İlerleme çubuğu: kit çubuğu ---------- */
+html[data-faction] #win .pbar, html[data-faction] #modal .pbar {
+  min-height:9px; border:0 !important; border-radius:0 !important; background:var(--c-pb0) center / 100% 100% no-repeat !important; padding:2px 3px; box-sizing:border-box; overflow:hidden;
+}
+html[data-faction] #win .pbar > i, html[data-faction] #modal .pbar > i { border-radius:2px; background:var(--c-pb1) left center / auto 100% repeat-x !important; box-shadow:0 0 6px var(--a5-glow); }
+
+/* ---------- 7. Rozetler: sekme sayısı, bildirim noktası, yıldız ---------- */
+html[data-faction] .qx-bd { background:var(--c-bdg) center / contain no-repeat !important; border:0 !important; box-shadow:none !important; color:#fff4dc !important; min-width:20px; height:20px; line-height:20px; text-align:center; text-shadow:0 1px 1px #000; }
+.kstars { display:inline-block; width:22px; height:22px; vertical-align:middle; background:center / contain no-repeat; }
+.kstars.k1 { background-image:var(--c-st1); } .kstars.k2 { background-image:var(--c-st2); } .kstars.k3 { background-image:var(--c-st3); }
+
+/* ---------- 8. Kaynak simgeleri (Aşama 2 ortak simgeler) ve sayaçlar ---------- */
+.ri.ri-akce, .ri.ri-energy, .ri.ri-gem, .ri.ri-san { background:center / contain no-repeat; }
+.ri.ri-akce > *, .ri.ri-energy > *, .ri.ri-gem > *, .ri.ri-san > * { visibility:hidden; }
+.ri.ri-akce { background-image:var(--kdg-simge-akce-kirp); }
+.ri.ri-energy { background-image:var(--kdg-simge-enerji-kirp); }
+.ri.ri-gem { background-image:var(--kdg-simge-yakut-kirp); }
+.ri.ri-san { background-image:var(--kdg-simge-san-kirp); }
+html[data-faction] .ri.ri-toz { background:var(--c-toz) center / 130% no-repeat; border-radius:50%; } html[data-faction] .ri.ri-toz > * { visibility:hidden; }
+html[data-faction] #game #hud .res .pill:has(.ri-energy) { border-image-source:var(--c-say-energy) !important; }
+html[data-faction] #game #hud .res .pill:has(.ri-gem) { border-image-source:var(--c-say-gem) !important; }
+
+/* ---------- 9. Başkent bina adları: kit levhası ---------- */
+html[data-hub2d][data-faction] #game #hud #blabels .blabel:not(.me) { background:none !important; border:0 solid transparent !important; border-image:var(--c-levha) 24 40 fill / 12px 20px stretch !important; padding:3px 14px 5px !important; min-width:96px; }
+html[data-hub2d][data-faction] #game #hud #blabels .blabel:not(.me) b { text-shadow:0 1px 2px #000; }
+
+/* ---------- 10. Küçük kare düğmeler (döndür, nitelik +): kit yuvarlak düğme ---------- */
+html[data-faction] #win .kx-rot, html[data-faction] #win .kx-plus {
+  background:var(--c-yv0) center / 100% 100% no-repeat !important; border:0 !important; box-shadow:none !important; color:var(--a5-hi) !important; text-shadow:0 1px 1px #000;
+}
+html[data-faction] #win .kx-rot:active, html[data-faction] #win .kx-plus:active { background-image:var(--c-yv1) !important; }
+html[data-faction] #win .kx-plus:disabled { opacity:.35; }
+
+/* ---------- 11. Plaka ve kart zeminleri (açık beyaz plaka yerine koyu halk plakası) ---------- */
+html[data-faction] #win, html[data-faction] #modal {
+  --kp-bg-plate:linear-gradient(180deg,rgba(255,255,255,.07),rgba(0,0,0,.25)); --kp-seam2:var(--a5-line); --kp-shade:rgba(0,0,0,.35);
+}
+/* Kapı: bölge manzarası karartılır, stage taşları koyu plaka */
+html[data-faction] #win .zbg::before { background:linear-gradient(180deg, rgba(10,8,8,.72), rgba(10,8,8,.55) 45%, rgba(10,8,8,.78)) !important; }
+html[data-faction="sancak"] #win .zbg::before { background:linear-gradient(180deg, rgba(8,12,24,.74), rgba(8,12,24,.55) 45%, rgba(8,12,24,.8)) !important; }
+html[data-faction] #win .zbg h3, html[data-faction] #win .zbg > .mut, html[data-faction] #win .zbg > p { text-shadow:0 1px 2px #000 !important; }
+html[data-faction] #win .st { background:var(--a5-card) !important; color:var(--a5-ink) !important; border:1px solid var(--a5-line) !important; }
+html[data-faction] #win .st.gate { background:linear-gradient(180deg,#5a3a18,#2e1e10) !important; border-color:var(--a5-hi) !important; }
+html[data-faction] #win .st.boss { background:linear-gradient(180deg,#6a2216,#2e100a) !important; border-color:#d2561c !important; }
+html[data-faction] #win .st.lock { opacity:.5; } html[data-faction] #win .st .stars.off { color:#fff4; }
+html[data-faction] #win .st.sel { box-shadow:inset 0 0 0 2px var(--a5-hi), 0 0 10px var(--a5-glow) !important; }
+/* Pazar kartları */
+html[data-faction] #win .pz-card { background:var(--a5-card) !important; color:var(--a5-ink); box-shadow:0 2px 6px #0008 !important; }
+html[data-faction] #win .pz-card.g1 { background:linear-gradient(180deg,#1d3150,#152238) !important; }
+html[data-faction] #win .pz-card.g2, html[data-faction] #win .pz-card.g3 { background:linear-gradient(180deg,#4a3214,#241a0e) !important; box-shadow:0 0 8px #ffb52e55 !important; }
+/* Klan Oba Avı zorluk kartları */
+html[data-faction] #win .kl-diff { background:var(--a5-card) !important; border-color:var(--a5-line) !important; }
+html[data-faction] #win .kl-diff b { color:var(--a5-hi) !important; } html[data-faction] #win .kl-diff.on { border:2px solid var(--a5-hi) !important; background:var(--a5-cardh) !important; }
+
+/* ---------- 12. Açık yüzeyli eski bileşenler: koyu halk kartına ---------- */
+html[data-faction] #win :is(.icard,.tg,.ibtn,.tier,.kc,.tbtn,.scard,.ycard,.okart,.kv-card,.kl-chest,.cand,.dm-sum,.mlx-write,.rrep,.arow,.ev-row,.ql-row,.node,.wrow,.zrow,.foe,.kds,.kdh,.kdc,.ypack,.pv-plan,.pv-msr,.cm,.gdet,.ares,.slot,.eq),
+html[data-faction] #modal :is(.icard,.tg,.ibtn,.tier,.kc,.tbtn,.scard,.ycard,.okart,.kv-card,.kl-chest,.ev-row,.node,.foe,.gdet,.ares,.slot,.eq) {
+  background:var(--a5-card) !important; color:var(--a5-ink) !important;
+}
+html[data-faction] #win :is(.ibtn.sel,.tg.on,.tbtn.on,.tier.on,.kc.now,.ycard.mine,.kl-chest.open,.cand.me),
+html[data-faction] #modal :is(.ibtn.sel,.tg.on,.tbtn.on,.tier.on,.kc.now) { background:var(--a5-cardh) !important; border-color:var(--a5-hi) !important; box-shadow:0 0 0 1px var(--a5-hi),0 0 10px var(--a5-glow) !important; }
+html[data-faction] #win .kc.big, html[data-faction] #win .kl-chest.open { background:linear-gradient(180deg,#4a3214,#241a0e) !important; }
+html[data-faction] #win .kl-chest.got { background:linear-gradient(180deg,#1f3a22,#122016) !important; }
+html[data-faction] #win :is(.icard,.tg,.ibtn,.tbtn,.kv-card,.kl-chest,.kl-diff,.ycard,.tier) small, html[data-faction] #win .kv-perks li { color:var(--a5-mut) !important; }
+html[data-faction] #win :is(.icard,.tg,.ibtn,.tbtn,.kv-card,.kl-chest,.kl-diff,.ycard,.tier) b, html[data-faction] #win .kv-perks li b { color:var(--a5-ink) !important; }
+html[data-faction] #modal .ibtn b, html[data-faction] #modal .ibtn span { color:var(--a5-ink) !important; }
+/* nadirlik adları koyu zeminde okunur ton */
+html[data-faction] #win .gn.g0, html[data-faction] #modal .gn.g0 { color:#c9ced6 !important; }
+html[data-faction] #win .pz-nm .mut, html[data-faction] #win .pz-bot .mut { color:var(--a5-mut) !important; }
+html[data-faction] #win .pz-bot .price { color:var(--a5-hi) !important; }
+html[data-faction] #win .cf { background:#0006 !important; color:var(--a5-ink) !important; }
+/* Diyar haritası bölge kartları: manzara karartılır */
+html[data-faction] #win .zcard { position:relative; isolation:isolate; color:var(--a5-ink) !important; }
+html[data-faction] #win .zcard::before { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.72)); pointer-events:none; }
+html[data-faction] #win .zcard b, html[data-faction] #win .zcard small { color:var(--a5-ink) !important; text-shadow:0 1px 2px #000; }
+/* Örs olasılık kutuları: anlam renkleri koyu zeminde */
+html[data-faction] #win .od.ok { background:linear-gradient(180deg,#1f4a24,#132c16) !important; border-color:#5cbf6a !important; color:#c8f2cc !important; }
+html[data-faction] #win .od.stay { background:linear-gradient(180deg,#3a3326,#221d16) !important; border-color:#8a7a5a !important; color:#e6dccb !important; }
+html[data-faction] #win .od.safe { background:linear-gradient(180deg,#14403c,#0c2624) !important; border-color:#3fbfb2 !important; color:#c4f0ea !important; }
+html[data-faction] #win .od.drop { background:linear-gradient(180deg,#4a2a10,#2a170a) !important; border-color:#e08a2c !important; color:#ffd6a8 !important; }
+html[data-faction] #win .od.brk { background:linear-gradient(180deg,#4a1610,#2a0c08) !important; border-color:#d2402c !important; color:#ffc4b8 !important; }
+
+/* ---------- 13. Kalan açık yüzeyler (yüzey taraması, 20 Kas gece) ---------- */
+html[data-faction] #modal :is(.box.onl,.box.wx,.box.starter,.box.menu) > .in { background:transparent !important; color:var(--a5-ink) !important; }
+html[data-faction] :is(#win,#modal) :is(.yrow,.load.yload > div,.v13-card,.onl-c,.wrow,.wslot,.mlx-item,.ivinfo.nil,.rk-seg > button,.ayopt,.sk-card,.ypack,.ych,.ycard,.yhead) {
+  background:var(--a5-card) !important; color:var(--a5-ink) !important; border-color:var(--a5-line) !important;
+}
+html[data-faction] :is(#win,#modal) :is(.yrow.on,.v13-card.new,.onl-c.run,.onl-c.ok,.wslot.now,.mlx-item.gift,.rk-seg > button.on,.ayopt.on,.ypack.first,.cxtypes > button.on,.rh-nav > button.on) {
+  background:var(--a5-cardh) !important; color:var(--a5-ink) !important; border-color:var(--a5-hi) !important; box-shadow:0 0 0 1px var(--a5-hi) inset !important;
+}
+html[data-faction] :is(#win,#modal) .v13-ic { background:#0007 !important; }
+html[data-faction] :is(#win,#modal) :is(.yrow,.v13-card,.onl-c,.wrow,.mlx-item,.sk-card,.ypack,.ycard,.ych) :is(b,h3,h4,strong) { color:var(--a5-ink) !important; }
+html[data-faction] :is(#win,#modal) :is(.yrow,.v13-card,.onl-c,.wrow,.mlx-item,.sk-card,.ypack,.ycard,.ych) :is(small,time,.mut,.ysub,.sk-cls) { color:var(--a5-mut) !important; }
+html[data-faction] #win em.atag { background:var(--a5-cardh) !important; color:var(--a5-hi) !important; border:1px solid var(--a5-line2) !important; }
+html[data-faction] #win em.atag.off { background:#0006 !important; color:var(--a5-mut) !important; border-color:var(--a5-line) !important; }
+html[data-faction] :is(#win,#modal) .pf-lv { color:#1a1208; }
+html[data-faction="ocak"] { --i-savas:var(--kdg-simge-savas-ocak); --i-zindan:var(--kdg-simge-zindan-ocak); --i-etkinlik:var(--kdg-simge-etkinlik-ocak); --i-ana-gorev:var(--kdg-simge-ana-gorev-ocak); --i-meydan:var(--kdg-simge-meydan-ocak); --i-gorevler:var(--kdg-simge-gorevler-ocak); --i-mini-dizi:var(--kdg-simge-mini-dizi-ocak); --i-odul-sandigi:var(--kdg-simge-odul-sandigi-ocak); --i-ansiklopedi:var(--kdg-simge-ansiklopedi-ocak); --i-klan:var(--kdg-simge-klan-ocak); --i-posta:var(--kdg-simge-posta-ocak); --i-karakter:var(--kdg-simge-karakter-ocak); --i-diyar-haritasi:var(--kdg-simge-diyar-haritasi-ocak); --i-baskin:var(--kdg-simge-baskin-ocak); }
+html[data-faction="sancak"] { --i-savas:var(--kdg-simge-savas-sancak); --i-zindan:var(--kdg-simge-zindan-sancak); --i-etkinlik:var(--kdg-simge-etkinlik-sancak); --i-ana-gorev:var(--kdg-simge-ana-gorev-sancak); --i-meydan:var(--kdg-simge-meydan-sancak); --i-gorevler:var(--kdg-simge-gorevler-sancak); --i-mini-dizi:var(--kdg-simge-mini-dizi-sancak); --i-odul-sandigi:var(--kdg-simge-odul-sandigi-sancak); --i-ansiklopedi:var(--kdg-simge-ansiklopedi-sancak); --i-klan:var(--kdg-simge-klan-sancak); --i-posta:var(--kdg-simge-posta-sancak); --i-karakter:var(--kdg-simge-karakter-sancak); --i-diyar-haritasi:var(--kdg-simge-diyar-haritasi-sancak); --i-baskin:var(--kdg-simge-baskin-sancak); }
+/* ---------- 14. Aşama 3 madalyon simgeleri: Kapı, sekmeler, menü ---------- */
+html[data-faction] #modal .gatemenu [data-a="gateGo"] .ico, html[data-faction] #modal .gatemenu [data-a="gateDestan"] .ico, html[data-faction] #modal .gatemenu [data-a="gateCz"] .ico,
+html[data-faction] #modal .box.menu [data-a="seriesOpen"] .ico, html[data-faction] #modal .box.menu [data-a="rehber"] .ico, html[data-faction] #modal .box.menu [data-a="friendsMenu"] .ico, html[data-faction] #modal .box.menu [data-a="supportMenu"] .ico, html[data-faction] #modal .box.menu [data-a="server"] .ico,
+html[data-faction] #win nav.tabs button:is([data-id="zones"],[data-id="dungeons"],[data-id="events"],[data-id="main"],[data-id="daily"],[data-id="weekly"],[data-id="monthly"]) .tico {
+  border-image:none !important; background:var(--kdi) center / contain no-repeat !important; box-shadow:none !important; border-color:transparent !important;
+}
+html[data-faction] #modal .gatemenu [data-a] .ico > *, html[data-faction] #modal .box.menu :is([data-a="seriesOpen"],[data-a="rehber"],[data-a="friendsMenu"],[data-a="supportMenu"],[data-a="server"]) .ico > *,
+html[data-faction] #win nav.tabs button:is([data-id="zones"],[data-id="dungeons"],[data-id="events"],[data-id="main"],[data-id="daily"],[data-id="weekly"],[data-id="monthly"]) .tico > * { visibility:hidden; }
+html[data-faction] #modal .gatemenu [data-a="gateGo"] .ico { --kdi:var(--i-savas); }
+html[data-faction] #modal .gatemenu [data-a="gateDestan"] .ico { --kdi:var(--i-ana-gorev); }
+html[data-faction] #modal .gatemenu [data-a="gateCz"] .ico { --kdi:var(--i-meydan); }
+html[data-faction] #modal .box.menu [data-a="seriesOpen"] .ico { --kdi:var(--i-mini-dizi); }
+html[data-faction] #modal .box.menu [data-a="rehber"] .ico { --kdi:var(--i-ansiklopedi); }
+html[data-faction] #modal .box.menu [data-a="friendsMenu"] .ico { --kdi:var(--i-karakter); }
+html[data-faction] #modal .box.menu [data-a="supportMenu"] .ico { --kdi:var(--i-posta); }
+html[data-faction] #modal .box.menu [data-a="server"] .ico { --kdi:var(--i-klan); }
+html[data-faction] #win nav.tabs button[data-id="zones"] .tico { --kdi:var(--i-savas); }
+html[data-faction] #win nav.tabs button[data-id="dungeons"] .tico { --kdi:var(--i-zindan); }
+html[data-faction] #win nav.tabs button[data-id="events"] .tico { --kdi:var(--i-etkinlik); }
+html[data-faction] #win nav.tabs button[data-id="main"] .tico { --kdi:var(--i-ana-gorev); }
+html[data-faction] #win nav.tabs button:is([data-id="daily"],[data-id="weekly"],[data-id="monthly"]) .tico { --kdi:var(--i-gorevler); }
+/* Kervan: kit Kervan eylem düğmesi (9 dilim 32/28) */
+html[data-faction] #win .kv-card .btn.kv-buy:not(:disabled) { border:0 solid transparent !important; border-image:var(--c-kervan) 28 32 fill / 14px 16px stretch !important; background:none !important; color:#fff4dc !important; text-shadow:0 1px 2px #000; }
+/* Ustalık düğümleri ve ağaç kutuları */
+html[data-faction] #win :is(.mst-c,.tree) { background:var(--a5-card) !important; color:var(--a5-ink) !important; border-color:var(--a5-line) !important; }
+html[data-faction] #win .mst-c.on, html[data-faction] #win .mst-c:not(.off):has(.mst-pips i.on) { border-color:var(--a5-hi) !important; }
+html[data-faction] #win .mst-grid.off .mst-c { opacity:.6; }
+html[data-faction] #win :is(.mst-c,.tree) b { color:var(--a5-ink) !important; } html[data-faction] #win :is(.mst-c,.tree) small { color:var(--a5-mut) !important; }
+/* Koyu zeminde kalan koyu yazılar (kontrast taraması) */
+html[data-faction] #win .page .btn.sm:not(.green):not(.red):not(.blue):not(:disabled), html[data-faction] #modal .btn.sm:not(.green):not(.red):not(.blue):not(:disabled) { color:var(--u-t2) !important; text-shadow:0 1px 1px #000 !important; }
+html[data-faction] :is(#win,#modal) .gn.g1 { color:#8cc4ff !important; } html[data-faction] :is(#win,#modal) .gn.g2, html[data-faction] :is(#win,#modal) .gn.g3 { color:#ffc861 !important; }
+html[data-faction] #win :is(.pz-b,.pz-sb,.pz-st) { color:var(--a5-ink) !important; background:#0006 !important; }
+html[data-faction] :is(#win,#modal) :is(.v13-body,.v13-cb > span,.cslo,.wfc em,.mlx-write label small,.mq-rw small,.qb2-day,.onl-no,.srv-row span,.mz-rfoot b,.fogn,.kl-diff em,.kl-chest em,.yamt,.yamt small,.v13-grp > h4 > em) { color:var(--a5-mut) !important; }
+html[data-faction] :is(#win,#modal) :is(.kv-herotx b,.yhead b,.zinfo u,.yamt) { color:var(--a5-ink) !important; }
+html[data-faction] :is(#win,#modal) .warn { color:#ff8a70 !important; }
+html[data-faction] #win nav.tabs button.on small { color:#f3e2bf !important; }
+/* Kapı: bölge şeridi ve bilgi çubuğu */
+html[data-faction] #win .zonerow button.on { background:none !important; color:var(--u-tsel) !important; text-shadow:0 1px 2px #000 !important; }
+html[data-faction] #win .zonerow button.on .ri:not(.rk) { --ic:var(--u-tsel) !important; }
+html[data-faction] #win .zinfo { background:var(--a5-card) !important; color:var(--a5-ink) !important; border-color:var(--a5-line) !important; }
+html[data-faction] #win .zinfo em { color:var(--a5-ok) !important; } html[data-faction] #win .zinfo u { color:var(--a5-hi) !important; }
+
+/* ---------- 15. Kalan kit rozetleri ---------- */
+/* bildirim noktası: sekme ve menü rozetleri */
+html[data-faction] .tdot, html[data-faction] #modal .badge.dot { background:var(--c-dot) center / contain no-repeat !important; border:0 !important; box-shadow:none !important; width:14px !important; height:14px !important; }
+/* kilitli stage: kit kilit rozeti */
+html[data-faction] #win .st.lock > .ri { width:22px; height:22px; background:var(--c-lock) center / contain no-repeat; } html[data-faction] #win .st.lock > .ri > svg { visibility:hidden; }
+/* profil seviye rozeti */
+html[data-faction] #modal .pf-lv, html[data-faction] #win .pf-lv { background:var(--c-lv) center / contain no-repeat !important; color:#fff4dc !important; text-shadow:0 1px 1px #000; min-width:30px; min-height:30px; padding:0 !important; display:grid; place-items:center; border-radius:0 !important; }
+/* küçük kartlar (klan dükkânı vb.): kit küçük panel */
+html[data-faction] #win .cards > .card { border:0 solid transparent !important; border-image:var(--c-pk) 40 fill / 10px stretch !important; background:none !important; box-shadow:none !important; }
+/* kaydırma çubukları (ses ayarı): kit ilerleme çubuğu + yuvarlak düğme */
+html[data-faction] :is(#win,#modal) input[type=range] { -webkit-appearance:none; appearance:none; height:14px; background:var(--c-pb0) center / 100% 100% no-repeat; border:0; }
+html[data-faction] :is(#win,#modal) input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:24px; height:24px; border:0; background:var(--c-yv0) center / contain no-repeat; cursor:pointer; }
+html[data-faction] :is(#win,#modal) input[type=range]::-moz-range-thumb { width:24px; height:24px; border:0; background:var(--c-yv0) center / contain no-repeat; }
+
+/* ---------- 16. Kutu içleri ve öğretici kartı: parşömen yerine halk malzemesi ---------- */
+html[data-faction] #tut { --parch:var(--c-parch); --parch2:var(--c-parch2); --ink:var(--c-ink); --ink2:var(--c-ink2); }
+html[data-faction] :is(#modal,#tut,#win) { --kp-bg-hide:var(--kd-mat), linear-gradient(180deg,var(--c-parch),var(--c-parch2)); }
+html[data-faction] :is(#modal .box .in, #tut .tin) { background:var(--kd-mat),var(--a5-ember),var(--a5-bg) !important; background-size:var(--kd-mat-size,17px),100% 100%,100% 100% !important; color:var(--a5-ink) !important; border:1px solid var(--a5-line) !important; box-shadow:inset 0 0 22px #0009 !important; }
+html[data-faction] #tut .tin b, html[data-faction] #tut .tin h3 { color:var(--a5-hi); } html[data-faction] #tut .tin .mut, html[data-faction] #tut .tnote, html[data-faction] #tut .tskip { color:var(--a5-mut) !important; }
+html[data-faction] #tut .tcard { background:var(--kd-mat),var(--kd-panel-fill) !important; border:0 solid transparent !important; border-image:var(--u-pb) 64 / 22px / 8px stretch !important; }
+
+/* §17 Yetenek: otomatik düzen düğmesi açıkken altın kenar */
+.yt-bb.on { box-shadow:inset 0 0 0 1px var(--kp-gold,#d8b25a), 0 0 6px rgba(216,178,90,.35); color:#ffe9a8; }

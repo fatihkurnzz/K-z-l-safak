@@ -1,0 +1,238 @@
+{
+ "_aciklama": "İskeletli (yüksek ayrıntılı) modeller. Açılışta yüklenir (?hd=0 ile kapatılır); dosyası olmayan birim prosedürel modelle çizilir. Anahtarlar: sınıf (warrior, rogue, priest, mage) ya da yaratık kimliği (shared/zones.js). Dosyalar tools/convert-models.sh ile assets-src/models altındaki FBX kaynaklarından üretilir. Rehber: models/REHBER.md",
+ "anims": {
+  "idle": "anims/idle.json",
+  "combatIdle": "anims/combat_idle.json",
+  "run": "anims/run.json",
+  "attack": "anims/attack.json",
+  "special": "anims/special.json",
+  "cast": "anims/cast.json",
+  "cast2": "anims/cast2.json",
+  "shoot": "anims/shoot.json",
+  "hit": "anims/hit.json",
+  "death": "anims/death.json",
+  "victory": "anims/victory.json"
+ },
+ "characters": {
+  "warrior": {
+   "file": "characters/paladin.json",
+   "bright": 2.6,
+   "lift": 0.07,
+   "accent": "#8fa6d8",
+   "metalness": 0.62,
+   "roughness": 0.42
+  },
+  "warrior.ocak": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.7,
+   "tint": "#ffc0a8",
+   "metalness": 0.6,
+   "roughness": 0.45
+  },
+  "rogue": {
+   "file": "characters/archer.json",
+   "bright": 1.3
+  },
+  "rogue.ocak": {
+   "file": "characters/goblin.json",
+   "bright": 1.5,
+   "tint": "#e8c8b8"
+  },
+  "priest": {
+   "file": "characters/priest.json",
+   "weaponKind": "mace",
+   "tint": "#fff4d8",
+   "bright": 1.6
+  },
+  "priest.ocak": {
+   "file": "characters/orc.json",
+   "weaponKind": "mace",
+   "bright": 1.3,
+   "tint": "#d8c0b0"
+  },
+  "mage": {
+   "file": "characters/mage.json",
+   "weaponKind": "staff",
+   "tint": "#b8ccff",
+   "bright": 1.4
+  },
+  "mage.sancak": {
+   "file": "characters/priest.json",
+   "weaponKind": "staff",
+   "tint": "#c4d0ff",
+   "bright": 1.7,
+   "accent": "#9cc8ff"
+  },
+  "yagmaci": {
+   "file": "characters/goblin.json",
+   "bright": 1.5
+  },
+  "saman": {
+   "file": "characters/goblin.json",
+   "weaponKind": "staff",
+   "tint": "#d0ffb0",
+   "bright": 1.5
+  },
+  "kitir": {
+   "file": "characters/goblin.json",
+   "bright": 1.5,
+   "tint": "#ffd0a0"
+  },
+  "ebekul": {
+   "file": "characters/goblin.json",
+   "weaponKind": "staff",
+   "tint": "#e0c0ff",
+   "bright": 1.5
+  },
+  "taskiran": {
+   "file": "characters/orc.json",
+   "bright": 1.3
+  },
+  "borak": {
+   "file": "characters/orc.json",
+   "bright": 1.3,
+   "tint": "#b0b8c8"
+  },
+  "gurtas": {
+   "file": "characters/orc.json",
+   "tint": "#a8c8d8",
+   "bright": 1.3
+  },
+  "yanik": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.6,
+   "tint": "#ffb890"
+  },
+  "donuk": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.7,
+   "tint": "#a8d8ff"
+  },
+  "erlik": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.8,
+   "tint": "#c8e8ff"
+  },
+  "goblin": {
+   "file": "characters/goblin.json",
+   "bright": 1.5
+  },
+  "goblin_bouncer": {
+   "file": "characters/goblin.json",
+   "bright": 1.5,
+   "tint": "#d8b890"
+  },
+  "goblin_necromancer": {
+   "file": "characters/goblin.json",
+   "weaponKind": "staff",
+   "tint": "#d0b0ff",
+   "bright": 1.5
+  },
+  "goblin_juggler": {
+   "file": "characters/goblin.json",
+   "bright": 1.5,
+   "tint": "#ffc0a0"
+  },
+  "kobold": {
+   "file": "characters/goblin.json",
+   "bright": 1.5,
+   "tint": "#e0c0a0"
+  },
+  "hobgoblin": {
+   "file": "characters/goblin.json",
+   "bright": 1.5,
+   "tint": "#ffb080"
+  },
+  "bugbear": {
+   "file": "characters/goblin.json",
+   "bright": 1.4,
+   "tint": "#e0b890"
+  },
+  "troll": {
+   "file": "characters/orc.json",
+   "bright": 1.3,
+   "tint": "#b8d8c8"
+  },
+  "troll_warrior": {
+   "file": "characters/orc.json",
+   "bright": 1.3,
+   "tint": "#c0c8d0"
+  },
+  "troll_shaman": {
+   "file": "characters/orc.json",
+   "weaponKind": "staff",
+   "bright": 1.3,
+   "tint": "#a8d8ff"
+  },
+  "troll_witch_doctor": {
+   "file": "characters/orc.json",
+   "weaponKind": "staff",
+   "bright": 1.3,
+   "tint": "#c8ffb0"
+  },
+  "troll_berserker": {
+   "file": "characters/orc.json",
+   "bright": 1.3,
+   "tint": "#ffc0a8"
+  },
+  "half_troll_warrior": {
+   "file": "characters/orc.json",
+   "bright": 1.3,
+   "tint": "#d0d8c0"
+  },
+  "troll_captain": {
+   "file": "characters/orc.json",
+   "bright": 1.3,
+   "tint": "#e0c8b0"
+  },
+  "half_troll_captain": {
+   "file": "characters/orc.json",
+   "bright": 1.3,
+   "tint": "#c8c8e0"
+  },
+  "troll_king": {
+   "file": "characters/orc.json",
+   "bright": 1.35,
+   "tint": "#ffe0b0"
+  },
+  "dark_soldier": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.6,
+   "tint": "#d0b0b0"
+  },
+  "black_guard": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.6
+  },
+  "doom_soldier": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.6,
+   "tint": "#c8b0e0"
+  },
+  "dark_knight": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.6,
+   "tint": "#ffb0b0"
+  },
+  "shadow_knight": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.5,
+   "tint": "#a0a0b8"
+  },
+  "dread_knight": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.6,
+   "tint": "#e0c0c0"
+  },
+  "doom_knight": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.6,
+   "tint": "#d0b0ff"
+  },
+  "death_knight": {
+   "file": "characters/dark_knight.json",
+   "bright": 1.8,
+   "tint": "#c8e8ff"
+  }
+ }
+}

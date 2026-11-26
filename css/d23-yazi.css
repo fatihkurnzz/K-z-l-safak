@@ -1,0 +1,165 @@
+/* 23 Kas K-17: açılış ekranı (yatay telefon). Logo + ONLINE + alt yazı tam görünsün; sunucu çubuğu ve düğme resmin ALTINDA durur. */
+@media (max-height:480px) {
+  #loading .ld-art { inset:0 0 54px 0; background:url(../img/korant-acilis.jpg) center top/contain no-repeat;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
+  #loading .ld-blur { filter:blur(18px) brightness(.4); }
+  #loading .ld-foot { bottom:calc(var(--sab, 0px) + 5px); gap:3px; }
+  #loading .ld-start { padding:3px 8px; gap:10px; }
+  #loading .ld-sv { padding:3px 10px; }
+  #loading .ld-go { padding:8px 22px; }
+  #loading .ld-note { min-height:0; }
+  #loading .ld-note:empty { display:none; }
+}
+/* 23 Kas K-19: en küçük okunur yazı. 11px altındaki oyuncuya görünen metinler 11px'e çıkarıldı (seçiciler kaynak kurallardan kopyalandı).
+   Savaş ekranı (battleUI, beceri çubuğu, ystat, sonuç kutusu) ve dairelere sığan rozet/çubuk sayıları bu bloğun DIŞINDA bırakıldı. */
+.onl-no,
+.onl-c .onl-loot .chip,
+.ann2-tag,
+.ann2 time,
+.v13-tb small,
+.v13-tag,
+.v13-cm time,
+.v13-cm em,
+#game #chatbar .cb-tabs button,
+.kx-fac,
+.kx-trees span,
+.kx-pow small,
+.kx-a small,
+.kx-free,
+.kx-ftabs button,
+.kx-r,
+.kx-a,
+.kx h4,
+.yt h5,
+.yt-cls b small,
+.yt-b em,
+.yt-note,
+.yt-th small,
+.yt-n em,
+.yt-add button,
+.yt-shut,
+.yt-load small,
+.yt-bb,
+.yt-dh small,
+.yt-kv div,
+.yt-req,
+.yt-desc,
+html.short .yt-th b,
+html.short .yt-th small,
+html[data-hub2d] #game #hud .premrow .prem b,
+html[data-faction] .qx-bd,
+.zcard .zc-ash,
+.ds-kind,
+.ds-scene small,
+.ds-pz small,
+#game #hud .qtrk .qt-dsn,
+.olz .olz-clsl .olz-cls,
+.mz-rate small,
+.mz-tok small,
+.mz-pow small,
+.mz-who .chip,
+.mz-u small,
+.fg-sock small,
+.ddi-out,
+.subs .sb i,
+.setr i,
+.kdcopy .cpy,
+#tut .twait,
+.qx-scope .qb2-rw small,
+.mq-chh small,
+.mq-n b,
+.mq-ch,
+.mqtrk small,
+.sbr .ar,
+.sbr small,
+.sts span,
+.str i,
+.str em,
+.setr em,
+.pz-b,
+.pz-range button,
+.bk-mark b,
+.bk-tiers > div,
+.mdz-rw,
+.mdz-rw .chip,
+.short .faction .nf-bless,
+.short .faction .nf-full,
+.olz-slots small,
+.olz-race small,
+.olz-nf,
+.olz-bl,
+.olz-stats em,
+.olz-hint,
+.olz-ph,
+.olz-note,
+.olz-step small,
+.olz-sw small,
+.olz-honest,
+.olz-msg,
+.olz-desc,
+.olz-cinfo,
+.olz-lab,
+.rh-bar span,
+.ks-local,
+.ks-info .ks-clan,
+.ks-lv small,
+.ks-ph,
+.ks-brand small,
+.ks-info small,
+.ks-pl-race,
+.ks-pl-meta,
+.orn-yer small,
+.orn-gorev small,
+.orn-ben small,
+.ntgrid .row .mut,
+.srv .srv-kick,
+.wsrv,
+.kb-head small,
+.kb-off,
+.kb-sub,
+.mlx-item small,
+.mlx-att small,
+.chx-id small,
+.chx-pills small,
+.chx .kv > div small,
+.calx-band small,
+.qt-k,
+.qt-row em,
+.sv-opt small,
+.ql-sec h3 small,
+.qtrk.open .qt-all,
+.nb-hd small,
+.nb-st small,
+.nb-bar span,
+.nb-top small,
+.nb-ch small,
+.nb-pt > small,
+.nb-lb i,
+#giris .gr-logo small,
+#giris .gr-hint,
+#giris .gr-foot,
+.ql-row b small,
+.dokum .dk-t small { font-size:11px; }
+
+/* 23 Kas K-19: dar yerlerde (rozet, çubuk içi sayı, dock etiketi) 9.5px taban */
+#game #hud .uf-bar s { font-size:9.5px; }
+#game #hud .mm-hd { font-size:9.5px; }
+#game #hud .mm-ft { font-size:9.5px; }
+#game #hud .mm-ft button { font-size:10px; }
+#game #hud .hb-slot em { font-size:9.5px; }
+#game #hud .dock .dbtn > span:not(.badge) { font-size:9.5px; }
+#game #hud .expbar b { font-size:9.5px; }
+#game #hud #blabels .blabel .rl { font-size:9.5px; }
+.kx-ilv { font-size:9.5px; }
+.zt i b { font-size:9.5px; }
+.zt.days i b { font-size:9.5px; }
+.qb2-ring small { font-size:10px; }
+#tut .tprog small { font-size:9.5px; }
+.qx-scope .qb2-ring small { font-size:9.5px; }
+.ivc .ivst { font-size:9.5px; }
+.pcard .pinfo .nf-badge { font-size:10px; }
+.short .pcard .pinfo .nf-badge { font-size:9.5px; }
+.nb-mm i { font-size:9.5px; }
+#loading .ld-bar b { font-size:10px; }
+#loading .ld-srv small { font-size:9.5px; }
+#loading .ld-sv i { font-size:9.5px; }

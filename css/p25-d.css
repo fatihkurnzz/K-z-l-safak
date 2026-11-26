@@ -1,0 +1,111 @@
+/* P25-d — düzeltme ve ek ekranlar (docs/referans/p25-ek-ekranlar/TALIMAT.md). Her kural ekran kapsamlı olmalı. */
+
+/* ===== Savaş Sonu · Zafer / Yenilgi (ui-battle.js showResult; #modal .box.p25r; referans p25-ek-ekranlar/09–10) =====
+   Kendi çerçevesi olan özel ekran: ModalShell'e girmez ("p25bres" sınıfı P24 kabuğunu ve eski .bres/.rz2 kurallarını dışarıda bırakır).
+   --u: 880x406 yatay ekranda 1px; ekran küçüldükçe orantılı küçülür (en çok 1.5px). */
+#modal:has(> .box.p25r) { background: radial-gradient(ellipse at 50% 42%, #0008, #000c); }
+#modal .box.p25r {
+  --u: min(calc(var(--lh, 100vh) * .00236), calc(var(--lw, 100vw) * .001136), 1.5px);
+  --p25-ac: #f3d58a; --p25-ac2: #a8772a; --p25-bg: #0d1220;
+  position: relative; box-sizing: border-box; width: min(calc(var(--u) * 860), 96vw); max-width: none; min-height: calc(var(--u) * 300);
+  padding: 0 calc(var(--u) * 30) calc(var(--u) * 10); margin-top: calc(var(--u) * 22);
+  display: flex; flex-direction: column; align-items: center; overflow: visible;
+  border: calc(var(--u) * 18) solid transparent; border-radius: 0;
+  border-image: var(--k-frame) 42 / calc(var(--u) * 18) stretch;
+  background:
+    radial-gradient(70% 55% at 50% 0%, #e8b45a2e, transparent 70%),
+    linear-gradient(180deg, #1a2234e6, #0b0f1aee 60%, #070a12f4);
+  background-clip: padding-box;
+  box-shadow: 0 18px 60px #000d; color: #efe6d2; text-align: center;
+}
+html[data-faction="ocak"] #modal .box.p25r { --p25-bg: #170f0e; background: radial-gradient(70% 55% at 50% 0%, #e8954a2e, transparent 70%), linear-gradient(180deg, #2a1c1ae6, #120c0cee 60%, #0a0707f4); background-clip: padding-box; }
+#modal .box.p25r.yenilgi { background: radial-gradient(70% 55% at 50% 0%, #9fb2c826, transparent 70%), linear-gradient(180deg, #1b2533e8, #101722ee 60%, #090d14f4); background-clip: padding-box; }
+html[data-faction="ocak"] #modal .box.p25r.yenilgi { background: radial-gradient(70% 55% at 50% 0%, #b8b0a826, transparent 70%), linear-gradient(180deg, #24201fe8, #151211ee 60%, #0c0a0af4); background-clip: padding-box; }
+#modal .box.p25r::before, #modal .box.p25r::after { content: none; }
+
+/* Kapat (X): kit düğmesi; ana üsse döner */
+#modal .box.p25r > .mx {
+  width: calc(var(--u) * 34); height: calc(var(--u) * 34); margin: calc(var(--u) * -14) calc(var(--u) * -14) 0 0; padding: 0;
+  background: var(--k-close) center / 100% 100% no-repeat; border: 0; border-radius: 0; box-shadow: none; color: transparent; font-size: 0;
+  align-self: flex-end; flex: none; position: absolute; top: 0; right: 0; z-index: 3;
+}
+
+/* Üst: arma, başlık, yıldızlar, alt satır */
+#modal .box.p25r .p25r-ust { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: calc(var(--u) * -42); }
+#modal .box.p25r .p25r-arma { display: block; width: calc(var(--u) * 128); height: calc(var(--u) * 74); background: var(--p25d-zafer) 50% 50% / contain no-repeat; filter: drop-shadow(0 calc(var(--u) * 3) calc(var(--u) * 6) #000c) drop-shadow(0 0 calc(var(--u) * 14) #ffcf6a55); }
+/* Yenilgi arması: referanstaki kanatlı hilal dini simge kuralına takıldığı için kullanılmaz; zafer arması mat gümüşe çekilir. */
+#modal .box.p25r.yenilgi .p25r-arma { filter: grayscale(1) brightness(.72) contrast(1.15) drop-shadow(0 calc(var(--u) * 3) calc(var(--u) * 6) #000c); }
+#modal .box.p25r .p25r-t {
+  margin: calc(var(--u) * 2) 0 0; font: 700 calc(var(--u) * 46)/1 Cinzel, Georgia, serif; letter-spacing: calc(var(--u) * 3);
+  background: linear-gradient(180deg, #fff6d0 0%, #f6d27a 38%, #c58a2c 62%, #f2cf78 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 calc(var(--u) * 2) 0 #3a2508) drop-shadow(0 0 calc(var(--u) * 12) #ffb54a66);
+}
+#modal .box.p25r.yenilgi .p25r-t { background-image: linear-gradient(180deg, #f4f7fa 0%, #c9d1da 40%, #7e8a98 64%, #d6dde4 100%); filter: drop-shadow(0 calc(var(--u) * 2) 0 #1a2230) drop-shadow(0 0 calc(var(--u) * 8) #0009); }
+#modal .box.p25r .p25r-yil { display: flex; justify-content: center; gap: calc(var(--u) * 4); margin: calc(var(--u) * 2) 0 0; }
+#modal .box.p25r .p25r-yil i { display: block; width: calc(var(--u) * 34); height: calc(var(--u) * 34); filter: grayscale(1) brightness(.35) drop-shadow(0 1px 1px #000); }
+#modal .box.p25r .p25r-yil i.on { filter: drop-shadow(0 calc(var(--u) * 2) calc(var(--u) * 3) #000a) drop-shadow(0 0 calc(var(--u) * 8) #ffcc5a77); }
+#modal .box.p25r .p25r-yil svg { display: block; width: 100%; height: 100%; }
+#modal .box.p25r .p25r-alt { margin: calc(var(--u) * 3) 0 calc(var(--u) * 8); font: 400 calc(var(--u) * 16)/1.25 Georgia, 'Times New Roman', serif; color: #f1dfb4; text-shadow: 0 1px 2px #000; }
+#modal .box.p25r.yenilgi .p25r-alt { color: #e6cf9a; }
+
+/* Orta: üç metal ödül kartı (kit kart çerçevesi + koyu dövme dolgu) */
+#modal .box.p25r .p25r-in { width: 100%; display: flex; flex-direction: column; align-items: center; }
+#modal .box.p25r .p25r-cards { display: flex; justify-content: center; gap: calc(var(--u) * 12); width: 100%; }
+#modal .box.p25r .p25r-card {
+  flex: 0 1 calc(var(--u) * 206); min-width: 0; box-sizing: border-box; min-height: calc(var(--u) * 92);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: calc(var(--u) * 4);
+  padding: calc(var(--u) * 2) calc(var(--u) * 4); border: calc(var(--u) * 14) solid transparent; border-radius: 0;
+  border-image: var(--k-card) 48 fill / calc(var(--u) * 14) stretch;
+  background: radial-gradient(90% 80% at 50% 30%, #3a3f4a, #1a1d24) padding-box; box-shadow: inset 0 0 calc(var(--u) * 14) #000c, 0 calc(var(--u) * 4) calc(var(--u) * 10) #0009;
+}
+html[data-faction="ocak"] #modal .box.p25r .p25r-card { border-image-source: var(--k-card2); background: radial-gradient(90% 80% at 50% 30%, #3e3532, #1d1817) padding-box; }
+html[data-faction="ocak"] #modal .box.p25r .p25r-card.ak { border-image-source: var(--k-card); }
+#modal .box.p25r .p25r-card.xp { background: radial-gradient(90% 80% at 50% 30%, #333b4a, #171c26) padding-box; }
+#modal .box.p25r.yenilgi .p25r-card { flex-basis: calc(var(--u) * 128); filter: saturate(.55) brightness(.95); }
+#modal .box.p25r .p25r-card small { font: 600 calc(var(--u) * 15)/1.1 Cinzel, Georgia, serif; letter-spacing: calc(var(--u) * .6); color: #f2e4c2; text-transform: uppercase; text-shadow: 0 1px 2px #000; }
+#modal .box.p25r .p25r-card > b { display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 6); margin: auto 0; font: 700 calc(var(--u) * 26)/1.05 Cinzel, Georgia, serif; color: #f6ead0; text-shadow: 0 calc(var(--u) * 2) 0 #000; white-space: nowrap; }
+#modal .box.p25r .p25r-card.xp > b { font-size: calc(var(--u) * 21); color: #6fe08e; }
+#modal .box.p25r .p25r-card > b .ri { width: calc(var(--u) * 30); height: calc(var(--u) * 30); flex: none; filter: drop-shadow(0 1px 2px #000); }
+#modal .box.p25r .p25r-tp { display: inline-grid; place-items: center; width: calc(var(--u) * 26); height: calc(var(--u) * 28); font: 800 calc(var(--u) * 11)/1 Inter, sans-serif; font-style: normal; color: #eaffef; background: linear-gradient(180deg, #3bbf62, #136b32); clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%); text-shadow: 0 1px 1px #000; }
+#modal .box.p25r .p25r-card em { font: 400 calc(var(--u) * 13)/1.2 Georgia, 'Times New Roman', serif; color: #e6d8b8; text-shadow: 0 1px 1px #000; }
+#modal .box.p25r .p25r-card .p25r-none { font: 400 calc(var(--u) * 15)/1.2 Georgia, 'Times New Roman', serif; color: #cfc5b0; white-space: normal; }
+#modal .box.p25r.yenilgi .p25r-card > b { font-size: calc(var(--u) * 26); }
+/* Eşya kartı: düşen eşya / taş / Şan satırları kartın içinde ortalanır */
+#modal .box.p25r .p25r-card .loot { display: flex; flex-direction: column; flex-wrap: nowrap; max-width: 100%; align-items: center; gap: calc(var(--u) * 3); max-height: calc(var(--u) * 66); overflow: auto; margin: 0; flex: 1 1 auto; min-height: 0; justify-content: safe center; font: 600 calc(var(--u) * 13)/1.2 Inter, sans-serif; color: #efe4cc; }
+#modal .box.p25r .p25r-card .loot > div { display: flex; align-items: center; gap: calc(var(--u) * 5); flex: none; max-width: 100%; box-sizing: border-box; padding-top: calc(var(--u) * 2); padding-bottom: calc(var(--u) * 2); }
+#modal .box.p25r .p25r-card .loot .ri { width: calc(var(--u) * 22); height: calc(var(--u) * 22); }
+#modal .box.p25r .p25r-card .loot .gn { font-weight: 700; }
+#modal .box.p25r .p25r-card .loot .ico.sm { width: calc(var(--u) * 24); height: calc(var(--u) * 24); flex: none; }
+#modal .box.p25r .p25r-card .loot:has(> div:nth-child(2)) { font-size: calc(var(--u) * 11.5); gap: calc(var(--u) * 2); }
+#modal .box.p25r.yenilgi .p25r-card .loot { font: 400 calc(var(--u) * 15)/1.2 Georgia, 'Times New Roman', serif; }
+#modal .box.p25r.yenilgi .p25r-card .loot .ri { width: calc(var(--u) * 34); height: calc(var(--u) * 34); }
+#modal .box.p25r.yenilgi .p25r-card .loot > div:only-child { flex-direction: column; }
+
+/* PvP puan şeridi (sivri uçlu kit başlık şeridi) */
+#modal .box.p25r .p25r-puan { width: min(100%, calc(var(--u) * 560)); margin: calc(var(--u) * 10) 0 0; box-sizing: border-box; height: calc(var(--u) * 34);
+  display: flex; align-items: center; justify-content: center; border: 0 solid transparent; border-width: 0 calc(var(--u) * 26);
+  border-image: var(--k-title) 0 80 fill / 0 calc(var(--u) * 26) stretch; font: 400 calc(var(--u) * 17)/1 Georgia, 'Times New Roman', serif; color: #f3e3bd; text-shadow: 0 1px 2px #000; }
+#modal .box.p25r .p25r-puan b { margin: 0 calc(var(--u) * 4); }
+
+/* Ek satırlar (seviye atlama, kat, iksir, klan hasarı…) */
+#modal .box.p25r .p25r-ek { width: 100%; margin: calc(var(--u) * 4) 0 0; max-height: calc(var(--u) * 40); overflow: auto; }
+#modal .box.p25r.yenilgi .p25r-ek { max-height: calc(var(--u) * 66); }
+#modal .box.p25r .p25r-ek:not(:has(p)) { display: none; }
+#modal .box.p25r .p25r-ek p { margin: calc(var(--u) * 2) 0; font: 400 calc(var(--u) * 12)/1.3 Inter, sans-serif; color: #d9ccb2; text-shadow: 0 1px 1px #000; }
+#modal .box.p25r .p25r-ek p.up b, #modal .box.p25r .up { color: #7fe39a; } #modal .box.p25r .down { color: #ff8a6a; }
+#modal .box.p25r .p25r-ek .mut { color: #b4a990; }
+#modal .box.p25r .p25r-ek .btn.sm { padding: 0 calc(var(--u) * 8); min-height: calc(var(--u) * 24); font-size: calc(var(--u) * 11); }
+
+/* Alt: kit düğmeleri (vurgulu tek düğme k-btn1) */
+#modal .box.p25r .mbtns { display: flex; flex-wrap: wrap; justify-content: center; gap: calc(var(--u) * 8); width: 100%; margin: calc(var(--u) * 10) 0 0; }
+html.k24[data-faction] #modal .box.p25r .p25b {
+  flex: 1 1 0; max-width: calc(var(--u) * 196); min-width: 0; height: calc(var(--u) * 44); box-sizing: border-box; padding: 0 calc(var(--u) * 4); cursor: pointer;
+  border-width: calc(var(--u) * 12); border-image-width: calc(var(--u) * 12);
+  font: 400 calc(var(--u) * 16)/1 Georgia, 'Times New Roman', serif; color: #f1e6cf; text-shadow: 0 1px 2px #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+html.k24[data-faction] #modal .box.p25r .p25b[data-a="hub"] { flex-grow: 1.35; max-width: calc(var(--u) * 236); }
+html.k24[data-faction] #modal .box.p25r .p25b.on { color: #fff8e6; filter: drop-shadow(0 0 calc(var(--u) * 6) #ffd07a55); }
+html.k24[data-faction] #modal .box.p25r .p25b:active { filter: brightness(1.2); transform: translateY(1px); }
+/* Kit yüklenmeden (k24 yok) yedek görünüm */
+html:not(.k24) #modal .box.p25r .p25b { flex: 0 1 calc(var(--u) * 182); height: calc(var(--u) * 44); border: 1px solid #8a6a32; background: linear-gradient(180deg, #2a2f3a, #14171e); color: #f1e6cf; font: 600 calc(var(--u) * 15)/1 Cinzel, Georgia, serif; }
+html:not(.k24) #modal .box.p25r .p25b.on { background: linear-gradient(180deg, #2c4e8a, #16264a); }

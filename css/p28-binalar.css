@@ -1,0 +1,133 @@
+/* P28 — binalar: Ahır, Han, Zafer Anıtı tam ekran katmanı (js/ui-ahir.js binaAc) ve buff rozetleri.
+   Şartname docs/referans/p28-ahir-han-anit/TALIMAT.md §3.4, §4.2–4.3, §5.3, §6. Kurallar kök sınıflara kapsamlı; important bildirimi YOK.
+   Arka plan görselleri yalnız katman DOM'a girince (açılınca) iner. */
+
+/* ---- Ortak katman ---- */
+#p28bina.korant-modal-stable, #p28bina.korant-modal-tavern, #p28bina.korant-modal-monument {
+  position: absolute; inset: 0; z-index: 90; display: flex; flex-direction: column; overflow: hidden;
+  color: var(--korant-text-primary); font-family: Inter, system-ui, sans-serif; background: #0d0c10;
+  padding: 0 max(8px, var(--sar, 0px)) max(6px, var(--sab, 0px)) max(8px, var(--sal, 0px));
+}
+#p28bina .kb-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; pointer-events: none; }
+/* Ahır ve Han arka planı P30'da iç mekân katmanına taşındı (css/p30-icmekan.css, js/ic-mekan.js). */
+#p28bina.korant-modal-monument .kb-bg { background-image: linear-gradient(rgba(12, 14, 18, 0.58), rgba(12, 14, 18, 0.58)), url(../img/p28/bg_zafer_aniti.webp); }
+#p28bina .kb-top { position: relative; z-index: 1; flex: none; display: flex; align-items: center; gap: 10px; min-height: 52px; padding-top: var(--sat, 0px); }
+#p28bina .kb-h { margin: 0 auto 0 4px; font: 700 20px/1.1 Cinzel, Georgia, serif; color: var(--korant-text-primary); letter-spacing: .04em; text-shadow: 0 2px 4px #000; }
+#p28bina .kb-rs { display: flex; gap: 8px; }
+#p28bina .kb-res { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px 0 8px; border-radius: 17px;
+  background: var(--korant-surface-card); border: 1px solid var(--korant-border-gold); font: 700 14px/1 Inter, sans-serif; }
+#p28bina .kb-res .ri { width: 18px; height: 18px; }
+#p28bina .kb-res .ri svg { width: 100%; height: 100%; }
+#p28bina .kb-x { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--korant-border-gold-strong);
+  background: var(--korant-surface-card); color: var(--korant-text-primary); font: 400 28px/1 Georgia, serif; cursor: pointer; padding: 0; }
+#p28bina .kb-body { position: relative; z-index: 1; flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 2px 2px 6px; }
+#p28bina .kb-btn { min-height: 44px; min-width: 44px; padding: 6px 12px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--korant-border-gold); background: rgba(40, 36, 44, 0.9); color: var(--korant-text-primary);
+  font: 700 13px/1.15 Inter, sans-serif; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; }
+#p28bina .kb-btn.gold { background: linear-gradient(#8a6a2e, #5a4219); border-color: var(--korant-border-gold-strong); color: #fff4d8; }
+#p28bina .kb-btn.on { background: linear-gradient(#2e6a3c, #1c4426); border-color: #7fd08f; color: #eaffea; }
+#p28bina .kb-btn:disabled { opacity: .55; cursor: default; }
+#p28bina h3, #p28bina h4, #p28bina p { margin: 0; }
+
+/* ---- Ahır (§3.4) ---- */
+.korant-modal-stable .ka-grid { display: grid; grid-template-columns: repeat(3, minmax(232px, 1fr)); gap: 10px; min-width: 0; }
+.korant-modal-stable .ka-card { display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 10px;
+  background: var(--korant-surface-card); border: 1px solid var(--korant-border-gold); }
+.korant-modal-stable .ka-card.act { border-color: #7fd08f; box-shadow: 0 0 0 1px #7fd08f55, 0 0 14px #7fd08f33; }
+.korant-modal-stable .ka-top { display: flex; gap: 10px; align-items: flex-start; }
+.korant-modal-stable .ka-por { position: relative; flex: none; width: 92px; aspect-ratio: 1 / 1; border-radius: 8px; overflow: hidden; border: 1px solid var(--korant-border-gold); }
+.korant-modal-stable .ka-por img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.korant-modal-stable .ka-card.kilit .ka-por img { filter: grayscale(.85) brightness(.6); }
+.korant-modal-stable .ka-lv { position: absolute; left: 4px; bottom: 4px; padding: 1px 6px; border-radius: 6px; font: 800 11px/16px Inter, sans-serif; font-style: normal;
+  background: rgba(10, 9, 12, .85); border: 1px solid var(--korant-border-gold-strong); color: #f3d9a0; }
+.korant-modal-stable .ka-inf { min-width: 0; flex: 1; }
+.korant-modal-stable .ka-inf h3 { font: 700 15px/1.2 Cinzel, Georgia, serif; color: #f3d9a0; margin-bottom: 4px; }
+.korant-modal-stable .ka-st { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 12px; }
+.korant-modal-stable .ka-st li { display: flex; gap: 6px; align-items: baseline; }
+.korant-modal-stable .ka-st span { color: var(--korant-text-muted); min-width: 52px; }
+.korant-modal-stable .ka-st i { font-style: normal; color: #8fd59b; }
+.korant-modal-stable .ka-sk { font-size: 12px; line-height: 1.3; color: var(--korant-text-muted); }
+.korant-modal-stable .ka-xp { display: flex; align-items: center; gap: 8px; }
+.korant-modal-stable .ka-xp span { flex: 1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .1); overflow: hidden; }
+.korant-modal-stable .ka-xp i { display: block; height: 100%; background: linear-gradient(90deg, #c49a48, #f3d9a0); }
+.korant-modal-stable .ka-xp small { font-size: 11px; color: var(--korant-text-muted); white-space: nowrap; }
+.korant-modal-stable .ka-bt { display: flex; gap: 6px; margin-top: auto; }
+.korant-modal-stable .ka-bt .kb-btn { flex: 1; }
+.korant-modal-stable .ka-kilit { display: inline-block; width: 10px; height: 8px; margin: 0 0 2px; border: 2px solid currentColor; border-radius: 2px; position: relative; }
+.korant-modal-stable .ka-kilit::before { content: ''; position: absolute; left: 0; top: -7px; width: 6px; height: 6px; border: 2px solid currentColor; border-bottom: 0; border-radius: 5px 5px 0 0; }
+
+/* ---- Han (§4.3) ---- */
+.korant-modal-tavern .kh-hanci { display: flex; align-items: center; gap: 12px; padding: 8px 12px; margin-bottom: 8px; border-radius: 10px;
+  background: var(--korant-surface-card); border: 1px solid var(--korant-border-gold); }
+.korant-modal-tavern .kh-hanci img { flex: none; width: 64px; height: 64px; border-radius: 12px; object-fit: cover; border: 1px solid var(--korant-border-gold-strong); }
+.korant-modal-tavern .kh-hanci p { font: italic 500 14px/1.35 Georgia, serif; }
+.korant-modal-tavern .kh-onay { display: flex; align-items: center; gap: 8px; padding: 4px 6px 4px 12px; margin-bottom: 8px; border-radius: 10px;
+  background: rgba(60, 40, 16, .92); border: 1px solid var(--korant-border-gold-strong); font-size: 13px; }
+.korant-modal-tavern .kh-onay span { flex: 1; min-width: 0; }
+.korant-modal-tavern .kh-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.korant-modal-tavern .kh-card { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 10px; min-width: 0;
+  background: var(--korant-surface-card); border: 1px solid var(--korant-border-gold); }
+.korant-modal-tavern .kh-card.on { border-color: #7fd08f; }
+.korant-modal-tavern .kh-card.bekle { border-color: var(--korant-border-gold-strong); }
+.korant-modal-tavern .kh-ic { flex: none; width: 56px; height: 56px; object-fit: contain; }
+.korant-modal-tavern .kh-tx { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.korant-modal-tavern .kh-tx h3 { font: 700 14px/1.2 Cinzel, Georgia, serif; color: #f3d9a0; }
+.korant-modal-tavern .kh-tx p { font-size: 12px; line-height: 1.25; }
+.korant-modal-tavern .kh-tx small { font-size: 11px; color: var(--korant-text-muted); }
+.korant-modal-tavern .kh-tx small.kh-etkin { color: #8fd59b; font-weight: 700; }
+.korant-modal-tavern .kh-card .kb-btn { flex: none; max-width: 120px; }
+
+/* ---- Zafer Anıtı (§5.3) ---- */
+.korant-modal-monument .kz-baslik { color: #d9b46a; letter-spacing: .16em; }
+.korant-modal-monument .kz-yuk { text-align: center; padding: 30px; }
+.korant-modal-monument .kz-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 12px; min-height: 100%; }
+.korant-modal-monument .kz-sol, .korant-modal-monument .kz-sag { padding: 10px 12px; border-radius: 10px; background: var(--korant-surface-card); border: 1px solid var(--korant-border-gold); min-width: 0; }
+.korant-modal-monument .kz-sol { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; }
+.korant-modal-monument .kz-bayrak { width: min(150px, 34vh); height: auto; aspect-ratio: 1 / 1; object-fit: contain; }
+.korant-modal-monument .kz-galip { font: 700 19px/1.2 Cinzel, Georgia, serif; color: #f3d9a0; }
+.korant-modal-monument .kz-tarih { color: var(--korant-text-muted); font-size: 11px; }
+.korant-modal-monument .kz-skor { width: 100%; margin-top: 6px; display: grid; gap: 3px; font-size: 12px; }
+.korant-modal-monument .kz-ad { display: flex; justify-content: space-between; }
+.korant-modal-monument .kz-ad .el { color: #8cbcf0; } .korant-modal-monument .kz-ad .kr { color: #f08a7a; }
+.korant-modal-monument .kz-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid var(--korant-border-gold); }
+.korant-modal-monument .kz-bar i { display: block; height: 100%; }
+.korant-modal-monument .kz-bar i.el { background: var(--korant-accent-elentha); }
+.korant-modal-monument .kz-bar i.kr { flex: 1; background: var(--korant-accent-kragmir); }
+.korant-modal-monument .kz-sag { display: flex; flex-direction: column; gap: 8px; }
+.korant-modal-monument .kz-sag h4 { font: 700 13px/1.2 Cinzel, Georgia, serif; color: #d9b46a; letter-spacing: .05em; }
+.korant-modal-monument .kz-mvp { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.korant-modal-monument .kz-mvp li { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto auto; gap: 8px; align-items: center; padding: 4px 8px; border-radius: 6px;
+  background: rgba(255, 255, 255, .04); font-size: 13px; border-left: 3px solid var(--korant-accent-elentha); }
+.korant-modal-monument .kz-mvp li.kr { border-left-color: var(--korant-accent-kragmir); }
+.korant-modal-monument .kz-mvp li.bos { display: block; border-left-color: var(--korant-border-gold); color: var(--korant-text-muted); }
+.korant-modal-monument .kz-mvp em { font-style: normal; font-weight: 800; color: #d9b46a; }
+.korant-modal-monument .kz-mvp span { font-size: 11px; color: var(--korant-text-muted); white-space: nowrap; }
+.korant-modal-monument .kz-mvp i { font-style: normal; font-weight: 700; }
+.korant-modal-monument .kz-odul { margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 10px;
+  background: rgba(60, 44, 18, .55); border: 1px solid var(--korant-border-gold-strong); }
+.korant-modal-monument .kz-odul img { flex: none; width: 56px; height: 56px; object-fit: contain; }
+.korant-modal-monument .kz-odul.alindi img { filter: grayscale(.6) brightness(.8); }
+.korant-modal-monument .kz-ot { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.korant-modal-monument .kz-ot b { font: 700 14px/1.2 Cinzel, Georgia, serif; color: #f3d9a0; }
+.korant-modal-monument .kz-ot small { font-size: 11px; line-height: 1.3; }
+.korant-modal-monument .kz-odul .kb-btn { flex: none; }
+.korant-modal-monument .kz-sayac { font-size: 12px; font-weight: 800; color: #f3d9a0; }
+
+/* ---- Dar ekran (740x360 ve altı): kompakt ---- */
+@media (max-height: 380px) {
+  #p28bina .kb-top { min-height: 48px; }
+  .korant-modal-stable .ka-por { width: 72px; }
+  .korant-modal-stable .ka-card { padding: 8px; gap: 4px; }
+  .korant-modal-stable .ka-sk { font-size: 11px; }
+  .korant-modal-tavern .kh-hanci { padding: 6px 10px; margin-bottom: 6px; }
+  .korant-modal-monument .kz-bayrak { width: 96px; }
+}
+
+/* ---- Buff rozeti: başkent HUD (ui-hub.js s2Html) ve savaş (#p28brz) ---- */
+.p28-rz { display: flex; gap: 6px; align-items: center; pointer-events: none; }
+.p28-rz .p28-rz-han, .p28-rz .p28-rz-zf { display: inline-flex; align-items: center; gap: 5px; height: 32px; padding: 0 9px 0 2px; border-radius: 16px;
+  background: var(--korant-surface-card); border: 1px solid var(--korant-border-gold); color: var(--korant-text-primary); font: 700 11px/1 Inter, sans-serif; white-space: nowrap; }
+.p28-rz .p28-rz-han img { width: 28px; height: 28px; object-fit: contain; }
+.p28-rz .p28-rz-zf { padding: 0 9px; color: #f3d9a0; border-color: var(--korant-border-gold-strong); }
+.s2hud .p28-rz { position: absolute; left: calc(var(--s2u, 1px) * 100); top: calc(var(--s2u, 1px) * 150); z-index: 3; }
+#battleUI #p28brz { position: absolute; left: max(10px, var(--sal, 0px)); top: calc(var(--sat, 0px) + 80px); z-index: 3; pointer-events: none; }

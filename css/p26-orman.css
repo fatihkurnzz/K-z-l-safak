@@ -1,0 +1,75 @@
+/* P26-orman — 100 puan paketi (docs/referans/p26-100-puan/TALIMAT.md). Kurallar ekran kapsamlı; !important yok. */
+
+/* === K4 · Blursuz Eğitim Ormanı (orman.js #p26orman). Referans: docs/referans/p26-100-puan/egitim_ormani_diyalog_referans.webp
+   Kural: diyalog açıkken arka planda blur / backdrop-filter / ağır karartma YOK. Ölçüler kap birimiyle (cqw/cqh, 1376x768 referans). === */
+#game > #p26orman { position: absolute; inset: 0; z-index: 45; overflow: hidden; background: #07090a; container-type: size;
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; cursor: pointer;
+  --o-gold: #b8955a; --o-gold2: #e2c48a; --o-ink: #ece4d2; --o-serif: Georgia, 'Noto Serif', 'Times New Roman', serif; }
+body:has(#battleUI:not([hidden])) #game > #p26orman { display: none; }
+#p26orman .p26o-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; filter: none; animation: p26o-in .35s ease-out both; }
+/* hazırlanırken kısa koyu bekleme */
+#p26orman.yukleniyor { cursor: default; }
+#p26orman .p26o-bek { position: absolute; inset: 0; display: grid; place-items: center; }
+#p26orman .p26o-bek i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(184, 149, 90, .25); border-top-color: var(--o-gold); animation: p26o-don 0.9s linear infinite; }
+@keyframes p26o-don { to { transform: rotate(360deg); } }
+@keyframes p26o-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* Diyalog şeridi: alt ~%28, koyu yarı saydam, ince antika altın üst çizgi */
+#p26orman .p26o-dlg { position: absolute; left: 0; right: 0; bottom: 0; height: 28cqh; min-height: 104px;
+  background: linear-gradient(180deg, rgba(14, 14, 16, .82), rgba(10, 10, 12, .9)); border-top: 1px solid var(--o-gold);
+  box-shadow: inset 0 1px 0 rgba(226, 196, 138, .18), 0 -1px 0 rgba(0, 0, 0, .45); backdrop-filter: none; -webkit-backdrop-filter: none; }
+/* Yashka: çizginin üstüne taşan saydam kesit (solda) */
+#p26orman .p26o-yashka { position: absolute; left: 1.2cqw; bottom: 0; height: 72cqh; width: auto; max-width: 30cqw; object-fit: contain; object-position: 50% 100%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, .55)); pointer-events: none; }
+/* Ad levhası: altın çizginin üstüne biner */
+#p26orman .p26o-ad { position: absolute; left: 28.6cqw; top: 0; transform: translateY(-50%); padding: .35em 1.1em; white-space: nowrap;
+  font: 500 max(12px, 2.7cqh)/1.25 var(--o-serif); color: var(--o-ink); background: linear-gradient(180deg, #23201b, #15130f);
+  border: 1px solid var(--o-gold); box-shadow: inset 0 0 0 2px #0d0c0a, inset 0 0 0 3px rgba(184, 149, 90, .35); clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0 50%); }
+#p26orman .p26o-ad b { font-family: 'Cinzel', var(--o-serif); font-weight: 700; color: var(--o-gold2); letter-spacing: .02em; }
+#p26orman .p26o-ad span { opacity: .92; }
+/* Metin */
+#p26orman .p26o-txt { position: absolute; left: 29.8cqw; right: 10cqw; top: max(22px, 6.2cqh); margin: 0;
+  font: 400 max(13px, 2.9cqh)/1.5 var(--o-serif); color: var(--o-ink); text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
+#p26orman .p26o-say { position: absolute; right: 4.2cqw; bottom: calc(max(8px, 3.4cqh) + max(42px, 6.4cqh)); font: 400 max(11px, 2.2cqh)/1 var(--o-serif); color: rgba(236, 228, 210, .6); letter-spacing: .08em; }
+#p26orman .p26o-ileri { position: absolute; right: 2.4cqw; bottom: max(8px, 3.4cqh); min-height: 34px; min-width: 76px; padding: 0 .9em; display: inline-flex; align-items: center; gap: .35em; justify-content: center;
+  font: 500 max(13px, 2.6cqh)/1 var(--o-serif); color: var(--o-ink); background: linear-gradient(180deg, rgba(34, 30, 24, .92), rgba(18, 16, 13, .92));
+  border: 1px solid var(--o-gold); border-radius: 3px; box-shadow: inset 0 0 0 2px #0d0c0a, inset 0 0 0 3px rgba(184, 149, 90, .3); cursor: pointer; }
+#p26orman .p26o-ileri i { font-style: normal; font-size: 1.25em; color: var(--o-gold2); transform: translateY(-.04em); }
+#p26orman .p26o-ileri:disabled { opacity: .55; }
+#p26orman .p26o-ileri:active { transform: translateY(1px); }
+/* Sağ üst X: öğreticiyi atla (minimal; dokunma alanı >= 40 px) */
+#p26orman .p26o-x { position: absolute; right: 1.6cqw; top: 2px; width: 40px; height: 40px; display: grid; place-items: center; padding: 0; background: none; border: 0; cursor: pointer;
+  color: rgba(236, 228, 210, .72); font: 300 max(20px, 3.6cqh)/1 var(--o-serif); }
+#p26orman .p26o-x:hover, #p26orman .p26o-x:focus-visible { color: var(--o-gold2); }
+#p26orman .p26o-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Atlama onayı (şeridin içinde) */
+#p26orman .p26o-onay { position: absolute; left: 29.8cqw; right: 6cqw; top: max(20px, 5.6cqh); display: grid; gap: max(8px, 1.8cqh); font: 400 max(13px, 2.7cqh)/1.45 var(--o-serif); color: var(--o-ink); }
+#p26orman .p26o-onay p { margin: 0; }
+#p26orman .p26o-onb { display: flex; gap: 10px; flex-wrap: wrap; }
+#p26orman .p26o-onb .btn { min-height: 34px; }
+
+/* Sahne 2: Kül Kurdu patikada (yalnız savaş dışında; savaşın kendisi savaş motorunda) */
+#p26orman .p26o-kurt { position: absolute; right: 9cqw; bottom: 22cqh; height: 62cqh; width: auto; pointer-events: none; animation: p26o-kurt 0.7s ease-out both; }
+#p26orman .p26o-kurtad { position: absolute; right: 9cqw; bottom: calc(22cqh + 58cqh); transform: translateX(-30%); padding: .25em .9em; font: 700 max(12px, 2.6cqh)/1.2 'Cinzel', var(--o-serif); color: #f0c08a;
+  background: rgba(14, 12, 10, .78); border: 1px solid rgba(184, 149, 90, .7); letter-spacing: .04em; }
+@keyframes p26o-kurt { from { opacity: 0; transform: translateX(6cqw); } to { opacity: 1; transform: none; } }
+
+/* Sahne 3: ilk ganimet kartı (orta üst; arka plan net kalır) */
+#p26orman .p26o-gan { position: absolute; left: 50%; top: 9cqh; transform: translateX(-50%); min-width: min(48cqw, 380px); max-width: 64cqw; padding: max(10px, 2.2cqh) max(14px, 2.4cqw);
+  display: grid; justify-items: center; gap: max(4px, .8cqh); text-align: center; color: var(--o-ink);
+  background: linear-gradient(180deg, rgba(20, 18, 15, .84), rgba(12, 11, 9, .86)); border: 1px solid var(--o-gold); box-shadow: inset 0 0 0 2px #0d0c0a, inset 0 0 0 3px rgba(184, 149, 90, .3), 0 6px 18px rgba(0, 0, 0, .45);
+  animation: p26o-in .45s ease-out both; }
+#p26orman .p26o-gan > small { font: 600 max(10px, 2cqh)/1 'Cinzel', var(--o-serif); letter-spacing: .14em; text-transform: uppercase; color: var(--o-gold2); }
+#p26orman .p26o-gan > b { font: 700 max(15px, 3.4cqh)/1.15 'Cinzel', var(--o-serif); color: #f4ead2; }
+#p26orman .p26o-gan > p { margin: 0; font: 400 max(12px, 2.4cqh)/1.4 var(--o-serif); }
+#p26orman .p26o-gl { display: flex; flex-wrap: wrap; justify-content: center; gap: max(6px, 1.2cqw); margin-top: max(4px, .6cqh); }
+#p26orman .p26o-gch { display: grid; justify-items: center; gap: 3px; min-width: max(56px, 8cqw); padding: 6px 8px; background: rgba(0, 0, 0, .35); border: 1px solid rgba(184, 149, 90, .45); }
+#p26orman .p26o-gch b { font: 700 max(13px, 2.6cqh)/1 var(--o-serif); color: #ffd98a; }
+#p26orman .p26o-gch small { font: 400 max(10px, 1.9cqh)/1.2 var(--o-serif); color: rgba(236, 228, 210, .8); max-width: 14cqw; }
+#p26orman .p26o-gch .ri, #p26orman .p26o-gch .ri svg { width: max(22px, 4.4cqh); height: max(22px, 4.4cqh); }
+#p26orman .p26o-gch img, #p26orman .p26o-gch .ico { width: max(34px, 7cqh); height: max(34px, 7cqh); }
+
+/* Sahne 4: başkente geçiş — yalnız koyu kararma (beyaz parlama yok) */
+#game > .p26o-fade { position: absolute; inset: 0; z-index: 120; background: #050607; opacity: 0; pointer-events: none; transition: opacity .6s ease-in-out; }
+#game > .p26o-fade.on { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { #p26orman .p26o-bg, #p26orman .p26o-kurt, #p26orman .p26o-gan { animation: none; } #game > .p26o-fade { transition-duration: .2s; } }

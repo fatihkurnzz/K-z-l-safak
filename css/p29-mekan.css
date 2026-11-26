@@ -1,0 +1,20 @@
+/* P29 — mekan sahneleri (docs/referans/p29-26-sahne/TALIMAT.md). important bildirimi YOK. */
+
+/* Balık tutma (TALIMAT 28): eski SVG göl çizimi yerine gölet sahnesi; olta, misina, şamandıra ve dalga halkaları SVG'den kalır. */
+html[data-faction] #modal .blk-scene { background: linear-gradient(rgba(10, 12, 14, 0.18), rgba(10, 12, 14, 0.18)), url(../sahneler/sahne_balik_tutma.webp) 50% 62% / cover no-repeat; }
+html[data-faction] #modal .blk-svg > rect,
+html[data-faction] #modal .blk-svg > circle,
+html[data-faction] #modal .blk-svg > path:not(.blk-rod):not(.blk-line) { display: none; }
+
+/* Kristal Nöbeti (TALIMAT 26): üst afiş img; pencere zemini de aynı görsele döner (eski --sc-kristal-nobeti yerine). */
+.nb-head .nb-ban { display: block; width: 100%; height: 110px; object-fit: cover; object-position: 50% 42%; }
+html[data-faction] #win #page .nb { background: linear-gradient(180deg, #0d0b0e8c, #0d0b0ef2 260px), url(../sahneler/banner_kristal_nobeti.webp) 50% 0 / 100% auto no-repeat; }
+
+/* Dünya Baskını (TALIMAT 27): kart üstündeki sahne şeridi; başlık ve saat görselin üstünde okunur kalsın. */
+.bk-scene .bk-ban { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+.bk-scene:has(> .bk-ban)::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(10, 8, 6, 0.72), rgba(10, 8, 6, 0.1) 55%, rgba(10, 8, 6, 0.45)); }
+.bk-scene:has(> .bk-ban) > :not(.bk-ban) { z-index: 2; }
+
+/* Karakaya Hisarı (TALIMAT 25): Hisar sekmesi ve Karargâh üst görseli; kale ortada-üstte. */
+html[data-faction] #win .hs-art,
+html[data-faction] #win .hq-art { background-position: 55% 38%; }

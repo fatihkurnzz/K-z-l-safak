@@ -1,0 +1,17 @@
+/* P27 A+ görsel yenileme — sehir (docs/referans/p27-a-plus/TALIMAT.md). Kurallar ekran/duruma kapsamlı; !important yok. */
+
+/* 1.1 (2) Sağ üst Enerji/Akçe/Yakut kapsülleri: daha geniş; metin sola yaslı, sağda "+" için ayrılmış boşluk (160/120 ve 1.500 çakışmaz). */
+html.sehir2[data-faction] #game #hud > .s2hud .s2-caps { gap:calc(var(--s2u)*10); }
+html.sehir2[data-faction] #game #hud > .s2hud .s2-cap { width:calc(var(--s2u)*170); justify-content:flex-start; padding:0 calc(var(--s2u)*30) 0 calc(var(--s2u)*6); }
+html.sehir2[data-faction] #game #hud > .s2hud .s2-cap:first-child { width:calc(var(--s2u)*200); }
+html.sehir2[data-faction] #game #hud > .s2hud .s2-cap:nth-child(2) { width:calc(var(--s2u)*222); }
+html.sehir2[data-faction] #game #hud > .s2hud .s2-cap b { flex:1 1 auto; text-align:center; }
+
+/* 1.1 (1) Yeni başkent resimlerinde maden arabası boyalı: canlı vagon sprite'ı ikinci araba olurdu, kapalı. */
+html[data-faction] #hub2d .s2-live .c { display:none; }
+html.sehir2[data-faction] #game #hud > .s2hud .s2-cap em { right:calc(var(--s2u)*6); }
+
+/* 1.1 (4) Duyuru bandı (toast): ekranın en çok %44'ü, tek satır, taşan metin üç nokta; ince üst bildirim. */
+html[data-faction] body #toast { max-width:calc(var(--lw, 100vw) * .44); box-sizing:border-box; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; padding:4px 16px; font-size:12px; line-height:16px; min-height:0; }
+/* Başkent/çarşıda (pencere kapalı) üst ortadaki Kral etiketiyle kaynak kapsüllerinin arasına değil, Kral etiketinin altına iner. */
+html.sehir2[data-hub2d][data-faction]:not(.k24-sohbet):not(:has(#win:not([hidden]), #modal:not([hidden]) > *)) body #toast { margin-top:calc(var(--lh, 100vh) * .1); }

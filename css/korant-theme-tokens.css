@@ -1,0 +1,11 @@
+/* P28 merkezi tema değişkenleri (docs/referans/p28-tema-denetim/TALIMAT.md §2) */
+:root {
+  --korant-surface-card: rgba(18, 17, 22, 0.86);
+  --korant-surface-elevated: rgba(26, 24, 31, 0.92);
+  --korant-border-gold: rgba(196, 164, 104, 0.34);
+  --korant-border-gold-strong: rgba(214, 180, 114, 0.62);
+  --korant-text-primary: #EDE6D6;
+  --korant-text-muted: #B6AD9B;
+  --korant-accent-elentha: #3B82C4;
+  --korant-accent-kragmir: #C84032;
+}
