@@ -1,0 +1,4 @@
+const { chromium } = require('playwright'); const giris = require('/home/user/K-z-l-safak/oyun-son/_tasarim/araclar/kabul-26kas/giris.js'); const D = require('/home/user/K-z-l-safak/oyun-son/_tasarim/araclar/kabul-26kas/denetci.js');
+(async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 880, height: 406 }, deviceScaleFactor: 2 }); await giris(p, 'sancak', '?gfx=low&store=1');
+  for (const t of ['daily', 'weekly', 'monthly']) { await p.evaluate(async t => { const C = await import('/js/ui-core.js'); const m = document.querySelector('#modal'); if (m) { m.hidden = true; m.innerHTML = ''; } C.closeWin(true); C.ACT.mnMain({}); await new Promise(r => setTimeout(r, 900)); C.ACT.tab({ id: t }); }, t); await p.waitForTimeout(1500); const o = await p.evaluate(D); console.log(t, JSON.stringify({ k: o.kucukYazi, kes: o.kesik, tas: o.tasma, cak: o.cakisma })); await p.screenshot({ path: `gorev-${t}.png` }); }
+  await b.close(); })();

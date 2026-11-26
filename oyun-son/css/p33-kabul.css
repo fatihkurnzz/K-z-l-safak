@@ -223,3 +223,5 @@ html[data-faction] #modal .tgrid .tbtn > small, html[data-faction] #modal .srv .
 html[data-faction] #win .npc-ware :is(.rar, .cf), html[data-faction] #win .ors .arisk, html[data-faction] #win .ivpick .ivc .ivst { font-size: 11px !important; }
 /* savaş HUD (kullanıcı kararı: HUD'da da 11 px) */
 #battleUI :is(#bctl2 .rb, #skills .skill > i.mpc, #skills .skill > i.pn, #btgt .bt-info small), #overlay .hud > i.lv { font-size: 11px !important; }
+/* Görev kartı: ilerleme halkasındaki "/hedef" ve toplu ödül adı (9–9,5 px → 11 px) */
+html[data-faction] #win :is(.qb2-ring small, .qb2-bonus > small) { font-size: 11px !important; letter-spacing: 0 !important; }

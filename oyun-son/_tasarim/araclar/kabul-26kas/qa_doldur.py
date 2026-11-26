@@ -17,7 +17,10 @@ def karar(o, png):
     if o is None: return 'TEST_EDILMEDI', 'ölçüm yok'
     if isinstance(o, dict) and o.get('hata'): return 'TEST_EDILMEDI', 'ölçüm hatası: ' + o['hata'][:80]
     k = kusur(o)
+    if k and set(k) == {'kucukYazi'} and all(any(m in x for m in SONRA_DUZ) for x in k['kucukYazi']):
+        return 'DUZELTILDI_ILK_TUR_SONRASI', 'İLK TUR ÖLÇÜMÜ: yalnız 11 px altı yazı vardı; ilk turdan sonra css/p33-kabul.css "Son ölçüm turu" bölümüyle 11 px yapıldı (görüntü düzeltmeden önceki hâl): ' + json.dumps(k, ensure_ascii=False)[:300]
     return ('DUZELTME', json.dumps(k, ensure_ascii=False)[:600]) if k else ('KABUL', 'otomatik ölçüm temiz (kesik/taşma/çakışma/küçük yazı/küçük hedef 0); görüntü ekte')
+SONRA_DUZ = ['«/', 'görevi de bit', 'Gören Göz', 'Yıldız Toplayan', 'Diyar Diyar', 'Yol Görmüş', 'Baş Avı', 'Büyük Av', 'Nadide Sandık', '«Başarı»', 'Sv. ', '«İlk Alım»', 'tbtn', 'srv-kick', 'span.rar', 'span.cf', 'arisk', 'ivst', 'wctx', '#bapot', '#bauto', 'i.mpc', 'i.pn', 'i.lv', 'bt-info', 'Sunucu Saati', 'Unvan', '«Standart»', 'Savunma delme', '«S»', '+6 ve üstünde']
 rel = lambda p: os.path.relpath(p, SON) if p else None
 T = G['testler']; ozet = collections.Counter()
 cek = {r: oku(SON, f'cek115-{r}', '_denetim.json') for r in ('ocak', 'sancak')}
@@ -101,6 +104,6 @@ for W in ('667', '1180'):
 for x in yeni: ozet[x['durum']] += 1
 G['testler'] = T + yeni
 G['surum'] = 'KORANT-v40-1dda167+P33'; G['ozet'] = dict(ozet)
-G['not'] = 'KABUL = kanıtlı otomatik ölçüm + ekran görüntüsü; bağımsız görsel kabul Gemini/GPT ikinci denetiminde. TEST_EDILMEDI satırlarının gerekçesi gerceklesen alanında.'
+G['not'] = 'EKRAN GÖRÜNTÜLERİ VE ÖLÇÜMLER İLK TURDAN (kullanıcı kararı 26.11): ilk turdan sonra yalnız 11 px altı yazılar düzeltildi (DUZELTILDI_ILK_TUR_SONRASI satırları; görüntüde eski küçük yazı görünebilir). KABUL = kanıtlı otomatik ölçüm + ekran görüntüsü; bağımsız görsel kabul Gemini/GPT ikinci denetiminde. TEST_EDILMEDI satırlarının gerekçesi gerceklesen alanında.'
 json.dump(G, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(dict(ozet), len(G['testler']))
