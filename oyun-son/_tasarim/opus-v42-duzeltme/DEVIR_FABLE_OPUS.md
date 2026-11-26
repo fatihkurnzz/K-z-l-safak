@@ -10,6 +10,7 @@ Kullanıcı kararı (26.11): Sonnet yalnızca düşük riskli işleri yaptı. A�
 - **F-006 kalanı (Opus, kullanıcı onaylı):** Sonnet 223→99'a indirdi (kapatma ve sık düğmeler). Kalan: Çanta, Karakter, Görevler, Sohbet ve ızgara öğeleri (`aeSet`, `aeTog`, `kbBuy`, `marketSub`, `marketKind`, INPUT). Kural: yalnız CSS; `shared/` yok; her ekranda önce/sonra görüntü (880 ve 667), taşma/üst üste binme/kırpılma denetimi; hedef `rt.mjs hedefN` 880'de ≤ 60. Izgara kararı (hedef büyüsün mü, aralık mı) Fable oturumundan/kullanıcıdan gelmeden ızgaralara dokunma. Gerçek cihaz testi ayrı.
 
 ## Yayın öncesi test aşamasına ertelenenler (kullanıcı kararı, 26.11)
+- **F-024 yeni oyuncu akışı 30 / 60 / 120 dk:** gerçek cihaz ya da insan oyuncu; betik `arac/yeni5.mjs` (`SURE_DK` ile). 5 dakikalık koşu yapıldı.
 - **Zindan savaşı ekran çekimleri** (F-018): Dipsiz Kuyu, Gök Yarığı, Mühürlü Oda, Kül Kulesi, Yeraltı Ocağı, iki halk. Komut: `node arac/cap.mjs <halk> 880x406 tr <çıktı> zindan`. Boss ve PvP savaşının sonuç ekranları da aynı aşamada.
 
 ## Fable'a (bağımsız kabul)

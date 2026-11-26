@@ -10,5 +10,5 @@ Betik: `arac/yeni5.mjs` (geliştirici `dev.*` eylemi KULLANILMAZ; yalnız görü
 - Bu koşuda ilk görev, kuşanma ve seviye atlama **görülmedi**. Bu bir oyun kusuru kanıtı değil: yazılım GL ve otomatik oyuncu sınırı; gerçek cihazda insanla yeniden denenmeli.
 - İlk koşuda betik, "Silahını kavra›" düğmesini tanımadığı için öğreticide kaldı (betik hatası, düzeltildi; ham veri tutulmadı).
 
-## 30 dk / 120 dk — ÇALIŞTIRILMADI
-Yazılım GL hızı nedeniyle yapılmadı; gerçek cihaz ya da Fable takip turu gerekir.
+## 30 / 60 / 120 dk — ERTELENDİ (kullanıcı kararı, 26.11)
+Yayın öncesi test aşamasına kadar istenmiyor. Yapılmayacak değil, ertelendi. Yazılım GL hızı nedeniyle gerçek cihaz ya da insan oyuncu ile yapılmalı; betik `arac/yeni5.mjs` (`SURE_DK=<dk>` ile süre ayarlanır).
