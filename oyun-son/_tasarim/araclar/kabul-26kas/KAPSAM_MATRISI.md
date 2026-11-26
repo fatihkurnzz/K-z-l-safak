@@ -116,14 +116,14 @@ Sıfırdan tasarım YOK · harita/bina/sancak/arma DEĞİŞMEDİ (sha) · karakt
 |---|---|---|---|
 | A1 | Zafer Anıtı penceresi bina dokunuşlarını kapatıyor | YANLIŞ POZİTİF | Çekim betiği pencereyi kapatmıyordu; yeni betiklerde her ekrandan önce kapanır |
 | A2 | Başkent hep Yashka diyaloğu | YANLIŞ POZİTİF | Öğretici atlanmadan çekilmiş (DEVIR "TEST DERSİ") |
-| A3 | Savaşta kurt üstünde kırmızı çubuklar | KANIT BEKLİYOR → savaş testi | `kanit/savas-*/` |
+| A3 | Savaşta kurt üstünde kırmızı çubuklar | YANLIŞ POZİTİF | Düşman can çubukları (seviye rozetli); savaş kareleri `kanit/savas-*/bolge1_*_2_savas` |
 | A4 | Karakter seçmede VS kalıntısı | YANLIŞ POZİTİF | `quick.png` = Hızlı Av VS ekranı; kurt kartı doğru içerik |
 | A5 | Karşılama yazısı öğretici diyaloğuna biniyor | DÜZELTİLDİ | `ui-karakter.js go()`: diyalog kapanınca gösterilir |
 | A6 | Elentha bilgi hapında yazının üstünden çizgi | DÜZELTİLDİ | GEM N2-02 ile aynı kök (`.wctx` kapsül çizgisi) |
 | A7 | Otomatik ipucu savaş boyu kalıyor | DÜZELTİLDİ | GEM N5-01 ile aynı (3 sn + dokununca kapanır) |
 | A8 | Nöbet altı kesik | DÜZELTİLDİ | GEM N6-05 ile aynı |
 | A9 | Profilde TEST ARAÇLARI | KULLANICI KARARI | 24 Kas: varsayılan görünür; `?dev=0` / `?store=1` gizler (GEM N1-01, `kanit/devui_t3_sonuc.json`) |
-| A10 | Kragmir açılışında Elentha şehri | KANIT BEKLİYOR → `kanit/cesitli/` | `karakter-sahne.js BG[race]` kaynakta doğru; çekimle doğrulanacak |
+| A10 | Kragmir açılışında Elentha şehri | DOĞRULANDI (sorun yok) | Kragmir karakter seçme zemini `sahneler/karakter_secim_kragmir.webp` (`kanit/ek-ocak/sonuc.json` A10, `A10_karakter_secme.png`) |
 | B1 | Han/Ahır/Zafer ayrı tasarım dili | DÜZELTİLDİ | GEM N4-01 + N4-04 ortak kabuk |
 | B2 | Premium $ fiyat + AL | DÜZELTİLDİ | GEM N2-01 "Yakında" |
 | B3 | Kragmir kahramanları ten kontrolü | DOĞRULANDI | Yeşil set değişmedi; T3 (kural dışı) kapalı |
