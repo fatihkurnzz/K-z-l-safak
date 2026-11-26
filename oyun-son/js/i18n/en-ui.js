@@ -1710,7 +1710,7 @@ export const EN_UI = {
   'Bugünkü {0} yakutu al': 'Claim today\'s {0} Yakut',
   'En çok {0} gün': 'Up to {0} days',
   'Uzat (+{0} gün)': 'Extend (+{0} days)',
-  'Satın al': 'Buy',
+  'Satın al': 'Buy', 'Yakında': 'Coming soon', // P33: yerel kipte gerçek para kapalı
   '{0} gün': '{0} day|{0} days',
   'Hemen': 'Instantly',
   'Her gün': 'Every day',
