@@ -279,3 +279,11 @@ html.k24[data-faction] #win .frame > header .wres.wtag > span.wctx { font-size: 
 /* F-007: geri düğmeli pencerelerde (Meydan Sezonu) sol sekme sütunu 44 px dolguyla daralıp harf harf bölünüyordu */
 html[data-faction] #win:has(.frame > header > .x.bk):not(:has(.kx)) nav.tabs:not(.side) { padding-left: 0 !important; min-width: 118px !important; }
 html[data-faction] #win:has(.frame > header > .x.bk):not(:has(.kx)) nav.tabs button span { word-break: normal !important; overflow-wrap: normal !important; hyphens: none; }
+/* F-005 kalan: 10,5 px'lik üç yer ve 667 genişlikte 10,9 px menü yazısı */
+html.k24[data-faction] #win[data-scr="karakter"] .kx-base .kx-r, html.k24[data-faction] #win[data-scr="karakter"] .kx-base .kx-r span, #win .kx-base .kx-r span { font-size: 11px !important; }
+html.p23 .ik-card .potbuy .btn, html.p23 .ik-card .potbuy .btn span { font-size: 11px !important; }
+:is(#win, #modal) .wslot span { font-size: 11px !important; }
+html.p23 .p23m-alt, html.p23 .p23m-alt span { font-size: 11px !important; }
+/* F-006 (karar gerektirmeyen kısım): sık kullanılan düğmeler ≥ 44 px */
+[data-a="icmGizle"], [data-a="binaKapat"] { min-width: 44px !important; min-height: 44px !important; }
+:is(#win, #modal) :is([data-a="stage"], [data-a="tcPot"], [data-a="qlOpen"], [data-a="season"], [data-a="rank"], [data-a="mzRefresh"], [data-a="clanApply"]) { min-height: 44px !important; min-width: 44px !important; }
