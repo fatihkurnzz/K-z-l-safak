@@ -8,6 +8,15 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
+## SON DURUM (26.11, 20. oturum) — P34 ENTEGRE, SÜRÜM 42 YAYINDA, SIRADA FABLE PAKETİ
+- **Sürüm 42 YAYINDA** (450 dosya; +3 yeni: js/npc-kare-png.js, js/p34-katman-png.js, js/p34-katman.js). Yayın komiti = P34 komiti d5320b5 ve sonrası; sonraki yayında `git diff --name-status d5320b5 HEAD -- oyun-son`, `_tasarim` hariç.
+- P34 teslimleri `_tasarim/araclar/p34-gom.py <gpt> <gemini> oyun-son` ile gömüldü (rapor `kabul-26kas/p34_gom_raporu.json`). Kaynak ZIP'ler kullanıcı yüklemesi (`/root/.claude/uploads/44302d19-…/`), açılmış hâli scratchpad `teslim34/`.
+  P34-01 zafer = GPT 2048×868 (Gemini 1600×678 KULLANICI REDDETTİ) · 02/03/04 sahne katmanları `sahneler/*.webp` üstünde (p33-canli zerreKur → katmanKur; dd_canli/pil/motion-less kapatır) · 05 Gemini göz/ağız kareleri `ui-diyalog.js canlan()` · 06 yaratık saldırı/vurulma (lamia, snake_queen, dragon_lightning KİMLİK SAPMASI → HARİÇ) · 07 boss evre-2 A+B+C (D isteğe bağlı, gelmedi) · 08 Kragmir erkek yuva 4 · 09 Bran/Nessa (diyalog + kurtarma kartı) · K-2 büyü pozu · **P34-11 ses GELMEDİ** (Gemini manifest `ses: []`) · P34-10 kapsam dışı.
+- G2 düzeltmeleri: boss uyarısı ek bekleme yok, orsSonuc pencere kimliği, expAkit son değer, LOCAL payBuy koruması, "+" 44 px genişlik, 667 savaş HUD 11 px (özgül seçici), QA özeti 113, KAB satırı yalanı düzeltildi. G2-04/05 test betiği hatasıydı (gpt_test düzeltildi).
+- **Gerileme düzeltildi:** `ui-ahir.js binaAcik` (icm-var sınıfı) → Han/Ahır yeniden çizilmiyor, Zafer "Yükleniyor…"da kalıyordu (dış sürüm v40'tan).
+- Testler (v42): p34_test ×2 GEÇTİ, bina_test, sekme_test (çoklu sekme kilidi), hafta_test (haftalık sıfırlama), gpt_test ×2 GEÇTİ, sistem_test. **savas_test ve cek115 kullanıcı isteğiyle DURDURULDU (v42'de yapılmadı).**
+- Sırada: `KORANT_FABLE_DENETIM_GIRDISI.zip` (kullanıcı 14 dosyalık yapı verdi; araçlar `_tasarim/araclar/fable/`; taslaklar scratchpad `fable/out/`). Fable denetimini KENDİN YAPMA, yayın kararı verme.
+
 ## SON DURUM (26.11, 19. oturum) — P33 TAMAMLANDI, SÜRÜM 41 YAYINDA
 - **Sürüm 41 YAYINDA** (447 dosya; yayın commit'i bu notun commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç).
 - Kabul işi bitti: `oyun-son/_tasarim/araclar/kabul-26kas/` → KAPSAM_MATRISI.md (AAA planı=23+9 görev + bulgular + Gemini + GPT), DEGISIKLIK_RAPORU.md, TEST_KANITLARI.md,
