@@ -7,6 +7,8 @@ Kullanıcı kararı (26.11): Sonnet yalnızca düşük riskli işleri yaptı. A�
 - **F-021 sekme devri:** önce yeniden üret (`sekme_test`); gerekirse 2 sn içinde görünür uyarı; veri kaybı olmasın.
 - **F-009 Weaken doğrulama:** önce kanıt (K020, tam test, etki sayacı ayrımı); yetenek/mekanik değiştirme yok, `shared/` değişmez.
 
+- **F-006 kalanı (Opus, kullanıcı onaylı):** Sonnet 223→99'a indirdi (kapatma ve sık düğmeler). Kalan: Çanta, Karakter, Görevler, Sohbet ve ızgara öğeleri (`aeSet`, `aeTog`, `kbBuy`, `marketSub`, `marketKind`, INPUT). Kural: yalnız CSS; `shared/` yok; her ekranda önce/sonra görüntü (880 ve 667), taşma/üst üste binme/kırpılma denetimi; hedef `rt.mjs hedefN` 880'de ≤ 60. Izgara kararı (hedef büyüsün mü, aralık mı) Fable oturumundan/kullanıcıdan gelmeden ızgaralara dokunma. Gerçek cihaz testi ayrı.
+
 ## Fable'a (bağımsız kabul)
 - F-024/F-025'in bağımsız kabulü ve düzeltmelerin yeniden ölçümü (Sonnet yalnız test ortamı/senaryo hazırladı; bkz. sonuç raporu).
 

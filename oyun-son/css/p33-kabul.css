@@ -287,3 +287,6 @@ html.p23 .p23m-alt, html.p23 .p23m-alt span { font-size: 11px !important; }
 /* F-006 (karar gerektirmeyen kısım): sık kullanılan düğmeler ≥ 44 px */
 [data-a="icmGizle"], [data-a="binaKapat"] { min-width: 44px !important; min-height: 44px !important; }
 :is(#win, #modal) :is([data-a="stage"], [data-a="tcPot"], [data-a="qlOpen"], [data-a="season"], [data-a="rank"], [data-a="mzRefresh"], [data-a="clanApply"]) { min-height: 44px !important; min-width: 44px !important; }
+/* F-005 son kalan: Karakter penceresi alt sekmeleri (.kx-ftabs) 10,5 px */
+#win .kx-ftabs button, #win .kx-ftabs button span { font-size: 11px !important; }
+html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button { font-size: 11px !important; }

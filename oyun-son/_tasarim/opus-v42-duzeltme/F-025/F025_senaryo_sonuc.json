@@ -1,0 +1,146 @@
+{
+ "tohum": 25,
+ "not": "Yerel simülasyon (MemoryStore); gerçek çok oyunculu sunucu değildir.",
+ "sonuclar": [
+  {
+   "ad": "takas edilebilir eşya bulundu",
+   "sonuc": "GECTI",
+   "not": "id 2, baz w:sword:6"
+  },
+  {
+   "ad": "ilan aç",
+   "sonuc": "GECTI",
+   "not": "ilan 46051b016d7973bc, ücret 195; A akçe 5051500→5051305, eşya 106→105"
+  },
+  {
+   "ad": "kendi ilanını alma reddi",
+   "sonuc": "GECTI",
+   "not": "own-listing beklenir"
+  },
+  {
+   "ad": "alıcı ilanı listede görür",
+   "sonuc": "GECTI",
+   "not": "1 ilan"
+  },
+  {
+   "ad": "satın alma",
+   "sonuc": "GECTI",
+   "not": "B akçe 5051500→5032092 (fark -19408, beklenen -19408), eşya 106→107"
+  },
+  {
+   "ad": "aynı ilanı ikinci kez alma",
+   "sonuc": "GECTI",
+   "not": "no-listing"
+  },
+  {
+   "ad": "satılmış ilanı iptal (eşya çoğalması?)",
+   "sonuc": "GECTI",
+   "not": "no-listing"
+  },
+  {
+   "ad": "satıcı posta/yuva durumu",
+   "sonuc": "BILGI",
+   "not": "mine {\"listings\":[],\"slots\":8,\"used\":1}; posta {\"mail\":[{\"id\":\"866f2c29bf0b4898\",\"text\":\"Satıldı: Blade +5\",\"give\":[{\"t\":\"akce\",\"n\":18438}],\"item\":null,\"at\":1799139600"
+  },
+  {
+   "ad": "satıcı ödemeyi postadan alır",
+   "sonuc": "GECTI",
+   "not": "akçe 5051305→5069743 (+18438); posta 18438; fiyat 19408; vergi 970"
+  },
+  {
+   "ad": "postayı ikinci kez alma",
+   "sonuc": "GECTI",
+   "not": "no-mail"
+  },
+  {
+   "ad": "ödeme sonrası ilan yuvası boşalır",
+   "sonuc": "GECTI",
+   "not": "{\"listings\":[],\"slots\":8,\"used\":0}"
+  },
+  {
+   "ad": "klan kur",
+   "sonuc": "GECTI",
+   "not": "{\"id\":\"3d50659474f5eb1a\"}"
+  },
+  {
+   "ad": "açık klana katılma",
+   "sonuc": "GECTI",
+   "not": "ok"
+  },
+  {
+   "ad": "üye yetkisiz: klan atma (lideri)",
+   "sonuc": "GECTI",
+   "not": "no-perm"
+  },
+  {
+   "ad": "üye yetkisiz: devir",
+   "sonuc": "GECTI",
+   "not": "no-perm"
+  },
+  {
+   "ad": "üye yetkisiz: rütbe",
+   "sonuc": "GECTI",
+   "not": "no-perm"
+  },
+  {
+   "ad": "üye yetkisiz: ayar",
+   "sonuc": "GECTI",
+   "not": "no-perm"
+  },
+  {
+   "ad": "üye yetkisiz: sancak",
+   "sonuc": "GECTI",
+   "not": "no-perm"
+  },
+  {
+   "ad": "üye yetkisiz: davet",
+   "sonuc": "GECTI",
+   "not": "no-perm"
+  },
+  {
+   "ad": "bağış 0",
+   "sonuc": "BILGI",
+   "not": "bad-amount"
+  },
+  {
+   "ad": "bağış -50",
+   "sonuc": "BILGI",
+   "not": "bad-amount"
+  },
+  {
+   "ad": "bağış 1.5",
+   "sonuc": "BILGI",
+   "not": "bad-amount"
+  },
+  {
+   "ad": "bağış 1000000000000",
+   "sonuc": "BILGI",
+   "not": "bad-amount"
+  },
+  {
+   "ad": "bağış 100",
+   "sonuc": "BILGI",
+   "not": "bad-amount"
+  },
+  {
+   "ad": "bağış 1000",
+   "sonuc": "BILGI",
+   "not": "kabul: akçe 5032092→5031092"
+  },
+  {
+   "ad": "bağış 1000",
+   "sonuc": "BILGI",
+   "not": "kabul: akçe 5031092→5030092"
+  },
+  {
+   "ad": "üye ayrılır",
+   "sonuc": "GECTI",
+   "not": "ok"
+  },
+  {
+   "ad": "ayrıldıktan sonra yeniden katılma (bekleme?)",
+   "sonuc": "BILGI",
+   "not": "hemen katıldı"
+  }
+ ]
+}
