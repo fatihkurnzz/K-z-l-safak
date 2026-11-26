@@ -61,7 +61,7 @@ const R = { race, savaslar: [], klan: {} };
   await hub(); await ev(async () => { const C = await import('/js/ui-core.js'); await C.ACT.goKlan() }); await p.waitForTimeout(3500);
   R.klan.oba_yer = await ev(() => document.documentElement.dataset.place + ' / hub2d=' + document.documentElement.dataset.hub2d);
   R.klan.oba_binalar = await ev(() => [...document.querySelectorAll('[data-a="building"]')].map(e => e.dataset.id));
-  R.klan.oba_zemin = await ev(() => getComputedStyle(document.documentElement).getPropertyValue('--s2-bg').trim().slice(0, 80) || [...document.querySelectorAll('img')].map(i => i.currentSrc).filter(s => /klan_obasi/.test(s))[0] || null);
+  R.klan.oba_zemin = await ev(() => document.querySelector('#hub2d .s2-bg')?.getAttribute('src') || null);
   await p.screenshot({ path: `${out}/klan_1_oba_dis_harita.png` });
   for (const id of ['k_hq', 'k_salon', 'k_hazine', 'k_dukkan', 'k_hisar', 'k_av', 'k_gorev', 'k_sancak', 'portal', 'gate']) {
     await kapat(); await ev(async id => { const C = await import('/js/ui-core.js'); await C.ACT.building({ id }) }, id); await p.waitForTimeout(1800);

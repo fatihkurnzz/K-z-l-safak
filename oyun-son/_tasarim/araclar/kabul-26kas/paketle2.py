@@ -51,7 +51,7 @@ G = Paket('KORANT_GPT_KABUL2')
 for f in ['KAPSAM_MATRISI.md', 'DEGISIKLIK_RAPORU.md', 'TEST_KANITLARI.md', 'GPT_ISTEK_P34.md', 'EKRAN_ENVANTERI.md', 'ekran_envanteri.json', 'KAPSAM_KAYNAK_AAA.txt', 'DEVIR.md']: G.kopya(os.path.join(KAB, f), f'01_BELGELER/{f}', 'belge')
 G.kopya(os.path.join(SON, 'QA_MATRISI_DOLU.json'), '02_QA/QA_MATRISI_DOLU.json', 'qa')
 G.kopya(os.path.join(SON, 'olcum_ozeti.txt'), '02_QA/olcum_ozeti.txt', 'qa')
-for d in ['sistem', 'gpt-ocak', 'gpt-sancak', 'ek-ocak', 'ek-sancak', 'savas-ocak', 'savas-sancak', 'cesitli']:
+for d in ['baskin-ocak', 'baskin-sancak', 'sistem', 'gpt-ocak', 'gpt-sancak', 'ek-ocak', 'ek-sancak', 'savas-ocak', 'savas-sancak', 'cesitli']:
     G.kopya(os.path.join(SON, 'kanit', d, 'sonuc.json'), f'03_TEST_SONUCLARI/{d}.json', 'test')
 for f in ['koruma/koruma.json', 'guvenlik_tarama.txt', 'gpt_entegrasyon_sonuc.json', 'devui_t3_sonuc.json', 'hud11-ocak.json']: G.kopya(os.path.join(KAB, 'kanit', f), f'03_TEST_SONUCLARI/{f.replace("/", "_")}', 'test')
 G.kopya(os.path.join(SON, 'p33.patch'), '04_KAYNAK/p33.patch', 'kaynak')
@@ -71,7 +71,7 @@ M = Paket('KORANT_GEMINI_KABUL2')
 for r, h in [('ocak', 'kragmir'), ('sancak', 'elentha')]:
     M.klasor(os.path.join(SON, f'cek115-{r}'), f'01_EKRANLAR_880x406/{h}', 'ekran')
     M.klasor(os.path.join(SON, f'once-{r}'), f'02_ONCE_SONRA/{h}/once_1dda167', 'once')
-    M.klasor(os.path.join(SON, 'kanit', f'savas-{r}'), f'03_SAVAS_KLAN/{h}', 'savas')
+    M.klasor(os.path.join(SON, 'kanit', f'savas-{r}'), f'03_SAVAS_KLAN/{h}', 'savas'); M.klasor(os.path.join(SON, 'kanit', f'baskin-{r}'), f'03_SAVAS_KLAN/{h}/baskin_cumartesi', 'savas')
     M.klasor(os.path.join(SON, 'kanit', f'ek-{r}'), f'04_CANLILIK_GERIBILDIRIM/{h}', 'canlilik')
     for W in ('667', '1180'): M.klasor(os.path.join(SON, f'res{W}-{r}'), f'05_COZUNURLUK_{W}/{h}', 'cozunurluk')
     M.klasor(os.path.join(SON, f'eylem-{r}'), f'06_EYLEM_TURU/{h}', 'eylem')
