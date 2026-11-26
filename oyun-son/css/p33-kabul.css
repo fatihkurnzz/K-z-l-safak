@@ -215,3 +215,11 @@ html[data-faction="sancak"] .p33-serit b { color: #f2f6ff; text-shadow: 0 0 12px
 @media (prefers-reduced-motion: reduce) { .p33-ors, .p33-ors > i, img.npc-yuz, .dlg-por img, #modal > .box { animation: none !important; } }
 .p33-serit:is(.gorev, .sandik, .unvan) b { font-size: 17px; }
 .p33-serit.sandik b { color: #ffd98a; }
+
+/* ---- Son ölçüm turu (cek115 + eylem, 26 Kas): kalan 11 px altı yazılar (kanıt son/olcum_ozeti.txt) ---- */
+#game #hud .srail .lbtn > span:not(.badge) { font-size: 11px !important; }
+html[data-faction] #win .frame > header .wres.wtag .wctx { font-size: 11px !important; }
+html[data-faction] #modal .tgrid .tbtn > small, html[data-faction] #modal .srv .srv-kick { font-size: 11px !important; }
+html[data-faction] #win .npc-ware :is(.rar, .cf), html[data-faction] #win .ors .arisk, html[data-faction] #win .ivpick .ivc .ivst { font-size: 11px !important; }
+/* savaş HUD (kullanıcı kararı: HUD'da da 11 px) */
+#battleUI :is(#bctl2 .rb, #skills .skill > i.mpc, #skills .skill > i.pn, #btgt .bt-info small), #overlay .hud > i.lv { font-size: 11px !important; }

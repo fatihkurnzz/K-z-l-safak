@@ -12,6 +12,7 @@ for d in sys.argv[1:]:
         p = os.path.join(d, f)
         if not os.path.exists(p): continue
         J = json.load(open(p, encoding='utf-8'))
+        for n, o in (J.get('olcumler') or {}).items(): ekle(o, f"{d.split('/')[-1]}:{n}")
         for k in J.get('kayit', []):
             ekle(k.get('olcum'), f"{d.split('/')[-1]}:{k.get('etiket') or k.get('no')}")
             for s in k.get('sekmeler', []) if isinstance(k.get('sekmeler'), list) else []: ekle(s.get('olcum'), f"{d.split('/')[-1]}:{k.get('etiket')}~{s['sekme']}")
