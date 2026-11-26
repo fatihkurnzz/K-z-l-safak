@@ -6,7 +6,7 @@ const ozet = p => p.evaluate(async () => { const { S } = await import('/js/api.j
   // 1) Yenileme: kayıt korunur mu
   { const c = await b.newContext({ viewport: { width: 880, height: 406 } }); const p = await c.newPage(); const er = []; p.on('pageerror', e => er.push(e.message));
     await giris(p, 'ocak', '?gfx=low&store=1'); const once = await ozet(p);
-    await p.reload(); await p.evaluate(() => document.querySelector('.sv-go')?.click()).catch(() => {}); await p.waitForTimeout(3000); await p.evaluate(() => document.querySelector('#tkenter')?.click()).catch(() => {}); await p.waitForTimeout(3500);
+    await p.reload(); await p.waitForSelector('.sv-go', { timeout: 60000 }).catch(() => {}); await p.evaluate(() => document.querySelector('.sv-go')?.click()).catch(() => {}); await p.waitForSelector('#tkenter', { timeout: 60000 }).catch(() => {}); await p.waitForTimeout(1500); await p.evaluate(() => document.querySelector('#tkenter')?.click()).catch(() => {}); await p.waitForTimeout(4000);
     for (let i = 0; i < 4; i++) { await p.evaluate(() => { for (const b of document.querySelectorAll('button')) if (/^(Geç|Evet, atla|Tamam)$/.test(b.textContent.trim()) && b.offsetParent) { b.click(); return } }); await p.waitForTimeout(1000); }
     const sonra = await ozet(p); R.yenileme = { once, sonra, ayni: JSON.stringify(once) === JSON.stringify(sonra), js_hata: er };
     // 2) Çift tıklama: Han içeceği iki kez hızlı → akçe bir kez mi düşer (aynı içecek etkinken ikinci istek onay ister / reddedilir)
