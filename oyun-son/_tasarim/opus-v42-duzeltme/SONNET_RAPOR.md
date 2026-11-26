@@ -4,9 +4,8 @@
 
 ## F-005 — yazı ≥ 11 px (BİTTİ)
 - Son ölçüm (26.11): 880×406 Kragmir 0 küçük metin; Elentha 880 ve iki halk 667 de 0 (başta 57/60).
-- 880×406, Kragmir: 57 küçük metin → **12** (hedef 0). 667×375: 60 → 25 (ilk tur; son CSS'ten sonra 667 yeniden ölçülmedi).
-- Düzeltilenler: `.wctx`, `.mc-t small`, `.dev`, Karakter `.kx-r`, İksir `.potbuy .btn`, Dünya Bilgisi `.wslot span`, `.p23m-alt`.
-- Kalan 12: Karakter, Hotbar ve Parti ekranlarında 4'er `SPAN` (10,5 px). Tek başına açınca yeniden üretemedim (sadece rt.mjs'in tam akışında çıkıyor); kök neden bulunmadı.
+- Başlangıç: 880'de 57, 667'de 60 küçük metin. Düzeltilenler: `.wctx`, `.mc-t small`, `.dev`, Karakter `.kx-r` ve üst sekmeleri, İksir `.potbuy .btn`, Dünya Bilgisi `.wslot span`, `.p23m-alt`.
+- 667×375 ve Elentha 880 turları 0; Kragmir 880 son CSS'le yeniden ölçüldü, 0 (`arac/son2_ocak_880x406.json`).
 
 ## F-006 — 44 px hedefler (KISMEN)
 - 880×406: 223 → **99** (hedef ≤ 60). Kapatma düğmeleri (✕), `icmGizle`, `binaKapat`, `stage`, `tcPot`, `qlOpen`, `season`, `rank`, `mzRefresh`, `clanApply` 44 px oldu.
