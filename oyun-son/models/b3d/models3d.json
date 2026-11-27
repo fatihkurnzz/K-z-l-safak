@@ -1,0 +1,52 @@
+{
+ "surum": 1,
+ "_aciklama": "3B Savaş Faz 1 manifesti (js/savas3d/varlik3d.js okur). Şema ve kurallar: _tasarim/3d-faz1/STANDART.md. Yollar models/ köküne göredir. Bir savaştaki BÜTÜN birimlerin burada kaydı yoksa savaş 2B çizilir.",
+ "klipler": {
+  "idle": "anims/idle.json",
+  "combatIdle": "anims/combat_idle.json",
+  "run": "anims/run.json",
+  "attack": "anims/attack.json",
+  "special": "anims/special.json",
+  "cast": "anims/cast.json",
+  "cast2": "anims/cast2.json",
+  "shoot": "anims/shoot.json",
+  "hit": "anims/hit.json",
+  "death": "anims/death.json",
+  "victory": "anims/victory.json"
+ },
+ "onYukle": ["paladin", "goblin"],
+ "modeller": {
+  "paladin": {
+   "dosya": "characters/paladin.json",
+   "kaynak": "Mixamo 'Paladin J Nordstrom' (mevcut V42 varlığı; dokuda kılıç/kalkan alanı var ama ağda yok → kodla takılır)",
+   "boy": 2.3,
+   "malzeme": { "parlak": 2.5, "metal": 0.55, "puruz": 0.42, "normal": 1.0, "kendi": 0.1, "kenar": 0.45, "kenarRenk": "#a9c4ff" },
+   "soket": {
+    "sag": { "kemik": "RightHand", "konum": [-0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] },
+    "sol": { "kemik": "LeftHand", "konum": [0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] }
+   },
+   "butce": { "ucgen": 15000, "kemik": 70, "doku": 1024 }
+  },
+  "goblin": {
+   "dosya": "characters/goblin.json",
+   "kaynak": "Mixamo 'Goblin' (mevcut V42 varlığı)",
+   "boy": 2.3,
+   "malzeme": { "parlak": 1.6, "metal": 0.05, "puruz": 0.75, "normal": 1.0, "kendi": 0.12, "kenar": 0.35, "kenarRenk": "#ffc890" },
+   "soket": {
+    "sag": { "kemik": "RightHand", "konum": [-0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] },
+    "sol": { "kemik": "LeftHand", "konum": [0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] }
+   },
+   "butce": { "ucgen": 15000, "kemik": 70, "doku": 1024 }
+  }
+ },
+ "birimler": {
+  "kahraman:warrior:sancak": { "model": "paladin", "sag": "kilic", "sol": "kalkan", "fxTur": "sword", "not": "Elentha Savaşçı (Faz 1 pilot gövdesi; Meshy modeli gelince 'model' değişir)" },
+  "yaratik:goblin": { "model": "goblin", "sag": "sopa" },
+  "yaratik:goblin_bouncer": { "model": "goblin", "sag": "sopa", "ton": "#d8b890", "olcek": 1.08 },
+  "yaratik:goblin_necromancer": { "model": "goblin", "sag": "asa", "tas": "mor", "ton": "#d0b0ff", "fxTur": "staff" },
+  "yaratik:goblin_juggler": { "model": "goblin", "sag": "hancer", "ton": "#ffc0a0" },
+  "yaratik:kobold": { "model": "goblin", "sag": "hancer", "ton": "#e0c0a0", "olcek": 0.92 },
+  "yaratik:hobgoblin": { "model": "goblin", "sag": "sopa", "ton": "#ffb080", "olcek": 1.15 },
+  "yaratik:bugbear": { "model": "goblin", "sag": "sopa", "ton": "#e0b890", "olcek": 1.2 }
+ }
+}

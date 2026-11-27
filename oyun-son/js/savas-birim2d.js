@@ -12,6 +12,7 @@ import { charLookFor } from './gorunus.js';
 import { B2D, YARATIK, halkAd, paket, HAZIR, p23Portre, t3Mi } from './yaratik2d.js';
 import { ZEMIN, zeminTon } from './savas-arka.js'; // P31-G3: sahne tonu ve temas gölgesi koyuluğu
 export { B2D };
+import { B3D, savasKarari, isitBirim } from './savas3d/ayar3d.js'; // 3B Savaş Faz 1 (Opus 27.11): savaş 3B ise 2B birim verilmez
 
 const SINIF = { warrior: 'savasci', rogue: 'suikastci', mage: 'buyucu', priest: 'sifaci' };
 const SILAH = { savasci: 'sword', suikastci: 'dagger', buyucu: 'staff', sifaci: 'mace' };
@@ -19,7 +20,7 @@ const SILAH = { savasci: 'sword', suikastci: 'dagger', buyucu: 'staff', sifaci: 
 // ---- Paket ve doku önbelleği ----
 const DOKU = new Map();
 // Düşman çerçevesi için yaratık/boss portresi (base64 WebP) ya da null; paket henüz inmediyse indirmeye başlar
-export function portre(u) { const s = cozum(u); if (!s || s.hero) return null; const p23 = u.mob && p23Portre(u.mob); if (p23) return p23; const P = HAZIR[s.ad]; if (!P) { paket(s.ad); return null; } return P[s.anahtar]?.portre || null; }
+export function portre(u) { const s = cozumHam(u); if (!s || s.hero) return null; const p23 = u.mob && p23Portre(u.mob); if (p23) return p23; const P = HAZIR[s.ad]; if (!P) { paket(s.ad); return null; } return P[s.anahtar]?.portre || null; }
 const yukleyici = new THREE.TextureLoader();
 function doku(ad, anahtar, poz, b64) {
   const k = `${ad}/${anahtar}/${poz}`;
@@ -28,10 +29,12 @@ function doku(ad, anahtar, poz, b64) {
   return t;
 }
 // Savaş açılmadan önce paketleri ısıt (açılış kartı sürerken iner)
-export function onYukle(units) { if (!B2D.on) return; for (const u of units) { const s = cozum(u); if (s) paket(s.ad); } }
+export function onYukle(units) { savasKarari(units); if (!B2D.on || B3D.aktif) return; for (const u of units) { const s = cozumHam(u); if (s) paket(s.ad); } }
 
 // Birimin 2B karşılığı: { ad: paket, anahtar, hero, tint } ya da null (çizimi yoksa 3B kalır)
-export function cozum(u) {
+// 3B Savaş Faz 1: bu savaş 3B kararı aldıysa (ayar3d.js savasKarari) birim 2B çizilmez → world.js spawn 3B birim kurar.
+export function cozum(u) { isitBirim(u); return B3D.aktif ? null : cozumHam(u); }
+export function cozumHam(u) {
   if (!B2D.on || !u || u.mon) return null;
   if (u.cls) {
     const s = SINIF[u.cls]; if (!s) return null;

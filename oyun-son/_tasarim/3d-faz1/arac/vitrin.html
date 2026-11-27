@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3B Vitrin</title>
+<style>
+  html,body{margin:0;background:#1b1d22;color:#e8e2d4;font:13px/1.35 system-ui,sans-serif;overflow:hidden}
+  #stage,#stage canvas{position:fixed;inset:0;display:block}
+  #overlay{position:fixed;inset:0;pointer-events:none}
+  #panel{position:fixed;left:8px;top:8px;background:#0009;padding:8px 10px;border-radius:6px;max-width:46vw;white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:11px}
+  #etiket{position:fixed;left:0;right:0;bottom:6px;text-align:center;font-size:12px;color:#f0e6cc;text-shadow:0 1px 2px #000}
+</style></head>
+<body>
+<div id="stage"></div><div id="overlay"></div><div id="panel">yükleniyor…</div><div id="etiket"></div>
+<script type="module">
+// 3B Savaş Faz 1 · model vitrini (test aracı; yayına girmez).
+// Adres: /_tasarim/3d-faz1/arac/vitrin.html?birim=kahraman:warrior:sancak&klip=attack&oran=0.45&tpose=0&izgara=1
+//  birim : manifest birim anahtarı (virgülle birden çok)   klip: 11 klipten biri   oran: klibin dondurulacağı an (0–1)
+//  izgara=1 : 11 klibi yan yana (her biri darbe anında) çizer   tpose=1 : animasyonsuz (soket hizası)
+// window.VITRIN.rapor() → üçgen, kemik, doku, klip ve soket ölçüleri (otomatik testler kullanır)
+import { THREE, scene, camRig, setHfov, renderer, gfxStats } from '../../../js/engine3d.js';
+import { manifestYukle, modelHazirla, kayitAnahtari, manifest, klipler } from '../../../js/savas3d/varlik3d.js';
+import { Birim3D } from '../../../js/savas3d/birim3d.js';
+import { ucgen } from '../../../js/savas3d/silah3d.js';
+const q = new URLSearchParams(location.search);
+const anahtarlar = (q.get('birim') || 'kahraman:warrior:sancak').split(',');
+const klip = q.get('klip') || 'combatIdle', oran = +(q.get('oran') ?? 0.45), izgara = q.get('izgara') === '1', tpose = q.get('tpose') === '1';
+const yaw = +(q.get('yaw') ?? 0.5);
+setHfov(+(q.get('fov') || 38));
+scene.background = new THREE.Color(0x2a2d33);
+scene.add(new THREE.HemisphereLight(0xc8d4ff, 0x3a2e22, 1.1));
+const gunes = new THREE.DirectionalLight(0xfff0dc, 2.6); gunes.position.set(5, 9, 6); gunes.castShadow = true; gunes.shadow.mapSize.set(2048, 2048);
+Object.assign(gunes.shadow.camera, { left: -8, right: 8, top: 8, bottom: -8 }); scene.add(gunes);
+const arka = new THREE.DirectionalLight(0x9fb8ff, 1.2); arka.position.set(-6, 4, -8); scene.add(arka);
+const zemin = new THREE.Mesh(new THREE.CircleGeometry(30, 48).rotateX(-Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0x4a4a46, roughness: 0.9 })); zemin.receiveShadow = true; scene.add(zemin);
+renderer.shadowMap.autoUpdate = true;
+
+const P = document.getElementById('panel');
+const m = await manifestYukle();
+const units = anahtarlar.map(a => { const [tur, x, y] = a.split(':'); return tur === 'kahraman' ? { cls: x, faction: y, name: a } : { mob: x, name: a }; });
+await Promise.all(units.map(u => modelHazirla(kayitAnahtari(u).model)));
+const birimler = [];
+const kliplist = izgara ? Object.keys(m.klipler) : [klip];
+const n = izgara ? kliplist.length : units.length;
+const ara = izgara ? 1.7 : 2.2, sutun = izgara ? 6 : n;
+for (let i = 0; i < n; i++) {
+  const u = units[izgara ? 0 : i], k = kayitAnahtari(u), b = new Birim3D(k.model, k.kayit, u, { scale: 1 });
+  b.combatTarget = 1;
+  const sira = Math.floor(i / sutun), kol = i % sutun, buSira = Math.min(sutun, n - sira * sutun);
+  b.pos.set((kol - (buSira - 1) / 2) * ara, 0, -sira * 2.6); b.root.rotation.y = yaw;
+  scene.add(b.root); birimler.push(b);
+  const isim = kliplist[izgara ? i : 0];
+  b.mixer.stopAllAction();
+  if (!tpose) { const a = b.actions[isim]; if (a) { a.reset(); a.setLoop(THREE.LoopOnce, 1); a.clampWhenFinished = true; a.setEffectiveWeight(1); a.play(); b.mixer.setTime(a.getClip().duration * (izgara ? (b.darbe[isim] ?? 0.5) : oran)); } }
+  b.update = () => {}; // dondurulmuş poz
+}
+// kamera: hepsini görecek şekilde
+const gen = Math.min(n, sutun) * ara + 1, uz = Math.max(5.5, gen * 1.05);
+camRig.pos.set(0, izgara ? 3.2 : 1.6, uz); camRig.look.set(0, izgara ? 0.4 : 1.15, izgara ? -1.3 : 0);
+document.getElementById('etiket').textContent = izgara ? kliplist.join(' · ') : `${anahtarlar.join(', ')} · ${tpose ? 'T-pozu' : klip + ' @' + oran}`;
+
+function rapor() {
+  const r = { birimler: [], cizim: gfxStats() };
+  for (const [i, b] of birimler.entries()) {
+    if (izgara && i) break;
+    let ucg = 0, kemik = new Set(), doku = new Set();
+    b.model.traverse(o => { if (o.isSkinnedMesh) { ucg += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3; o.skeleton.bones.forEach(x => kemik.add(x.name)); } if (o.material) for (const mt of [].concat(o.material)) for (const t of [mt.map, mt.normalMap]) if (t?.image) doku.add(`${t.image.width}x${t.image.height}`); });
+    const kl = klipler(b.ad), eksikIz = {};
+    for (const [ad, c] of Object.entries(kl)) { const yok = c.tracks.filter(t => !b.model.getObjectByName(t.name.slice(0, t.name.lastIndexOf('.')))).length; eksikIz[ad] = `${c.tracks.length - yok}/${c.tracks.length}`; }
+    const sok = {}; for (const [y, s] of Object.entries(b.soket)) { const v = s.getWorldPosition(new THREE.Vector3()); sok[y] = { kemik: s.parent.name, dunya: v.toArray().map(x => +x.toFixed(3)) }; }
+    r.birimler.push({ anahtar: anahtarlar[izgara ? 0 : i], model: b.ad, govdeUcgen: Math.round(ucg), silahUcgen: b.silahlar.map(ucgen), kemik: kemik.size, doku: [...doku], klipler: Object.keys(kl).length, klipIzEslesen: eksikIz, soket: sok, boy: +(new THREE.Box3().setFromObject(b.model).getSize(new THREE.Vector3()).y).toFixed(3) });
+  }
+  return r;
+}
+window.VITRIN = { rapor, birimler, hazir: true };
+if (q.get('panel') === '0') P.hidden = true;
+const kx = +(q.get('kx') ?? 0), ky = +(q.get('ky') ?? 1.15), kz = q.get('kz');
+if (kz) { camRig.pos.set(kx, ky + 0.3, +kz); camRig.look.set(kx, ky, 0); }
+setTimeout(() => { P.textContent = JSON.stringify(rapor().birimler.map(x => ({ ...x, klipIzEslesen: undefined })), null, 1); }, 300);
+</script>
+</body></html>

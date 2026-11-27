@@ -9,6 +9,10 @@ import { Birim2D } from './savas-birim2d.js'; // 23 Kas: savaşta boyalı 2B bir
 import { todEnv, todKey, afterEnv } from './daylight.js';
 import { blobGeo, blobMaterial } from './scenery.js';
 import { clearFx } from './fx.js';
+import { B3D, savasBitti } from './savas3d/ayar3d.js'; // 3B Savaş Faz 1 (Opus 27.11): gerçek 3B savaş birimleri
+import { birim3dYap } from './savas3d/birim3d.js';
+import { kayitAnahtari } from './savas3d/varlik3d.js';
+import './savas3d/kamera3d.js'; // RAID tarzı sinematik kamera (yalnız 3B savaşta)
 
 export const world = { actors: [], token: 0, env: null };
 let stopUpdater = null, envArgs = null;
@@ -16,7 +20,7 @@ let stopUpdater = null, envArgs = null;
 export function setUpdater(fn) { stopUpdater?.(); stopUpdater = fn ? onUpdate(fn) : null; }
 export function clearScene() {
   RENDER.off = false; delete document.documentElement.dataset.hub2d; // her sahne kurulumu 3B çizimi yeniden açar (2B başkent, kurduktan sonra kapatır)
-  world.token++;
+  world.token++; savasBitti();
   clearTweens(); clearParticles(); clearFloaters(); clearFx();
   world.actors.forEach(drop);
   world.actors = [];
@@ -36,7 +40,8 @@ const blobM = blobMaterial(gfx.T.blob);
 export function spawn(unit, x, z, faceAngle) {
   // models.json'da iskeletli model varsa onu, yoksa prosedürel modeli kullan
   const K = unit.look?.kind; // insansı olmayan gövdeler: Dev Solucan ve canavar ansiklopedisi (beasts.js); insansılara ekler (kanat, kuyruk…)
-  const char = unit.b2d ? new Birim2D(unit.b2d, unit.look, unit.side === 'A') : K === 'monument' ? new MonumentCharacter(unit.look) : K === 'worm' ? new WormCharacter(unit.look) : BEAST_KINDS.includes(K) ? new BeastCharacter(unit.look) : createSkinned(unit) || decorateMob(new Character(unit.look, unit.model), unit.look); // Dev Solucan: insansı olmayan model
+  const b3 = B3D.aktif && !unit.b2d ? birim3dYap(unit, unit.look || {}, kayitAnahtari) : null; if (b3) B3D.sayac.birim = (B3D.sayac.birim || 0) + 1; else if (B3D.aktif) B3D.sayac.dusme++; // kurulamazsa eski zincire düşer
+  const char = b3 ? b3 : unit.b2d ? new Birim2D(unit.b2d, unit.look, unit.side === 'A') : K === 'monument' ? new MonumentCharacter(unit.look) : K === 'worm' ? new WormCharacter(unit.look) : BEAST_KINDS.includes(K) ? new BeastCharacter(unit.look) : createSkinned(unit) || decorateMob(new Character(unit.look, unit.model), unit.look); // Dev Solucan: insansı olmayan model
   char.wt = unit.wt; // silah sınıfı (efekt tablosu, modelin silahı bilinmiyorsa buna bakar)
   char.pos.set(x, 0.1, z);
   char.root.rotation.y = faceAngle;
