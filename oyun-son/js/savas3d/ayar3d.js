@@ -5,7 +5,7 @@
 // Açma / kapama (öncelik sırasıyla):
 //   adres  ?b3d=1  (aç)  ·  ?b3d=0  (kapat)
 //   kayıt  localStorage dd_b3d = '1' | '0'
-//   varsayılan: KAPALI (sistem kabul edilene dek oyuncular 2B savaş görür)
+//   varsayılan: AÇIK (Faz 1b, 28.11 kullanıcı: yayınla). Düşük/En Düşük grafikte ve kayıtsız birimde yine 2B.
 // Açıkken bile savaş 2B açılır, eğer:
 //   - grafik kademesi 'min' ya da 'low' (Düşük / En Düşük),
 //   - WebGL bağlamı yok ya da kaybolmuş,
@@ -20,7 +20,7 @@ function bayrak() {
   const q = qs.get('b3d');
   if (q === '1' || q === '0') return q === '1';
   try { const s = localStorage.getItem('dd_b3d'); if (s === '1' || s === '0') return s === '1'; } catch { }
-  return false;
+  return true;
 }
 
 /** Ortak durum. aktif: ŞU ANKİ savaş 3B mi (her savaşın başında yeniden karar verilir, sahne temizlenince false). */
