@@ -1,0 +1,154 @@
+KORANT ONLINE — 3D BATTLE FAZ 1
+OPUS BAĞIMSIZ TEKNİK DENETİM (27.11)
+
+ÖNEMLİ NOT: Bu depodaki kod V42 (son commit 05728a0). V49/V50 bu depoda yok. Aşağıdaki envanter V42 üzerinden ölçüldü; Fable V49'da aynı dosyaları yeniden kontrol etmeli.
+
+==================================================
+1. NİHAİ KARAR: REVİZE
+==================================================
+Yön doğru (three.js, mevcut altyapı, silahlar kodla, pilot kapısı). Ama Gemini ve GPT planında 5 düzeltme gerekiyor (madde 2). Pilot geçmeden kredi harcanmaz.
+
+==================================================
+2. GEMINI VE GPT ÖNERİLERİNDEKİ HATALAR
+==================================================
+1) Lav Yürek Bölge 4 bossu. Faz 1 dilimi Bölge 1 olmalı. Lav Yürek yerine Bölge 1'in hikâye bossu Kül Ağası Karadun (karaduman, insansı, topuz) daha doğru. Lav Yürek Faz 2 / rezerv.
+2) "Mevcut GLB silahlar kullanılsın": 13 hazır silah/kalkan GLB'si var ama bunlar yalnızca belirli eşsiz eşyalar için (Mirage Sword, Iron Impact vb. ITEM_GLB eşlemesi). Hepsi dokusuz, yalnız köşe rengi; çoğu 6.000 üçgen (silah için 4 kat fazla). Temel kılıç/kalkan/hançer/asa/topuz zaten kodla üretiliyor (models.js buildWeapon/buildShield). Yeni modellerde kullanılabilir ama küçültülmeli ve PBR'ye geçirilmeli.
+3) Gemini'nin bütçeleri (sahne 85 bin üçgen, 40 draw call) gerçeğe uymuyor: mevcut iskeletli karakterler zaten 11–20 bin üçgen. Gerçekçi hedef: kahraman 10–15 bin, boss 15–25 bin, sahne ≤150 bin, ≤60 draw call. Son karar telefon ölçümüyle.
+4) "Meshopt kullanılıyor" bilgisi yanlış: skinned.js'te MeshoptDecoder = null. Mevcut dosyalar yalnız KHR_mesh_quantization + WebP. Meshopt istenirse çözücü dosyası eklenmeli.
+5) Dört ayaklıları Faz 2'ye bırakmak doğru, ama o zaman Bölge 1 Blok 1 (Bandikut) savaşları ve öğretici (Kül Kurdu) Faz 1'de 2B kalır. Faz 1 test savaşı Goblin bloğu (Bölge 1 Blok 3) olmalı, çünkü goblinlerin iskeletli modeli zaten var.
+6) Meshy fiyatları (doku +10, rig 5, animasyon 3, ücretsiz planda indirme engeli) üçüncü taraf kaynaklardan. Mobil uygulamadaki hesabınızda doğrulanmadı; ben de doğrulayamam. Kullanıcı ekranda görmeli.
+7) Meshy animasyonlarına kredi harcanmamalı: 11 Mixamo animasyonu zaten var.
+
+==================================================
+3. MEVCUT 3D VARLIK ENVANTERİ (ölçüldü)
+==================================================
+ALTYAPI (var, kullanılabilir):
+- three.js r160 gömülü; engine3d.js (gölge, bloom, grafik kademeleri, FPS sınırı, DD_GFX.stats(): kare süresi, draw call, üçgen, bellek).
+- skinned.js: GLTFLoader + FBXLoader + SkeletonUtils + AnimationMixer; models.json ile model seçimi; kahramanlarda KAPALI (gorunus.js SKINNED_HERO=false).
+- savas-kamera.js dinamik kamera; fx.js parçacık ve efekt şeritleri.
+- savas-birim2d.js: şu anki savaş birimi (boyalı 2B düzlem). 3B birimin aynı yöntemleri (swing, castSpell, hit, die, cheer) uygulaması yeterli; combat.js değişmez.
+
+GERÇEK 3D İSKELETLİ KARAKTERLER (Mixamo kökenli, dokulu):
+paladin 14,7k üçgen · dark_knight 11,1k · archer 20,5k · mage 15,0k · priest 13,1k · orc 12,6k · goblin 13,3k. Hepsi mixamorig kemikli.
+models.json'da 42 kayıt: 4 sınıf × 2 halk + Goblin ailesi + Trol ailesi + Kara Asker/Şövalye ailesi + bazı NPC'ler. Kalite: eski, oyunun boyalı üslubuna uymadığı için kahramanlarda kapatılmış.
+
+ANİMASYONLAR (11, hepsi mixamorig): idle, combatIdle, run, attack, special, cast, cast2, shoot, hit, death, victory. Yeni bir Mixamo uyumlu iskelete doğrudan aktarılabilir; Meshy iskeletine kemik eşlemesiyle aktarılır (pilotta test edilecek).
+
+SİLAH/KALKAN GLB (13 + mızrak): chitin_shield, dread_shield, cleaver_dagger, mirage_dagger, mirage_sword, dark_vane, giga_hammer, hell_breaker, iron_impact, lobo_hammer, elixir_staff, oasis_staff, wood_staff, lance. Gerçek 3D, dokusuz, köşe renkli, 0,5k–8k üçgen.
+
+MODELİ OLMAYAN (yalnız veri + 2B çizim): bandicoot ailesi, small_bandicoot (Kül Kurdu), tepegoz, lavyurek, karaduman, leader_of_barbarian, gargoyle, minotaur, wolf ailesi.
+
+==================================================
+4. GERÇEKTEN ÜRETİLMESİ GEREKEN MODELLER (Meshy)
+==================================================
+1. Elentha Savaşçı (PİLOT)
+2. Elentha Rahip
+3. Elentha Büyücü
+4. Elentha Suikastçı
+5. Tepegöz
+6. Kül Ağası Karadun (Lav Yürek yerine)
+Silah, kalkan, yay, arena: Meshy YOK (kod).
+Normal düşmanlar Faz 1: mevcut Goblin ailesi modelleri.
+
+==================================================
+5. 250 KREDİLİK PLAN
+==================================================
+Varsayım: dokulu model 30 kredi. İskelet Mixamo'da ücretsiz; olmazsa Meshy rig 5.
+- Pilot Elentha Savaşçı: 30 (+5)
+- Pilot geçerse 3 sınıf: 90 (+15)
+- Tepegöz: 30 (+5)
+- Karadun: 30 (+5)
+Toplam: 180 (Meshy rig ile 210)
+Rezerv: 70 (Meshy rig ile 40 = 1 tekrar)
+Kural: pilot başarısızsa ikinci deneme rezervden; ikinci de başarısızsa DUR, zincir yeniden değerlendirilir.
+Fiyat ekranda farklı çıkarsa bu tablo yeniden hesaplanır.
+
+==================================================
+6. BLENDER'SIZ ÜRETİM ZİNCİRİ
+==================================================
+1) GPT: A-pose model sayfası (ön/yan/arka, silahsız, pelerinsiz, düz ışık, gri zemin, 2048 PNG).
+2) Gemini: model sayfasını özgün tasarımla karşılaştırır, onaylar.
+3) Opus: görselin teknik uygunluğunu denetler (hiza, duruş, ışık).
+4) Kullanıcı: Meshy'de dokulu model üretir, GLB (ve varsa FBX) indirir.
+5) İskelet: önce Mixamo (ücretsiz, telefonda masaüstü sitesi modu; FBX yükle, otomatik rig, "T-pose, with skin" indir). Mixamo telefonda çalışmazsa Meshy rig (5 kredi).
+6) Opus (bulut konteyner, başsız Blender bpy 5.3 + glTF-Transform):
+   - FBX → GLB, doku ve deri ağırlıklarını koruyarak
+   - kemik adlarını mixamorig'e eşleme, 11 animasyonu aktarma
+   - el kemiklerine sok_sag / sok_sol bağlantı noktası
+   - üçgen sayısını bütçeye indirme, dokuları 1024 WebP
+   - bütçe raporu + ekran görüntüsü
+7) Fable: oyuna entegrasyon ve son kabul.
+Kullanıcının bilgisayara ihtiyacı yok; Blender işi buluttaki Opus oturumunda betikle yapılır.
+
+==================================================
+7. GÖREV DAĞILIMI
+==================================================
+GPT: A-pose model sayfaları (6 model), kalkan amblem dokuları, 2 arena için dikişsiz zemin dokuları (1024), arena fon resimleri.
+GEMINI: model sayfası ve Meshy çıktısı sanat kabulü, arena ışık/atmosfer şartnamesi, efekt renk tablosu (element başına).
+OPUS (Fable'dan önce): dönüştürme betikleri, bütçe denetleyici, savas-birim3d.js, silah/kalkan/yay kodu, bağlantı noktaları, 3B kamera açıları, 2B geri dönüş, bellek serbest bırakma, otomatik testler, pilot entegrasyonu.
+FABLE: V49 üzerine birleştirme, kalan modellerin eklenmesi, oyun içi uçtan uca test, nihai kabul.
+KULLANICI: Meshy hesabı doğrulama, üretim, indirme, Mixamo, telefonda FPS ölçümü.
+
+==================================================
+8. TESLİM DOSYALARI
+==================================================
+GPT: <model>_on.png, _yan.png, _arka.png (2048) · kalkan_amblem_elentha.png (1024, saydam) · zemin_<ad>.png ×3 (1024 dikişsiz) · arena_fon_<ad>.webp ×2.
+GEMINI: SANAT_KABUL_<model>.md (geçti/kaldı + gerekçe) · ARENA_SARTNAME.md · EFEKT_RENK.json.
+KULLANICI: <model>_meshy.glb, <model>_mixamo.fbx, MESHY_HESAP.txt (plan, fiyatlar, lisans ekran görüntüsü).
+OPUS: araclar/3d/ (donustur.py, butce.mjs, test betikleri) · js/savas-birim3d.js · models3d.json · PILOT_RAPORU.md (ölçüler + ekran görüntüleri).
+Her ZIP ≤30 MB.
+
+==================================================
+9. ÇALIŞMA SIRASI
+==================================================
+1. Kullanıcı: Meshy hesap doğrulaması (indirme, fiyat, lisans).
+2. GPT: Elentha Savaşçı model sayfası → Gemini onayı → Opus teknik onayı.
+3. Paralel: Opus dönüştürme hattını mevcut paladin modeliyle sınar (kredisiz); savas-birim3d.js'i mevcut modellerle yazar.
+4. Kullanıcı: pilot Meshy üretimi.
+5. Opus: pilot işleme + oyuna bağlama + rapor.
+6. Kullanıcı: telefonda FPS ölçümü.
+7. Pilot KABUL → kalan 5 model aynı sırayla.
+8. Fable: birleştirme ve nihai kabul.
+
+==================================================
+10. PİLOT KABUL ÖLÇÜTLERİ
+==================================================
+1. Meshy indirme yetkisi ve lisans ekran görüntüsüyle belgelenmiş.
+2. Dokulu GLB; Gemini sanat kabulü geçti.
+3. Gerçek 3D geometri: ≤15 bin üçgen, tek doku seti ≤1024, dosya ≤1,5 MB.
+4. 11 animasyon oynuyor; kopma, ayak kayması, ters dönen eklem yok.
+5. Kılıç sağ ele, kalkan sol kola bağlı; 11 animasyonda da elden kaymıyor.
+6. Zırh omuz, dirsek ve dizde içe geçme/yırtılma göstermiyor (attack, special, death karelerinde ekran görüntüsü).
+7. Telefonda Goblin savaşında ortalama ≥30 FPS, 5 dk sonra ≥27 FPS (DD_GFX.stats ile).
+8. combat.js üzerinden gerçek savaş baştan sona oynanıyor.
+9. HUD 880×406'da önceki ölçümle aynı.
+10. combat.js ve shared/ için git farkı 0; aynı tohumla 2B ve 3B savaş sonucu birebir aynı.
+11. ?b3d=0, Grafik: Düşük, WebGL hatası veya model yüklenemezse savaş hatasız 2B açılıyor.
+12. Savaş sonrası geometri/doku sayısı savaş öncesine dönüyor (bellek sızıntısı yok).
+
+==================================================
+11. RİSKLER VE ALTERNATİFLER
+==================================================
+- Meshy indirme/lisans engeli → önce doğrula; engel varsa ücretsiz TRELLIS / Hunyuan3D (Hugging Face) denenir.
+- Boyalı görselden üretimde ışığın dokuya gömülmesi, bulanık yüz → düz ışıklı model sayfası, ön+yan+arka giriş.
+- Mixamo telefonda çalışmayabilir → Meshy rig (5 kredi).
+- Meshy iskeleti mixamorig ile uyuşmayabilir → kemik eşlemesi; olmazsa Mixamo zorunlu.
+- 3B modeller boyalı arayüzle üslup çatışması → Gemini kabulü, ton/ışık ayarı.
+- Telefonda performans → kademe, gölge kapatma, piksel oranı ≤1,5, LOD.
+- Dosya sınırı (sürümde ≤511 dosya, dosya ≤16 MB) → model başına tek GLB.
+- Kragmir oyuncuları Faz 1'de 2B savaş görür (bilinçli karar).
+
+==================================================
+12. FABLE'A TESLİM PAKETİ
+==================================================
+- js/savas-birim3d.js (2B birimle aynı arayüz, çalışır)
+- models3d.json (6 model kaydı, kemik eşlemesi, bağlantı noktaları)
+- 6 işlenmiş GLB + bütçe raporu
+- silah/kalkan/yay kodu (bağlantı noktalarına bağlı)
+- 2 arena (Vahran Ovası, Goblin bloğu) kod + doku
+- dönüştürme betikleri (yeni model eklemek için)
+- otomatik testler: bütçe, animasyon, sonuç eşitliği, geri dönüş, bellek
+- PILOT_RAPORU.md + ekran görüntüleri + telefon FPS ölçümü
+- SINIRLAR.md: test edilmeyenler (gerçek cihaz çeşitliliği, Kragmir, dört ayaklılar)
+
+YAPAMADIKLARIM: Meshy ve Mixamo'yu kullanmak, hesap koşullarını görmek, gerçek telefonda FPS ölçmek.
