@@ -1,6 +1,6 @@
 // 3D karakterler (klasik MMORPG tarzı: ağır plaka zırh, katmanlı omuzluk, parlayan +silahlar),
 // prosedürel animasyonlar, efektler ve ortam.
-import { THREE, scene, to, tween, wait, ease, particle, onUpdate, gfx, setExposure, setSkyEnv, setKeyLight, setSmokeLight } from './engine3d.js';
+import { THREE, scene, to, tween, wait, ease, particle, onUpdate, gfx, setExposure, setSkyEnv, restoreBattleEnvironment, setKeyLight, setSmokeLight } from './engine3d.js';
 import { CAPE_STEPS } from '../shared/clan.js';
 import { drawCape, capeColorHex } from './banner.js';
 import { wind, patchStd, Batch, batchMaterial, bakeRigid, blobField, flameMaterial, shimmerMaterial, driftPoints, disposeTree } from './scenery.js';
@@ -8,6 +8,7 @@ import { weaponGlow, armorGlow, GLOW_LEVELS, EVENT_FX } from './fx-table.js';
 import { swingArc, whirlRing, play as fxPlay } from './fx.js';
 import { buildCharHead, applyBody } from './gorunus.js';
 import { GLTFLoader } from '../vendor/three/examples/jsm/loaders/GLTFLoader.js'; // oyuncunun seçtiği görünüş (model.char): kafa, yüz, saç, sakal, vücut, boy
+import { buildBattleArena } from '../arenas/BattleArenas.js';
 import { buildBackdrop, LIGHT as PHOTO_LIGHT } from './savas-arka.js'; // 22 Kas: savaş arka plan resimleri
 export { slashArc, whirlRing, projectile, meteorStrike, shockwave, healAura } from './fx.js'; // efektler fx.js'e taşındı (eski içe aktarmalar çalışsın)
 
@@ -933,7 +934,17 @@ const V0 = new THREE.Vector3();
 // köşe renkli tek ağda birleşir (scenery.js: Batch), ağaçlar, kayalar ve çimenler tek geometrinin kopyalarıdır (InstancedMesh).
 // Parçalara dikey renk geçişi ve zemine değen kenarda kararma pişirilir; ağaç, kaya ve binaların altında yumuşak zemin
 // lekesi durur. Doku boyutları, çimen ve meşale ışığı sayısı grafik kademesine göredir (gfx.js: TIERS).
-let envGroup = null, envUpdate = null;
+let envGroup = null, envUpdate = null, raidArena = null;
+
+export function releaseRaidArena() {
+  if (!raidArena) return false;
+  setKeyLight(null);
+  raidArena.dispose();
+  raidArena = null; envGroup = null;
+  restoreBattleEnvironment();
+  scene.fog = null; scene.background = null;
+  return true;
+}
 
 function canvasTex(size, draw, repeat = 1) {
   const cv = document.createElement('canvas'); cv.width = cv.height = size;
@@ -1069,8 +1080,20 @@ function photoEnv(id) {
 const L4 = new THREE.Matrix4(), G4 = new THREE.Matrix4(), Q4 = new THREE.Quaternion(), E4 = new THREE.Euler(), P4 = new THREE.Vector3(), S4 = new THREE.Vector3();
 // tod: (E, kind, mood) → E. Günün evresine ve havaya göre parametreleri dönüştürür (daylight.js); verilmezse taban hâli kurulur.
 export function buildEnv(kind, mood, tod) {
+  releaseRaidArena();
   if (envGroup) { scene.remove(envGroup); disposeTree(envGroup); }
-  envUpdate?.();
+  envUpdate?.(); envUpdate = null;
+  if (mood?.startsWith('raid3d:')) {
+    raidArena = buildBattleArena(THREE, mood.slice(7), { shadows: !!gfx.T.shadow, shadowSize: gfx.T.shadow || 512 });
+    envGroup = raidArena.group;
+    scene.add(envGroup);
+    scene.background = new THREE.Color(raidArena.skyColor);
+    scene.fog = raidArena.fog;
+    setExposure(1.07);
+    setSkyEnv(raidArena.skyEnv);
+    setKeyLight(raidArena.sun, 0, 0, 10.5);
+    return envGroup;
+  }
   if (mood && mood.startsWith('foto:')) return photoEnv(mood.slice(5)); // 22 Kas: savaş = boyalı resim (savas-arka.js)
   const T = gfx.T, hub = kind === 'hub' || kind === 'town';
   const E0 = { ...ENVS[kind], ...(hub && MOODS[mood] || {}) }, E = tod ? tod(E0, kind, mood) : E0;

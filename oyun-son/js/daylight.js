@@ -110,7 +110,7 @@ function addRain(group) {
 // world.js ortamı kurduktan sonra çağırır
 export function afterEnv(group) {
   stopRain?.(); stopRain = null;
-  if (weatherNow() === 'rain') stopRain = addRain(group);
+  if (group && weatherNow() === 'rain') stopRain = addRain(group);
 }
 // Ana üs binalarının pencereleri ve korları evreye göre parlar ya da söner. town.js ışıyan malzemelerini işaretler:
 // userData.night = 'win' (pencere) | 'fire' (ocak koru, mangal: gündüz de yanar, gece güçlenir).

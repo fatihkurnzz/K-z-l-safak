@@ -4,8 +4,9 @@
 import { savasMetni, ipucu } from './yukleme-metin.js'; // P33: GPT yükleme metinleri (savaş öncesi perde)
 import { WEAPON_FX as WFX } from '../shared/items.js';
 import { A as A11Y } from './a11y.js';
-import { THREE, camRig, clock, projectTo, floatText, pick, wait, tween, ease, burst, setHfov, setShift } from './engine3d.js';
+import { THREE, scene, camRig, clock, projectTo, floatText, pick, wait, tween, ease, burst, setHfov, setShift } from './engine3d.js';
 import { view } from './orient.js';
+import { B3D } from './savas3d/ayar3d.js';
 import { play as fx, projectile, skyStrike, shockwave, elementImpact, statusHold, vfxOnYukle } from './fx.js';
 // C14: savaşa gidilirken (Kapı, VS ekranı) arka plan ve efekt paketlerini önden indir (ui-battle.js çağırır)
 export const savasOnYukle = () => { try { arkaOnYukle(); vfxOnYukle(); p26Paket(); } catch { } };
@@ -17,7 +18,10 @@ import { LOADOUT_ACTIVES } from '../shared/hero.js';
 import { potSvg } from './iksir.js';
 import { STATUS, HERO_LOOKS, CLASSES } from '../shared/content.js';
 import { MOBS } from '../shared/zones.js';
-import { world, clearScene, ensureEnv, spawn, setUpdater } from './world.js';
+import { resolveCameraMode, layoutSlot } from '../opus_kamera/CameraPresets_AllModes_V42.js';
+import { arenaKey } from '../arenas/BattleArenas.js';
+import { SkillVFXManager } from '../vfx/SkillVFXManager.js';
+import { world, clearScene, ensureEnv, spawn, setUpdater, setBattleVisualFX, endBattlePresentation } from './world.js';
 import { svg } from './icons.js';
 import { skillIcon } from './skill-icons.js';
 import { SFX } from './sfx.js';
@@ -65,7 +69,7 @@ const lockMsg = () => { const w = $('#bwho'); if (w) w.innerHTML = '<b style="co
 
 // 20 Kas (Kül, oynanışta): Tarikat düşmanı (birim `cult`) sahadayken savaş sahnesinin rengi solar (css .kul, v21 §16)
 const ashScene = on => document.getElementById('stage')?.classList.toggle('kul', !!on);
-export function hideBattleUI() { KAM.end(); ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; ui.primary = null; prim(false); BT.on = false; }
+export function hideBattleUI() { KAM.end(); endBattlePresentation(); ashScene(false); document.getElementById('bdwbar')?.remove(); battleUI.hidden = true; overlay.innerHTML = ''; onTap = null; ui.choose = null; ui.pickSkill = null; ui.primary = null; prim(false); BT.on = false; }
 
 // Motor birimi → 3D görünüm. Kahraman birimleri tarafını (faction) ve silah modelini (wm) kendi taşır;
 // böylece meydandaki rakip parti de doğru görünür.
@@ -232,9 +236,23 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   const token = world.token;
   setHfov(42); // ana üs geniş açıyla bakar; savaş kendi açısına döner
   setShift(0, 0); // 22 Kas: kadraj savas-kamera.js ile
-  ensureEnv(env, 'foto:' + pickBg(env, setup.seed, mode, faction)); // 22 Kas (kullanıcı): eski çizilmiş savaş alanı yerine boyalı resim
   const battle = new Battle(setup);
   b2dYukle([...battle.units, ...(setup.waves || []).flat()]); // 2B poz paketlerini önden indir
+  const firstWave = battle.units.filter(u => u.side === 'B');
+  const setting = window.KORANT_BATTLE_PRESENTATION;
+  const presented = !B3D.aktif || setup.bdw ? null : resolveCameraMode(setting === undefined ? 'auto' : setting,
+    setup.party.length, firstWave.length, firstWave.some(u => u.boss));
+  KAM.useBattleMode(presented);
+  ensureEnv(env, presented ? 'raid3d:' + arenaKey(env, mode, presented) : 'foto:' + pickBg(env, setup.seed, mode, faction));
+  const extraFx = presented ? new SkillVFXManager(THREE, scene, {
+    reduced: A11Y.speed < 1 || document.documentElement.classList.contains('motion-less')
+  }) : null;
+  setBattleVisualFX(extraFx);
+  const placement = (u,n,idx) => {
+    const slot = !u.mon && layoutSlot(presented,u.side,idx,view.w/view.h);
+    return slot && (!!slot.boss === !!(u.boss && u.side === 'B')) ? slot : spot(u,n,idx);
+  };
+
   battle.noAutoPot = !potPref(); ui.battle = battle; ui.hasPot = battle.units.some(x => x.side === 'A' && x.potHp !== undefined && (x.potHp > 0 || x.potMp > 0)) && !battle.units.some(x => x.side !== 'A' && x.cls && !x.mon); // Oto İksir yalnız PvE
   const actions = [];
   const actors = new Map(); // birim kimliği → sahne aktörü
@@ -247,11 +265,14 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     // Sıra (slot 0 = öndeki) kameraya en yakın; birimler önlü arkalı kademeli dizilir, yüzleri biraz kameraya döner.
     // Konumlar 880×406 telefonda ekrandaki hedef ayak noktalarından geri hesaplandı (referans: önde büyük, arkada küçük, kademeli);
     // dar ekranda (tablet, masaüstü) yanal açıklık ekran oranına göre daraltılır ki iki hat da kadrajda kalsın.
-    const { x, z } = spot(u, n, idx);
-    const face = u.side === 'A' ? Math.PI - 0.55 : 0.55;
+    const p = placement(u,n,idx), { x, z } = p;
+    const face = p.face ?? (u.side === 'A' ? Math.PI - 0.55 : 0.55);
     const lk = mon ? { look: u.look || { kind: 'monument' }, model: {} } : unitLook(u); if (!mon) lk.look = { ...lk.look, scale: (lk.look.scale || 1) * (u.cls ? SCALE_HERO : SCALE_MOB) };
     if (big) lk.look.scale = Math.min(lk.look.scale, 1.9);
     const b2 = mon ? null : b2dOf({ ...u, model: lk.model }); if (b2) { lk.b2d = { ...b2, canli: u }; if (!b2.hero) lk.look.scale = 0.8 * SCALE_MOB * (u.elite ? 1.2 : 1); } // 2B yaratık: türün kendi çiziminde boyu var (bestiary ölçeği iki kez küçültmesin) // 22 Kas: yan görünüşte boss kadraja sığsın (kahramanın ~1.5 katı)
+    if (p.scale && !b2) {
+      lk.look.scale = big ? Math.min(2.25, lk.look.scale * p.scale / 1.35) : lk.look.scale * p.scale;
+    }
     const a = spawn({ ...u, ...lk }, x, z, face);
     a.hitbox.scale.setScalar(Math.max(1, 1.1 / a.char.scale)); // küçük yaratıkların dokunma alanı da yeterince büyük kalsın
     a.unit = u; a.home = new THREE.Vector3(x, 0.1, z); a.face = face; a.shown = u.hp; a.hold = { t: Math.random() * 0.16 };
@@ -273,9 +294,9 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   // arka plan resminin projektörü olur (resim bu bakıştan birebir görünür).
   {
     const pred = [], w0 = (setup.waves?.[0] || []).filter(u => u.side !== 'A'), rest = w0.filter(u => !u.boss);
-    w0.forEach(u => { const n = u.boss ? 1 : rest.length, { x, z } = spot({ ...u, side: 'B' }, n, u.boss ? 0 : rest.indexOf(u)), M = MOBS[u.mob]?.look || {}, k = (M.scale || 1) * SCALE_MOB * (u.boss ? 1.6 : 1), h = 2.0 * Math.min(u.boss ? 1.9 * 1.6 : 3, k) + 0.5; for (const y of [0, h]) for (const d of [-0.6, 0.6]) pred.push(Object.assign(new THREE.Vector3(x + d * 0.6, y, z + d), { side: "B" })); });
+    w0.forEach(u => { const n = u.boss ? 1 : rest.length, { x, z } = placement({ ...u, side: 'B' }, n, u.boss ? 0 : rest.indexOf(u)), M = MOBS[u.mob]?.look || {}, k = (M.scale || 1) * SCALE_MOB * (u.boss ? 1.6 : 1), h = 2.0 * Math.min(u.boss ? 1.9 * 1.6 : 3, k) + 0.5; for (const y of [0, h]) for (const d of [-0.6, 0.6]) pred.push(Object.assign(new THREE.Vector3(x + d * 0.6, y, z + d), { side: "B" })); });
     const r = KAM.begin(actors, pred);
-    setProjector(r.pos, r.look);
+    if (!presented) setProjector(r.pos, r.look);
   }
   // Anıt Savaşı şeridi: iki tarafın puanı, raunt ve anıta verilen hasar payı (battle.bdw; oynatılan olaylarla güncellenir)
   const bdwBar = battle.bdw ? (() => { const el = document.createElement('div'); el.id = 'bdwbar'; battleUI.appendChild(el); return el; })() : null;
@@ -297,6 +318,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   let firstA = null;
   setUpdater(dt => {
     KAM.step(dt);
+    extraFx?.update(dt);
     firstA = actors.values().next().value;
     for (const a of actors.values()) {
       const u = a.unit;
@@ -546,6 +568,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     } else if (f.k === 'st') {
       floatText(c.headPos(), `${STATUS[f.s].icon} ${STATUS[f.s].name}`, 'st' + (f.s === 'shield' ? ' shield' : STATUS[f.s].good ? ' good' : ' bad'));
       fx(EVENT_FX.st, c, { s: f.s });
+      if (f.s === 'shield' && !A11Y.noFlash) extraFx?.trigger('shield',c.pos,c.pos);
       if (STATUS[f.s]?.good) vfx26('kalkan', c); // P26 O5: savunma/kalkan/güçlendirme
     } else if (f.k === 'resist') { floatText(c.headPos(), 'Direndi', 'miss'); fx(EVENT_FX.resist, c); } // etki tutmadı (ıska)
     else if (f.k === 'cleanse') { floatText(c.headPos(), 'Arındı', 'st good'); fx(EVENT_FX.cleanse, c); }
@@ -613,6 +636,10 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       if (dmgs.length) { flashScreen(); slowmo(master ? 0.45 : 0.25); }
     } else KAM.focusAttack(A, hit); // normal saldırı: kısa, hafif odak
     const from = c.pos.clone();
+    if (extraFx && tgt && !A11Y.noFlash && (special || S.anim === 'melee' || S.anim === 'bolt')) {
+      const kind = el === 'fire' ? 'fire' : el === 'poison' ? 'poison' : S.anim === 'bolt' ? 'holy' : 'slash';
+      extraFx.trigger(kind,from,tgt.char.pos);
+    }
     const hitAll = x => dmgs.forEach(f => applyFx(f, from, special, x));
     const foesCenter = new THREE.Vector3(0, 0, A.unit.side === 'A' ? -2.9 : 2.9);
     switch (S.anim) {
@@ -800,7 +827,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     await wait(1.6);
     if (token !== world.token) return;
     clock.scale = 1;
-    battleUI.hidden = true; BT.on = false; ashScene(false); KAM.end();
+    battleUI.hidden = true; BT.on = false; ashScene(false); KAM.end(); endBattlePresentation();
     onDone(r.over === 'A', actions);
   })();
 }

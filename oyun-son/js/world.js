@@ -1,6 +1,6 @@
 // 3D sahne yöneticisi: sahnedeki karakterler, ortam ve sahneye özel güncelleyici.
 import { THREE, scene, camera, clock, onUpdate, clearTweens, clearParticles, clearFloaters, gfx, onTier, pauseGovernor, RENDER } from './engine3d.js';
-import { Character, buildEnv, WormCharacter } from './models.js';
+import { Character, buildEnv, WormCharacter, releaseRaidArena } from './models.js';
 import { BeastCharacter, decorateMob } from './beasts.js';
 import { BEAST_KINDS } from '../shared/bestiary.js';
 import { createSkinned } from './skinned.js';
@@ -15,13 +15,26 @@ import { kayitAnahtari } from './savas3d/varlik3d.js';
 import './savas3d/kamera3d.js'; // RAID tarzı sinematik kamera (yalnız 3B savaşta)
 
 export const world = { actors: [], token: 0, env: null };
-let stopUpdater = null, envArgs = null;
+let stopUpdater = null, envArgs = null, battleVisualFX = null;
+
+export function setBattleVisualFX(next) {
+  battleVisualFX?.dispose();
+  battleVisualFX = next;
+}
+export function endBattlePresentation() {
+  setBattleVisualFX(null);
+  if (releaseRaidArena()) {
+    afterEnv(null);
+    envArgs = null;
+    world.env = null;
+  }
+}
 
 export function setUpdater(fn) { stopUpdater?.(); stopUpdater = fn ? onUpdate(fn) : null; }
 export function clearScene() {
   RENDER.off = false; delete document.documentElement.dataset.hub2d; // her sahne kurulumu 3B çizimi yeniden açar (2B başkent, kurduktan sonra kapatır)
   world.token++; savasBitti();
-  clearTweens(); clearParticles(); clearFloaters(); clearFx();
+  clearTweens(); clearParticles(); clearFloaters(); clearFx(); endBattlePresentation();
   world.actors.forEach(drop);
   world.actors = [];
   setUpdater(null);
