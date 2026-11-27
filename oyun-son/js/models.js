@@ -8,7 +8,7 @@ import { weaponGlow, armorGlow, GLOW_LEVELS, EVENT_FX } from './fx-table.js';
 import { swingArc, whirlRing, play as fxPlay } from './fx.js';
 import { buildCharHead, applyBody } from './gorunus.js';
 import { GLTFLoader } from '../vendor/three/examples/jsm/loaders/GLTFLoader.js'; // oyuncunun seçtiği görünüş (model.char): kafa, yüz, saç, sakal, vücut, boy
-import { buildBattleArena } from '../arenas/BattleArenas.js';
+import { arenaKur } from './savas3d/arena3d.js'; // 3B Faz 1b: gerçek 3B arena
 import { buildBackdrop, LIGHT as PHOTO_LIGHT } from './savas-arka.js'; // 22 Kas: savaş arka plan resimleri
 export { slashArc, whirlRing, projectile, meteorStrike, shockwave, healAura } from './fx.js'; // efektler fx.js'e taşındı (eski içe aktarmalar çalışsın)
 
@@ -1084,7 +1084,7 @@ export function buildEnv(kind, mood, tod) {
   if (envGroup) { scene.remove(envGroup); disposeTree(envGroup); }
   envUpdate?.(); envUpdate = null;
   if (mood?.startsWith('raid3d:')) {
-    raidArena = buildBattleArena(THREE, mood.slice(7), { shadows: !!gfx.T.shadow, shadowSize: gfx.T.shadow || 512 });
+    raidArena = arenaKur(mood.slice(7));
     envGroup = raidArena.group;
     scene.add(envGroup);
     scene.background = new THREE.Color(raidArena.skyColor);

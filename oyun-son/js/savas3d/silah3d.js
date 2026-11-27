@@ -6,6 +6,7 @@
 // Kalkanlarda başlangıç noktası = kolun tuttuğu sap; ön yüz +Z, boy ekseni +Y.
 // GPT/Gemini'den gelecek GLB silahlar aynı yerel uzayla verilirse soket ayarı değişmeden takılır (silahGlb()).
 import { THREE } from '../engine3d.js';
+import { mergeGeometries } from '../../vendor/three/examples/jsm/utils/BufferGeometryUtils.js';
 
 const M = {}; // ortak malzemeler (tüm birimler paylaşır; dispose edilmez)
 function mat(ad, o) { return M[ad] ||= new THREE.MeshStandardMaterial(o); }
@@ -80,24 +81,34 @@ function yay() {
 }
 
 // ---- Kalkan: Elentha kuleli (heater) kalkan, gümüş kenar, gök mavisi yüz, kodla çizilen güneş arması ----
-let armaDoku = null;
-function arma() {
-  if (armaDoku) return armaDoku;
+// Kalkan arması: Elentha = lacivert yüz + altın güneş/kartal yerine sade güneş; Kragmir = bordo yüz + kızıl göz (GPT Final-02 paftası)
+const armaDoku = {};
+function arma(halk) {
+  if (armaDoku[halk]) return armaDoku[halk];
   const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d');
-  const r = x.createLinearGradient(0, 0, 0, 256); r.addColorStop(0, '#2c4f86'); r.addColorStop(1, '#16294a'); x.fillStyle = r; x.fillRect(0, 0, 256, 256);
-  x.translate(128, 118); x.fillStyle = '#e8d29a'; x.strokeStyle = '#e8d29a';
-  for (let i = 0; i < 12; i++) { x.save(); x.rotate(i * Math.PI / 6); x.beginPath(); x.moveTo(-7, 30); x.lineTo(0, 64); x.lineTo(7, 30); x.fill(); x.restore(); }
-  x.beginPath(); x.arc(0, 0, 26, 0, Math.PI * 2); x.fill();
-  armaDoku = new THREE.CanvasTexture(c); armaDoku.colorSpace = THREE.SRGBColorSpace; return armaDoku;
+  const K = halk === 'ocak', r = x.createLinearGradient(0, 0, 0, 256);
+  r.addColorStop(0, K ? '#6a1a1a' : '#2c4f86'); r.addColorStop(1, K ? '#2a0909' : '#16294a'); x.fillStyle = r; x.fillRect(0, 0, 256, 256);
+  x.translate(128, 118);
+  if (K) { // kızıl göz: badem biçimli göz, dikey bebek
+    x.fillStyle = '#d8a060'; x.beginPath(); x.ellipse(0, 0, 70, 34, 0, 0, Math.PI * 2); x.fill();
+    x.fillStyle = '#b01810'; x.beginPath(); x.ellipse(0, 0, 58, 26, 0, 0, Math.PI * 2); x.fill();
+    x.fillStyle = '#ff5a2a'; x.beginPath(); x.arc(0, 0, 20, 0, Math.PI * 2); x.fill();
+    x.fillStyle = '#140404'; x.beginPath(); x.ellipse(0, 0, 5, 19, 0, 0, Math.PI * 2); x.fill();
+  } else {
+    x.fillStyle = '#e8d29a';
+    for (let i = 0; i < 12; i++) { x.save(); x.rotate(i * Math.PI / 6); x.beginPath(); x.moveTo(-7, 30); x.lineTo(0, 64); x.lineTo(7, 30); x.fill(); x.restore(); }
+    x.beginPath(); x.arc(0, 0, 26, 0, Math.PI * 2); x.fill();
+  }
+  const t = armaDoku[halk] = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
-function kalkan() {
+function kalkan(halk = 'sancak') {
   const g = new THREE.Group(), w = 0.34, h = 0.48;
   const bicim = k => [[-w * k, h * k], [w * k, h * k], [w * k, -0.05 * k], [0.12 * k, -h * 0.85 * k], [0, -h * k], [-0.12 * k, -h * 0.85 * k], [-w * k, -0.05 * k]];
   const yuzG = ekstrude(bicim(1), 0.035, 0.012);
   // UV: düz yüze arma dokusu (x,y → 0..1)
   const uv = yuzG.attributes.uv, p = yuzG.attributes.position; for (let i = 0; i < uv.count; i++) uv.setXY(i, (p.getX(i) + w) / (2 * w), (p.getY(i) + h) / (2 * h));
-  const yuz = mesh(yuzG, mat('kalkanYuz', { map: arma(), metalness: 0.35, roughness: 0.55 })); g.add(yuz);
-  const kenar = mesh(ekstrude(bicim(1.07), 0.025, 0.008), celik()); kenar.position.z = -0.012; g.add(kenar);
+  const yuz = mesh(yuzG, mat('kalkanYuz' + halk, { map: arma(halk), metalness: 0.35, roughness: 0.55 })); g.add(yuz);
+  const kenar = mesh(ekstrude(bicim(1.07), 0.025, 0.008), halk === 'ocak' ? koyuCelik() : celik()); kenar.position.z = -0.012; g.add(kenar);
   const gobek = mesh(new THREE.SphereGeometry(0.06, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), altin()); gobek.rotation.x = Math.PI / 2; gobek.position.set(0, 0.05, 0.03); g.add(gobek);
   // kalkanın merkezi kolun dış yanına gelir: sap (başlangıç noktası) arka yüzün ortası
   g.children.forEach(o => { o.position.z += 0.06; });
@@ -111,8 +122,17 @@ export const SILAH_TURLERI = Object.keys(YAPICI);
 /** Kodla silah üret. tur: kilic|hancer|topuz|asa|sopa|yay|kalkan; secenek.renk: asa taşı ('mor'|'yesil'|… ya da sayı). */
 export function silahYap(tur, secenek = {}) {
   const f = YAPICI[tur]; if (!f) return null;
-  const r = secenek.renk; const g = tur === 'asa' ? asa(typeof r === 'number' ? r : ASA_RENK[r] || 0x8fd0ff) : f();
+  const r = secenek.renk; const g = tur === 'asa' ? asa(typeof r === 'number' ? r : ASA_RENK[r] || 0x8fd0ff) : tur === 'kalkan' ? kalkan(secenek.halk) : f();
   g.name = 'silah:' + tur; g.userData.tur = tur;
+  return birlestir(g);
+}
+// Parçaları malzemeye göre tek ağda birleştir (kılıç 7 ağ → 4, kalkan 3 → 3, sopa 8 → 2): çizim çağrısı düşer.
+// userData.isik taşıyan parça (asa taşı) ayrı kalır (büyüde ölçeklenir).
+function birlestir(g) {
+  g.updateMatrixWorld(true);
+  const isik = g.userData.isik, grup = new Map();
+  for (const o of [...g.children]) { if (!o.isMesh || o === isik) continue; o.updateMatrix(); const gg = o.geometry.clone().applyMatrix4(o.matrix); const gi = gg.index ? gg.toNonIndexed() : gg; if (gi !== gg) gg.dispose(); for (const k of Object.keys(gi.attributes)) if (!['position', 'normal', 'uv'].includes(k)) gi.deleteAttribute(k); (grup.get(o.material) || grup.set(o.material, []).get(o.material)).push(gi); g.remove(o); o.geometry.dispose(); }
+  for (const [m, L] of grup) { const b = L.length > 1 ? mergeGeometries(L) : L[0]; if (L.length > 1) L.forEach(x => x.dispose()); const y = mesh(b, m); g.add(y); }
   return g;
 }
 /** Hazır GLB silah (models/items, models/weapons) — aynı yerel uzayla verildiyse. Kopya döner. */

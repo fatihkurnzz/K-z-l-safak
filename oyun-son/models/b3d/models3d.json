@@ -1,6 +1,6 @@
 {
- "surum": 1,
- "_aciklama": "3B Savaş Faz 1 manifesti (js/savas3d/varlik3d.js okur). Şema ve kurallar: _tasarim/3d-faz1/STANDART.md. Yollar models/ köküne göredir. Bir savaştaki BÜTÜN birimlerin burada kaydı yoksa savaş 2B çizilir.",
+ "surum": 2,
+ "_aciklama": "3B Savaş manifesti (js/savas3d/varlik3d.js okur). ÜRETİLİR: _tasarim/3d-faz1b/arac/manifest_uret.py. Şema: _tasarim/3d-faz1/STANDART.md §4 + _tasarim/3d-faz1b/MODEL_EKLEME_REHBERI.md. Bir savaştaki BÜTÜN birimlerin kaydı yoksa savaş 2B çizilir.",
  "klipler": {
   "idle": "anims/idle.json",
   "combatIdle": "anims/combat_idle.json",
@@ -14,39 +14,695 @@
   "death": "anims/death.json",
   "victory": "anims/victory.json"
  },
- "onYukle": ["paladin", "goblin"],
+ "onYukle": [
+  "paladin",
+  "goblin",
+  "dark_knight",
+  "orc"
+ ],
  "modeller": {
   "paladin": {
    "dosya": "characters/paladin.json",
-   "kaynak": "Mixamo 'Paladin J Nordstrom' (mevcut V42 varlığı; dokuda kılıç/kalkan alanı var ama ağda yok → kodla takılır)",
+   "kaynak": "Mixamo iskeletli V42 varlığı (doku adı Paladin); geçici gövde, lisans kaydı depoda yok",
    "boy": 2.3,
-   "malzeme": { "parlak": 2.5, "metal": 0.55, "puruz": 0.42, "normal": 1.0, "kendi": 0.1, "kenar": 0.45, "kenarRenk": "#a9c4ff" },
-   "soket": {
-    "sag": { "kemik": "RightHand", "konum": [-0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] },
-    "sol": { "kemik": "LeftHand", "konum": [0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] }
+   "malzeme": {
+    "metal": 0.55,
+    "puruz": 0.42,
+    "normal": 1.0,
+    "kendi": 0.1,
+    "parlak": 2.5,
+    "kenar": 0.45,
+    "kenarRenk": "#a9c4ff"
    },
-   "butce": { "ucgen": 15000, "kemik": 70, "doku": 1024 }
+   "soket": {
+    "sag": {
+     "kemik": "RightHand",
+     "konum": [
+      -0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    "sol": {
+     "kemik": "LeftHand",
+     "konum": [
+      0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    }
+   },
+   "butce": {
+    "ucgen": 15000,
+    "kemik": 100,
+    "doku": 1024
+   }
+  },
+  "dark_knight": {
+   "dosya": "characters/dark_knight.json",
+   "kaynak": "Mixamo iskeletli V42 varlığı (doku adı Uriel); geçici gövde, lisans kaydı depoda yok",
+   "boy": 2.3,
+   "malzeme": {
+    "metal": 0.6,
+    "puruz": 0.45,
+    "normal": 1.0,
+    "kendi": 0.1,
+    "parlak": 1.7,
+    "kenar": 0.4,
+    "kenarRenk": "#ffb08a"
+   },
+   "soket": {
+    "sag": {
+     "kemik": "RightHand",
+     "konum": [
+      -0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    "sol": {
+     "kemik": "LeftHand",
+     "konum": [
+      0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    }
+   },
+   "klipler": {
+    "special": "anims/attack.json"
+   },
+   "darbe": {
+    "special": 0.45
+   },
+   "butce": {
+    "ucgen": 15000,
+    "kemik": 100,
+    "doku": 1024
+   }
+  },
+  "archer": {
+   "dosya": "characters/archer.json",
+   "kaynak": "Mixamo iskeletli V42 varlığı (doku adı Erika_Archer); geçici gövde, lisans kaydı depoda yok",
+   "boy": 2.25,
+   "malzeme": {
+    "metal": 0.1,
+    "puruz": 0.65,
+    "normal": 1.0,
+    "kendi": 0.1,
+    "parlak": 1.3,
+    "kenar": 0.4,
+    "kenarRenk": "#b8d0ff"
+   },
+   "soket": {
+    "sag": {
+     "kemik": "RightHand",
+     "konum": [
+      -0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    "sol": {
+     "kemik": "LeftHand",
+     "konum": [
+      0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    }
+   },
+   "butce": {
+    "ucgen": 15000,
+    "kemik": 100,
+    "doku": 1024
+   }
+  },
+  "priest": {
+   "dosya": "characters/priest.json",
+   "kaynak": "Mixamo iskeletli V42 varlığı (doku adı Knight); geçici gövde, lisans kaydı depoda yok",
+   "boy": 2.3,
+   "malzeme": {
+    "metal": 0.45,
+    "puruz": 0.5,
+    "normal": 1.0,
+    "kendi": 0.1,
+    "parlak": 1.6,
+    "kenar": 0.4,
+    "kenarRenk": "#ffe8b0"
+   },
+   "soket": {
+    "sag": {
+     "kemik": "RightHand",
+     "konum": [
+      -0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    "sol": {
+     "kemik": "LeftHand",
+     "konum": [
+      0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    }
+   },
+   "butce": {
+    "ucgen": 15000,
+    "kemik": 100,
+    "doku": 1024
+   }
+  },
+  "orc": {
+   "dosya": "characters/orc.json",
+   "kaynak": "Mixamo iskeletli V42 varlığı (malzeme adı warrok, doku bear); geçici gövde, lisans kaydı depoda yok",
+   "boy": 2.45,
+   "malzeme": {
+    "metal": 0.1,
+    "puruz": 0.7,
+    "normal": 1.0,
+    "kendi": 0.1,
+    "parlak": 1.3,
+    "kenar": 0.35,
+    "kenarRenk": "#ffc890"
+   },
+   "soket": {
+    "sag": {
+     "kemik": "RightHand",
+     "konum": [
+      -0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    "sol": {
+     "kemik": "LeftHand",
+     "konum": [
+      0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    }
+   },
+   "klipler": {
+    "special": "anims/attack.json"
+   },
+   "darbe": {
+    "special": 0.45
+   },
+   "butce": {
+    "ucgen": 15000,
+    "kemik": 100,
+    "doku": 1024
+   }
+  },
+  "mage": {
+   "dosya": "characters/mage.json",
+   "kaynak": "Mixamo iskeletli V42 varlığı (doku adı Vampire); geçici gövde, lisans kaydı depoda yok",
+   "boy": 2.3,
+   "malzeme": {
+    "metal": 0.2,
+    "puruz": 0.55,
+    "normal": 1.0,
+    "kendi": 0.1,
+    "parlak": 1.4,
+    "kenar": 0.45,
+    "kenarRenk": "#c8b8ff"
+   },
+   "soket": {
+    "sag": {
+     "kemik": "RightHand",
+     "konum": [
+      -0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    "sol": {
+     "kemik": "LeftHand",
+     "konum": [
+      0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    }
+   },
+   "klipler": {
+    "special": "anims/cast.json"
+   },
+   "darbe": {
+    "special": 0.55
+   },
+   "butce": {
+    "ucgen": 15000,
+    "kemik": 100,
+    "doku": 1024
+   }
   },
   "goblin": {
    "dosya": "characters/goblin.json",
-   "kaynak": "Mixamo 'Goblin' (mevcut V42 varlığı)",
+   "kaynak": "Mixamo iskeletli V42 varlığı (doku adı goblin); geçici gövde, lisans kaydı depoda yok",
    "boy": 2.3,
-   "malzeme": { "parlak": 1.6, "metal": 0.05, "puruz": 0.75, "normal": 1.0, "kendi": 0.12, "kenar": 0.35, "kenarRenk": "#ffc890" },
-   "soket": {
-    "sag": { "kemik": "RightHand", "konum": [-0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] },
-    "sol": { "kemik": "LeftHand", "konum": [0.09, -0.02, 0.0], "donus": [1.5708, 0, 0] }
+   "malzeme": {
+    "metal": 0.05,
+    "puruz": 0.75,
+    "normal": 1.0,
+    "kendi": 0.1,
+    "parlak": 1.6,
+    "kenar": 0.35,
+    "kenarRenk": "#ffc890"
    },
-   "butce": { "ucgen": 15000, "kemik": 70, "doku": 1024 }
+   "soket": {
+    "sag": {
+     "kemik": "RightHand",
+     "konum": [
+      -0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    },
+    "sol": {
+     "kemik": "LeftHand",
+     "konum": [
+      0.09,
+      -0.02,
+      0.0
+     ],
+     "donus": [
+      1.5708,
+      0,
+      0
+     ]
+    }
+   },
+   "butce": {
+    "ucgen": 15000,
+    "kemik": 100,
+    "doku": 1024
+   }
   }
  },
  "birimler": {
-  "kahraman:warrior:sancak": { "model": "paladin", "sag": "kilic", "sol": "kalkan", "fxTur": "sword", "not": "Elentha Savaşçı (Faz 1 pilot gövdesi; Meshy modeli gelince 'model' değişir)" },
-  "yaratik:goblin": { "model": "goblin", "sag": "sopa" },
-  "yaratik:goblin_bouncer": { "model": "goblin", "sag": "sopa", "ton": "#d8b890", "olcek": 1.08 },
-  "yaratik:goblin_necromancer": { "model": "goblin", "sag": "asa", "tas": "mor", "ton": "#d0b0ff", "fxTur": "staff" },
-  "yaratik:goblin_juggler": { "model": "goblin", "sag": "hancer", "ton": "#ffc0a0" },
-  "yaratik:kobold": { "model": "goblin", "sag": "hancer", "ton": "#e0c0a0", "olcek": 0.92 },
-  "yaratik:hobgoblin": { "model": "goblin", "sag": "sopa", "ton": "#ffb080", "olcek": 1.15 },
-  "yaratik:bugbear": { "model": "goblin", "sag": "sopa", "ton": "#e0b890", "olcek": 1.2 }
+  "kahraman:warrior:sancak": {
+   "model": "paladin",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword"
+  },
+  "kahraman:warrior:ocak": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#ffc0a8"
+  },
+  "kahraman:rogue:sancak": {
+   "model": "archer",
+   "sag": "hancer",
+   "sol": "hancer",
+   "fxTur": "dagger"
+  },
+  "kahraman:rogue:ocak": {
+   "model": "goblin",
+   "sag": "hancer",
+   "sol": "hancer",
+   "fxTur": "dagger",
+   "ton": "#e8c8b8"
+  },
+  "kahraman:priest:sancak": {
+   "model": "priest",
+   "sag": "topuz",
+   "fxTur": "mace",
+   "ton": "#fff4d8"
+  },
+  "kahraman:priest:ocak": {
+   "model": "orc",
+   "sag": "topuz",
+   "fxTur": "mace",
+   "ton": "#d8c0b0"
+  },
+  "kahraman:mage:sancak": {
+   "model": "priest",
+   "sag": "asa",
+   "tas": "mavi",
+   "fxTur": "staff",
+   "ton": "#c4d0ff"
+  },
+  "kahraman:mage:ocak": {
+   "model": "mage",
+   "sag": "asa",
+   "tas": "kizil",
+   "fxTur": "staff",
+   "ton": "#b8ccff"
+  },
+  "yaratik:yagmaci": {
+   "model": "goblin",
+   "sag": "sopa",
+   "fxTur": "club",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:saman": {
+   "model": "goblin",
+   "sag": "asa",
+   "tas": "yesil",
+   "fxTur": "staff",
+   "ton": "#d0ffb0",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:kitir": {
+   "model": "goblin",
+   "sag": "hancer",
+   "fxTur": "dagger",
+   "ton": "#ffd0a0",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:ebekul": {
+   "model": "goblin",
+   "sag": "asa",
+   "tas": "mor",
+   "fxTur": "staff",
+   "ton": "#e0c0ff",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:taskiran": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club"
+  },
+  "yaratik:borak": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#b0b8c8"
+  },
+  "yaratik:gurtas": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#a8c8d8"
+  },
+  "yaratik:yanik": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#ffb890",
+   "malzeme": {
+    "parlak": 1.6
+   }
+  },
+  "yaratik:donuk": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#a8d8ff"
+  },
+  "yaratik:erlik": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#c8e8ff",
+   "malzeme": {
+    "parlak": 1.8
+   }
+  },
+  "yaratik:goblin": {
+   "model": "goblin",
+   "sag": "sopa",
+   "fxTur": "club",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:goblin_bouncer": {
+   "model": "goblin",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#d8b890",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:goblin_necromancer": {
+   "model": "goblin",
+   "sag": "asa",
+   "tas": "mor",
+   "fxTur": "staff",
+   "ton": "#d0b0ff",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:goblin_juggler": {
+   "model": "goblin",
+   "sag": "hancer",
+   "fxTur": "dagger",
+   "ton": "#ffc0a0",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:kobold": {
+   "model": "goblin",
+   "sag": "hancer",
+   "fxTur": "dagger",
+   "ton": "#e0c0a0",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:hobgoblin": {
+   "model": "goblin",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#ffb080",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:bugbear": {
+   "model": "goblin",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#e0b890",
+   "malzeme": {
+    "parlak": 1.4
+   }
+  },
+  "yaratik:troll": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#b8d8c8"
+  },
+  "yaratik:troll_warrior": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#c0c8d0"
+  },
+  "yaratik:troll_shaman": {
+   "model": "orc",
+   "sag": "asa",
+   "tas": "yesil",
+   "fxTur": "staff",
+   "ton": "#a8d8ff"
+  },
+  "yaratik:troll_witch_doctor": {
+   "model": "orc",
+   "sag": "asa",
+   "tas": "yesil",
+   "fxTur": "staff",
+   "ton": "#c8ffb0"
+  },
+  "yaratik:troll_berserker": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#ffc0a8"
+  },
+  "yaratik:half_troll_warrior": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#d0d8c0"
+  },
+  "yaratik:troll_captain": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#e0c8b0"
+  },
+  "yaratik:half_troll_captain": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#c8c8e0"
+  },
+  "yaratik:troll_king": {
+   "model": "orc",
+   "sag": "sopa",
+   "fxTur": "club",
+   "ton": "#ffe0b0",
+   "malzeme": {
+    "parlak": 1.35
+   }
+  },
+  "yaratik:dark_soldier": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#d0b0b0",
+   "malzeme": {
+    "parlak": 1.6
+   }
+  },
+  "yaratik:black_guard": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "malzeme": {
+    "parlak": 1.6
+   }
+  },
+  "yaratik:doom_soldier": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#c8b0e0",
+   "malzeme": {
+    "parlak": 1.6
+   }
+  },
+  "yaratik:dark_knight": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#ffb0b0",
+   "malzeme": {
+    "parlak": 1.6
+   }
+  },
+  "yaratik:shadow_knight": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#a0a0b8",
+   "malzeme": {
+    "parlak": 1.5
+   }
+  },
+  "yaratik:dread_knight": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#e0c0c0",
+   "malzeme": {
+    "parlak": 1.6
+   }
+  },
+  "yaratik:doom_knight": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#d0b0ff",
+   "malzeme": {
+    "parlak": 1.6
+   }
+  },
+  "yaratik:death_knight": {
+   "model": "dark_knight",
+   "sag": "kilic",
+   "sol": "kalkan",
+   "fxTur": "sword",
+   "ton": "#c8e8ff",
+   "malzeme": {
+    "parlak": 1.8
+   }
+  }
  }
 }

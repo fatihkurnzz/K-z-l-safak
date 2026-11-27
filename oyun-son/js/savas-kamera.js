@@ -8,7 +8,7 @@
 // Kadraj sabit sayılarla değil, birimlerin dünya sınırlarından (ayak + baş + can çubuğu payı), kameranın görüş açısından,
 // ekran oranından ve savaş arayüzünün güvenli alanından (DOM'dan ölçülür) hesaplanır. Hesap yalnız olaylarda yapılır.
 import { THREE, camRig, camera, setBattleVfov } from './engine3d.js';
-import { CAMERA_MODES_V42, fitBattleCamera } from '../opus_kamera/CameraPresets_AllModes_V42.js';
+import { CAMERA_MODES_V42, fitBattleCamera } from './savas3d/sunum3d.js'; // 3B Faz 1b
 
 let preset = null;
 let lastAspect = 0;

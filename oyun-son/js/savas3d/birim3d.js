@@ -10,7 +10,8 @@ import { THREE, tween, wait, ease, to, gfx, camRig, hitStop, selfLitK } from '..
 import * as SkeletonUtils from '../../vendor/three/examples/jsm/utils/SkeletonUtils.js';
 import { swingArc, whirlRing, play as fxPlay } from '../fx.js';
 import { EVENT_FX } from '../fx-table.js';
-import { manifest, dosyaHazir, klipler } from './varlik3d.js';
+import { manifest, dosyaHazir, klipler, zeminEgrileri } from './varlik3d.js';
+import { egriOku } from './zemin3d.js';
 import { silahYap, silahSil, FX_TUR } from './silah3d.js';
 
 const BOY = 2.3; // ölçek 1'deki boy (prosedürel kahramanla ve 2B birimle aynı kadraj)
@@ -66,7 +67,9 @@ export class Birim3D {
     const m = this.model = SkeletonUtils.clone(varlik.scene);
     m.updateMatrixWorld(true);
     const kutu = new THREE.Box3().setFromObject(m), k = (K.boy || BOY) / Math.max(1e-3, kutu.max.y - kutu.min.y);
-    m.scale.multiplyScalar(k); m.position.y = -kutu.min.y * k; m.updateMatrixWorld(true);
+    m.scale.multiplyScalar(k); m.position.y = this.y0 = -kutu.min.y * k; m.updateMatrixWorld(true);
+    this.boy = K.boy || BOY;
+    this.egri = zeminEgrileri(ad); this.kaldir = 0; // R3 zemin teması (zemin3d.js)
 
     // malzemeler: birim başına (vurulma/erime uniform'ları birime özel)
     const U = this.U = { uFlash: { value: 0 }, uErime: { value: 0 }, uKendi: { value: 0 }, uKenar: { value: new THREE.Color(K.malzeme?.kenarRenk || 0x9fb8ff) }, uKenarG: { value: K.malzeme?.kenar ?? 0.35 } };
@@ -91,8 +94,9 @@ export class Birim3D {
     // silah / kalkan: modelin kendi silahı varsa (govdeSilahli) takılmaz; birim kaydı "sag": false ile de kapatılır
     this.silahlar = [];
     const sagT = kayit.sag ?? (K.govdeSilahli ? null : 'kilic'), solT = kayit.sol ?? null;
-    if (sagT && this.soket.sag) { const g = silahYap(sagT, { renk: kayit.tas }); if (g) { this.soket.sag.add(g); this.silahlar.push(g); this.silah = g; } }
-    if (solT && this.soket.sol) { const g = silahYap(solT, { renk: kayit.tas }); if (g) { if (solT === 'kalkan' && K.soket.sol.kalkan) { const Q = K.soket.sol.kalkan; g.rotation.set(...(Q.donus || [0, 0, 0])); g.position.set(...(Q.konum || [0, 0, 0])); } this.soket.sol.add(g); this.silahlar.push(g); } }
+    const halk = unit.faction || unit.model?.faction || kayit.halk;
+    if (sagT && this.soket.sag) { const g = silahYap(sagT, { renk: kayit.tas, halk }); if (g) { this.soket.sag.add(g); this.silahlar.push(g); this.silah = g; } }
+    if (solT && this.soket.sol) { const g = silahYap(solT, { renk: kayit.tas, halk }); if (g) { if (solT === 'kalkan' && K.soket.sol.kalkan) { const Q = K.soket.sol.kalkan; g.rotation.set(...(Q.donus || [0, 0, 0])); g.position.set(...(Q.konum || [0, 0, 0])); } this.soket.sol.add(g); this.silahlar.push(g); } }
     this.weaponKind = kayit.fxTur || FX_TUR[sagT] || K.fxTur || 'sword';
 
     // animasyon
@@ -140,6 +144,10 @@ export class Birim3D {
 
   update(dt, t) {
     this.mixer.update(dt);
+    // zemin teması: etkin eylemlerin kaldırma eğrileri ağırlıklarıyla karışır (geçişte sıçrama yok; ölüm eğrisizdir)
+    let l = 0;
+    for (const isim in this.actions) { const a = this.actions[isim], e = this.egri[isim]; if (!e || !a.isRunning()) continue; const w = a.getEffectiveWeight(); if (w > 0) l += w * egriOku(e, a.time); }
+    if (l !== this.kaldir) { this.kaldir = l; this.model.position.y = this.y0 + l * this.boy; }
     if (this.combatTarget && !this.dead && this.current === this.actions.idle && this.actions.combatIdle) this.idle(0.4);
     this.U.uKendi.value = this.kendiBaz * selfLitK();
     if (this.flash > 0) { this.flash = Math.max(0, this.flash - dt * 4); this.U.uFlash.value = this.flash; }

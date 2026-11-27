@@ -18,9 +18,9 @@ import { LOADOUT_ACTIVES } from '../shared/hero.js';
 import { potSvg } from './iksir.js';
 import { STATUS, HERO_LOOKS, CLASSES } from '../shared/content.js';
 import { MOBS } from '../shared/zones.js';
-import { resolveCameraMode, layoutSlot } from '../opus_kamera/CameraPresets_AllModes_V42.js';
-import { arenaKey } from '../arenas/BattleArenas.js';
-import { SkillVFXManager } from '../vfx/SkillVFXManager.js';
+import { resolveCameraMode, layoutSlot } from './savas3d/sunum3d.js'; // 3B Faz 1b: kip + dizilim
+import { arenaAnahtari as arenaKey } from './savas3d/arena3d.js';
+import { SkillVFXManager } from './savas3d/vfx3d.js';
 import { world, clearScene, ensureEnv, spawn, setUpdater, setBattleVisualFX, endBattlePresentation } from './world.js';
 import { svg } from './icons.js';
 import { skillIcon } from './skill-icons.js';
@@ -238,19 +238,21 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
   setShift(0, 0); // 22 Kas: kadraj savas-kamera.js ile
   const battle = new Battle(setup);
   b2dYukle([...battle.units, ...(setup.waves || []).flat()]); // 2B poz paketlerini önden indir
-  const firstWave = battle.units.filter(u => u.side === 'B');
+  // 3B Faz 1b: kip bütün dalgalardan seçilir (boss sonraki dalgada gelse de yeri ayrılır); yalnız sunum
+  const dalgalar = (setup.waves?.length ? setup.waves : [battle.units]).map(w => w.filter(u => u.side !== 'A' && !u.mon));
   const setting = window.KORANT_BATTLE_PRESENTATION;
   const presented = !B3D.aktif || setup.bdw ? null : resolveCameraMode(setting === undefined ? 'auto' : setting,
-    setup.party.length, firstWave.length, firstWave.some(u => u.boss));
+    setup.party.length, Math.max(1, ...dalgalar.map(w => w.length)), dalgalar.some(w => w.some(u => u.boss)));
   KAM.useBattleMode(presented);
   ensureEnv(env, presented ? 'raid3d:' + arenaKey(env, mode, presented) : 'foto:' + pickBg(env, setup.seed, mode, faction));
   const extraFx = presented ? new SkillVFXManager(THREE, scene, {
     reduced: A11Y.speed < 1 || document.documentElement.classList.contains('motion-less')
   }) : null;
   setBattleVisualFX(extraFx);
-  const placement = (u,n,idx) => {
-    const slot = !u.mon && layoutSlot(presented,u.side,idx,view.w/view.h);
-    return slot && (!!slot.boss === !!(u.boss && u.side === 'B')) ? slot : spot(u,n,idx);
+  const placement = (u, n, idx) => { // boss kipinde yuva 0 bossun, yardımcılar 1..; kipte yuva yoksa arka sıra (sunum3d.js)
+    if (!presented || u.mon) return spot(u, n, idx);
+    const bk = presented === 'boss' && u.side !== 'A';
+    return layoutSlot(presented, u.side === 'A' ? 'A' : 'B', bk ? (u.boss ? 0 : (idx | 0) + 1) : idx | 0, view.w / view.h) || spot(u, n, idx);
   };
 
   battle.noAutoPot = !potPref(); ui.battle = battle; ui.hasPot = battle.units.some(x => x.side === 'A' && x.potHp !== undefined && (x.potHp > 0 || x.potMp > 0)) && !battle.units.some(x => x.side !== 'A' && x.cls && !x.mon); // Oto İksir yalnız PvE
@@ -561,14 +563,15 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       if (f.crit) fx(EVENT_FX.crit, c, { special: heavy });
       if (f.abs < f.amt) { const t26 = vfx26Tur(f.crit, ctx.el); if (t26) vfx26(t26, c, f.crit && heavy ? 1.2 : 1); } // P26 O5
       if (f.weak) fx(EVENT_FX.weak, c);
-      if (f.killed) { a.shown = 0; c.die(); } // erime efekti (EVENT_FX.kill) karakterin ölümünde oynar
+      if (ctx.vfx3 && f.abs < f.amt && !A11Y.noFlash) extraFx?.trigger(ctx.vfx3, from || c.pos, c.pos, { darbe: true }); // 3B Faz 1b
+      if (f.killed) { a.shown = 0; c.die(); if (!A11Y.noFlash) extraFx?.trigger('death', c.pos, c.pos); } // erime efekti (EVENT_FX.kill) karakterin ölümünde oynar
     } else if (f.k === 'heal') {
       a.shown = f.hp;
-      if (f.amt > 0) { floatText(c.headPos(), '+' + f.amt, 'heal'); fx(f.u === ctx.self ? fxOfTick('regen') : EVENT_FX.heal, c, { color: ctx.heal }); } // can çalma: küçük iz
+      if (f.amt > 0) { floatText(c.headPos(), '+' + f.amt, 'heal'); fx(f.u === ctx.self ? fxOfTick('regen') : EVENT_FX.heal, c, { color: ctx.heal }); if (f.u !== ctx.self && !A11Y.noFlash) extraFx?.trigger('heal', c.pos, c.pos); } // can çalma: küçük iz
     } else if (f.k === 'st') {
       floatText(c.headPos(), `${STATUS[f.s].icon} ${STATUS[f.s].name}`, 'st' + (f.s === 'shield' ? ' shield' : STATUS[f.s].good ? ' good' : ' bad'));
       fx(EVENT_FX.st, c, { s: f.s });
-      if (f.s === 'shield' && !A11Y.noFlash) extraFx?.trigger('shield',c.pos,c.pos);
+      if (!A11Y.noFlash && (f.s === 'shield' || STATUS[f.s]?.good)) extraFx?.trigger(f.s === 'shield' ? 'shield' : 'buff', c.pos, c.pos); // 3B Faz 1b: savunma / güçlendirme
       if (STATUS[f.s]?.good) vfx26('kalkan', c); // P26 O5: savunma/kalkan/güçlendirme
     } else if (f.k === 'resist') { floatText(c.headPos(), 'Direndi', 'miss'); fx(EVENT_FX.resist, c); } // etki tutmadı (ıska)
     else if (f.k === 'cleanse') { floatText(c.headPos(), 'Arındı', 'st good'); fx(EVENT_FX.cleanse, c); }
@@ -601,7 +604,7 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
     const w = $('#bwho'); if (w && !ui.choose) w.innerHTML = `<b>${escH(ev.tag)}</b> · <span>${escH(mv)}</span>`;
     fx(EVENT_FX.skill, A.char, { el: 'arcane', color: 0xffd36a });
     await wait(0.35);
-    const from = A.char.pos.clone(), ctx = { kind: A.char.weaponKind, wt: A.unit.wt, el: 'phys', color: 0, self: ev.u, heal: 0x6dff8a };
+    const from = A.char.pos.clone(), ctx = { kind: A.char.weaponKind, wt: A.unit.wt, el: 'phys', color: 0, self: ev.u, heal: 0x6dff8a, vfx3: extraFx && A.char.weaponKind !== 'bow' ? 'slash' : null };
     for (const f of ev.fx) {
       if (f.k === 'pet') { const t = byId(f.u); if (t) { floatText(t.char.headPos(), `${f.s === 'atkUp' ? '▲' : '▼'} Saldırı ${f.s === 'atkUp' ? '+' : '−'}%${f.v}`, f.s === 'atkUp' ? 'st good' : 'st bad'); syncStatus(t); } }
       else applyFx(f, from, false, ctx);
@@ -636,10 +639,8 @@ export function runBattle({ setup, env, title, auto = false, timer = 0, onDone, 
       if (dmgs.length) { flashScreen(); slowmo(master ? 0.45 : 0.25); }
     } else KAM.focusAttack(A, hit); // normal saldırı: kısa, hafif odak
     const from = c.pos.clone();
-    if (extraFx && tgt && !A11Y.noFlash && (special || S.anim === 'melee' || S.anim === 'bolt')) {
-      const kind = el === 'fire' ? 'fire' : el === 'poison' ? 'poison' : S.anim === 'bolt' ? 'holy' : 'slash';
-      extraFx.trigger(kind,from,tgt.char.pos);
-    }
+    // 3B Faz 1b: ek 3B darbe efekti hasar anında (applyFx) oynar; tür elementten (yalnız görünüş)
+    if (extraFx) ctx.vfx3 = spell.vfx3 = { fire: 'fire', ice: 'ice', poison: 'poison', holy: 'holy', dark: 'dark', bolt: 'holy' }[el] || (special || S.anim === 'melee' || S.anim === 'whirl' ? 'slash' : null);
     const hitAll = x => dmgs.forEach(f => applyFx(f, from, special, x));
     const foesCenter = new THREE.Vector3(0, 0, A.unit.side === 'A' ? -2.9 : 2.9);
     switch (S.anim) {
