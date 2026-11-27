@@ -8,7 +8,13 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
-## SON DURUM (27.11, 23. oturum) — 3B SAVAŞ FAZ 1 (Opus teknik entegrasyon)
+## SON DURUM (28.11, 24. oturum) — 3B SAVAŞ FAZ 1b, SÜRÜM 43 YAYINDA
+- **Sürüm 43 YAYINDA** (472 dosya; yayın commit'i bu notun commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç). **3B savaş artık VARSAYILAN AÇIK** (Orta/Yüksek grafik; kapatma `?b3d=0`/`dd_b3d='0'`; Düşük grafik, kayıtsız birim, model inmezse 2B).
+- Yeni modüller `js/savas3d/`: arena3d (Gemini arenaları, InstancedMesh, dokular `models/b3d/doku/arena/*.webp`), sunum3d (kip+dizilim her N için), vfx3d (vuruş/büyü/şifa/kalkan/güçlendirme/ölüm), zemin3d (R3 kalça uyarlaması + taban kaldırma eğrisi; ölçümler R3 ile birebir). Opus-01 yaması (combat/models/engine3d/savas-kamera/world/daylight) uygulandı. Manifest üretici `_tasarim/3d-faz1b/arac/manifest_uret.py` (7 Mixamo gövdesi → 42 birim; mage/dk/orc special → cast/attack). Ağ birleştirme (dark_knight 24→1), silah 1-2 çizim; 4v4 363→66 çizim çağrısı, 115k üçgen.
+- Testler: 2B↔3B eşitlik (1v3, aynı tohum) GEÇTİ; bellek 3 tur sabit; kayıtsız birim → 2B; Düşük grafik → 2B. Model indirilemez testi YAPILMADI (servis çalışanı engeli aşıyor). Telefon FPS ölçülmedi. Kanıt/ekran `_tasarim/3d-faz1b/kanit/`, rehber `MODEL_EKLEME_REHBERI.md`.
+- Kullanıcı belgeleri/ZIP'leri/kalan testleri ATLATTI ("işini bitir, yayınla"). Fable için tek ZIP istenmişti → yapılmadı (kullanıcı vazgeçti). Kural: hiçbir testi 3 dk'dan uzun yapma.
+
+## ÖNCEKİ DURUM (27.11, 23. oturum) — 3B SAVAŞ FAZ 1 (Opus teknik entegrasyon)
 - **KULLANICI KURALI: ONAYI OLMADAN TEST YAPMA** (Playwright, savaş turları dahil; sözdizimi denetimi hariç).
 - V42'de mevcut Paladin + Goblin modelleriyle gerçek 3B savaş: `js/savas3d/` (ayar3d, varlik3d, birim3d, silah3d, kamera3d), manifest `models/b3d/models3d.json`, kancalar world.js / savas-birim2d.js / savas-kamera.js (yamalar `_tasarim/3d-faz1/yamalar/`). combat.js + shared/ DEĞİŞMEDİ. 3B varsayılan KAPALI: `?b3d=1` / `dd_b3d='1'`; Düşük grafik, kayıtsız birim, model inmedi → bütün savaş 2B.
 - Belgeler: `_tasarim/3d-faz1/STANDART.md` (Gemini/GPT/Fable ortak arayüz, yollar, bütçeler), `OPUS_FAZ1_TESLIM_RAPORU.md`, `manifest.json`, kanıtlar `kanit/`. ZIP `KORANT_3D_FAZ1_OPUS.zip` (1,5 MB) kullanıcıya gönderildi (depoda değil).
