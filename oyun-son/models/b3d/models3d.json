@@ -30,7 +30,7 @@
     "puruz": 0.42,
     "normal": 1.0,
     "kendi": 0.1,
-    "parlak": 2.5,
+    "parlak": 1.3,
     "kenar": 0.45,
     "kenarRenk": "#a9c4ff"
    },
@@ -59,7 +59,19 @@
       1.5708,
       0,
       0
-     ]
+     ],
+     "kalkan": {
+      "konum": [
+       -0.12,
+       0.05,
+       0.0
+      ],
+      "donus": [
+       -1.5708,
+       0,
+       1.5708
+      ]
+     }
     }
    },
    "butce": {
@@ -77,7 +89,7 @@
     "puruz": 0.45,
     "normal": 1.0,
     "kendi": 0.1,
-    "parlak": 1.7,
+    "parlak": 1.15,
     "kenar": 0.4,
     "kenarRenk": "#ffb08a"
    },
@@ -106,7 +118,19 @@
       1.5708,
       0,
       0
-     ]
+     ],
+     "kalkan": {
+      "konum": [
+       -0.12,
+       0.05,
+       0.0
+      ],
+      "donus": [
+       -1.5708,
+       0,
+       1.5708
+      ]
+     }
     }
    },
    "klipler": {
@@ -130,7 +154,7 @@
     "puruz": 0.65,
     "normal": 1.0,
     "kendi": 0.1,
-    "parlak": 1.3,
+    "parlak": 0.95,
     "kenar": 0.4,
     "kenarRenk": "#b8d0ff"
    },
@@ -159,7 +183,19 @@
       1.5708,
       0,
       0
-     ]
+     ],
+     "kalkan": {
+      "konum": [
+       -0.12,
+       0.05,
+       0.0
+      ],
+      "donus": [
+       -1.5708,
+       0,
+       1.5708
+      ]
+     }
     }
    },
    "butce": {
@@ -177,7 +213,7 @@
     "puruz": 0.5,
     "normal": 1.0,
     "kendi": 0.1,
-    "parlak": 1.6,
+    "parlak": 1.1,
     "kenar": 0.4,
     "kenarRenk": "#ffe8b0"
    },
@@ -206,7 +242,19 @@
       1.5708,
       0,
       0
-     ]
+     ],
+     "kalkan": {
+      "konum": [
+       -0.12,
+       0.05,
+       0.0
+      ],
+      "donus": [
+       -1.5708,
+       0,
+       1.5708
+      ]
+     }
     }
    },
    "butce": {
@@ -224,7 +272,7 @@
     "puruz": 0.7,
     "normal": 1.0,
     "kendi": 0.1,
-    "parlak": 1.3,
+    "parlak": 1.05,
     "kenar": 0.35,
     "kenarRenk": "#ffc890"
    },
@@ -253,7 +301,19 @@
       1.5708,
       0,
       0
-     ]
+     ],
+     "kalkan": {
+      "konum": [
+       -0.12,
+       0.05,
+       0.0
+      ],
+      "donus": [
+       -1.5708,
+       0,
+       1.5708
+      ]
+     }
     }
    },
    "klipler": {
@@ -277,7 +337,7 @@
     "puruz": 0.55,
     "normal": 1.0,
     "kendi": 0.1,
-    "parlak": 1.4,
+    "parlak": 1.1,
     "kenar": 0.45,
     "kenarRenk": "#c8b8ff"
    },
@@ -306,7 +366,19 @@
       1.5708,
       0,
       0
-     ]
+     ],
+     "kalkan": {
+      "konum": [
+       -0.12,
+       0.05,
+       0.0
+      ],
+      "donus": [
+       -1.5708,
+       0,
+       1.5708
+      ]
+     }
     }
    },
    "klipler": {
@@ -330,7 +402,7 @@
     "puruz": 0.75,
     "normal": 1.0,
     "kendi": 0.1,
-    "parlak": 1.6,
+    "parlak": 1.15,
     "kenar": 0.35,
     "kenarRenk": "#ffc890"
    },
@@ -359,7 +431,19 @@
       1.5708,
       0,
       0
-     ]
+     ],
+     "kalkan": {
+      "konum": [
+       -0.12,
+       0.05,
+       0.0
+      ],
+      "donus": [
+       -1.5708,
+       0,
+       1.5708
+      ]
+     }
     }
    },
    "butce": {
@@ -425,39 +509,27 @@
   "yaratik:yagmaci": {
    "model": "goblin",
    "sag": "sopa",
-   "fxTur": "club",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "fxTur": "club"
   },
   "yaratik:saman": {
    "model": "goblin",
    "sag": "asa",
    "tas": "yesil",
    "fxTur": "staff",
-   "ton": "#d0ffb0",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#d0ffb0"
   },
   "yaratik:kitir": {
    "model": "goblin",
    "sag": "hancer",
    "fxTur": "dagger",
-   "ton": "#ffd0a0",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#ffd0a0"
   },
   "yaratik:ebekul": {
    "model": "goblin",
    "sag": "asa",
    "tas": "mor",
    "fxTur": "staff",
-   "ton": "#e0c0ff",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#e0c0ff"
   },
   "yaratik:taskiran": {
    "model": "orc",
@@ -482,16 +554,15 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#ffb890",
-   "malzeme": {
-    "parlak": 1.6
-   }
+   "halk": "yaban"
   },
   "yaratik:donuk": {
    "model": "dark_knight",
    "sag": "kilic",
    "sol": "kalkan",
    "fxTur": "sword",
-   "ton": "#a8d8ff"
+   "ton": "#a8d8ff",
+   "halk": "yaban"
   },
   "yaratik:erlik": {
    "model": "dark_knight",
@@ -499,72 +570,49 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#c8e8ff",
-   "malzeme": {
-    "parlak": 1.8
-   }
+   "halk": "yaban"
   },
   "yaratik:goblin": {
    "model": "goblin",
    "sag": "sopa",
-   "fxTur": "club",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "fxTur": "club"
   },
   "yaratik:goblin_bouncer": {
    "model": "goblin",
    "sag": "sopa",
    "fxTur": "club",
-   "ton": "#d8b890",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#d8b890"
   },
   "yaratik:goblin_necromancer": {
    "model": "goblin",
    "sag": "asa",
    "tas": "mor",
    "fxTur": "staff",
-   "ton": "#d0b0ff",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#d0b0ff"
   },
   "yaratik:goblin_juggler": {
    "model": "goblin",
    "sag": "hancer",
    "fxTur": "dagger",
-   "ton": "#ffc0a0",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#ffc0a0"
   },
   "yaratik:kobold": {
    "model": "goblin",
    "sag": "hancer",
    "fxTur": "dagger",
-   "ton": "#e0c0a0",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#e0c0a0"
   },
   "yaratik:hobgoblin": {
    "model": "goblin",
    "sag": "sopa",
    "fxTur": "club",
-   "ton": "#ffb080",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "ton": "#ffb080"
   },
   "yaratik:bugbear": {
    "model": "goblin",
    "sag": "sopa",
    "fxTur": "club",
-   "ton": "#e0b890",
-   "malzeme": {
-    "parlak": 1.4
-   }
+   "ton": "#e0b890"
   },
   "yaratik:troll": {
    "model": "orc",
@@ -620,10 +668,7 @@
    "model": "orc",
    "sag": "sopa",
    "fxTur": "club",
-   "ton": "#ffe0b0",
-   "malzeme": {
-    "parlak": 1.35
-   }
+   "ton": "#ffe0b0"
   },
   "yaratik:dark_soldier": {
    "model": "dark_knight",
@@ -631,18 +676,14 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#d0b0b0",
-   "malzeme": {
-    "parlak": 1.6
-   }
+   "halk": "yaban"
   },
   "yaratik:black_guard": {
    "model": "dark_knight",
    "sag": "kilic",
    "sol": "kalkan",
    "fxTur": "sword",
-   "malzeme": {
-    "parlak": 1.6
-   }
+   "halk": "yaban"
   },
   "yaratik:doom_soldier": {
    "model": "dark_knight",
@@ -650,9 +691,7 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#c8b0e0",
-   "malzeme": {
-    "parlak": 1.6
-   }
+   "halk": "yaban"
   },
   "yaratik:dark_knight": {
    "model": "dark_knight",
@@ -660,9 +699,7 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#ffb0b0",
-   "malzeme": {
-    "parlak": 1.6
-   }
+   "halk": "yaban"
   },
   "yaratik:shadow_knight": {
    "model": "dark_knight",
@@ -670,9 +707,7 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#a0a0b8",
-   "malzeme": {
-    "parlak": 1.5
-   }
+   "halk": "yaban"
   },
   "yaratik:dread_knight": {
    "model": "dark_knight",
@@ -680,9 +715,7 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#e0c0c0",
-   "malzeme": {
-    "parlak": 1.6
-   }
+   "halk": "yaban"
   },
   "yaratik:doom_knight": {
    "model": "dark_knight",
@@ -690,9 +723,7 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#d0b0ff",
-   "malzeme": {
-    "parlak": 1.6
-   }
+   "halk": "yaban"
   },
   "yaratik:death_knight": {
    "model": "dark_knight",
@@ -700,9 +731,7 @@
    "sol": "kalkan",
    "fxTur": "sword",
    "ton": "#c8e8ff",
-   "malzeme": {
-    "parlak": 1.8
-   }
+   "halk": "yaban"
   }
  }
 }

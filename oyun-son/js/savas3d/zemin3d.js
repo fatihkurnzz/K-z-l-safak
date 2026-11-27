@@ -44,7 +44,7 @@ export function egriHesapla(ad, kaynak, klipler) {
   const meshler = []; m.traverse(o => { if (o.isSkinnedMesh) meshler.push(o); });
   const v = new THREE.Vector3();
   // dinlenme pozunda bütün köşeler: boy ve alt sınır
-  meshler.forEach(s => s.skeleton.pose()); m.updateMatrixWorld(true);
+  // yüklenen sahne dinlenme (bağlama) pozundadır; skeleton.pose() bu Mixamo dosyalarında kök dönüşümü nedeniyle pozu bozar → kullanılmaz
   let yMin = Infinity, yMax = -Infinity;
   const tum = [];
   for (const s of meshler) {
@@ -65,18 +65,19 @@ export function egriHesapla(ad, kaynak, klipler) {
   for (const [isim, clip] of Object.entries(klipler)) {
     if (isim === 'death') continue;
     const a = mixer.clipAction(clip); a.play();
-    const n = Math.max(2, Math.ceil(clip.duration * ZEMIN.hz) + 1), ham = new Float32Array(n);
+    const n = Math.max(2, Math.ceil(clip.duration * ZEMIN.hz) + 1), ham = new Float32Array(n), oranlar = new Float32Array(n);
     let enAz = Infinity;
     for (let f = 0; f < n; f++) {
       a.time = clip.duration * f / (n - 1); mixer.update(0); m.updateMatrixWorld(true);
       let y = Infinity; for (const [s, i] of taban) { s.getVertexPosition(i, v).applyMatrix4(s.matrixWorld); if (v.y < y) y = v.y; }
-      const oran = (y - yMin) / H; enAz = Math.min(enAz, oran);
+      const oran = oranlar[f] = (y - yMin) / H; enAz = Math.min(enAz, oran);
       ham[f] = Math.min(ZEMIN.tavan, Math.max(0, -oran));
     }
     a.stop(); mixer.uncacheAction(clip);
     const egri = gauss1(ham);
     egriler[isim] = { n, sure: clip.duration, d: egri };
-    sonuc.klip[isim] = { tabanMinYuzde: +(enAz * 100).toFixed(3), enCokKaldirmaYuzde: +(Math.max(...egri) * 100).toFixed(3) };
+    let kalan = Infinity, havada = 0; for (let f = 0; f < n; f++) { const s2 = oranlar[f] + egri[f]; kalan = Math.min(kalan, s2); if (Math.abs(oranlar[f]) < 0.015 && Math.abs(s2) >= 0.015) havada++; }
+    sonuc.klip[isim] = { kare: n, tabanMinYuzde: +(enAz * 100).toFixed(3), sonraMinYuzde: +(kalan * 100).toFixed(3), enCokKaldirmaYuzde: +(Math.max(...egri) * 100).toFixed(3), yeniHavadaKare: havada };
   }
   mixer.uncacheRoot(m);
   m.traverse(o => { if (o.isSkinnedMesh) o.skeleton.dispose(); });

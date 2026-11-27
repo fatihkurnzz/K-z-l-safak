@@ -16,7 +16,7 @@ import { B3D } from './ayar3d.js';
 const kapali = (() => { try { const q = new URLSearchParams(location.search).get('b3dkam'); if (q === '0' || q === '1') return q === '0'; return localStorage.getItem('dd_b3dkam') === '0'; } catch { return false; } })();
 export const SINEMA = {
   acik: !kapali,
-  YAW_MAX: 0.38,                 // taban açıdan en çok sapma (radyan)
+  YAW_MAX: 0.55,                 // taban açıdan en çok sapma (radyan); Faz 1b: gerçek 3B arenada boyalı resim kısıtı yok (0,38→0,55)
   tam: { xl: -0.92, xr: 0.92, yt: 0.78, yb: -0.62, ybR: -0.62 }, // sinematik çekimde arayüz güvenli alanı yerine geniş alan
   dMin: 4.2,                     // en yakın kamera uzaklığı
   sayac: { saldiri: 0, yetenek: 0, usta: 0, boss: 0 },

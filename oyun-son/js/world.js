@@ -53,13 +53,13 @@ const blobM = blobMaterial(gfx.T.blob);
 export function spawn(unit, x, z, faceAngle) {
   // models.json'da iskeletli model varsa onu, yoksa prosedürel modeli kullan
   const K = unit.look?.kind; // insansı olmayan gövdeler: Dev Solucan ve canavar ansiklopedisi (beasts.js); insansılara ekler (kanat, kuyruk…)
-  const b3 = B3D.aktif && !unit.b2d ? birim3dYap(unit, unit.look || {}, kayitAnahtari) : null; if (b3) B3D.sayac.birim = (B3D.sayac.birim || 0) + 1; else if (B3D.aktif) B3D.sayac.dusme++; // kurulamazsa eski zincire düşer
+  const b3 = B3D.aktif && !unit.b2d ? birim3dYap(unit, { ...(unit.look || {}), b3dSayi: B3D.son?.birimler?.length || 0 }, kayitAnahtari) : null; if (b3) B3D.sayac.birim = (B3D.sayac.birim || 0) + 1; else if (B3D.aktif) B3D.sayac.dusme++; // kurulamazsa eski zincire düşer
   const char = b3 ? b3 : unit.b2d ? new Birim2D(unit.b2d, unit.look, unit.side === 'A') : K === 'monument' ? new MonumentCharacter(unit.look) : K === 'worm' ? new WormCharacter(unit.look) : BEAST_KINDS.includes(K) ? new BeastCharacter(unit.look) : createSkinned(unit) || decorateMob(new Character(unit.look, unit.model), unit.look); // Dev Solucan: insansı olmayan model
   char.wt = unit.wt; // silah sınıfı (efekt tablosu, modelin silahı bilinmiyorsa buna bakar)
   char.pos.set(x, 0.1, z);
   char.root.rotation.y = faceAngle;
   scene.add(char.root);
-  const hitbox = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 2.4, 8), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
+  const hitbox = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 2.4, 8), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })); hitbox.material.visible = false; // 3B Faz 1b: dokunma alanı çizilmez (ışın testi malzeme görünürlüğüne bakmaz) → çizim çağrısı yok
   hitbox.position.y = 1.2;
   char.root.add(hitbox);
   // MMO tarzı seçim halkası (sıradaki birim: altın, hedeflenebilir: kırmızı)
@@ -74,4 +74,4 @@ export function spawn(unit, x, z, faceAngle) {
   world.actors.push(a);
   return a;
 }
-onUpdate((dt, t) => { for (let i = 0; i < world.actors.length; i++) { const a = world.actors[i]; a.char.update(dt, t); a.blob.visible = !a.char.dead && !a.char.kendiGolge; } }); // P31-G3: boyalı 2B birim kendi temas gölgesini çizer
+onUpdate((dt, t) => { for (let i = 0; i < world.actors.length; i++) { const a = world.actors[i]; a.char.update(dt, t); a.blob.visible = !a.char.dead && !a.char.kendiGolge; a.ring.visible = a.ring.material.opacity > 0.01; } }); // P31-G3: boyalı 2B birim kendi temas gölgesini çizer

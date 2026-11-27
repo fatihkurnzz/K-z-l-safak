@@ -44,22 +44,50 @@ export const dosyaHazir = f => hazir.get(adres(f)) || null;
 // Çizim çağrısı optimizasyonu: aynı iskelete ve aynı malzemeye bağlı, aynı uzaydaki deri ağlarını tek SkinnedMesh'e
 // birleştirir (ör. dark_knight 24 ağ → 1). Görüntü aynıdır; yalnız ağ sayısı düşer. Döner: { once, sonra }.
 function agBirlestir(kok) {
+  // Bağlı (attached) deri ağında son konum = Σ wᵢ·kemikᵢ·bindMatrix·p; ağın kendi dönüşümü sonucu etkilemez.
+  // Her parçanın geometrisi kendi bindMatrix'iyle "bağlama dünyasına" taşınır, kemik indeksleri ortak kemik listesine
+  // eşlenir (her parçanın ayrı skin kaydı olabilir: dark_knight 24 skin), birleşik ağ birim bindMatrix ile bağlanır.
+  // Aynı kemiğin bağlama tersi parçalar arasında farklıysa (farklı bağlama pozu) o parça birleştirilmez.
   const gruplar = new Map(); let once = 0;
   kok.updateMatrixWorld(true);
   kok.traverse(o => {
     if (!o.isMesh) return; once++;
-    if (!o.isSkinnedMesh || Array.isArray(o.material) || o.morphTargetInfluences) return;
-    const k = o.material.uuid + '|' + o.skeleton.bones.map(b => b.uuid).join(',') + '|' + o.parent.uuid + '|' + o.matrix.elements.map(x => x.toFixed(5)).join(',') + '|' + o.bindMatrix.elements.map(x => x.toFixed(5)).join(',') + '|' + Object.keys(o.geometry.attributes).sort().join(',');
+    if (!o.isSkinnedMesh || Array.isArray(o.material) || o.morphTargetInfluences || o.bindMode !== 'attached') return;
+    const k = o.material.uuid + '|' + Object.keys(o.geometry.attributes).sort().join(',') + '|' + !!o.geometry.index;
     (gruplar.get(k) || gruplar.set(k, []).get(k)).push(o);
   });
+  const BIL = ['getX', 'getY', 'getZ', 'getW'];
   let sonra = once;
-  for (const L of gruplar.values()) {
+  for (const L0 of gruplar.values()) {
+    if (L0.length < 2) continue;
+    // Parçaların bağlama tersleri (IBM) ortak bir katı dönüşümle farklı olabilir: X = IBM_ortak⁻¹ · IBM_parça. X bütün ortak
+    // kemiklerde aynıysa parça p' = X · bindMatrix · p ile ortak uzaya taşınır; değilse parça ayrı kalır.
+    const kemikler = [], tersler = [], yer = new Map(), L = [], Xs = new Map();
+    const yakin = (A, B) => A.elements.every((x, n) => Math.abs(x - B.elements[n]) < 1e-3 * Math.max(1, Math.abs(x)));
+    for (const o of L0) {
+      const sk = o.skeleton; let X = null, uyar = true;
+      sk.bones.forEach((b, i) => { const j = yer.get(b); if (j === undefined || !uyar) return; const x = tersler[j].clone().invert().multiply(sk.boneInverses[i]); if (!X) X = x; else if (!yakin(X, x)) uyar = false; });
+      if (!uyar) continue;
+      X ||= new THREE.Matrix4(); const Xi = X.clone().invert();
+      sk.bones.forEach((b, i) => { if (!yer.has(b)) { yer.set(b, kemikler.length); kemikler.push(b); tersler.push(sk.boneInverses[i].clone().multiply(Xi)); } });
+      Xs.set(o, X); L.push(o);
+    }
     if (L.length < 2) continue;
-    const g = mergeGeometries(L.map(x => x.geometry.index ? x.geometry : x.geometry), false); if (!g) continue;
+    const parca = L.map(x => {
+      const g = x.geometry.clone(), si = g.attributes.skinIndex, n = si.count, yeni = new Uint16Array(n * 4);
+      const es = x.skeleton.bones.map(b => yer.get(b));
+      for (let i = 0; i < n; i++) for (let j = 0; j < 4; j++) yeni[i * 4 + j] = es[si[BIL[j]](i)] ?? 0;
+      g.setAttribute('skinIndex', new THREE.Uint16BufferAttribute(yeni, 4));
+      const sw = g.attributes.skinWeight; if (sw.normalized || !(sw.array instanceof Float32Array)) { const f = new Float32Array(n * 4); for (let i = 0; i < n; i++) for (let j = 0; j < 4; j++) f[i * 4 + j] = sw[BIL[j]](i); g.setAttribute('skinWeight', new THREE.BufferAttribute(f, 4)); }
+      for (const ad of ['position', 'normal', 'uv']) { const at = g.attributes[ad]; if (at && (at.normalized || !(at.array instanceof Float32Array))) { const f = new Float32Array(at.count * at.itemSize); for (let i = 0; i < at.count; i++) for (let j = 0; j < at.itemSize; j++) f[i * at.itemSize + j] = at[BIL[j]](i); g.setAttribute(ad, new THREE.BufferAttribute(f, at.itemSize)); } }
+      return g.applyMatrix4(Xs.get(x).clone().multiply(x.bindMatrix)); // nicemli köşeler önce float'a çevrildi
+    });
+    const g = mergeGeometries(parca, false); parca.forEach(x => x.dispose()); if (!g) continue;
     const a = L[0], y = new THREE.SkinnedMesh(g, a.material);
-    y.name = a.name + '+' + (L.length - 1); y.position.copy(a.position); y.quaternion.copy(a.quaternion); y.scale.copy(a.scale);
-    y.bind(a.skeleton, a.bindMatrix);
-    a.parent.add(y); L.forEach(x => { x.parent.remove(x); x.geometry.dispose(); });
+    y.name = a.name + '+' + (L.length - 1);
+    kok.add(y); y.updateMatrixWorld(true);
+    y.bind(new THREE.Skeleton(kemikler, tersler), new THREE.Matrix4());
+    L.forEach(x => { x.parent.remove(x); x.geometry.dispose(); });
     sonra -= L.length - 1;
   }
   return { once, sonra };

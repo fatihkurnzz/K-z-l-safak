@@ -126,7 +126,7 @@ export function arenaKur(anahtar, { shadows = !!gfx.T.shadow, shadowSize = gfx.T
     }
   }
   for (let i = 0; i < 24; i++) { const z = R() * 27 - 13.5, x = -6.5 - R() * 11, s = 0.1 + R() * 0.7; T.ekle(kaya, i % 3 ? kayaM : kayaKoyu, x, s * 0.39, z, s * 1.2, s * 0.52, s, R() * 6); }
-  T.kur(grup, shadows);
+  T.kur(grup, false); // süsler saha dışında: gölge geçişine girmez (çizim çağrısı bütçesi)
 
   // Işık: gök/yer yarım küresi + gölgeli güneş + arka kenar ışığı (gövdeyi boyalı/koyu zeminden ayırır)
   const hemi = new THREE.HemisphereLight(0xc2d5ed, c.toprak, 1.35);

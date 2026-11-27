@@ -75,7 +75,10 @@ export class Birim3D {
     const U = this.U = { uFlash: { value: 0 }, uErime: { value: 0 }, uKendi: { value: 0 }, uKenar: { value: new THREE.Color(K.malzeme?.kenarRenk || 0x9fb8ff) }, uKenarG: { value: K.malzeme?.kenar ?? 0.35 } };
     const ayar = { ...(K.malzeme || {}), ...(kayit.malzeme || {}) };
     this.mats = []; this.kendiBaz = ayar.kendi ?? 0.12;
-    const golge = gfx.T.shadow > 0;
+    // Gölge bütçesi: Yüksek kademede her birim; Orta kademede en çok 4 birimlik savaşta (4v4 ve kalabalıkta zemin lekesi).
+    // Gerçek gölge varken zemin lekesi (world.js blob) gizlenir.
+    const golge = this.golge = gfx.T.shadow > 0 && (gfx.tier === 'high' || (look.b3dSayi || 0) <= 4);
+    this.kendiGolge = golge;
     m.traverse(o => {
       if (!o.isMesh) return;
       o.castShadow = golge; o.receiveShadow = false; o.frustumCulled = false;
@@ -96,7 +99,10 @@ export class Birim3D {
     const sagT = kayit.sag ?? (K.govdeSilahli ? null : 'kilic'), solT = kayit.sol ?? null;
     const halk = unit.faction || unit.model?.faction || kayit.halk;
     if (sagT && this.soket.sag) { const g = silahYap(sagT, { renk: kayit.tas, halk }); if (g) { this.soket.sag.add(g); this.silahlar.push(g); this.silah = g; } }
-    if (solT && this.soket.sol) { const g = silahYap(solT, { renk: kayit.tas, halk }); if (g) { if (solT === 'kalkan' && K.soket.sol.kalkan) { const Q = K.soket.sol.kalkan; g.rotation.set(...(Q.donus || [0, 0, 0])); g.position.set(...(Q.konum || [0, 0, 0])); } this.soket.sol.add(g); this.silahlar.push(g); } }
+    if (solT && this.soket.sol) { const g = silahYap(solT, { renk: kayit.tas, halk }); if (g) {
+      // kalkan ön kola ayrı soketle takılır (yüz elin sırtı yönünde dışa, boy ekseni ön kol boyunca; STANDART §5)
+      const Q = solT === 'kalkan' && K.soket.sol.kalkan; const s = Q ? this.soketKur(this.kemik.sol, 'sok_kalkan', Q.donus || [0, 0, 0], Q.konum || [0, 0, 0]) : this.soket.sol;
+      s.add(g); this.silahlar.push(g); } }
     this.weaponKind = kayit.fxTur || FX_TUR[sagT] || K.fxTur || 'sword';
 
     // animasyon
@@ -201,7 +207,7 @@ export class Birim3D {
   revive(face, home) {
     this.deathN++; this.dead = false; this.U.uErime.value = 0;
     this.root.visible = true; this.root.rotation.set(0, face, 0); if (home) this.pos.copy(home);
-    const golge = gfx.T.shadow > 0; this.root.traverse(o => { if (o.isMesh) o.castShadow = golge; });
+    const golge = this.golge; this.root.traverse(o => { if (o.isMesh && !o.name.startsWith('silah')) o.castShadow = golge && o.isSkinnedMesh; });
     this.idle(0.1);
   }
   cheer() { if (!this.dead) this.play('victory', { fade: 0.2 }); }
