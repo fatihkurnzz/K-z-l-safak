@@ -1,0 +1,334 @@
+{
+ "paket": "KORANT_3D_FAZ1_OPUS",
+ "tarih": "2026-11-27",
+ "dal": "claude/add-skill-repos-rne7at",
+ "taban_commit": "c0aa487",
+ "commit": "b5becee",
+ "kural": "combat.js ve shared/ değişmedi; 3B varsayılan kapalı (?b3d=1)",
+ "dosyalar": [
+  {
+   "yol": "oyun-son/js/savas3d/ayar3d.js",
+   "durum": "yeni",
+   "bayt": 4351,
+   "sha256": "f4ecb990019bd1f10db730bf92c560f549c78cac7d2c5b5ebfb94d644ce893f5"
+  },
+  {
+   "yol": "oyun-son/js/savas3d/varlik3d.js",
+   "durum": "yeni",
+   "bayt": 5944,
+   "sha256": "7662900e5bdfde3142b3a738491a357e9827b89a7483c971e6151a7c9a209fd5"
+  },
+  {
+   "yol": "oyun-son/js/savas3d/birim3d.js",
+   "durum": "yeni",
+   "bayt": 13693,
+   "sha256": "2da3cf321992c2cbe2a02a1fa4be72d3f0b50726bc0695c0e3320e2e597400c0"
+  },
+  {
+   "yol": "oyun-son/js/savas3d/silah3d.js",
+   "durum": "yeni",
+   "bayt": 9120,
+   "sha256": "8d55ed7daf9a1017a3c712306bd26a50a0a6685559023ac3e6ddb6580464ad7f"
+  },
+  {
+   "yol": "oyun-son/js/savas3d/kamera3d.js",
+   "durum": "yeni",
+   "bayt": 3797,
+   "sha256": "4776a3ab123c9f222ec129059f7149e25fdf4ee4f591dfddcf50dc6ad505b13e"
+  },
+  {
+   "yol": "oyun-son/models/b3d/models3d.json",
+   "durum": "yeni",
+   "bayt": 2642,
+   "sha256": "c07cdb837f3ed7ac67fa19ffe91ed68ebb3d2305de0b6750d3dd40653333653f"
+  },
+  {
+   "yol": "oyun-son/js/world.js",
+   "durum": "değişti (yamalar/)",
+   "bayt": 5160,
+   "sha256": "afe21601dcbf56aba65e046f82e3dc1d7159272e753a585a7404b50be8f0fce2"
+  },
+  {
+   "yol": "oyun-son/js/savas-birim2d.js",
+   "durum": "değişti (yamalar/)",
+   "bayt": 14276,
+   "sha256": "64f479404dbfb4664a5618f23a9ebc05e5fd5a21715cafe978ef1b85cf737d83"
+  },
+  {
+   "yol": "oyun-son/js/savas-kamera.js",
+   "durum": "değişti (yamalar/)",
+   "bayt": 12091,
+   "sha256": "5dbe824694cbfd9a589a179ce08640426f6355b8bd4eb1a7130240093ceb11fc"
+  },
+  {
+   "yol": "oyun-son/models/characters/paladin.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 451554,
+   "sha256": "f50d8bec4e2914dc0f442f8ec46d239876bfe91456f0dad9b5f2f6403799eb16"
+  },
+  {
+   "yol": "oyun-son/models/characters/paladin_0.webp",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 42004,
+   "sha256": "eb0a41f22bde332292714d134f362ff071dc2d58e83603264f3688b089703ecc"
+  },
+  {
+   "yol": "oyun-son/models/characters/paladin_1.webp",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 27036,
+   "sha256": "afa71eb0823236ce59e001fdcadb0944d1d88cc41d3b5f1fa609480f56879a3d"
+  },
+  {
+   "yol": "oyun-son/models/characters/goblin.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 446790,
+   "sha256": "77a9b8322a7c8bd85e055c5e59018f46f5d93f095f3d167b22335d1dac47d6ea"
+  },
+  {
+   "yol": "oyun-son/models/characters/goblin_0.webp",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 66028,
+   "sha256": "05134102a1ac4372541235d2e414f2fc64d97d6ed94ff10b7fdc49888d4a9dae"
+  },
+  {
+   "yol": "oyun-son/models/characters/goblin_1.webp",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 45620,
+   "sha256": "080876b9561101f3d0f7a2f766dff0bcae4dfe9200bfd750dc45cd89f54e0d74"
+  },
+  {
+   "yol": "oyun-son/models/anims/attack.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 28656,
+   "sha256": "ca5a8e8b88f1a03fea4cc83083ea699ba87369b41816758981c57a98c9ca005a"
+  },
+  {
+   "yol": "oyun-son/models/anims/cast.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 62427,
+   "sha256": "bb1d2628c3162b900dd6c9bdfbe900461252453a749b5dff417a010a8fd4a2f1"
+  },
+  {
+   "yol": "oyun-son/models/anims/cast2.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 49501,
+   "sha256": "94714eeaa86916ef100469565a4b6c014ddfb7b2d9ca8bf59247136c939c93c2"
+  },
+  {
+   "yol": "oyun-son/models/anims/combat_idle.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 54532,
+   "sha256": "9d99398e42582f111da0376815df095599ba36948606ce8933de5faef7eeb999"
+  },
+  {
+   "yol": "oyun-son/models/anims/death.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 35046,
+   "sha256": "b5bec6c09f96135afa47dfd9a449074a1548fd716445020ea47010eb560a8354"
+  },
+  {
+   "yol": "oyun-son/models/anims/hit.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 26675,
+   "sha256": "580d9ffd1544e7f221c358900dec16e2b4889723f35bdd8a628d8b81fa6d4602"
+  },
+  {
+   "yol": "oyun-son/models/anims/idle.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 182843,
+   "sha256": "36a0c9dd375bacebf8cbb8d90f5a41ee08fd05073ec1db64dde6aab0c31542a2"
+  },
+  {
+   "yol": "oyun-son/models/anims/run.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 23321,
+   "sha256": "ee207b950aaa7a79ec6218860b292c66cc7bac060d8f35604f4da8de7b41fc6e"
+  },
+  {
+   "yol": "oyun-son/models/anims/shoot.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 25308,
+   "sha256": "44ecc3225e27b6264906b085c55f4fb95d443351b0c98e1669c93790d426dd1a"
+  },
+  {
+   "yol": "oyun-son/models/anims/special.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 47492,
+   "sha256": "8693c9b2fcd9faf0caa9c4b0b6860fa622395f8eacaf4737c98c72f5c3e44712"
+  },
+  {
+   "yol": "oyun-son/models/anims/victory.json",
+   "durum": "mevcut V42 varlığı (değişmedi)",
+   "bayt": 144750,
+   "sha256": "8a721127db67939101d877513e42c075f11777781c2939f3e074fe79d8cdecbd"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/OPUS_FAZ1_TESLIM_RAPORU.md",
+   "durum": "belge/araç/kanıt",
+   "bayt": 3961,
+   "sha256": "28e00c697d4d173d46f0c4df2a796b614522c2d9063a490ae9384a3b746b2f32"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/OPUS_NIHAI_DENETIM.txt",
+   "durum": "belge/araç/kanıt",
+   "bayt": 11204,
+   "sha256": "b91b8571d0b5b2bdc10bc32d62d0629a7220438663c29ff3291c3596e31a1fcd"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/OPUS_PLAN_DENETIMI.md",
+   "durum": "belge/araç/kanıt",
+   "bayt": 9958,
+   "sha256": "9aa007441940ea7f2b32e0253eaaf529d708c3ebfa07097a8c26b91ee4a4d621"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/STANDART.md",
+   "durum": "belge/araç/kanıt",
+   "bayt": 10359,
+   "sha256": "928aba57f6837788bc168332456684f15a25a7fef5b14c528182c9fb3bea198a"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/arac/__pycache__/donustur.cpython-313.pyc",
+   "durum": "belge/araç/kanıt",
+   "bayt": 13040,
+   "sha256": "c800d94356c736585c5d26ab4cb0dbaa9d9ffbf1f34eb7c2a3f046b190ea9c1b"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/arac/butce.mjs",
+   "durum": "belge/araç/kanıt",
+   "bayt": 5791,
+   "sha256": "ef0bf74c0ac42dd504f26d3194227eb1f8ccd0242bfa61fcb246a713e80fff8b"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/arac/donustur.py",
+   "durum": "belge/araç/kanıt",
+   "bayt": 9158,
+   "sha256": "a0492b62a30216e58f4738e63e104ba7fbb9e9adfd35842ee8114debab398851"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/arac/test/esitlik.js",
+   "durum": "belge/araç/kanıt",
+   "bayt": 5175,
+   "sha256": "e0f39c7a256e2a6cc7c8cfacc9516b7295a7ec6061c1295ce3ad15206accfb81"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/arac/test/geri_donus.js",
+   "durum": "belge/araç/kanıt",
+   "bayt": 5339,
+   "sha256": "cc6c9a0104768189a1799ebe834325cd9248e49bee60bb5c268ec0c13ce57f6b"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/arac/test/giris.js",
+   "durum": "belge/araç/kanıt",
+   "bayt": 1929,
+   "sha256": "9c2f9a686a8adf2d469f4b75b9624d8ae5febde08307d43f9420bb2c9c9e4999"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/arac/vitrin.html",
+   "durum": "belge/araç/kanıt",
+   "bayt": 6100,
+   "sha256": "68960a02a71d05485ca011f69bb6c2227ba11c2c603a3bc7dee729a9dfb788fd"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/01_once_v42_b2d0_goblin_iskeletli_kahraman_prosedurel.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 44276,
+   "sha256": "ff69da57d2f97374de38b061d188fbc19b57d024dc52c2de8cb8fadc21eb5a56"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/02_sonra_3B_savas_1-11.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 44820,
+   "sha256": "1ab6fb67b6f952103e17505ab02b060b2429b99d6f7f2a583e936f19a4dd6f25"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/03_sinematik_kamera_16_kare.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 252428,
+   "sha256": "eb9f606a09f4a0af2ecd8430c46c95c67f3d94686c0a0df14f5617a1750d0179"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/04_paladin_11_klip_kilic_kalkan.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 31736,
+   "sha256": "6d5669668b4768cbe04ec9019a709846cf81f5f4afd733035f1fa632512e8ce7"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/05_T_pozu_soketler.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 26756,
+   "sha256": "18a087282fd69711e2c400c254bfac60bda3a6b9553a4e61716694babc4148aa"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/06_geri_donus_b3d0.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 43974,
+   "sha256": "6aef64574e307ea4bd0776cab012d66d50274aed1589f8e5271821f0644dfba5"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/07_geri_donus_grafik_dusuk.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 46868,
+   "sha256": "db7f69d06295b6344db1039516c6d0279d7bbd59b913dffc5be6ad04213035ab"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/ekran/08_geri_donus_bandikut_kaydi_yok.webp",
+   "durum": "belge/araç/kanıt",
+   "bayt": 43318,
+   "sha256": "12c39a94594eaaa21a8c7e876e94e443f61e28093192d8712f5e39215111b592"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/test/esitlik_2B.json",
+   "durum": "belge/araç/kanıt",
+   "bayt": 5169,
+   "sha256": "67a6ea72b05ecc7a9d16402cc6e3ca428ca508acc446e2918764cdada5a85b74"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/test/esitlik_3B.json",
+   "durum": "belge/araç/kanıt",
+   "bayt": 5155,
+   "sha256": "ff3d135b2e64a57bcf34ddcc04d55407ed47dd85ac57e8bf4c96055c4548ac65"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/test/geri_donus_dusuk.json",
+   "durum": "belge/araç/kanıt",
+   "bayt": 491,
+   "sha256": "4b8a37c2aa80905448d672aa82bf97618ad5f740555d6b74cf8f4c543ea9ccf6"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/test/geri_donus_eksik.json",
+   "durum": "belge/araç/kanıt",
+   "bayt": 489,
+   "sha256": "e900746e4fceb7120dd7cc5b73bd7cd4d2e1a0faf96525ec40f5fd8452f7acad"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/test/geri_donus_indirme.json",
+   "durum": "belge/araç/kanıt",
+   "bayt": 476,
+   "sha256": "f08730c84c217472079def6e794214578e06eacfda4debc5dfd333bd4ef21669"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/kanit/test/geri_donus_kapali.json",
+   "durum": "belge/araç/kanıt",
+   "bayt": 492,
+   "sha256": "fe20ceaa84cd12504fa0800e513394e1ebe1f209bac9557434cd1880e3e635c0"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/yamalar/01_world.patch",
+   "durum": "belge/araç/kanıt",
+   "bayt": 2769,
+   "sha256": "f958d7286fbe85d860d4e3b0073b7c1ae1a28b017079ff77a19300c938e339be"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/yamalar/02_savas-birim2d.patch",
+   "durum": "belge/araç/kanıt",
+   "bayt": 2579,
+   "sha256": "a83a665e040867f0ee4f9f83f1925f1fbf504dc67b55e66039f13f62c34eee5f"
+  },
+  {
+   "yol": "oyun-son/_tasarim/3d-faz1/yamalar/03_savas-kamera.patch",
+   "durum": "belge/araç/kanıt",
+   "bayt": 2465,
+   "sha256": "80b947107f0a7c6dd60f7b7796fe91e7165fd262259f85c9a3aa46bbbe65da52"
+  }
+ ]
+}

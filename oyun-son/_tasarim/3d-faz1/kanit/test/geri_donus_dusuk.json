@@ -1,0 +1,33 @@
+{
+ "senaryo": "dusuk",
+ "query": "?gfx=low&b3d=1",
+ "asama": "1-11",
+ "halk": "sancak",
+ "savaslar": [
+  {
+   "neden": "grafik kademesi low",
+   "aktif": false,
+   "birimler": [
+    "Birim2D",
+    "Birim2D",
+    "Birim2D",
+    "Birim2D"
+   ],
+   "savas_acildi": true,
+   "sirasinda": {
+    "geometri": 39,
+    "doku": 17,
+    "program": 14
+   }
+  }
+ ],
+ "once": {
+  "geometri": 17,
+  "doku": 3,
+  "program": 6
+ },
+ "js_hatalari": [],
+ "beklenen": "2B",
+ "gercek": "2B",
+ "SONUC": "GEÇTİ"
+}

@@ -1,0 +1,33 @@
+{
+ "senaryo": "indirme",
+ "query": "?gfx=high&b3d=1",
+ "asama": "1-11",
+ "halk": "sancak",
+ "savaslar": [
+  {
+   "neden": "3B",
+   "aktif": true,
+   "birimler": [
+    "Birim3D",
+    "Birim3D",
+    "Birim3D",
+    "Birim3D"
+   ],
+   "savas_acildi": true,
+   "sirasinda": {
+    "geometri": 67,
+    "doku": 38,
+    "program": 29
+   }
+  }
+ ],
+ "once": {
+  "geometri": 19,
+  "doku": 17,
+  "program": 16
+ },
+ "js_hatalari": [],
+ "beklenen": "2B",
+ "gercek": "3B",
+ "SONUC": "KALDI"
+}

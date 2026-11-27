@@ -1,0 +1,32 @@
+{
+ "senaryo": "eksik",
+ "query": "?gfx=high&b3d=1",
+ "asama": "1-1",
+ "halk": "sancak",
+ "savaslar": [
+  {
+   "neden": "3B kaydı yok: small_bandicoot",
+   "aktif": false,
+   "birimler": [
+    "Birim2D",
+    "Birim2D",
+    "Birim2D"
+   ],
+   "savas_acildi": true,
+   "sirasinda": {
+    "geometri": 35,
+    "doku": 24,
+    "program": 24
+   }
+  }
+ ],
+ "once": {
+  "geometri": 19,
+  "doku": 17,
+  "program": 16
+ },
+ "js_hatalari": [],
+ "beklenen": "2B",
+ "gercek": "2B",
+ "SONUC": "GEÇTİ"
+}

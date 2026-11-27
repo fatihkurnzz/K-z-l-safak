@@ -1,0 +1,39 @@
+diff --git a/oyun-son/js/savas-kamera.js b/oyun-son/js/savas-kamera.js
+index 99bb92c..e165ccd 100644
+--- a/oyun-son/js/savas-kamera.js
++++ b/oyun-son/js/savas-kamera.js
+@@ -25,6 +25,9 @@ const K = {
+   safe: null,
+ };
+ if (typeof window !== 'undefined') window.DD_CAM = K; // test: durum ve kadraj okunur
++// 3B Savaş Faz 1 (Opus 27.11): eklenti kancası. K.ek = { focusAttack, focusSkill, focusBoss } verilirse önce o çağrılır;
++// true dönerse varsayılan davranış atlanır (js/savas3d/kamera3d.js RAID tarzı sinematik çekimler). K.ek yoksa davranış aynıdır.
++export const KAMERA = K;
+ 
+ // Güvenli alan (NDC): üstte oyuncu kartı / hedef / boss çubuğu, altta yetenek çubuğu ve sağ alt düğmeler. Görünür
+ // öğelerin kutularından ölçülür; ölçülemezse 880×406 telefondaki değerler.
+@@ -147,14 +150,15 @@ function focusOn(list, k, dyaw, dpitch, dur, state, zoomCap) {
+   if (pos.y < 0.7) { look.y += 0.7 - pos.y; pos.y = 0.7; }
+   go(pos, look, dur, state);
+ }
+-export function focusAttack(att, targets) { focusOn([att, ...targets], 0.35, 0, 0, DUR.attack, 'FOCUS_ATTACK', 0.1); }
+-export function focusSkill(att, targets, master) {
++export function focusAttack(att, targets) { if (K.ek?.focusAttack?.(att, targets)) return; focusOn([att, ...targets], 0.35, 0, 0, DUR.attack, 'FOCUS_ATTACK', 0.1); }
++export function focusSkill(att, targets, master) { if (K.ek?.focusSkill?.(att, targets, master)) return;
+   const s = att.unit.side === 'A' ? 1 : -1;
+   focusOn([att, ...targets], master ? 0.7 : 0.55, 0.1 * s, -0.03, master ? DUR.master : DUR.skill, 'FOCUS_SKILL', master ? 0.24 : 0.18);
+ }
+ // Boss girişi: boss ve parti birlikte (genişletilmiş kadraj), biraz alçaktan bossa doğru açı
+ export function focusBoss(boss, party) {
+   if (!K.on) return;
++  if (K.ek?.focusBoss?.(boss, party)) return;
+   K.safe = measureSafe();
+   const P = []; pts(boss, P); for (const a of party) pts(a, P);
+   const r = fit(P, VIEW.yaw - 0.12, VIEW.pitch - 0.06, K.safe);
+@@ -179,4 +183,6 @@ export function step(dt) {
+   if ((K.state === 'ESTABLISH' || K.state === 'RECOVER' || K.state === 'RECOMPOSE') && K.pos.distanceToSquared(K.gPos) < 1e-4 && K.vp.lengthSq() < 1e-4) K.state = 'IDLE';
+ }
+ export const camState = () => K.state;
++// Eklentiler için iç yardımcılar (kamera3d.js): kadraj hesabı ve hedefe yumuşak geçiş
++K.api = { go, fit, pts, basis, measureSafe, VIEW, DUR, focusOn };
+ export const idleView = () => K.idle;

@@ -8,6 +8,12 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
 
+## SON DURUM (27.11, 23. oturum) — 3B SAVAŞ FAZ 1 (Opus teknik entegrasyon)
+- **KULLANICI KURALI: ONAYI OLMADAN TEST YAPMA** (Playwright, savaş turları dahil; sözdizimi denetimi hariç).
+- V42'de mevcut Paladin + Goblin modelleriyle gerçek 3B savaş: `js/savas3d/` (ayar3d, varlik3d, birim3d, silah3d, kamera3d), manifest `models/b3d/models3d.json`, kancalar world.js / savas-birim2d.js / savas-kamera.js (yamalar `_tasarim/3d-faz1/yamalar/`). combat.js + shared/ DEĞİŞMEDİ. 3B varsayılan KAPALI: `?b3d=1` / `dd_b3d='1'`; Düşük grafik, kayıtsız birim, model inmedi → bütün savaş 2B.
+- Belgeler: `_tasarim/3d-faz1/STANDART.md` (Gemini/GPT/Fable ortak arayüz, yollar, bütçeler), `OPUS_FAZ1_TESLIM_RAPORU.md`, `manifest.json`, kanıtlar `kanit/`. ZIP `KORANT_3D_FAZ1_OPUS.zip` (1,5 MB) kullanıcıya gönderildi (depoda değil).
+- Test: sonuç eşitliği 1-11 GEÇTİ; geri dönüş kapalı/düşük/bandikut GEÇTİ; indirme testi hatalı (SW), Kragmir/WebGL/bellek/boss/telefon FPS YAPILMADI. `arac/donustur.py` (bpy) ve `butce.mjs` yazıldı, çalıştırılmadı.
+
 ## SON DURUM (26.11, 22. oturum) — V42 FİNAL TESLİM HAZIR + P35 İLK DENETİM
 - **KORANT_V42_OPUS_DUZELTME.zip** (19,9 MB, 667 dosya) kullanıcıya gönderildi; belgeleri `oyun-son/_tasarim/opus-v42-duzeltme/teslim/` (ZIP depoda değil; çekimler zaten `EKRAN_EKSIGI/`'de). Durum: F-005/F-007 düzeltildi (880/667/1180'de 11 px altı 0), F-006 kısmen (880: 223→99; kalanı kullanıcı onaylı OPUS işi, ızgara kararı), F-018 büyük kısmı (zindan savaşları ERTELENDİ), F-024 yalnız 5 dk (30/60/120 dk ERTELENDİ, yayın öncesi testlere), F-025 26 geçti (yerel sim.). Opus'a devir: F-001, F-021, F-009, F-006 kalanı; GPT girdileri (F-001 şartname, F-004 EN, F-019/020) uygulanmadı → Fable oturumu birleştirir. Tek kod değişikliği `css/p33-kabul.css` sonu.
 - **P35 ilk bağımsız denetim (Opus):** `oyun-son/_tasarim/p35/KORANT_P35_OPUS_ILK_DENETIM.zip` + klasör `opus-ilk-denetim/`; 23 bulgu (Y4: referanslarda uydurma veri, Avcı Seferi rotaları anlamsız, D06/D07 üretim yaması yok, Destan çelişkileri). Kullanıcıya 7 karar sorusu soruldu (cevap bekleniyor). Girdi paketi: `/root/.claude/uploads/44302d19-…/ff5dfb94-KORANT_P35_FABLE_PARALEL_GOREV-1.zip`.

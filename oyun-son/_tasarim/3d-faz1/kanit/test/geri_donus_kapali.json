@@ -1,0 +1,33 @@
+{
+ "senaryo": "kapali",
+ "query": "?gfx=high&b3d=0",
+ "asama": "1-11",
+ "halk": "sancak",
+ "savaslar": [
+  {
+   "neden": "kapalı (dd_b3d)",
+   "aktif": false,
+   "birimler": [
+    "Birim2D",
+    "Birim2D",
+    "Birim2D",
+    "Birim2D"
+   ],
+   "savas_acildi": true,
+   "sirasinda": {
+    "geometri": 41,
+    "doku": 30,
+    "program": 24
+   }
+  }
+ ],
+ "once": {
+  "geometri": 19,
+  "doku": 17,
+  "program": 16
+ },
+ "js_hatalari": [],
+ "beklenen": "2B",
+ "gercek": "2B",
+ "SONUC": "GEÇTİ"
+}
