@@ -4,9 +4,27 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 
 ## Çalışma şekli
 - Kullanıcı görselleri GPT'ye yaptırıp ZIP olarak gönderiyor, ben oyuna yerleştiriyorum. **Oyun mekaniklerine dokunma** (`shared/` = mekanik); yalnız grafik, arayüz, yerleşim.
-- İş bitince **yapıt olarak yayımla** ve bağlantıyı ver.
+- İş bitince yapıtı hazırla ve yayımlamayı öner; **yayınlama kullanıcı onayına tabidir** (aşağıdaki protokol; eski "iş bitince yayımla" kuralı bununla güncellendi).
 - Kullanıcının beğenisi: tek parça boyanmış sahneler (ayrı sprite + boş zemin BEĞENİLMEDİ); sade, gerçekçi, az altın.
 - KULLANICININ TELEFONU: 2340×1080, Claude uygulamasında dik tutuluyor, oyun döndürülüyor → mantıksal ölçü **880×406** (dpr 2.66). Eski notlardaki 722×411 ve 846×412 yanlıştı.
+
+## KALICI GÖREV VE YETKİ DAĞILIMI (28.11, kullanıcı kararı; bütün oyun geliştirme çalışmalarında geçerli)
+**Fable:** proje yöneticisi, başmimar, başdenetçi, nihai entegratör ve gerektiğinde geliştirici. Opus'a devredildiğinde kalite, doğruluk veya güvenilirlik kaybı oluşabilecek işleri bizzat yapar. Yoğun proje bağlamı gerektiren veya devretmenin daha maliyetli olacağı işleri kendisi yapar.
+**Opus:** Fable ile eşdeğer kalitede yapabileceği kodlama, algoritma, teknik problem çözme, optimizasyon ve hata düzeltme. Ayrı git worktree üzerinde çalışır; yamaları ve test kanıtlarını Fable'a teslim eder.
+**Sonnet:** Opus ile eşdeğer kalitede yapabileceği araştırma, dosya inceleme, hata tespiti, test, simülasyon, görsel denetim, ekran görüntüsü, performans ölçümü, karşılaştırma, dokümantasyon, raporlama. **Oyun kodunu ve verilerini değiştiremez**; yalnız izole çalışma ortamında (scratchpad) geçici test/ölçüm betikleri yazabilir.
+
+Kurallar:
+- Her görev, kalite ve doğrulama maliyeti dikkate alınarak işi eşdeğer kalitede yapabilecek en düşük maliyetli modele atanır. Temel ilke: Sonnet'in Opus kadar iyi yapabileceğini Sonnet, Opus'un Fable kadar iyi yapabileceğini Opus, kalanı Fable yapar.
+- Opus ve Sonnet ana oyun deposunu doğrudan değiştiremez. Nihai değişiklik, entegrasyon, düzeltme, geri alma, kabul ve ret yetkisi yalnız Fable'dadır.
+- Fable her alt ajana gerekli bağlamı, görev tanımını, ilgili dosyaları, kullanıcı kararlarını, kabul ölçütlerini ve yetki sınırlarını eksiksiz aktarır (ajanlar bağlamsız başlar).
+- Bağımsız görevler paralel yürütülür. Aynı dosyalara dokunan görevler eş zamanlı yürütülmez.
+- Alt ajan sonuçları Fable tarafından doğrulanmadan kabul edilmez.
+- Alt ajan kullanımı ve risksiz testler için GENEL İZİN vardır; her seferinde onay istenmez.
+- **Kullanıcı onayı gerekenler:** yayınlama, ücretli işlemler, gerçek oyuncu verilerine müdahale, geri döndürülemez işlemler, onaylanmış ürün kararlarının değiştirilmesi.
+- Model kimlikleri doğrulanır (`get_session`); belirtilen modeller yerine kullanıcıdan habersiz başka model kullanılmaz.
+- Tamamlanan işler, değişiklikler, test sonuçları ve devam noktaları kalıcı kaydedilir (bu dosya + `_tasarim`); kullanım limiti sonrası gereksiz tekrar yapılmadan devam edilir.
+- Kota tasarrufu için kalite, güvenlik, test kapsamı veya kabul standartları düşürülemez.
+- Eski kurallarla çelişkide BU BÖLÜM geçerlidir: "ajanları yalnız kullanıcı isterse kullan", "onayı olmadan test yapma / TEST YAPMA", "Sonnet'le riskli iş yapma", "Fable denetimini kendin yapma" ve "iş bitince yayımla" notları aşağıda tarihsel kayıttır, bağlayıcı değildir. Devam eden işler gereksiz kesilmez. Kural: hiçbir testi 3 dk'dan uzun yapma (korunur).
 
 ## SON DURUM (28.11, 25. oturum) — SÜRÜM 42'YE DÖNÜŞ + DEPO TEMİZLİĞİ
 - **Kullanıcı kararı: temel = https://claude.ai/artifact/Xgt9b5UzmwMEXw6U9TVL21** (sürüm 1795763872-a968, 450 dosya) = git'teki v42 (`866dc4d`) ile birebir. `oyun-son/` o duruma döndürüldü: `js/savas3d/` ve `models/b3d/` silindi, combat/world/savas-kamera/savas-birim2d/daylight/engine3d/models.js + p33-kabul.css v42 hâli. **3B savaş Faz 1b artık oyunda YOK** (geçmişte `e9c9b0c`'de; geri istenirse oradan).
@@ -14,7 +32,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - **Git geçmişi YENİDEN YAZILDI** (git filter-repo, kullanıcı onaylı zorla push): paket 400 → 150 MB. Geçmişten tamamen çıkarılanlar: `oyun-son/_tasarim/gelen/` (270 MB ham GPT/Gemini teslimleri), `_tasarim/3d-faz1b/`, `_tasarim/proje-giris-ve-eksikler.zip`, kökte `game/`, `teslim/`, `ui-teslim/`, `demir-diyari-kaynak.zip`, `Demir_Diyari_GPT_Paketi.zip`. Bunlar KORANT_ARSIV (4 parça, 355 MB) olarak kullanıcıda; depoda/konteynerde yok. **`_tasarim/araclar` gömme araçları (tarif/*.json, gom.py, b2d-gom.py, karakter-gom.py…) `gelen/` yollarına bakar → yeniden gömmek gerekirse kullanıcıdan arşivi iste.**
 - **Bu nottaki ESKİ commit numaraları geçersiz** (geçmiş yeniden yazıldı). Eşleme: v43 f1680fd→`e9c9b0c`, v42 b9a0b21→`866dc4d`, P34 d5320b5→`bbc7819`, v41→`999a5cb`, v40→`1623131`, v38 açılış hatası→`06df47a`. Diğerleri için `git log --oneline | grep "<commit başlığı>"`. Yerel `v42` etiketi yeni commit'te.
 - **Push artık ÇALIŞIYOR** (403 yok); yalnız `claude/add-skill-repos-rne7at`. Uzak `main` ayrı, ortak geçmişsiz (README + vendor submodule'leri).
-- **Beceriler:** `.claude/skills` (179) ve `.claude/agents` (49) = `vendor/` submodule kısayolları (anthropic-skills, superpowers, awesome-gamedev-agent-skills, claude-code-game-studios). Sorun çıkaran 13 kısayol SİLİNDİ: using-superpowers, brainstorming, test-driven-development, verification-before-completion, using-git-worktrees, finishing-a-development-branch, help, settings, discernment-nudge, academy-guide, skill-improve, skill-test, writing-skills. Kullanılmayan motor/tür becerileri (Godot/Unity/Unreal/Roblox…) kullanıcı isteğiyle DURUYOR. İşe yarayanlar: threejs-*, game-ui-ux, game-feel, rpg, save-systems (F-001), performance-optimization, balance-check, localize, asset-audit, ux-review, qa-plan, systematic-debugging, pdf/docx. Ajanları yalnız kullanıcı isterse kullan (pahalı).
+- **Beceriler:** `.claude/skills` (179) ve `.claude/agents` (49) = `vendor/` submodule kısayolları (anthropic-skills, superpowers, awesome-gamedev-agent-skills, claude-code-game-studios). Sorun çıkaran 13 kısayol SİLİNDİ: using-superpowers, brainstorming, test-driven-development, verification-before-completion, using-git-worktrees, finishing-a-development-branch, help, settings, discernment-nudge, academy-guide, skill-improve, skill-test, writing-skills. Kullanılmayan motor/tür becerileri (Godot/Unity/Unreal/Roblox…) kullanıcı isteğiyle DURUYOR. İşe yarayanlar: threejs-*, game-ui-ux, game-feel, rpg, save-systems (F-001), performance-optimization, balance-check, localize, asset-audit, ux-review, qa-plan, systematic-debugging, pdf/docx. Ajan kullanımı: yukarıdaki KALICI GÖREV VE YETKİ DAĞILIMI'na göre (genel izin var; en düşük maliyetli yeterli model).
 - Önceki oturumlardan kalan worktree (`scratchpad/eski`) kaldırıldı; yeni worktree açma.
 
 ## ÖNCEKİ DURUM (28.11, 24. oturum) — 3B SAVAŞ FAZ 1b (25. oturumda GERİ ALINDI)
@@ -24,7 +42,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - Kullanıcı belgeleri/ZIP'leri/kalan testleri ATLATTI ("işini bitir, yayınla"). Fable için tek ZIP istenmişti → yapılmadı (kullanıcı vazgeçti). Kural: hiçbir testi 3 dk'dan uzun yapma.
 
 ## ÖNCEKİ DURUM (27.11, 23. oturum) — 3B SAVAŞ FAZ 1 (Opus teknik entegrasyon)
-- **KULLANICI KURALI: ONAYI OLMADAN TEST YAPMA** (Playwright, savaş turları dahil; sözdizimi denetimi hariç).
+- **[28.11'den beri GEÇERSİZ: risksiz testler için genel izin var]** ~~KULLANICI KURALI: ONAYI OLMADAN TEST YAPMA~~ (Playwright, savaş turları dahil; sözdizimi denetimi hariç).
 - V42'de mevcut Paladin + Goblin modelleriyle gerçek 3B savaş: `js/savas3d/` (ayar3d, varlik3d, birim3d, silah3d, kamera3d), manifest `models/b3d/models3d.json`, kancalar world.js / savas-birim2d.js / savas-kamera.js (yamalar `_tasarim/3d-faz1/yamalar/`). combat.js + shared/ DEĞİŞMEDİ. 3B varsayılan KAPALI: `?b3d=1` / `dd_b3d='1'`; Düşük grafik, kayıtsız birim, model inmedi → bütün savaş 2B.
 - Belgeler: `_tasarim/3d-faz1/STANDART.md` (Gemini/GPT/Fable ortak arayüz, yollar, bütçeler), `OPUS_FAZ1_TESLIM_RAPORU.md`, `manifest.json`, kanıtlar `kanit/`. ZIP `KORANT_3D_FAZ1_OPUS.zip` (1,5 MB) kullanıcıya gönderildi (depoda değil).
 - Test: sonuç eşitliği 1-11 GEÇTİ; geri dönüş kapalı/düşük/bandikut GEÇTİ; indirme testi hatalı (SW), Kragmir/WebGL/bellek/boss/telefon FPS YAPILMADI. `arac/donustur.py` (bpy) ve `butce.mjs` yazıldı, çalıştırılmadı.
@@ -32,7 +50,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 ## SON DURUM (26.11, 22. oturum) — V42 FİNAL TESLİM HAZIR + P35 İLK DENETİM
 - **KORANT_V42_OPUS_DUZELTME.zip** (19,9 MB, 667 dosya) kullanıcıya gönderildi; belgeleri `oyun-son/_tasarim/opus-v42-duzeltme/teslim/` (ZIP depoda değil; çekimler zaten `EKRAN_EKSIGI/`'de). Durum: F-005/F-007 düzeltildi (880/667/1180'de 11 px altı 0), F-006 kısmen (880: 223→99; kalanı kullanıcı onaylı OPUS işi, ızgara kararı), F-018 büyük kısmı (zindan savaşları ERTELENDİ), F-024 yalnız 5 dk (30/60/120 dk ERTELENDİ, yayın öncesi testlere), F-025 26 geçti (yerel sim.). Opus'a devir: F-001, F-021, F-009, F-006 kalanı; GPT girdileri (F-001 şartname, F-004 EN, F-019/020) uygulanmadı → Fable oturumu birleştirir. Tek kod değişikliği `css/p33-kabul.css` sonu.
 - **P35 ilk bağımsız denetim (Opus):** `oyun-son/_tasarim/p35/KORANT_P35_OPUS_ILK_DENETIM.zip` + klasör `opus-ilk-denetim/`; 23 bulgu (Y4: referanslarda uydurma veri, Avcı Seferi rotaları anlamsız, D06/D07 üretim yaması yok, Destan çelişkileri). Kullanıcıya 7 karar sorusu soruldu (cevap bekleniyor). Girdi paketi: `/root/.claude/uploads/44302d19-…/ff5dfb94-KORANT_P35_FABLE_PARALEL_GOREV-1.zip`.
-- Kullanıcı kuralı: Sonnet'le riskli iş yapma; Opus işleri kullanıcının Opus/Fable oturumunda.
+- ~~Kullanıcı kuralı: Sonnet'le riskli iş yapma; Opus işleri kullanıcının Opus/Fable oturumunda.~~ (28.11: yerini KALICI GÖREV VE YETKİ DAĞILIMI aldı; Sonnet kod değiştirmez, Opus ayrı worktree'de yama teslim eder.)
 
 ## SON DURUM (26.11, 21. oturum) — FABLE/OPUS V42 DÜZELTME GÖREVİ (YENİ DAL İŞİ BAŞLADI)
 - Kullanıcı `KORANT_FABLE_OPUS_GOREV.zip` verdi (açılmış hâli scratchpad `gorev/`; kaynak `/root/.claude/uploads/4ff18f7b-…/0362e2df-KORANT_FABLE_OPUS_GOREV.zip`). **Oku:** `gorev/00_ONCE_OKU.md`, `01_ORTAK_KURALLAR.md`, `02_GOREV_MATRISI.json`, `03_ROL_BULGULARI.json` (F-kodları + kabul ölçütleri). Teslim: `KORANT_V42_OPUS_DUZELTME.zip` (≤30 MB) = OPUS_DEGISIKLIK_RAPORU.md, F_BULGU_DURUMU.json, TEST_KANITLARI/, EKRAN_EKSIGI/, GPT_GEMINI_ENTEGRASYON.md, FABLE_TAKIP_GIRDISI.md, manifest.json (SHA-256). Kayıtlar `oyun-son/_tasarim/opus-v42-duzeltme/`.
@@ -50,7 +68,7 @@ Kullanıcı Türkçe konuşur; yanıtlar Türkçe olsun. Oyun: **Demir Diyarı**
 - G2 düzeltmeleri: boss uyarısı ek bekleme yok, orsSonuc pencere kimliği, expAkit son değer, LOCAL payBuy koruması, "+" 44 px genişlik, 667 savaş HUD 11 px (özgül seçici), QA özeti 113, KAB satırı yalanı düzeltildi. G2-04/05 test betiği hatasıydı (gpt_test düzeltildi).
 - **Gerileme düzeltildi:** `ui-ahir.js binaAcik` (icm-var sınıfı) → Han/Ahır yeniden çizilmiyor, Zafer "Yükleniyor…"da kalıyordu (dış sürüm v40'tan).
 - Testler (v42): p34_test ×2 GEÇTİ, bina_test, sekme_test (çoklu sekme kilidi), hafta_test (haftalık sıfırlama), gpt_test ×2 GEÇTİ, sistem_test. **savas_test ve cek115 kullanıcı isteğiyle DURDURULDU (v42'de yapılmadı).**
-- **Fable girdisi HAZIR:** `KORANT_FABLE_DENETIM_GIRDISI.zip` (3,5 MB, 91 dosya) kullanıcıya gönderildi; içeriği depoda `oyun-son/_tasarim/fable-girdi/`. Yeniden üretme: `_tasarim/araclar/fable/` (oyun_verisi.mjs → envanter.py, matris.py, paketle.py). Denetlenecek sürüm `KORANT-v42-b9a0b21`, oyun parmak izi 7cd7414d…. Matris 88 kayıt; açık 19 (tekil kök 14: Y5 O6 D3). Fable denetimini KENDİN YAPMA, yayın kararı verme.
+- **Fable girdisi HAZIR:** `KORANT_FABLE_DENETIM_GIRDISI.zip` (3,5 MB, 91 dosya) kullanıcıya gönderildi; içeriği depoda `oyun-son/_tasarim/fable-girdi/`. Yeniden üretme: `_tasarim/araclar/fable/` (oyun_verisi.mjs → envanter.py, matris.py, paketle.py). Denetlenecek sürüm `KORANT-v42-b9a0b21`, oyun parmak izi 7cd7414d…. Matris 88 kayıt; açık 19 (tekil kök 14: Y5 O6 D3). (Eski not "Fable denetimini kendin yapma" 28.11'de kalktı: Fable başdenetçidir; yayın kararı yine kullanıcıdadır.)
 
 ## SON DURUM (26.11, 19. oturum) — P33 TAMAMLANDI, SÜRÜM 41 YAYINDA
 - **Sürüm 41 YAYINDA** (447 dosya; yayın commit'i bu notun commit'i; sonraki yayında `git diff --name-status <o commit> HEAD -- oyun-son`, `_tasarim` hariç).
