@@ -7,19 +7,7 @@
 // Her istek bir öncekini keser: hedef değişir, kamera bulunduğu yerden ve hızından yumuşakça döner (sıçrama yok).
 // Kadraj sabit sayılarla değil, birimlerin dünya sınırlarından (ayak + baş + can çubuğu payı), kameranın görüş açısından,
 // ekran oranından ve savaş arayüzünün güvenli alanından (DOM'dan ölçülür) hesaplanır. Hesap yalnız olaylarda yapılır.
-import { THREE, camRig, camera, setBattleVfov } from './engine3d.js';
-import { CAMERA_MODES_V42, fitBattleCamera } from './savas3d/sunum3d.js'; // 3B Faz 1b
-
-let preset = null;
-let lastAspect = 0;
-const angle = () => preset
-  ? { yaw: THREE.MathUtils.degToRad(preset.yawDeg), pitch: THREE.MathUtils.degToRad(preset.pitchDeg) }
-  : VIEW;
-export function useBattleMode(key) {
-  preset = CAMERA_MODES_V42[key] ?? null;
-  setBattleVfov(preset?.vfovDeg ?? null);
-  lastAspect = camera.aspect;
-}
+import { THREE, camRig, camera } from './engine3d.js';
 
 // Taban bakış: kamera +x yanında (parti solda, düşman sağda); YAW partiye doğru döndürür (parti önde, düşman orta planda),
 // PITCH aşağı bakış (boyalı arka planların ufkuna yakın, alçak üç-çeyrek).
@@ -37,7 +25,6 @@ const K = {
   safe: null,
 };
 if (typeof window !== 'undefined') window.DD_CAM = K; // test: durum ve kadraj okunur
-export const KAMERA = K;
 
 // Güvenli alan (NDC): üstte oyuncu kartı / hedef / boss çubuğu, altta yetenek çubuğu ve sağ alt düğmeler. Görünür
 // öğelerin kutularından ölçülür; ölçülemezse 880×406 telefondaki değerler.
@@ -69,7 +56,6 @@ function basis(yaw, pitch) {
 // Noktaların hepsini güvenli alana sığdıran en yakın kamera (yön sabit). a, b: yanal/dikey kaydırma; d: uzaklık.
 // Verilen d için a ve b'nin olurlu aralığı doğrusal eşitsizliklerden çıkar; en küçük olurlu d ikili aramayla bulunur.
 export function fit(points, yaw, pitch, safe, dMin = D_MIN) {
-  if (preset) return fitBattleCamera(THREE, camera, points, preset, safe, yaw, pitch, dMin === D_MIN ? preset.dist : dMin);
   const { f, r, u } = basis(yaw, pitch);
   const tV = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2), tH = tV * camera.aspect;
   const P = points.map(p => [p.dot(r), p.dot(u), p.dot(f), p.side === 'B' ? safe.ybR ?? safe.yb : safe.yb]);
@@ -110,7 +96,7 @@ function computeIdle() {
   K.safe = measureSafe();
   const P = []; for (const a of alive()) pts(a, P);
   if (!P.length) return K.idle;
-  const r = fit(P, angle().yaw, angle().pitch, K.safe);
+  const r = fit(P, VIEW.yaw, VIEW.pitch, K.safe);
   K.idle = r; K.sig = sigOf();
   return r;
 }
@@ -124,17 +110,17 @@ export function begin(actors, predicted) {
   K.safe = measureSafe();
   const P = predicted?.length ? predicted : [];
   for (const a of actors.values()) pts(a, P);
-  const r = P.length ? fit(P, angle().yaw, angle().pitch, K.safe) : { pos: new THREE.Vector3(13, 4, 3), look: new THREE.Vector3(0, 1.3, 0), d: 14 };
+  const r = P.length ? fit(P, VIEW.yaw, VIEW.pitch, K.safe) : { pos: new THREE.Vector3(13, 4, 3), look: new THREE.Vector3(0, 1.3, 0), d: 14 };
   K.idle = r;
   // açılış: biraz yukarıdan ve en çok %12 uzaktan süzülür
-  const { f } = basis(angle().yaw, angle().pitch + 0.12);
+  const { f } = basis(VIEW.yaw, VIEW.pitch + 0.12);
   const start = r.look.clone().addScaledVector(f, -r.d * (1 + ZOOM_MAX));
   K.pos.copy(start); K.look.copy(r.look); K.vp.set(0, 0, 0); K.vl.set(0, 0, 0);
   camRig.pos.copy(K.pos); camRig.look.copy(K.look);
   go(r.pos, r.look, DUR.establish, 'ESTABLISH');
   return r;
 }
-export function end() { K.on = false; K.state = 'OFF'; K.actors = null; useBattleMode(null); }
+export function end() { K.on = false; K.state = 'OFF'; K.actors = null; }
 
 // Birimler değişti (dalga, ölüm, dirilme): taban kadraj yeniden hesaplanır. Odaktayken yalnız taban güncellenir; dönüş yeni tabana olur.
 export function settle(force = false) {
@@ -152,7 +138,7 @@ function focusOn(list, k, dyaw, dpitch, dur, state, zoomCap) {
   if (!K.on) return;
   const P = []; for (const a of list) pts(a, P, false);
   if (!P.length) return;
-  const r = fit(P, angle().yaw + dyaw, angle().pitch + dpitch, K.safe || measureSafe(), (preset?.dist ?? D_MIN) * 0.8);
+  const r = fit(P, VIEW.yaw + dyaw, VIEW.pitch + dpitch, K.safe || measureSafe(), D_MIN * 0.8);
   const I = K.idle, pos = I.pos.clone().lerp(r.pos, k), look = I.look.clone().lerp(r.look, k);
   // yakınlaşma sınırı: odak içeriğinin ortasına uzaklık, tabandakinin (1 - zoomCap) katından az, tabandakinden çok olmaz
   const c = P.reduce((m, p) => m.add(p), new THREE.Vector3()).multiplyScalar(1 / P.length);
@@ -161,19 +147,17 @@ function focusOn(list, k, dyaw, dpitch, dur, state, zoomCap) {
   if (pos.y < 0.7) { look.y += 0.7 - pos.y; pos.y = 0.7; }
   go(pos, look, dur, state);
 }
-export function focusAttack(att, targets) { if (K.ek?.focusAttack?.(att, targets)) return; focusOn([att, ...targets], 0.35, 0, 0, DUR.attack, 'FOCUS_ATTACK', 0.1); }
+export function focusAttack(att, targets) { focusOn([att, ...targets], 0.35, 0, 0, DUR.attack, 'FOCUS_ATTACK', 0.1); }
 export function focusSkill(att, targets, master) {
-  if (K.ek?.focusSkill?.(att, targets, master)) return;
   const s = att.unit.side === 'A' ? 1 : -1;
   focusOn([att, ...targets], master ? 0.7 : 0.55, 0.1 * s, -0.03, master ? DUR.master : DUR.skill, 'FOCUS_SKILL', master ? 0.24 : 0.18);
 }
 // Boss girişi: boss ve parti birlikte (genişletilmiş kadraj), biraz alçaktan bossa doğru açı
 export function focusBoss(boss, party) {
   if (!K.on) return;
-  if (K.ek?.focusBoss?.(boss, party)) return;
   K.safe = measureSafe();
   const P = []; pts(boss, P); for (const a of party) pts(a, P);
-  const r = fit(P, angle().yaw - 0.12, angle().pitch - 0.06, K.safe);
+  const r = fit(P, VIEW.yaw - 0.12, VIEW.pitch - 0.06, K.safe);
   const look = r.look.clone().lerp(boss.home.clone().setY(r.look.y + 0.4), 0.35);
   go(r.pos.clone().add(look).sub(r.look), look, DUR.boss, 'FOCUS_BOSS');
 }
@@ -188,10 +172,6 @@ function damp(cur, goal, vel, st, dt) {
 }
 export function step(dt) {
   if (!K.on || !(dt > 0)) return;
-  if (preset && lastAspect !== camera.aspect) {
-    lastAspect = camera.aspect;
-    settle(true);
-  }
   dt = Math.min(dt, 0.1);
   damp(K.pos, K.gPos, K.vp, K.st, dt); damp(K.look, K.gLook, K.vl, K.st, dt);
   if (K.pos.y < 0.6) K.pos.y = 0.6;
@@ -199,5 +179,4 @@ export function step(dt) {
   if ((K.state === 'ESTABLISH' || K.state === 'RECOVER' || K.state === 'RECOMPOSE') && K.pos.distanceToSquared(K.gPos) < 1e-4 && K.vp.lengthSq() < 1e-4) K.state = 'IDLE';
 }
 export const camState = () => K.state;
-K.api = { go, fit, pts, basis, measureSafe, get VIEW() { return angle(); }, DUR, focusOn };
 export const idleView = () => K.idle;

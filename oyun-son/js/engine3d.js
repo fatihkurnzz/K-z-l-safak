@@ -97,11 +97,6 @@ export function setSkyEnv(spec) {
 setSkyEnv({ sky: ['#26344e', '#55657e', '#a8997e'], ground: 0x3a342c, sun: 0xffe6c4, sunI: 1, rim: 0x8fb4ff, rimI: 0.6, torch: 0.3 });
 studioRT = envRT;
 export const studioEnv = () => studioRT.texture;
-export function restoreBattleEnvironment() {
-  if (envRT !== studioRT) envRT?.dispose();
-  envRT = studioRT; envKey = '';
-  scene.environment = studioRT.texture;
-}
 // Portre çizimi için: sabit pozlamayla (sahneninkinden bağımsız) çiz, sonra sahnenin pozlamasına dön
 export function withStudioExposure(fn) { const e = renderer.toneMappingExposure; renderer.toneMappingExposure = 0.9; try { fn(); } finally { renderer.toneMappingExposure = e; } }
 
@@ -135,7 +130,6 @@ function buildComposer() {
 // Kamera: yatay görüş açısını sabit tut ki dikey telefonda iki takım da sığsın
 // nudge: kritik vuruşta hedefe doğru küçük, sönen itiş (sarsıntı değil; mide bulandırmaz)
 export const camRig = { pos: new THREE.Vector3(0, 7, 11), look: new THREE.Vector3(0, 0.6, -0.4), hfov: 41, shake: 0, nudge: new THREE.Vector3() };
-let battleVfov = null;
 const shift = { x: 0, y: 0 };
 const pBuf = new THREE.Vector2();
 function resize() {
@@ -144,7 +138,7 @@ function resize() {
   if (composer) { composer.setSize(w, h); bloom.setSize(Math.round(w * DPR / gfx.T.bloomDiv), Math.round(h * DPR / gfx.T.bloomDiv)); }
   camera.aspect = w / h;
   const v = 2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(camRig.hfov / 2)) / camera.aspect);
-  camera.fov = battleVfov ?? Math.max(42, Math.min(85, THREE.MathUtils.radToDeg(v)));
+  camera.fov = Math.max(42, Math.min(85, THREE.MathUtils.radToDeg(v)));
   // Görüş merkezi kaydırması: ana üste sol sütun ve alt çubuk sahneyi örtmesin diye sahne sağa/yukarı alınır
   if (shift.x || shift.y) camera.setViewOffset(w, h, -shift.x * w, -shift.y * h, w, h); else camera.clearViewOffset();
   camera.updateProjectionMatrix();
@@ -152,11 +146,6 @@ function resize() {
   for (const p of pools) p.mat.uniforms.px.value = pBuf.y * 0.5;
 }
 // Yatay görüş açısı (derece): dikey açı ekran oranından türetilir, böylece yatay kadraj her ekranda aynı kalır
-export function setBattleVfov(deg) {
-  if (battleVfov === deg) return;
-  battleVfov = deg;
-  resize();
-}
 export function setHfov(deg) { if (camRig.hfov === deg) return; camRig.hfov = deg; resize(); }
 // fx, fy: ekran genişliği/yüksekliği oranı (+x sağa, +y aşağı)
 export function setShift(fx = 0, fy = 0) { if (shift.x === fx && shift.y === fy) return; shift.x = fx; shift.y = fy; resize(); }

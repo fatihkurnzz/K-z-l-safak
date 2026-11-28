@@ -267,26 +267,3 @@ html[data-faction] :is(#drawer, .drawer, #modal.drawer, #modal .drawer) small, h
    Daha özgül seçiciyle her ölçüde en az 11 px; düğme kutuları değişmez, yazı sığmazsa satır kırılmaz, kutu içinde ortalanır. */
 html[data-faction]:root body #game#game#game #battleUI#battleUI :is(#bctl2 .rb, #skills .skill > i.mpc, #skills .skill > i.pn, #btgt .bt-info small, .yb > b, .bt-bar > em),
 html[data-faction]:root body #overlay#overlay#overlay .hud > i.lv { font-size: 11px !important; line-height: 1.1 !important; }
-
-/* ---- V42 düzeltme (F-005/F-006/F-007): yazı ≥ 11 px, kapatma düğmeleri 44 px, Meydan Sezonu sekmeleri ---- */
-html[data-faction] #win .frame > header .wres > span.wctx,
-html[data-faction] #modal .box > .mctx > span.wctx,
-html.k24[data-faction] #win .frame > header .wres > span.wctx,
-html.k24[data-faction] #win .frame > header .wres.wtag > span.wctx { font-size: 11px !important; }
-#modal .mc-t small, #win .mc-t small { font-size: 11px !important; }
-#game #hud .dev, html.p23 #game #hud .dev { font-size: 11px !important; }
-#win .frame > header button.x, #modal .box button.x.mx, #modal button.x { min-width: 44px !important; min-height: 44px !important; width: 44px !important; height: 44px !important; }
-/* F-007: geri düğmeli pencerelerde (Meydan Sezonu) sol sekme sütunu 44 px dolguyla daralıp harf harf bölünüyordu */
-html[data-faction] #win:has(.frame > header > .x.bk):not(:has(.kx)) nav.tabs:not(.side) { padding-left: 0 !important; min-width: 118px !important; }
-html[data-faction] #win:has(.frame > header > .x.bk):not(:has(.kx)) nav.tabs button span { word-break: normal !important; overflow-wrap: normal !important; hyphens: none; }
-/* F-005 kalan: 10,5 px'lik üç yer ve 667 genişlikte 10,9 px menü yazısı */
-html.k24[data-faction] #win[data-scr="karakter"] .kx-base .kx-r, html.k24[data-faction] #win[data-scr="karakter"] .kx-base .kx-r span, #win .kx-base .kx-r span { font-size: 11px !important; }
-html.p23 .ik-card .potbuy .btn, html.p23 .ik-card .potbuy .btn span { font-size: 11px !important; }
-:is(#win, #modal) .wslot span { font-size: 11px !important; }
-html.p23 .p23m-alt, html.p23 .p23m-alt span { font-size: 11px !important; }
-/* F-006 (karar gerektirmeyen kısım): sık kullanılan düğmeler ≥ 44 px */
-[data-a="icmGizle"], [data-a="binaKapat"] { min-width: 44px !important; min-height: 44px !important; }
-:is(#win, #modal) :is([data-a="stage"], [data-a="tcPot"], [data-a="qlOpen"], [data-a="season"], [data-a="rank"], [data-a="mzRefresh"], [data-a="clanApply"]) { min-height: 44px !important; min-width: 44px !important; }
-/* F-005 son kalan: Karakter penceresi alt sekmeleri (.kx-ftabs) 10,5 px */
-#win .kx-ftabs button, #win .kx-ftabs button span { font-size: 11px !important; }
-html.k24[data-faction] #win[data-scr="karakter"] nav.tabs button { font-size: 11px !important; }
